@@ -1,0 +1,16 @@
+{
+  "name": "developer-platform-generated",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "compression": "^1.6.2",
+    "express": "^4.14.1",
+    "js-yaml": "^3.8.1",
+    "jsonwebtoken": "^7.2.1",
+    "request": "^2.79.0"
+  }
+}
