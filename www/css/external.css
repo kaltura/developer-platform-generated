@@ -283,3 +283,8 @@ body.spaced-for-kaltura-nav {
   display: none;
 }
 
+#Documentation pre {
+  max-height: 350px;
+  overflow: scroll;
+}
+
