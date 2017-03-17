@@ -322,4 +322,21 @@ window.hideKalturaSidebar = function() {
   window.jquery('app .container-fluid').css('margin-left', '79px')
 }
 
+var BLOG_URL = 'https://blog.kaltura.com/?json=get_category_posts&slug=technology&count=5&status=publish&page=1';
+
+window.jquery(document).ready(function() {
+
+  function postTemplate(post) {
+    return '<p><a href="' + post.url + '" target="_blank">' + post.title + '</a></p>';
+  }
+
+  window.jquery.getJSON(BLOG_URL)
+  .done(function(data) {
+    window.jquery('#KalturaBlogContent').html(data.posts.map(postTemplate).join('\n'));
+  })
+  .fail(function(xhr) {
+    console.log('blog failure', xhr);
+  })
+})
+
 ;
