@@ -2641,6 +2641,8 @@
 <url> <loc>https://developer.kaltura.com/workflows/Manage_and_Deliver_Apps_and_Widgets/App_Token_Authentication</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Add_a_Workflow</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Contact_Us</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://developer.kaltura.com/console</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Overview</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Client_Libraries</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
