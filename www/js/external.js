@@ -1,7 +1,7 @@
 (function() {
   var COOKIE_TIMEOUT_MS = 900000;
   var STORAGE_KEY = 'LUCYBOT_RECIPE_CREDS';
-  var user = {};
+  var user = window.kalturaUser = {};
 
   function loggedInTemplate() {
     return '<li class="navbar-link"><a onclick="setKalturaUser()">' +
@@ -24,9 +24,9 @@
     document.cookie = cookie;
   }
 
-  var updateViewsForLogin = function(loggedIn) {
+  var updateViewsForLogin = function(creds) {
     window.jquery('#KalturaSignInModal .alert-danger').hide();
-    if (!loggedIn) {
+    if (!creds) {
       window.jquery('#KalturaAuthLinks').html(LOGGED_OUT_HTML);
       window.jquery('#KalturaSidebar .logged-in').hide();
       window.jquery('#KalturaSidebar .not-logged-in').show();
@@ -37,6 +37,11 @@
       window.jquery('#KalturaAuthLinks').html(loggedInTemplate());
       window.jquery('#KalturaSidebar .not-logged-in').hide();
       window.jquery('#KalturaSidebar .logged-in').show();
+      window.jquery('#KalturaSidebar .partnerId').text(creds.partnerId || '');
+      window.jquery('#KalturaSidebar .userSecret').text(creds.userSecret || '');
+      window.jquery('#KalturaSidebar .adminSecret').text(creds.secret || '');
+      window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
+      window.jquery('#KalturaPartnerIDModal').modal('hide');
     }
   }
 
@@ -48,20 +53,19 @@
     }
     if (!creds) {
       clearUser();
-      updateViewsForLogin(false);
+      updateViewsForLogin(null);
       return;
     }
     user = creds;
-    window.setUpKalturaClient(creds, function(err, ks) {
+    window.setUpKalturaClient(creds, function(err, newCreds) {
       if (err) {
         clearUser();
         window.jquery('#KalturaSignInModal .alert-danger').show();
         return;
       }
       window.jquery('#KalturaSignInModal').modal('hide');
-      user.ks = creds.ks = ks;
       if (user.userId) window.JacoRecorder.identify(user.userId);
-      updateViewsForLogin(true);
+      updateViewsForLogin(creds);
       setCookie(creds);
       if (window.secretService) window.secretService.setSecrets(creds);
     })
@@ -170,7 +174,6 @@
         name: data.name,
       }
       setKalturaUser(creds);
-      window.jquery('#KalturaPartnerIDModal').modal('hide');
     })
     .fail(function(xhr) {
       mixpanel.track('login_error', {
@@ -178,13 +181,11 @@
         email: user.email,
         error: xhr.responseText,
       })
+      window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
       window.jquery('#KalturaPartnerIDModal').modal('hide');
       window.jquery('#KalturaSignInModal').modal('show');
       window.jquery('#KalturaSignInModal .alert-danger').show();
-    })
-    .always(function() {
-      window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
-    })
+    });
   }
 })();
 
@@ -225,9 +226,6 @@ function setKalturaSession(creds, cb) {
     partnerId: creds.partnerId,
   });
   KC.setKs(creds.ks);
-  window.jquery('#KalturaSidebar .partnerId').text(creds.partnerId || '');
-  window.jquery('#KalturaSidebar .userSecret').text(creds.userSecret || '');
-  window.jquery('#KalturaSidebar .adminSecret').text(creds.secret || '');
   var filter = {
     objTypeEqual: 1, // KalturaUiConfObjType.PLAYER
   }
@@ -255,7 +253,7 @@ function setKalturaSession(creds, cb) {
       var answers = window.lucybot.openapiService.globalParameters;
       answers.uiConf = answers.uiConf || uiConfs[0].id;
     }
-    cb(null, creds.ks);
+    cb(null, creds);
   });
 }
 
