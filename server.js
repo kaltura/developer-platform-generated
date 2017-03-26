@@ -42,6 +42,13 @@ if (!process.env.DEVELOPMENT || process.env.USE_CACHE) {
   App.use('/swagger.json',   cache('med'));
 }
 
+var redirects = require('./redirects');
+App.use('/recipes/:workflow/embed', (req, res, next) => {
+  var redirect = redirects[req.params.workflow];
+  if (!redirect) return next();
+  res.redirect(redirect.redirect + '?embed=true');
+});
+
 const STATIC_DIR = __dirname + '/www';
 App.use(Express.static(STATIC_DIR));
 
