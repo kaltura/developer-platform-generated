@@ -69,6 +69,7 @@ App.get(basePages, (req, res) => {
 
 App.use('/auth', require('./routes/partner-auth.js'));
 App.use('/github', require('./routes/github.js'));
+App.use('/discussion', require('./routes/discussion'));
 
 if (process.env.DEVELOPMENT || process.env.NO_SSL) {
   console.log('----DEVELOPMENT ENVIRONMENT----');
