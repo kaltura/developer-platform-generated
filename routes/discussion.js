@@ -41,6 +41,6 @@ router.get('/:slug/create', (req, res) => {
     }
   }, (err, resp, body) => {
     if (err || resp.statusCode >= 300) return res.status(500).send("Error");
-    res.redirect('/discussion/' + req.params.slug);
+    res.redirect(DISCOURSE_HOST + '/t/' + body.topic_id);
   })
 });
