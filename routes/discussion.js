@@ -22,7 +22,7 @@ router.use('/:slug', (req, res, next) => {
     request.get(discourseURL('/t/' + topic.id + '.json'), {json: true}, (err, resp, body) => {
       if (err) return res.status(500).send(err);
       if (resp.statusCode >= 400 || body.errors) return res.status(resp.statusCode).send(JSON.stringify(body.errors));
-      res.send(discussionTemplate({discussion: body}))
+      res.send(discussionTemplate({discussion: body, host: DISCOURSE_HOST}))
     })
   });
 })
