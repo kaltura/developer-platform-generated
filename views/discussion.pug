@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    link(rel="stylesheet" href="/dist/bootstrap.css")
+    include ./head
   body
     each post, idx in discussion.post_stream.posts
       if idx > 0
