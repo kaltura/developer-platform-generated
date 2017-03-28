@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    link(rel="stylesheet" href="/dist/bootstrap.css")
+  body
+    each post, idx in discussion.post_stream.posts
+      if idx > 0
+        .post
+          h4= post.username
+          div !{post.cooked}
+        hr
+    if discussion.post_stream.posts.length <= 1
+      p
+        i No posts yet...
+    a(href="https://forum.kaltura.org/t/" + discussion.id, target="_blank") Join the discussion on forum.kaltura.org
+
