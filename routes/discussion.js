@@ -6,7 +6,7 @@ const router = module.exports = new express.Router();
 const DISCOURSE_HOST = process.env.DISCOURSE_HOST || 'https://forum.kaltura.org';
 const API_KEY = process.env.DISCOURSE_API_KEY;
 function discourseURL(path) {
-  return DISCOURSE_HOST + path + '?api_key=' + API_KEY;
+  return DISCOURSE_HOST + path + '?api_key=' + API_KEY + '&api_username=system';
 }
 
 const newDiscussionTemplate = pug.compileFile(__dirname + '/../views/new_discussion.pug');
@@ -40,7 +40,9 @@ router.get('/:slug/create', (req, res) => {
       raw: `Discussion for ${req.query.title} documentation`,
     }
   }, (err, resp, body) => {
-    if (err || resp.statusCode >= 300) return res.status(500).send("Error");
+    if (err || resp.statusCode >= 300) {
+	return res.status(500).send("ERROR: HTTP request returned with  "+resp.statusCode);
+    }
     res.redirect(DISCOURSE_HOST + '/t/' + body.topic_id);
   })
 });
