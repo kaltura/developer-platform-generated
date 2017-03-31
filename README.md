@@ -17,6 +17,7 @@ Several options can be set using environment variables:
 * ENABLE_CROSS_ORIGIN
 * KALTURA_RECIPES_PORT
 * DISCOURSE_HOST
+* DISCOURSE_CATEGORY_ID
 
 #### Required in production
 * KALTURA_SSO_SECRET

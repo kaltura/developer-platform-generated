@@ -36,6 +36,7 @@ router.get('/:slug/create', (req, res) => {
     json: true,
     body: {
       tags: [req.slug],
+      category: process.env.DISCOURSE_CATEGORY_ID,
       title: `${req.query.title} Documentation`,
       raw: `Discussion for ${req.query.title} documentation`,
     }
