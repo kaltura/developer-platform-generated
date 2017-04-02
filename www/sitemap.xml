@@ -143,7 +143,9 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_freeExclusiveDropFolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_getExclusiveDropFolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Execute_Bulk_Ingest_and_Updates/dropFolderFile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -689,6 +691,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_listByPartner</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_listTemplates</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_register</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_sendCommand</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_updateStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/scheduledTaskProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -894,6 +897,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAssetParamsResourceContainer</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAssetPropertiesCompareCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAssetResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAssetServeOptions</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAssetsParamsResourceContainers</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAttUverseDistributionFile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAttUverseDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -901,6 +905,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAttUverseDistributionProvider</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAttachmentAsset</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAttachmentAssetListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAttachmentServeOptions</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAttributeCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAuditTrail</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAuditTrailChangeInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1396,7 +1401,9 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPostConvertJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPreviewRestriction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaProvisionJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPushEventNotificationParameter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPushNotificationData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPushNotificationParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPushNotificationTemplate</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPushToNewsDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPushToNewsDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2003,6 +2010,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPodcastDistributionProviderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPrivacyType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaProvisionJobType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPushNotificationCommandType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPushNotificationTemplateOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaQuestionCuePointOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaQuickPlayDistributionField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2806,7 +2814,9 @@
 <url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_freeExclusiveDropFolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_getExclusiveDropFolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolder/dropFolder_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Execute_Bulk_Ingest_and_Updates/dropFolderFile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3352,6 +3362,7 @@
 <url> <loc>https://developer.kaltura.com/console/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_listByPartner</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_listTemplates</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_register</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_sendCommand</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Integration_Scheduling_and_Hooks/eventNotificationTemplate/eventNotificationTemplate_updateStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Integration_Scheduling_and_Hooks/scheduledTaskProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3557,6 +3568,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAssetParamsResourceContainer</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAssetPropertiesCompareCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAssetResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAssetServeOptions</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAssetsParamsResourceContainers</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAttUverseDistributionFile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAttUverseDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3564,6 +3576,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAttUverseDistributionProvider</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAttachmentAsset</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAttachmentAssetListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAttachmentServeOptions</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAttributeCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAuditTrail</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAuditTrailChangeInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4059,7 +4072,9 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPostConvertJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPreviewRestriction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaProvisionJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPushEventNotificationParameter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPushNotificationData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPushNotificationParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPushNotificationTemplate</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPushToNewsDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaPushToNewsDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4666,6 +4681,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaPodcastDistributionProviderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaPrivacyType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaProvisionJobType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaPushNotificationCommandType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaPushNotificationTemplateOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaQuestionCuePointOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaQuickPlayDistributionField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
