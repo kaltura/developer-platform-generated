@@ -67,7 +67,7 @@
       if (user.userId) window.JacoRecorder.identify(user.userId);
       updateViewsForLogin(creds);
       setCookie(creds);
-      if (window.secretService) window.secretService.setSecrets(creds);
+      if (window.secretService) window.secretService.setSecrets({ks: creds.ks});
     })
   }
 
