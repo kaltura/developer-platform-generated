@@ -20,6 +20,7 @@ Several options can be set using environment variables:
 * DISCOURSE_CATEGORY_ID
 
 #### Required in production
+* TARGET_API - either 'ott' or 'vpaas'
 * KALTURA_SSO_SECRET
 * KALTURA_SSO_PAYLOAD
 * GITHUB_CLIENT_ID
@@ -27,8 +28,8 @@ Several options can be set using environment variables:
 * DISCOURSE_API_KEY - valid for forum.kaltura.org
 
 ## Building
-Any changes that are pushed to the master branch will automatically
-trigger a Travis build. Travis will use LucyBot to update the
-`www/` folder with new HTML, CSS, and JS assets. Once Travis is
+Any changes that are pushed to the master branch of kaltura/developer-portal
+will automatically trigger a Travis build. Travis will use LucyBot to update the
+`generated/` folder with new HTML, CSS, and JS assets. Once Travis is
 finished, simply pull the result and restart the server.
 

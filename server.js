@@ -49,7 +49,9 @@ App.use('/recipes/:workflow/embed', (req, res, next) => {
   res.redirect(redirect.redirect + '?embed=true');
 });
 
-const STATIC_DIR = __dirname + '/www';
+const TARGET_API = process.env.TARGET_API || '';
+
+const STATIC_DIR = __dirname + '/generated/' + TARGET_API;
 App.use(Express.static(STATIC_DIR));
 
 const GH_PAGES_BASE = '/kaltura-recipes-v3';
