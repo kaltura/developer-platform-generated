@@ -112,6 +112,10 @@ body.spaced-for-kaltura-nav {
   color: #fff;
 }
 
+nav li.workflows-link {
+  display: none;
+}
+
 .panel-heading[class] {
   height: 68px;
   border-bottom: none;
