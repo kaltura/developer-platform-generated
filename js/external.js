@@ -64,7 +64,7 @@
         return;
       }
       window.jquery('#KalturaSignInModal').modal('hide');
-      if (user.userId) window.JacoRecorder.identify(user.userId);
+
       updateViewsForLogin(creds);
       setCookie(creds);
       if (window.secretService) window.secretService.setSecrets(creds);
