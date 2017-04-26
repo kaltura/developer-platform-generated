@@ -132,7 +132,7 @@
     .done(function(response) {
       window.jquery('#KalturaSignInModal').modal('hide');
       if (window.lucybot.env.target_api === 'ott') {
-        creds.ks = response.loginSession.ks;
+        creds.ks = response.login_session.ks;
         creds.name = response.user.email;
         setKalturaUser(creds);
         return;
