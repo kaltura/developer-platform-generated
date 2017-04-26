@@ -117,18 +117,26 @@
     window.jquery('#KalturaSignInModal #KalturaSignInButton').html('<i class="fa fa-spin fa-refresh"></i>').attr('disabled', 'disabled');
     creds.email = window.jquery('input[name="KalturaEmail"]').val();
     creds.password = window.jquery('input[name="KalturaPassword"]').val();
+    creds.partnerId = window.jquery('input[name="KalturaPartnerId"]').val();
 
     mixpanel.track('login_submit', {
       email: creds.email,
     });
+    var url = window.lucybot.env.target_api === 'ott' ? '/auth/ottLogin' : '/auth/login';
     window.jquery.ajax({
-      url: '/auth/login',
+      url: url,
       method: 'POST',
-      data: JSON.stringify({email: creds.email, password: creds.password}),
+      data: JSON.stringify({email: creds.email, password: creds.password, partnerId: creds.partnerId}),
       headers: {'Content-Type': 'application/json'},
     })
     .done(function(response) {
       window.jquery('#KalturaSignInModal').modal('hide');
+      if (window.lucybot.env.target_api === 'ott') {
+        creds.ks = response.loginSession.ks;
+        creds.name = response.user.email;
+        setKalturaUser(creds);
+        return;
+      }
       window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
       window.jquery('#KalturaPartnerIDModal').modal('show');
       mixpanel.identify(creds.email);
@@ -262,6 +270,7 @@ window.setUpKalturaClient = function(creds, cb) {
   config.serviceUrl = "https://www.kaltura.com/";
   window.KC = new KalturaClient(config);
   KC.setKs(creds.ks);
+  if (window.lucybot.env.target_api === 'ott') return cb(null, creds);
   function checkFailure(success, data) {
     if (!success || (data.code && data.message)) {
       var trackObj = data || {};
