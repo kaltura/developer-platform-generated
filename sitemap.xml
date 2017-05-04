@@ -882,6 +882,8 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAmazonS3StorageProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAnnotation</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAnnotationListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAnonymousIPCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAnonymousIPContextField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaAnswerCuePoint</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaApiActionPermissionItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaApiExceptionArg</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1001,6 +1003,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaConfigurableDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaConfigurableDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaConstantXsltSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaContentDistributionSearchItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaContentResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaContext</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1306,6 +1309,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLocationScheduleResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLockFileSyncsResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMailJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMailNotificationObjectTask</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMatchCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMatchMetadataCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMediaEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1353,6 +1357,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaObjectIdentifier</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaObjectListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaObjectTask</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaOperaSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaOperationAttributes</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaOperationResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaOptionalAnswer</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1439,6 +1444,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaResponseProfileHolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaResponseProfileListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaResponseProfileMapping</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaRokuSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaRule</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaRuleAction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1556,6 +1562,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaUrlTokenizerAkamaiRtsp</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaUrlTokenizerAkamaiSecureHd</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaUrlTokenizerBitGravity</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaUrlTokenizerChinaCache</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaUrlTokenizerCht</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaUrlTokenizerCloudFront</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaUrlTokenizerKs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1704,6 +1711,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCategoryUserOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCategoryUserPermissionLevel</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCategoryUserStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaChinaCacheAlgorithmType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCielo24Fidelity</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCielo24Priority</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCloneComponentSelectorType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1838,10 +1846,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFacebookDistributionField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFacebookDistributionProfileOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFacebookDistributionProviderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFairplayDrmProfileOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFeatureStatusType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFeedDropFolderFileOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFeedDropFolderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFileAssetObjectType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFileAssetOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaFileAssetStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1917,7 +1922,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaLiveEntryMatchAttribute</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaLiveEntryOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaLiveEntryScheduleResourceOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaLiveEntryServerNodeOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaLiveParamsOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaLivePublishStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaLiveReportExportType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2333,12 +2337,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFacebookDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFacebookDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFacebookDistributionProviderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFairplayDrmProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFairplayDrmProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFeedDropFolderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFeedDropFolderFileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFeedDropFolderFileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFeedDropFolderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFileAssetBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFileAssetFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFileSyncBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2413,8 +2411,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveEntryFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveEntryScheduleResourceBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveEntryScheduleResourceFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveEntryServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveEntryServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveParamsBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveParamsFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLiveReportInputFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2531,7 +2527,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSyndicationDistributionProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSyndicationDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSyndicationDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSyndicationDistributionProviderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaTVComDistributionProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaTVComDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaTVComDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3503,6 +3498,8 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAmazonS3StorageProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAnnotation</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAnnotationListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAnonymousIPCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAnonymousIPContextField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaAnswerCuePoint</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaApiActionPermissionItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaApiExceptionArg</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3622,6 +3619,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaConfigurableDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaConfigurableDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaConstantXsltSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaContentDistributionSearchItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaContentResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaContext</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3927,6 +3925,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaLocationScheduleResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaLockFileSyncsResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaMailJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaMailNotificationObjectTask</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaMatchCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaMatchMetadataCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaMediaEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3974,6 +3973,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaObjectIdentifier</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaObjectListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaObjectTask</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaOperaSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaOperationAttributes</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaOperationResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaOptionalAnswer</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4060,6 +4060,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaResponseProfileHolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaResponseProfileListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaResponseProfileMapping</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaRokuSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaRule</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaRuleAction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4177,6 +4178,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaUrlTokenizerAkamaiRtsp</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaUrlTokenizerAkamaiSecureHd</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaUrlTokenizerBitGravity</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaUrlTokenizerChinaCache</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaUrlTokenizerCht</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaUrlTokenizerCloudFront</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaUrlTokenizerKs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4325,6 +4327,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaCategoryUserOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaCategoryUserPermissionLevel</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaCategoryUserStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaChinaCacheAlgorithmType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaCielo24Fidelity</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaCielo24Priority</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaCloneComponentSelectorType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4459,10 +4462,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFacebookDistributionField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFacebookDistributionProfileOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFacebookDistributionProviderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFairplayDrmProfileOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFeatureStatusType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFeedDropFolderFileOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFeedDropFolderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFileAssetObjectType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFileAssetOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaFileAssetStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4538,7 +4538,6 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaLiveEntryMatchAttribute</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaLiveEntryOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaLiveEntryScheduleResourceOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaLiveEntryServerNodeOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaLiveParamsOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaLivePublishStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaLiveReportExportType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4954,12 +4953,6 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFacebookDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFacebookDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFacebookDistributionProviderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFairplayDrmProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFairplayDrmProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFeedDropFolderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFeedDropFolderFileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFeedDropFolderFileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFeedDropFolderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFileAssetBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFileAssetFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaFileSyncBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5034,8 +5027,6 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveEntryFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveEntryScheduleResourceBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveEntryScheduleResourceFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveEntryServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveEntryServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveParamsBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveParamsFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaLiveReportInputFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5152,7 +5143,6 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaSyndicationDistributionProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaSyndicationDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaSyndicationDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaSyndicationDistributionProviderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaTVComDistributionProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaTVComDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaTVComDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
