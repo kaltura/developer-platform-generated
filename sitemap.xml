@@ -5247,6 +5247,8 @@
 <url> <loc>https://developer.kaltura.com/workflows/Generate_API_Sessions</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Generate_API_Sessions/Authentication</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Generate_API_Sessions/App_Token_Authentication</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/workflows/Secure_Control_and_Govern</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/workflows/Secure_Control_and_Govern/Group_Management</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Ingest_and_Upload_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Live_Stream_and_Broadcast</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Enrich_and_Organize_Metadata</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
