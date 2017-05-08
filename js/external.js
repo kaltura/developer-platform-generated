@@ -140,6 +140,7 @@
       window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
       window.jquery('#KalturaPartnerIDModal').modal('show');
       mixpanel.identify(creds.email);
+      ga('set', 'userId', creds.email);
       mixpanel.people.set({
         '$email': creds.email,
       })
@@ -210,13 +211,17 @@ window.checkResponse = function(data, status) {
       msg = {type: 'danger', message: code + ': ' + message};
     }
   } else if (typeof data === 'object') {
-    var err = data.code && data.message;
-    if (err) msg = {type: 'danger', message: data.code + ': ' + data.message};
-    if (window.RECIPE && data.objectType === 'KalturaUiConfListResponse') {
-      data.objects = data.objects.filter(function(uiConf) {
-        return (uiConf.html5Url || '').indexOf('/v2') !== -1 || uiConf.objType === KalturaUiConfObjType.KRECORD;
-      });
-      if (!data.objects.length) return {type: 'danger', message: 'No v2 uiConfs found.'}
+    if (data.result && data.result.error) {
+      msg = {type: 'danger', message: data.result.error.code + ': ' + data.result.error.message};
+    } else {
+      var err = data.code && data.message;
+      if (err) msg = {type: 'danger', message: data.code + ': ' + data.message};
+      if (window.RECIPE && data.objectType === 'KalturaUiConfListResponse') {
+        data.objects = data.objects.filter(function(uiConf) {
+          return (uiConf.html5Url || '').indexOf('/v2') !== -1 || uiConf.objType === KalturaUiConfObjType.KRECORD;
+        });
+        if (!data.objects.length) return {type: 'danger', message: 'No v2 uiConfs found.'}
+      }
     }
   }
   if (msg.message.indexOf('SERVICE_FORBIDDEN') !== -1) {
@@ -225,6 +230,15 @@ window.checkResponse = function(data, status) {
   return msg;
 }
 
+
+;
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-68472312-3', 'auto');
+ga('send', 'pageview');
 
 ;
 window.KC = null;
