@@ -141,6 +141,13 @@
       window.jquery('#KalturaPartnerIDModal').modal('show');
       mixpanel.identify(creds.email);
       ga('set', 'userId', creds.email);
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'login',
+        eventAction: 'login',
+        eventLabel: 'partnerId',
+        eventValue: creds.partnerId,
+      });
       mixpanel.people.set({
         '$email': creds.email,
       })
@@ -230,15 +237,6 @@ window.checkResponse = function(data, status) {
   return msg;
 }
 
-
-;
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-68472312-3', 'auto');
-ga('send', 'pageview');
 
 ;
 window.KC = null;
