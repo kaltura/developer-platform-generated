@@ -536,6 +536,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Engage_and_Publish/quiz/quiz_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Engage_and_Publish/userEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Engage_and_Publish/userEntry/userEntry_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/Engage_and_Publish/userEntry/userEntry_bulkDelete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Engage_and_Publish/userEntry/userEntry_delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Engage_and_Publish/userEntry/userEntry_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Engage_and_Publish/userEntry/userEntry_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -589,6 +590,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Review_Media_Analytics/stats</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Review_Media_Analytics/stats/stats_collect</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Review_Media_Analytics/stats/stats_kmcCollect</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/Review_Media_Analytics/stats/stats_reportDeviceCapabilities</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Review_Media_Analytics/stats/stats_reportError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Review_Media_Analytics/stats/stats_reportKceError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1661,6 +1663,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVerizonVcastDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVerizonVcastDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVerizonVcastDistributionProvider</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaViewHistoryUserEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVirusScanJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVirusScanProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVirusScanProfileListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2179,6 +2182,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUploadTokenOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUploadTokenStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUserAgentRestrictionType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUserEntryExtendedStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUserEntryOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUserEntryStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUserEntryType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2648,6 +2652,8 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaVerizonVcastDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaVerizonVcastDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaVerizonVcastDistributionProviderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaViewHistoryUserEntryAdvancedFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaViewHistoryUserEntryFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaVirusScanProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaVirusScanProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaWebexDropFolderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3217,6 +3223,7 @@
 <url> <loc>https://developer.kaltura.com/console/Engage_and_Publish/quiz/quiz_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Engage_and_Publish/userEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Engage_and_Publish/userEntry/userEntry_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/Engage_and_Publish/userEntry/userEntry_bulkDelete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Engage_and_Publish/userEntry/userEntry_delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Engage_and_Publish/userEntry/userEntry_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Engage_and_Publish/userEntry/userEntry_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3270,6 +3277,7 @@
 <url> <loc>https://developer.kaltura.com/console/Review_Media_Analytics/stats</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Review_Media_Analytics/stats/stats_collect</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Review_Media_Analytics/stats/stats_kmcCollect</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/Review_Media_Analytics/stats/stats_reportDeviceCapabilities</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Review_Media_Analytics/stats/stats_reportError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Review_Media_Analytics/stats/stats_reportKceError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4342,6 +4350,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaVerizonVcastDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaVerizonVcastDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaVerizonVcastDistributionProvider</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaViewHistoryUserEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaVirusScanJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaVirusScanProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Objects/KalturaVirusScanProfileListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4860,6 +4869,7 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaUploadTokenOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaUploadTokenStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaUserAgentRestrictionType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaUserEntryExtendedStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaUserEntryOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaUserEntryStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Enums/KalturaUserEntryType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5329,6 +5339,8 @@
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaVerizonVcastDistributionProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaVerizonVcastDistributionProviderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaVerizonVcastDistributionProviderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaViewHistoryUserEntryAdvancedFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaViewHistoryUserEntryFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaVirusScanProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaVirusScanProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/General_Objects/Filters/KalturaWebexDropFolderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
