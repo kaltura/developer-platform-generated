@@ -1086,15 +1086,25 @@ sitemap: false
   }
 }
 
+h1.breadcrumbs {
+  font-size: 18px;
+}
 .breadcrumbs .fa-lock,
 .breadcrumbs .fa-unlock {
   display: none;
+}
+.breadcrumbs .fa-chevron-right {
+  font-size: 14px;
 }
 .discussion-frame {
   border: none !important;
 }
 .discussion .discussion-link {
   display: none;
+}
+
+.h2, h2 {
+    font-size: 26px;
 }
 
 ---
@@ -2082,7 +2092,7 @@ h4.sidenav-headings.grp-heading {
 }
 
 .template-page-content-column {
-  margin-top: 35px;
+  margin-top: 0px;
   padding-top: 0px;
   padding-left: 50px;
 }
@@ -2286,6 +2296,7 @@ thead tr th {
 
 figure.highlight {
 	padding: 1px 1px;
+    margin: 0;
 }
 
 figure.highlight pre {
@@ -2590,11 +2601,11 @@ td {
   float: right;
 }
 
-.search-close.fa.fa-times.fa-lg {
+/*.search-close.fa.fa-times.fa-lg {
   float: right;
   color: #ccc;
   padding-top: 24px;
-}
+}*/
 
 .nav-dropdown {
   padding-top: 22px;
@@ -3008,7 +3019,7 @@ td {
 }
 
 .fa.fa-times {
-  float: right;
+/*  float: right;*/
   color: #aaa;
 }
 
