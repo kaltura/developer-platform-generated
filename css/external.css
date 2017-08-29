@@ -1107,6 +1107,9 @@ h1.breadcrumbs {
 .h2, h2 {
     font-size: 26px;
 }
+.side-menu-item.deprecated {
+  color: #999;
+}
 
 ---
 layout: null
