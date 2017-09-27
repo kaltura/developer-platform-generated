@@ -249,6 +249,10 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
   <xs:complexType name="T_assetContentResource">
     <xs:attribute name="assetId" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
+  <xs:complexType name="T_assetInfo">
+    <xs:attribute name="language" type="xs:string" use="optional"></xs:attribute>
+    <xs:attribute name="label" type="xs:string" use="optional"></xs:attribute>
+  </xs:complexType>
   <xs:complexType name="T_stream">
     <xs:attribute name="type" type="xs:string" use="required"></xs:attribute>
     <xs:attribute name="trackIndex" type="xs:string" use="required"></xs:attribute>
@@ -275,6 +279,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
         <xs:element maxOccurs="1" minOccurs="1" ref="assetContentResource"></xs:element>
         <xs:element maxOccurs="1" minOccurs="1" ref="contentResource-extension"></xs:element>
       </xs:choice>
+      <xs:element maxOccurs="1" minOccurs="0" ref="assetInfo"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="content-extension"></xs:element>
       <xs:element maxOccurs="1" minOccurs="0" ref="streams"></xs:element>
     </xs:sequence>
@@ -380,6 +385,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
   <xs:element name="item" type="T_item"></xs:element>
   <xs:element name="media" type="T_media"></xs:element>
   <xs:element name="contentAssets" type="T_contentAssets"></xs:element>
+  <xs:element name="assetInfo" type="T_assetInfo"></xs:element>
   <xs:element name="content" type="T_content"></xs:element>
   <xs:element name="streams" type="T_streams"></xs:element>
   <xs:element name="stream" type="T_stream"></xs:element>
@@ -2398,6 +2404,78 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 
 
 
+<span class="k-et">assetInfo element</span>
+
+
+
+
+
+<span class="element-description">Specifies updating or adding info to asset</span>
+
+
+
+
+
+##### Attributes
+
+
+
+<table>
+<thead><tr>
+<th>Attribute Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>language</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">specifying the language of the asset.</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>label</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">UI label specifications marking the language (will affect how the language is displayed on the multi audio selector on the player)
+				</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<item>
+  <action>add</action>
+  <type>1</type>
+  <media>...</media>
+  <contentAssets>
+    <content>
+      <assetInfo language="eng" label="English"></assetInfo>
+    </content>
+  </contentAssets>
+</item>
+```
+
+--------
+
+
+
+
+
 <span class="k-et">content element</span>
 
 
@@ -2609,6 +2687,18 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </td>
 <td>No</td>
 <td>Unbounded</td>
+<td></td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2"><a href="#element-assetInfo">assetInfo</a></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+						Holds assetInfo elements
+					</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
 <td></td>
 <td class="last"></td>
 </tr>
