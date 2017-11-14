@@ -1169,6 +1169,10 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/bulkUpl
       <xs:enumeration value="Sudovian"></xs:enumeration>
       <xs:enumeration value="Zapotec Isthmus"></xs:enumeration>
       <xs:enumeration value="Cantonese"></xs:enumeration>
+      <xs:enumeration value="Hokkien"></xs:enumeration>
+      <xs:enumeration value="Teo Chew"></xs:enumeration>
+      <xs:enumeration value="Hainanese"></xs:enumeration>
+      <xs:enumeration value="Hakka"></xs:enumeration>
       <xs:enumeration value="Undefined"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>

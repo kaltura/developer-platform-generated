@@ -278,8 +278,8 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/bulkUpl
         <xs:element maxOccurs="1" minOccurs="1" ref="entryContentResource"></xs:element>
         <xs:element maxOccurs="1" minOccurs="1" ref="assetContentResource"></xs:element>
         <xs:element maxOccurs="1" minOccurs="1" ref="contentResource-extension"></xs:element>
+        <xs:element maxOccurs="1" minOccurs="1" ref="assetInfo"></xs:element>
       </xs:choice>
-      <xs:element maxOccurs="1" minOccurs="0" ref="assetInfo"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="content-extension"></xs:element>
       <xs:element maxOccurs="1" minOccurs="0" ref="streams"></xs:element>
     </xs:sequence>
@@ -1362,6 +1362,10 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/bulkUpl
       <xs:enumeration value="Sudovian"></xs:enumeration>
       <xs:enumeration value="Zapotec Isthmus"></xs:enumeration>
       <xs:enumeration value="Cantonese"></xs:enumeration>
+      <xs:enumeration value="Hokkien"></xs:enumeration>
+      <xs:enumeration value="Teo Chew"></xs:enumeration>
+      <xs:enumeration value="Hainanese"></xs:enumeration>
+      <xs:enumeration value="Hakka"></xs:enumeration>
       <xs:enumeration value="Undefined"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
@@ -2645,14 +2649,15 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/bulkUpl
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class="">
-<td class="first" colspan="2"><a href="#element-assetInfo">assetInfo</a></td>
+<tr class="choice choice-end">
+<td class="first"><a href="#element-assetInfo">assetInfo</a></td>
+<td rowspan="1">Option 9</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-						Holds assetInfo elements
-					</xs:documentation></span><br>
+							Holds assetInfo elements
+						</xs:documentation></span><br>
 </td>
-<td>No</td>
+<td>Yes</td>
 <td>1</td>
 <td></td>
 <td class="last"></td>

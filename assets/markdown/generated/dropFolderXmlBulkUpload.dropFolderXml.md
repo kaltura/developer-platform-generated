@@ -278,8 +278,8 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
         <xs:element maxOccurs="1" minOccurs="1" ref="entryContentResource"></xs:element>
         <xs:element maxOccurs="1" minOccurs="1" ref="assetContentResource"></xs:element>
         <xs:element maxOccurs="1" minOccurs="1" ref="contentResource-extension"></xs:element>
+        <xs:element maxOccurs="1" minOccurs="1" ref="assetInfo"></xs:element>
       </xs:choice>
-      <xs:element maxOccurs="1" minOccurs="0" ref="assetInfo"></xs:element>
       <xs:element maxOccurs="unbounded" minOccurs="0" ref="content-extension"></xs:element>
       <xs:element maxOccurs="1" minOccurs="0" ref="streams"></xs:element>
     </xs:sequence>
@@ -1392,6 +1392,10 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
       <xs:enumeration value="Sudovian"></xs:enumeration>
       <xs:enumeration value="Zapotec Isthmus"></xs:enumeration>
       <xs:enumeration value="Cantonese"></xs:enumeration>
+      <xs:enumeration value="Hokkien"></xs:enumeration>
+      <xs:enumeration value="Teo Chew"></xs:enumeration>
+      <xs:enumeration value="Hainanese"></xs:enumeration>
+      <xs:enumeration value="Hakka"></xs:enumeration>
       <xs:enumeration value="Undefined"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
@@ -2677,10 +2681,10 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </tr>
 <tr class="choice">
 <td class="first extensions-title">Extensions:</td>
-<td rowspan="2" class="last-rowspan">Option 8</td>
+<td rowspan="2">Option 8</td>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
-<tr class="extension choice choice-end">
+<tr class="extension choice">
 <td class="first"><a href="#element-dropFolderFileContentResource">dropFolderFileContentResource</a></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is within a Kaltura defined drop folder</xs:documentation></span><br>
@@ -2690,14 +2694,15 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class="">
-<td class="first" colspan="2"><a href="#element-assetInfo">assetInfo</a></td>
+<tr class="choice choice-end">
+<td class="first"><a href="#element-assetInfo">assetInfo</a></td>
+<td rowspan="1">Option 9</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
-						Holds assetInfo elements
-					</xs:documentation></span><br>
+							Holds assetInfo elements
+						</xs:documentation></span><br>
 </td>
-<td>No</td>
+<td>Yes</td>
 <td>1</td>
 <td></td>
 <td class="last"></td>
