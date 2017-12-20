@@ -33,7 +33,7 @@ table th {
 
 
 
-http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFolderXmlBulkUpload.dropFolderXml/name/dropFolderXmlBulkUpload.dropFolderXml.xsd
+<span class="undefined">http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFolderXmlBulkUpload.dropFolderXml/name/dropFolderXmlBulkUpload.dropFolderXml.xsd</span>
 
 
 
@@ -1514,7 +1514,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-channel">channel</a></td>
+<td class="first" colspan="2"><span>channel</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">A single entry wrapper element</xs:documentation></span><br>
 </td>
@@ -1574,7 +1574,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-item">item</a></td>
+<td class="first" colspan="2"><span>item</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">holding entry element</xs:documentation></span><br>
 </td>
@@ -1688,7 +1688,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaEntryType">KalturaEntryType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaEntryType">KalturaEntryType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="choice">
@@ -1701,7 +1701,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaLicenseType">KalturaLicenseType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaLicenseType">KalturaLicenseType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="choice choice-end">
@@ -1791,7 +1791,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Tags associated with the entry</xs:documentation></span><br>
 </td>
@@ -1801,7 +1801,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-categories">categories</a></td>
+<td class="first" colspan="2"><span>categories</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">The categories assigned to the entry</xs:documentation></span><br>
 </td>
@@ -1992,7 +1992,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 					</td>
 </tr>
 <tr class="choice choice-start choice-end">
-<td class="first"><a href="#element-media">media</a></td>
+<td class="first"><span>media</span></td>
 <td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2017,7 +2017,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-contentAssets">contentAssets</a></td>
+<td class="first" colspan="2"><span>contentAssets</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						Specifies media/flavor asset information, such as location of media files to upload, type of ingestion, and related transcoding flavor settings
@@ -2029,7 +2029,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-thumbnails">thumbnails</a></td>
+<td class="first" colspan="2"><span>thumbnails</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						Specifies thumbnail-related information, such as location of media files and related thumbnail flavor settings
@@ -2045,7 +2045,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-attachments">attachments</a></td>
+<td class="first" colspan="2"><span>attachments</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All attachments elements</xs:documentation></span><br>
 </td>
@@ -2055,7 +2055,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-attachment">attachment</a></td>
+<td class="first" colspan="2"><span>attachment</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Attachment asset element</xs:documentation></span><br>
 </td>
@@ -2065,7 +2065,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-subTitles">subTitles</a></td>
+<td class="first" colspan="2"><span>subTitles</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All subTitles elements</xs:documentation></span><br>
 </td>
@@ -2075,7 +2075,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-distributions">distributions</a></td>
+<td class="first" colspan="2"><span>distributions</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All custom metadata elemets</xs:documentation></span><br>
 </td>
@@ -2085,7 +2085,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scenes">scenes</a></td>
+<td class="first" colspan="2"><span>scenes</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">A cue points wrapper element</xs:documentation></span><br>
 </td>
@@ -2095,7 +2095,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-customDataItems">customDataItems</a></td>
+<td class="first" colspan="2"><span>customDataItems</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All custom metadata elemets</xs:documentation></span><br>
 </td>
@@ -2105,7 +2105,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-pluginReplacementOptions">pluginReplacementOptions</a></td>
+<td class="first" colspan="2"><span>pluginReplacementOptions</span></td>
 <td></td>
 <td>No</td>
 <td>Unbounded</td>
@@ -2113,7 +2113,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-widevineAssets">widevineAssets</a></td>
+<td class="first" colspan="2"><span>widevineAssets</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All widevine elements</xs:documentation></span><br>
 </td>
@@ -2123,7 +2123,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-widevineAsset">widevineAsset</a></td>
+<td class="first" colspan="2"><span>widevineAsset</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Widevine asset element</xs:documentation></span><br>
 </td>
@@ -2297,7 +2297,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaMediaType">KalturaMediaType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaMediaType">KalturaMediaType</a></td>
 <td class="last"></td>
 </tr></tbody>
 </table>
@@ -2371,7 +2371,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-content">content</a></td>
+<td class="first" colspan="2"><span>content</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All Content Assets</xs:documentation></span><br>
 </td>
@@ -2562,7 +2562,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </tr></thead>
 <tbody>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						Specifies specific tags for the ingested flavor asset.<br> 
@@ -2586,7 +2586,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 					</td>
 </tr>
 <tr class="choice choice-start">
-<td class="first"><a href="#element-serverFileContentResource">serverFileContentResource</a></td>
+<td class="first"><span>serverFileContentResource</span></td>
 <td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2600,7 +2600,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-urlContentResource">urlContentResource</a></td>
+<td class="first"><span>urlContentResource</span></td>
 <td rowspan="1">Option 2</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2613,7 +2613,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-sshUrlContentResource">sshUrlContentResource</a></td>
+<td class="first"><span>sshUrlContentResource</span></td>
 <td rowspan="1">Option 3</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2626,7 +2626,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResource">remoteStorageContentResource</a></td>
+<td class="first"><span>remoteStorageContentResource</span></td>
 <td rowspan="1">Option 4</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2640,7 +2640,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResources">remoteStorageContentResources</a></td>
+<td class="first"><span>remoteStorageContentResources</span></td>
 <td rowspan="1">Option 5</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2654,7 +2654,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-entryContentResource">entryContentResource</a></td>
+<td class="first"><span>entryContentResource</span></td>
 <td rowspan="1">Option 6</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2667,7 +2667,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-assetContentResource">assetContentResource</a></td>
+<td class="first"><span>assetContentResource</span></td>
 <td rowspan="1">Option 7</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2685,7 +2685,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension choice">
-<td class="first"><a href="#element-dropFolderFileContentResource">dropFolderFileContentResource</a></td>
+<td class="first"><span>dropFolderFileContentResource</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is within a Kaltura defined drop folder</xs:documentation></span><br>
 </td>
@@ -2695,7 +2695,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice choice-end">
-<td class="first"><a href="#element-assetInfo">assetInfo</a></td>
+<td class="first"><span>assetInfo</span></td>
 <td rowspan="1">Option 9</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -2708,7 +2708,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-streams">streams</a></td>
+<td class="first" colspan="2"><span>streams</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						Holds stream elements that specifies instructions to the transcoding process
@@ -2777,7 +2777,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-stream">stream</a></td>
+<td class="first" colspan="2"><span>stream</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">streams composed of 1..n stream elements</xs:documentation></span><br>
 </td>
@@ -2969,7 +2969,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-thumbnail">thumbnail</a></td>
+<td class="first" colspan="2"><span>thumbnail</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All Thumbnails Assets</xs:documentation></span><br>
 </td>
@@ -3096,7 +3096,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 </tr></thead>
 <tbody>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						Specifies specific user tags to set for the thumbnail asset
@@ -3118,7 +3118,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 					</td>
 </tr>
 <tr class="choice choice-start">
-<td class="first"><a href="#element-serverFileContentResource">serverFileContentResource</a></td>
+<td class="first"><span>serverFileContentResource</span></td>
 <td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -3132,7 +3132,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-urlContentResource">urlContentResource</a></td>
+<td class="first"><span>urlContentResource</span></td>
 <td rowspan="1">Option 2</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -3145,7 +3145,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-sshUrlContentResource">sshUrlContentResource</a></td>
+<td class="first"><span>sshUrlContentResource</span></td>
 <td rowspan="1">Option 3</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -3158,7 +3158,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResource">remoteStorageContentResource</a></td>
+<td class="first"><span>remoteStorageContentResource</span></td>
 <td rowspan="1">Option 4</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -3172,7 +3172,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResources">remoteStorageContentResources</a></td>
+<td class="first"><span>remoteStorageContentResources</span></td>
 <td rowspan="1">Option 5</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -3186,7 +3186,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-entryContentResource">entryContentResource</a></td>
+<td class="first"><span>entryContentResource</span></td>
 <td rowspan="1">Option 6</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -3199,7 +3199,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-assetContentResource">assetContentResource</a></td>
+<td class="first"><span>assetContentResource</span></td>
 <td rowspan="1">Option 7</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -3217,7 +3217,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/dropFol
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension choice choice-end">
-<td class="first"><a href="#element-dropFolderFileContentResource">dropFolderFileContentResource</a></td>
+<td class="first"><span>dropFolderFileContentResource</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is within a Kaltura defined drop folder</xs:documentation></span><br>
 </td>
@@ -3741,7 +3741,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-remoteStorageContentResource">remoteStorageContentResource</a></td>
+<td class="first" colspan="2"><span>remoteStorageContentResource</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						Specifies that the content location is a path within a single remote storage defined in Kaltura.<br> 
@@ -4268,7 +4268,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -4281,7 +4281,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Searchable keywords associated with a cue point</xs:documentation></span><br>
 </td>
@@ -4330,7 +4330,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAdType">KalturaAdType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAdType">KalturaAdType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -4340,7 +4340,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAdProtocolType">KalturaAdProtocolType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAdProtocolType">KalturaAdProtocolType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -4348,7 +4348,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -4412,7 +4412,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -4425,7 +4425,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Searchable keywords associated with a cue point</xs:documentation></span><br>
 </td>
@@ -4496,7 +4496,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -4598,7 +4598,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-attachment">attachment</a></td>
+<td class="first" colspan="2"><span>attachment</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All attachment elements</xs:documentation></span><br>
 </td>
@@ -4671,7 +4671,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Attachment asset file format</xs:documentation></span><br>
 </td>
 <td>No</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAttachmentType">KalturaAttachmentType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAttachmentType">KalturaAttachmentType</a></td>
 <td></td>
 </tr>
 </tbody>
@@ -4714,7 +4714,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 					</td>
 </tr>
 <tr class="choice choice-start">
-<td class="first"><a href="#element-serverFileContentResource">serverFileContentResource</a></td>
+<td class="first"><span>serverFileContentResource</span></td>
 <td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content ingestion location is on a Kaltura hosted server</xs:documentation></span><br>
@@ -4725,7 +4725,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-urlContentResource">urlContentResource</a></td>
+<td class="first"><span>urlContentResource</span></td>
 <td rowspan="1">Option 2</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is a URL (http,ftp)</xs:documentation></span><br>
@@ -4736,7 +4736,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResource">remoteStorageContentResource</a></td>
+<td class="first"><span>remoteStorageContentResource</span></td>
 <td rowspan="1">Option 3</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is a path within a Kaltura defined remote storage</xs:documentation></span><br>
@@ -4747,7 +4747,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResources">remoteStorageContentResources</a></td>
+<td class="first"><span>remoteStorageContentResources</span></td>
 <td rowspan="1">Option 4</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Set of content files within several Kaltura defined remote storages</xs:documentation></span><br>
@@ -4758,7 +4758,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-entryContentResource">entryContentResource</a></td>
+<td class="first"><span>entryContentResource</span></td>
 <td rowspan="1">Option 5</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content is a Kaltura entry</xs:documentation></span><br>
@@ -4769,7 +4769,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-assetContentResource">assetContentResource</a></td>
+<td class="first"><span>assetContentResource</span></td>
 <td rowspan="1">Option 6</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content is a Kaltura asset</xs:documentation></span><br>
@@ -4785,7 +4785,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension choice choice-end">
-<td class="first"><a href="#element-dropFolderFileContentResource">dropFolderFileContentResource</a></td>
+<td class="first"><span>dropFolderFileContentResource</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is within a Kaltura defined drop folder</xs:documentation></span><br>
 </td>
@@ -4892,7 +4892,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-subTitle">subTitle</a></td>
+<td class="first" colspan="2"><span>subTitle</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All subTitles elements</xs:documentation></span><br>
 </td>
@@ -4992,7 +4992,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Caption asset file format</xs:documentation></span><br>
 </td>
 <td>No</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaCaptionType">KalturaCaptionType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaCaptionType">KalturaCaptionType</a></td>
 <td></td>
 </tr>
 <tr>
@@ -5001,7 +5001,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Caption asset file language</xs:documentation></span><br>
 </td>
 <td>No</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaLanguage">KalturaLanguage</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaLanguage">KalturaLanguage</a></td>
 <td></td>
 </tr>
 </tbody>
@@ -5044,7 +5044,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 					</td>
 </tr>
 <tr class="choice choice-start">
-<td class="first"><a href="#element-serverFileContentResource">serverFileContentResource</a></td>
+<td class="first"><span>serverFileContentResource</span></td>
 <td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content ingestion location is on a Kaltura hosted server</xs:documentation></span><br>
@@ -5055,7 +5055,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-urlContentResource">urlContentResource</a></td>
+<td class="first"><span>urlContentResource</span></td>
 <td rowspan="1">Option 2</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is a URL (http,ftp)</xs:documentation></span><br>
@@ -5066,7 +5066,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResource">remoteStorageContentResource</a></td>
+<td class="first"><span>remoteStorageContentResource</span></td>
 <td rowspan="1">Option 3</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is a path within a Kaltura defined remote storage</xs:documentation></span><br>
@@ -5077,7 +5077,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResources">remoteStorageContentResources</a></td>
+<td class="first"><span>remoteStorageContentResources</span></td>
 <td rowspan="1">Option 4</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Set of content files within several Kaltura defined remote storages</xs:documentation></span><br>
@@ -5088,7 +5088,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-entryContentResource">entryContentResource</a></td>
+<td class="first"><span>entryContentResource</span></td>
 <td rowspan="1">Option 5</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content is a Kaltura entry</xs:documentation></span><br>
@@ -5099,7 +5099,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-assetContentResource">assetContentResource</a></td>
+<td class="first"><span>assetContentResource</span></td>
 <td rowspan="1">Option 6</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content is a Kaltura asset</xs:documentation></span><br>
@@ -5115,7 +5115,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension choice choice-end">
-<td class="first"><a href="#element-dropFolderFileContentResource">dropFolderFileContentResource</a></td>
+<td class="first"><span>dropFolderFileContentResource</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is within a Kaltura defined drop folder</xs:documentation></span><br>
 </td>
@@ -5175,7 +5175,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -5188,7 +5188,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Searchable keywords associated with a cue point</xs:documentation></span><br>
 </td>
@@ -5235,7 +5235,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -5297,7 +5297,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -5310,7 +5310,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Searchable keywords associated with a cue point</xs:documentation></span><br>
 </td>
@@ -5343,11 +5343,11 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 </td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaThumbCuePointSubType">KalturaThumbCuePointSubType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaThumbCuePointSubType">KalturaThumbCuePointSubType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-slide">slide</a></td>
+<td class="first" colspan="2"><span>slide</span></td>
 <td></td>
 <td>No</td>
 <td>1</td>
@@ -5359,7 +5359,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -5457,7 +5457,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 					</td>
 </tr>
 <tr class="choice choice-start">
-<td class="first"><a href="#element-urlContentResource">urlContentResource</a></td>
+<td class="first"><span>urlContentResource</span></td>
 <td rowspan="1">Option 1</td>
 <td></td>
 <td>No</td>
@@ -5466,7 +5466,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResource">remoteStorageContentResource</a></td>
+<td class="first"><span>remoteStorageContentResource</span></td>
 <td rowspan="1">Option 2</td>
 <td></td>
 <td>No</td>
@@ -5475,7 +5475,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-remoteStorageContentResources">remoteStorageContentResources</a></td>
+<td class="first"><span>remoteStorageContentResources</span></td>
 <td rowspan="1">Option 3</td>
 <td></td>
 <td>No</td>
@@ -5484,7 +5484,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-assetContentResource">assetContentResource</a></td>
+<td class="first"><span>assetContentResource</span></td>
 <td rowspan="1">Option 4</td>
 <td></td>
 <td>No</td>
@@ -5493,7 +5493,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><a href="#element-entryContentResource">entryContentResource</a></td>
+<td class="first"><span>entryContentResource</span></td>
 <td rowspan="1">Option 5</td>
 <td></td>
 <td>No</td>
@@ -5507,7 +5507,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension choice choice-end">
-<td class="first"><a href="#element-dropFolderFileContentResource">dropFolderFileContentResource</a></td>
+<td class="first"><span>dropFolderFileContentResource</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is within a Kaltura defined drop folder</xs:documentation></span><br>
 </td>
@@ -5553,7 +5553,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-distribution">distribution</a></td>
+<td class="first" colspan="2"><span>distribution</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All distributions</xs:documentation></span><br>
 </td>
@@ -5666,7 +5666,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaDistributionProviderType">KalturaDistributionProviderType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaDistributionProviderType">KalturaDistributionProviderType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="choice">
@@ -5808,7 +5808,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-scene">scene</a></td>
+<td class="first" colspan="2"><span>scene</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">A cue point element</xs:documentation></span><br>
 </td>
@@ -5921,7 +5921,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Searchable keywords associated with a cue point</xs:documentation></span><br>
 </td>
@@ -5940,10 +5940,10 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 
 
 <ol>
-<li><a href="#element-scene-ad-cue-point">scene-ad-cue-point</a></li>
-<li><a href="#element-scene-annotation">scene-annotation</a></li>
-<li><a href="#element-scene-code-cue-point">scene-code-cue-point</a></li>
-<li><a href="#element-scene-thumb-cue-point">scene-thumb-cue-point</a></li>
+<li><span>scene-ad-cue-point</span></li>
+<li><span>scene-annotation</span></li>
+<li><span>scene-code-cue-point</span></li>
+<li><span>scene-thumb-cue-point</span></li>
 </ol>
 
 --------
@@ -6057,7 +6057,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-xmlData">xmlData</a></td>
+<td class="first" colspan="2"><span>xmlData</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">metadata xml Data</xs:documentation></span><br>
 </td>
@@ -6136,7 +6136,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-customData">customData</a></td>
+<td class="first" colspan="2"><span>customData</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All custom data elemets</xs:documentation></span><br>
 </td>
@@ -6274,7 +6274,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-xmlData">xmlData</a></td>
+<td class="first" colspan="2"><span>xmlData</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">metadata xml Data</xs:documentation></span><br>
 </td>
@@ -6399,7 +6399,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_pluginReplacementOptions">T_pluginReplacementOptions</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_pluginReplacementOptions</span>
 </td></tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
 <tr class="">
@@ -6479,7 +6479,7 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-widevineAsset">widevineAsset</a></td>
+<td class="first" colspan="2"><span>widevineAsset</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">All widevine elements</xs:documentation></span><br>
 </td>

@@ -33,7 +33,7 @@ table th {
 
 
 
-http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoint.serveAPI/name/cuePoint.serveAPI.xsd
+<span class="undefined">http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoint.serveAPI/name/cuePoint.serveAPI.xsd</span>
 
 
 
@@ -271,7 +271,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-scene">scene</a></td>
+<td class="first" colspan="2"><span>scene</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point element</xs:documentation></span><br>
 </td>
@@ -424,12 +424,12 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 
 
 <ol>
-<li><a href="#element-scene-ad-cue-point">scene-ad-cue-point</a></li>
-<li><a href="#element-scene-annotation">scene-annotation</a></li>
-<li><a href="#element-scene-code-cue-point">scene-code-cue-point</a></li>
-<li><a href="#element-scene-thumb-cue-point">scene-thumb-cue-point</a></li>
-<li><a href="#element-scene-question-cue-point">scene-question-cue-point</a></li>
-<li><a href="#element-scene-answer-cue-point">scene-answer-cue-point</a></li>
+<li><span>scene-ad-cue-point</span></li>
+<li><span>scene-annotation</span></li>
+<li><span>scene-code-cue-point</span></li>
+<li><span>scene-thumb-cue-point</span></li>
+<li><span>scene-question-cue-point</span></li>
+<li><span>scene-answer-cue-point</span></li>
 </ol>
 
 --------
@@ -464,7 +464,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -536,7 +536,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAdType">KalturaAdType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAdType">KalturaAdType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -546,7 +546,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAdProtocolType">KalturaAdProtocolType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAdProtocolType">KalturaAdProtocolType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -554,7 +554,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -618,7 +618,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -700,7 +700,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -762,7 +762,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -832,7 +832,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -894,7 +894,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -950,7 +950,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 </td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaThumbCuePointSubType">KalturaThumbCuePointSubType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaThumbCuePointSubType">KalturaThumbCuePointSubType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -958,7 +958,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -1153,7 +1153,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -1215,7 +1215,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <td></td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaOptionalAnswersArray">KalturaOptionalAnswersArray</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaOptionalAnswersArray">KalturaOptionalAnswersArray</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -1223,7 +1223,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <td></td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaStringArray">KalturaStringArray</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaStringArray">KalturaStringArray</a></td>
 <td class="last"></td>
 </tr>
 </tbody>
@@ -1276,7 +1276,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/cuePoin
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>

@@ -33,7 +33,7 @@ table th {
 
 
 
-http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndication/name/syndication.xsd
+<span class="undefined">http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndication/name/syndication.xsd</span>
 
 
 
@@ -385,6 +385,32 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
   </xs:complexType>
   <xs:element name="distribution" type="T_distribution" substitutionGroup="item-extension"></xs:element>
   <xs:element name="distribution-extension"></xs:element>
+  <xs:complexType name="T_scene_questionCuePoint">
+    <xs:complexContent>
+      <xs:extension base="T_scene">
+        <xs:sequence>
+          <xs:element name="question" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="hint" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="explanation" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="optionalAnswers" minOccurs="0" maxOccurs="1" type="KalturaOptionalAnswersArray"></xs:element>
+          <xs:element name="correctAnswerKeys" minOccurs="0" maxOccurs="1" type="KalturaStringArray"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="scene-question-cue-point" type="T_scene_questionCuePoint" substitutionGroup="scene"></xs:element>
+  <xs:complexType name="T_scene_answerCuePoint">
+    <xs:complexContent>
+      <xs:extension base="T_scene">
+        <xs:sequence>
+          <xs:element name="answerKey" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="quizUserEntryId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="parentId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="scene-answer-cue-point" type="T_scene_answerCuePoint" substitutionGroup="scene"></xs:element>
   <xs:complexType name="T_scenes">
     <xs:sequence>
       <xs:element ref="scene" minOccurs="1" maxOccurs="unbounded"></xs:element>
@@ -416,32 +442,6 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
   <xs:element name="scenes" type="T_scenes" substitutionGroup="item-extension"></xs:element>
   <xs:element name="scene" type="T_scene"></xs:element>
   <xs:element name="scene-extension"></xs:element>
-  <xs:complexType name="T_scene_questionCuePoint">
-    <xs:complexContent>
-      <xs:extension base="T_scene">
-        <xs:sequence>
-          <xs:element name="question" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="hint" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="explanation" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="optionalAnswers" minOccurs="0" maxOccurs="1" type="KalturaOptionalAnswersArray"></xs:element>
-          <xs:element name="correctAnswerKeys" minOccurs="0" maxOccurs="1" type="KalturaStringArray"></xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="scene-question-cue-point" type="T_scene_questionCuePoint" substitutionGroup="scene"></xs:element>
-  <xs:complexType name="T_scene_answerCuePoint">
-    <xs:complexContent>
-      <xs:extension base="T_scene">
-        <xs:sequence>
-          <xs:element name="answerKey" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="quizUserEntryId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="parentId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="scene-answer-cue-point" type="T_scene_answerCuePoint" substitutionGroup="scene"></xs:element>
   <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:simpleType name="KalturaEntryType">
     <xs:restriction base="xs:string">
@@ -1202,7 +1202,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-channel">channel</a></td>
+<td class="first" colspan="2"><span>channel</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">holding item elements</xs:documentation></span><br>
 </td>
@@ -1297,7 +1297,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-items">items</a></td>
+<td class="first" colspan="2"><span>items</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Wrapper element holding multiple item elements</xs:documentation></span><br>
 </td>
@@ -1360,7 +1360,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-item">item</a></td>
+<td class="first" colspan="2"><span>item</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Single entry element</xs:documentation></span><br>
 </td>
@@ -1488,7 +1488,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaEntryType">KalturaEntryType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaEntryType">KalturaEntryType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -1498,7 +1498,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaLicenseType">KalturaLicenseType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaLicenseType">KalturaLicenseType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -1530,7 +1530,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaEntryStatus">KalturaEntryStatus</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaEntryStatus">KalturaEntryStatus</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -1554,7 +1554,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry searchable keywords</xs:documentation></span><br>
 </td>
@@ -1564,7 +1564,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-category">category</a></td>
+<td class="first" colspan="2"><span>category</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry assigned categories</xs:documentation></span><br>
 </td>
@@ -1644,7 +1644,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 					</td>
 </tr>
 <tr class="choice choice-start choice-end">
-<td class="first"><a href="#element-media">media</a></td>
+<td class="first"><span>media</span></td>
 <td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Media related information, such as media type</xs:documentation></span><br>
@@ -1665,7 +1665,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 					</td>
 </tr>
 <tr class="choice choice-start">
-<td class="first"><a href="#element-content">content</a></td>
+<td class="first"><span>content</span></td>
 <td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Flavor asset information</xs:documentation></span><br>
@@ -1676,7 +1676,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="choice choice-end">
-<td class="first"><a href="#element-thumbnail">thumbnail</a></td>
+<td class="first"><span>thumbnail</span></td>
 <td rowspan="1">Option 2</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Thumbnail asset information</xs:documentation></span><br>
@@ -1691,7 +1691,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-customData">customData</a></td>
+<td class="first" colspan="2"><span>customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML</xs:documentation></span><br>
 </td>
@@ -1701,7 +1701,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-attachment">attachment</a></td>
+<td class="first" colspan="2"><span>attachment</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Attachment asset element</xs:documentation></span><br>
 </td>
@@ -1711,7 +1711,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-subTitle">subTitle</a></td>
+<td class="first" colspan="2"><span>subTitle</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Caption asset element</xs:documentation></span><br>
 </td>
@@ -1721,7 +1721,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-distribution">distribution</a></td>
+<td class="first" colspan="2"><span>distribution</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry distribution element</xs:documentation></span><br>
 </td>
@@ -1731,7 +1731,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scenes">scenes</a></td>
+<td class="first" colspan="2"><span>scenes</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue points wrapper</xs:documentation></span><br>
 </td>
@@ -1741,7 +1741,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-player">player</a></td>
+<td class="first" colspan="2"><span>player</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Embeded player</xs:documentation></span><br>
 </td>
@@ -1837,7 +1837,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaMediaType">KalturaMediaType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaMediaType">KalturaMediaType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -2114,7 +2114,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies specific tags you want to set for the flavor asset</xs:documentation></span><br>
 </td>
@@ -2286,7 +2286,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry searchable keywords</xs:documentation></span><br>
 </td>
@@ -2495,7 +2495,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-xs:string">xs:string</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>xs:string</span>
 </td></tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
 </tbody>
@@ -2668,7 +2668,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -2711,7 +2711,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
 </td>
@@ -2760,7 +2760,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAdType">KalturaAdType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAdType">KalturaAdType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -2770,7 +2770,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAdProtocolType">KalturaAdProtocolType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAdProtocolType">KalturaAdProtocolType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -2778,7 +2778,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -2842,7 +2842,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -2885,7 +2885,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
 </td>
@@ -2944,7 +2944,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -3020,7 +3020,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Attachment asset file format</xs:documentation></span><br>
 </td>
 <td>No</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaAttachmentType">KalturaAttachmentType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaAttachmentType">KalturaAttachmentType</a></td>
 <td></td>
 </tr>
 <tr>
@@ -3185,7 +3185,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Caption asset file format</xs:documentation></span><br>
 </td>
 <td>No</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaCaptionType">KalturaCaptionType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaCaptionType">KalturaCaptionType</a></td>
 <td></td>
 </tr>
 <tr>
@@ -3194,7 +3194,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Caption asset file language</xs:documentation></span><br>
 </td>
 <td>No</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaLanguage">KalturaLanguage</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaLanguage">KalturaLanguage</a></td>
 <td></td>
 </tr>
 <tr>
@@ -3283,7 +3283,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -3326,7 +3326,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
 </td>
@@ -3373,7 +3373,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -3435,7 +3435,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
 <tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
@@ -3478,7 +3478,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
 </td>
@@ -3511,7 +3511,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaThumbCuePointSubType">KalturaThumbCuePointSubType</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaThumbCuePointSubType">KalturaThumbCuePointSubType</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -3519,7 +3519,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td colspan="5" class="last extensions-title"></td>
 </tr>
 <tr class="extension ">
-<td class="first" colspan="2"><a href="#element-scene-customData">scene-customData</a></td>
+<td class="first" colspan="2"><span>scene-customData</span></td>
 <td>
 <span class="child-extension-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">XML for custom metadata</xs:documentation></span><br>
 </td>
@@ -3776,7 +3776,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaEntryDistributionFlag">KalturaEntryDistributionFlag</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaEntryDistributionFlag">KalturaEntryDistributionFlag</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -3786,7 +3786,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaEntryDistributionStatus">KalturaEntryDistributionStatus</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaEntryDistributionStatus">KalturaEntryDistributionStatus</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -3796,7 +3796,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>Yes</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaEntryDistributionSunStatus">KalturaEntryDistributionSunStatus</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaEntryDistributionSunStatus">KalturaEntryDistributionSunStatus</a></td>
 <td class="last"></td>
 </tr>
 <tr class="">
@@ -3836,7 +3836,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 </td>
 <td>No</td>
 <td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaBatchJobErrorTypes">KalturaBatchJobErrorTypes</a></td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaBatchJobErrorTypes">KalturaBatchJobErrorTypes</a></td>
 <td class="last"></td>
 </tr>
 </tbody>
@@ -3878,6 +3878,278 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 
 
 
+<span class="k-et">scene-question-cue-point element</span>
+
+
+
+
+
+<span class="element-description">Single question cue point element</span>
+
+
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
+</td></tr>
+<tr class="">
+<td class="first" colspan="2">sceneStartTime</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>time</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">createdAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">updatedAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">userId</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2"><span>tags</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td></td>
+<td class="last"></td>
+</tr>
+<tr class="extends-title"><td colspan="7"></td></tr>
+<tr class="">
+<td class="first" colspan="2">question</td>
+<td></td>
+<td>Yes</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">hint</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">explanation</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">optionalAnswers</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaOptionalAnswersArray">KalturaOptionalAnswersArray</a></td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">correctAnswerKeys</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td><a href="/api-docs/General_Objects/Enums/KalturaStringArray">KalturaStringArray</a></td>
+<td class="last"></td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<scene-question-cue-point sceneId="{scene id}" entryId="{entry id}">
+  <sceneStartTime>00:00:05.3</sceneStartTime>
+  <tags>
+    <tag>my_tag</tag>
+  </tags>
+</scene-question-cue-point>
+```
+
+--------
+
+
+
+
+
+<span class="k-et">scene-answer-cue-point element</span>
+
+
+
+
+
+<span class="element-description">Single answer cue point element</span>
+
+
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
+</td></tr>
+<tr class="">
+<td class="first" colspan="2">sceneStartTime</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>time</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">createdAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">updatedAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">userId</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2"><span>tags</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td></td>
+<td class="last"></td>
+</tr>
+<tr class="extends-title"><td colspan="7"></td></tr>
+<tr class="">
+<td class="first" colspan="2">answerKey</td>
+<td></td>
+<td>Yes</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">quizUserEntryId</td>
+<td></td>
+<td>Yes</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">parentId</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of the parent questionCuePoint</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<scene-answer-cue-point sceneId="{scene id}" entryId="{entry id}">
+  <sceneStartTime>00:00:05.3</sceneStartTime>
+  <tags>
+    <tag>my_tag</tag>
+  </tags>
+</scene-answer-cue-point>
+```
+
+--------
+
+
+
+
+
 <span class="k-et">scenes element</span>
 
 
@@ -3904,7 +4176,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <th>Restrictions</th>
 </tr></thead>
 <tbody><tr class="">
-<td class="first" colspan="2"><a href="#element-scene">scene</a></td>
+<td class="first" colspan="2"><span>scene</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point element</xs:documentation></span><br>
 </td>
@@ -4048,7 +4320,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 <td class="last"></td>
 </tr>
 <tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
+<td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
 </td>
@@ -4067,285 +4339,13 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 
 
 <ol>
-<li><a href="#element-scene-ad-cue-point">scene-ad-cue-point</a></li>
-<li><a href="#element-scene-annotation">scene-annotation</a></li>
-<li><a href="#element-scene-code-cue-point">scene-code-cue-point</a></li>
-<li><a href="#element-scene-thumb-cue-point">scene-thumb-cue-point</a></li>
-<li><a href="#element-scene-question-cue-point">scene-question-cue-point</a></li>
-<li><a href="#element-scene-answer-cue-point">scene-answer-cue-point</a></li>
+<li><span>scene-ad-cue-point</span></li>
+<li><span>scene-annotation</span></li>
+<li><span>scene-code-cue-point</span></li>
+<li><span>scene-thumb-cue-point</span></li>
+<li><span>scene-question-cue-point</span></li>
+<li><span>scene-answer-cue-point</span></li>
 </ol>
-
---------
-
-
-
-
-
-<span class="k-et">scene-question-cue-point element</span>
-
-
-
-
-
-<span class="element-description">Single question cue point element</span>
-
-
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
-</td></tr>
-<tr class="">
-<td class="first" colspan="2">sceneStartTime</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>time</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">createdAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">updatedAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">userId</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td></td>
-<td class="last"></td>
-</tr>
-<tr class="extends-title"><td colspan="7"></td></tr>
-<tr class="">
-<td class="first" colspan="2">question</td>
-<td></td>
-<td>Yes</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">hint</td>
-<td></td>
-<td>No</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">explanation</td>
-<td></td>
-<td>No</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">optionalAnswers</td>
-<td></td>
-<td>No</td>
-<td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaOptionalAnswersArray">KalturaOptionalAnswersArray</a></td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">correctAnswerKeys</td>
-<td></td>
-<td>No</td>
-<td>1</td>
-<td><a href="/api_v3/testmeDoc/index.php?object=KalturaStringArray">KalturaStringArray</a></td>
-<td class="last"></td>
-</tr>
-</tbody>
-</table>
-
-
-
-##### XML Example
-
-
-
-```xml
-<scene-question-cue-point sceneId="{scene id}" entryId="{entry id}">
-  <sceneStartTime>00:00:05.3</sceneStartTime>
-  <tags>
-    <tag>my_tag</tag>
-  </tags>
-</scene-question-cue-point>
-```
-
---------
-
-
-
-
-
-<span class="k-et">scene-answer-cue-point element</span>
-
-
-
-
-
-<span class="element-description">Single answer cue point element</span>
-
-
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr class="extends-title"><td colspan="7">Extended from <a href="#type-T_scene">T_scene</a>
-</td></tr>
-<tr class="">
-<td class="first" colspan="2">sceneStartTime</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>time</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">createdAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">updatedAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">userId</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2"><a href="#element-tags">tags</a></td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td></td>
-<td class="last"></td>
-</tr>
-<tr class="extends-title"><td colspan="7"></td></tr>
-<tr class="">
-<td class="first" colspan="2">answerKey</td>
-<td></td>
-<td>Yes</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">quizUserEntryId</td>
-<td></td>
-<td>Yes</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">parentId</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of the parent questionCuePoint</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-</tbody>
-</table>
-
-
-
-##### XML Example
-
-
-
-```xml
-<scene-answer-cue-point sceneId="{scene id}" entryId="{entry id}">
-  <sceneStartTime>00:00:05.3</sceneStartTime>
-  <tags>
-    <tag>my_tag</tag>
-  </tags>
-</scene-answer-cue-point>
-```
 
 --------
 
