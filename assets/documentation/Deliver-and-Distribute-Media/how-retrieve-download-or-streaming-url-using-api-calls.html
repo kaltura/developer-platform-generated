@@ -1,0 +1,566 @@
+  <title>How to Retrieve the Download or Streaming URL using API Calls?</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="How to Retrieve the Download or Streaming URL using API Calls?" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Deliver-and-Distribute-Media/how-retrieve-download-or-streaming-url-using-api-calls.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Deliver-and-Distribute-Media/how-retrieve-download-or-streaming-url-using-api-calls.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">How to Retrieve the Download or Streaming URL using API Calls?</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Deliver-and-Distribute-Media/how-retrieve-download-or-streaming-url-using-api-calls.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Apr 9 08:31:58 2017, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (4 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (5 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura Player abstracts the need to retrieve direct access to the video file, and handles the various aspects of the video playback including multi-bitrate, choosing the correct codec and streaming protocols, DRM, Access Control and more. Often applications need a direct URL for downloading the raw media file for purposes such as streaming outside of the Kaltura Player, processing the video data (such as video analysis or transcriptions) and more. In cases where you need to access the playback stream directly, or just a link to download the video file, you will need to consider the target playback devices, any security protocols applied to your Kaltura account and video, and then call the suitable API methods. The following will guide developers of using the playManifest API call to retrieve specific transcoded video flavors from a Kaltura account. </p>
+
+<h2 id="the-playmanifest-api">The playManifest API</h2>
+
+<p>The playManifest is a redirect action <a href="https://github.com/kaltura/server/blob/master/alpha/apps/kaltura/modules/extwidget/actions/playManifestAction.class.php">source code</a>, whose purpose is to direct media player applications to the desired video stream.</p>
+
+<p>The playManifest features return the following types:</p>
+
+<ol>
+  <li>A redirect to video file for [progressive download (http://en.wikipedia.org/wiki/Progressive_download) or an M3U8 stream descriptor for <a href="http://en.wikipedia.org/wiki/HTTP_Live_Streaming">Apple HTTP Streaming, aka HLS</a>.</li>
+  <li>An XML response in the form of a MPEG-DASH Media Presentation Description (MPD).</li>
+  <li>An XML response in the form of <a href="http://osmf.org/dev/osmf/specpdfs/FlashMediaManifestFileFormatSpecification.pdf">Flash Media Manifest File</a>.</li>
+</ol>
+
+<h3 id="retrieving-a-url-for-a-video-stream">Retrieving a URL for a Video Stream</h3>
+
+<p>To retrieve a specific video flavor:</p>
+
+<ol>
+  <li>
+    <p>Make sure you have the Partner ID and Entry ID on hand, and then call the <strong>playManifest</strong> API using the following URL: <strong>[serviceUrl]</strong>/p/<strong>[YourPartnerId]</strong>/sp/0/playManifest/entryId/<strong>[YourEntryId]</strong>/format/<strong>[StreamingFormat]</strong>/protocol/<strong>[Protocol]</strong>/flavorParamId/<strong>[VideoFlavorId]</strong>/ks/<strong>[ks]</strong>/video.<strong>[ext]</strong>.</p>
+  </li>
+  <li>
+    <p>Next, replace the following parameters:</p>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>serviceUrl</td>
+      <td>The base URL to the Kaltura Server</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>YourPartnerId</td>
+      <td>Your Kaltura account publisher ID (this can be retrieved from   the <a href="http://www.kaltura.com/index.php/kmc">Publisher Account Settings</a> page in the KMC).</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>YourEntryId</td>
+      <td>The Id of the media entry   you’d like to retrieve.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>StreamingFormat</td>
+      <td>See the list of available   formats in the table below. This parameter is optional and defaults to   <strong>/format/url</strong>.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td>Whether video is to be delivered   over HTTP or HTTPS. See the list of available protocols below for additional   options. This parameter is optional and defaults to <strong>/format/http</strong>.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>VideoFlavorId</td>
+      <td>The Id of the video flavor you want to download. If supported by the   streaming format, multiple flavors may be comma separated.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ks</td>
+      <td>A valid Kaltura Session. This   parameter is only required when the media entry has an Access Control defined   to limit anonymous access to the media.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ext</td>
+      <td>The file extension of the   video you wish to retrieve (for example, mp4 if the video flavor is an MPEG4   filem, or flv if the video flavor is an FLV file).</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="available-service-urls-public--saas">Available Service URLs (Public / SaaS)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Protocol + Domain</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>https://cdnapisec.kaltura.com</td>
+      <td>Secure HTTPS Request. (recommended)</td>
+    </tr>
+    <tr>
+      <td>http://cdnapi.kaltura.com</td>
+      <td>Standard HTTP Request.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="available-playback-formats">Available Playback Formats</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mpegdash</td>
+      <td>MPEG-DASH Streaming.</td>
+    </tr>
+    <tr>
+      <td>applehttp</td>
+      <td>HTTP Live Streaming (HLS) Streaming.</td>
+    </tr>
+    <tr>
+      <td>url</td>
+      <td>Progressive download.</td>
+    </tr>
+    <tr>
+      <td>hds</td>
+      <td>Adobe HTTP Dynamic Streaming. Not available for all Kaltura accounts.</td>
+    </tr>
+    <tr>
+      <td>rtmp</td>
+      <td>Real Time Messaging Protocol (RTMP). Recommended only for Live, or special use cases.</td>
+    </tr>
+    <tr>
+      <td>rtsp</td>
+      <td>Real Time Streaming Protocol (RTSP). For legacy devices, such as older Blackberry and Nokia phones.</td>
+    </tr>
+    <tr>
+      <td>hdnetworkmanifest</td>
+      <td>Akamai HDS delivery. Available only for accounts with Akamai delivery.</td>
+    </tr>
+    <tr>
+      <td>hdnetwork</td>
+      <td>Akamai Proprietary Delivery Protocol. Available only for accounts with Akamai delivery. (deprecated)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="available-protocol-parameters">Available Protocol Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Protocol</th>
+      <th>Description</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>http</td>
+      <td>http Redirect and streaming URLs make use of the HTTP protocol. (Default)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>https</td>
+      <td>https  Redirect and streaming URLs make use of the HTTPS protocol.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>rtmp</td>
+      <td>rtmpe</td>
+      <td>rtmpt</td>
+      <td>rtmpte</td>
+      <td>(RTMP Streaming only) Streaming Server Base URL make use of the specified protocol (RTMP, RTMPE, RTMPT, or RTMPTE).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li>http://cdnapisec.kaltura.com/p/309/sp/0/playManifest/entryId/1_rcit0qgs/format/url/flavorParamId/301971/video.mp4</li>
+  <li>http://cdnapisec.kaltura.com/p/309/sp/0/playManifest/entryId/1_rcit0qgs/format/applehttp/protocol/http/flavorParamId/301971/video.mp4</li>
+</ul>
+
+<blockquote>
+  <p>Note: The playManifest API is not a standard part of the Kaltura API v3, it is a direct URL request that retrieves the specific binary video file from Kaltura. The response to the playManifest URL is the actual video file of the requested entry flavor.</p>
+</blockquote>
+
+<blockquote>
+  <p>Note: The playManifest API does not require a KS unless the media entries were specifically setup with Access Control profiles to limit anonymous access to the media. If the media entry does have Access Control profiles assigned, a KS (Kaltura Session) must be specified when calling the playManifest URL.</p>
+</blockquote>
+
+<h3 id="what-is-the-distinction-between-flavorparamid-and-flavorid">What is the Distinction between flavorParamId and flavorId?</h3>
+
+<ul>
+  <li><strong>flavorParamId</strong> represents the transcoding parameters that are used to generate a flavor. For example, all HD flavors in an account will usually have the same flavorParamId (across different entries)</li>
+  <li><strong>flavorId</strong> is the identifier of a specific video file, for example, the HD flavor will have a different flavorId for each entry that has an HD flavor.</li>
+</ul>
+
+<h4 id="when-to-you-use-each-flavor">When to You use each Flavor?</h4>
+
+<ul>
+  <li>If the flavorIds for the specific entry are known (e.g., the application is doing a flavorAsset.list with entryIdEqual), then use flavorId/flavorIds.</li>
+  <li>If the flavorIds are not known (e.g., the application would like to build a URL to the HD flavor, but does not want to perform flavorAsset.list) use flavorParamId/flavorParamIds.</li>
+</ul>
+
+<h3 id="considerations-of-access-control-and-entitlements">Considerations of Access Control and Entitlements</h3>
+
+<p>It is important to note that Kaltura entries can be set for private or protected modes, where access is only allowed when providing a valid admin <a href="/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">Kaltura Session</a>.</p>
+
+<p>For best practice, to retrieve the download URL for an entry, use the following steps:</p>
+
+<ol>
+  <li>Locate the ID of the desired video flavor (see below Video Flavor Id).</li>
+  <li>Call the <code class="highlighter-rouge">flavorAsset.geturl</code> API action.</li>
+</ol>
+
+<p>Below is a PHP code sample for retrieving the download URL of a web-playable flavor for a desired entry ID:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">//Client library configuration and instantiation...
+ 
+//when creating the Kaltura Session it is important to specify that this KS should bypass entitlements restrictions:
+$ks = $client-&gt;session-&gt;start($secret, $userId, KalturaSessionType::ADMIN, $partnerId, 86400, 'disableentitlement');
+$client-&gt;setKs($ks);
+ 
+$client-&gt;startMultiRequest();
+$entryId = '1_u7aj9kasw'; //replace this with your entry Id
+$client-&gt;flavorAsset-&gt;getwebplayablebyentryid($entryId);
+$req1ResultFlavorId = '{1:result:0:id}'; //get the first flavor from the result of getwebplayablebyentryid
+$client-&gt;flavorAsset-&gt;geturl($req1ResultFlavorId); //this action will return a valid download URL
+$multiRequestResults = $client-&gt;doMultiRequest();
+$downloadUrl = $multiRequestResults[1];
+echo 'The entry download URL is: '.$downloadUrl;</code></pre></figure>
+
+<h3 id="video-flavor-id">Video Flavor ID</h3>
+
+<p>The VideoFlavorId parameter determines which video flavor the API will return as download. This parameter has various options, depending on the Kaltura server deployment and publisher account.</p>
+
+<p>The following lists few of the conventional flavor IDs:</p>
+
+<blockquote>
+  <p>Note:Note: Only flavor id 0 (zero) is static and the same across Kaltura editions. The following list are common flavor Ids on the Kaltura SaaS edition, but note flavors change and upgraded often (improved quality, new codecs, etc.) - Use this list for example purposes.</p>
+</blockquote>
+
+<ul>
+  <li>The original uploaded video (before transcoding) = 0</li>
+  <li>iPhone / Android (mp4) = 301951</li>
+  <li>iPad (mp4) = 301971</li>
+  <li>Nokia/Blackberry (3gp) = 301991</li>
+  <li>Other devices (mp4) = 301961</li>
+</ul>
+
+<p>The correct flavor IDs (per account and Kaltura edition) can be retrieved using one of the following ways:</p>
+
+<ol>
+  <li>Visiting the KMC Settings &gt; <a href="http://knowledge.kaltura.com/faq/how-create-transcoding-profile">Transcoding Profiles</a>.</li>
+  <li>Making an API call to the <a href="https://developer.kaltura.com/api-docs/#/conversionProfile.list">ConversionProfile.list action</a>.</li>
+</ol>
+
+<h3 id="retrieving-streaming-url-for-mobile-applications">&gt;Retrieving Streaming URL for Mobile Applications</h3>
+
+<p>To retrieve streaming URL for mobile applications, use the following guidelines:</p>
+
+<ul>
+  <li>For Apple iPad devices – <a href="#considerations-of-access-control-and-entitlements">get all the flavors</a> (marked ready) that have the tag ‘ipadnew’ and build the following URL:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorIds/'</span> <span class="o">+</span> <span class="nx">flavorIds</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/format/applehttp/protocol/http/a.m3u8?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>For Apple iPhone devices – <a href="#considerations-of-access-control-and-entitlements">get all the flavors</a> (marked ready) that have the tag ’iphonenew’ tag and build the following URL:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorIds/'</span> <span class="o">+</span> <span class="nx">flavorIds</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/format/applehttp/protocol/http/a.m3u8?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>For Android devices that support HLS – <a href="#considerations-of-access-control-and-entitlements">get all the flavors</a> (marked ready) that have the tag ’iphonenew’ tag (excluding audio-only flavors where width, height &amp; framerate fields equal to zero) and build the following URL:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorIds/'</span> <span class="o">+</span> <span class="nx">flavorIds</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/format/applehttp/protocol/http/a.m3u8?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>For Android devices that do not support HLS – get a single video flavor that has the ‘iPhoneNew’ tag and build the following URL:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorId/'</span> <span class="o">+</span> <span class="nx">flavorId</span> <span class="o">+</span> <span class="s1">'/format/url/protocol/http/a.mp4?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="retrieving-the-currently-playing-video-url-using-the-player-js-api">Retrieving the Currently Playing Video URL using the Player JS API</h2>
+
+<p>To retrieve the URL of the video that is being played in the player, use the following player call:</p>
+
+<p><a href="http://player.kaltura.com/kWidget/tests/kWidget.getSources.html"><code class="highlighter-rouge">kWidget.getSources</code></a></p>
+
+<p>To learn more about the <a href="http://www.kaltura.org/demos/kdp3/docs.html#evaluate">evaluate function</a> and the KDP API, read: <a href="/api-docs/Mobile-Video-Player-SDKs/javascript-api-kaltura-media-players.html">JavaScript API for Kaltura Media Players</a>.</p>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

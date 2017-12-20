@@ -1,0 +1,362 @@
+  <title>Kaltura Player UI Localization</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura Player UI Localization" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Web-Video-Player/Player-UI-Localization.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Web-Video-Player/Player-UI-Localization.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura Player UI Localization</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Sun Mar 26 05:30:29 2017</span>, By <span class="commit-author">AnnaAleksandrowicz</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Web-Video-Player/Player-UI-Localization.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Sun Mar 26 05:30:29 2017, By <span class="commit-author">AnnaAleksandrowicz</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (3 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura Web Video Player supports localization for most languages by specifying the language-corresponding locale key.   <br />
+See this article for a <em>complete listing of supported locale keys</em>.</p>
+
+<p>Setting a locale key translates all UI labels, messages and tooltips to the required language.</p>
+
+<blockquote>
+  <p>Note: Not all locales are supported in all of the Player UI components. While the basic UI is fully supported, some plugins may not have all local translations available.</p>
+</blockquote>
+
+<h2 id="setting-the-desired-player-locale">Setting the Desired Player Locale</h2>
+
+<p>By default, all Players revert to English unless the locale is defined otherwise.</p>
+
+<p>You can define the required locale using the Flashvar <code class="highlighter-rouge">localizationCode</code>. This can be set in the Player Studio UIVars section or on the page using embed Flashvars.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>Setting the locale to German via Player Studio UIVars:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>localizationCode=de
+</code></pre>
+</div>
+
+<ul>
+  <li>Setting the locale to German (“de”) via embed Flashvars:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span> 
+    <span class="s1">'localizationCode'</span><span class="err">:</span><span class="s1">'de'</span> 
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>You can also have the Player set the locale automatically according to the locale provided by the web browser. This locale will be the same locale defined in the end user’s operating system.</p>
+
+<p>To have the locale set automatically by setting <code class="highlighter-rouge">localizationCode</code> to <code class="highlighter-rouge">auto</code>, use one of the following options:</p>
+
+<ul>
+  <li>Browser-based automatic locale via Player Studio UIVars:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>localizationCode=auto
+</code></pre>
+</div>
+
+<ul>
+  <li>Browser-based automatic locale via embed Flashvars:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span> 
+    <span class="s1">'localizationCode'</span><span class="err">:</span><span class="s1">'auto'</span> 
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="custom-localized-strings">Custom Localized Strings</h2>
+
+<p>You can add missing strings or change existing strings for any locale using the <code class="highlighter-rouge">strings</code> plugin. The strings plugin defines keys and values for all Player labels and tooltips.</p>
+
+<blockquote>
+  <p>Read this article for <a href="http://player.kaltura.com/modules/KalturaSupport/tests/StringsLocale.html">a complete list of available strings keys and default English values</a>.</p>
+</blockquote>
+
+<p>To override existing key values or define values for keys that are currently not available in your locale, configure the strings plugin either in the Player Studio under the Strings section or in your embed code Flashvars.</p>
+
+<ul>
+  <li>Custom localized strings via Player Studio <strong>Strings</strong> (each line is a UIVar key=value pair):</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mwe-embedplayer-play_clip=Click%20to%20play
+es.mwe-embedplayer-play_clip=Reproducir%20clip
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: When using the Strings section in the Player Studio, you only need to specify the language code for languages other than English.</p>
+</blockquote>
+
+<ul>
+  <li>Custom localized strings via embed Flashvars:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span> 
+    <span class="s2">"strings"</span><span class="err">:</span><span class="p">{</span> 
+        <span class="s2">"en"</span><span class="err">:</span><span class="p">{</span> 
+            <span class="s2">"mwe-embedplayer-play_clip"</span><span class="err">:</span> <span class="s2">"Click to play"</span><span class="p">,</span> 
+		<span class="p">},</span> 
+        <span class="s2">"es"</span><span class="err">:</span><span class="p">{</span> 
+            <span class="s2">"mwe-embedplayer-play_clip"</span><span class="err">:</span> <span class="s2">"Reproducir clip"</span><span class="p">,</span> 
+        <span class="p">}</span> 
+    <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre>
+</div>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

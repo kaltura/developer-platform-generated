@@ -1,0 +1,456 @@
+  <title>Android Download-to-Go Library</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Android Download-to-Go Library" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/Android-DTG.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/Android-DTG.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Android Download-to-Go Library</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Sat Jan 14 11:07:27 2017</span>, By <span class="commit-author">Oren Me</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/Android-DTG.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Thu Sep 22 05:06:49 2016, By: Noam Tamim</td></tr-->
+				<!--tr><td>Last commit: Sat Jan 14 11:07:27 2017, By <span class="commit-author">Oren Me</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (2 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Noam Tamim (6 commits) (<a href="mailto:noam.tamim@kaltura.com">noam.tamim@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<h1 id="download-to-go---android">Download to Go - Android</h1>
+
+<p>Download to Go (DTG) is an Android library that facilitates the download of video assets, withan emphasis on DASH and HLS.</p>
+
+<p>The library is external to the Player SDK, and is added separately by the application.</p>
+
+<h2 id="supported-video-formats">Supported Video Formats</h2>
+
+<ul>
+  <li>MPEG-DASH
+    <ul>
+      <li>Clear and Widevine</li>
+      <li>Currently only streams generated by Kaltura MediaPrep are supported</li>
+      <li>Track selection</li>
+    </ul>
+  </li>
+  <li>HLS
+    <ul>
+      <li>Clear only</li>
+      <li>No track selection</li>
+    </ul>
+  </li>
+  <li>Widevine Classic
+    <ul>
+      <li>Must be single-bitrate for proper playback</li>
+    </ul>
+  </li>
+  <li>MP4</li>
+</ul>
+
+<h2 id="project-setup">Project Setup</h2>
+
+<p>The simplest way to get up and running is by using JitPack’s Maven repository.</p>
+
+<p>1) Add JitPack’s repository to the top-level build.gradle:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+	}
+</code></pre>
+</div>
+
+<p>2) Add the dependency:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	dependencies {
+	    compile 'com.kaltura:playkit-dtg-android:v2.0.0'
+	}
+</code></pre>
+</div>
+
+<p>Replace <code class="highlighter-rouge">v2.0.0</code> with the <a href="https://github.com/kaltura/playkit-dtg-android/releases">latest release</a>.</p>
+
+<p>JitPack provides more <a href="https://jitpack.io/#com.kaltura/playkit-dtg-android">options and information</a>.</p>
+
+<h3 id="alternative-setup">Alternative Setup</h3>
+
+<p>As with any Open Source library, you can also <a href="https://github.com/kaltura/playkit-dtg-android/">clone the repository from GitHub</a> and add it to your project:</p>
+
+<p>1) Add a reference to the project in settings.gradle:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    include ':dtglib'
+    project(':dtglib').projectDir = file('../../playkit-dtg-android/dtglib')
+</code></pre>
+</div>
+
+<p>2) Add the local dependency in build.gradle:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    dependencies {
+        compile project(":dtglib");
+    }
+</code></pre>
+</div>
+
+<p>Now when you build your own project, DTGLib gets built as well. However, this setup should only be used when you want to contribute to DTGLib development.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>The following classes/interfaces are the public API of the library:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    com.kaltura.dtg.
+        - ContentManager
+        - DownloadItem
+        - DownloadState
+        - DownloadStateListener
+</code></pre>
+</div>
+
+<p>Please see their Javadoc comments.</p>
+
+<p>Following are some basic sequence diagrams.</p>
+
+<h3 id="start-and-stop-the-service">Start and Stop the Service</h3>
+
+<p><img src="assets/uml/a513c69baa155217d317fda5d8a81255.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<h3 id="new-download-sequence">New Download Sequence</h3>
+
+<p><img src="assets/uml/1ca5340d9538ee9b39726f6686b35564.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<h2 id="track-selection">Track Selection</h2>
+
+<p>Tracks are selected, by type, using a TrackSelector object. A TrackSelector is obtained by calling <code class="highlighter-rouge">getTrackSelector()</code> on a DownloadItem.<br />
+Given a TrackSelector, the application performs selection:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">DownloadItem</span><span class="o">.</span><span class="na">Track</span><span class="o">&gt;</span> <span class="n">tracks</span> <span class="o">=</span> <span class="n">trackSelector</span><span class="o">.</span><span class="na">getAvailableTracks</span><span class="o">(</span><span class="n">AUDIO</span><span class="o">);</span>
+<span class="c1">// Application logic for track filtering.</span>
+<span class="n">trackSelector</span><span class="o">.</span><span class="na">setSelectedTracks</span><span class="o">(</span><span class="n">AUDIO</span><span class="o">,</span> <span class="n">filteredTracks</span><span class="o">)</span>
+<span class="c1">// Repeat for other track types (VIDEO, TEXT)</span>
+
+<span class="n">trackSelector</span><span class="o">.</span><span class="na">apply</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<h3 id="sequence-diagram">Sequence Diagram</h3>
+
+<p><img src="assets/uml/9432c72479fec283443d28761ef950f1.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<h3 id="interactive-selection-before-download-is-started">Interactive Selection Before Download is Started</h3>
+
+<p>In this scenario, the metadata for an item was downloaded, the default tracks were selected, but the download wasn’t yet started. <br />
+The application calls item.getTrackSelector(), makes a selection and applies it. The selected tracks are downloaded as part of the normal download.</p>
+
+<h3 id="interactive-selection-after-download-is-finished">Interactive Selection After Download is Finished</h3>
+
+<p>The entire item has downloaded. The user now decides to download additional tracks - such as another audio language. <br />
+The application calls item.getTrackSelector(), makes a selection and applies it. Then, item.startDownload() is called again, to start downloading the extra tracks.</p>
+
+<h3 id="preference-based-selection">Preference-based Selection</h3>
+
+<p>The application may have a policy on track selection, for example:</p>
+<ul>
+  <li>Always choose the highest quality video</li>
+  <li>Always prefer audio in the user’s UI language</li>
+</ul>
+
+<p>The ContentManager calls the application’s listener method onTracksAvailable() with an open TrackSelector. The application selects tracks to download and <strong>when onTracksAvailable() returns</strong>, the selection is applied.</p>
+
+<p>If no selection was made, some defaults are applied instead. However, it’s recommended that the application adopts its own defaults.</p>
+
+<p>If the application can select tracks without user interaction, it is best to do so inside the onTracksAvailable() handler. It avoids writing data to the database that will be discarded immediately after.</p>
+
+<h3 id="track-selection-samples">Track Selection Samples</h3>
+
+<p>Select the video track with the <strong>lowest</strong> bitrate:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">List</span><span class="o">&lt;</span><span class="n">DownloadItem</span><span class="o">.</span><span class="na">Track</span><span class="o">&gt;</span> <span class="n">videoTracks</span> <span class="o">=</span> <span class="n">trackSelector</span><span class="o">.</span><span class="na">getAvailableTracks</span><span class="o">(</span><span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackType</span><span class="o">.</span><span class="na">VIDEO</span><span class="o">);</span>
+    <span class="n">DownloadItem</span><span class="o">.</span><span class="na">Track</span> <span class="n">minVideo</span> <span class="o">=</span> <span class="n">Collections</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">videoTracks</span><span class="o">,</span> <span class="n">DownloadItem</span><span class="o">.</span><span class="na">Track</span><span class="o">.</span><span class="na">bitrateComparator</span><span class="o">);</span>
+    <span class="n">trackSelector</span><span class="o">.</span><span class="na">setSelectedTracks</span><span class="o">(</span><span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackType</span><span class="o">.</span><span class="na">VIDEO</span><span class="o">,</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="n">minVideo</span><span class="o">));</span>
+</code></pre>
+</div>
+
+<p>Select all available tracks:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="kt">void</span> <span class="nf">selectAllAvailableTracksByType</span><span class="o">(</span><span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackSelector</span> <span class="n">trackSelector</span><span class="o">,</span> <span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackType</span> <span class="n">trackType</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">DownloadItem</span><span class="o">.</span><span class="na">Track</span><span class="o">&gt;</span> <span class="n">availableTracks</span> <span class="o">=</span> <span class="n">trackSelector</span><span class="o">.</span><span class="na">getAvailableTracks</span><span class="o">(</span><span class="n">trackType</span><span class="o">);</span>
+        <span class="n">trackSelector</span><span class="o">.</span><span class="na">setSelectedTracks</span><span class="o">(</span><span class="n">trackType</span><span class="o">,</span> <span class="n">availableTracks</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Then, from onAvailableTracks():</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">selectAllAvailableTracksByType</span><span class="o">(</span><span class="n">trackSelector</span><span class="o">,</span> <span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackType</span><span class="o">.</span><span class="na">AUDIO</span><span class="o">);</span>
+    <span class="n">selectAllAvailableTracksByType</span><span class="o">(</span><span class="n">trackSelector</span><span class="o">,</span> <span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackType</span><span class="o">.</span><span class="na">TEXT</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<h3 id="default-selection">Default Selection</h3>
+
+<ul>
+  <li>Video: highest bitrate track</li>
+  <li>Audio: highest bitrate version of the first language</li>
+  <li>Text: first track.</li>
+</ul>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

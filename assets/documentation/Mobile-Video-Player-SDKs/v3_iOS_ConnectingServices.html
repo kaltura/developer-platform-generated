@@ -1,0 +1,425 @@
+  <title>Connecting Services</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Connecting Services" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/v3_iOS_ConnectingServices.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/v3_iOS_ConnectingServices.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Connecting Services</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Wed Feb 15 12:07:48 2017</span>, By <span class="commit-author">Oren Me</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/v3_iOS_ConnectingServices.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed Jan 18 17:18:18 2017, By: Eliza Sapir</td></tr-->
+				<!--tr><td>Last commit: Wed Feb 15 12:07:48 2017, By <span class="commit-author">Oren Me</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (3 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Eliza Sapir (4 commits) (<a href="mailto:eliza.sapir@kaltura.com">eliza.sapir@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (3 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>This article describes how to connect to the Kaltura Backend.</p>
+
+<h2 id="create-a-media-entry">Create a Media-Entry</h2>
+
+<p>To create a media entry, you’ll need to use a Media Entry provider. Choose from the following three Media Entry providers:</p>
+
+<ul>
+  <li>MockMediaProvider</li>
+  <li>OTTMediaProvider</li>
+  <li>OVPMediaProvider</li>
+</ul>
+
+<p>Each provider has its own input parameters according to its backend.</p>
+
+<h3 id="mockmediaprovider">MockMediaProvider</h3>
+
+<p>The input of the MockMediaProvider is JSON, for example:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="nt">"entryId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="p">,</span><span class="w">
+		</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entryId"</span><span class="p">,</span><span class="w">
+		</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo1"</span><span class="p">,</span><span class="w">
+		</span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+			</span><span class="p">{</span><span class="w">
+				</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m001s001"</span><span class="p">,</span><span class="w">
+				</span><span class="nt">"mimeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/dash+xml"</span><span class="p">,</span><span class="w">
+				</span><span class="nt">"url"</span><span class="p">:</span><span class="w"> 	</span><span class="s2">"http://cfvod.kaltura.com/dasha/p/1851571/sp/185157100/serveFlavor/entryId/0_pl5lbfo0/v/2/flavorId/0_,zwq3l44r,otmaqpnf,ywkmqnkg,/forceproxy/true/name/a.mp4.urlset/manifest.mpd"</span><span class="w">
+			</span><span class="p">}</span><span class="w">
+		</span><span class="p">]</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+</div>
+
+<p>To initialize the mockMediaProvider use:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">mediaProvider1</span> <span class="p">:</span> <span class="kt">MediaEntryProvider</span> <span class="o">=</span> <span class="kt">MockMediaEntryProvider</span><span class="p">()</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">content</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">fileContent</span><span class="p">)</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"entryId"</span><span class="p">)</span>
+
+</code></pre>
+</div>
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code>
+
+</code></pre>
+</div>
+
+<h3 id="ottmediaprovider">OTTMediaProvider</h3>
+
+<p>The input of the OTTMediaProvider is:</p>
+
+<ul>
+  <li>session provider - Provides all information regarding the session, for example the KS, partnerId, server base url, etc.</li>
+  <li>mediaId - The ID of the media to play</li>
+  <li>type - Indicates whether this is media or EPG</li>
+  <li>file formats to play - Indicates which files are acceptable to play (HD,SD etc’ )</li>
+</ul>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">provider</span> <span class="o">=</span> <span class="kt">OTTMediaProvider</span><span class="p">()</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">sessionProvider</span><span class="p">:</span> <span class="n">sessionProvider</span><span class="p">)</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">mediaId</span><span class="p">:</span> <span class="n">mediaID</span><span class="p">)</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">AssetType</span><span class="o">.</span><span class="n">media</span><span class="p">)</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">formats</span><span class="p">:</span> <span class="p">[</span><span class="s">"Mobile_Devices_Main_HD"</span><span class="p">])</span>
+
+</code></pre>
+</div>
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code>
+
+</code></pre>
+</div>
+
+<h3 id="ovpmediaprovider">OVPMediaProvider</h3>
+
+<p>The input of the OVPMediaProvider is:</p>
+
+<ul>
+  <li>session provider - Provides all information regarding the session, for example the KS, partnerId, server base url, etc.</li>
+  <li>entryId - The ID of the entry to play</li>
+  <li>apiServerURL - The base server url, for example:</li>
+</ul>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">provider</span> <span class="o">=</span> <span class="kt">OVPMediaProvider</span><span class="p">()</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">sessionProvider</span><span class="p">:</span> <span class="n">sessionProvider</span><span class="p">)</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">entryId</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">entryID</span><span class="p">)</span>
+
+</code></pre>
+</div>
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code>
+
+</code></pre>
+</div>
+
+<h2 id="loading-media">Loading Media</h2>
+
+<p>To get the MediaEntry, you’ll need to call the “load” method as follows:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">provider</span><span class="o">.</span><span class="n">loadMedia</span> <span class="p">{</span> <span class="p">(</span><span class="nv">r</span><span class="p">:</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">MediaEntry</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">in</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">){</span>
+		<span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code>
+
+</code></pre>
+</div>
+
+<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+
+<p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

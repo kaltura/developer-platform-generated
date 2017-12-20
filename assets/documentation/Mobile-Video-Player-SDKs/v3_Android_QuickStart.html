@@ -1,0 +1,445 @@
+  <title>Quick Start</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Quick Start" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/v3_Android_QuickStart.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/v3_Android_QuickStart.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Quick Start</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Wed Feb 15 12:07:48 2017</span>, By <span class="commit-author">Oren Me</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/v3_Android_QuickStart.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jan 29 17:25:28 2017, By: Eliza Sapir</td></tr-->
+				<!--tr><td>Last commit: Wed Feb 15 12:07:48 2017, By <span class="commit-author">Oren Me</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (1 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Eliza Sapir (2 commits) (<a href="mailto:eliza.sapir@kaltura.com">eliza.sapir@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (3 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>In this section, you’ll learn how to build a simple video application.</p>
+
+<h2 id="integrate-the-playkit-sdk-into-your-application-settings">Integrate the Playkit SDK into your Application Settings</h2>
+
+<p>1 . Clone the SDK  from https://github.com/kaltura/playkit-android and locate it next to your application code. If you want to be able to review the code as standalone, open the playkit-android folder in the Android Studio. <br />
+2 . In the setting.gradle, add the SDK project settings as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">include</span> <span class="err">'</span><span class="o">:</span><span class="n">playkit</span><span class="err">'</span><span class="o">,</span> <span class="err">'</span><span class="o">:</span><span class="n">playkitdemo</span><span class="err">'</span>
+</code></pre>
+</div>
+<p>3 . In your build.gradle file, add the dependancy for the SDK:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="nl">path:</span> <span class="err">'</span><span class="o">:</span><span class="n">playkit</span><span class="err">'</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<h2 id="create-the-player-instance-and-start-playback">Create the Player Instance and Start Playback</h2>
+
+<p>1 . To create the instance of the player, add the following line to your Activity/Fragment to pass the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PlayerConfig.java">PlayerConfig</a> object and Android Context:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Player</span> <span class="n">player</span> <span class="o">=</span> <span class="n">PlayKitManager</span><span class="o">.</span><span class="na">loadPlayer</span><span class="o">(</span><span class="n">config</span><span class="o">,</span> <span class="n">context</span><span class="o">);</span>
+</code></pre>
+</div>
+<p>2 . Next, add the player view to the view hierarchy as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">View</span> <span class="n">playerView</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="na">getView</span><span class="o">();</span>
+<span class="n">yourLayout</span><span class="o">.</span><span class="na">addView</span><span class="o">(</span><span class="n">playerView</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>3 . Now that you have an instance of the player and its view is attached to your layout, start the playback by calling the following:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="na">play</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<p>4 . To pause the playback call:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="na">pause</span><span class="o">();</span>
+</code></pre>
+</div>
+
+<h2 id="more-about-playerconfig">More About PlayerConfig</h2>
+
+<p>The PlayerConfig object is a simple data object that holds the initial configurations for the player, similar to the media entry you wish to play and the plugins you want to configure. You can find additional documentation on PlayerConfig in this <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/playkit/documentation/PlayKit/Android/PlayerConfig-Android.md">PlayerConfig article</a>.</p>
+
+<p>The <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PlayerConfig.java">PlayerConfig</a> consists of two main objects: media and plugins. For now, we’ll focus on creating the <strong>media</strong> object. Additional information about plugins is available in this <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/playkit/documentation/PlayKit/Plugins-Android.md">plugins </a> article.</p>
+
+<h2 id="kalturas-mediaprovider-classes">Kaltura’s MediaProvider Classes</h2>
+
+<p>Playkit has a large number of built-in <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/playkit/documentation/PlayKit/Android/MediaProviders-Android.md">MediaProvider classes</a>. In this example we’ll focus on the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/backend/mock/MockMediaProvider.java">MockMediaProvider</a> class, which is a class that knows how to create a Media object from JSON.</p>
+
+<h3 id="using-the-mockmediaprovider">Using the MockMediaProvider</h3>
+
+<p>1 . Take take the JsonObject and parse it with your provider. <br />
+2 . Next, let’s assume that you have this JsonObject saved locally in your project assets directory, with the name entries.playkit.json:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w">	</span><span class="s2">"dash"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entryId"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of the source"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sourceId"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mimeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/dash+xml"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yourUrl.mpd"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<p>3 . You now want the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/backend/mock/MockMediaProvider.java">MockMediaProvider</a> to provide you with the PlayerConfig.Media object. Therefore, you need to create a new instance of it, and pass to the constructor the location of the file, the Android context, and the ID of the media you’re interested in:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> 	<span class="nd">@Override</span>
+ 	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onStart</span><span class="o">()</span> <span class="o">{</span>
+   	 <span class="c1">//create mock provider. </span>
+	<span class="n">MockMediaProvider</span> <span class="n">mockProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MockMediaProvider</span><span class="o">(</span><span class="s">"entries.playkit.json"</span><span class="o">,</span> <span class="k">this</span><span class="o">,</span> <span class="s">"entryId"</span><span class="o">);</span>
+	
+	<span class="c1">//load PKMediaEntry from json file.</span>
+	<span class="n">mockProvider</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="k">new</span> <span class="n">OnMediaLoadCompletion</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">(</span><span class="n">ResultElement</span><span class="o">&lt;</span><span class="n">PKMediaEntry</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">isSuccess</span><span class="o">())</span> <span class="o">{</span>
+                   
+                   <span class="c1">//Create config object.</span>
+                   <span class="n">PlayerConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlayerConfig</span><span class="o">();</span>
+                   
+                   <span class="c1">//Set mediaEntry that was received from provider.</span>
+                   <span class="n">PKMediaEntry</span> <span class="n">mediaEntry</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getResponse</span><span class="o">();</span>
+                   <span class="n">config</span><span class="o">.</span><span class="na">media</span><span class="o">.</span><span class="na">setMediaEntry</span><span class="o">(</span><span class="n">mediaEntry</span><span class="o">);</span>
+                   
+                   <span class="c1">//Apply additional configurations on the media.</span>
+                   <span class="n">playerConfig</span><span class="o">.</span><span class="na">media</span><span class="o">.</span><span class="na">setStartPosition</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+                   
+                   <span class="c1">//Create player instance, using config object.</span>
+                   <span class="n">player</span> <span class="o">=</span> <span class="n">PlayKitManager</span><span class="o">.</span><span class="na">loadPlayer</span><span class="o">(</span><span class="n">config</span><span class="o">,</span> <span class="n">context</span><span class="o">);</span>
+                   
+                   <span class="c1">//Add player view to the layout.</span>
+                   <span class="n">View</span> <span class="n">playerView</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="na">getView</span><span class="o">();</span>
+                   <span class="n">yourLayout</span><span class="o">.</span><span class="na">addView</span><span class="o">(</span><span class="n">playerView</span><span class="o">);</span>
+                   
+                   <span class="c1">//Start the playback of the media.</span>
+                   <span class="n">player</span><span class="o">.</span><span class="na">play</span><span class="o">();</span>
+                   
+                <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+               		<span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">"Failed to obtain media entry. "</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="na">getError</span><span class="o">().</span><span class="na">getMessage</span><span class="o">());</span>
+                <span class="o">}</span>
+               
+            <span class="o">}</span>
+        <span class="o">});</span>
+</code></pre>
+</div>
+
+<p>4 . Once completed (onComplete), you’ll receive the PKMediaEntry object with which you can populate the PlayerConfig.Media, create a player, and pass the configuration object into it.<br />
+5 . If you have all the neccessary data for playback (your own MediaProvider), you can manually populate the media object by calling setters on the PlayerConfig.Media object in the following way:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onStart</span><span class="o">()</span> <span class="o">{</span>
+	<span class="c1">//Create config object</span>
+	<span class="n">PlayerConfig</span> <span class="n">playerConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlayerConfig</span><span class="o">();</span>
+	
+	<span class="c1">//Create new mediaEntry object.</span>
+	<span class="n">PKMediaEntry</span> <span class="n">mediaEntry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKMediaEntry</span><span class="o">();</span>
+	
+	<span class="c1">//Create list for PKMediaSources.</span>
+	<span class="n">List</span><span class="o">&lt;</span><span class="n">PKMediaSource</span><span class="o">&gt;</span> <span class="n">mediaSourcesList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+	
+	<span class="c1">//Create PKMediaSource.</span>
+	<span class="n">PKMediaSource</span> <span class="n">mediaSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKMediaSource</span><span class="o">();</span>
+	
+	<span class="c1">//Set your data to the media source.</span>
+	<span class="n">mediaSource</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">yourId</span><span class="o">);</span>
+	<span class="n">mediaSource</span><span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="n">yourUrl</span><span class="o">);</span>
+	
+	<span class="c1">//Add media source to the list.</span>
+	<span class="n">mediaSourcesList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">mediaSource</span><span class="o">);</span>
+	
+	<span class="c1">//Add list to the media entry.</span>
+	<span class="n">mediaEntry</span><span class="o">.</span><span class="na">setSources</span><span class="o">(</span><span class="n">mediaSourcesList</span><span class="o">);</span>
+	
+	<span class="c1">//Set mediaEntry in the playerConfig.</span>
+	<span class="n">playerConfig</span><span class="o">.</span><span class="na">media</span><span class="o">.</span><span class="na">setMediaEntry</span><span class="o">(</span><span class="n">mediaEntry</span><span class="o">);</span> 
+	
+	<span class="c1">//Apply additional configurations on the media.</span>
+	<span class="n">playerConfig</span><span class="o">.</span><span class="na">media</span><span class="o">.</span><span class="na">setAutoPlay</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">//player will start playback immediately after the media is loaded and can be played.</span>
+	<span class="n">playerConfig</span><span class="o">.</span><span class="na">media</span><span class="o">.</span><span class="na">setStartPosition</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span> <span class="c1">// player will start the playback from the 30 second of the media.</span>
+	
+	<span class="c1">//Create player instance.</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">PlayKitManager</span><span class="o">.</span><span class="na">loadPlayer</span><span class="o">(</span><span class="n">config</span><span class="o">,</span> <span class="n">context</span><span class="o">);</span>
+                   
+   	<span class="c1">//Add player view to the layout.</span>
+   	<span class="n">View</span> <span class="n">playerView</span> <span class="o">=</span> <span class="n">player</span><span class="o">.</span><span class="na">getView</span><span class="o">();</span>
+   	<span class="n">yourLayout</span><span class="o">.</span><span class="na">addView</span><span class="o">(</span><span class="n">playerView</span><span class="o">);</span>
+
+	<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>and pass it to the PlayerConfig object.</p>
+
+<blockquote>
+  <p><a href="">Download Full Sample</a></p>
+</blockquote>
+
+<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+
+<p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

@@ -1,0 +1,378 @@
+  <title>How To Handle Kaltura Server Notifications in PHP</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="How To Handle Kaltura Server Notifications in PHP" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Integration-Scheduling-and-Hooks/how-handle-kaltura-server-notifications-in-php.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Integration-Scheduling-and-Hooks/how-handle-kaltura-server-notifications-in-php.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">How To Handle Kaltura Server Notifications in PHP</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Nov 14 18:07:25 2017</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Integration-Scheduling-and-Hooks/how-handle-kaltura-server-notifications-in-php.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Apr 18 06:26:46 2017, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Tue Nov 14 18:07:25 2017, By <span class="commit-author">Zohar Babin</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (4 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>Often applications require the ability to respond to asynchronous events that occurred on the Kaltura server. For example, when a Media Entry was uploaded, finished transcoding or any other status update. This guide will take you through the steps of listening to these events, called <a href="https://developer.kaltura.com/api-docs/#/eventNotificationTemplate">Event Notifications</a>, how to parse the data carried in these notifications, and how to respond properly in your applications.</p>
+
+<p>Kaltura Notifications are HTTP POST requests that are sent by the Kaltura server to any defined accessible web URL whenever specific Kaltura events happen (e.g., Entry added, deleted, etc.).</p>
+
+<p>Utilizing Kaltura Server Notifications allows applications to achieve the following:</p>
+
+<ul>
+  <li>Easily respond on a “push form” whenever media events occur on the Kaltura server.</li>
+  <li>Implement a synchronized local management instance of media related metadata and thumbnails for improving website performance. This may include local media searching and caching capabilities.</li>
+</ul>
+
+<p>The full list of notifications sent by the Kaltura server are available in the <a href="https://developer.kaltura.com/workflows/Integration_Scheduling_and_Hooks/Backend_and_Email_Notifications">Kaltura Notifications API docs</a>.</p>
+
+<h2 id="configuring-the-kaltura-api-notifications-php-client">Configuring The Kaltura API Notifications PHP Client</h2>
+
+<p>The KalturaNotificationClient was developed by Kaltura as a helper class that was created to simplify the creation of the notification handler. </p>
+
+<p>The KalturaNotificationClient constructor takes in the <a href="http://php.net/manual/en/reserved.variables.post.php">$_POST</a> params array and the Kaltura account Admin Secret. When created (instanced), the KalturaNotificationClient object verifies that the given $_POST array is a valid Kaltura Notification Object, builds a native PHP object and performs a basic <a href="http://en.wikipedia.org/wiki/Checksum&quot;">checksum</a><br />
+check to verify that the Notification signature is valid (this procedure verifies that the given $_POST array was not modified by a <a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">man in the middle</a> using the admin secret). </p>
+
+<h3 id="in-which-situations-might-the-same-notification-be-sent-twice">In which Situations Might the Same Notification be Sent Twice?</h3>
+
+<p>An entry_add notification might be sent twice if it is set to be sent by both a client application (such as the Kaltura Contribution Wizard) and the Kaltura server.</p>
+
+<p>Other notifications will not be sent twice in general, however the following scenario might occur: If the HTTP response of the notification_handler would not be 200, the Kaltura server will retry to send this notification.</p>
+
+<h3 id="the-metadata-based-api-notifications-handler-client">The Metadata Based API Notifications Handler Client</h3>
+
+<p>This package is an example of using Kaltura notifications, you may implement your own handler classes following our example.</p>
+
+<p>To use the API notifications client in your application, follow these steps:</p>
+
+<p>1 . Unpack the zip file on a “public” web server accessible from the internet.</p>
+
+<p>2 . Set up an instance Kaltura PHP 5.3 client library - Place contents of the ‘Client’ sub-folder found in the PHP 5.3 client library, under the <your handler="" web="" folder="">\lib\Kaltura\Client.</your></p>
+
+<p>3 . Set up the special synchronization Metadata field:</p>
+
+<p>a. Access the KMC, under settings/custom data add a new schema called apinotifications_sync_data</p>
+
+<p>b. Add the following field to the profile:</p>
+
+<p><img src="assets/images/custom-metadata-field.PNG" alt="Profile Field" /></p>
+
+<p>4 . Make sure the configuration settings are properly populated:</p>
+
+<p>a. In session_config.php: Set up your partner id, admin secret and Kaltura service url</p>
+
+<p>b. In script_config.php: Set up the metadata field that will hold the synchronization status information for each entry</p>
+
+<p>5 . Setting up notifications on Kaltura:<br />
+Access the KMC and set up notifications under Settings&gt;Integration Settings&gt;Notifications. Refer to the article <a href="http://knowledge.kaltura.com/node/167">What types of notifications are there in the KMC?</a> for more details.</p>
+
+<p>6 . Select the type of notification you want to be triggered and add the path the public server that host the notification script</p>
+
+<p>7 . To test your notification handler, open an entry in the KMC and update it (if you set up notification as “Update Entry” for instance). Kaltura should trigger a notification and execute your script on the public server where it has been installed</p>
+
+<p>8 . To check if your notification handler went through, check the log in the “log” directory.</p>
+
+<h3 id="add-your-code-to-handle-the-notification">Add Your Code to Handle the Notification</h3>
+
+<ol>
+  <li>Open the following file: lib/Kaltura/Notification/Handler/SyncEntry.php.</li>
+  <li>Find line 190 and add your code inline:</li>
+</ol>
+
+<p><img src="assets/images/codeline.png" alt="Code inline" /></p>
+
+<h3 id="set-up-the-notifications-handler-endpoint">Set up the Notifications Handler Endpoint</h3>
+
+<p>The last step in this process is to indicate the endpoint URL that will listen to the Kaltura Notifications.</p>
+
+<p>To setup the Notifications endpoint, follow these steps:</p>
+
+<ol>
+  <li>In the <a href="http://www.kaltura.com/index.php/kmc">Kaltura Management Console</a>, go to the Settings tab.</li>
+  <li>Enter the Integration Settings sub-tab.</li>
+  <li>In the “Enter Notification URL” field, paste the URL to your notifications handler script.</li>
+</ol>
+
+<p><img src="assets/images/notifications.jpg" alt="Notification URL" /></p>
+
+<h2 id="multi-notifications">Multi-notifications</h2>
+
+<p>Publisher accounts with high activity (many entries are being added and updated all the time), may opt to enable multi-notifications.</p>
+
+<p>When multi-notifications is enabled, if a large amount of notifications for the same publisher account are aggregated in the queue and needs to be sent – the server can send all (or few) of them in a single combined HTTP request (“multi”) to protect the publisher server from over-load, and potentially to reduce the delays.</p>
+
+<blockquote>
+  <p>Note:  Multi-notifications is disabled by default on all publisher accounts. Kaltura SaaS edition customers - If you suspect that your account require multi-notifications, consult your Kaltura Account Manager on enabling multi-notifications.</p>
+</blockquote>
+
+<h3 id="enabling-multi-notifications-on-kaltura-community-and-on-prem-editions">Enabling Multi-notifications on Kaltura Community and On Prem Editions</h3>
+
+<p>To enable multi-notifications for a publisher account, follow these steps:</p>
+
+<ol>
+  <li>Edit the Publisher Account Configuration Settings in the Admin Console (Choose Configure in the Actions menu).</li>
+  <li>Check the box for “Allow multi-notifications” under the “Advanced Notification Settings”.</li>
+</ol>
+
+<h3 id="thesplitmultinotifications-method">The splitMultiNotifications Method</h3>
+
+<p>When multi-notifications is enabled on the publisher account, the KalturaNotificationClient object will parse the multi-notifications received from the Kaltura server into an array of notifications, according to the prefixed POST parameters (for example: “not1_entryId={},not1_mediaType={},not2_entryId={},…”).</p>
+
+<p>The KalturaNotificationClient calls the splitMultiNotifications function in the constructor to create an array of notifications. Each element in the array is an associative array of the notification fields and values.</p>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

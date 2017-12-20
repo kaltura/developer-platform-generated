@@ -1,0 +1,715 @@
+  <title>Extending the Kaltura Web Video Player Functionality Using Plugins</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Extending the Kaltura Web Video Player Functionality Using Plugins" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Web-Video-Player/Player-Plugins.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Web-Video-Player/Player-Plugins.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Extending the Kaltura Web Video Player Functionality Using Plugins</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Aug 8 13:28:22 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Web-Video-Player/Player-Plugins.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 8 13:28:22 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (5 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura Web Video Player architecture uses plugins to extend the Player functionality. All Web Video Player controls and core functionalities are implemented as plugins. This approach provides a separation of concerns and code isolation when implementing Player features.</p>
+
+<p>Plugins communicate with the Web Video Player using the Player’s API. Plugins also have direct access to the Player core engine and a dedicated interface to access and change the Player UI. Additionally, plugins can utilize the Player ability to communicate with the Kaltura platform API, thus gaining access to the Kaltura platform services.</p>
+
+<p>To learm more about how to utilize the Web Video Player plugins, we recommend reading the following articles about the existing core Player plugins:</p>
+
+<ul>
+  <li>Turning plugins on and off and configuring plugin properties using the <a href="http://knowledge.kaltura.com/universal-studio-information-guide">Player Studio</a></li>
+  <li>Viewing plugins in action in our <a href="http://player.kaltura.com/docs/chaptersView">Player demo pages</a></li>
+</ul>
+
+<h2 id="considerations-when-creating-player-plugins">Considerations When Creating Player Plugins</h2>
+
+<p>You can create your own custom plugin in order to extend Player functionality. The Plugin code structure is fairly simple; however, please bear in mind that there is quite a bit of work involved in creating plugins. Additionally, remember to follow the many best practices required in order to develop plugins correctly. This guide provides all of the required information to develop high-quality Player plugins.</p>
+
+<p>Please note that you can achieve a lot of functionality by simply using the Player API without the need to create a custom plugin.</p>
+
+<p>So when should you consider custom plugin development? If you need to achieve any of the tasks below, you should consider developing a custom plugin:</p>
+
+<ul>
+  <li>You want to reuse your plugin logic across multiple Players</li>
+  <li>You need to change the Player look-and-feel</li>
+  <li>You need to add visual controls to the Player</li>
+  <li>You need access to the Kaltura platform services</li>
+  <li>You need to use the Player templating engine to render data</li>
+  <li>You need direct access to Player properties and methods that are not exposed in the Player API</li>
+  <li>You want to provide an interface to configure your plugin properties</li>
+  <li>You want to expose your plugin API to other developers</li>
+</ul>
+
+<h3 id="plugin-code-structure">Plugin Code Structure</h3>
+
+<p>As a JavaScript module, your plugin will be defined as a literal object notation, where properties and methods are separated with commas.</p>
+
+<p>Also, pay attention to JS scope when registering to Player events, and the use of “this”. The scope within your event handler will not be the overall plugin scope.</p>
+
+<h3 id="deploying-and-sharing-player-plugins">Deploying and Sharing Player Plugins</h3>
+
+<p>When your plugin code and optional CSS files are ready, you will need to prepare the plugin for deployment. We recommend that you <a class="external" target="_blank" rel="nofollow" href="https://developers.google.com/speed/docs/insights/">minimize your Javascript and CSS files</a> for faster load time. <br />
+When you deploy the Player plugin files on a server so that they are accessible to the Player, consider the following:</p>
+
+<ol>
+  <li>Host the external files on a dedicated server, preferably a CDN for best performance, and ensure your server has <a class="external" target="_blank" rel="nofollow" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS headers</a> enabling loading assets from other domains.</li>
+  <li>Make sure you set the correct relative links or full paths in your Flashvars settings.</li>
+  <li>Verify that your assets can be loaded from both http and https, and when directing the Player to load the assets, use a protocol agnostic URL notation (<code class="highlighter-rouge">://</code> instead of <code class="highlighter-rouge">http://</code>). Also make sure that your server has a valid SSL certificate.</li>
+  <li>If you need to load more than one icon, consider using an icon font.</li>
+  <li>If you need to load more than one image, use <a class="external" target="_blank" rel="nofollow" href="https://css-tricks.com/css-sprites/">CSS sprite sheets</a>.</li>
+</ol>
+
+<h3 id="mediawiki-and-jquery-libraries">MediaWiki and jQuery Libraries</h3>
+
+<p>The Kaltura Player uses jQuery, which means that you can use jQuery statements in your code without worrying about loading the jQuery library yourself.</p>
+
+<p>The Player also includes the MediaWiki library, which can be referenced anywhere in the code by using the mw global variable.    <br />
+The MediaWiki library provides utility functions to detect browsers and devices, time manipulation, formatters, and additional utilities.</p>
+
+<blockquote>
+  <p>To learn more about which methods are available via the MediaWiki library, <a class="external" target="_blank" rel="nofollow" href="https://github.com/kaltura/mwEmbed/tree/master/modules/MwEmbedSupport/mediawiki">check out the library code on GitHub</a>.</p>
+</blockquote>
+
+<h2 id="player-plugins-architecture">Player Plugins Architecture</h2>
+
+<h3 id="loading-the-plugin-scripts-via-player-embed">Loading the Plugin Scripts via Player Embed</h3>
+
+<p>To load the plugin code in the Kaltura Player, host the plugin files in a server that will be accessible to the Player, and reference the plugin in the embed code Flashvars (or in the Player UIConf using Studio) as follows:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">embed</span><span class="p">({</span>
+        <span class="s2">"targetId"</span><span class="p">:</span> <span class="s2">"kaltura_player"</span><span class="p">,</span>
+        <span class="s2">"wid"</span><span class="p">:</span> <span class="s2">"_27017"</span><span class="p">,</span>
+        <span class="s2">"uiconf_id"</span><span class="p">:</span> <span class="mi">29667911</span><span class="p">,</span>
+        <span class="s2">"flashvars"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">//This line adds your custom plugin</span>
+            <span class="s2">"myCustomPluginName"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="c1">//This line turn on the plugin</span>
+                <span class="s1">'plugin'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="c1">//This line sets the plugin file path</span>
+                <span class="s2">"iframeHTML5Js"</span> <span class="p">:</span> <span class="s2">"myCustomPluginName.js"</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">"entry_id"</span><span class="p">:</span> <span class="s2">"1_1611vudr"</span>
+    <span class="p">});</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong> The plugin name as defined in your code is used as a key for the Flashvars config parameters definitions. <br />
+You must also set the “plugin” property to true and provide a relative or full link to your Javascript file holding the plugin code using the “iframeHTML5Js” property.</p>
+</blockquote>
+
+<h3 id="the-plugin-wrapper-and-plugin-manager">The Plugin Wrapper and Plugin Manager</h3>
+
+<p>The code structure of a custom plugin JavaScript file includes two important classes: the Kaltura <strong>plugin wrapper</strong> and the <strong>plugin manager definitions</strong>.</p>
+
+<p>When creating a new custom plugin, begin by wrapping your plugin code inside the plugin wrapper. The wrapper takes care of injecting your plugin code to the Player during Player initialization.</p>
+
+<p>Use the Player’s plugin manager to register your plugin and to define your plugin name (always use camelCase naming and remember not to use spaces or underscores) and base class:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">mw</span><span class="p">.</span><span class="nx">kalturaPluginWrapper</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">mw</span><span class="p">.</span><span class="nx">PluginManager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'myCustomPluginName'</span><span class="p">,</span> <span class="nx">mw</span><span class="p">.</span><span class="nx">KBaseComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="c1">// plugin code</span>
+    <span class="p">}));</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="plugin-base-inheritance">Plugin Base Inheritance</h3>
+
+<p>The second parameter passed to the plugin manager is the plugin code that should extend one of the Player base plugin classes:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">mw.KBaseComponent</code>: The most commonly used class base, this class base includes of all the required function for a visual / non-visual plugin</li>
+  <li><code class="highlighter-rouge">mw.KBaseScreen</code>: Extends the mw.KBaseComponent class and provides the ability to manage screen overlays above the Player using templates</li>
+  <li><code class="highlighter-rouge">mw.KBaseMediaList</code>: Extends the mw.KBaseComponent class and provides functionality for creating and playing lists of video content</li>
+</ul>
+
+<p>Most often mw.KBaseComponent will be the best choice of base class to start your plugin from. The examples below will focus mainly on these common scenarios.</p>
+
+<h3 id="defaultconfig-and-plugin-config-parameters">defaultConfig and Plugin Config Parameters</h3>
+
+<p>To define public properties for your plugin that can be changed using embed code Flashvars or via Player Studio UIVars, you will need to define a <code class="highlighter-rouge">defaultConfig</code> JSON object in your plugin code.</p>
+
+<p>For each property you should specify a default value:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">mw</span><span class="p">.</span><span class="nx">kalturaPluginWrapper</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">mw</span><span class="p">.</span><span class="nx">PluginManager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'myCustomPluginName'</span><span class="p">,</span> <span class="nx">mw</span><span class="p">.</span><span class="nx">KBaseComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="c1">// public properties</span>
+        <span class="na">defaultConfig</span><span class="p">:</span> <span class="p">{</span>
+	        <span class="c1">// the container for the button</span>
+            <span class="na">parent</span><span class="p">:</span> <span class="s2">"controlsContainer"</span><span class="p">,</span>    
+            <span class="c1">// the display order ( based on layout )</span>
+            <span class="na">order</span><span class="p">:</span> <span class="mi">81</span><span class="p">,</span>                      
+            <span class="c1">// the display importance, determines when the item is removed from DOM</span>
+            <span class="na">displayImportance</span><span class="p">:</span> <span class="s1">'low'</span><span class="p">,</span>       
+            <span class="c1">// the alignment of the button</span>
+            <span class="na">align</span><span class="p">:</span> <span class="s2">"right"</span><span class="p">,</span>                 
+            <span class="c1">// custom property and custom value</span>
+            <span class="na">myProp</span><span class="p">:</span> <span class="s2">"myValue"</span>               
+        <span class="p">}</span>
+        
+        <span class="c1">// The rest of your plugin code comes here...</span>
+    <span class="p">}));</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>In this example, the <code class="highlighter-rouge">parent</code>, <code class="highlighter-rouge">order</code>, <code class="highlighter-rouge">displayImportance</code> and align properties are <code class="highlighter-rouge">KBaseComponent</code> properties that control plugin rendering and handled in the <code class="highlighter-rouge">mw.KBaseComponent</code> class. <br />
+<code class="highlighter-rouge">myProp</code> is a new property defined by this plugin.</p>
+
+<h4 id="accessing-plugin-properties-in-the-plugin-code">Accessing Plugin Properties in the Plugin Code</h4>
+<p>Within your plugin code, you can get the property value using the <code class="highlighter-rouge">getConfig</code> method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//will log the value of myProp ("myValue")</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getConfig</span><span class="p">(</span><span class="s2">"myProp"</span><span class="p">));</span>
+</code></pre>
+</div>
+
+<h3 id="reference-the-player-element-inside-the-plugin-code">Reference the Player Element Inside the Plugin Code:</h3>
+
+<p>Throughout your custom plugin code, you have direct access to the Player by using the <code class="highlighter-rouge">getPlayer</code> method which returns the <code class="highlighter-rouge">embedPlayer</code> object. <br />
+This object exposes all of the Player methods and properties (not just the public ones exposed by the Player API).</p>
+
+<p>For example, to get a reference to the native video element of the current Player you can use:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">getPlayer</span><span class="p">().</span><span class="nx">getPlayerElement</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<h2 id="the-player-plugin-lifecycle">The Player Plugin Lifecycle</h2>
+<p>The following section details the methods used in the Player plugin lifecyle.</p>
+
+<h3 id="issafeenviornment-method">isSafeEnviornment Method</h3>
+
+<p>This optional method can be declared in order to define cases in which the plugin does not load. The method should return a boolean value: “true” means the plugin should load and “false” means the plugin should not load.</p>
+
+<p>For example, if you want your plugin to load only on mobile devices:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">mw</span><span class="p">.</span><span class="nx">kalturaPluginWrapper</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">mw</span><span class="p">.</span><span class="nx">PluginManager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'myCustomPluginName'</span><span class="p">,</span> <span class="nx">mw</span><span class="p">.</span><span class="nx">KBaseComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="na">isSafeEnviornment</span><span class="p">:</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// load the plugin only on mobile devices:</span>
+            <span class="k">return</span> <span class="nx">mw</span><span class="p">.</span><span class="nx">isMobileDevice</span><span class="p">();</span>     
+        <span class="p">}</span>
+    <span class="p">}));</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="setup-method">setup Method</h3>
+
+<p>The setup method is the first method that is called when the plugin loads. You do not need to call it yourself, you simply need to define it.<br />
+This is essentially the entry point for the plugin code, and is the place to write your initialization code and add event bindings if needed:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">mw</span><span class="p">.</span><span class="nx">kalturaPluginWrapper</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">mw</span><span class="p">.</span><span class="nx">PluginManager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'myCustomPluginName'</span><span class="p">,</span> <span class="nx">mw</span><span class="p">.</span><span class="nx">KBaseComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="na">setup</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// initialization code goes here.</span>
+            <span class="c1">// call a method for event bindings:</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">addBindings</span><span class="p">();</span>             
+        <span class="p">}</span>
+    <span class="p">}));</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="event-bindings">Event Bindings</h3>
+
+<p>Your plugin can register to any event triggered by the Player. Register to events using the <strong>bind</strong> method.</p>
+
+<p>Syntax:  <code class="highlighter-rouge">this.bind(eventName, callback, once);</code><br />
+Where eventName is the name of the event to register to, callback is the callback function to execute, and once, when set to true, binds to this event only once.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">mw</span><span class="p">.</span><span class="nx">kalturaPluginWrapper</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">mw</span><span class="p">.</span><span class="nx">PluginManager</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'myCustomPluginName'</span><span class="p">,</span> <span class="nx">mw</span><span class="p">.</span><span class="nx">KBaseComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+        <span class="na">setup</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// initialization code goes here.</span>
+            <span class="c1">// call a method for event bindings:</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">addBindings</span><span class="p">();</span>             
+        <span class="p">},</span>
+        <span class="na">addBindings</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">'playerReady'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s2">"player is ready"</span><span class="p">);</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">}));</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Unregistering events is done by the unbind method, which accepts the event name and removes the listener: <code class="highlighter-rouge">this.unbind('playerReady');</code></p>
+
+<h4 id="namespaces">Namespaces</h4>
+
+<p>When you bind events within your plugin, the plugin name is used as a namespace for the event registration automatically.   <br />
+This allows isolation between multiple plugins that register to the same events. Learn more about event name spacing here.</p>
+
+<p>Using the unbind method does the same and unbinds the event with the specific plugin namespace only.</p>
+
+<p>You can also unbind all of the plugin events by not sending an event parameter to the unbind method. This will cause the unbinding of all of the plugin name space events.<br />
+This type of global unbinding should be used when destroying the plugin.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// remove all of the plugin event listeners using the plugin name space:</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">unbind</span><span class="p">();</span> 
+</code></pre>
+</div>
+
+<h3 id="getcomponent-and-parent-method">getComponent and parent Method</h3>
+
+<p>If your component has a visual representation, you will need to define the <code class="highlighter-rouge">getComponent</code> method. This method should return a jQuery DOM element that is rendered in the Player interface.</p>
+
+<p>The <code class="highlighter-rouge">parent</code> container in which your component is rendered is defined by the <code class="highlighter-rouge">parent</code> property, and can be overridden in the embed Flashvars or Studio UIVars definitions.</p>
+
+<h4 id="optional-parents">Optional Parents</h4>
+<p>There are are three optional parents:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">controlsContainer</code>: Renders the component in the Player bottom control bar</li>
+  <li><code class="highlighter-rouge">topBarContainer</code>: Renders the component in the Player top control bar</li>
+  <li><code class="highlighter-rouge">videoHolder</code>: Renders the component over the video itself</li>
+</ul>
+
+<p>Your <code class="highlighter-rouge">getComponent</code> method is the place to define your component look-and-feel as well as its actions.</p>
+
+<p>The returned jQuery object should be created only once (single tone); therefore, the best practice is to save it as a plugin property commonly named <code class="highlighter-rouge">$el</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">getComponent</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s1">'&lt;button /&gt;'</span> <span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s1">'title'</span><span class="p">,</span> <span class="s1">'Play'</span> <span class="p">)</span>
+            <span class="p">.</span><span class="nx">addClass</span><span class="p">(</span> <span class="s1">'btn icon-play'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">getCssClass</span><span class="p">()</span> <span class="p">)</span>
+            <span class="p">.</span><span class="nx">click</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">_this</span><span class="p">.</span><span class="nx">togglePlayback</span><span class="p">();</span>
+            <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="getcssclass">getCssClass</h3>
+
+<p>As you can see in the example above, when defining your plugin DOM element CSS classes, you should use the  <code class="highlighter-rouge">this.getCssClass()</code> method.   <br />
+This method adds some css classes to handle alignment (as defined in the <code class="highlighter-rouge">align</code> Flashvar property), display importance and more.</p>
+
+<p>Another class name that will be added by this method is a class named by your component name. You can use this class name to add plugin-specific CSS rules in your plugin custom CSS file. In our example, your component will get the <code class="highlighter-rouge">myCustomPluginName</code> class name.</p>
+
+<h3 id="onenable--ondisable">onEnable / onDisable</h3>
+
+<p>During video playback, you may want to disable your plugin in some scenarios, for example, when loading data or when an ad is playing.<br />
+You can “announce” your plugin as disabled or enabled by calling <code class="highlighter-rouge">this.onDisable()</code> and <code class="highlighter-rouge">this.onEnable()</code> accordingly.</p>
+
+<p>Disabling the plugin adds the “disabled” class to the plugin element and sets its <code class="highlighter-rouge">isDisabled</code> property to <code class="highlighter-rouge">true</code>. Enabling it removes the class and sets <code class="highlighter-rouge">isDisabled</code> to <code class="highlighter-rouge">false</code>.</p>
+
+<p>Note that calling the <code class="highlighter-rouge">onDisable</code> method does not disable the plugin; it simply adds the disabled class and sets the <code class="highlighter-rouge">isDisabled</code> property to <code class="highlighter-rouge">true</code>. It is up to you, therefore, to add logic to your code and disable any functionality when the <code class="highlighter-rouge">isDisabled</code> property is <code class="highlighter-rouge">true</code>.</p>
+
+<p>A simple <code class="highlighter-rouge">if (!this.isDisabled)</code> conditional statement before any functionality should provide a proper disabled state. <br />
+You can also override your plugin disabled CSS class rules using a plugin custom CSS as explained below.</p>
+
+<h3 id="show--hide">show / hide</h3>
+
+<p>In some cases you may want to  hide your component element completely during playback. In this case, use <code class="highlighter-rouge">this.hide()</code> to hide the component and <code class="highlighter-rouge">this.show()</code> to show it again.</p>
+
+<h3 id="accessing-the-player-interface">Accessing the Player Interface</h3>
+
+<p>In order to access the Player controls and interface, you can use jQuery class selectors. The Player also provides methods to access its main DOM elements:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">getInterface()</code>: Returns a jQuery object representing the entire Player interface</li>
+  <li><code class="highlighter-rouge">getVideoHolder()</code>: Returns a jQuery object representing the video holder DIV containing the video display and all elements displayed over the video</li>
+  <li><code class="highlighter-rouge">getVideoDisplay()</code>: Returns a jQuery object representing the DIV holding the video object</li>
+  <li><code class="highlighter-rouge">getControlBarContainer()</code>: Returns a jQuery object representing the bottom control bar holding the Player controls</li>
+  <li><code class="highlighter-rouge">getTopBarContainer()</code>: Returns a jQuery object representing the top control bar</li>
+  <li><code class="highlighter-rouge">getPlayerPoster()</code>: Returns a jQuery object representing the video poster image</li>
+</ul>
+
+<p>For example, to select all of the buttons in the bottom control bar, use:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">getPlayer</span><span class="p">().</span><span class="nx">getControlBarContainer</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.btn'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h3 id="determining-player-state-and-ads-playback">Determining Player State and Ads Playback</h3>
+
+<p>In many cases you would like to know the Player’s current state, i.e., is it playing or paused, is an ad currently playing, etc. Determining the state of the Player can be done in the following ways:</p>
+
+<ul>
+  <li>Events registration: Register to Player events such as the <code class="highlighter-rouge">playerStateChange</code> event. For more information, see the Events section in the <a href="/api-docs/Web-Video-Player/Kaltura-Media-Player-API.html">Player API guide</a>.</li>
+  <li>Check Player properties, for example: <code class="highlighter-rouge">this.getPlayer().paused</code>.</li>
+  <li>Examine the Player state classes. For more information see the Player state CSS classes in the <a href="/api-docs/Web-Video-Player/Player-Customization.html">Player customization article</a>.</li>
+  <li>To determine if an ad is currently playing use: <code class="highlighter-rouge">this.getPlayer().isInSequence()</code>. <code class="highlighter-rouge">true</code> indicates an ad is currently playing.</li>
+</ul>
+
+<h4 id="example-disable-your-plugin-during-ad-playback">Example: Disable Your Plugin During Ad Playback</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">addBindings</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">'AdSupport_StartAdPlayback'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">_this</span><span class="p">.</span><span class="nx">onDisable</span><span class="p">();</span>
+    <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">'AdSupport_EndAdPlayback'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">_this</span><span class="p">.</span><span class="nx">onEnable</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="calling-player-methods-using-the-player-api">Calling Player Methods Using the Player API</h3>
+
+<p>While you may call the Player methods directly from your plugin, it is better the use the Player API for this purpose.   <br />
+The Player API makes sure your command is executed seamlessly across multiple playback engines and handles possible errors.  <br />
+To call a Player method using the API, use the <code class="highlighter-rouge">sendNotification</code> method. For more information, see the [Player API guide]/api-docs/Web-Video-Player/Kaltura-Media-Player-API.html).</p>
+
+<h4 id="example-switching-the-currently-playing-media">Example: Switching the Currently Playing Media</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">getPlayer</span><span class="p">().</span><span class="nx">sendNotification</span><span class="p">(</span><span class="s2">"changeMedia"</span><span class="p">,</span> <span class="p">{</span> <span class="s2">"entryId"</span> <span class="p">:</span> <span class="s2">"0_wm82kqmm"</span> <span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="event-dispatching">Event Dispatching</h3>
+
+<p>You may want to dispatch events from your plugin to be used by other plugins or as an external API for other developers.  <br />
+Plugins dispatch events use the Player <code class="highlighter-rouge">triggerHelper</code> method. Try to use descriptive event names for ease of use.</p>
+
+<p>You may also pass additional parameters with your event by passing a parameters array as a second argument to the triggerHelper method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">getPlayer</span><span class="p">().</span><span class="nx">triggerHelper</span><span class="p">(</span><span class="s1">'myCustomEventName'</span><span class="p">,</span> <span class="p">[</span><span class="nx">param1</span><span class="p">,</span> <span class="nx">param2</span><span class="p">,</span> <span class="nx">param3</span><span class="p">]);</span>
+</code></pre>
+</div>
+
+<h4 id="example-dispatch-a-custom-event-upon-button-click">Example: Dispatch a Custom Event upon Button Click</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">getComponent</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s1">'&lt;button /&gt;'</span> <span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s1">'title'</span><span class="p">,</span> <span class="s1">'Click Me!'</span> <span class="p">)</span>
+            <span class="p">.</span><span class="nx">addClass</span><span class="p">(</span> <span class="s1">'btn icon-myicon'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">getCssClass</span><span class="p">()</span> <span class="p">)</span>
+            <span class="p">.</span><span class="nx">click</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">_this</span><span class="p">.</span><span class="nx">fireMyCustomEvent</span><span class="p">();</span>
+            <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">;</span>
+<span class="p">},</span>
+<span class="nx">fireMyCustomEvent</span><span class="err">:</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="c1">// dispatch the 'myCustomEventName' event</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getPlayer</span><span class="p">().</span><span class="nx">triggerHelper</span><span class="p">(</span><span class="s1">'myCustomEventName'</span><span class="p">);</span> 
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="destroying-the-plugin">Destroying the Plugin</h3>
+
+<p>While the destroy method is not called automatically by the Player, it is highly advised to define it for cases where you need to perform any cleanup.  <br />
+Call the destroy function when you no longer want your plugin to perform any logic or when you want to remove it from the Player DOM.</p>
+
+<blockquote>
+  <p><strong>NOTE:</strong> You must call <code class="highlighter-rouge">this._super()</code> in your destroy function in order to invoke the destroy function in your parent class which unbinds and removes your plugin from the DOM.</p>
+</blockquote>
+
+<h4 id="example-destroying-the-plugin-when-the-entry-is-switched">Example: Destroying the plugin when the entry is switched</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">addBindings</span><span class="err">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">'onChangeMedia'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">_this</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">},</span>
+<span class="nx">destroy</span><span class="err">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// plugin cleanup code here...</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="custom-plugin-css">Custom Plugin CSS</h2>
+
+<p>You can define a custom CSS file to be loaded with your custom plugin. In this CSS you can define custom CSS classes used by your plugin.</p>
+
+<p>Important considerations:</p>
+
+<ul>
+  <li>You can also use this file to override other Player CSS classes. Use the <code class="highlighter-rouge">!important</code> directive to make sure these rules are overridden.</li>
+  <li>If you need to use external assets such as images and fonts, reference them in your CSS using relative links, and use CSS sprite sheets where applicable.</li>
+  <li>You may also consider using CSS Data URIs to include inline images and icons or icon fonts for multiple vector icons. To learn more about icon fonts click <a class="external" target="_blank" rel="nofollow" href="http://www.w3schools.com/icons/">here</a>.</li>
+</ul>
+
+<p>To define a custom CSS file, use the <code class="highlighter-rouge">iframeHTML5Css</code> property in your custom plugin parameters:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">embed</span><span class="p">({</span>
+        <span class="s2">"targetId"</span><span class="p">:</span> <span class="s2">"kaltura_player"</span><span class="p">,</span>
+        <span class="s2">"wid"</span><span class="p">:</span> <span class="s2">"_27017"</span><span class="p">,</span>
+        <span class="s2">"uiconf_id"</span><span class="p">:</span> <span class="mi">29667911</span><span class="p">,</span>
+        <span class="s2">"flashvars"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">//This line adds your custom plugin:</span>
+            <span class="s2">"myCustomPluginName"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'plugin'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s2">"iframeHTML5Js"</span> <span class="p">:</span> <span class="s2">"myCustomPluginName.js"</span><span class="p">,</span>
+                <span class="c1">//This line sets the plugin custom CSS file path:</span>
+                <span class="s2">"iframeHTML5Css"</span> <span class="p">:</span> <span class="s2">"myCustomCSS.css"</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">"entry_id"</span><span class="p">:</span> <span class="s2">"1_1611vudr"</span>
+    <span class="p">});</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong> The link to your CSS file can be relative or absolute.</p>
+</blockquote>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

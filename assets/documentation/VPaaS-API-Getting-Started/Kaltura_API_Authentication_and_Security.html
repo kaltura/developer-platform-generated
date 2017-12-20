@@ -1,0 +1,793 @@
+  <title>Kaltura API Authentication and Security</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura API Authentication and Security" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura API Authentication and Security</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Thu Dec 8 04:22:56 2016, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (33 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (6 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>Kaltura’s API is a REST-based web service accessed over HTTP. REST APIs provide a simple and easy interface for communication between applications and the Kaltura server. However, this approach can undermine your application’s security, if you overlook proper security and authentication when designing your applications.</p>
+
+<p>Kaltura was designed with privacy and security standards in mind, while at the same time providing the openness of Kaltura’s technology as an open source platform and providing flexible integration models for open and free applications as well as highly secured and limited applications.</p>
+
+<p>The following overview describes the authentication and security model of Kaltura’s API, and how to put it to practice when implementing Kaltura’s applications.</p>
+
+<h2 id="authentication-and-security">Authentication and Security</h2>
+
+<p>To establish communication with the Kaltura servers, the client application must have a secret (one of 2 types) coupled with a unique account ID and a set of permissions.</p>
+
+<p>A valid Kaltura Session (KS) is required to interact with the Kaltura API; displaying content, uploading media, deleting, updating or listing. The KS expiry can be set at session initiation to range from 1 second to 10 years.</p>
+
+<p>Once the KS is acquired, it can be used to interact with content by users for specific pre-set actions, such as uploading, deletion, updating and listing.</p>
+
+<p>Securing application content is done by leveraging one or more of the following methods:</p>
+
+<ul>
+  <li>Data:
+    <ul>
+      <li>The Kaltura Session</li>
+      <li>The channel communication (e.g., HTTPS)</li>
+    </ul>
+  </li>
+  <li>Video Delivery:
+    <ul>
+      <li>Delivery methods and obfuscation (segmentation, url obfuscation, expired urls)</li>
+      <li>DRM</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="media-access-control">Media Access Control</h2>
+
+<p>There are many possible layers of security that can be deployed within Kaltura’s system.</p>
+
+<p>Publishers can configure the level of required security for their end users - these security layers work in coordination with the site’s user authentication methods as well. Specifically, publishers can control access to each media asset and restrict user access to assets based on each of the following or a combination of several criteria:</p>
+
+<ul>
+  <li>Authorized domains – Solutions can restrict access to media based on a predefined list of approved domains.</li>
+  <li>Geo-location – Solutions can restrict access to media based on the origin on the user. This is set using the user’s IP. For example, a publisher in Spain can restrict access to their media to all users outside of Spain, allowing users with Spanish IPs only to access the site’s media.</li>
+  <li>IP - Limit access to media only from a specific IP Address or range of IP address.</li>
+  <li>Time limit - Solutions can allow access to media for a specified time period only, for example, allowing users to access certain media for 7 days only.</li>
+  <li>Session limit - “Anonymous” users will be restricted and all access to the data will require a valid KS with specific permissions to the desired entry id. The publisher application is then responsible for determining whether a user has access to the specific content, and if valid, generate and pass a valid KS with the request to the content.</li>
+</ul>
+
+<p>To learn more about the different layers of security, see <a href="http://knowledge.kaltura.com/node/447">The Kaltura Media Access Control Model</a>.</p>
+
+<h2 id="the-kaltura-session">The Kaltura Session</h2>
+
+<p>Every KS is limited by one or more of the following components:</p>
+
+<ul>
+  <li>Expiry time – Can be set to a short period (1 second) up to 10 years.</li>
+</ul>
+
+<blockquote>
+  <p>Note: The player must perform all Kaltura API calls before the user hits play, so setting this too short for player sessions may break the playback experience. About 30 minutes is reasonable for just playback, or you could extend the player to re-negotiate for a session if it expires.</p>
+</blockquote>
+
+<ul>
+  <li>Number of API calls - E.g., no more than 5 API calls allowed on the KS.</li>
+</ul>
+
+<blockquote>
+  <p>Note: The number of needed API calls may not be an expected number, especially if you use 3rd party plugins in the player. When using this limitation, make sure all API calling components in your application are known and counted into the number of API calls specified.</p>
+</blockquote>
+
+<ul>
+  <li>Specific entry playback - When limited by an Access Control Profile, approved entries must be specifically stated by passing the privilege sview:entryId.</li>
+  <li>Specific IP address - Limit access to the API from a specific IP or range of IPs by passing privilege <strong>iprestrict:IPADDRESS</strong>.</li>
+</ul>
+
+<h3 id="ks-components">KS Components</h3>
+
+<p>The KS is a string composed of the following details:</p>
+
+<ul>
+  <li>Publisher ID – A unique identifier allocated to every Kaltura account. The partner ID can be retrieved from the KMC Integration Settings tab.</li>
+  <li>User ID – The identifier of the user within the publisher account performing the API call. This ID is the end-user’s ID on the publisher’s system.</li>
+  <li>KS Type (admin / user) – An admin KS can access all the content of the publisher account and call management APIs, while a user KS can only access content items owned by the specific user.</li>
+  <li>Expiry time - Can be set to a short period (1 second) up to 10 years; set in seconds (integer).</li>
+  <li>Action limit – The maximum number of API calls allowed using this KS (integer).</li>
+  <li>Random number – A time based on random number to make every KS string unique.</li>
+  <li>ksdata - Arbitrary data that will be overlooked by Kaltura and can be used to pass additional information on the KS for custom application use.</li>
+  <li>Signature – The KS is cryptographically signed (one-way MD5 hashing algorithm), by hashing all of the above with a secret key shared between Kaltura and the publisher.</li>
+</ul>
+
+<p>The information above is then combined with either an Admin or User Secret (depending on the KS type desired), and then compiled using SHA1 algorithm. To generate the KS that is sent through the API: combine the SHA1 hash (in lowercase) and the above parameters in plain-text separated by semi-colons (i.e. ‘;’), in Base64.</p>
+
+<h3 id="field-encryption-to-protect-user-privacy">Field Encryption to Protect User Privacy</h3>
+
+<p>Kaltura Session Version 2 (introduced in October 2012) includes field encryption to protect user privacy.</p>
+
+<p>Version 1 (the original format) is maintained for backward compatibility - the Kaltura server accepts both version 1 and 2. The Kaltura server generates version 2 by default for publisher accounts created after Oct 2012. <strong>Implementations that generate a KS locally are encouraged to use KS version 2 as well.</strong></p>
+
+<p>Because the new KS format requires encryption of the fields, performing a base64 decode on the KS will not reveal its fields (as was the case with KS version 1).</p>
+
+<p>To decode a KS v2, IT admins and developers who operate self hosted Kaltura servers can use the admin console developer tools page.</p>
+
+<h3 id="generating-a-ks">Generating a KS</h3>
+
+<ol>
+  <li>Gather all the different KS fields and their values
+    <ul>
+      <li>_e – expiry (unix timestamp)</li>
+      <li>_u – user</li>
+      <li>_<a href="/api-docs/General_Objects/Enums/KalturaSessionType">t – type</a></li>
+      <li>Privileges (edit, download, sview, etc.)</li>
+    </ul>
+  </li>
+  <li>Compile all fields and URL encode the parameters as a query string, e.g., <code class="highlighter-rouge">_u=userId&amp;_e=12345678&amp;_t=2&amp;Privileges=sview:1_0xada32as;edit:</code></li>
+  <li>Prepend 16 random binary bytes to the fields.</li>
+  <li>Prepend the binary SHA1 hash of the string (20 string).</li>
+  <li>Encrypt the string with the SHA1 hash of the account’s API secret using AES128/CBC/Zero bytes padding.</li>
+  <li>Prepend the KS version and partner ID - separated by pipes.</li>
+  <li>Encode the result using Base64.</li>
+  <li>Replace + with – and / with _ to make the KS URL-safe.</li>
+</ol>
+
+<p>To see an implementation of the KS generation algorithm, refer to the <strong>GenerateSession</strong> function below.</p>
+
+<h2 id="methods-for-generating-a-valid-ks">Methods for Generating a Valid KS</h2>
+
+<ul>
+  <li><strong>Generate Session Locally</strong> - Combine all the above details, and sign them using the shared secret key. This method is great for reducing callbacks to the server and enhanced security, since the session is generated locally and the secret key is kept private.</li>
+  <li><strong>Call session.start</strong> - Calling the Kaltura Session.start API to generate a session on the server.</li>
+</ul>
+
+<blockquote>
+  <p>Note: Using the session.start API is discouraged unless a secure connection (SSL) is enabled on the account and there are specific reasons to generate the KS on the server side, using short expiry time that requires synchronizing to the server time.</p>
+</blockquote>
+
+<ul>
+  <li><strong>Call user.loginByLoginId - </strong>This method is using Kaltura Users and their Password instead of partner id and secret key.</li>
+</ul>
+
+<blockquote>
+  <p>Note: This method is should be preferred in most cases because a) It is easier to remember a user name and password, b) users can be limited to specific roles and permissions (e.g. enabling only upload), and c) users can be deleted, passwords changed or demoted in permissions, while the secret keys can’t be modified easily.</p>
+  <ul>
+    <li><strong>Using an Application Token - </strong>This method is described in full in <a href="/api-docs/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html">this article</a>. </li>
+  </ul>
+</blockquote>
+
+<h3 id="ks-types">KS Types</h3>
+
+<p><strong>User KS (Non-Authenticated User Session)</strong></p>
+
+<ul>
+  <li>A User KS is generated using the USER SECRET.</li>
+  <li>USER type can only use a subset of the available services that are relevant for a user in the system.</li>
+  <li>USER KS can invoke services on his entries and his user-data. (e.g. list actions will result in a filtered list according to the user KS)</li>
+  <li>Attempting to manipulate other users’ data will fail.</li>
+</ul>
+
+<p><strong>Admin KS</strong></p>
+
+<ul>
+  <li>ADMIN KS is generated using the ADMIN SECRET.</li>
+  <li>ADMIN Type is an absolute administrator and can call / perform all actions in the system. Services that use this type of session are:</li>
+  <li>Services that expose list of entries / users that belong to different users</li>
+  <li>Services that allow to update other user’s data</li>
+  <li>
+    <p>Services that delete data.</p>
+  </li>
+  <li>An admin KS should never reach the browser. By letting users access an admin KS they will be able to cause changes not limited to their own content.</li>
+  <li>An admin KS ignores any privilege restrictions.</li>
+</ul>
+
+<p><strong>User Roles and Permissions (Authenticated User Session)</strong></p>
+
+<ul>
+  <li>Allow more advanced configuration of the access and permissions based on the defined Kaltura User permissions.</li>
+</ul>
+
+<h4 id="how-may-the-session-type-affect-api-behavior">How May the Session Type Affect API Behavior?</h4>
+
+<p>The session type may affect the way that some API calls behave.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li>A <code class="highlighter-rouge">media.list</code> call:</li>
+  <li>With a <em>user</em> session – lists videos owned by the user specified in the KS</li>
+  <li>With an <em>admin</em> session – lists all entries in the account that match your filter criteria. The list is not filtered for a specific user (unless you specifically filter by <em>userId</em>).</li>
+  <li>An <em>update</em> call: If the user specified in a user session is not the owner of content item, the user does not have permission to update the item. You can override this restriction by specifying special session privileges.</li>
+</ul>
+
+<h3 id="ks-validation-on-the-server">KS Validation on the Server</h3>
+
+<p>The Kaltura API servers will validate the KS in the following ways:</p>
+
+<ul>
+  <li>Check the signature against the secret of the specific publisher account to verify the authenticity of the KS.</li>
+  <li>Check whether the KS has elapsed or the action limit has been reached.</li>
+  <li>Check whether the KS was explicitly revoked (by issuing a Kaltura API call to expire a KS).</li>
+</ul>
+
+<p>Once all the KS validations pass, the server will use the KS for:</p>
+
+<ul>
+  <li>Determining the account on which an API call should be performed.</li>
+  <li>Checking which Kaltura API services / actions the user is authorized to perform, and which API objects / properties he’s allowed to view / modify. Based on the Kaltura User permissions.</li>
+  <li>Choosing the content entities visible to the specific user.</li>
+  <li>Setting the owning user for the API actions, e.g. any uploaded content will have the user specified in the KS as its owner.</li>
+</ul>
+
+<h3 id="ks-privileges">KS Privileges</h3>
+
+<p>Session privileges allows applications to limit the user to perform only specific actions. The privileges in the KS, in general, do not block actions but instead limit some actions to a smaller scope.</p>
+
+<p>For example, passing the <code class="highlighter-rouge">sview:{entry ID}</code> enables the KS to be usable for playing a specific entry. Any attempt to use that specific KS to play another entry ID will fail, as long as the entry is protected with KS-restriction access control.</p>
+
+<p>To verify that the KS passed to the player cannot be used for any update actions, you can either:</p>
+
+<ul>
+  <li>Add a <code class="highlighter-rouge">setrole:PLAYBACK\_BASE\_ROLE</code> privilege to it, so that it will not be allowed to perform any action other than a white-list of actions needed for the player (such as baseEntry.get, flavorAsset.list etc.).</li>
+</ul>
+
+<p>or</p>
+
+<ul>
+  <li>Add “widget:1” privilege to the KS to tell the server that this KS was generated for player use only, which will tell the server to make a distinction between a regular USER session and a “PLAYER” session.</li>
+</ul>
+
+<p>You define privileges using a comma-separated list of key-value pairs.</p>
+
+<p>Each key-value pair is a specific privilege:</p>
+
+<ul>
+  <li>The key is the name of the privilege.</li>
+  <li>The value is the object ID to which the privilege applies.</li>
+</ul>
+
+<p>The key-value pair format is the key followed by the value, separated by a colon: <em>key:value</em></p>
+
+<p>Multiple key-value pairs are separated by commas with no spaces: <em>key:1_value,key:0_value</em><br />
+Multiple parameters in a single value are separated by a slash: <em>key:1_value/0_value,key2:another_value</em></p>
+
+<p>Some privileges support a wildcard (<em>) value (for example, </em>edit:**). A wildcard permits the action for any object.</p>
+
+<p><a href="https://github.com/kaltura/server/blob/master/alpha/apps/kaltura/lib/request/kSessionBase.class.php#L26">List of available privileges</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Privilege</th>
+      <th>Description</th>
+      <th>Use Case</th>
+      <th>Arguments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>edit</td>
+      <td>Allows editing (updating) an entry. For example, edit:0_zsadqv3e</td>
+      <td>Allow a specific user to edit a specific entry that does not belong to the user.</td>
+      <td>Expects entry id or * for wildcard</td>
+    </tr>
+    <tr>
+      <td>sview</td>
+      <td>Allows viewing and downloading an entry asset</td>
+      <td>When implementing pay-per-view with the KS Protected Access Control, allow access to the blocked video asset after purchase.</td>
+      <td>Expects entry id or * for wildcard</td>
+    </tr>
+    <tr>
+      <td>list</td>
+      <td>Enables the session to list for entries that are not owned by the user. By default, only admin session can list all entries, this privilege enables it for user sessions.</td>
+      <td>Performing entry search on client side, for example a contribution wizard that allows reuse of entries uploaded by other users.</td>
+      <td>Only list:* is supported (list with other parameters will be ingored)</td>
+    </tr>
+    <tr>
+      <td>download</td>
+      <td>Allows downloading an entry asset</td>
+      <td>Similar to sview. Allow actions that are meant for downloading, as opposed to streaming for playback. For example, raw action (www.kaltura.com/p/1/sp/100/raw/entryId/0_XXXYYYZZ), or download action (www.kaltura.com/p/1/sp/100/download/entryId/0_XXXYYYZZ)</td>
+      <td>Expects entry id or * for wildcard</td>
+    </tr>
+    <tr>
+      <td>downloadasset</td>
+      <td>enables the download of a specific asset / all assets</td>
+      <td>Used internally by the server when flavorAsset.getUrl is called.</td>
+      <td>asset id or *</td>
+    </tr>
+    <tr>
+      <td>editplaylist</td>
+      <td>Allows editing an entry in a specific manual playlist</td>
+      <td>Allow a user to edit a dynamic list of content for a list that is managed in a manual playlist.</td>
+      <td>Expects the id of the playlist</td>
+    </tr>
+    <tr>
+      <td>sviewplaylist</td>
+      <td>Allows viewing an entry in a manual playlist</td>
+      <td>Similar to sview. Allow a user to view a dynamic list of content.</td>
+      <td>Expects the id of the playlist</td>
+    </tr>
+    <tr>
+      <td>edituser</td>
+      <td>Provides a USER KS the privilege to change the owner of an Entry</td>
+      <td>Allow a user to change the owner of content to another user. Allow an API-based integration to upload content on behalf of other users.</td>
+      <td>* to allow changing ownership to any user. Or specify a list of allowed usernames. Separate multiple usernames using a slash (/)</td>
+    </tr>
+    <tr>
+      <td>actionslimit</td>
+      <td>Allows a specific session to be used for a defined number of API calls</td>
+      <td>Allow a session with an exposed KS to be used for a restricted period. The purpose is to minimize the risk of a malicious user using the session for prohibited actions.</td>
+      <td>Expects an integer indicating number of actions</td>
+    </tr>
+    <tr>
+      <td>setrole</td>
+      <td>Allows a specific session to be used only for a specific role</td>
+      <td>Temporarily allow a user to perform an action that is not normally permitted, without changing the user role.</td>
+      <td>Expects the id of the role to apply on the ks</td>
+    </tr>
+    <tr>
+      <td>iprestrict</td>
+      <td>Limits the use of the KS to a certain IP address</td>
+      <td>Tighter security for content protection (prevent a user from being able to send the KS to other parties)</td>
+      <td>Only a single address is allowed</td>
+    </tr>
+    <tr>
+      <td>urirestrict</td>
+      <td>Limits the URI of the API call that the KS can call, e.g.,urirestrict:/api_v3/* will be able to call only api v3 URIs</td>
+      <td>Used internally by the server in several API calls that return a URL to the client containing a KS.</td>
+      <td>A URI (starting with /), a trailing * indicates it should be treated as a prefix</td>
+    </tr>
+    <tr>
+      <td>enableentitlement</td>
+      <td>Forces entitlement checks.Note: there is a setting on account level (configured in the admin console) that determines the default entitlement enforcement</td>
+      <td>Applications like MediaSpace rely on the server to perform the entitlement checks, so it uses this flag.</td>
+      <td>Doesn’t have any additional attributes</td>
+    </tr>
+    <tr>
+      <td>disableentitlement</td>
+      <td>Bypasses any entitlement checks, for example, a session with this privilege will be able to access entries in private categories that the user is not a member ofNote: there is a setting on account level (configured in the admin console) that determines the default entitlement enforcement</td>
+      <td>Admin applications (e.g. KMC) that work on accounts that have entitlement enabled by default.</td>
+      <td>Doesn’t have any additional attributes</td>
+    </tr>
+    <tr>
+      <td>disableentitlementforentry</td>
+      <td>Bypasses entitlement checks for a given entry ID. In other words, access to the given entry will be allowed even if it belongs to a private category that the user is not a member of</td>
+      <td>Sharing an entitlement protected entry.</td>
+      <td>Only a single entry id is allowed (if more are needed multiple privileges of this type can be chained)</td>
+    </tr>
+    <tr>
+      <td>privacycontext</td>
+      <td>Sets the privacy context for entitlement checks.</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>enablecategorymoderation</td>
+      <td>When set, new category entries that are created on categories that have moderation=true will be created in PENDING status.  Otherwise, they will be created in ACTIVE status.</td>
+      <td>Supports the category moderation flow when entitlement is not enforced.</td>
+      <td>No additional attributes</td>
+    </tr>
+    <tr>
+      <td>reftime</td>
+      <td>A Unix timestamp that is used as the reference of relative date fields. For example, if the API gets a value of 300 for some date field, it will be translated to <reftime> + 300 (5 minutes).When this privilege is not supplied, the server uses the current time.</reftime></td>
+      <td>Tests the result of some API call in some timestamp in the future, can be used to validate the effect of scheduled tasks’ filters.</td>
+      <td>A Unix timestamp</td>
+    </tr>
+    <tr>
+      <td>preview</td>
+      <td>A limit (in bytes) on the size of the file that is returned from the flavor download action</td>
+      <td>Used internally by the server when flavorAsset.getUrl is called on an entry whose access control has preview restrictions.</td>
+      <td>size in bytes</td>
+    </tr>
+    <tr>
+      <td>sessionid</td>
+      <td>Can be used to group a set of KS’s together for invalidation purposes - when session.end is called.With a ks that has sessionid=X, all other KS’s that have sessionId=X become invalid as well.</td>
+      <td>Applications that create multiple KS’s for different uses can use this privilege to terminate all KS’s upon user logoff, without the need to keep track of them.</td>
+      <td>An arbitrary string identifying the session</td>
+    </tr>
+    <tr>
+      <td>apptoken</td>
+      <td>For a KS that was created with appToken.startSession, this privilege will contain the app token through which the KS was created.</td>
+      <td>Used mainly for investigation/tracking purposes.</td>
+      <td>The apptoken id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="php-examples-using-the-phps-kaltura-client-library">PHP Examples Using the PHPS Kaltura Client Library</h4>
+
+<blockquote>
+  <p>Important! Never use a KalturaSessionType ADMIN in a KS generated for end users.</p>
+</blockquote>
+
+<p><strong>Allow access to a specific entry ID (limitation is set via the Access Control)</strong>  <br />
+Example: Allow access to entry id 0_iuasd7 (this <a href="http://blog.kaltura.org/create-ks-protected-videos-with-free-preview">blog post</a> shows an example of a use case.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> $ks = $client-&gt;session-&gt;start ( $userSecret, "myUser", KalturaSessionType::USER, $partnerID , null, "sview:0_iuasd7"
+</code></pre>
+</div>
+
+<p><strong>Limit the number of actions for a KS</strong>  <br />
+Example: Limit the number of actions to four:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ks = $client-&gt;session-&gt;start ( $userSecret, "myUser", KalturaSessionType::USER, $partnerID , null, "actionslimit:4
+</code></pre>
+</div>
+
+<p><strong>Set the role on the KS</strong>  <br />
+Example: Set the role id 2345 on a KS:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> $ks = $client-&gt;session-&gt;start ( $userSecret, "myUser", KalturaSessionType::USER, $partnerID , null, "setrole:2345")
+</code></pre>
+</div>
+
+<h2 id="secured-delivery">Secured Delivery</h2>
+
+<p>Kaltura supports various methods of securing delivery of video streams, as follows:</p>
+
+<ul>
+  <li>Progressive download over HTTPS</li>
+  <li>RTMPE / RTMPTE</li>
+  <li>Akamai HD Network (chunked/throttled HTTPS)</li>
+  <li>SWF Verification</li>
+  <li>IP-linked token authentication</li>
+</ul>
+
+<p>The table below shows the stream security techniques as these apply differently across devices:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Delivery</th>
+      <th>Device</th>
+      <th>Player Security</th>
+      <th>Entitlement</th>
+      <th>Encryption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Akamai HD</td>
+      <td>Flash - PC, Android</td>
+      <td>SWF verification</td>
+      <td>IP based token</td>
+      <td>HTTPS</td>
+    </tr>
+    <tr>
+      <td>RTMP</td>
+      <td>Flash - PC, Android</td>
+      <td>SWF verification</td>
+      <td>IP based token</td>
+      <td>RTMPE</td>
+    </tr>
+    <tr>
+      <td>Progressive</td>
+      <td>All – iOS, Bberry, Flash, etc.</td>
+      <td> </td>
+      <td>IP based token</td>
+      <td>HTTPS</td>
+    </tr>
+    <tr>
+      <td>IOS Streaming (HLS)</td>
+      <td>iPhone, iPad</td>
+      <td> </td>
+      <td>IP based token</td>
+      <td>HTTPS</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Kaltura’s integrated DRM solutions seamlessly plug in to its existing infrastructure and workflows, protecting customers from vendor lock-in.</p>
+
+<h3 id="drm-support">DRM Support</h3>
+
+<p>Encrypted video files are generated as additional “flavors” of original asset using Kaltura’s transcoding farm and based on selected vendor and license policy. </p>
+
+<p><img src="assets/images/DRM Metadata.jpg" alt="DRM Metadata" />.</p>
+
+<blockquote>
+  <p>Note: Due to licensing requirements, DRM solutions are only available for commercial Kaltura editions (SaaS and On Prem) and are at additional cost. For more information about DRM and the available DRM solutions, please <a href="http://corp.kaltura.com/company/contact-u">contact use</a> or contact your Kaltura Account Manager.</p>
+</blockquote>
+
+<h3 id="important-considerations-for-application-developers">Important Considerations For Application Developers</h3>
+
+<p>When applications are not developed with security in mind, a malicious user can use:</p>
+
+<ul>
+  <li>A compromised secret to create a KS at will</li>
+  <li>A compromised admin KS to cause irreversible harm to your account (such as deleting all content)</li>
+</ul>
+
+<p>In this section, we highlight a number of common and important practices to consider when creating applications that interact with the Kaltura API.</p>
+
+<h3 id="authenticated-user-privileges-override-the-user-type-ks">Authenticated User Privileges Override the User Type KS</h3>
+
+<p>When you generate a user session KS and specify an ID of a Kaltura Admin User, the KS will allow all the actions included in the user’s role.</p>
+
+<h3 id="always-protect-your-api-secret-keys">Always Protect your API Secret Keys</h3>
+
+<p>Your API Secret Keys (ADMIN and USER) are generated when you create am account. These keys hold global access permissions to your account and thus should always be kept in secret.</p>
+
+<ul>
+  <li>Always prefer local session generation over server session.start.</li>
+  <li>Prefer User Login over session.start when local KS generation is not possible.</li>
+  <li>When calling the session.start API request - Make sure the connection between your client and the Kaltura server is encrypted and secured.</li>
+  <li>NEVER keep your secret keys in a front-end application (such as Flash or JavaScript). A KS should always be generated on the server side and then passed to the front-end.</li>
+  <li>Keep the secret keys in a separated file with strict file permissions.</li>
+</ul>
+
+<h3 id="use-admin-ks-with-care">Use Admin KS with Care</h3>
+
+<p>A compromised Admin KS will allow a malicious user to gain full access to the publisher account, leading way to harm.</p>
+
+<p>Use Admin KS in between servers and with secured communication channel.</p>
+
+<h3 id="prefer-login-of-users-with-defined-roles-and-permissions-over-generic-admin-ks">Prefer Login of Users with Defined Roles and Permissions over Generic Admin KS</h3>
+
+<p>Kaltura Users can be assigned a fine-grained level of permissions. This allows applications developers to provide a stronger login and authentication mechanism while not exposing the account secret keys.</p>
+
+<p>Use user.loginByLoginId providing user credentials and your account ID. </p>
+
+<h3 id="use-widget-ks-for-anonymous-public-content-playback">Use Widget KS for Anonymous Public Content Playback</h3>
+
+<p>The <code class="highlighter-rouge">session.startWidgetSession</code> provides an anonymous simple and light KS generation mechanism that does not require a secret. This type of session can be used to perform READ operations only and only on content that is defined as publicly available with no Access Control or special permissions.</p>
+
+<p>The Widget KS is perfect for cases where public content needs to be accessed freely and without secured authentication. </p>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

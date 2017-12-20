@@ -1,0 +1,423 @@
+  <title>Android Tracks Manager</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Android Tracks Manager" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/Android-TracksManager.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/Android-TracksManager.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Android Tracks Manager</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Sat Jan 14 11:07:27 2017</span>, By <span class="commit-author">Oren Me</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/Android-TracksManager.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed Jul 27 03:40:41 2016, By: Gilad Nadav</td></tr-->
+				<!--tr><td>Last commit: Sat Jan 14 11:07:27 2017, By <span class="commit-author">Oren Me</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (5 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (4 commits) (<a href="mailto:Gilad.Nadav@kaltura.com">Gilad.Nadav@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>This article describes how to select different tracks in the stream.</p>
+
+<h2 id="track-types">Track Types</h2>
+
+<p>There are three types of defined track types:</p>
+<ul>
+  <li>VIDEO</li>
+  <li>AUDIO</li>
+  <li>TEXT</li>
+</ul>
+
+<h2 id="working-with-tracks-in-the-sdk">Working with Tracks in the SDK</h2>
+
+<p>There are two options for working with tracks in the SDK:</p>
+
+<ul>
+  <li>Using the HTML5 web view menus: In this case selection is done from the web layer using the tracks plugins.</li>
+  <li>Using native menus: In this case it is possible implement the following:
+    <ul>
+      <li>KTrackActions.EventListener</li>
+      <li>KTrackActions.VideoTrackEventListener</li>
+      <li>KTrackActions.AudioTrackEventListener</li>
+      <li>KTrackActions.TextTrackEventListener</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="addingremoving-listeners">Adding/Removing Listeners</h2>
+
+<ol>
+  <li>At the Player creation phase, you will need to add a call to set/removed for each event listener that you wish to receive during runtime:</li>
+  <li>
+    <p>For each listener, you will need to implement the following:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> //Add
+ mPlayer.setTracksEventListener(this); // for a change in the tracks list upon media switching
+ mPlayer.setVideoTrackEventListener(this); for a change in the video track index
+ mPlayer.setAudioTrackEventListener(this); for a change in the audio tracks index
+ mPlayer.setTextTrackEventListener(this);  for a change in the text track index
+   	
+   	 
+ //Remove
+ mPlayer.removeTracksEventListener();
+ mPlayer.removeTextTrackEventListener();
+ mPlayer.removeAusioTrackEventListener();
+ mPlayer.removeVideoTrackEventListener();
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>For each listener, you will need to implement the following:</p>
+
+    <p>@Override<br />
+ public void onTracksUpdate(KTrackActions tracksManager) {<br />
+     Log.d(TAG, “** onTracksUpdate ** “);<br />
+ }<br />
+ @Override<br />
+ public void onVideoTrackChanged(int currentTrack) {<br />
+    Log.d(TAG, “** onVideoTrackChanged ** “ + currentTrack);<br />
+ }<br />
+ @Override<br />
+ public void onTextTrackChanged(int currentTrack) {<br />
+     Log.d(TAG, “** onTextTrackChanged ** “ + currentTrack);<br />
+ }<br />
+ @Override<br />
+ public void onAudioTrackChanged(int currentTrack) {<br />
+     Log.d(TAG, “** onAudioTrackChanged ** “ + currentTrack);<br />
+ }</p>
+  </li>
+</ol>
+
+<h2 id="enabling-the-tracks-feature">Enabling the Tracks Feature</h2>
+
+<p>To enable the Tracks feature, run the Tracks plugins as follows:</p>
+
+<h3 id="video-tracks">Video Tracks</h3>
+
+<p>config.addConfig(“sourceSelector.plugin”, “true”);<br />
+config.addConfig(“sourceSelector.displayMode”, “bitrate”);</p>
+
+<h3 id="audio-tracks">Audio Tracks</h3>
+
+<p>config.addConfig(“audioSelector.plugin”, “true”);</p>
+
+<h3 id="text-tracks">Text Tracks</h3>
+
+<p>config.addConfig(“closedCaptions.plugin”, “true”);<br />
+config.addConfig(“closedCaptions.showEmbeddedCaptions”, “true”);</p>
+
+<h2 id="ktracksmanager-available-operations">KTracksManager Available Operations</h2>
+
+<p>The following are the available operations when using the KTracksManager:</p>
+
+<ul>
+  <li>List<TrackFormat> getAudioTrackList();</TrackFormat></li>
+  <li>List<TrackFormat> getTextTrackList();</TrackFormat></li>
+  <li>List<TrackFormat> getVideoTrackList();</TrackFormat></li>
+  <li>TrackFormat       getCurrentTrack(TrackType trackType);</li>
+  <li>void              switchTrack(TrackType trackType, int newIndex);</li>
+</ul>
+
+<h4 id="attention--the-tracksmanger-is-available-only-after-playing-state-is-received-in-the-activity-if-you-register-to-the-ontracksupdate-will-be-able-to-have-it-right-after-it-is-populated">Attention! : the TracksManger is available only after PLAYING state is received in the activity. If you register to the onTracksUpdate will be able to have it right after it is populated</h4>
+
+<h3 id="getting-tracks">Getting Tracks</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for (TrackFormat track : mPlayer.getTrackManager().getAudioTrackList()) {
+      Log.d(TAG, track.toString());
+}
+for (TrackFormat track : mPlayer.getTrackManager().getVideoTrackList()) {
+      Log.e(TAG, track.toString());
+}
+for (TrackFormat track : mPlayer.getTrackManager().getTextTrackList()) {
+      Log.d(TAG, track.toString());
+}
+</code></pre>
+</div>
+
+<h3 id="switching-tracks">Switching Tracks</h3>
+
+  	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_VIDEO,index);<br />
+  	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_AUDIO,index);<br />
+  	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_TEXT,index);<br />
+
+<h3 id="disable-videoaudiotext-tracks">Disable Video/Audio/Text Tracks</h3>
+
+  	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_VIDEO,-1);<br />
+  	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_AUDIO,-1);<br />
+  	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_TEXT, -1);<br />
+
+<h3 id="getting-the-current-track-index-by-track-type">Getting the Current Track Index by Track Type</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mPlayer.getTrackManager().getCurrentTrack(TrackType.VIDEO).index);
+mPlayer.getTrackManager().getCurrentTrack(TrackType.VIDEO).index);
+mPlayer.getTrackManager().getCurrentTrack(TrackType.VIDEO).index);
+</code></pre>
+</div>
+
+<h2 id="starting-the-player-with-a-preferred-bitrate">Starting the Player with a Preferred Bitrate</h2>
+
+<p>The user may want to start the playback with a specific bitrate. This can be achieved using the following code in the player init or in the change configuration process:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>String preferredBitrateMbit = "600";
+config.addConfig("mediaProxy.preferredFlavorBR", preferredBitrateMbit);
+</code></pre>
+</div>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

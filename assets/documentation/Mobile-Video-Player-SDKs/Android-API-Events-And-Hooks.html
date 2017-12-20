@@ -1,0 +1,604 @@
+  <title>Android Player API - Properties, Events, Notifications</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Android Player API - Properties, Events, Notifications" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/Android-API-Events-And-Hooks.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/Android-API-Events-And-Hooks.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Android Player API - Properties, Events, Notifications</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Aug 8 13:28:22 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/Android-API-Events-And-Hooks.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 8 13:28:22 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (1 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (5 commits) (<a href="mailto:Gilad.Nadav@kaltura.com">Gilad.Nadav@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (4 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/Android-Supported-green.svg" alt="Android" /></a></p>
+
+<p>This article describes how to use the Android Player API methods to manage properties, events, and notifications.</p>
+
+<h3 id="api-events-and-hooks">API Events and Hooks</h3>
+
+<p>The Android API supports the following events and hooks.</p>
+
+<h4 id="kmediacontrol">KMediaControl</h4>
+
+<p>The SDK offeres the ability to perform Player operations using the KMediaControl API.<br />
+This API enables you to send the following operations:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Operation</th>
+      <th style="text-align: left">Parameters</th>
+      <th style="text-align: left">Explanation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">start</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Start playing the media</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pause</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Pause the current playback</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">seek</td>
+      <td style="text-align: left">(long milliSeconds)</td>
+      <td style="text-align: left">Seek a specific time position</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">seek</td>
+      <td style="text-align: left">(long milliSeconds, SeekCallback callback)</td>
+      <td style="text-align: left">Seek a specific time position and call callback to be called when seek is done</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">canSeekForward</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Check if seek backwards is possible</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">canSeekBackward</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Check if seek forward is possible</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">replay</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Start over the playback</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">isPlaying</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Check if the Player state is playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">canPause</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Check if the Player can be paused</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">getDuration</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Get the current media duration</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">getCurrentPosition</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Get the current media position</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">state</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Get the current Player state</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Example: Play/Pause button</li>
+</ul>
+
+<p>For each native component listener, add one of the operations above.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">mPlayPauseButton</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"Play"</span><span class="o">))</span> <span class="o">{</span>
+           <span class="n">mPlayPauseButton</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Pause"</span><span class="o">);</span>
+           <span class="n">getPlayer</span><span class="o">().</span><span class="na">getMediaControl</span><span class="o">().</span><span class="na">start</span><span class="o">();</span>
+       <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+           <span class="n">mPlayPauseButton</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Play"</span><span class="o">);</span>
+           <span class="n">getPlayer</span><span class="o">().</span><span class="na">getMediaControl</span><span class="o">().</span><span class="na">pause</span><span class="o">();</span>
+       <span class="o">}</span>    
+    <span class="o">}</span> 
+    
+</code></pre>
+</div>
+
+<ul>
+  <li>Example: Seek</li>
+</ul>
+
+<p>For each native component listener, add one of the operations above.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">){</span>                               
+           <span class="n">mPlayer</span><span class="o">.</span><span class="na">getMediaControl</span><span class="o">().</span><span class="na">seek</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="k">new</span> <span class="n">KMediaControl</span><span class="o">.</span><span class="na">SeekCallback</span><span class="o">()</span> <span class="o">{</span>
+              <span class="nd">@Override</span>
+              <span class="kd">public</span> <span class="kt">void</span> <span class="nf">seeked</span><span class="o">(</span><span class="kt">long</span> <span class="n">milliSeconds</span><span class="o">)</span> <span class="o">{</span>
+                 <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Do your code here"</span><span class="o">);</span>                     
+              <span class="o">}</span>
+         <span class="o">});</span>
+    <span class="o">}</span> 
+    
+</code></pre>
+</div>
+
+<h3 id="player-states-event-listeners">Player States Event Listeners</h3>
+
+<h4 id="the-sdk-support-implementation-of-the-following-listeners">The SDK Support implementation of the following Listeners:</h4>
+<ul>
+  <li>Example:</li>
+  <li>KTrackActions.VideoTrackEventListener - getting informed on VideoTrack selected</li>
+  <li>KTrackActions.AudioTrackEventListener - getting informed on AudioTrack selected</li>
+  <li>KTrackActions.TextTrackEventListener  - getting informed on TextTrack selected</li>
+  <li>KTrackActions.EventListener - getting informed on update in track manager on playback Ready state</li>
+  <li>KPErrorEventListener - getting informed about errors</li>
+  <li>KPPlayheadUpdateEventListener - getting informed about playback progress</li>
+  <li>KPStateChangedEventListener - getting informed about player state changes</li>
+  <li>KPFullScreenToggledEventListener - getting informed about user selected full screen icon for implementing your full screen logic.</li>
+</ul>
+
+<h4 id="adding-listeners-in-the-app">Adding Listeners in the app:</h4>
+<ul>
+  <li>Example:
+    <ul>
+      <li>mPlayer.setTracksEventListener(this);</li>
+      <li>mPlayer.setVideoTrackEventListener(this);</li>
+      <li>mPlayer.setTextTrackEventListener(this);</li>
+      <li>mPlayer.setAudioTrackEventListener(this);</li>
+      <li>mPlayer.setOnKPErrorEventListener(this);</li>
+      <li>mPlayer.setOnKPPlayheadUpdateEventListener(this);</li>
+      <li>mPlayer.setOnKPFullScreenToggeledEventListener(this);</li>
+      <li>mPlayer.setOnKPStateChangedEventListener(this);</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="removing-listeners-from-the-app">Removing Listeners from the app:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    Need to call to the same API with null as parameter
+</code></pre>
+</div>
+
+<p>###Implementation Example:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onKPlayerStateChanged</span><span class="o">(</span><span class="n">PlayerViewController</span> <span class="n">playerViewController</span><span class="o">,</span> <span class="n">KPlayerState</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">KPlayerState</span><span class="o">.</span><span class="na">PAUSED</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mPlayPauseButton</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Play"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">KPlayerState</span><span class="o">.</span><span class="na">PLAYING</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mPlayPauseButton</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Pause"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onKPlayerError</span><span class="o">(</span><span class="n">PlayerViewController</span> <span class="n">playerViewController</span><span class="o">,</span> <span class="n">KPError</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">LOGD</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"onKPlayerError Error Received:"</span> <span class="o">+</span> <span class="n">error</span><span class="o">.</span><span class="na">getErrorMsg</span><span class="o">());</span>
+    <span class="o">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onKPlayerFullScreenToggeled</span><span class="o">(</span><span class="n">PlayerViewController</span> <span class="n">playerViewController</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isFullscreen</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">LOGD</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"onKPlayerFullScreenToggeled isFullscreen "</span> <span class="o">+</span> <span class="n">isFullscreen</span><span class="o">);</span>
+   <span class="o">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onKPlayerPlayheadUpdate</span><span class="o">(</span><span class="n">PlayerViewController</span> <span class="n">playerViewController</span><span class="o">,</span> <span class="kt">long</span> <span class="n">currentTime</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">currentSeconds</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">currentTime</span> <span class="o">/</span> <span class="mi">1000</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">totalSeconds</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">playerViewController</span><span class="o">.</span><span class="na">getDurationSec</span><span class="o">());</span>
+
+        <span class="kt">double</span> <span class="n">percentage</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">totalSeconds</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">percentage</span> <span class="o">=</span> <span class="o">(((</span><span class="kt">double</span><span class="o">)</span> <span class="n">currentSeconds</span><span class="o">)</span> <span class="o">/</span> <span class="n">totalSeconds</span><span class="o">)</span> <span class="o">*</span> <span class="mi">100</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">LOGD</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"onKPlayerPlayheadUpdate "</span> <span class="o">+</span>  <span class="n">currentSeconds</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">totalSeconds</span> <span class="o">+</span> <span class="s">" =&gt; "</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">percentage</span> <span class="o">+</span> <span class="s">"%"</span><span class="o">);</span>
+        <span class="n">mSeekBar</span><span class="o">.</span><span class="na">setProgress</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">percentage</span><span class="o">);</span>
+    <span class="o">}</span>
+
+</code></pre>
+</div>
+
+<p>The Kaltura Player supports the following states, to which the developer can listen to and react to changes in the state:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- LOADED
+- READY
+- PLAYING
+- PAUSED
+- SEEKING
+- SEEKED
+- ENDED
+- UNKNOWN
+</code></pre>
+</div>
+
+<ul>
+  <li>Example: Listening to state change events</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onKPlayerStateChanged</span><span class="o">(</span><span class="n">PlayerViewController</span> <span class="n">playerViewController</span><span class="o">,</span> <span class="n">KPlayerState</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">KPlayerState</span><span class="o">.</span><span class="na">PAUSED</span> <span class="o">&amp;&amp;</span> <span class="n">playerViewController</span><span class="o">.</span><span class="na">getCurrentPlaybackTime</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"In Pause state"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">KPlayerState</span><span class="o">.</span><span class="na">PLAYING</span><span class="o">)</span> <span class="o">{</span>
+           <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"In playng state"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="waiting-for-a-ready-event">Waiting for a READY Event</h3>
+
+<p>In some cases, the end user will want to wait until the ready event is received and only then to continue.</p>
+
+<ul>
+  <li>Example: Listening to ready state events</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">mPlayer</span><span class="o">.</span><span class="na">registerReadyEvent</span><span class="o">(</span><span class="k">new</span> <span class="n">PlayerViewController</span><span class="o">.</span><span class="na">ReadyEventListener</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handler</span><span class="o">()</span> <span class="o">{</span>
+           <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"PLAYER READY"</span><span class="o">);</span>
+           <span class="n">mPlayer</span><span class="o">.</span><span class="na">getMediaControl</span><span class="o">().</span><span class="na">start</span><span class="o">();</span>
+                                <span class="o">}</span>
+       <span class="o">});</span>
+       
+       
+</code></pre>
+</div>
+
+<h3 id="enablediable-configuration-on-runtime">Enable/Diable Configuration on Runtime</h3>
+
+<p>In some cases, the application will want to add or remove configuration attributes according to states or events that are received.<br />
+The Player provides an API for enabling and disabling these settings, the setKDPAttribute, which receives three parameters:</p>
+
+<ul>
+  <li>plugin name</li>
+  <li>attribute name</li>
+  <li>
+    <p>enable/disabe (boolean)</p>
+  </li>
+  <li>Example: Adding a closed caption plugin</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>
+<span class="k">if</span> <span class="o">(</span><span class="n">state</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">KPlayerState</span><span class="o">.</span><span class="na">PLAYING</span><span class="o">)){</span>
+   <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Playing state"</span><span class="o">);</span>
+   <span class="n">mPlayer</span><span class="o">.</span><span class="na">setKDPAttribute</span><span class="o">(</span><span class="s">"closedCaptions"</span><span class="o">,</span><span class="s">"displayCaptions"</span><span class="o">,</span> <span class="s">"'"</span> <span class="o">+</span> <span class="s">"true"</span> <span class="o">+</span> <span class="s">"'"</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="k">if</span> <span class="o">(</span><span class="n">state</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">KPlayerState</span><span class="o">.</span><span class="na">PLAYING</span><span class="o">)){</span>
+   <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Playing state"</span><span class="o">);</span>
+   <span class="n">mPlayer</span><span class="o">.</span><span class="na">setStringKDPAttribute</span><span class="o">(</span><span class="s">"closedCaptions"</span><span class="o">,</span><span class="s">"displayCaptions"</span><span class="o">,</span><span class="s">"true"</span><span class="o">);</span>
+  <span class="o">}</span>
+
+
+</code></pre>
+</div>
+
+<h3 id="player-event-listeners">Player Event Listeners</h3>
+
+<p>If you want the application to react to web events, add the function “mPlayerView.addKPlayerEventListener”.</p>
+
+<p>See <a href="/api-docs/04_Web-Video-Player/Kaltura-Media-Player-API.html#commonly-used-player-events">Supported Events</a> for information about the types of supported events.</p>
+
+<ul>
+  <li>Example: Listening to a show play controls event</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">mPlayerView</span><span class="o">.</span><span class="na">addKPlayerEventListener</span><span class="o">(</span><span class="s">"showPlayerControls"</span><span class="o">,</span> <span class="s">"showPlayerControls"</span><span class="o">,</span> <span class="k">new</span> <span class="n">PlayerViewController</span><span class="o">.</span><span class="na">EventListener</span><span class="o">()</span> <span class="o">{</span>
+       <span class="nd">@Override</span>
+       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handler</span><span class="o">(</span><span class="n">String</span> <span class="n">eventName</span><span class="o">,</span> <span class="n">String</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+       <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"on showPlayerControls received"</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">});</span>
+
+</code></pre>
+</div>
+
+<h3 id="sending-event-notifications">Sending Event Notifications</h3>
+
+<p>To change the current player behavior, use the sendNotification API. This method receives two parameters:</p>
+<ul>
+  <li>action name</li>
+  <li>parameter (string/json)</li>
+</ul>
+
+<h4 id="examples">Examples:</h4>
+
+<p><strong>Notification without parameters:</strong></p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">getPlayer</span><span class="o">().</span><span class="na">sendNotification</span><span class="o">(</span><span class="s">"doPause"</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p><strong>Notification with a string parameter:</strong></p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">getPlayer</span><span class="o">().</span><span class="na">sendNotification</span><span class="o">(</span><span class="s">"doSeek"</span><span class="o">,</span> <span class="n">Double</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">seconds</span><span class="o">));</span>
+</code></pre>
+</div>
+
+<p><strong>Notification with a JSON parameter:</strong></p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">entry</span> <span class="o">=</span> <span class="s">"'{\"entryId\":\""</span> <span class="o">+</span> <span class="n">entryId</span> <span class="o">+</span> <span class="s">"}'"</span><span class="o">;</span>
+<span class="n">getPlayer</span><span class="o">().</span><span class="na">sendNotification</span><span class="o">(</span><span class="s">"changeMedia"</span><span class="o">,</span> <span class="n">entry</span><span class="o">);</span> 
+</code></pre>
+</div>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

@@ -1,0 +1,527 @@
+  <title>Kaltura's Scheduling API Service</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura's Scheduling API Service" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Ingest_and_Upload_Media/schedulingAPI.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Ingest_and_Upload_Media/schedulingAPI.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura's Scheduling API Service</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Sun Apr 2 10:39:09 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Ingest_and_Upload_Media/schedulingAPI.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Apr 2 10:39:09 2017, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Sun Apr 2 10:39:09 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>Kaltura’s Scheduling service enables partner devices to schedule events for each device, and to use information from those events to ingest recorded content back to Kaltura with additional metadata. This provides the option of managing automated recording schedules for organizations such as educational institutions.</p>
+
+<p>The automated recording schedule is managed through Kaltura’s solution and through the recording itself (via partners). The interface used between Kaltura and the partner devices is the Kaltura API which is exposed in iCal format for scheduled events. This service provides backend support for calendar definition, including importing and exporting using the iCal standard. Importing into the Kaltura server is done either though bulk-upload or drop-folders.</p>
+
+<p>Note that currently this solution is implemented for VOD only.</p>
+
+<h2 id="quick-start">Quick Start</h2>
+
+<p>To use Kaltura’s Scheduling API, the administrator should follow these basic scheduling steps:</p>
+
+<ol>
+  <li>Configure an event for a future date.</li>
+  <li>Set the recording device as the resource for the event.</li>
+  <li>Define an entry template for the event that includes metadata on the entry resulting from the scheduled event (this should include information on how to publish the entry, co-editors, description/title, etc.).</li>
+  <li>Configure the device to sync the internal calendar with the Kaltura calendar periodically using a HTTP/HTTPS request or via FTP (in which case the events relating to that device will be parsed). FTP supports the same formats as the HTTP, JSON, XML and iCal.<br />
+The device will record at the pre-set time and store the recording locally.<br />
+The device will upload the recording to Kaltura, setting the relevant parameters on the entry itself, including the entry template and any additional metadata. Configuration of the device depends on manufacturer documentation and settings.<br />
+The user will be able to view the created recording in the KMC.</li>
+</ol>
+
+<p>The Scheduling Module in KMS or KAF can be used to view and create events. If the recording was published to a course or category, it will appear there for all users with permissions to access it.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p>Scheduling is implemented as a plugin that defines new object types for schedule-events and schedule-resources.</p>
+
+<h3 id="pull-request">Pull Request</h3>
+
+<p>The pull request can be implemented via HTTP/HTTPS or FTP:</p>
+
+<ul>
+  <li><strong>HTTP(S)</strong>: The schedule can be pulled using the API through XML, JSON or iCal.</li>
+  <li><strong>FTP</strong>: The schedule can be pulled using an abstract FTP server that will log in using the Kaltura API user and will display events as files.</li>
+</ul>
+
+<h3 id="push-request">Push Request</h3>
+
+<p>The schedule can be pushed via the Kaltura API or as iCal using Kaltura drop-folders that may be accessed using FTP, SFTP or Aspera. If the drop-folder is located on the partner data-center, the Kaltura server can pull the files using FTP, SFTP and S3, iCal format may also be ingested directly using the Kaltura bulk-upload APIs.</p>
+
+<h3 id="ingest">Ingest</h3>
+
+<p>The schedule can be defined using KMS and APIs, or by using an iCal drop-folder.</p>
+
+<h2 id="ical-kaltura-specific-parameters">iCal Kaltura Specific Parameters</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: center">Description</th>
+      <th style="text-align: right">Format</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">X-KALTURA-ID</td>
+      <td style="text-align: center">Event ID in Kaltura</td>
+      <td style="text-align: right">int</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-PARTNER-ID</td>
+      <td style="text-align: center">Kaltura partner ID</td>
+      <td style="text-align: right">int</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-PARENT-ID</td>
+      <td style="text-align: center">If a single occurrence as part of a series (recurring event), the parent ID will be the recurring event.</td>
+      <td style="text-align: right">int</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-STATUS</td>
+      <td style="text-align: center">Status of the event in Kaltura</td>
+      <td style="text-align: right">int</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-CATEGORY-IDS</td>
+      <td style="text-align: center">The list of categories to which the event belongs</td>
+      <td style="text-align: right">Unlimited, comma-separated integers</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-ENTRY-IDS</td>
+      <td style="text-align: center">The Entry IDs related to this event</td>
+      <td style="text-align: right">Unlimited, comma separated integers; each string is exactly 10 ASCII characters (0-1, a-z and underscore).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-RESOURCE-IDS</td>
+      <td style="text-align: center">The Kaltura resource ID for the resources used in the event</td>
+      <td style="text-align: right">Unlimited, comma-separated integers</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-TAGS</td>
+      <td style="text-align: center">Metadata tags for the event</td>
+      <td style="text-align: right">An unlimited number of unlimited, comma-separated strings.; all tags combined, including the commas, should be less than 65k.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-TEMPLATE-ENTRY-ID</td>
+      <td style="text-align: center">Template entry to be used for entries created based on this event. The template entry will define the recording owner, categories for the recorded entry, co-editors, etc.</td>
+      <td style="text-align: right">Exactly 10 ASCII characters (0-1, a-z and underscore)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">X-KALTURA-TYPE</td>
+      <td style="text-align: center">Defines the type of entry required by this event: live or VOD.</td>
+      <td style="text-align: right">1 – recording; 2 – live-stream</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="uploading-a-recording-to-kaltura">Uploading a Recording to Kaltura</h2>
+
+<p>When uploading a scheduled event recording to Kaltura, certain information from the event itself should be used:</p>
+
+<ul>
+  <li>The partner ID must be used to create a Kaltura Session (KS) for upload.</li>
+</ul>
+
+<p>Use one of the following options:</p>
+
+<ul>
+  <li><strong>Via XML/CSV:</strong> The templateEntryId can be set via <a href="http://www.kaltura.com/api_v3/xsdDoc/index.php?type=bulkUploadXml.bulkUploadXML">XML bulk</a>. The templateEntryId is also supported in CSV.</li>
+  <li><strong>Via API:</strong> The templateEntryId can be set via <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBaseEntry">API</a>.</li>
+</ul>
+
+<h3 id="publishing-permissions">Publishing Permissions</h3>
+
+<p>To enable the device to use an entry template that includes publishing to specific categories or channels, the device must use the correct entitlements when uploading. One option is for the device to use an admin secret and to upload all recordings as an administrator. However, this option is not recommended because it requires exposing the admin secret on every device. <br />
+The recommended option is to use an app-token, which requires partner preparation and using app token APIs to upload from the device.</p>
+
+<h4 id="partner-preparation">Partner Preparation</h4>
+
+<p>Perform the following preparation steps:</p>
+
+<ol>
+  <li>Create an app-token for the partner (appToken.add) using the following:
+    <ul>
+      <li>sessionType – user</li>
+      <li>sessionPrivileges – disableentitlement,setrole:CAPTURE_DEVICE_ROLE</li>
+    </ul>
+  </li>
+  <li>Configure the ID and token of the created app-token on the device.</li>
+</ol>
+
+<h4 id="device-upload-apis">Device Upload APIs</h4>
+
+<p>Follow these steps to use the device upload APIs:</p>
+
+<ol>
+  <li>Create a weak widget KS (session.startWidgetSession).</li>
+  <li>Create a strong KS (appToken.startSession).</li>
+  <li>Create an upload-token (uploadToken.add).</li>
+  <li>Upload the media (uploadToken.upload).</li>
+  <li>Create a new entry with the template-entry id (media.add).</li>
+  <li>Associate the entry with the uploaded media (media.addContent).</li>
+</ol>
+
+<h2 id="ical-sync-from-kaltura">iCal Sync from Kaltura</h2>
+
+<p>iCal export is supported via HTTP/HTTPS or FTP.</p>
+
+<h3 id="filtering-and-pagination-of-results">Filtering and Pagination of Results</h3>
+
+<p>All Kaltura list actions, including <a href="https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/Scheduling_Triggers_using_iCal/scheduleEvent/scheduleEvent_list">scheduleEvent.list</a>, accept the <a href="https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFilterPager">KalturaFilterPager</a>. For example:<br />
+http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter:objectType/KalturaScheduleEventFilter/filter:resourceIdsLike/33/pager:pageSize/30/pager:pageIndex/2<br />
+ftp://api.kaltura.com/format/ical/schedule_scheduleevent/filter:objectType/KalturaScheduleEventFilter/filter:resourceIdsLike/33/pager:pageSize/30/pager:pageIndex/2.</p>
+
+<p>For a list of filters see: <a href="https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaScheduleEventFilter">KalturaScheduleEventFilter</a>. <br />
+Note that more than one filter can be applied to each request. <br />
+Time attributes support both absolute and relative times. The time is measured in seconds since 1970, also known as a UNIX timestamp; however, if you specify a time that is smaller than 1980 (in seconds since 1970), e.g., 0, 60, or -60, Kaltura will calculate the past value as a relative time, for example:<br />
+0 = now.<br />
+60 = now + 60 seconds – which is 60 seconds from now.<br />
+-60 = now - 60 seconds – which is 60 seconds ago.</p>
+
+<p>For example, the request  http://www.kaltura.com/service/schedule_scheduleevent/action/list/format/ical/filter:objectType/KalturaScheduleEventBaseFilter/filter:startDateGreaterThanOrEqual/0<br />
+ will return events that start now or in the future.</p>
+
+<h3 id="ftp">FTP</h3>
+
+<p>FTP can be used to retrieve <a href="ftp://api.kaltura.com/format/ical/schedule_scheduleevent/filter:objectType/KalturaScheduleEventFilter/">a list of events</a>. The maxiumum number of returned results is 10,000 (500 max per page, 20 pages max). Partners can use the FTP list to identify which files have changed or are new, and then sync only the delta.</p>
+
+<p>The results can be filtered on any of the parameters. For example: <br />
+ftp://api.kaltura.com/format/ical/schedule_scheduleevent/filter:objectType/KalturaScheduleEventFilter/filter:resourceIdsLike/RESOURCE-ID.</p>
+
+<p>To use FTP, you will need to use KMC user credentials. A user with limited permissions should be created for this purpose only. The username should be structured as [partner ID]/[user ID].</p>
+
+<h3 id="https">HTTP/S</h3>
+
+<p>You may download files via HTTP/S. The maximum number of returned results is 500 per page and 10,000 total. To filter the next 10,000 you will need to add a filter, for example: <a href="https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaAccessControlBaseFilter">createdAtGreaterThanOrEqual</a>. Partners will need to use a KS to request a list of events.</p>
+
+<p>The results can be filtered on any of the parameters. For example: <br />
+http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter:objectType/KalturaScheduleEventFilter/filter:resourceIdsLike/RESOURCE-ID</p>
+
+<p>http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter:objectType/KalturaScheduleEventBaseFilter/filter:startDateGreaterThanOrEqual/0</p>
+
+<h2 id="configuring-resources-on-kaltura">Configuring Resources on Kaltura</h2>
+
+<p>Capture devices can be mapped to resource objects in Kaltura. This is similar to booking a conference room using a calendar application. Multiple resources can be defined for an event. Resources can be added using the API (e.g. automatic creation of a matching resource by the device itself) or bulk uploaded in advance using .csv format. <br />
+Kaltura’s .csv format supports mixed orders, and not all fields are required; the fields are defined by the user using an asterisk at the beginning of the line.</p>
+
+<p>For example:<br />
+*action,name,type,systemName,description,tags,parentType,parentSystemName<br />
+1,my resource name,camera,my-camera1,my example camera,”tag1,tag2”,location,my-parent1</p>
+
+<p>To modify the resources list use the following actions:</p>
+
+<ul>
+  <li>1- add(default)</li>
+  <li>2- update</li>
+  <li>3- delete</li>
+  <li>6- add or update</li>
+</ul>
+
+<p>Be certain to modify the action column accordingly.</p>
+
+<p>The APIs can be found under the <a href="https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks">Integration, Scheduling and Hooks</a> section in the developer.kaltura.com site.</p>
+
+<p>These are the defaults if a field is missing:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Field</th>
+      <th style="text-align: center">Description / Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">action - add/update/delete</td>
+      <td style="text-align: center">For the update and delete actions, resourceId can be used instead of systemName.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">name</td>
+      <td style="text-align: center">Required with no default.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">type</td>
+      <td style="text-align: center">Location/camera</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">systemName</td>
+      <td style="text-align: center">Null</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">description</td>
+      <td style="text-align: center">Null</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">tags</td>
+      <td style="text-align: center">Null</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">parentType</td>
+      <td style="text-align: center">Location</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">parentSystemName</td>
+      <td style="text-align: center">Null</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that resources can have a hierarchy (e.g., a room with cameras), which is defined using the parent type and name. For an example of the API call to create a resource, in this case of type camera, click here.</p>
+
+<h2 id="other-considerations">Other Considerations</h2>
+
+<ul>
+  <li>Conflicting events: At present, Kaltura does not prevent conflicting events. The user will need to ensure that there is no resource conflict when scheduling the event. Devices should be able to handle resource conflicts and ensure operations in this case.</li>
+  <li>Recurring events: When using HTTP/S or FTP, both the series and the breakdown of each occurrence will be provided. Devices can filter based on <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaScheduleEventRecurrence">event type</a> to receive only the series and single events, or to receive single events and breakdown of series. The choice between the options depends on the capability of the device.</li>
+</ul>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

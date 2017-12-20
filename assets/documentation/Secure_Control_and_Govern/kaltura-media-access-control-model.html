@@ -1,0 +1,693 @@
+  <title>The Kaltura Media Access Control Model</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="The Kaltura Media Access Control Model" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Secure_Control_and_Govern/kaltura-media-access-control-model.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Secure_Control_and_Govern/kaltura-media-access-control-model.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">The Kaltura Media Access Control Model</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Secure_Control_and_Govern/kaltura-media-access-control-model.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Apr 9 08:46:15 2017, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (4 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (5 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>An Access Control Profile defines authorized and restricted domains where your content can or cannot be displayed, countries from which it can or cannot be viewed, white and black lists of IP addresses and authorized and unauthorized domains and devices in which your media can be embedded.</p>
+
+<p>For information on Kaltura session-based restrictions, refer to <a href="http://knowledge.kaltura.com/node/229">Kaltura’s API Authentication and Security</a>. </p>
+
+<h3 id="access-control-api"><span></span>Access Control API</h3>
+
+<p>The access control API service <a href="https://developer.kaltura.com/api-docs/#/accessControlProfile" target="_blank">accessControlProfile</a>  provides the following actions:</p>
+
+<p><strong><a href="https://developer.kaltura.com/api-docs/#/accessControlProfile" target="_blank">accessControlProfile</a></strong></p>
+
+<ul>
+  <li><a href="https://developer.kaltura.com/api-docs/#/accessControlProfile.add" target="_blank">addAction</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/accessControlProfile.get" target="_blank">getAction</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/accessControlProfile.update">updateAction</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/accessControlProfile.delete" target="_blank">deleteAction</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/accessControlProfile.list" target="_blank">listAction</a></li>
+</ul>
+
+<p><strong><a href="https://developer.kaltura.com/api-docs/#/KalturaAccessControlProfile" target="_blank">KalturaAccessControlProfile </a></strong></p>
+
+<p>The API object <a href="https://developer.kaltura.com/api-docs/#/KalturaAccessControlProfile" target="_blank">KalturaAccessControlProfile </a>is composed of an ordered set of rules of type <a href="https://developer.kaltura.com/api-docs/#/KalturaRule" target="_blank">KalturaRule</a>.</p>
+
+<p class="Subheading">
+  <a href="https://developer.kaltura.com/api-docs/#/KalturaRule" target="_blank">KalturaRule</a>
+</p>
+
+<p>The KalturaRule type contains the following attributes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Writable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>actions</td>
+      <td>KalturaAccessControlActionArray</td>
+      <td>V</td>
+      <td>Actions to be performed by the player in case the rule is fulfilled.</td>
+    </tr>
+    <tr>
+      <td>conditions</td>
+      <td>KalturaConditionArray</td>
+      <td>V</td>
+      <td>Conditions to validate the rule.</td>
+    </tr>
+    <tr>
+      <td>contexts</td>
+      <td>KalturaAccessControlContextTypeHolderArray</td>
+      <td>V</td>
+      <td>Indicates what contexts should be tested by this rule.</td>
+    </tr>
+    <tr>
+      <td>message</td>
+      <td>string</td>
+      <td>V</td>
+      <td>Message to be thrown to the player in case the rule is fulfilled.</td>
+    </tr>
+    <tr>
+      <td>stopProcessing</td>
+      <td>boolean</td>
+      <td>V</td>
+      <td>Indicates that when this rule has been met there is no need to continue checking the rest of the rules.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Rules are evaluated according to their order and evaluated only if they are configured to run in the current context, according to their contexts attribute. A KalturaRule is considered  fulfilled only if all its conditions are evaluated as true. The available context types are in the<a href="https://developer.kaltura.com/api-docs/#/KalturaAccessControlContextType"> KalturaAccessControlContextType</a>.</p>
+
+<p><strong>KalturaAccessControlContextType</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DOWNLOAD</td>
+      <td>string</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>PLAY</td>
+      <td>string</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>THUMBNAIL</td>
+      <td>string</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All rules are evaluated, unless one of the rule’s stop processing flag is true and the rule condition was fulfilled. Each rule that matches the conditions, adds the actions to the outcome actions and its message to the outcome messages. All of the actions are performed for rules that are evaluated and their conditions are true. Each rule is composed of a set of conditions <a href="https://developer.kaltura.com/api-docs/#/KalturaConditionArray" target="_blank">KalturaCondition</a>  and an action <a href="https://developer.kaltura.com/api-docs/#/KalturaAccessControlAction">KalturaAccessControlAction.</a>  The action types are described in <a href="https://developer.kaltura.com/api-docs/#/KalturaAccessControlActionType" target="_blank">KalturaAccessControlActionType. </a>The logical relation between the set of conditions in a single rule uses the AND operator, meaning that all conditions must be evaluated to true in order to consider the rule as fulfilled.</p>
+
+<p class="Subheading">
+  <a href="https://developer.kaltura.com/api-docs/#/KalturaConditionArray" target="_blank">KalturaCondition </a>
+</p>
+
+<p>The condition types are:</p>
+
+<p class="Subheading">
+  <a href="https://developer.kaltura.com/api-docs/#/KalturaConditionArray" target="_blank">KalturaConditionType</a> 
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AUTHENTICATED</td>
+      <td>string</td>
+      <td>1</td>
+      <td>Validate that the user is authenticated, specific privileges may be defined.</td>
+    </tr>
+    <tr>
+      <td>COUNTRY</td>
+      <td>string</td>
+      <td>2</td>
+      <td>Validate that the request came from a specific country, calculated according to request IP.</td>
+    </tr>
+    <tr>
+      <td>FIELD_COMPARE</td>
+      <td>string</td>
+      <td>7</td>
+      <td>Validate that the field number compared correctly to all listed numeric values.</td>
+    </tr>
+    <tr>
+      <td>FIELD_MATCH</td>
+      <td>string</td>
+      <td>6</td>
+      <td>Validate that the field text matches any of listed textual values.</td>
+    </tr>
+    <tr>
+      <td>IP_ADDRESS</td>
+      <td>string</td>
+      <td>3</td>
+      <td>Validate that the request came from a specific IP range.</td>
+    </tr>
+    <tr>
+      <td>METADATA_FIELD_COMPARE</td>
+      <td>string</td>
+      <td>metadata.FieldCompare</td>
+      <td>Validate that all metadata elements number compared correctly to all listed numeric values.</td>
+    </tr>
+    <tr>
+      <td>METADATA_FIELD_MATCH</td>
+      <td>string</td>
+      <td>metadata.FieldMatch</td>
+      <td>Validate that any of the metadata elements text matches any of listed textual values.</td>
+    </tr>
+    <tr>
+      <td>SITE</td>
+      <td>string</td>
+      <td>4</td>
+      <td>Validate that the request came from a specific domain, wildcards are supported.</td>
+    </tr>
+    <tr>
+      <td>USER_AGENT</td>
+      <td>string</td>
+      <td>5</td>
+      <td>Validate that the request came from a specific user agent, regular expressions are supported.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p> The objects available that implement the condition objects are:</p>
+
+<ul>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaAuthenticatedCondition" target="_blank">KalturaAuthenticatedCondition</a> **Note: **This object should be configured only on an entry level access control objects.</li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaCompareMetadataCondition" target="_blank">KalturaCompareMetadataCondition</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaFieldCompareCondition" target="_blank">KalturaFieldCompareCondition</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaCountryCondition">KalturaCountryCondition</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaFieldMatchCondition" target="_blank">KalturaFieldMatchCondition</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaIpAddressCondition" target="_blank">KalturaIpAddressCondition</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaMatchMetadataCondition" target="_blank">KalturaMatchMetadataCondition</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaUserAgentCondition" target="_blank">KalturaUserAgentCondition</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/#/KalturaSiteCondition" target="_blank">KalturaSiteCondition</a></li>
+</ul>
+
+<p>For example:</p>
+
+<p>Rule #1 – conditions: KS is not valid -&gt; action: block</p>
+
+<p>Rule #2 – conditions: country is not US -&gt; action: block</p>
+
+<p>If no rule applies, no action will be taken and the content will be allowed.</p>
+
+<p><strong>Understanding the Compare and Match Condition Objects</strong> </p>
+
+<p>FIELD_COMPARE<span> </span>and FIELD_MATCH<span> </span>differentiate generic fields from generic values. A field is any implementation of <a href="#KalturaStringField">KalturaStringField</a> for textual matching or <a href="#KalturaIntegerField">KalturaIntegerField</a> for numeric comparison.</p>
+
+<p><a name="KalturaStringField"></a>KalturaStringField implementations:</p>
+
+<ul>
+  <li>KalturaCountryContextField – Represents the current request’s country context as calculated based on the IP address.</li>
+  <li>KalturaIpAddressContextField – Represents the current request’s IP address context.</li>
+  <li>KalturaUserAgentContextField – Represents the current request’s user agent context.</li>
+  <li>KalturaUserEmailContextField – Represents the current session’s user e-mail address context.</li>
+  <li>KalturaEvalStringField (Falcon only: Requires Admin Console permission) – Evaluates a PHP statement, depends on the execution context.</li>
+</ul>
+
+<p><a name="KalturaIntegerField"></a>KalturaIntegerField implementations:</p>
+
+<ul>
+  <li>KalturaTimeContextField – Represents the current time context on Kaltura servers.</li>
+</ul>
+
+<p>FIELD_COMPARE and FIELD_MATCH use <a href="#KalturaIntegerValue">KalturaIntegerValue</a> for numeric comparison values and <a href="#KalturaStringValue">KalturaStringValue</a> for textual matches.</p>
+
+<p><a name="KalturaIntegerValue"></a>KalturaIntegerValue may contain a numeric value or may be implemented as <a href="#KalturaIntegerField">KalturaIntegerField</a>.</p>
+
+<p><a name="KalturaStringValue"></a>KalturaStringValue may contain a string value or may be implemented as <a href="#KalturaStringField">KalturaStringField</a>.</p>
+
+<p>METADATA_FIELD_COMPARE<span> and <span>METADATA_FIELD_MATCH </span></span>also use <a href="#KalturaIntegerValue">KalturaIntegerValue</a> and <a href="#KalturaStringValue">KalturaStringValue</a> for sets of values. For the metadata condition objects, the field used is from the metadata fields of a specific xPath in the metadata XML (instead of the field object).</p>
+
+<p>The profile ID attribute indicates the metadata profile ID to use.</p>
+
+<p>The xPath attribute may contain the full xPath to the field in the following formats:</p>
+
+<ul>
+  <li>xPath with a slash  <br />
+For example:  /metadata/myElementName</li>
+  <li>Using a local name function   <br />
+For example: /*[local-name()=’metadata’]/*[local-name()=’myElementName’]</li>
+  <li>Using only the field name  <br />
+For example: myElementName will be searched as //myElementName</li>
+</ul>
+
+<p><strong>KalturaAccessControlActionType</strong></p>
+
+<p>The following set of actions are defined:</p>
+
+<ol>
+  <li>**KalturaAccessControlBlockAction - **Block access</li>
+  <li>**KalturaAccessControlPreviewAction - **Preview – play only the first X seconds of a video</li>
+</ol>
+
+<p><strong><a href="https://developer.kaltura.com/api-docs/#/KalturaAccessControlScope" target="_blank">KalturaAccessControlScope</a></strong></p>
+
+<p>The <strong><a href="https://developer.kaltura.com/api-docs/#/KalturaAccessControlScope" target="_blank">KalturaAccessControlScope</a></strong>API contains a predefined list of context variables: </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>contexts</th>
+      <th>KalturaAccessControlContextTypeHolderArray</th>
+      <th>V</th>
+      <th>Indicates what contexts should be tested. No context means any context.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ip</td>
+      <td>string</td>
+      <td>V</td>
+      <td>IP to be used to test geographic location conditions.</td>
+    </tr>
+    <tr>
+      <td>ks</td>
+      <td>string</td>
+      <td>V</td>
+      <td>Kaltura session to be used to test session and user conditions.</td>
+    </tr>
+    <tr>
+      <td>referrer</td>
+      <td>string</td>
+      <td>V</td>
+      <td>URL to be used to test domain conditions.</td>
+    </tr>
+    <tr>
+      <td>time</td>
+      <td>int</td>
+      <td>V</td>
+      <td>Unix timestamp (in seconds) to be used to test entry scheduling, keep null to use now.</td>
+    </tr>
+    <tr>
+      <td>userAgent</td>
+      <td>string</td>
+      <td>V</td>
+      <td>Browser or client application to be used to test agent conditions.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="examples">Examples</h2>
+
+<p>The following examples are in PHP and effectively will be the same across all client libraries. </p>
+
+<blockquote>
+  <p>Note that the xpath property may contain the full xpath to the field in three formats:</p>
+  <ul>
+    <li>Slashed xPath, e.g. /metadata/myElementName</li>
+    <li>Using local-name function, e.g. /<em>[local-name()=’metadata’]/</em>[local-name()=’myElementName’]</li>
+    <li>Using only the field name, e.g. myElementName, it will be searched as //myElementName</li>
+  </ul>
+</blockquote>
+
+<h3 id="device-specific-scheduling-window">Device-specific Scheduling Window</h3>
+
+<p>Condition #1: User agent MATCH ‘ipad’ (regular expression)</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"> 
+<span class="cp">&lt;?php</span>
+<span class="nv">$value1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value1</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'.*ipad.*'</span><span class="p">;</span>
+<span class="nv">$condition1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaUserAgentCondition</span><span class="p">();</span>
+<span class="nv">$condition1</span><span class="o">-&gt;</span><span class="na">values</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$value1</span><span class="p">);</span></code></pre></figure>
+
+<p>Condition #2: Current time =&gt; entry’s {metadata_123/ipadSunrise}</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$condition2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaCompareMetadataCondition</span><span class="p">();</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">comparison</span> <span class="o">=</span> <span class="nx">KalturaSearchConditionComparison</span><span class="o">::</span><span class="na">LESS_THAN_OR_EQUAL</span><span class="p">;</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">xPath</span> <span class="o">=</span> <span class="s1">'ipadSunrise'</span><span class="p">;</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">profileId</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaTimeContextField</span><span class="p">();</span></code></pre></figure>
+
+<p>Condition #3: Current time &lt;= entry’s {metadata_123/ipadSunset}</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$condition3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaCompareMetadataCondition</span><span class="p">();</span>
+<span class="nv">$condition3</span><span class="o">-&gt;</span><span class="na">comparison</span> <span class="o">=</span> <span class="nx">KalturaSearchConditionComparison</span><span class="o">::</span><span class="na">GREATER_THAN_OR_EQUAL</span><span class="p">;</span>
+<span class="nv">$condition3</span><span class="o">-&gt;</span><span class="na">xPath</span> <span class="o">=</span> <span class="s1">'ipadSunset'</span><span class="p">;</span>
+<span class="nv">$condition3</span><span class="o">-&gt;</span><span class="na">profileId</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="nv">$condition3</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaTimeContextField</span><span class="p">();</span></code></pre></figure>
+
+<p><strong>Actions: none</strong></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">conditions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$condition1</span><span class="p">,</span> <span class="nv">$condition2</span><span class="p">,</span> <span class="nv">$condition3</span><span class="p">);</span>
+<span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">stopProcessing</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
+
+<p><strong>The next rule should be defined with no conditions and one block action in order to block all requests that didn’t stop processing on the first rule.</strong></p>
+
+<h3 id="block-long-form-content-on-mobile-devices">Block long-form content on mobile devices</h3>
+
+<p>Condition #1: User agent MATCH ‘Mobile devices of brands X, Y, Z’ (regular expression)</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$value1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value1</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'.*X.*'</span><span class="p">;</span>
+<span class="nv">$value2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value2</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'.*Y.*'</span><span class="p">;</span>
+<span class="nv">$value3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value3</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'.*Z.*'</span><span class="p">;</span>
+<span class="nv">$condition1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaUserAgentCondition</span><span class="p">();</span>
+<span class="nv">$condition1</span><span class="o">-&gt;</span><span class="na">values</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$value1</span><span class="p">,</span> <span class="nv">$value2</span><span class="p">,</span> <span class="nv">$value3</span><span class="p">);</span></code></pre></figure>
+
+<p>Condition #2: Entry’s {metadata_123/FormatType} Equals ‘Long Form’</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$value1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value1</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'Long Form'</span><span class="p">;</span>
+<span class="nv">$condition2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaMatchMetadataCondition</span><span class="p">();</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">xPath</span> <span class="o">=</span> <span class="s1">'FormatType'</span><span class="p">;</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">profileId</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">values</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$value1</span><span class="p">);</span>
+<span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">conditions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$condition1</span><span class="p">,</span> <span class="nv">$condition2</span><span class="p">);</span></code></pre></figure>
+
+<p><strong>Actions: Block</strong></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">actions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">KalturaAccessControlBlockAction</span><span class="p">());</span></code></pre></figure>
+
+<h3 id="block-language-specific-content-for-consumers-in-a-specific-geography">Block language-specific content for consumers in a specific geography</h3>
+
+<p>Condition #1: Region Equals Quebec (First phase will be limited to countries)</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$value1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value1</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'Quebec'</span><span class="p">;</span>
+<span class="nv">$condition1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaCountryCondition</span><span class="p">();</span>
+<span class="nv">$condition1</span><span class="o">-&gt;</span><span class="na">values</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$value1</span><span class="p">);</span></code></pre></figure>
+
+<p>Condition #2: entry’s {metadata_123/AudioLanguage} NOT Equals ‘French’</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$value1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value1</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'French'</span><span class="p">;</span>
+<span class="nv">$condition2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaMatchMetadataCondition</span><span class="p">();</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">xPath</span> <span class="o">=</span> <span class="s1">'AudioLanguage'</span><span class="p">;</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">profileId</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">values</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$value1</span><span class="p">);</span>
+<span class="nv">$condition2</span><span class="o">-&gt;</span><span class="na">not</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
+
+<p><strong>Actions: Block</strong></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">actions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">KalturaAccessControlBlockAction</span><span class="p">());</span></code></pre></figure>
+
+<h3 id="block-content-for-unidentified-devices">Block content for unidentified devices</h3>
+
+<p>Condition #1: User agent NOT MATCH ‘Mobile devices of brands X, Y, Z’ (regular expression)</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$value1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value1</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'.*X.*'</span><span class="p">;</span>
+<span class="nv">$value2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value2</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'.*Y.*'</span><span class="p">;</span>
+<span class="nv">$value3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaStringValue</span><span class="p">();</span>
+<span class="nv">$value3</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="s1">'.*Z.*'</span><span class="p">;</span>
+<span class="nv">$condition1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaUserAgentCondition</span><span class="p">();</span>
+<span class="nv">$condition1</span><span class="o">-&gt;</span><span class="na">values</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$value1</span><span class="p">,</span> <span class="nv">$value2</span><span class="p">,</span> <span class="nv">$value3</span><span class="p">);</span>
+<span class="nv">$condition1</span><span class="o">-&gt;</span><span class="na">not</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
+
+<p><strong>Actions: Block</strong></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">   
+<span class="cp">&lt;?php</span>
+<span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">actions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">KalturaAccessControlBlockAction</span><span class="p">());</span></code></pre></figure>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

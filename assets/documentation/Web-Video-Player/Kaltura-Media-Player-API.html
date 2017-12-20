@@ -1,0 +1,885 @@
+  <title>Kaltura Player JavaScript API, Events and Hooks</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura Player JavaScript API, Events and Hooks" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Web-Video-Player/Kaltura-Media-Player-API.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Web-Video-Player/Kaltura-Media-Player-API.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura Player JavaScript API, Events and Hooks</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Aug 8 13:28:22 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Web-Video-Player/Kaltura-Media-Player-API.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 8 13:28:22 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (3 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Web Video Player JavaScript API is a two-way communication channel that enables you to manage properties, event and notifications, including:</p>
+<ul>
+  <li>Enabling the player to communicate its current states and parameters</li>
+  <li>Enabling the embedding page/application to invoke actions, change and read properties, and to customize its behavior, design and layout</li>
+  <li>Maintaining a continuous, interactive data connection with the Kaltura Platform API</li>
+  <li>Providing a seamless end user experience across devices, browsers and platforms</li>
+</ul>
+
+<h2 id="embed-and-reference-player-instances">Embed and Reference Player Instances</h2>
+
+<p>The Player API is exposed via the Player JavaScript library and is only available when using the JavaScript embed methods (dynamic, thumbnail or auto).</p>
+
+<p>With iframe embed, communication with the parent DOM is sandboxed and thus requires the use of the postMessage API. If you require the use of an iframe embed, but need to establish an API communication, we recommend using the Kaltura <strong>player.js</strong> adapter, which acts as a postMessage bridge.</p>
+
+<p>If you are using Embed.ly, note that Kaltura.com Players are whitelisted for the embed.ly service.</p>
+
+<p>The player’s embed API is the first method you will interact with when using the Kaltura Player. This is the API that allows you to render players on your page.</p>
+
+<p>The kWidget API is available after you include the Kaltura Web Video Player library in your page. kWidget provides embedding and basic utility functions.</p>
+
+<blockquote>
+  <p>The Kaltura Web Video Player library can also be used inside Native Android and Native iOS applications using the respective player SDK. See the <a href="/api-docs/05_Mobile-Video-Player-SDKs/Introduction.html">Kaltura Player Mobile SDK</a> documents for more information about using the Kaltura Video Player in native mobile applications.</p>
+</blockquote>
+
+<h3 id="kaltura-web-video-player-embed-api-methods">Kaltura Web Video Player Embed API Methods</h3>
+
+<p>To get started:</p>
+
+<ol>
+  <li>Include the JavaScript tag to load the Kaltura Web Video Player library.</li>
+  <li>Substitute these tokens:</li>
+</ol>
+
+<ul>
+  <li>{partner_id} - your Kaltura partner id (retrieved from KMC&gt;Settings tab)</li>
+  <li>{uiconf_id} - the desired Kaltura player id  (retrieved from KMC&gt;Studio tab)</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdnapisec.kaltura.com/p/{partner_id}/sp/{partnerId}00/embedIframeJs/uiconf_id/{uiconf_id}/partner_id/{partnerId}"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+</div>
+<p>After you have included the Kaltura Web Video Player library, the following kWidget API embed methods will be available:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">kWidget.embed(targetId, settings)</code>: The most commonly used JavaScript embed method, after loading the DOM, the Kaltura Player will be rendered against the div whose ID was provided in <code class="highlighter-rouge">targetId</code>.</li>
+  <li><code class="highlighter-rouge">kWidget.thumbEmbed(targetId, settings)</code>: This method will render a thumbnail and play button to the <code class="highlighter-rouge">targetId</code> DOM element, and will only render the full player when the end user clicks the Play button. The thumbnail embed will pass all of the configurations to the kWidget.embed when the Play button is clicked. The player context menu can be disabled by setting the <code class="highlighter-rouge">EmbedPlayer.DisableContextMenu</code> UIVar to <em>true</em> using the flashvars or the Player Studio UIVars.</li>
+</ul>
+
+<h4 id="embed-api-method-parameters">Embed API Method Parameters</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">targetId</code>: This string is the ID of the DOM element where the Player will be rendered (any contents of the element will be removed when the Player is rendered instead of this given element).</li>
+  <li><a href="#the-kwidget-settings-object"><code class="highlighter-rouge">settings</code></a>: This object is the object of the settings properties to be used when building and rendering the Player.</li>
+</ul>
+
+<h4 id="kwidget-settings-object">kWidget Settings Object</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">parameter</th>
+      <th style="text-align: left">type</th>
+      <th style="text-align: left">required</th>
+      <th style="text-align: left">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">targetId</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">mandatory</td>
+      <td style="text-align: left">The DOM Player target ID attribute strings if not defined as a top level param.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">partnerId</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">mandatory</td>
+      <td style="text-align: left">The ID of your Kaltura account (aka partnerId) (refer to the partner service, or visit the KMC&gt;Settings tab to get your account partnerId).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">wid</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">mandatory</td>
+      <td style="text-align: left">The Kaltura widget ID, this is usually set to the Kaltura account ID (i.e., the partnerId), prefixed by an underscore, e.g. <code class="highlighter-rouge">_8111441</code> (refer to the partner service, or visit the KMC&gt;Settings tab to get your account partnerId).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">entry_id</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">mandatory</td>
+      <td style="text-align: left">The entry ID of the media item (entry) to play, this parameter can be left empty for a JavaScript based entryId. Refer to the entry service, or visit the KMC&gt;Content tab for the list of media entries in your account. If this is set to a playlistId, the Kaltura backend will stitch the playlist on the fly, and the Player will play back the playlist as if it was a single media entry (only manual playlists are accepted; refer to the playlist service or visit KMC&gt;Content&gt;Playlists for the list of playlists in your account).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">flashvars</code></td>
+      <td style="text-align: left">Object</td>
+      <td style="text-align: left">mandatory</td>
+      <td style="text-align: left">This is a runtime configuration object to set various player configurations and properties. These settings can override arbitrary UIVars and plugin configurations.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">uiconf_id</code></td>
+      <td style="text-align: left">Number</td>
+      <td style="text-align: left">Optional</td>
+      <td style="text-align: left">The ID of the Kaltura player to use (refer to the uiconf service or visit KMC&gt;Studio for the list of Players in your account).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">readyCallback</code></td>
+      <td style="text-align: left">Function</td>
+      <td style="text-align: left">Optional</td>
+      <td style="text-align: left">The local callback method to be called once the Player is ready for bindings. The Player ID is passed as an argument.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">cache_st</code></td>
+      <td style="text-align: left">timestamp</td>
+      <td style="text-align: left">Optional</td>
+      <td style="text-align: left">Only set this in testing or development mode when performance is not required. If set to now+10min, this will rebuild the Player instead of serving the last instance from cache. Use only for testing while making changes to the Player. <strong>Do not use this in production</strong>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="obtaining-a-reference-to-the-embedded-player">Obtaining a Reference to the Embedded Player</h3>
+
+<p>To communicate with embedded player instances via the JavaScript API, you will need to retrieve a reference to the player instance. To obtain a reference to the player,  you will need to implement the <code class="highlighter-rouge">readyCallback</code> function. <code class="highlighter-rouge">readyCallback</code> is called when the player was rendered successfully to the DOM and is ready to accept API calls.</p>
+
+<p>There are two ways to implement the <code class="highlighter-rouge">readyCallback</code> function, which are described below.</p>
+
+<h4 id="registering-via-the-global-library-facade">Registering via the Global Library Facade</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">addReadyCallback</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">);</span> 
+    <span class="c1">// kdp var now holds the player reference</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+<p>This will register a global function that will be called once for every player instance that will be rendered on the page.</p>
+
+<h4 id="passing-the-handler-function-to-each-individual-embed-call">Passing the Handler Function to Each Individual Embed Call</h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">embed</span><span class="p">({</span>
+    <span class="s1">'targetId'</span><span class="p">:</span> <span class="s1">'kaltura_player'</span><span class="p">,</span>
+    <span class="s1">'wid'</span><span class="p">:</span> <span class="s1">'_243342'</span><span class="p">,</span>
+    <span class="s1">'uiconf_id'</span> <span class="p">:</span> <span class="s1">'12905712'</span><span class="p">,</span>
+    <span class="s1">'entry_id'</span> <span class="p">:</span> <span class="s1">'0_uka1msg4'</span><span class="p">,</span>
+    <span class="s1">'readyCallback'</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">);</span> 
+        <span class="c1">// kdp var now holds the player reference</span>
+    <span class="p">},</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h2 id="registering-to-player-events-hooks">Registering to Player Events (Hooks)</h2>
+
+<p>You can register to Player events using the “kBind” method and un-register using the “kUnbind” method.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">addReadyCallback</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s2">"bar"</span><span class="p">;</span>
+	<span class="c1">// using kBind we will register to player's play event</span>
+	<span class="nx">kdp</span><span class="p">.</span><span class="nx">kBind</span><span class="p">(</span> <span class="s2">"doPlay"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> 
+		<span class="c1">// console will log "play bar":</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"play "</span> <span class="o">+</span> <span class="nx">foo</span><span class="p">);</span> 
+		<span class="c1">// stop listening to the play event using kUnbind:</span>
+		<span class="nx">kdp</span><span class="p">.</span><span class="nx">kUnbind</span><span class="p">(</span><span class="s1">'doPlay'</span><span class="p">);</span>
+	<span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="using-event-namespaces">Using Event Namespaces</h3>
+
+<p>It is highly recommended to define your own event namespaces when registering to player events. This will prevent overriding event handlers when registering and unregistering events with multiple player embeds on the same page.</p>
+
+<p>To use namespaces, postfix the event name with a dot and some alphanumeric string. <br />
+For example:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kdp</span><span class="p">.</span><span class="nx">kBind</span><span class="p">(</span> <span class="s2">"doPlay.myCustomNameSpace"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="p">...</span> <span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Namespaces also provide the ability to un-register all events in the same namespace in one single call to kUnbind. For example:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kdp</span><span class="p">.</span><span class="nx">kUnbind</span><span class="p">(</span><span class="s1">'.myCustomNameSpace'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Read more about event namespaces in the <a href="https://api.jquery.com/event.namespace/">jQuery documentation</a>.</p>
+</blockquote>
+
+<h3 id="registering-to-the-playerready-event">Registering to the <code class="highlighter-rouge">playerReady</code> Event</h3>
+
+<p>To ensure that the Player has been rendered and initialized properly before invoking Player methods or modifying Player properties, you will need to register to the player <code class="highlighter-rouge">playerReady</code> event.  This event is dispatched once all of the Player UI and plugins have been added and playback is ready to begin.</p>
+
+<p>The best practice is to register to this event <strong>before</strong> calling any additional API method. Register to the <code class="highlighter-rouge">playerReady</code> event using the kBind method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">addReadyCallback</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">);</span>
+    <span class="nx">kdp</span><span class="p">.</span><span class="nx">kBind</span><span class="p">(</span> <span class="s1">'playerReady.myNamespace'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+	    <span class="nx">console</span><span class="p">(</span><span class="s1">'player is ready to play!'</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="commonly-used-player-events">Commonly Used Player Events</h3>
+
+<p>The following is a list of the most commonly used Player events triggered during typical Player embed and playback. Registering to these events enables the application to respond to the different states in the Player setup, Player lifecycle and end user interactions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Event Name</th>
+      <th style="text-align: left">Parameters</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">layoutBuildDone</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when the Player layout is ready and rendered on the screen</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">playerReady</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatches when the Player is ready to play the media. The playerReady event is dispatched each time media is changed</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">mediaLoaded</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">MediaLoaded is triggered between each content load, i.e., once between every item in a playlist</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">mediaError</code></td>
+      <td style="text-align: left">errorEvent</td>
+      <td style="text-align: left">The Player is notified about media errors</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">playerError</code></td>
+      <td style="text-align: left">errorEvent</td>
+      <td style="text-align: left">The Player is notified about an error. The errorEvent object contains the error details.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">playerStateChange</code></td>
+      <td style="text-align: left">MediaPlayerState</td>
+      <td style="text-align: left">Dispatched when the media Player’s state has changed</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">firstPlay</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Triggered once per content entry when first played. If the end user initiates a replay this is a new content playback sequence and will triger firstPlay again</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">playerPlayed</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Triggered when the Player enters a play state. This event may be triggered multiple times during a single playback session</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">playerPaused</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">The Player is now in a pause state</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">preSeek</code></td>
+      <td style="text-align: left">seekTime</td>
+      <td style="text-align: left">Notifies about a seek activity that is about to start</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">seek</code></td>
+      <td style="text-align: left">currentTime</td>
+      <td style="text-align: left">Notifing about a seek activity that has started</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">seeked</code></td>
+      <td style="text-align: left">seekedTime</td>
+      <td style="text-align: left">Notifies that the seek activity has completed</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">playerUpdatePlayhead</code></td>
+      <td style="text-align: left">currentTime</td>
+      <td style="text-align: left">An update event that notifies about the progress in time when playback is running</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">openFullScreen</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">The Player has entered full screen mode</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">closeFullScreen</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">The Player has exited full screen mode</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">volumeChanged</code></td>
+      <td style="text-align: left">newVolume</td>
+      <td style="text-align: left">Notification about a change in the Player volume</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">mute</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Notification fired when the Player is muted</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">unmute</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Notification fired when the Player is unmuted</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">bufferChange</code></td>
+      <td style="text-align: left">buffering</td>
+      <td style="text-align: left">Dispatches when the Player starts or stops buffering</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">KalturaSupport_CuePointReached</code></td>
+      <td style="text-align: left">cuePointObject</td>
+      <td style="text-align: left">Notification fired when the Player reaches a cue point</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">KalturaSupport_AdOpportunity</code></td>
+      <td style="text-align: left">cuePointObject</td>
+      <td style="text-align: left">Notification fired when the Player reaches an ad cue point (such as midroll or overlay)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">playerPlayEnd</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">The played media has reached the end of content playback.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onChangeMedia</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Change media operation started</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onChangeMediaDone</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Change media operation completed</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following code example shows how the events above are triggered, and how their data and sequence throw log messages to the browser’s console (use “Kaltura player” in the string filter):</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"kaltura_player"</span> <span class="na">style=</span><span class="s">"width:400px;height:330px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">kWidget</span><span class="p">.</span><span class="nx">embed</span><span class="p">({</span>
+    <span class="s1">'targetId'</span><span class="p">:</span> <span class="s1">'kaltura_player'</span><span class="p">,</span>
+    <span class="s1">'wid'</span><span class="p">:</span> <span class="s1">'_243342'</span><span class="p">,</span>
+    <span class="s1">'uiconf_id'</span> <span class="p">:</span> <span class="s1">'12905712'</span><span class="p">,</span>
+    <span class="s1">'entry_id'</span> <span class="p">:</span> <span class="s1">'0_uka1msg4'</span><span class="p">,</span>
+    <span class="s1">'readyCallback'</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">playerID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">playerID</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">events</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'layoutBuildDone'</span><span class="p">,</span> <span class="s1">'playerReady'</span><span class="p">,</span>  <span class="s1">'mediaLoaded'</span><span class="p">,</span> <span class="s1">'mediaError'</span><span class="p">,</span> <span class="s1">'playerStateChange'</span><span class="p">,</span> <span class="s1">'firstPlay'</span><span class="p">,</span> <span class="s1">'playerPlayed'</span><span class="p">,</span> <span class="s1">'playerPaused'</span><span class="p">,</span> <span class="s1">'preSeek'</span><span class="p">,</span> <span class="s1">'seek'</span><span class="p">,</span> <span class="s1">'seeked'</span><span class="p">,</span> <span class="s1">'playerUpdatePlayhead'</span><span class="p">,</span> <span class="s1">'openFullScreen'</span><span class="p">,</span> <span class="s1">'closeFullScreen'</span><span class="p">,</span> <span class="s1">'volumeChanged'</span><span class="p">,</span> <span class="s1">'mute'</span><span class="p">,</span> <span class="s1">'unmute'</span><span class="p">,</span> <span class="s1">'bufferChange'</span><span class="p">,</span> <span class="s1">'cuePointReached'</span><span class="p">,</span> <span class="s1">'playerPlayEnd'</span><span class="p">,</span> <span class="s1">'onChangeMedia'</span><span class="p">,</span> <span class="s1">'onChangeMediaDone'</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">events</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">){</span>
+            <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">kdp</span><span class="p">.</span><span class="nx">kBind</span><span class="p">(</span> <span class="nx">events</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Kaltura player event triggered: '</span> <span class="o">+</span> <span class="nx">events</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">', event data: '</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">event</span><span class="p">));</span>
+                <span class="p">});</span>
+            <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="commonly-used-player-ad-events-ad-sequence-events">Commonly Used Player Ad Events (Ad Sequence Events)</h3>
+
+<p>The Kaltura Player supports all of the major <a href="http://www.iab.com/">IAB</a> ad standards. The most commonly used Player plugins for playing ads are VAST and Doubleclick.</p>
+
+<p>When loading and placing ads, the Player dispatches many ad related events that can be used to gain knowledge on when the ad starts or stops, when an ad was clicked or skipped, the ad time (linear, overlay) and more.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Event Name</th>
+      <th style="text-align: left">Parameters</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">adClick</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an ad is clicked by the end user</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">adErrorEvent</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an ad error occurs</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">AdSupport_EndAdPlayback</code></td>
+      <td style="text-align: left">slotType</td>
+      <td style="text-align: left">Dispatched when an ad finishes playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">AdSupport_StartAdPlayback</code></td>
+      <td style="text-align: left">slotType</td>
+      <td style="text-align: left">Dispatched when an ad starts playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">midSequenceComplete</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an midroll ad finishes playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">midSequenceStart</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an midroll ad starts playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onAdComplete</code></td>
+      <td style="text-align: left">Ad ID, Ad current time</td>
+      <td style="text-align: left">Dispatched when ad playback is complete</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onAdPlay</code></td>
+      <td style="text-align: left">Ad ID, Ad System, Ad Type, Ad Position, Ad Duration, Ad Pod Position, Ad Pod start time, Ad title, Trafficking Parameters (DoubleClick only)</td>
+      <td style="text-align: left">Dispatched when an ad starts playing and provides ad information. Additional info.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">onAdSkip</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an ad is skipped because the end user clicked the “Skip Ad” button</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">postSequenceComplete</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an postroll ad finishes playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">postSequenceStart</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an postroll ad starts playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">preSequenceComplete</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an preroll ad finishes playing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">preSequenceStart</code></td>
+      <td style="text-align: left">n/a</td>
+      <td style="text-align: left">Dispatched when an preroll ad starts playing</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="invoking-player-actions">Invoking Player Actions</h2>
+
+<p>Invoking Player actions is done by calling the <code class="highlighter-rouge">sendNotification</code> method and passing the desired action name and respective parameters. The notifications sent to the Player instruct the Player and any loaded plugins to perform an action, such as play, seek, or pause.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">addReadyCallback</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">);</span>
+    <span class="nx">kdp</span><span class="p">.</span><span class="nx">kBind</span><span class="p">(</span> <span class="s1">'playerReady.myNamespace'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+	    <span class="c1">//player will begin playing:</span>
+	    <span class="nx">kdp</span><span class="p">.</span><span class="nx">sendNotification</span><span class="p">(</span><span class="s2">"doPlay"</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="commonly-called-player-notifications-actions">Commonly Called Player Notifications (Actions)</h3>
+
+<p>The following are commonly-called Player notifications:</p>
+<ul>
+  <li>To start playing: <code class="highlighter-rouge">kdp.sendNotification("doPlay");</code></li>
+  <li>To pause the playback: <code class="highlighter-rouge">kdp.sendNotification("doPause");</code></li>
+  <li>To seek the playhead for a specific time: <code class="highlighter-rouge">kdp.sendNotification("doSeek", 30);</code></li>
+  <li>To load a different media item (entry):  <code class="highlighter-rouge">kdp.sendNotification("changeMedia", { "entryId" : "0_wm82kqmm" });</code></li>
+  <li>To set the volume: <code class="highlighter-rouge">kdp.sendNotification("changeVolume", 0.5);</code></li>
+</ul>
+
+<h2 id="reading-player-properties-and-expressions">Reading Player Properties and Expressions</h2>
+
+<p>The Kaltura Player allows evaluating Player properties using a curly brackets expressions syntax by using the <code class="highlighter-rouge">evaluate</code> command.<br />
+This feature allows you to get Player properties in real-time during playback, which provides information about the Player, media state and metadata.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">addReadyCallback</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">);</span>
+		<span class="c1">// alert the entry name</span>
+		<span class="nx">alert</span><span class="p">(</span><span class="s1">'Entry name: '</span><span class="o">+</span> <span class="nx">kdp</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="s1">'{mediaProxy.entry.name}'</span><span class="p">)</span> 
+	<span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Beyond basic Player properties such as “playerVersion” or “duration”, the Kaltura Player exposes access to nested Player objects with many additional properties. The objects are nested JSON objects, and are read from the evaluate method using a dot syntax (e.g., <code class="highlighter-rouge">myObj.nestedObj.property</code>).</p>
+
+<h3 id="commonly-used-data-objects">Commonly Used Data Objects</h3>
+
+<p>The following are commonly used data objects:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Object</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">configProxy</code></td>
+      <td style="text-align: left">The Player configuration object. Allows access to all UI vars and plugin properties</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">mediaProxy</code></td>
+      <td style="text-align: left">Holds all the currently loaded media properties</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">mediaProxy.entry</code></td>
+      <td style="text-align: left">Holds the entry metadata fields</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">video</code></td>
+      <td style="text-align: left">Holds properties of the currently playing video element</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">video.player</code></td>
+      <td style="text-align: left">Holds a reference to the Player with properties such as currentTime, width and height</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">sequenceProxy</code></td>
+      <td style="text-align: left">Represent all ads currently associated with the playing entry</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="evaluating-common-player-properties">Evaluating Common Player Properties</h4>
+
+<p>To evaluate common Player properties, using the following:</p>
+<ul>
+  <li>Get current media duration: <code class="highlighter-rouge">kdp.evaluate('{duration}');</code></li>
+  <li>Get current media entry name: <code class="highlighter-rouge">kdp.evaluate('{mediaProxy.entry.name}');</code></li>
+  <li>Check if the currently playing media is live: <code class="highlighter-rouge">kdp.evaluate('{mediaProxy.isLive}');</code></li>
+  <li>Get current entry metadata: <code class="highlighter-rouge">kdp.evaluate('{mediaProxy.entryMetadata}'); </code></li>
+  <li>Get current entry cue points: <code class="highlighter-rouge">kdp.evaluate('{mediaProxy.entryCuePoints}');</code></li>
+  <li>Get current video volume: <code class="highlighter-rouge">kdp.evaluate('{video.volume}');</code></li>
+  <li>Get current video time: <code class="highlighter-rouge">kdp.evaluate('{video.player.currentTime}');</code></li>
+  <li>Determine if an ad is currently playing: <code class="highlighter-rouge">kdp.evaluate('{sequenceProxy.isInSequence}');</code></li>
+  <li>Get current ad duration: <code class="highlighter-rouge">kdp.evaluate('{sequenceProxy.duration}');</code></li>
+  <li>Get time remaining until ad finish playback: <code class="highlighter-rouge">kdp.evaluate('{sequenceProxy.timeRemaining}');</code></li>
+</ul>
+
+<h3 id="applying-formatters-to-evaluated-player-properties">Applying Formatters to Evaluated Player Properties</h3>
+
+<p>When evaluating expressions, you can apply formatters to format the returned value using any of the available formatting functions or by adding custom formatters. <br />
+Formatters are applied to evaluated properties by adding pipe (<code class="highlighter-rouge">|</code>) and the name of the formatters after the property.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// will print "video was watched 100000 times":</span>
+<span class="nx">kdp</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="s1">'video was watched {mediaProxy.entry.views} times'</span><span class="p">);</span>
+
+<span class="c1">// will print "video was watched 100,000 times":</span>
+<span class="nx">kdp</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="s1">'video was watched {mediaProxy.entry.views|numberWithCommas} times'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>Using formatters in properties:</strong><br />
+Formatters can be used in configuration properties as well. Simply passing the curly braces notation along with piped formatters in configuration properties using flashvars or UIVars will apply formatting to the properties.<br />
+For example, to set the title bar to show the entry name and number of times it was watched (e.g., “My Awesome Video (10,000)”), add the following property to the flashvars:</p>
+
+  <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s2">"titleLabel"</span><span class="err">:</span> <span class="p">{</span> 
+	<span class="s2">"plugin"</span> <span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="s2">"text"</span> <span class="err">:</span>  <span class="s2">"{mediaProxy.entry.name} ({mediaProxy.entry.views|numberWithCommas})"</span> 
+<span class="p">}</span>
+</code></pre>
+  </div>
+</blockquote>
+
+<h4 id="available-core-formatters">Available Core Formatters</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">timeFormat</code>: Takes time in seconds and returns hh:mm:ss format</li>
+  <li><code class="highlighter-rouge">dateFormat</code>: Takes a time stamp and returns javascript toString format</li>
+  <li><code class="highlighter-rouge">numberWithCommas</code>: Takes a number and returns a number with comas</li>
+</ul>
+
+<blockquote>
+  <p>Custom formatters can be added by creating JavaScript player plugins. Read more about custom Player plugins and custom formatters.</p>
+</blockquote>
+
+<h2 id="setting-player-properties-at-runtime">Setting Player Properties at Runtime</h2>
+
+<p>To modify Player properties during runtime, use the <code class="highlighter-rouge">setKDPAttribute</code> command.  All Player and plugin properties can be set using a dot syntax. <br />
+<code class="highlighter-rouge">setKDPAttribute (object, property, value);</code></p>
+
+<ul>
+  <li><strong><code class="highlighter-rouge">object</code>:String</strong>: A string that represents the object you want to modify. Use standard dot notation to specify sub-objects, for example: configProxy.flashvars</li>
+  <li><strong><code class="highlighter-rouge">property</code>:String</strong>: The Player property that you want to modify</li>
+  <li><strong><code class="highlighter-rouge">value</code>:String</strong>: he new value that you want to set for the Player property</li>
+</ul>
+
+<p>For example:</p>
+
+<ul>
+  <li>To change the list of media items (entries) that will show in the Related Videos screen:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kdp</span><span class="p">.</span><span class="nx">setKDPAttribute</span><span class="p">(</span><span class="s1">'related'</span><span class="p">,</span> <span class="s1">'entryList'</span><span class="p">,</span> <span class="s1">'0_33vkwid6,1_18leun9q,1_23pqn2nu'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>To hide the scrubber:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kdp</span><span class="p">.</span><span class="nx">setKDPAttribute</span><span class="p">(</span><span class="s1">'scrubber'</span><span class="p">,</span> <span class="s1">'visible'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: Some properties are read-only or allow setting values only once during Player initialization.</p>
+</blockquote>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

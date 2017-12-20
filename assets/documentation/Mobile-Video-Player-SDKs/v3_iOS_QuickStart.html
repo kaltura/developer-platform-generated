@@ -1,0 +1,567 @@
+  <title>Quick Start</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Quick Start" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/v3_iOS_QuickStart.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/v3_iOS_QuickStart.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Quick Start</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue May 16 07:27:26 2017</span>, By <span class="commit-author">Gal Orlanczyk</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/v3_iOS_QuickStart.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Thu Mar 2 06:37:32 2017, By: ElizaSapir</td></tr-->
+				<!--tr><td>Last commit: Tue May 16 07:27:26 2017, By <span class="commit-author">Gal Orlanczyk</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>ElizaSapir (3 commits) (<a href="mailto:eliza.sapir@kaltura.com">eliza.sapir@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gal Orlanczyk (4 commits) (<a href="mailto:gal-orlanczyk@users.noreply.github.com">gal-orlanczyk@users.noreply.github.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gal Orlanczyk (1 commits) (<a href="mailto:gal.orlanczyk@outlook.com">gal.orlanczyk@outlook.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>In this section, you’ll learn how to build a simple video application using Kaltura SDK.</p>
+
+<h2 id="create-the-project">Create the Project</h2>
+
+<h3 id="set-up-a-project-in-xcode">Set Up a Project in Xcode</h3>
+
+<ol>
+  <li>
+    <p>Open Xcode and click <strong>start new Xcode Project</strong>:<br />
+ <img src="./v3-images/iOS/newProj.png" alt="help" /></p>
+  </li>
+  <li>
+    <p>Next, select <strong>Single View Application</strong> and click <strong>Next</strong>:<br />
+ <img src="./v3-images/iOS/singleView.png" alt="help" /></p>
+  </li>
+  <li>
+    <p>In the dialog screen displayed, enter the relevant details:<br />
+ <img src="./v3-images/iOS/projDetails.png" alt="help" /></p>
+  </li>
+</ol>
+
+<h3 id="add-the-sdk">Add the SDK</h3>
+
+<p>The simplest way to add the SDK and its dependencies to your project is by using CocoaPods.</p>
+
+<blockquote>
+  <p>Note: Using CocoaPods on an existing Xcode project will modify the project file, so you may want to make a backup before doing this.</p>
+</blockquote>
+
+<p>1 . In your project folder, create a plain text file called <code class="highlighter-rouge">Podfile</code> (no file extension).</p>
+
+<p>2 . Using a text editor, add the following lines of code to the Podfile and save it.</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
+
+<span class="n">use_frameworks!</span>
+
+<span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'9.0'</span> <span class="c1"># (define required version)</span>
+
+<span class="n">target</span> <span class="s1">'BasicSample'</span> <span class="k">do</span>
+    <span class="n">pod</span> <span class="s1">'PlayKit'</span>
+<span class="k">end</span>
+
+<span class="n">pre_install</span> <span class="k">do</span> <span class="o">|</span><span class="n">installer</span><span class="o">|</span>
+    <span class="k">def</span> <span class="nc">installer</span><span class="o">.</span><span class="nf">verify_no_static_framework_transitive_dependencies</span><span class="p">;</span> <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">post_install</span> <span class="k">do</span> <span class="o">|</span><span class="n">installer</span><span class="o">|</span> 
+    <span class="n">installer</span><span class="p">.</span><span class="nf">pods_project</span><span class="p">.</span><span class="nf">targets</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">target</span><span class="o">|</span> 
+    	<span class="n">target</span><span class="p">.</span><span class="nf">build_configurations</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span> 
+            <span class="n">config</span><span class="p">.</span><span class="nf">build_settings</span><span class="p">[</span><span class="s1">'SWIFT_VERSION'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'3.0'</span>
+      	    <span class="n">config</span><span class="p">.</span><span class="nf">build_settings</span><span class="p">[</span><span class="s1">'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'NO'</span>
+        <span class="k">end</span> 
+    <span class="k">end</span> 
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>3 . Navigate to the podfile location via Terminal and type the command:</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>    <span class="n">pod</span> <span class="n">install</span>
+</code></pre>
+</div>
+
+<h3 id="import-the-native-sdk">Import the Native SDK</h3>
+
+<p>Go to the desired file (e.g., <code class="highlighter-rouge">ViewController.swift</code>) and add the line below:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">PlayKit</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="cp">#import "PlayKit-Swift.h"
+</span></code></pre>
+</div>
+
+<h3 id="code-the-video-player-application">Code the Video Player Application</h3>
+
+<blockquote>
+  <p>Note: to change log level use <code class="highlighter-rouge">PlayKitManager</code> log level property.</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">PlayKitManager</span><span class="p">.</span><span class="n">logLevel</span> <span class="o">=</span> <span class="n">PKLogLevelInfo</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">logLevel</span> <span class="o">=</span> <span class="o">.</span><span class="n">info</span> 
+</code></pre>
+</div>
+
+<p>You’re now ready to code the video player application using the following options.</p>
+
+<p><strong>Declare a Player Variable</strong></p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="p">?</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">id</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">player</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p><strong>Set a Player Instance via a Sample Configuration</strong></p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">contentURL</span> <span class="o">=</span> <span class="s">"https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"</span>
+
+<span class="c1">// create media source and initialize a media entry with that source</span>
+<span class="k">let</span> <span class="nv">entryId</span> <span class="o">=</span> <span class="s">"sintel"</span>
+<span class="k">let</span> <span class="nv">source</span> <span class="o">=</span> <span class="kt">MediaSource</span><span class="p">(</span><span class="n">entryId</span><span class="p">,</span> <span class="nv">contentUrl</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">contentURL</span><span class="p">),</span> <span class="nv">drmData</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">mediaFormat</span><span class="p">:</span> <span class="o">.</span><span class="n">hls</span><span class="p">)</span>
+<span class="c1">// setup media entry</span>
+<span class="k">let</span> <span class="nv">mediaEntry</span> <span class="o">=</span> <span class="kt">MediaEntry</span><span class="p">(</span><span class="n">entryId</span><span class="p">,</span> <span class="nv">sources</span><span class="p">:</span> <span class="p">[</span><span class="n">source</span><span class="p">],</span> <span class="nv">duration</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">// create media config</span>
+<span class="k">let</span> <span class="nv">mediaConfig</span> <span class="o">=</span> <span class="kt">MediaConfig</span><span class="p">(</span><span class="nv">mediaEntry</span><span class="p">:</span> <span class="n">mediaEntry</span><span class="p">)</span>
+
+<span class="k">do</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">!.</span><span class="nf">prepare</span><span class="p">(</span><span class="n">mediaConfig</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">playerContainer</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">!.</span><span class="n">view</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="k">let</span> <span class="nv">e</span> <span class="p">{</span>
+    <span class="c1">// error loading the player</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">NSURL</span> <span class="o">*</span><span class="n">contentURL</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSURL</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithString</span><span class="p">:</span><span class="s">@"https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"</span><span class="p">];</span>
+
+<span class="c1">// create media source and initialize a media entry with that source
+</span><span class="n">NSString</span> <span class="o">*</span><span class="n">entryId</span> <span class="o">=</span> <span class="s">@"sintel"</span><span class="p">;</span>
+<span class="n">MediaSource</span><span class="o">*</span> <span class="n">source</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MediaSource</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">:</span><span class="n">entryId</span> <span class="nf">contentUrl</span><span class="p">:</span><span class="n">contentURL</span> <span class="n">mimeType</span><span class="o">:</span><span class="nb">nil</span> <span class="n">drmData</span><span class="o">:</span><span class="nb">nil</span> <span class="n">mediaFormat</span><span class="o">:</span><span class="n">MediaFormatHls</span><span class="p">];</span>
+<span class="n">NSArray</span><span class="o">&lt;</span><span class="n">MediaSource</span><span class="o">*&gt;*</span> <span class="n">sources</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSArray</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithObjects</span><span class="p">:</span><span class="n">source</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+<span class="c1">// setup media entry
+</span><span class="n">MediaEntry</span> <span class="o">*</span><span class="n">mediaEntry</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MediaEntry</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">:</span><span class="n">entryId</span> <span class="nf">sources</span><span class="p">:</span><span class="n">sources</span> <span class="n">duration</span><span class="o">:-</span><span class="mi">1</span><span class="p">];</span>
+
+<span class="c1">// create media config
+</span><span class="n">MediaConfig</span> <span class="o">*</span><span class="n">mediaConfig</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MediaConfig</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithMediaEntry</span><span class="p">:</span><span class="n">mediaEntry</span> <span class="nf">startTime</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">];</span>
+
+<span class="c1">// load the player
+</span><span class="n">NSError</span> <span class="o">*</span><span class="n">error</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="n">self</span><span class="p">.</span><span class="n">player</span> <span class="o">=</span> <span class="p">[</span><span class="n">PlayKitManager</span><span class="p">.</span><span class="n">sharedInstance</span> <span class="nf">loadPlayerWithPluginConfig</span><span class="p">:</span><span class="nb">nil</span> <span class="nf">error</span><span class="p">:</span><span class="o">&amp;</span><span class="n">error</span><span class="p">];</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">player</span> <span class="nf">prepare</span><span class="p">:</span><span class="n">mediaConfig</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">playerContainer</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// error loading the player
+</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: To learn more about player config creation, see the <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/master/documentation/Mobile-Video-Player-SDKs/v3_iOS_PlayerConfig.md">PlayerConfig Doc</a> article.</p>
+</blockquote>
+
+<h3 id="setting-the-player-view-size">Setting the Player View Size</h3>
+
+<ol>
+  <li>Create a player container:</li>
+</ol>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">playerContainer</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">IBOutlet</span> <span class="n">UIView</span> <span class="o">*</span><span class="n">playerContainer</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<ol>
+  <li>The way we recommand setting player’s view is:</li>
+</ol>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">toContainer</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">playerContainer</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">view</span> <span class="nf">addToContainer</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">playerContainer</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: You can also use the player view frame if needed:</p>
+</blockquote>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">playerContainer</span><span class="o">.</span><span class="n">bounds</span>
+<span class="n">playerContainer</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">view</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">self</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">playerContainer</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span><span class="n">self</span><span class="p">.</span><span class="n">playerContainer</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>   
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">playerContainer</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<h3 id="adding-custom-buttons-and-controls-to-the-player">Adding Custom Buttons and Controls to the Player</h3>
+
+<p>Add custom buttons and controls to the player as follows:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">playTouched</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">isPlaying</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">pauseTouched</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">isPlaying</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="nf">pause</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">IBAction</span><span class="p">)</span><span class="nf">playTouched</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">self</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">isPlaying</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">player</span> <span class="nf">play</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">IBAction</span><span class="p">)</span><span class="nf">pauseTouched</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">isPlaying</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">player</span> <span class="nf">pause</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p><a href="https://github.com/kaltura/playkit-ios-samples/tree/master/PlayKitApp/PlayKitApp">Download Full Swift Sample</a><br />
+<a href="https://github.com/kaltura/playkit-ios-samples/tree/master/PlayKitApp/ObjCSample">Download Full Obj-C Sample</a></p>
+</blockquote>
+
+<h2 id="code-sample">Code Sample</h2>
+
+<p><a href="https://github.com/kaltura/playkit-ios-samples">PlayKit iOS samples</a> repo has a dedicated samples with more details.</p>
+
+<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+
+<p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

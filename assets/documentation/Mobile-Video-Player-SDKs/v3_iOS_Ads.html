@@ -1,0 +1,604 @@
+  <title>Ads</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Ads" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/v3_iOS_Ads.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/v3_iOS_Ads.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Ads</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Jun 12 10:01:54 2017</span>, By <span class="commit-author">ElizaSapir</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/v3_iOS_Ads.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed Jan 18 17:07:35 2017, By: Eliza Sapir</td></tr-->
+				<!--tr><td>Last commit: Mon Jun 12 10:01:54 2017, By <span class="commit-author">ElizaSapir</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (4 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Eliza Sapir (4 commits) (<a href="mailto:eliza.sapir@kaltura.com">eliza.sapir@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>ElizaSapir (7 commits) (<a href="mailto:eliza.sapir@kaltura.com">eliza.sapir@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gal Orlanczyk (4 commits) (<a href="mailto:gal-orlanczyk@users.noreply.github.com">gal-orlanczyk@users.noreply.github.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>This document describes the steps required for adding support for the IMA Plugin functionality on iOS devices. IMA (or Interactive Media Ads) was developed by Google to enable you to display ads in your application’s video, audio, and game content. To learn more about Google’s IMA, see <a href="https://developers.google.com/interactive-media-ads/">Google’s IMA developer’s site</a>.</p>
+
+<blockquote>
+  <p>Supported IMA SDK Version is: 3.4.1</p>
+</blockquote>
+
+<h2 id="enable-ima-plugins-for-the-kaltura-video-player">Enable IMA Plugins for the Kaltura Video Player</h2>
+
+<p>To enable the IMA Plugin on iOS devices for the Kaltura Video Player, add the following line to your Podfile:</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">pod</span> <span class="s1">'PlayKit/IMAPlugin'</span>
+</code></pre>
+</div>
+
+<h2 id="control-ad-play">Control Ad Play</h2>
+
+<p>To control ad play during runtime, implement the following Video Player delegate method:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">playerShouldPlayAd</span><span class="p">(</span><span class="n">_</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">playerShouldPlayAd</span><span class="p">:(</span><span class="n">id</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">)</span><span class="nv">player</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
+
+<h2 id="register-the-ima-plugin">Register the IMA Plugin</h2>
+
+<p>Next, register the IMA Plugin inside your application as follows:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">registerPlugin</span><span class="p">(</span><span class="kt">IMAPlugin</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="n">PlayKitManager</span><span class="p">.</span><span class="n">sharedInstance</span> <span class="nf">registerPlugin</span><span class="p">:</span> <span class="n">IMAPlugin</span><span class="p">.</span><span class="n">self</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<h2 id="configure-the-kaltura-video-player-to-use-the-ima-plugin">Configure the Kaltura Video Player to Use the IMA Plugin</h2>
+
+<p>To configure the player to use IMA Plugin, add the following configuration to your <code class="highlighter-rouge">PlayerConfig</code> file as follows:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">adsConfig</span> <span class="o">=</span> <span class="kt">AdsConfig</span><span class="p">()</span>
+<span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">adTagUrl</span><span class="p">:</span> <span class="err">'</span><span class="n">your</span> <span class="n">ad</span> <span class="n">tag</span> <span class="n">url</span><span class="err">'</span><span class="p">)</span>
+<span class="n">playerConfig</span><span class="o">.</span><span class="n">plugins</span><span class="p">[</span><span class="kt">IMAPlugin</span><span class="o">.</span><span class="n">pluginName</span><span class="p">]</span> <span class="o">=</span> <span class="n">adsConfig</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">AdsConfig</span> <span class="o">*</span><span class="n">adsConfig</span> <span class="o">=</span> <span class="p">[</span><span class="n">AdsConfig</span> <span class="nf">new</span><span class="p">];</span>
+<span class="n">adsConfig</span><span class="p">.</span><span class="n">adTagUrl</span> <span class="o">=</span> <span class="s">@"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&amp;iu=/3274935/preroll&amp;impl=s&amp;gdfp_req=1&amp;env=vp&amp;output=xml_vast2&amp;unviewed_position_start=1&amp;url=[referrer_url]&amp;description_url=[description_url]&amp;correlator=[timestamp]"</span><span class="p">;</span>
+<span class="p">[</span><span class="n">config</span> <span class="nf">setPlugins</span><span class="p">:</span> <span class="p">@{</span><span class="n">IMAPlugin</span><span class="p">.</span><span class="n">pluginName</span><span class="o">:</span> <span class="n">adsConfig</span><span class="p">}];</span>
+</code></pre>
+</div>
+
+<h2 id="configure-clickthroughs">Configure Clickthroughs</h2>
+
+<p>The IMA Plugin offers two options for opening ad landing pages:</p>
+
+<ul>
+  <li>Via an in-app browser</li>
+  <li>Via Safari</li>
+</ul>
+
+<p>By default, the plugin will open pages using Safari. To update the plugin to use an in-app browser, you’ll need to set the <code class="highlighter-rouge">webOpenerPresentingController</code> value in the AdsConfig object as follows:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">webOpenerPresentingController</span><span class="p">:</span> <span class="n">webOpenerPresentingController</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="p">.</span><span class="n">webOpenerPresentingController</span> <span class="o">=</span> <span class="n">webOpenerPresentingController</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="add-companion-ads">Add Companion Ads</h2>
+
+<p>To see companion ads in the device, you’ll need to implement the following steps:</p>
+
+<ol>
+  <li>Configure an ad tag to return a companion ad (prepare this in advance).</li>
+  <li>Supply a companion ad container to the plugin using the following format (make sure the size of the companion being returned is the same size as the UIView in which you’re trying to display it):</li>
+</ol>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">companionView</span><span class="p">:</span> <span class="n">companionView</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="p">.</span><span class="n">companionView</span> <span class="o">=</span> <span class="n">companionView</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="specify-the-desired-bitrate-and-video-formats">Specify the Desired Bitrate and Video Formats</h2>
+
+<p>The IMA Plugin enables you to specify the video formats and bitrate using the following configuration:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">videoMimeTypes</span><span class="p">:</span> <span class="p">[</span><span class="s">"video/mp4"</span><span class="p">,</span> <span class="s">"application/x-mpegURL"</span><span class="p">])</span>
+<span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">videoBitrate</span><span class="p">:</span> <span class="mi">1024</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="p">.</span><span class="n">videoMimeTypes</span> <span class="o">=</span> <span class="p">@[</span><span class="s">@"video/mp4"</span><span class="p">,</span> <span class="s">@"application/x-mpegURL"</span><span class="p">];</span>
+<span class="n">adsConfig</span><span class="p">.</span><span class="n">videoBitrate</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="specify-the-localized-ad-language">Specify the Localized Ad Language</h2>
+
+<p>The IMA Plugin enables you to specify the language to be used to localize ads and the Video Player UI controls.</p>
+
+<p>To do so, set the language parameter of the AdsConfig to the appropriate language code using <a href="https://developers.google.com/interactive-media-ads/docs/sdks/ios/ads#languagecodes">this reference</a>.</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">language</span><span class="p">:</span> <span class="s">"en"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="p">.</span><span class="n">language</span> <span class="o">=</span> <span class="s">@"en"</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="listen-to-ad-events">Listen to Ad Events</h2>
+
+<p>Use the following code to listen to ad events:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PKEvent</span><span class="o">.</span><span class="k">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kt">AdEvents</span><span class="o">.</span><span class="n">adDidRequestPause</span><span class="p">,</span> <span class="kt">AdEvents</span><span class="o">.</span><span class="n">adDidRequestResume</span><span class="p">]</span>
+
+<span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="n">events</span><span class="p">)</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="k">is</span> <span class="kt">AdEvents</span><span class="o">.</span><span class="n">adDidRequestResume</span> <span class="p">{</span>
+        <span class="c1">// handle adDidRequestResume</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">event</span> <span class="k">is</span> <span class="kt">AdEvents</span><span class="o">.</span><span class="n">adDidRequestPause</span> <span class="p">{</span>
+        <span class="c1">// handle adDidRequestPause</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">NSArray</span> <span class="o">*</span><span class="n">events</span> <span class="o">=</span> <span class="p">@[</span><span class="n">AdEvents</span><span class="p">.</span><span class="n">adDidRequestPause</span><span class="p">,</span> <span class="n">AdEvents</span><span class="p">.</span><span class="n">adDidRequestResume</span><span class="p">];</span>
+        
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">player</span> <span class="nf">addObserver</span><span class="p">:</span><span class="n">self</span> <span class="nf">events</span><span class="p">:</span> <span class="n">events</span> <span class="n">block</span><span class="o">:^</span><span class="p">(</span><span class="n">PKEvent</span> <span class="o">*</span> <span class="n">_Nonnull</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">event</span> <span class="nf">isKindOfClass</span><span class="p">:</span> <span class="n">AdEvents</span><span class="p">.</span><span class="n">adDidRequestResume</span><span class="p">])</span> <span class="p">{</span>
+        <span class="c1">// handle adDidRequestResume
+</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">([</span><span class="n">event</span> <span class="nf">isKindOfClass</span><span class="p">:</span> <span class="n">AdEvents</span><span class="p">.</span><span class="n">adDidRequestPause</span><span class="p">])</span> <span class="p">{</span>
+        <span class="c1">// handle adDidRequestPause
+</span>    <span class="p">}</span>
+<span class="p">}];</span>
+</code></pre>
+</div>
+
+<h3 id="ad-info-event">Ad Info Event</h3>
+
+<p>To observe ad info when an ad is starting use the following:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adStarted</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">info</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">adInfo</span> <span class="p">{</span>
+        <span class="c1">// use ad info</span>
+        <span class="k">switch</span> <span class="n">info</span><span class="o">.</span><span class="n">positionType</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">preRoll</span><span class="p">:</span> <span class="c1">// handle pre roll</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">midRoll</span><span class="p">:</span> <span class="c1">// handle mid roll</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">postRoll</span><span class="p">:</span> <span class="c1">// handle post roll</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">kPlayer</span> <span class="nf">addObserver</span><span class="p">:</span> <span class="n">self</span> <span class="nf">events</span><span class="p">:</span> <span class="p">@[</span><span class="n">AdEvent</span><span class="p">.</span><span class="n">adStarted</span><span class="p">]</span> <span class="n">block</span><span class="o">:^</span><span class="p">(</span><span class="n">PKEvent</span> <span class="o">*</span> <span class="n">_Nonnull</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">PKAdInfo</span> <span class="o">*</span><span class="n">info</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">adInfo</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// use ad info
+</span>        <span class="k">switch</span> <span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">positionType</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="n">AdPositionTypePreRoll</span><span class="p">:</span>
+                <span class="c1">// handle pre roll
+</span>                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">AdPositionTypeMidRoll</span><span class="p">:</span>
+                <span class="c1">// handle mid roll
+</span>                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">AdPositionTypePostRoll</span><span class="p">:</span>
+                <span class="c1">// handle post roll
+</span>                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</code></pre>
+</div>
+
+<h3 id="ad-cue-points-event">Ad Cue Points Event</h3>
+
+<p>To observe ad cue points update use the following:</p>
+
+<blockquote>
+  <p>swift</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adCuePointsUpdate</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">adCuePoints</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">adCuePoints</span> <span class="p">{</span>
+        <span class="c1">// use ad cue points</span>
+        <span class="k">if</span> <span class="n">adCuePoints</span><span class="o">.</span><span class="n">hasPreRoll</span> <span class="o">||</span> <span class="n">adCuePoints</span><span class="o">.</span><span class="n">hasMidRoll</span> <span class="o">||</span> <span class="n">adCuePoints</span><span class="o">.</span><span class="n">hasPostRoll</span> <span class="p">{</span>
+            <span class="c1">// do your stuff</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>objc</p>
+</blockquote>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">kPlayer</span> <span class="nf">addObserver</span><span class="p">:</span> <span class="n">self</span> <span class="nf">events</span><span class="p">:</span> <span class="p">@[</span><span class="n">AdEvent</span><span class="p">.</span><span class="n">adCuePointsUpdate</span><span class="p">]</span> <span class="n">block</span><span class="o">:^</span><span class="p">(</span><span class="n">PKEvent</span> <span class="o">*</span> <span class="n">_Nonnull</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">PKAdCuePoints</span> <span class="o">*</span><span class="n">adCuePoints</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">adCuePoints</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">adCuePoints</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// use ad cue points
+</span>        <span class="k">if</span> <span class="p">(</span><span class="n">adCuePoints</span><span class="p">.</span><span class="n">hasPreRoll</span> <span class="o">||</span> <span class="n">adCuePoints</span><span class="p">.</span><span class="n">hasMidRoll</span> <span class="o">||</span> <span class="n">adCuePoints</span><span class="p">.</span><span class="n">hasPostRoll</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// do your stuff
+</span>        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</code></pre>
+</div>
+
+<h2 id="common-issues">Common Issues</h2>
+
+<p>If you get below error:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Error Domain=com.kaltura.playkit.error.ima Code=1005 "Ads cannot be requested because the ad container is not attached to the view hierarchy." UserInfo={errorType=1, NSLocalizedDescription=Ads cannot be requested because the ad container is not attached to the view hierarchy.}
+</code></pre>
+</div>
+
+<p>Please make sure that the order of removing player on your side is:</p>
+
+<div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="c1">// Firstly call destroy
+</span><span class="p">[</span><span class="n">_kPlayer</span> <span class="nf">destroy</span><span class="p">];</span>
+<span class="c1">// Only then
+</span><span class="p">[</span><span class="n">_kPlayer</span><span class="p">.</span><span class="n">view</span> <span class="nf">removeFromSuperview</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+
+<p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

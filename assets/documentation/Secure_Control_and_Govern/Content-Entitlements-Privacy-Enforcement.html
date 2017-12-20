@@ -1,0 +1,286 @@
+  <title>Content Entitlements and Privacy Enforcement</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Content Entitlements and Privacy Enforcement" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Secure_Control_and_Govern/Content-Entitlements-Privacy-Enforcement.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Secure_Control_and_Govern/Content-Entitlements-Privacy-Enforcement.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Content Entitlements and Privacy Enforcement</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Aug 8 13:28:22 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Secure_Control_and_Govern/Content-Entitlements-Privacy-Enforcement.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Apr 2 10:39:09 2017, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 8 13:28:22 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (1 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>Content Entitlements is a method for governing access of end-users to groups of content items (entries) using categories.  <br />
+Entitlements are configured at the category level, by setting a unique key to identify the applicative context in which to allow access to the category’s entries.</p>
+
+<p>Applications such as <a href="http://corp.kaltura.com/Products/Video-Applications/Kaltura-Mediaspace-Video-Portal">Kaltura MediaSpace</a> implement entitlements to achieve the concept of “Authenticated Content Channels”.</p>
+
+<p>Example use-cases based on content entitlements:</p>
+
+<ul>
+  <li>Group collaboration based on channel membership</li>
+  <li>Premium content - get access to channels/categories based on a paid subscription</li>
+</ul>
+
+<p>To learn about how to configure and work with Content Entitlements read the <a href="/api-docs/Secure_Control_and_Govern/Content-Categories-Management.html">Categories and Content Entitlements article</a>.</p>
+
+<p>The following diagram outlines the rules on which Kaltura bases and enforces content entitlements.  <br />
+You can configure the Kaltura system to be more restrictive or open in allowing access to your assets.</p>
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="980px" style="width:598px;height:980px;" version="1.1" viewBox="0 0 598 980" width="598px"><defs /><g><polygon fill="#FEFECE" points="308.875,11.0942,505.875,11.0942,517.875,30.3013,505.875,49.5083,308.875,49.5083,296.875,30.3013,308.875,11.0942" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="308.875" y="21.3047">entitlements</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="53" x="393.875" y="21.3047">has been</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="55" x="450.875" y="21.3047">disabled</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="140" x="308.875" y="34.1094">specifically for this entry</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="35" x="308.875" y="46.9141">by the</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="151" x="347.875" y="46.9141">widget or feed services</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="276.875" y="27.707">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="228.375" y="59.5083" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="238.375" y="80.647">Entry is allowed</text><polygon fill="#FEFECE" points="306.875,134.876,507.875,134.876,519.875,147.6807,507.875,160.4854,306.875,160.4854,294.875,147.6807,306.875,134.876" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="201" x="306.875" y="145.0864">defaultEntitlementEnforcement</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="47" x="306.875" y="157.8911">is set to</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="39" x="357.875" y="157.8911">FALSE</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="84" x="400.875" y="157.8911">on the account</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="274.875" y="145.0864">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="226.375" y="170.4854" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="236.375" y="191.624">Entry is allowed</text><polygon fill="#FEFECE" points="285.875,245.853,528.875,245.853,540.875,265.0601,528.875,284.2671,285.875,284.2671,273.875,265.0601,285.875,245.853" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="285.875" y="256.0635">ks</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="21" x="303.875" y="256.0635">has</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="121" x="328.875" y="256.0635">disableentitlement</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="64" x="453.875" y="256.0635">permission</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="16" x="285.875" y="268.8682">OR</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="243" x="285.875" y="281.6729">disableentitlementforentry == entryId</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="253.875" y="262.4658">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="205.375" y="294.2671" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="215.375" y="315.4058">Entry is allowed</text><polygon fill="#FEFECE" points="342.375,369.6348,472.375,369.6348,484.375,382.4395,472.375,395.2441,342.375,395.2441,330.375,382.4395,342.375,369.6348" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="130" x="342.375" y="379.8452">The user (ks.userId) is</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="40" x="342.375" y="392.6499">owner</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="66" x="386.375" y="392.6499">of the entry</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="310.375" y="379.8452">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="261.875" y="405.2441" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="271.875" y="426.3828">Entry is allowed</text><polygon fill="#FEFECE" points="287.375,480.6118,527.375,480.6118,539.375,493.4165,527.375,506.2212,287.375,506.2212,275.375,493.4165,287.375,480.6118" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="141" x="287.375" y="490.8223">The user (ks.userId) has</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="167" x="287.375" y="503.627">edit or publish permission</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="69" x="458.375" y="503.627">on the entry</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="255.375" y="490.8223">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="206.875" y="516.2212" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="216.875" y="537.3599">Entry is allowed</text><polygon fill="#FEFECE" points="333.375,597.9912,481.375,597.9912,493.375,610.7959,481.375,623.6006,333.375,623.6006,321.375,610.7959,333.375,597.9912" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="43" x="333.375" y="608.2017">Entry is</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="70" x="380.375" y="608.2017">associated</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="23" x="454.375" y="608.2017">with</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="71" x="333.375" y="621.0063">one or more</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="408.375" y="621.0063">categories</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="301.375" y="608.2017">yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="57" x="493.375" y="582.5923">Entry NOT</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="62" x="493.375" y="595.397">associated</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="85" x="493.375" y="608.2017">with catrgories</text><polygon fill="#FEFECE" points="184.25,633.6006,368.25,633.6006,380.25,646.4053,368.25,659.21,184.25,659.21,172.25,646.4053,184.25,633.6006" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="16" x="184.25" y="643.811">On</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="16" x="204.25" y="643.811">all</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="144" x="224.25" y="643.811">of the entry's categories:</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="0" x="188.25" y="656.6157" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="188.25" y="656.6157">privacyContext == null</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="152.25" y="643.811">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="103.75" y="669.21" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="113.75" y="690.3486">Entry is allowed</text><polygon fill="#FEFECE" points="179.75,744.5776,372.75,744.5776,384.75,763.7847,372.75,782.9917,179.75,782.9917,167.75,763.7847,179.75,744.5776" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="112" x="179.75" y="754.7881">ks.privacycontext</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="108" x="179.75" y="767.5928">equal to one of the</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="193" x="179.75" y="780.3975">entry's categories' privacyContext</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="147.75" y="761.1904">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="99.25" y="792.9917" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="109.25" y="814.1304">Entry is allowed</text><polygon fill="#FEFECE" points="197.75,874.7617,354.75,874.7617,366.75,887.5664,354.75,900.3711,197.75,900.3711,185.75,887.5664,197.75,874.7617" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="106" x="197.75" y="884.9722">category.privacy</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="47" x="307.75" y="884.9722">is set to</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="103" x="197.75" y="897.7769">MEMBERS_ONLY</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="165.75" y="884.9722">yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="93" x="366.75" y="859.3628">category.privacy</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="33" x="366.75" y="872.1675">set to</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="92" x="366.75" y="884.9722">AUTHENTICATED</text><polygon fill="#FEFECE" points="90.5,910.3711,231.5,910.3711,243.5,923.1758,231.5,935.9805,90.5,935.9805,78.5,923.1758,90.5,910.3711" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="58" x="90.5" y="920.5815">ks.userId</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="21" x="152.5" y="920.5815">is a</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="51" x="90.5" y="933.3862">member</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="86" x="145.5" y="933.3862">of the category</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="58.5" y="920.5815">yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="243.5" y="920.5815">no</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="10" y="945.9805" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="20" y="967.1191">Entry is allowed</text><rect fill="#8B0000" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="99" x="204" y="945.9805" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="79" x="214" y="967.1191">Entry denied</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="333" y="910.3711" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="343" y="931.5098">Entry is allowed</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="480" y="633.6006" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="490" y="654.7393">Entry is allowed</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="296.875" x2="286.875" y1="30.3013" y2="30.3013" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="286.875" x2="286.875" y1="30.3013" y2="59.5083" /><polygon fill="#0000FF" points="282.875,49.5083,286.875,59.5083,290.875,49.5083,286.875,53.5083" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="517.875" x2="527.875" y1="30.3013" y2="30.3013" /><polygon fill="#444444" points="523.875,54.8892,527.875,64.8892,531.875,54.8892,527.875,58.8892" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="527.875" x2="527.875" y1="30.3013" y2="98.4771" /><line style="stroke: #444444; stroke-width: 1.5;" x1="527.875" x2="407.375" y1="98.4771" y2="98.4771" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="294.875" x2="284.875" y1="147.6807" y2="147.6807" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="284.875" x2="284.875" y1="147.6807" y2="170.4854" /><polygon fill="#0000FF" points="280.875,160.4854,284.875,170.4854,288.875,160.4854,284.875,164.4854" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="519.875" x2="529.875" y1="147.6807" y2="147.6807" /><polygon fill="#444444" points="525.875,169.0674,529.875,179.0674,533.875,169.0674,529.875,173.0674" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="529.875" x2="529.875" y1="147.6807" y2="209.4541" /><line style="stroke: #444444; stroke-width: 1.5;" x1="529.875" x2="407.375" y1="209.4541" y2="209.4541" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="98.4771" y2="134.876" /><polygon fill="#8B0000" points="403.375,124.876,407.375,134.876,411.375,124.876,407.375,128.876" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="114.7817">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="273.875" x2="263.875" y1="265.0601" y2="265.0601" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="263.875" x2="263.875" y1="265.0601" y2="294.2671" /><polygon fill="#0000FF" points="259.875,284.2671,263.875,294.2671,267.875,284.2671,263.875,288.2671" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="540.875" x2="550.875" y1="265.0601" y2="265.0601" /><polygon fill="#444444" points="546.875,289.6479,550.875,299.6479,554.875,289.6479,550.875,293.6479" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="550.875" x2="550.875" y1="265.0601" y2="333.2358" /><line style="stroke: #444444; stroke-width: 1.5;" x1="550.875" x2="407.375" y1="333.2358" y2="333.2358" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="209.4541" y2="245.853" /><polygon fill="#8B0000" points="403.375,235.853,407.375,245.853,411.375,235.853,407.375,239.853" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="225.7588">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="330.375" x2="320.375" y1="382.4395" y2="382.4395" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="320.375" x2="320.375" y1="382.4395" y2="405.2441" /><polygon fill="#0000FF" points="316.375,395.2441,320.375,405.2441,324.375,395.2441,320.375,399.2441" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="484.375" x2="494.375" y1="382.4395" y2="382.4395" /><polygon fill="#444444" points="490.375,403.8262,494.375,413.8262,498.375,403.8262,494.375,407.8262" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="494.375" x2="494.375" y1="382.4395" y2="444.2129" /><line style="stroke: #444444; stroke-width: 1.5;" x1="494.375" x2="407.375" y1="444.2129" y2="444.2129" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="333.2358" y2="369.6348" /><polygon fill="#8B0000" points="403.375,359.6348,407.375,369.6348,411.375,359.6348,407.375,363.6348" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="349.5405">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="275.375" x2="265.375" y1="493.4165" y2="493.4165" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="265.375" x2="265.375" y1="493.4165" y2="516.2212" /><polygon fill="#0000FF" points="261.375,506.2212,265.375,516.2212,269.375,506.2212,265.375,510.2212" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="539.375" x2="549.375" y1="493.4165" y2="493.4165" /><polygon fill="#444444" points="545.375,514.8032,549.375,524.8032,553.375,514.8032,549.375,518.8032" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="549.375" x2="549.375" y1="493.4165" y2="555.1899" /><line style="stroke: #444444; stroke-width: 1.5;" x1="549.375" x2="407.375" y1="555.1899" y2="555.1899" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="444.2129" y2="480.6118" /><polygon fill="#8B0000" points="403.375,470.6118,407.375,480.6118,411.375,470.6118,407.375,474.6118" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="460.5176">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="172.25" x2="162.25" y1="646.4053" y2="646.4053" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="162.25" x2="162.25" y1="646.4053" y2="669.21" /><polygon fill="#0000FF" points="158.25,659.21,162.25,669.21,166.25,659.21,162.25,663.21" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="380.25" x2="390.25" y1="646.4053" y2="646.4053" /><polygon fill="#444444" points="386.25,667.792,390.25,677.792,394.25,667.792,390.25,671.792" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="390.25" x2="390.25" y1="646.4053" y2="708.1787" /><line style="stroke: #444444; stroke-width: 1.5;" x1="390.25" x2="276.25" y1="708.1787" y2="708.1787" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="167.75" x2="157.75" y1="763.7847" y2="763.7847" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="157.75" x2="157.75" y1="763.7847" y2="792.9917" /><polygon fill="#0000FF" points="153.75,782.9917,157.75,792.9917,161.75,782.9917,157.75,786.9917" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="384.75" x2="394.75" y1="763.7847" y2="763.7847" /><polygon fill="#444444" points="390.75,788.3726,394.75,798.3726,398.75,788.3726,394.75,792.3726" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="394.75" x2="394.75" y1="763.7847" y2="831.9604" /><line style="stroke: #444444; stroke-width: 1.5;" x1="394.75" x2="276.25" y1="831.9604" y2="831.9604" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="276.25" x2="276.25" y1="708.1787" y2="744.5776" /><polygon fill="#8B0000" points="272.25,734.5776,276.25,744.5776,280.25,734.5776,276.25,738.5776" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="280.25" y="724.4834">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="78.5" x2="68.5" y1="923.1758" y2="923.1758" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="68.5" x2="68.5" y1="923.1758" y2="945.9805" /><polygon fill="#0000FF" points="64.5,935.9805,68.5,945.9805,72.5,935.9805,68.5,939.9805" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="243.5" x2="253.5" y1="923.1758" y2="923.1758" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="253.5" x2="253.5" y1="923.1758" y2="945.9805" /><polygon fill="#8B0000" points="249.5,935.9805,253.5,945.9805,257.5,935.9805,253.5,939.9805" style="stroke: #8B0000; stroke-width: 1.0;" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="185.75" x2="161" y1="887.5664" y2="887.5664" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="161" x2="161" y1="887.5664" y2="910.3711" /><polygon fill="#0000FF" points="157,900.3711,161,910.3711,165,900.3711,161,904.3711" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="366.75" x2="391.5" y1="887.5664" y2="887.5664" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="391.5" x2="391.5" y1="887.5664" y2="910.3711" /><polygon fill="#0000FF" points="387.5,900.3711,391.5,910.3711,395.5,900.3711,391.5,904.3711" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="276.25" x2="276.25" y1="831.9604" y2="874.7617" /><polygon fill="#8B0000" points="272.25,864.7617,276.25,874.7617,280.25,864.7617,276.25,868.7617" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="280.25" y="848.2651">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="321.375" x2="276.25" y1="610.7959" y2="610.7959" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="276.25" x2="276.25" y1="610.7959" y2="633.6006" /><polygon fill="#0000FF" points="272.25,623.6006,276.25,633.6006,280.25,623.6006,276.25,627.6006" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="493.375" x2="538.5" y1="610.7959" y2="610.7959" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="538.5" x2="538.5" y1="610.7959" y2="633.6006" /><polygon fill="#0000FF" points="534.5,623.6006,538.5,633.6006,542.5,623.6006,538.5,627.6006" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="555.1899" y2="597.9912" /><polygon fill="#8B0000" points="403.375,587.9912,407.375,597.9912,411.375,587.9912,407.375,591.9912" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="571.4946">no</text></g></svg>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

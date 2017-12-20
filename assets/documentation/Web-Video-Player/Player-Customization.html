@@ -1,0 +1,630 @@
+  <title>Customizing the Kaltura Web Video Player's Look-and-Feel and Behavior</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Customizing the Kaltura Web Video Player's Look-and-Feel and Behavior" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Web-Video-Player/Player-Customization.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Web-Video-Player/Player-Customization.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Customizing the Kaltura Web Video Player's Look-and-Feel and Behavior</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Sun Mar 26 05:23:45 2017</span>, By <span class="commit-author">AnnaAleksandrowicz</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Web-Video-Player/Player-Customization.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Sun Mar 26 05:23:45 2017, By <span class="commit-author">AnnaAleksandrowicz</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (3 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura Web Video Player look-and-feel is derived from the Player’s skin, which consists of CSS classes and graphical assets such as icons and fonts; and from its Javascript code, which is used to define user interactions and UI behaviour.</p>
+
+<p>You can customize the Web Video Player look-and-feel in a number of ways. A lot of customization can be done using the Player plugins, properties, and templating mechanism. More advanced customization can be achieved using custom CSS loading, external assets, and skin overrides. Custom Javascript code can also be used in order to change the UI behavior.</p>
+
+<p>This article covers these customization topics - from the simplest options to the more advanced and complex ones.</p>
+
+<h2 id="player-and-plugin-properties">Player and Plugin Properties</h2>
+
+<p>You can set Web Video Player properties to change the Player behavior; for example, setting the ‘EmbedPlayer.HidePosterOnStart’ property to ‘true’ will change the behavior of the Player, so that instead of showing the poster image (the default thumbnail set on the entry) on start, the video’s first frame will be shown instead.</p>
+
+<p>Many plugins have properties that affect the Player look-and-feel. For example, the controlBarContainer plugin has an “hover” property that defines hovering controls:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span><span class="p">{</span>
+    <span class="s1">'controlBarContainer'</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s1">'plugin'</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'hover'</span><span class="err">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="predefined-skin-selection">Predefined Skin Selection</h2>
+
+<p>The Kaltura Web Video Player has two available skins:</p>
+
+<ul>
+  <li>The “kdark” default skin</li>
+  <li>The “ott”, which is a custom skin for OTT products.</li>
+</ul>
+
+<p>You can choose to use either of these skins or, if you create your own custom skin, select it the same way:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s1">'layout'</span><span class="err">:</span><span class="p">{</span>
+        <span class="s1">'skin'</span><span class="err">:</span><span class="s1">'ott'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: The OTT skin is available only for basic configuration Players. It does not support all of the Kaltura Player plugins.</p>
+</blockquote>
+
+<h2 id="the-theme-plugin">The “Theme” Plugin</h2>
+
+<p>The “theme” plugin allows setting colors and sizes for all of the Player’s buttons and basic UI elements, such as the scrubber, icons etc.  <br />
+You can access the theme plugin properties using Studio as explained below. <br />
+You can also use the embed code Flashvars object in order to set a theme plugin properties for a specific Player instance.  <br />
+It is highly advised to use the theme plugin, instead of writing your own custom CSS file, to prevent redundant asset loading and to boost Player performances.</p>
+
+<h2 id="plugin-templates">Plugin Templates</h2>
+
+<p>Some of the Player plugins use templates to render the Player’s content. You can change this template easily using the plugin properties.</p>
+
+<p>You can also load external templets to override the default template, which changes both the look-and-feel and the data displayed. This is achieved by overriding the path to the template tmpl.html file of the specific plugin.</p>
+
+<p>For example, to override the template of the shared plugin, create your own tmpl.html file (based on the default template path), and in the Flashvars, pass this parameter:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s1">'share'</span><span class="err">:</span><span class="p">{</span>
+        <span class="s1">'templatePath'</span><span class="err">:</span><span class="s1">'https://link-to-my-custom-template.com/templatefile.tmpl.html'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Or, via UIVars in the Player Studio, pass the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>share.templatePath=https://link-to-my-custom-template.com/templatefile.tmpl.html
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: When creating and loading external resources such as template files, please review the “Managing External Assets” section below for additional information.</p>
+</blockquote>
+
+<h3 id="plugins-that-support-templates">Plugins that Support Templates</h3>
+
+<p>The following plugins support the Player templates:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Plugin</th>
+      <th style="text-align: left">Flashvar</th>
+      <th style="text-align: left">Default template path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Share</td>
+      <td style="text-align: left">templatePath</td>
+      <td style="text-align: left"><a href="https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/share/share.tmpl.html">share/share.tmpl.html</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">infoScreen</td>
+      <td style="text-align: left">templatePath</td>
+      <td style="text-align: left"><a href="https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/info/info.tmpl.html">info/info.tmpl.html</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">related</td>
+      <td style="text-align: left">templatePath</td>
+      <td style="text-align: left"><a href="https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/related/related.tmpl.html">related/related.tmpl.html</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">playlistAPI</td>
+      <td style="text-align: left">templatePath</td>
+      <td style="text-align: left"><a href="https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/playlist/playList.tmpl.html">playlist/playList.tmpl.html</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">chapters</td>
+      <td style="text-align: left">templatePath</td>
+      <td style="text-align: left"><a href="https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/chapters/chapters.tmpl.html">chapters/chapters.tmpl.html</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">actionForm</td>
+      <td style="text-align: left">templatePath</td>
+      <td style="text-align: left"><a href="https://github.com/kaltura/mwEmbed/blob/master/modules/CallToAction/templates/collect-form.tmpl.html">CallToAction/templates/collect-form.tmpl.html</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">actionButtons</td>
+      <td style="text-align: left">templatePath</td>
+      <td style="text-align: left"><a href="https://github.com/kaltura/mwEmbed/blob/master/modules/CallToAction/templates/action-buttons.tmpl.html">CallToAction/templates/action-buttons.tmpl.html</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/PlaylistPagingTemplate.html">Playlist with custom template and paging</a> for a rich example of using custom template to customize the playlist plugin UI and behavior.</p>
+</blockquote>
+
+<h2 id="curly-brackets-data-binding">Curly-brackets Data Binding</h2>
+
+<p>Templates work by substituting data bindings against the current Player instance data values. Almost all of the plugin configuration options and data parameters that are displayed on the Player UI are exposed as bindable parameters.</p>
+
+<p>The following example shows how to display the entry view count on the Player’s title bar next to the entry name:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>"{mediaProxy.entry.name} has {mediaProxy.entry.views|numberWithCommasNumber} views". 
+</code></pre>
+</div>
+
+<blockquote>
+  <p>The default value of the title bar text is <code class="highlighter-rouge">"{mediaProxy.entry.name}"</code>.</p>
+</blockquote>
+
+<p>The result is a Player where the title bar shows a message like this “My Video Name has 10,000,000 views” (instead of “My Video Name”).</p>
+
+<h3 id="formatters">Formatters</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The pipe+commands (“</td>
+      <td>numberWithCommasNumber”) used after the binded parameter name are called “formatters”, and they provide a means of formatting the dates, time, numbers and strings easily according to a known algorithm, or by specifying your custom javascript functions.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The default formaters include:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">timeFormat</code>: Takes the time in seconds and returns it in a hh:mm:ss format</li>
+  <li><code class="highlighter-rouge">dateFormat</code>: Takes a time stamp and returns it in a javascript toString format</li>
+  <li><code class="highlighter-rouge">numberWithCommas</code>: Takes a number and returns a number with comas</li>
+</ul>
+
+<p>In addition, you can also create and add your own <a href="http://player.kaltura.com/modules/KalturaSupport/tests/CustomFormaters.qunit.html">custom formatters</a>.</p>
+
+<h2 id="external-css-assets">External CSS Assets</h2>
+
+<p>Many Player plugins use private CSS files that target the plugin UI and screens. These plugins include the playlist, chapters, share, and many more. These CSS files can be overridden by defining the <code class="highlighter-rouge">iframeHTML5Css</code> property in the plugin configuration and setting it to an external CSS file overriding the internal CSS class names.</p>
+
+<blockquote>
+  <p>Note: When creating and loading external resources such as template file, remember to review the “Managing External Assets” section below for additional information.</p>
+</blockquote>
+
+<h3 id="common-plugins-and-their-default-css-files">Common Plugins and their Default CSS Files</h3>
+
+<p>The following is a list of common plugins and their default css files:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Plugin</th>
+      <th style="text-align: left">Default CSS file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Share</td>
+      <td style="text-align: left">https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/share/share.css</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">infoScreen</td>
+      <td style="text-align: left">https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/info/info.css</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">related</td>
+      <td style="text-align: left">https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/related/related.css</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">playlistAPI</td>
+      <td style="text-align: left">https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/playlist/playList.css</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">chapters</td>
+      <td style="text-align: left">https://github.com/kaltura/mwEmbed/blob/master/modules/KalturaSupport/components/chapters/chapters.css</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/PlaylistPagingTemplate.html">Playlist with custom template and paging</a> for a rich example of using custom template to customize the playlist plugin UI and behavior.</p>
+</blockquote>
+
+<h2 id="core-player-skin-external-css-overrides">Core Player Skin External CSS Overrides</h2>
+
+<p>Another customization option is to load an external CSS file that overrides the Player core CSS classes.</p>
+
+<ol>
+  <li>In order to override the class names defined in the core CSS files, create your external custom CSS file with the <strong>same</strong> class names you wish to override, and then load it using the <code class="highlighter-rouge">IframeCustomPluginCss1</code> Flashvar.</li>
+  <li>You can define more than one custom CSS files and name the Flashvars accordingly: <code class="highlighter-rouge">IframeCustomPluginCss1</code>, <code class="highlighter-rouge">IframeCustomPluginCss2</code>,  <code class="highlighter-rouge">IframeCustomPluginCss3</code>, etc.</li>
+  <li>In order to verify that your class definitions override the core definitions, always add the <code class="highlighter-rouge">!important</code> rule to your CSS definitions.</li>
+</ol>
+
+<blockquote>
+  <p>Note: You can reference external assets in your CSS files, such as images and fonts, by using either relative or full paths to these assets.</p>
+</blockquote>
+
+<blockquote>
+  <p>We recommend embedding small assets (such as icons) as base64 inside the CSS file to improve loading time.</p>
+</blockquote>
+
+<h3 id="core-player-skins-css-files">Core Player Skins CSS Files</h3>
+
+<p>The following is a list of core Player skin CSS files:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Skin name</th>
+      <th style="text-align: left">Core CSS file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">kdark</td>
+      <td style="text-align: left">https://github.com/kaltura/mwEmbed/blob/master/skins/kdark/css/layout.css</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ott</td>
+      <td style="text-align: left">https://github.com/kaltura/mwEmbed/blob/master/skins/ott/css/layout.css</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>See the Interactive Code Workflow: <a href="https://developer.kaltura.com/workflows/Engage_and_Publish/Kaltura_Player_External_Skin_Overrides">Kaltura Player External Skin Overrides</a><br />
+for a rich example of using custom CSS and external resources.</p>
+</blockquote>
+
+<h2 id="custom-interactivity-with-javascript">Custom Interactivity with Javascript</h2>
+
+<p>You can add your own Javascript code, which will be loaded and run within the Player iframe, by setting the <code class="highlighter-rouge">IframeCustomPluginJs1</code> Flashvar to point to your custom JS files. This allows you to register for Player events or to add custom interactivity to the Player without creating a full Player plugin.</p>
+
+<blockquote>
+  <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/ExternalResources.qunit.html">External Resources Recipe</a> for a rich example of using external Javascript resources.</p>
+</blockquote>
+
+<h2 id="player-states-css">Player States CSS</h2>
+
+<p>CSS states are CSS classes that are added to the outermost interface element in given Player state. These are very useful for  building the desired look-and-feel quickly for a given Player state, without involving a lot of complicated javascript bindings.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">.fullscreen</code> - The Player in fullscreen</li>
+  <li><code class="highlighter-rouge">.mobile</code> - Indicates that the end user is currently on a mobile device (phones and tablets)</li>
+  <li><code class="highlighter-rouge">.touch</code> - Indicates that the end user is currently on a touch device</li>
+  <li><code class="highlighter-rouge">.player-out</code> - The focus is on the out screenz (can be used to to hide the control bar)</li>
+  <li><code class="highlighter-rouge">.start-state</code> - The focus is on the start screen (before the end user clicked Play)</li>
+  <li><code class="highlighter-rouge">.load-state</code> - The focus is on the loading state (on startup, change media)</li>
+  <li><code class="highlighter-rouge">.play-state</code> - The Player is currently playing</li>
+  <li><code class="highlighter-rouge">.pause-state</code> - The Player was paused.</li>
+  <li><code class="highlighter-rouge">.end-state</code> - The focus is on the end screen (the video completed)</li>
+  <li><code class="highlighter-rouge">.adplay-state</code> - The Player is currently playing an ad</li>
+  <li><code class="highlighter-rouge">.disabled</code> - The current component is “disabled”, i.e., the click or touch binding for this button is not active.</li>
+  <li><code class="highlighter-rouge">.size-tiny</code> – Less than 300px</li>
+  <li><code class="highlighter-rouge">.size-small</code> – Less than 450px</li>
+  <li><code class="highlighter-rouge">.size-medium</code> – Less than 700px</li>
+  <li><code class="highlighter-rouge">.size-large</code> – More than 700px</li>
+</ul>
+
+<h3 id="examples-using-css-states">Examples using CSS States</h3>
+
+<p>Consider that the following redBox elements are on-screen:</p>
+
+<ul>
+  <li>The HTML object:</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"redBox"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>The CSS definition:</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.redBox</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="hiding-redbox-when-the-mouse-cursor-goes-over">Hiding RedBox when the Mouse Cursor Goes Over</h4>
+
+<p>Add the following to the CSS definitions:</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.player-out</span> <span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>As a default, set your UI to be visible, and when it should be hidden, use the <code class="highlighter-rouge">.player-out</code> class to hide the redBox element.</p>
+
+<h4 id="increase-redbox-size-if-the-player-enters-fullscreen">Increase RedBox Size if the Player Enters Fullscreen</h4>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.fullscreen</span> <span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="change-redbox-bg-color-to-green-when-video-is-paused">Change RedBox BG Color to Green when Video is Paused</h4>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.pause-state</span> <span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="css-animations-between-player-states">CSS Animations Between Player States</h4>
+
+<p>You can also make use of CSS animations to transition between Player states. For example, to transition the redBox box size transformation when entering a fullscreen state:</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">0.3s</span> <span class="n">ease-in-out</span><span class="p">,</span> <span class="n">height</span> <span class="m">0.3s</span> <span class="n">ease-in-out</span><span class="p">;}</span>
+<span class="nc">.fullscreen</span> <span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="managing-external-assets">Managing External Assets</h2>
+
+<p>External assets, such as tmpl.html, CSS, JS, images, and font files, can all be used by the Player. When directing the Player to load these assets, make sure to consider the following:</p>
+
+<ol>
+  <li>Host the external files on a dedicated server, preferably a CDN, for best performance, and verify that your server has <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS headers</a> that enable loading assets from other domains.</li>
+  <li>Make sure you set the correct relative links or full paths in your Flashvars settings.</li>
+  <li>Verify that your assets can be loaded from both http and https, and when directing the Player to load the assets, use protocol agnostic URL notation (<code class="highlighter-rouge">://</code> instead of <code class="highlighter-rouge">http://</code>). Also verify that your server has a valid SSL certificate.</li>
+  <li>If you need to load more than one icon, consider using an icon font.</li>
+  <li>If you need to load more than one image, use <a href="https://css-tricks.com/css-sprites">CSS sprite sheets</a>.</li>
+</ol>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

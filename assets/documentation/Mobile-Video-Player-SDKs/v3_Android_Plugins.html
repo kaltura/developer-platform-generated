@@ -1,0 +1,507 @@
+  <title>Plugins</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Plugins" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/v3_Android_Plugins.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/v3_Android_Plugins.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Plugins</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Mar 7 09:48:26 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/v3_Android_Plugins.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Jan 30 07:36:11 2017, By: Eliza Sapir</td></tr-->
+				<!--tr><td>Last commit: Tue Mar 7 09:48:26 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (2 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Eliza Sapir (1 commits) (<a href="mailto:eliza.sapir@kaltura.com">eliza.sapir@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (4 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>This article describes the steps required for building a New Analytics Plugin for the Kaltura Video Player on Android devices.</p>
+
+<h2 id="create-a-new-class-for-the-plugin">Create a New Class for the Plugin</h2>
+
+<p>First, you’ll need to create a new class for the plugin. The class must extend the PKPlugin to integrate with the Kaltura Video Player.</p>
+
+<p>To configure the plugin protected functions, follow these steps:</p>
+
+<p>1 . Add a factory function - this enables the Kaltura Video Player to create a new instance of the Analytics Plugin and register the new plugin.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Factory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Factory</span><span class="o">()</span> 
+<span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> 
+	<span class="o">{</span>
+		<span class="k">return</span> <span class="s">"NameOfPlugin"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">PKPlugin</span> <span class="nf">newInstance</span><span class="o">()</span> 
+	<span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nf">GenericAnalyticsPlugin</span><span class="o">();</span> <span class="c1">//Name of the plugin class</span>
+	<span class="o">}</span>
+<span class="o">};</span></code></pre></figure>
+
+<p>2 . When the application sets the Analytics Plugin configuration, the Kaltura Video Player calls the plugin onLoad method. This function contains all of the required configurations for the new plugin, a reference to the active Kaltura Video Player, and a reference to the MessageBus, which includes all events.</p>
+
+<p>3 . Add a listener to the relevant events by calling the following function - all of the relevant events will follow the listener:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">messageBus</span><span class="o">.</span><span class="na">listen</span><span class="o">(</span><span class="n">hereComesTheEventListener</span><span class="o">,</span> <span class="n">PlayerEvent</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">PLAY</span><span class="o">,</span> <span class="n">PlayerEvent</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">PAUSE</span><span class="o">,</span> <span class="n">PlayerEvent</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">ENDED</span><span class="o">,</span>  <span class="n">PlayerEvent</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span> <span class="n">PlayerEvent</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">LOADED_METADATA</span><span class="o">);</span></code></pre></figure>
+
+<p>4 . Add a send analytics event method and call it from the event listener.</p>
+
+<p>5 . If you want to report events to the application, you can use LogEvent in the following way:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">messageBus</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="k">new</span> <span class="n">LogEvent</span><span class="o">(</span><span class="n">TAG</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="o">((</span><span class="n">PlayerEvent</span><span class="o">)</span> <span class="n">event</span><span class="o">).</span><span class="na">type</span><span class="o">.</span><span class="na">toString</span><span class="o">()));</span></code></pre></figure>
+
+<p>6 . The methods onDestroy, onUpdateConfig, onUpdateMedia, onApplicationPaused, and onApplicationResumed help you manage the life cycle of your Analytics Plugin, including initiating end events, handling background tasks, and keeping the plugin flow in accordance with the Video Player life cycle.</p>
+
+<h2 id="enable-the-analytics-plugin-for-the-kaltura-video-player-on-android-devices">Enable the Analytics Plugin for the Kaltura Video Player on Android Devices</h2>
+
+<p>Next, you’ll need to enable the Analytics Plugin by registering it inside the application as follows:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">GenericAnalyticsPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span></code></pre></figure>
+
+<h2 id="configure-the-plugin-configuration-object-for-the-analytics-plugin">Configure the Plugin Configuration Object for the Analytics Plugin</h2>
+
+<p>To configure the Analytics Plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">configureGenericAnalyticsPlugin</span><span class="o">(</span><span class="n">PlayerConfig</span> <span class="n">pluginConfig</span><span class="o">)</span> 
+<span class="o">{</span>
+	<span class="n">JsonObject</span> <span class="n">genericConfigEntry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JsonObject</span><span class="o">();</span>
+	<span class="n">genericConfigEntry</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="s">"NameOfThe Configuration"</span><span class="o">,</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">configuration</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<h2 id="set-the-plugin-configuration-to-the-analytics-plugin">Set the Plugin Configuration to the Analytics Plugin</h2>
+
+<p>For the Analytics Plugin to start loading, you’ll need to set the plugin configugration you created as follows:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PlayerConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlayerConfig</span><span class="o">();</span>
+<span class="n">PlayerConfig</span><span class="o">.</span><span class="na">Plugins</span> <span class="n">plugins</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="na">plugins</span><span class="o">;</span>
+<span class="n">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="s">"NameOfPlugin"</span> <span class="o">,</span> <span class="n">genericConfigEntry</span><span class="o">.</span><span class="na">toJson</span><span class="o">());</span> </code></pre></figure>
+
+<h2 id="messagebus-supported-events">MessageBus Supported Events</h2>
+
+<p>The MessageBus supports the following events:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PlayerEvents</span>
+<span class="o">{</span>
+ <span class="kd">public</span> <span class="kd">enum</span> <span class="n">Type</span> <span class="o">{</span>
+         <span class="n">STATE_CHANGED</span><span class="o">,</span> <span class="c1">//IDLE, LOADING, READY, BUFFERING;</span>
+         <span class="n">CAN_PLAY</span><span class="o">,</span>   <span class="c1">// Sent when enough data is available that the media can be played, at least for a couple of frames. This  corresponds to the HAVE_ENOUGH_DATA readyState.</span>
+        <span class="n">DURATION_CHANGE</span><span class="o">,</span>   <span class="c1">//  The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for   example, when the media has loaded enough that the duration is known.</span>
+        <span class="n">ENDED</span><span class="o">,</span>   <span class="c1">//  Sent when playback completes.</span>
+        <span class="n">ERROR</span><span class="o">,</span>   <span class="c1">//  Sent when an error occurs. The element's error attribute contains more information. See Error handling for details.</span>
+        <span class="n">LOADED_METADATA</span><span class="o">,</span>   <span class="c1">//  The media's metadata has finished loading; all attributes now contain as much useful information as  they're going to.</span>
+        <span class="n">PAUSE</span><span class="o">,</span>   <span class="c1">//  Sent when playback is paused.</span>
+        <span class="n">PLAY</span><span class="o">,</span>   <span class="c1">//  Sent when playback of the media starts after having been paused; that is, when playback is resumed after a prior  pause event.</span>
+        <span class="n">PLAYING</span><span class="o">,</span>   <span class="c1">//  Sent when the media begins to play (either for the first time, after having been paused, or after ending and then  restarting).</span>
+        <span class="n">SEEKED</span><span class="o">,</span>   <span class="c1">//  Sent when a seek operation completes.</span>
+        <span class="n">SEEKING</span><span class="o">,</span>   <span class="c1">//  Sent when a seek operation begins.</span>
+        <span class="n">TRACKS_AVAILABLE</span><span class="o">,</span> <span class="c1">// Sent when track info is available.</span>
+        <span class="n">REPLAY</span><span class="o">,</span> <span class="c1">//Sent when replay happened.</span>
+        <span class="n">PLAYBACK_PARAMS</span><span class="o">,</span> <span class="c1">// Sent event that notify about changes in the playback parameters. When bitrate of the video or audio track  changes or new media loaded. Holds the PlaybackParamsInfo.java object with relevant data.</span>
+        <span class="n">VOLUME_CHANGED</span> <span class="c1">// Sent when volume is changed.</span>
+<span class="o">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">AdEvents</span><span class="o">{</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="n">Type</span> <span class="o">{</span>
+        <span class="n">STARTED</span><span class="o">,</span>
+        <span class="n">PAUSED</span><span class="o">,</span>
+        <span class="n">RESUMED</span><span class="o">,</span>
+        <span class="n">COMPLETED</span><span class="o">,</span>
+        <span class="n">FIRST_QUARTILE</span><span class="o">,</span>
+        <span class="n">MIDPOINT</span><span class="o">,</span>
+        <span class="n">THIRD_QUARTILE</span><span class="o">,</span>
+        <span class="n">SKIPPED</span><span class="o">(),</span>
+        <span class="n">CLICKED</span><span class="o">,</span>
+        <span class="n">TAPPED</span><span class="o">,</span>
+        <span class="n">ICON_TAPPED</span><span class="o">,</span>
+        <span class="n">AD_BREAK_READY</span><span class="o">,</span>
+        <span class="n">AD_PROGRESS</span><span class="o">,</span>
+        <span class="n">AD_BREAK_STARTED</span><span class="o">,</span>
+        <span class="n">AD_BREAK_ENDED</span><span class="o">,</span>
+        <span class="n">CUEPOINTS_CHANGED</span><span class="o">,</span>
+        <span class="n">LOADED</span><span class="o">,</span>
+        <span class="n">CONTENT_PAUSE_REQUESTED</span><span class="o">,</span>
+        <span class="n">CONTENT_RESUME_REQUESTED</span><span class="o">,</span>
+        <span class="n">ALL_ADS_COMPLETED</span>
+<span class="o">}</span></code></pre></figure>
+
+<h2 id="adding-new-events-using-the-messagebus">Adding New Events Using the MessageBus</h2>
+
+<p>If you have new events you need to report, you can add new events by implementing the following steps:</p>
+
+<p>1 . Add a new class for your event.<br />
+2 . Implement the PKEvent in this class according the following implementation example:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NewAnalyticsEvent</span> <span class="kd">implements</span> <span class="n">PKEvent</span> 
+<span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">final</span> <span class="n">NewAnalyticsEvent</span><span class="o">.</span><span class="na">EventType</span> <span class="n">type</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">enum</span> <span class="n">EventType</span>
+    	<span class="o">{</span><span class="n">Concurrency</span><span class="o">}</span>
+
+    	<span class="kd">public</span> <span class="nf">NewAnalyticsEvent</span><span class="o">(</span><span class="n">NewAnalyticsEvent</span><span class="o">.</span><span class="na">EventType</span> <span class="n">type</span><span class="o">)</span> 
+	<span class="o">{</span>
+        	<span class="k">this</span><span class="o">.</span><span class="na">type</span> <span class="o">=</span> <span class="n">type</span><span class="o">;</span>
+    	<span class="o">}</span>
+
+
+    	<span class="nd">@Override</span>
+    	<span class="kd">public</span> <span class="n">Enum</span> <span class="nf">eventType</span><span class="o">()</span> <span class="o">{</span>
+         	<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">type</span><span class="o">;</span>
+     	<span class="o">}</span>
+
+<span class="o">}</span></code></pre></figure>
+
+<p>3 . Use the Messagebus to post your new event:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">messageBus</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="k">new</span> <span class="n">NewAnalyticsEvent</span><span class="o">(</span><span class="n">TAG</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="o">((</span><span class="n">NewAnalyticsEvent</span><span class="o">)</span> <span class="n">event</span><span class="o">).</span><span class="na">type</span><span class="o">.</span><span class="na">toString</span><span class="o">()));</span></code></pre></figure>
+
+<h2 id="code-examples">Code Examples</h2>
+
+<h3 id="event-listener">Event Listener</h3>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">mEventListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span><span class="o">()</span> <span class="o">{</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onEvent</span><span class="o">(</span><span class="n">PKEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">event</span> <span class="k">instanceof</span> <span class="n">PlayerEvent</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(((</span><span class="n">PlayerEvent</span><span class="o">)</span> <span class="n">event</span><span class="o">).</span><span class="na">type</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="c1">//using the built in kaltura player logger</span>
+	<span class="k">switch</span> <span class="o">(((</span><span class="n">PlayerEvent</span><span class="o">)</span> <span class="n">event</span><span class="o">).</span><span class="na">type</span><span class="o">)</span> <span class="o">{</span>
+	    <span class="k">case</span> <span class="nl">ENDED:</span>
+		<span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">FINISH</span><span class="o">);</span>
+		<span class="k">break</span><span class="o">;</span>
+	    <span class="k">case</span> <span class="nl">ERROR:</span>
+		<span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">ERROR</span><span class="o">);</span>
+		<span class="k">break</span><span class="o">;</span>
+	    <span class="k">case</span> <span class="nl">LOADED_METADATA:</span>
+		<span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">LOAD</span><span class="o">);</span>
+		<span class="k">break</span><span class="o">;</span>
+	    <span class="k">case</span> <span class="nl">PAUSE:</span>
+		<span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">PAUSE</span><span class="o">);</span>
+		<span class="k">break</span><span class="o">;</span>
+	    <span class="k">case</span> <span class="nl">PLAY:</span>
+		<span class="k">if</span> <span class="o">(!</span><span class="n">intervalOn</span><span class="o">){</span>
+		    <span class="n">startMediaHitInterval</span><span class="o">();</span>
+		    <span class="n">intervalOn</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">isFirstPlay</span><span class="o">)</span> <span class="o">{</span>
+		    <span class="n">isFirstPlay</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+		    <span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">FIRST_PLAY</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+		    <span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">PLAY</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">break</span><span class="o">;</span>
+	    <span class="k">default</span><span class="o">:</span>
+		<span class="k">break</span><span class="o">;</span>
+	<span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">};</span></code></pre></figure>
+
+<h3 id="ondestroy">onDestroy</h3>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> 
+<span class="o">{</span>
+	<span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"onDestroy"</span><span class="o">);</span>
+	<span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">STOP</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<h3 id="onapplicationpaused">onApplicationPaused</h3>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onApplicationPaused</span><span class="o">()</span> 
+<span class="o">{</span>
+	<span class="n">stopMonitoring</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<h3 id="onapplicationresumed">onApplicationResumed</h3>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onApplicationResumed</span><span class="o">()</span> 
+<span class="o">{</span>
+	<span class="n">startMonitoring</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">player</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<h2 id="setting-the-plugin-configuration-to-the-youbora-plugin">Setting the Plugin Configuration to the Youbora Plugin</h2>
+
+<p>For the Youbora Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PlayerConfig</span><span class="o">.</span><span class="na">Plugins</span> <span class="n">pluginsConfig</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="na">plugins</span><span class="o">;</span>
+<span class="n">pluginsConfig</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="n">YouboraPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">converterYoubora</span><span class="o">.</span><span class="na">toJson</span><span class="o">());</span> </code></pre></figure>
+
+<h2 id="setting-the-plugin-configuration-to-the-ima-plugin">Setting the Plugin Configuration to the IMA Plugin</h2>
+
+<p>For the IMA Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">adTagUrl</span> <span class="o">=</span> <span class="s">"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&amp;iu=/124319096/external/single_ad_samples&amp;ciu_szs=300x250&amp;impl=s&amp;gdfp_req=1&amp;env=vp&amp;output=vast&amp;unviewed_position_start=1&amp;cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&amp;correlator="</span><span class="o">;</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">videoMimeTypes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">videoMimeTypes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">MimeTypes</span><span class="o">.</span><span class="na">APPLICATION_MP4</span><span class="o">);</span>
+<span class="n">IMAConfig</span> <span class="n">adsConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IMAConfig</span><span class="o">(</span><span class="s">"en"</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> 
+<span class="n">videoMimeTypes</span><span class="o">,</span> <span class="n">adTagUrl</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    
+<span class="n">pluginsConfig</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="n">IMAPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span><span class="n">adsConfig</span><span class="o">.</span><span class="na">toJSONObject</span><span class="o">());</span></code></pre></figure>
+
+<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+
+<p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

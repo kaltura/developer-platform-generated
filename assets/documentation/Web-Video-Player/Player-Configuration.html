@@ -1,0 +1,420 @@
+  <title>Kaltura Web Video Player Configuration and Parameters</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura Web Video Player Configuration and Parameters" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Web-Video-Player/Player-Configuration.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Web-Video-Player/Player-Configuration.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura Web Video Player Configuration and Parameters</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Sun Mar 26 05:23:21 2017</span>, By <span class="commit-author">AnnaAleksandrowicz</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Web-Video-Player/Player-Configuration.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Sun Mar 26 05:23:21 2017, By <span class="commit-author">AnnaAleksandrowicz</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (3 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura Web Video Player configuration is determined by a JSON structured configuration object, which is also called <strong>Flashvars</strong>. The Flashvars configuration parameters object defines key / value pairs for Player properties as well as a plugins configuration list.</p>
+
+<p>You can customize the Web Video Player using one of two options:</p>
+
+<ol>
+  <li><strong>Using Kaltura Universal Studio:</strong> The Universal Studio is a part of the Kaltura KMC and allows visual configuration of player parameters and plugins.  <br />
+For more infomation and a full user guide, please refer to the <a href="https://knowledge.kaltura.com/node/1148">Universal Studio Information Guide</a>.  <br />
+The Universal Studio saves the Flashvars object for you as part of the player’s configuration in the Kaltura database. When using Studio, you do not have to define the Flashvars object manually.</li>
+  <li><strong>Define a Flashvars object as part of your embed code:</strong> Using this method, define your Flashvars object as a JSON object in your Player embed code statement. You can define values for player properties and plugins configuration.</li>
+</ol>
+
+<blockquote>
+  <p>Note: The values defined in the embed code Flashvars objects override any values that were saved previously using the Studio for the same keys.</p>
+</blockquote>
+
+<h2 id="considerations-for-configuring-players">Considerations for Configuring Players</h2>
+
+<p>How should you configure the player, and what to consider when specifying configuration parameters? As a general rule of thumb, you should always prefer to configure Flashvars via the Studio menus and the “UI Variables” section for the following reasons:</p>
+
+<ul>
+  <li>The configuration defined in Studio applies to all player instances across web pages and embed codes, whereas embed code Flashvars applies only to a specific player instance.</li>
+  <li>The Universal Studio’s visual and self explanatory interface makes it easy to implement the most commonly used player properties and plugins.</li>
+</ul>
+
+<h3 id="scenarios-for-using-embed-code-flashvars">Scenarios for Using Embed Code Flashvars</h3>
+
+<blockquote>
+  <p>Note that any changes made via Flashvars on the embedding page will require editing these pages to make future changes.</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>You need to set the Flashvars values dynamically based on your website / application logic.<br />
+For example, you may need to pass metadata fields that are derived from the specific view or page at runtime and, therefore, you will need to set these values only when rendering the player.</p>
+  </li>
+  <li>
+    <p>You want to inherit all of the Player properties defined in Studio but you need to override specific properties for a specific player instance. Note that if you want to use the configuration across many pages or sites, it is better practice to create a new player and configure it via the Player Studio.</p>
+  </li>
+</ol>
+
+<h3 id="passing-configuration-parameters-in-embed-methods">Passing Configuration Parameters in Embed Methods</h3>
+
+<p>The Kaltura Web Video Player can be embedded into webpages in a number of ways. The embed code Flashvars object is passed in a different way for different embed types. This section will help you to learn more about embed types.</p>
+
+<h4 id="configure-parameters-in-javascript-dynamic-embed">Configure Parameters in JavaScript Dynamic Embed</h4>
+
+<p>For dynamic embeds, use a JSON object as part of your embed code:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">embed</span><span class="p">({</span>
+    <span class="s1">'targetId'</span><span class="p">:</span> <span class="s1">'kaltura_player'</span><span class="p">,</span>
+    <span class="s1">'wid'</span><span class="p">:</span> <span class="s1">'_243342'</span><span class="p">,</span>
+    <span class="s1">'uiconf_id'</span> <span class="p">:</span> <span class="s1">'12905712'</span><span class="p">,</span>
+    <span class="s1">'entry_id'</span> <span class="p">:</span> <span class="s1">'0_uka1msg4'</span><span class="p">,</span>
+    <span class="s1">'flashvars'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'autoPlay'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'watermark'</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'plugin'</span> <span class="p">:</span> <span class="s2">"true"</span><span class="p">,</span>
+            <span class="s1">'img'</span> <span class="p">:</span> <span class="s2">"http://www.kaltura.com/content/uiconf/kaltura/kmc/appstudio/kdp3/exampleWatermark.png"</span><span class="p">,</span>
+            <span class="s1">'href'</span> <span class="p">:</span> <span class="s2">"http://www.kaltura.com/"</span><span class="p">,</span>
+            <span class="s1">'cssClass'</span> <span class="p">:</span> <span class="s2">"topRight"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<h4 id="configure-parameters-in-iframe-embed">Configure Parameters in iFrame Embed</h4>
+
+<p>For auto / iFrame embeds, pass the key / value pairs on the iFrame URL query string using the Flashvars with brackets and dot syntax for nested object attributes as follows:</p>
+
+<ul>
+  <li>Instead of <code class="highlighter-rouge">flashvars: { autoPlay: true }</code>, use the following notation: <code class="highlighter-rouge">flashvars[autoPlay]=true</code></li>
+  <li>Instead of <code class="highlighter-rouge">flashvars: { share: { plug: true } }</code>, use the following notation: <code class="highlighter-rouge">flashvars[share.plugin]=true</code></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">"http://cdnapi.kaltura.com/p/1645161/sp/164516100/embedIframeJs/uiconf_id/33752651/partner_id/1645161?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_1josgev8&amp;flashvars[autoPlay]=true&amp;flashvars[share.plugin]=true"</span> <span class="na">width=</span><span class="s">"560"</span> <span class="na">height=</span><span class="s">"395"</span> <span class="na">allowfullscreen</span> <span class="na">webkitallowfullscreen</span> <span class="na">mozAllowFullScreen</span> <span class="na">frameborder=</span><span class="s">"0"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="common-player-configuration-scenarios">Common Player Configuration Scenarios</h2>
+
+<ul>
+  <li>Auto start video playback with a muted video, at a start point of 20 seconds:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s1">'autoPlay'</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'autoMute'</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'mediaProxy.mediaPlayFrom'</span><span class="err">:</span> <span class="mi">20</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Force a specific streamer type:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s1">'streamerType'</span><span class="err">:</span> <span class="s1">'hdnetworkmanifest'</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Lead with HLS playback on all devices:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s1">'LeadWithHLSOnFlash'</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'Kaltura.LeadHLSOnAndroid'</span><span class="err">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Define a plugin configuration (this example overrides the volume control horizontal layout and sets it to vertical):</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s1">'flashvars'</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s1">'volumeControl'</span><span class="err">:</span><span class="p">{</span>
+                <span class="s1">'layout'</span><span class="err">:</span> <span class="s1">'vertical'</span><span class="p">,</span>
+                <span class="s1">'align'</span><span class="err">:</span> <span class="s1">'right'</span>
+            <span class="p">},</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Set Flashvars dynamically according to data derived from a server:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s2">"POST"</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s2">"getMetaData.php"</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="na">entry_id</span><span class="p">:</span> <span class="s2">"1_sf5ovm7u"</span> <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">metaData</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">kWidget</span><span class="p">.</span><span class="nx">embed</span><span class="p">({</span>
+        <span class="s1">'targetId'</span> <span class="p">:</span> <span class="s1">'kaltura_player'</span><span class="p">,</span>
+        <span class="s1">'wid'</span><span class="p">:</span> <span class="s1">'_243342'</span><span class="p">,</span>
+        <span class="s1">'uiconf_id'</span> <span class="p">:</span> <span class="s1">'12905712'</span><span class="p">,</span>
+        <span class="s1">'entry_id'</span> <span class="p">:</span> <span class="s1">'1_sf5ovm7u'</span><span class="p">,</span>
+        <span class="s1">'flashvars'</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'youbora'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">'trackEventMonitor'</span><span class="p">:</span> <span class="s1">'trackYouboraAnalyticsEvent'</span><span class="p">,</span>
+                <span class="s1">'bufferUnderrunThreshold'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+                <span class="s1">'userId'</span><span class="p">:</span> <span class="s1">'my-user-id'</span><span class="p">,</span>
+                <span class="s1">'contentMetadata'</span><span class="p">:</span> <span class="nx">metaData</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

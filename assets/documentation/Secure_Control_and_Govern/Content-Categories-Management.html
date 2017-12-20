@@ -1,0 +1,408 @@
+  <title>Content Categories Management</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Content Categories Management" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Secure_Control_and_Govern/Content-Categories-Management.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Secure_Control_and_Govern/Content-Categories-Management.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Content Categories Management</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Secure_Control_and_Govern/Content-Categories-Management.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Apr 2 10:39:09 2017, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>Media entries can be organized in categories. Categories are structured in a tree-like hierarchy where each category can include multiple sub-categories.  <br />
+You can add, remove and edit categories using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/category">category service</a>. You can assign a media entry to a specific category using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry">categoryEntry service</a>.   <br />
+Categories provide a logical structure for your site and assist with content management. You can assign custom metadata to categories. Then, using filters you can create robust search and discovery workflows, playlists and more.  <br />
+Categories may also be used to set content entitlements for end-users in various applications using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser">categoryUser service</a>.</p>
+
+<h3 id="quick-summary---categories">Quick Summary - Categories</h3>
+
+<ul>
+  <li>A category is a metadata that groups content.</li>
+  <li>Media entries can be added into categories. Each entry can be associated with up to 32 categories (If you need more, please <a href="mailto:vpaas@kaltura.com">contact us</a>).</li>
+  <li>Categories are built in a tree-like hierarchy where each category can include multiple sub-categories.</li>
+  <li>Each category may only have a single parent category, or be a root level category (no parent).</li>
+  <li>Categories provide a logical taxonomy structure for your site or application and assist with content management.</li>
+  <li>You can use categories, along with metadata and filters to create manually or dynamically generated playlists.</li>
+  <li>Categories can be used for setting content entitlements for end-users, regulating access to content and functionality.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Backward Compatibility</strong> - The <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBaseEntry">KalturaBaseEntry</a> exposes the two properties <code class="highlighter-rouge">categories</code> and <code class="highlighter-rouge">categoriesIds</code>. These properties can only be used when your categories are not configured with Entitlement settings. It is always best to rely on the <code class="highlighter-rouge">categoryEntry</code> service to retrieve a full list of categories per Entry. Avoid using the <code class="highlighter-rouge">categories</code> and <code class="highlighter-rouge">categoriesIds</code> properties.</p>
+</blockquote>
+
+<h2 id="creating-and-managing-categories">Creating and Managing Categories</h2>
+
+<p>To add, list, delete, edit, move and manage categories, use the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/category"><code class="highlighter-rouge">category service</code></a>.</p>
+
+<ul>
+  <li>Categories are always associated with an owner user ID. This is the user who created the category (determined by the Kaltura Session used when calling <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/category/category_add"><code class="highlighter-rouge">category.add</code></a>).</li>
+  <li>To retrieve a category’s full parent’s tree path (until the root parent) use	the	<a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">KalturaCategory.fullName</a> and <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">KalturaCategory.fullIds</a> fields.</li>
+</ul>
+
+<h2 id="managing-entries-inside-categories">Managing Entries Inside Categories</h2>
+
+<p>With a category structure in place, use the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry"><code class="highlighter-rouge">categoryEntry service</code></a> to add, delete and move entries in and out of categories.</p>
+
+<p>To add an entry to a category, simply call the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_add">categoryEntry.add</a> providing a <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/">KalturaCategoryEntry</a> object. In the <code class="highlighter-rouge">KalturaCategoryEntry</code> object, set the id of the entry and the id of the category you want to associate it to.</p>
+
+<p>To remove an entry from a category, call the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_delete">categoryEntry.delete</a> action and provide the id of the entry (<code class="highlighter-rouge">entryId</code>) and the id of the category (<code class="highlighter-rouge">categoryId</code>) from which to remove the entry.</p>
+
+<h2 id="category-content-moderation">Category Content Moderation</h2>
+
+<p>By default, every entry may be added to a category, however, you may choose to moderate content.  <br />
+Setting the <code class="highlighter-rouge">moderation</code> property to 1 (true) places new entries into a virtual moderation queue. Entries in the moderation queue must be approved by a user with Manager or Moderator permission level, before they are officially associated with the category.</p>
+
+<p>The membership of users in a category is defined with the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser">categoryUser</a> service. Use the <code class="highlighter-rouge">add</code> action to associate a user with a category.</p>
+
+<p>The relationship of user permissions in a specific category is configured with the <code class="highlighter-rouge">permissionLevel</code> property when calling the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser/categoryUser_add"><code class="highlighter-rouge">categoryUser.add</code></a> action. (The options for <code class="highlighter-rouge">permissionLevel</code> are available in <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCategoryUserPermissionLevel"><code class="highlighter-rouge">KalturaCategoryUserPermissionLevel</code></a>).</p>
+
+<p>Moderation is governed with the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_activate">categoryEntry.activate</a> and <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_reject">categoryEntry.reject</a> actions, that allow moderator users to approve (<code class="highlighter-rouge">activate</code>) or reject the addition of an entry to the category.</p>
+
+<p>The <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory"><code class="highlighter-rouge">contributionPolicy</code></a> determines if users are required to have a contributor level permission to be allowed to add or even suggest entries to the category. By default, all users are allowed to contribute (suggest) entries to be added. By setting the <code class="highlighter-rouge">contributionPolicy</code> to <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaContributionPolicyType"><code class="highlighter-rouge">KalturaContributionPolicyType.MEMBERS_WITH_CONTRIBUTION_PERMISSION</code></a>, only users that are given a contributor role or above will be allowed to suggest entries.</p>
+
+<p>Use the <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory"><code class="highlighter-rouge">userJoinPolicy</code></a> and <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUserJoinPolicyType"><code class="highlighter-rouge">KalturaUserJoinPolicyType</code></a> to set whether users:</p>
+<ul>
+  <li>can add themselves to the category (<code class="highlighter-rouge">AUTO_JOIN</code>)</li>
+  <li>can request to be added and wait for the moderator’s approval (<code class="highlighter-rouge">REQUEST_TO_JOIN</code>)</li>
+  <li>or if it’s a by-invitation only list and users are not allowed to ask to be added (<code class="highlighter-rouge">NOT_ALLOWED</code>).  <br />
+If the category is set to moderated membership approval (<code class="highlighter-rouge">REQUEST_TO_JOIN</code>), use the <code class="highlighter-rouge">activate</code> action to approve the moderated request to join. If a user should not be allowed join, use <code class="highlighter-rouge">deactivate</code> action to reject a user’s request to join the category.</li>
+</ul>
+
+<h2 id="managing-end-user-content-entitlements">Managing End-User Content Entitlements</h2>
+
+<p>Content Entitlements is a method to allow end users access to a group of content items (entries).  <br />
+Entitlements are configured on the category level by setting a special unique key to identify the applicative context in which to allow or deny access to the category’s entries.</p>
+
+<p>Applications such as <a href="http://corp.kaltura.com/Products/Video-Applications/Kaltura-Mediaspace-Video-Portal">Kaltura MediaSpace</a> implement entitlements to achieve the concept of “Authenticated Content Channels”.<br />
+Example use-cases based on content entitlements:</p>
+<ul>
+  <li>group collaboration based on channel membership</li>
+  <li>premium content - get access to channels/categories based on a paid subscription</li>
+</ul>
+
+<h3 id="the-content-privacy-options">The Content Privacy Options</h3>
+
+<p>Content Privacy defines the visibility of content associated with a category, including its related metadata.</p>
+
+<p>Content Privacy determines:</p>
+
+<ul>
+  <li>Who has access to content associated with the category</li>
+  <li>Whether the content will be available to the user in global search results (e.g. when calling <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media/media_list"><code class="highlighter-rouge">media.list</code></a>)</li>
+</ul>
+
+<p>Content Privacy is configured in the Category’s <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">privacy</a> property. The available options are defined in <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPrivacyType"><code class="highlighter-rouge">KalturaPrivacyType</code></a>.</p>
+
+<h4 id="available-options-for-privacy">Available options for <code class="highlighter-rouge">privacy</code>:</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">ALL</code> (No Restriction) – Content in the category is visible to everyone with access to the application it is published in. For example, setting a media gallery that is open on the web and be accessible by everyone, including anonymous viewers.</li>
+  <li><code class="highlighter-rouge">AUTHENTICATED_USERS</code> (Authentication Required) – Content in the category is visible only to authenticated end-users (calls with a valid Kaltura Session that specifies a userId. Anonymous users will not be allowed to see these entries).</li>
+  <li><code class="highlighter-rouge">MEMBERS_ONLY</code> (Private) – Content in this category is visible only to users with specific permission to access this category’s content and to the owner of the content. This option is relevant for setting “private channels” that are available only to a group of users.</li>
+</ul>
+
+<blockquote>
+  <p>Note: With any content privacy option, the owner of the content is always entitled to access and manage their content.</p>
+</blockquote>
+
+<h2 id="visibility-of-content-associated-with-multiple-categories">Visibility of Content Associated with Multiple Categories</h2>
+
+<p>For content associated with more than one category, the privacy and visibility of this content via global<br />
+search (e.g. using <code class="highlighter-rouge">media.list</code>) or a direct call to <code class="highlighter-rouge">baseEntry.get</code>, is determined based on the category with the lowest restriction level the content is associated with (within the application category tree).</p>
+
+<p>If an entry is associated with a category where privacy is set to <code class="highlighter-rouge">MEMBERS_ONLY</code>, and another category where privacy is set to <code class="highlighter-rouge">ALL</code> - the entry will be accessible to everyone (both via <code class="highlighter-rouge">get</code> or <code class="highlighter-rouge">list</code> actions) regardless of the definition set in the <code class="highlighter-rouge">MEMBERS_ONLY</code> category.</p>
+
+<h2 id="entitlement-enforcement-behavior">Entitlement Enforcement Behavior</h2>
+
+<p>To configure how Kaltura enforces entitlement and handles entitlement conflicts, use the <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartner"><code class="highlighter-rouge">defaultEntitlementEnforcement</code></a> property of <code class="highlighter-rouge">KalturaPartner</code>.</p>
+
+<ul>
+  <li>When <code class="highlighter-rouge">defaultEntitlementEnforcement</code> is set to true (default): Access to content under categories where privacy and privacyContext are configured is only allowed for API calls that provide a KS (Kaltura Session) that specify the correct privacyContext and a userId that is a member of the category.</li>
+  <li>When <code class="highlighter-rouge">defaultEntitlementEnforcement</code> is set to false: Access to content under categories with entitlement is possible using any valid Kaltura Session, including anonymous player embed codes (using a Widget Session). With this option, the application itself is responsible to implement an entitlement enforcement and it is expected that entitlement rules are kept within the application.</li>
+</ul>
+
+<blockquote>
+  <p>To learn more about how entitlements are enforced, please read: <a href="/documentation/Content-Entitlements-Privacy-Enforcement.html">Content Entitlements and Privacy Enforcement</a>.</p>
+</blockquote>
+
+<h2 id="category-discoverability-in-search">Category Discoverability in Search</h2>
+
+<p>Categories expose properties to control whether to, and who can find the categories and the entries associated with them.</p>
+
+<p><a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">privacy</a>, defined to one of its ENUM options <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPrivacyType"><code class="highlighter-rouge">KalturaPrivacyType</code></a> sets whether entries that are associated with the category can be seen by users:</p>
+
+<ul>
+  <li>ALL: Category will be visible to all users.</li>
+  <li>AUTHENTICATED_USERS: Category will only be visible to logged-in users (i.e. List API requests made with a USER or ADMIN KS that specify a userId that is not null).</li>
+  <li>MEMBERS_ONLY: Category will only be visible to users that are accepted members of the category. (i.e. A categoryUser object exists that connects the categoryId with the userId specified in the KS used to call the list API.)</li>
+</ul>
+
+<h3 id="configure-and-use-content-entitlements">Configure and Use Content Entitlements</h3>
+
+<p>To configure entitlements on a category, you will need to set a “Privacy Context” (<a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory"><code class="highlighter-rouge">category.privacyContext</code></a> property) for the desired category.  <br />
+Privacy Context is a free text label (English character string; commas and spaces are not allowed) that indicates to which application the entitlement settings apply, for example, “MySuperAwesomeVideoApp”.</p>
+
+<p>To allow access to an entitled category, follow these steps:</p>
+
+<ol>
+  <li>The end user must be added as a member of the category by using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser"><code class="highlighter-rouge">CategoryUser</code></a> service.</li>
+  <li>The privacy context should be passed in the application session (KS) whenever making API requests in the <a href="https://knowledge.kaltura.com/node/229#privacycontext"><code class="highlighter-rouge">privacycontext</code> KS privileges</a>.</li>
+</ol>
+
+<blockquote>
+  <p><code class="highlighter-rouge">privacyContexts</code> provides a means to set multiple entitlement application contexts per category with comma-separated list of unique keys.<br />
+The Privacy Context configuration for an application guarantees the following:<br />
+User’s entitlements to content in the application are determined based on the specific categories the application is integrated with. <br />
+Categories that are not directly integrated with the application can be used for any content organization and applicative classification purposes. A content item can be shared with such categories with no impact on their visibility to end-users through the application.<br />
+In the common case, a single Privacy Context should be set to an entire ‘branch’ within the category-tree, and indicate the application integrated with it. In more complex scenarios, multiple privacy contexts can be set to categories to enable access to content shared between multiple applications within the account, and under the same organizational context.</p>
+</blockquote>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

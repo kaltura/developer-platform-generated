@@ -416,7 +416,6 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
   <xs:element name="scenes" type="T_scenes" substitutionGroup="item-extension"></xs:element>
   <xs:element name="scene" type="T_scene"></xs:element>
   <xs:element name="scene-extension"></xs:element>
-  <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:complexType name="T_scene_questionCuePoint">
     <xs:complexContent>
       <xs:extension base="T_scene">
@@ -443,6 +442,7 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="scene-answer-cue-point" type="T_scene_answerCuePoint" substitutionGroup="scene"></xs:element>
+  <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:simpleType name="KalturaEntryType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="-1"></xs:enumeration>
@@ -4081,142 +4081,6 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
 
 
 
-<span class="k-et">scene-customData element</span>
-
-
-
-
-
-<span class="element-description">XML for custom metadata</span>
-
-
-
-
-
-##### Attributes
-
-
-
-<table>
-<thead><tr>
-<th>Attribute Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>metadataId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Id of the custom metadata object</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataVersion</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Version of the custom metadata object</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfile</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile system name</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile id</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileName</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile name</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileVersion</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile version</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody><tr class="">
-<td class="first" colspan="2">[Any element]</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>any type</td>
-<td class="last"></td>
-</tr></tbody>
-</table>
-
-
-
-##### XML Example
-
-
-
-```xml
-<scene-ad-cue-point entryId="{entry id}">
-  <sceneStartTime>00:00:05</sceneStartTime>
-  <sceneTitle>my ad title</sceneTitle>
-  <sourceUrl>http://source.to.my/ad.xml</sourceUrl>
-  <adType>1</adType>
-  <protocolType>1</protocolType>
-  <scene-customData metadataProfile="MY_AD_METADATA_PROFILE_SYSTEM_NAME">
-    <metadata>
-      <adData>my ad custom data</adData>
-    </metadata>
-  </scene-customData>
-</scene-ad-cue-point>
-```
-
---------
-
-
-
-
-
 <span class="k-et">scene-question-cue-point element</span>
 
 
@@ -4481,6 +4345,142 @@ http://www.kaltura.com/api_v3/index.php/service/schema/action/serve/type/syndica
     <tag>my_tag</tag>
   </tags>
 </scene-answer-cue-point>
+```
+
+--------
+
+
+
+
+
+<span class="k-et">scene-customData element</span>
+
+
+
+
+
+<span class="element-description">XML for custom metadata</span>
+
+
+
+
+
+##### Attributes
+
+
+
+<table>
+<thead><tr>
+<th>Attribute Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>metadataId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Id of the custom metadata object</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataVersion</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Version of the custom metadata object</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfile</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile system name</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile id</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileName</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile name</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileVersion</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile version</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody><tr class="">
+<td class="first" colspan="2">[Any element]</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>any type</td>
+<td class="last"></td>
+</tr></tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<scene-ad-cue-point entryId="{entry id}">
+  <sceneStartTime>00:00:05</sceneStartTime>
+  <sceneTitle>my ad title</sceneTitle>
+  <sourceUrl>http://source.to.my/ad.xml</sourceUrl>
+  <adType>1</adType>
+  <protocolType>1</protocolType>
+  <scene-customData metadataProfile="MY_AD_METADATA_PROFILE_SYSTEM_NAME">
+    <metadata>
+      <adData>my ad custom data</adData>
+    </metadata>
+  </scene-customData>
+</scene-ad-cue-point>
 ```
 
 

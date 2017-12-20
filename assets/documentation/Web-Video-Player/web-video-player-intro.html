@@ -1,0 +1,444 @@
+  <title>Introduction to Kaltura's Web Video Player</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Introduction to Kaltura's Web Video Player" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Web-Video-Player/web-video-player-intro.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Web-Video-Player/web-video-player-intro.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Introduction to Kaltura's Web Video Player</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Aug 8 13:28:22 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Web-Video-Player/web-video-player-intro.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 27 08:01:24 2016, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 8 13:28:22 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (64 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Debbie Zioni (1 commits) (<a href="mailto:debbie.zioni@kaltura.com">debbie.zioni@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>Kaltura’s Web Video Player is an easy-to-use, powerful, flexible video platform, which is designed to enable you to deliver videos on your website quickly and easily, allowing you to reach viewers, engage them, and maximize your revenue. Moreover, the Kaltura Web Video Player technology is designed to ensure that the videos on your site will start quickly and stream smoothly.</p>
+
+<p>Kaltura’s Web Video Player leads the industry in flexibility, ease of customization, plug-in offerings and loading speed. All of the Kaltura Web Video Player features are supported on both HTML5 and Flash using the same configuration, which makes feature integration across platforms simple and easy.</p>
+
+<p>Note that the easiest way to use Kaltura’s Web Video Player is to build a player using <a href="https://knowledge.kaltura.com/node/1148">Kaltura’s Universal Studio</a>, which provides a user-friendly UI for building and customizing the player.</p>
+
+<h2 id="kalturas-web-video-player-toolkit">Kaltura’s Web Video Player Toolkit</h2>
+
+<p>Kaltura’s Web Video Player toolkit enables users to deliver videos with HTML5 and provide the fastest viewing experience on any device, while maintaining all of the same features and a consistent CSS/HTML player design. The toolkit enables delivery of HTML5 with Chromeless components for iOS and Android.</p>
+
+<h2 id="key-advantages-of-the-kaltura-web-video-player">Key Advantages of the Kaltura Web Video Player</h2>
+
+<p>The key advantages of the Kaltura Web Video Players include:</p>
+
+<ul>
+  <li>High performance full-featured lead with HTML5</li>
+  <li>Most players display in 1 second or less</li>
+  <li>Skins configured once with standard HTML / CSS</li>
+  <li>Better support for additional platforms; iOS and Android player components</li>
+  <li>Support for all features across multiple platforms</li>
+</ul>
+
+<h2 id="technical-overview">Technical Overview</h2>
+
+<p>Kaltura’s Web Video Player is designed to provide your users with the best viewing experience.</p>
+
+<p><img src="assets/images/v2player.png" alt="Web Video Player" /></p>
+
+<p>The following section provides a general walk-through of the Kaltura Web Video Player technical features.</p>
+
+<h3 id="easy-to-implement-video-embedding">Easy to Implement Video Embedding</h3>
+
+<p>Adding video to your website is a great way to interact with your audience. Our lightweight embed codes enable you to add videos to your website quickly and easily; simply prepare the videos, generate the embed code, and then embed them into your website using Kaltura’s embedding capabilities.</p>
+
+<p>To learn more about embedding, you may want to read <a href="https://knowledge.kaltura.com/node/1148">this</a> article.</p>
+
+<p>Kaltura’s Web Video Player supports the following embed code types:</p>
+
+<ul>
+  <li><strong>Dynamic:</strong> Dynamic embed has many benefits over object tag or Flash library rewrites; it’s fast, doesn’t have to wait for DOM, and ready to output the Flash or HTML5 player. This embed is also clean, uses json embed config for flashvars and params dynamic, better supports dynamic html5 and flash embed methods, responsive web design, and css inheritance.</li>
+  <li><strong>Auto:</strong> This type of embed is best for sites where SEO is already covered by other data in the page. This concise Auto embed code is good for quickly getting a player or widget onto the page without any runtime customizations.</li>
+  <li><strong>Thumbnail:</strong> The thumbnail embed method takes the same arguments as “kWidget.embed”. This embed will pass all configurations to the kWidget embed when the user “clicks” the play button. The player context menu can be disabled by setting the “EmbedPlayer.DisableContextMenu” UIVar to true.</li>
+  <li><strong>Responsive:</strong> This embed ensures that the video ratio on the screen responds to sizing changes. The minimal RWD self-contained maintains a 16/9 ratio, even when you resize the browser window.</li>
+  <li><strong>Reference Id:</strong> The reference ID is used for setting a custom ID for Kaltura entry.</li>
+  <li><strong>kWidget playlist:</strong> kWidgets make it easy to embed playlists, by simply passing along playlist plugin configuration as flashvars.</li>
+</ul>
+
+<h3 id="unparalleled-robust-performance">Unparalleled Robust Performance</h3>
+
+<p>Kaltura’s Web Video Player library features an advanced resource loader developed in collaboration with Wikimedia Foundation. The resource loader supports dynamically packing of modules, features and player metadata, and minimizes, gizpis and packages, CSS, images, HTML, JavaScript, metadata, and per player features into a single non-blocking payload. The resource loader, combined with Kaltura’s AutoEmbed embed code, enables the player rendering to take full advantage of fetch ahead parallel JavaScript resource loading in modern browsers to deliver fast player rendering even on sites with many other active scripts included.</p>
+
+<p>You get the best in class performance of all your features, without delays as in a traditional feature rich player (dz?build out.</p>
+
+<h3 id="cross-platform-support">Cross-Platform Support</h3>
+
+<p>Our HTML5 video library provides you with the most advanced mobile delivery technology stack available today. Our smart-player technology delivers the right player, stream, and advertising to the right device anywhere, with just a single embed code. You can extend the functionality of both Flash and HTML5 players with our Unified development API:</p>
+
+<ul>
+  <li>Single player framework wraps, native iOS, native Android, and HTML5</li>
+  <li>Enables you to deliver features such as DRM, offline viewing, adaptive streaming, via native or plugin components, while still leveraging single unified configuration and the same player platform cross-devices</li>
+  <li>Minimizes costs in cross-platform feature delivery</li>
+</ul>
+
+<h3 id="easy-to-integrate">Easy to Integrate</h3>
+
+<p>Kaltura’s multi-platform support ensures easy integration for iOS and Android player components on both mobile devices and tablets, providing maximum flexibility, while the player architecture enables you to reuse plugins and configurations across platforms, and seamlessly integrate bothadvanced live broadcasts streaming and DRM.</p>
+
+<h3 id="customizable--design">Customizable  Design</h3>
+
+<p>The Kaltura Web Video Player features an easy-to-customize, unified flat design, which enables you to configure skins once using standard HTML / CSS. In addition, you can create customized cross-browser/cross-device players in the Kaltura Player Studio. To learn more, read this [customization] (/api-docs/Web-Video-Player/Player-Customization.html) article.</p>
+
+<h3 id="standardized-features">Standardized Features</h3>
+
+<p>Standardized features include:</p>
+
+<ul>
+  <li>Info tab</li>
+  <li>Share tab</li>
+  <li>Play head frame seek preview</li>
+  <li>Related videos</li>
+  <li>Flavor selector, adaptive streaming</li>
+  <li>Unified 508-compliant player</li>
+  <li>Mouse Over Scrubber - Thumbnails display on playhead scrubbing on mouse over</li>
+</ul>
+
+<h3 id="configuration">Configuration</h3>
+
+<ul>
+  <li>Enhanced configuration mechanism; skin components are plugin-based</li>
+  <li>Clean separation of uiEvents from core embedPlayer</li>
+  <li>Unified JSON-based configuration</li>
+  <li>HTML5 first; Flash fallback is Chromeless (write plugins once for HTML5)</li>
+</ul>
+
+<h3 id="built-in-advertising-support">Built-in Advertising Support</h3>
+
+<p>The Kaltura Web Video Player’s built-in advertising components provide support for a wide range of video ad formats and integrated plugins. The related videos experience includes an enhanced related video interface and flexible options for related video fulfillment. Kaltura supports a wide range of video ad formats including VAST 3.0, and integrated plugins for numerous video ad networks, such as Google DoubleClick DFP, FreeWheel, Ad Tech, Eye Wonder, AdapTV, Tremor Video and others. You can target viewers with ads on VOD or live videos, across multiple devices including mobile, PC’s, and set-top-boxes.</p>
+
+<h3 id="analytics-capabilities">Analytics Capabilities</h3>
+
+<p>The Kaltura Web Video Player’s analytics’ capabilities provide you with the insight you need to manage your content, reach your audience, and optimize your workflow, as well as the ability to track conversion and retainment. Every Kaltura account includes analytics fully integrated into the Kaltura platform. Additionally Kaltura supports integrations with numerous analytics providers such as Google Analytics, Nielsen Video Census, Nielsen Combined, Comscore and Omniture SiteCatalyst 15.</p>
+
+<h3 id="advanced-live-broadcast-streaming">Advanced Live Broadcast Streaming</h3>
+
+<p>Kaltura’s Web Video Player is designed to ensure seamless integration of advanced live broadcasts streaming.</p>
+
+<h3 id="enhanced-accessibility-508-and-webvtt">Enhanced Accessibility: 508 and WebVTT</h3>
+
+<ul>
+  <li>Industry leading 508 support</li>
+  <li>508 by default – all new framework players include 508-compliant features</li>
+  <li>Integrated framework for making all new plugins accessible</li>
+  <li>Uses HTML for controls, which offers more integrated accessible features than Flash players</li>
+</ul>
+
+<h3 id="universal-digital-rights-management-drm">Universal Digital Rights Management (DRM)</h3>
+
+<p>Kaltura’s Universal DRM module enables media companies, content rights owners and OTT providers to stream premium content without concern about which browser, device or platform is being used.</p>
+
+<h3 id="improved-related-videos-experience">Improved Related Videos Experience</h3>
+
+<ul>
+  <li>Enhanced related videos interface</li>
+  <li>Flexible options for related video fulfillment</li>
+  <li>Events for tracking conversion/retainment</li>
+</ul>
+
+<h3 id="responsive-player-layout">Responsive Player Layout</h3>
+
+<ul>
+  <li>Thumb up/down rating</li>
+  <li>Smaller players / screens retain important controls</li>
+</ul>
+
+<h3 id="playlists-and-chapters">Playlists and Chapters</h3>
+
+<ul>
+  <li>Flexible HTML plugins for playlists and chapters with support for inheriting site styles</li>
+</ul>
+
+<h3 id="adaptive-streaming-support">Adaptive Streaming Support</h3>
+
+<ul>
+  <li>Chromeless Flash HLS
+    <ul>
+      <li>Supports HLS on desktop browsers for simplified live broadcast ad stitching workflows</li>
+    </ul>
+  </li>
+  <li>MPEG-DASH
+    <ul>
+      <li>Encrypted Media Extension support web delivery of DRM and content control</li>
+      <li>Multi-track audio</li>
+      <li>More detailed analytics on quality of services metrics<br />
+ ^ Note: The browsers that support MPEG DASH include IE 11 (Windows, Xbox, phone;) Chrome (Desktop &amp; Android), Firefox (Desktop).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="share-interface-in-player-or-on-page">Share Interface In Player or On Page</h3>
+
+<ul>
+  <li>Robust Configurable Share Options
+    <ul>
+      <li>Support for sharing specific time offsets</li>
+      <li>iframe or Flash object embed options</li>
+      <li>Deep linking to specific URLs for each video: (example: myDomain.com/videos/{entryid}</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="assets/images/new_player_flow.png" alt="Player Flow" /></p>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

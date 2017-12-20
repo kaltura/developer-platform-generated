@@ -1,0 +1,1416 @@
+  <title>Introduction to Kaltura's Client Libraries</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Introduction to Kaltura's Client Libraries" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Introduction to Kaltura's Client Libraries</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Mar 5 07:57:00 2017, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (9 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<blockquote>
+  <p>Note: This article applies to Kaltura API version 3 and later. It does not address how to implement specific flows using the Kaltura API.</p>
+</blockquote>
+
+<h2 id="what-are-kalturas-kaltura-client-libraries">What are Kaltura’s Kaltura Client Libraries?</h2>
+
+<p>A Kaltura client library:</p>
+
+<ul>
+  <li>Is an SDK package in a specific programming language</li>
+  <li>Provides developers with easy access to the Kaltura API</li>
+  <li>Makes it easy to develop Kaltura applications</li>
+</ul>
+
+<p>The Kaltura client library is a collection of classes. Each class consists of objects and service classes. The collection of classes represents the entities, services, and actions that the Kaltura API provides.</p>
+
+<h2 id="why-should-you-use-a-kaltura-client-library">Why Should You Use a Kaltura Client Library?</h2>
+
+<p>Kaltura recommends that you use a Kaltura Client Library when you develop applications that interact with the Kaltura API. Client libraries provide the following benefits:</p>
+
+<ul>
+  <li>All objects and enums are auto-generated for you.</li>
+  <li>All services and actions are auto-generated for you.</li>
+  <li>Because they are auto-generated, there is lower chance for mistakes.</li>
+  <li>The low level is already implemented for you, including:
+    <ul>
+      <li>HTTP communication</li>
+      <li>Serialization and de-serialization</li>
+      <li>Error handling</li>
+    </ul>
+  </li>
+  <li>Authentication is built-in.</li>
+  <li>Multi-request is built-in.</li>
+  <li>Response-profile is built-in.</li>
+  <li>Global parameters are utilized for you.</li>
+</ul>
+
+<h2 id="what-are-the-types-of-client-libraries-available">What Are the Types of Client Libraries Available?</h2>
+
+<p>There are different types of client libraries:</p>
+
+<ul>
+  <li>Client libraries for the Kaltura Hosted Edition</li>
+  <li>Local client libraries for Kaltura On-Prem™ and Kaltura Community Edition (Kaltura CE)</li>
+  <li>Specialized Kaltura client libraries</li>
+</ul>
+
+<p>To understand which type to use, see <a href="#DecidingontheRightTypeofClientLibrary">Deciding Where to Get a Client Library</a>.</p>
+
+<h2 id="how-do-you-start-using-a-kaltura-client-library">How Do You Start Using a Kaltura Client Library?</h2>
+
+<p>First, <a href="#DecidingontheRightTypeofClientLibrary">decide on the right type of client library</a>. Then do one of the following:</p>
+
+<ul>
+  <li><a href="#GettingaClientLibraryforKalturaHostedEdi">Get a client library for Kaltura Hosted Edition</a>.</li>
+  <li><a href="#GeneratingaClientLibraryoaLocalServer">Generate a client library for Kaltura On-Prem and Kaltura CE</a>.</li>
+  <li><a href="#GeneratingaKalturaClientLibrary">Generate a specialized Kaltura client library</a>.</li>
+</ul>
+
+<p>When you have a client library:</p>
+
+<ul>
+  <li>[Use the client library][3].</li>
+  <li>Refer to <a href="#SampleCode">Sample Code for Multiple Client Library Languages</a> to help use your client library.</li>
+</ul>
+
+<h2 id="sample-code-usage">Sample Code Usage</h2>
+
+<p>All sample code is PHP5, unless otherwise stated.</p>
+
+<p>The sample code is designed to show you how to use the features of Kaltura client libraries.</p>
+
+<blockquote>
+  <p>Note: The sample code is formatted for this document and includes hard-coded examples. Before using sample code copied from this document, replace the examples and adapt the formatting.</p>
+</blockquote>
+
+<h2 id="document-conventions">Document Conventions</h2>
+
+<ul>
+  <li>
+    <p>File paths and names appear in bold.  <br />
+Example:** /[INSTALLATION_PATH]/app/generator/config.ini**</p>
+  </li>
+  <li>
+    <p>A string in brackets [] represents a value.  <br />
+Replace the string – including the brackets – with an actual value.  <br />
+Example: Replace <em>[yourClientLibraryName]</em> with <em>Java</em>.</p>
+  </li>
+</ul>
+
+<h2 id="client-library-programming-languages">Client Library Programming Languages</h2>
+
+<p>Kaltura provides <a href="https://developer.kaltura.com/api-docs/Client_Libraries">downloadable client libraries</a> for the Kaltura Hosted Edition in various programming languages. These languages also are available when <a href="#GeneratingaClientLibraryoaLocalServer">generating a client library for Kaltura On-Prem and Kaltura CE</a>. You can generate a client library for an additional language. See <a href="https://knowledge.kaltura.com/adding-new-kaltura-api-client-library-generator">Generating a Client Library for a Language that Kaltura Does Not Provide</a>.</p>
+
+<p><strong>Available Client Library Languages</strong></p>
+
+<ul>
+  <li>PHP5</li>
+  <li>Zend Framework-compatible library: Eases library integration in terms of coding standards and auto-loading</li>
+  <li>JavaScript  </li>
+  <li>Node.JS</li>
+  <li>C# .NET       </li>
+  <li>Java       </li>
+  <li>Ruby       </li>
+  <li>Python</li>
+  <li>Objective-C/Cocoa</li>
+  <li>Java Android</li>
+  <li>CLI</li>
+</ul>
+
+<h2 id="where-to-get-a-client-library">Where to Get a Client Library?</h2>
+
+<p>The <a href="#WhatAretheTypesofClientLibraries">type of client library</a> that you use depends on your Kaltura edition and specific needs.</p>
+
+<h3 id="kaltura-hosted-edition">Kaltura Hosted Edition</h3>
+
+<p>If you use a standard Kaltura Hosted Edition, <a href="#GettingaClientLibraryforKalturaHostedEdi">get a client library for the Kaltura Hosted Edition</a>.</p>
+
+<h3 id="kaltura-onprem">Kaltura On‑Prem</h3>
+
+<p>If you use a standard Kaltura On‑Prem, you need local client libraries. See <a href="#GeneratingaClientLibraryoaLocalServer">Generating a Client Library for Kaltura On Prem and Kaltura CE</a>.</p>
+
+<h3 id="kaltura-ce">Kaltura CE</h3>
+
+<p>If you use a standard Kaltura CE, you need local client libraries. See <a href="#GeneratingaClientLibraryoaLocalServer">Generating a Client Library for Kaltura On Prem and Kaltura CE</a>.</p>
+
+<p class="mce-heading-3">
+  <a name="GeneratingaClientLibraryforaLanguagethat"></a>Generating a Client Library for a Language that Kaltura Does Not Provide
+</p>
+
+<p>If you want a client library for a language that Kaltura does not provide, you need to <a href="#GeneratingaKalturaClientLibrary">generate a specialized Kaltura client library</a>.</p>
+
+<p>Kaltura welcomes contributions of client libraries for languages that Kaltura does not yet provide.</p>
+
+<p>For more information, refer to <a href="http://knowledge.kaltura.com/kaltura-api-usage-guidelines">Kaltura API Usage Guidelines</a>.</p>
+
+<p class="mce-heading-3">
+  Using APIs from a Customized Server Plugin
+</p>
+
+<p>If you want a client library to include customized APIs from a server plugin, you need to <a href="#GeneratingaKalturaClientLibrary">generate a specialized Kaltura client library</a>.</p>
+
+<p class="mce-heading-3">
+  Using a Sub-Set of Kaltura APIs
+</p>
+
+<p>If you want to use only a specific sub-set of Kaltura APIs without accessing other APIs, you need to <a href="#GeneratingaKalturaClientLibrary">generate a specialized Kaltura client library</a>.</p>
+
+<p class="mce-heading-3">
+  <a name="GettingaClientLibraryforKalturaHostedEdi"></a>Getting a Client Library for Kaltura Hosted Edition
+</p>
+
+<p class="mce-heading-4">
+  Who Uses Kaltura Hosted Client Libraries?
+</p>
+
+<p>You need Kaltura Hosted client libraries if you use a standard Kaltura Hosted Edition.</p>
+
+<p>If you use a different Kaltura edition, see <a href="#GeneratingaClientLibraryoaLocalServer">Generating a Client Library for Kaltura On-Prem and Kaltura CE</a>.</p>
+
+<p>If you have specialized needs, see <a href="#GeneratingaKalturaClientLibrary">Generating a Specialized Kaltura Client Library</a>.</p>
+
+<p class="mce-heading-4">
+  How Is a Kaltura Hosted Client Library Generated?
+</p>
+
+<p>Kaltura Hosted Edition client libraries are generated automatically based on the <a href="http://www.kaltura.com/api_v3/api_schema.php">schema</a> of the latest API version.</p>
+
+<p class="mce-note-graphic">
+  Client libraries are updated automatically when Kaltura updates Hosted servers with a new API version.
+</p>
+
+<p class="mce-heading-4">
+  How to Get a Kaltura Hosted Client Library?
+</p>
+
+<p>Download client libraries from <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Kaltura API SDK - Native Client Libraries</a>.</p>
+
+<h1 class="mce-heading-1">
+  <a name="GeneratingaClientLibraryoaLocalServer"></a>Generating a Client Library for Kaltura On‑Prem and Kaltura CE
+</h1>
+
+<p class="mce-heading-4">
+  Who Generates Local Client Libraries?
+</p>
+
+<p>You need to generate client libraries locally if you use standard Kaltura On-Prem or Kaltura CE.</p>
+
+<p>If you use a standard Kaltura Hosted Edition, see <a href="#GettingaClientLibraryforKalturaHostedEdi">Getting a Client Library for Kaltura Hosted Edition</a>.</p>
+
+<p>If you have specialized needs, see <a href="#GeneratingaKalturaClientLibrary">Generating a Specialized Kaltura Client Library</a>.</p>
+
+<p class="mce-heading-4">
+  Understanding Client Libraries and Self-Hosted Kaltura Servers
+</p>
+
+<p>Kaltura On-Prem and Kaltura CE use self-hosted Kaltura servers.</p>
+
+<p>Generating a client library locally ensures that the client library is compatible with the API version of the Kaltura edition on your self-hosted Kaltura server.</p>
+
+<p class="mce-heading-4">
+  How Is a Kaltura Self-Hosted Client Library Generated?
+</p>
+
+<p>If the version of your self-hosted edition is:</p>
+
+<ul>
+  <li>Dragonfly or earlier – Use the Kaltura server client generator to generate a client library locally.</li>
+  <li>Eagle or later – The Kaltura server client generator is executed automatically during installation.</li>
+</ul>
+
+<p class="mce-note-graphic">
+  Do not generate a client library locally when you use an application developed by Kaltura or the community that is packaged with a client library. Changing the client library in the application may cause the application to fail.
+</p>
+
+<p class="mce-procedure">
+  To generate a client library on your local Kaltura server:
+</p>
+
+<p>(For Dragonfly and earlier versions of Kaltura self-hosted editions only:) Run the following script with root permissions:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /[INSTALLATION_PATH]/app/generator/ ./generate.sh</code></pre></figure>
+
+<p class="mce-note-graphic">
+  The generator may not have permission to create the Kaltura client library files if you run the script without root permissions.
+</p>
+
+<h1 class="mce-heading-1">
+  <a name="GeneratingaKalturaClientLibrary"></a>Generating a Specialized Kaltura Client Library
+</h1>
+
+<p class="mce-heading-3">
+  Who Generates a Specialized Client Library?
+</p>
+
+<p>You need to generate specialized client libraries if you want:</p>
+
+<ul>
+  <li>A client library for a language that Kaltura does not provide</li>
+  <li>A client library to include customized APIs from a server plugin</li>
+  <li>To use only a specific sub-set of Kaltura APIs without accessing other APIs</li>
+</ul>
+
+<p>If you use a standard Kaltura Hosted Edition, see <a href="#GettingaClientLibraryforKalturaHostedEdi">Getting a Client Library for Kaltura Hosted Edition</a>.</p>
+
+<p>If you use a standard Kaltura On-Prem or Kaltura CE, see <a href="#GeneratingaClientLibraryoaLocalServer">Generating a Client Library for Kaltura On-Prem and CE</a>.</p>
+
+<p class="mce-heading-3">
+  Generating a Specialized Client Library – Overview
+</p>
+
+<p>Generating a specialized client library may require:</p>
+
+<ul>
+  <li>Creating a language-specific <em>KalturaClientBase</em> class</li>
+  <li>Creating a language-specific generator class</li>
+  <li>Including a Kaltura server plugin in a generator</li>
+  <li>Modifying a generator <strong>config.ini</strong> file</li>
+  <li>Running a generator</li>
+</ul>
+
+<p>The required steps depend on the purpose of your specialized client library.</p>
+
+<p class="mce-heading-3">
+  Required Steps for Specialized Client Libraries
+</p>
+
+<table border="1" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <td valign="top">
+        <p>
+          <strong>A New Language</strong>
+        </p>
+      </td>
+      
+      <td valign="top" width="227">
+        <p>
+          <strong>Including Server Plugin APIs</strong>
+        </p>
+      </td>
+      
+      <td valign="top" width="159">
+        <p>
+          <strong>API Sub-Set</strong>
+        </p>
+      </td>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td valign="top">
+        <p style="text-align: left;">
+          <a href="#CreatingaLanguageSpecificKaltuaClientBas">Creating a Language-Specific KalturaClientBase Class</a>
+        </p>
+      </td>
+      
+      <td valign="top" width="227">
+        <p style="text-align: left;">
+          <a href="#IncludingaKalturaServerPlugininaGenerato">Including a Kaltura Server Plugin in a Generator</a>
+        </p>
+      </td>
+      
+      <td valign="top" width="159">
+        <p style="text-align: left;">
+          <a href="#Modifyingageneratorconfiginifile">Modifying a Generator config.ini File</a>
+        </p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="text-align: left;" valign="top">
+        <p>
+          <a href="#CreatingaLanguageSpecificGeneratorClass">Creating a Language-Specific Generator Class</a>
+        </p>
+      </td>
+      
+      <td style="text-align: left;" valign="top" width="227">
+        <p>
+          <a href="#RunningaGenerator">Running a Generator</a>
+        </p>
+      </td>
+      
+      <td style="text-align: left;" valign="top" width="159">
+        <p>
+          <a href="#RunningaGenerator">Running a Generator</a>
+        </p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="text-align: left;" valign="top">
+        <p>
+          <a href="#Modifyingageneratorconfiginifile">Modifying a Generator config.ini File</a>
+        </p>
+      </td>
+      
+      <td style="text-align: left;" valign="top" width="227">
+        <p>
+           
+        </p>
+      </td>
+      
+      <td style="text-align: left;" valign="top" width="159">
+        <p>
+           
+        </p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td style="text-align: left;" valign="top">
+        <p>
+          <a href="#RunningaGenerator">Running a Generator</a>
+        </p>
+      </td>
+      
+      <td style="text-align: left;" valign="top" width="227">
+        <p>
+           
+        </p>
+      </td>
+      
+      <td style="text-align: left;" valign="top" width="159">
+        <p>
+           
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="mce-heading-2">
+  How to Generate a Specialized Client Library
+</h2>
+
+<h3 class="mce-heading-3">
+  Understanding the Client Library Generator
+</h3>
+
+<p>The Kaltura system includes generator code that generates client libraries.</p>
+
+<p>The generator:</p>
+
+<ul>
+  <li>Is written in PHP</li>
+  <li>Uses the <em>Zend_Reflection</em> class</li>
+  <li>Parses the entire Kaltura API code, including the PHP code comments</li>
+  <li>Generates a client library according to the services and actions in the Kaltura API</li>
+</ul>
+
+<h3 class="mce-heading-3">
+  Understanding the KalturaClientBase class
+</h3>
+
+<p>The <em>KalturaClientBase</em> class:</p>
+
+<ul>
+  <li>Contains all of the logic for communicating with the Kaltura API</li>
+  <li>Consists of methods for activities such as:
+    <ul>
+      <li>Submitting the HTTP request to the Kaltura API</li>
+      <li>Building the HTTP request from objects</li>
+      <li>Parsing the API output (from XML or other output format) back in to the response object,</li>
+      <li>Writing logs</li>
+    </ul>
+  </li>
+  <li>Is independent of most Kaltura API services and actions</li>
+  <li>Is written manually for each client library</li>
+</ul>
+
+<h3 class="mce-heading-3">
+  Understanding the Kaltura Client Library Generator Class
+</h3>
+
+<p>Each client library is generated using a language‑specific generator class.</p>
+
+<p>The generator class has methods that are required to be implemented so that the code output is in the relevant language.</p>
+
+<p>The generator class includes methods such as:</p>
+
+<ul>
+  <li><em>writeEnum</em> –Outputs code of an enumeration class (for example, <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaEntryStatus">KalturaEntryStatus</a>)</li>
+  <li><em>writeClass</em> – Outputs code of an object that represents a Kaltura entity (for example, <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBaseEntry">KalturaBaseEntry</a>)</li>
+  <li><em>writeService</em> - Outputs code of an object that represents a Kaltura service.  <br />
+The object has methods. Each method represents an action that is available in the service.</li>
+  <li><em>writeAction</em> - Outputs code of an action method within a service object.</li>
+</ul>
+
+<p>A generator’s methods collectively generate the code of an entire language‑specific client library.</p>
+
+<p>A generator class is written in PHP.</p>
+
+<p>The generator class structure usually is the same for all languages.</p>
+
+<p>The main difference between generator classes is the method outputs.</p>
+
+<p class="mce-heading-4">
+  Required Developer Knowledge
+</p>
+
+<p>A developer who writes a language‑specific generator requires:</p>
+
+<ul>
+  <li>Wide knowledge of the language of the generated client library</li>
+  <li>Familiarity with the language’s limitations and behaviors.  <br />
+For example, whether the language supports nullable Boolean values.</li>
+</ul>
+
+<h3 class="mce-heading-3">
+  Understanding Inclusion of a Kaltura Server Plugin in a Client Library
+</h3>
+
+<p>The Kaltura server supports extending the API with server plugins. Kaltura server plugins can provide new API services.</p>
+
+<p>A server plugin usually contains a configuration file that includes the plugin in a client library.</p>
+
+<p>A generator places all server plugin APIs in separate files.</p>
+
+<p>The server can disable a server plugin. Similarly, a client library can exclude a server plugin by excluding the server plugin API files.</p>
+
+<p class="mce-heading-4">
+  Coding Standard Compliance
+</p>
+
+<p>When you write a Kaltura server plugin that extends the Kaltura API, Kaltura strongly recommends that you follow Kaltura API coding standards. A generator can handle server plugins for a client library accurately only if the plugin services comply with API coding standards, including code comments.</p>
+
+<h3 class="mce-heading-3">
+  Understanding the Generator config.ini File
+</h3>
+
+<p>A generator refers to a <strong>config.ini</strong> file during execution.</p>
+
+<p>The <strong>config.ini</strong>:</p>
+
+<ul>
+  <li>Specifies the client library package to generate</li>
+  <li>Specifies the services and actions to include or exclude</li>
+  <li>Is located in <strong>[INSTALLATION_PATH]/app/generator/config.ini</strong></li>
+</ul>
+
+<h2 class="mce-heading-2">
+  Producing a Specialized Kaltura Client Library
+</h2>
+
+<h3 class="mce-heading-3">
+  <a name="CreatingaLanguageSpecificKaltuaClientBas"></a>Creating a Language-Specific KalturaClientBase Class
+</h3>
+
+<p class="mce-procedure">
+  To create a language-specific KalturaClientBase class:
+</p>
+
+<ol>
+  <li><a href="https://developer.kaltura.com/api-docs/Client_Libraries">Download a client library</a> for an existing language.</li>
+  <li>Base the language-specific class on a <em>KalturaClientBase</em> class in the downloaded client library.  <br />
+<em>KalturaClientBase</em> is located in <strong>/[INSTALLATION_PATH]/app/generator/sources/[LANGUAGE_NAME]/</strong></li>
+</ol>
+
+<h3 class="mce-heading-3">
+  <a name="CreatingaLanguageSpecificGeneratorClass"></a>Creating a Language-Specific Generator Class
+</h3>
+
+<p class="mce-procedure">
+  To create a custom language-specific generator class:
+</p>
+
+<ol>
+  <li><a href="https://developer.kaltura.com/api-docs/Client_Libraries">Download a client library</a> for an existing language.</li>
+  <li>Base the language-specific class on a generator class in the downloaded client library.  <br />
+An example of a generator class path and name is: <strong>/[INSTALLATION_PATH]/app/generator/JavaClientGenerator.php</strong></li>
+</ol>
+
+<h3 class="mce-heading-3">
+  <a name="IncludingaKalturaServerPlugininaGenerato"></a>Including a Kaltura Server Plugin in a Generator
+</h3>
+
+<p class="mce-procedure">
+  To include a Kaltura Server Plugin in a generator:
+</p>
+
+<p>In your Kaltura server plugin, include a configuration that defines the plugin services included in client libraries.</p>
+
+<p>The client library generator refers to the plugin configuration. The generator includes or excludes plugin services in the generated client libraries as specified in the plugin configuration.</p>
+
+<p class="mce-note-graphic">
+  Do not modify the generator config.ini file to include or exclude plugin services.
+</p>
+
+<h3 class="mce-heading-3">
+  <a name="Modifyingageneratorconfiginifile"></a>Modifying a Generator config.ini File
+</h3>
+
+<p class="mce-procedure">
+  To include specific services and actions in the generator config.ini file:
+</p>
+
+<ol>
+  <li>Open <strong>/[INSTALLATION_PATH]/app/generator/config.ini</strong>.</li>
+  <li>For the language you are generating:
+    <ul>
+      <li>Add an <em>include</em> command with the services and actions to include. For example:</li>
+    </ul>
+  </li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">include <span class="o">=</span> batch.<span class="k">*</span>, batchcontrol.<span class="k">*</span>, jobs.<span class="k">*</span>, media.addfrombulk</code></pre></figure>
+<p>An asterisk includes all of a service’s actions. For example, <em>batch.** includes all *batch</em> service actions.  <br />
+    Specifying a service and action includes only the specific action of the service. For example, <em>media.addfrombulk</em> includes only the <em>addfrombulk</em> action of the <em>media</em> service.</p>
+<ul>
+  <li>If an <em>include</em> command exists, add to the command the services and actions you want to include.</li>
+</ul>
+
+<ol>
+  <li>Save the file.</li>
+</ol>
+
+<p class="mce-procedure">
+  To exclude specific services and actions from the generator config.ini file:
+</p>
+
+<ol>
+  <li>Open <strong>/[INSTALLATION_PATH]/app/generator/config.ini</strong>.</li>
+  <li>For the language you are generating:
+    <ul>
+      <li>Add an <em>exclude</em> command with the services and actions to exclude. For example:</li>
+    </ul>
+  </li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">exclude <span class="o">=</span> batch.<span class="k">*</span>, batchcontrol.<span class="k">*</span>, jobs.<span class="k">*</span>, media.addfrombulk</code></pre></figure>
+<p>An asterisk excludes all of a service’s actions. For example, <em>batch.** excludes all *batch</em> service actions.  <br />
+    Specifying a service and action excludes only the specific action of the service. For example, <em>media.addfrombulk</em> excludes only the <em>addfrombulk</em> action of the <em>media</em> service.</p>
+<ul>
+  <li>If an <em>exclude</em> command exists, add to the command the services and actions you want to exclude.</li>
+</ul>
+
+<ol>
+  <li>Save the file.</li>
+</ol>
+
+<p class="mce-procedure">
+  To include your client library in the generator config.ini file:
+</p>
+
+<ol>
+  <li>Open <strong>/[INSTALLATION_PATH]/app/generator/config.ini</strong>.</li>
+  <li>Add a section that specifies:</li>
+</ol>
+<ol style="list-style-type: lower-alpha;">
+  <li>
+    The client library name <br /> For example, when generating a client library in a new language, typically you use the language name.
+  </li>
+  <li>
+    The generator class name
+  </li>
+</ol>
+
+<ol>
+  <li>Save the file.</li>
+</ol>
+
+<p>Example of the section to add:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>yourClientLibraryName] generator <span class="o">=</span> <span class="o">[</span>classNameOfYourGenerator]</code></pre></figure>
+
+<h3 class="mce-heading-3">
+  <a name="RunningaGenerator"></a>Running a Generator
+</h3>
+
+<p class="mce-procedure">
+  To generate a client library on your local Kaltura server:
+</p>
+
+<p>Run the following script with root permissions:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /[INSTALLATION_PATH]/app/generator/ ./generate.sh </code></pre></figure>
+
+<p class="mce-note-graphic">
+  The generator may not have permission to create the Kaltura client library files if you run the script without root permissions.
+</p>
+
+<p>Your client library will be located under the output folder. For example: <strong>/[INSTALLATION_PATH]/web/content/clientslibs/[yourClientLibraryName]/</strong></p>
+
+<h1 class="mce-heading-1">
+  <a name="UsingaKalturaClientLibrary"></a>Using a Kaltura Client Library
+</h1>
+
+<p>Using a client library requires:</p>
+
+<ol>
+  <li><a href="#IncludingaClientLibraryinanApplication">Including a Client Library in an Application</a></li>
+  <li><a href="#InstantiatingaClientObject">Instantiating a Client Object</a></li>
+</ol>
+
+<p>Using a client library may include:</p>
+
+<ul>
+  <li><a href="#UsingaClientObjecttoPerformanAPICall">Using a Client Object to Perform an API Call</a></li>
+  <li><a href="#PerformingaMultiRequest">Performing Multi-Requests</a></li>
+  <li><a href="#ErrorHandling">Error Handling</a></li>
+</ul>
+
+<p>See <a href="#TipsandTricks">Tips and Tricks</a> for resources related to using a client library.</p>
+
+<p>For sample code in available client library languages, see <a href="#SampleCode">Sample Code for Multiple Client Library Languages</a>.</p>
+
+<h2 id="including-a-client-library-in-an-application">Including a Client Library in an Application</h2>
+
+<p>Before you can use a client library, you include the client library in your application.</p>
+
+<p>Depending on your programming language and application setup, either:</p>
+
+<ul>
+  <li>You explicitly include the client library in your application.</li>
+  <li>Your environment automatically includes the client library in your application using a feature such as the PHP auto-loading capability.</li>
+</ul>
+
+<p>The client library files included in your application depend on the client library generator. Usually you include only the <em>KalturaClient</em> file.</p>
+
+<p>The <em>KalturaClient</em> file is the main class that includes:</p>
+
+<ul>
+  <li>All other classes (including <em>KalturaClientBase</em>)</li>
+  <li>Most core Kaltura APIs:
+    <ul>
+      <li>Entity objects</li>
+      <li>Enumeration objects</li>
+      <li>Filter objects</li>
+      <li>Service classes</li>
+      <li>Service class methods</li>
+    </ul>
+  </li>
+</ul>
+
+<p>To explicitly include a client library in your application:</p>
+
+<p>Implement the following code in your application:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
+<span class="k">require_once</span> <span class="s1">'KalturaClient.php'</span><span class="p">;</span></code></pre></figure>
+
+<h2 id="excluding-a-server-plugin-from-an-application">Excluding a Server Plugin from an Application</h2>
+
+<p>All APIs that belong to a Kaltura server plugin are generated in separate files.</p>
+
+<p>The server can disable a server plugin. Similarly, a client library can exclude a server plugin by excluding the server plugin API files.</p>
+
+<p>To exclude a server plugin from an application:</p>
+
+<p>Do not include the server plugin API files in the client library.</p>
+
+<h2 id="instantiating-a-client-object">Instantiating a Client Object</h2>
+
+<p>Before you can use a client library, you need a client object to perform actions with the Kaltura API.</p>
+
+<p>Depending on your use case, you may need to instantiate client objects multiple times.</p>
+
+<p>Instantiating a client object requires:</p>
+
+<ol>
+  <li><a href="#CreatingaConfigurationObject">Creating a configuration object</a></li>
+  <li><a href="#StartingaKalturaSession">Starting a Kaltura session</a></li>
+  <li><a href="#SettingtheKalturaSessionfortheConfigurat">Setting the Kaltura session for the configuration object</a></li>
+</ol>
+
+<h2 id="creating-a-configuration-object">Creating a Configuration Object</h2>
+
+<p>To create a configuration object for a client library:</p>
+
+<p>Include the following code:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$kalturaConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConfiguration</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span> <span class="c1">// where 123 is your partner ID 
+</span><span class="nv">$kalturaConfig</span><span class="o">-&gt;</span><span class="na">serviceUrl</span> <span class="o">=</span> <span class="s1">'http://KalturaServerDomain'</span><span class="p">;</span> <span class="c1">// if you want to communicate with a Kaltura server which is  other than the default http://www.kaltura.com
+</span><span class="nv">$kalturaClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaClient</span><span class="p">(</span><span class="nv">$kalturaConfig</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="starting-a-kaltura-session">Starting a Kaltura Session</h2>
+
+<p>You need to start a Kaltura session (KS) before using a client object for most API calls.</p>
+
+<p>For more information about a KS, refer to <a href="http://knowledge.kaltura.com/kaltura-api-usage-guidelines">Kaltura API Usage Guidelines</a>.</p>
+
+<p>To create a KS:</p>
+
+<p>Implement the following code:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;?php
+$ks = $kalturaClient-&gt;generateSession($adminSecret, $userId, KalturaSessionType::ADMIN, $partnerId, $expiry,$privileges);
+</code></pre>
+</div>
+
+<p>Setting the Kaltura Session for the Configuration Object</p>
+
+<p>To set the KS for the configuration object:</p>
+
+<p>Implement the following code:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">$kalturaClient-&gt;setKs($ks);</code></pre></figure>
+
+<p>Using a Client Object to Perform an API Call</p>
+
+<p>The Kaltura API structure consists of a list of services, represented by service objects. Each service object consists of different actions, represented by a method in the service object.</p>
+
+<p>For example:</p>
+
+<ol>
+  <li>To call the <em>media</em> service to get a specific media entry instance from the Kaltura server entry, you use the <em>get</em> action.  <br />
+The result of <em>media.get</em> is an object of type <a href="https://developer.kaltura.com/api-docs/#/KalturaMediaEntry">KalturaMediaEntry</a>.</li>
+  <li>After performing the <em>media.get</em> call, you print the name of the entry.</li>
+</ol>
+
+<p>For more information about the Kaltura API structure, refer to <a href="http://knowledge.kaltura.com/kaltura-api-usage-guidelines">Kaltura API Usage Guidelines</a>.</p>
+
+<p>To perform a media.get call:</p>
+
+<p>Implement the following code:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">$entryId = 'XXXYYYZZZA'; // a known ID of media entry that you have 
+$mediaEntry = $client-&gt;media-&gt;get($entryId);</code></pre></figure>
+
+<p>To print the name of the media entry:</p>
+
+<p>Implement the following code:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">echo $mediaEntry-&gt;name;</code></pre></figure>
+
+<p>Example Workflow</p>
+
+<p>An example workflow for printing a known media item’s name from a client library involves:</p>
+
+<ol>
+  <li><a href="#IncludingaClientLibraryinanApplication">Including a Client Library in an Application</a></li>
+  <li><a href="#InstantiatingaClientObject">Instantiating a Client Object</a></li>
+</ol>
+<ol style="list-style-type: lower-alpha;">
+  <li>
+    <a href="#CreatingaConfigurationObject">Creating a configuration object</a>
+  </li>
+  <li>
+    <a href="#StartingaKalturaSession">Starting a Kaltura session</a>
+  </li>
+  <li>
+    <a href="#SettingtheKalturaSessionfortheConfigurat">Setting the Kaltura session for the configuration object</a>
+  </li>
+</ol>
+
+<ol>
+  <li><a href="#UsingaClientObjecttoPerformanAPICall">Using a Client Object to Perform an API Call</a>&lt;ol style="list-style-type: lower-alpha;"&gt;
+    <li>
+    <a href="#Toperformamediagetcall">Performing a media.get call</a>
+  </li>
+    <li>
+    <a href="#Toprintthenameofthemediaentry">Printing the name of the media entry</a>
+  </li>
+    <p>&lt;/ol&gt;</p>
+  </li>
+</ol>
+
+<p class="mce-heading-3">
+  Sample Code for Printing a Known Media Item's Name:
+</p>
+<figure class="highlight"><pre><code class="language-php" data-lang="php">require_once 'KalturaClient.php'; $kalturaConfig = new KalturaConfiguration(123); // where 123 is your partner ID $kalturaConfig-&gt;serviceUrl = 'http://KalturaServerDomain'; // if you want to communicate with a Kaltura server which is // other than the default http://www.kaltura.com $kalturaClient = new KalturaClient($kalturaConfig); $ks = $kalturaClient-&gt;generateSession($adminSecret, $userId, KalturaSessionType::ADMIN, $partnerId, $expiry,$privileges); $kalturaClient-&gt;setKs($ks); $entryId = 'XXXYYYZZZA'; // a known ID of media entry that you have $mediaEntry = $client-&gt;media-&gt;get($entryId); echo $mediaEntry-&gt;name;</code></pre></figure>
+
+<h3 class="mce-heading-3">
+  Performing an API Call with a Server-Side Plugin Service
+</h3>
+
+<p>Plugin APIs (services and objects) are generated in separate files. You can remove API files from the package easily without breaking inner dependency. See <a href="#ExcludingaServerPluginfromanApplication">Excluding a Server Plugin from an Application</a>.</p>
+
+<p>Since plugin APIs are not included in an application as a generic part of the client library, you use plugin APIs differently than client library objects.</p>
+
+<p>To perform a call using a plugin’s metadata API:</p>
+
+<p>Implement the following code:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">require_once 'KalturaClient.php'; 
+$kalturaConfig = new KalturaConfiguration(123); // where 123 is your partner ID 
+$kalturaConfig-&gt;serviceUrl = 'http://KalturaServerDomain'; // if you want to communicate with a Kaltura server which is other than the default http://www.kaltura.com 
+$kalturaClient = new KalturaClient($kalturaConfig); 
+$ks = $kalturaClient-&gt;generateSession($adminSecret, $userId, KalturaSessionType::ADMIN, $partnerId, $expiry,$privileges); 
+$kalturaClient-&gt;setKs($ks); 
+$entryId = 'XXXYYYZZZA'; // a known ID of media entry that you have instantiating a filter object required for the API call. 
+$metadataFilter = new KalturaMetadataFilter(); // 1111 is a known ID of metadata profile 
+$metadataFilter-&gt;metadataProfileIdEqual = '1111'; 
+$metadataFilter-&gt;metadataObjectTypeEqual = KalturaMetadataObjectType::ENTRY; // filtering metadata objects for specific entry: 
+$metadataFilter-&gt;objectIdEqual = $entryId; // instantiating a plugin object which holds its own services. note that we pass the client to the plugin object 
+$metadataPlugin = KalturaMetadataClientPlugin::get($kalturaClient); // calling the specific service 'metadata' and a specific action 'list'
+$metadataForEntry = $metadataPlugin-&gt;metadata-&gt;listAction($metadataFilter); 
+var_dump($metadataForEntry);</code></pre></figure>
+
+<p>Performing Multi-Requests</p>
+
+<p>The Kaltura API supports the multi-request feature.</p>
+
+<p>The multi-request feature allows you to stack multiple required calls and issue them in a single HTTP request. The multi-request feature reduces the number of network round trips between your server and Kaltura.</p>
+
+<p>You instruct the client to start a multi-request stack of calls. When all of the required calls are stacked, you instruct the client to perform the actual HTTP request.</p>
+
+<p>The multi-request feature supports the ability to have one request depend on the result of another request.</p>
+
+<p>For more information about the multi-request feature, refer to <a href="http://knowledge.kaltura.com/kaltura-api-usage-guidelines">Kaltura API Usage Guidelines</a>.</p>
+
+<p>To perform a multi-request:</p>
+
+<p>Implement code based on the following example:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">require_once 'KalturaClient.php'; 
+$kalturaConfig = new KalturaConfiguration(123); // where 123 is your partner ID 
+$kalturaConfig-&gt;serviceUrl = 'http://KalturaServerDomain'; // if you want to communicate with a Kaltura server which is other than the default http://www.kaltura.com 
+$kalturaClient = new KalturaClient($kalturaConfig); 
+$ks = $kalturaClient-&gt;generateSession($adminSecret, $userId, KalturaSessionType::ADMIN, $partnerId, $expiry,$privileges); 
+$kalturaClient-&gt;setKs($ks); $entryId = 'XXXYYYZZZA'; // a known ID of media entry that you have 
+try { // tell the client to start stacking actions for multi-request 
+  $kalturaClient-&gt;startMultiRequest(); // add first call to multi-request stack 
+  $kalturaClient-&gt;media-&gt;get($entryId); // create empty object for updating 
+  $emptyEntryForUpdate = new KalturaMediaEntry(); // set dependency between second call and first call, the description to be set on the entry is the tags from the previous 'media.get' call 
+  $emptyEntryForUpdate-&gt;description = '{1:result:tags}'; // add second call to multi-request stack 
+  $kalturaClient-&gt;media-&gt;update($entryId, $emptyEntryForUpdate); // tell the client to perform the actual HTTP request for the stacked actions 
+  $results = $kalturaClient-&gt;doMultiRequest(); // extract result objects from array of results 
+  $mediaEntry = $results[0]; 
+  $updatedMediaEntry = $results[1]; 
+  echo "entry tags: " . $mediaEntry-&gt;tags; 
+  echo "new entry desription: " . $updatedMediaEntry-&gt;description; 
+} catch(Exception $ex) { 
+  echo "could not get entry from Kaltura. Reason: " . $ex-&gt;getMessage(); 
+}</code></pre></figure>
+
+<p>Error Handling</p>
+
+<p>The Kaltura API can return errors.</p>
+
+<p>The API follows object-oriented programming (OOP) principles. A client library is generated as OOP code that consists of classes and methods. The best way for a client library to handle errors natively is by using exceptions, as follows:</p>
+
+<p>A client library parses an API output. If the API returned an error, the client throws an exception that includes the error code and message that the Kaltura server returned.</p>
+
+<p>Kaltura recommends that you wrap API calls in your code in a <em>try-catch</em> block to enable user-friendly error handling. This approach prevents your application from crashing.</p>
+
+<p>For more information about Kaltura API error handling, refer to <a href="http://knowledge.kaltura.com/kaltura-api-usage-guidelines">Kaltura API Usage Guidelines</a>.</p>
+
+<p>API Error Handling – Sample Code</p>
+
+<p>The following is an example of error handling for printing a known media item’s name:</p>
+
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="nv">require_once</span> <span class="s">'KalturaClient.php'</span><span class="p">;</span> 
+<span class="nv">$kalturaConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">KalturaConfiguration</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span> <span class="sr">//</span> <span class="nv">where</span> <span class="mi">123</span> <span class="nv">is</span> <span class="nv">your</span> <span class="nv">partner</span> <span class="nv">ID</span> 
+<span class="nv">$kalturaConfig</span><span class="o">-&gt;</span><span class="nv">serviceUrl</span> <span class="o">=</span> <span class="s">'http://KalturaServerDomain'</span><span class="p">;</span> <span class="sr">//</span> <span class="k">if</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">communicate</span> <span class="nv">with</span> <span class="nv">a</span> <span class="nv">Kaltura</span> <span class="nv">server</span> <span class="nv">which</span> <span class="nv">is</span> <span class="nv">other</span> <span class="nv">than</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">http:</span><span class="sr">//</span><span class="nv">www</span><span class="o">.</span><span class="nv">kaltura</span><span class="o">.</span><span class="nv">com</span> 
+<span class="nv">$kalturaClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">KalturaClient</span><span class="p">(</span><span class="nv">$kalturaConfig</span><span class="p">);</span> 
+<span class="nv">$ks</span> <span class="o">=</span> <span class="nv">$kalturaClient</span><span class="o">-&gt;</span><span class="nv">generateSession</span><span class="p">(</span><span class="nv">$adminSecret</span><span class="p">,</span> <span class="nv">$userId</span><span class="p">,</span> <span class="nn">KalturaSessionType::</span><span class="nv">ADMIN</span><span class="p">,</span> <span class="nv">$partnerId</span><span class="p">,</span> <span class="nv">$expiry</span><span class="p">,</span><span class="nv">$privileges</span><span class="p">);</span> 
+<span class="nv">$kalturaClient</span><span class="o">-&gt;</span><span class="nv">setKs</span><span class="p">(</span><span class="nv">$ks</span><span class="p">);</span> 
+<span class="nv">$entryId</span> <span class="o">=</span> <span class="s">'XXXYYYZZZA'</span><span class="p">;</span> <span class="sr">//</span> <span class="nv">a</span> <span class="nv">known</span> <span class="nv">ID</span> <span class="nv">of</span> <span class="nv">media</span> <span class="nv">entry</span> <span class="nv">that</span> <span class="nv">you</span> <span class="nv">have</span> 
+<span class="nv">try</span> <span class="p">{</span> 
+    <span class="nv">$mediaEntry</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nv">media</span><span class="o">-&gt;</span><span class="nv">get</span><span class="p">(</span><span class="nv">$entryId</span><span class="p">);</span> 
+    <span class="nv">echo</span> <span class="nv">$mediaEntry</span><span class="o">-&gt;</span><span class="nv">name</span><span class="p">;</span> 
+<span class="p">}</span> <span class="nv">catch</span><span class="p">(</span><span class="nv">Exception</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nv">echo</span> <span class="s">"could not get entry from Kaltura. Reason: "</span> <span class="o">.</span> <span class="nv">$ex</span><span class="o">-&gt;</span><span class="nv">getMessage</span><span class="p">();</span> 
+<span class="p">}</span></code></pre></figure>
+
+<h2 class="mce-heading-2">
+  <a name="TipsandTricks"></a>Tips and Tricks
+</h2>
+
+<ul>
+  <li>To learn about the Kaltura API, refer to the <a href="https://developer.kaltura.com/console">Kaltura API Test Console</a>.</li>
+  <li>In the <a href="https://developer.kaltura.com/console">Kaltura API Test Console</a>, you can toggle between PHP, Java, and C# to display a code example.</li>
+  <li>To learn about specific services, actions, and objects, refer to the <a href="https://developer.kaltura.com/api-docs">API documentation</a>.</li>
+  <li>For examples used in this document in languages available in the <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Kaltura API SDK - Native Client Libraries</a>, see <a href="#SampleCode">Sample Code for Multiple Client Library Languages</a>.</li>
+</ul>
+
+<h1 class="mce-heading-1">
+  <a name="SampleCode"></a>Sample Code for Multiple Client Library Languages
+</h1>
+
+<p>The sample code demonstrates the following scenario for using a Kaltura client library:</p>
+
+<ol>
+  <li><a href="#IncludingaClientLibraryinanApplication">Including a Client Library in an Application</a></li>
+  <li><a href="#InstantiatingaClientObject">Instantiating a Client Object</a></li>
+</ol>
+<ol style="list-style-type: lower-alpha;">
+  <li>
+    <a href="#CreatingaConfigurationObject">Creating a configuration object</a>
+  </li>
+  <li>
+    <a href="#StartingaKalturaSession">Starting a Kaltura session</a>
+  </li>
+  <li>
+    <a href="#SettingtheKalturaSessionfortheConfigurat">Setting the Kaltura session for the configuration object</a>
+  </li>
+</ol>
+
+<ol>
+  <li><a href="#UsingaClientObjecttoPerformanAPICall">Using a Client Object to Perform an API Call</a> (<em>media.get</em>)</li>
+</ol>
+<ol style="list-style-type: lower-alpha;">
+  <li>
+    <a href="#Toperformamediagetcall">Performing a media.get call</a>
+  </li>
+  <li>
+    <a href="#Toprintthenameofthemediaentry">Printing the name of the media entry</a>
+  </li>
+</ol>
+
+<ol>
+  <li><a href="#ErrorHandling">Error Handling</a></li>
+</ol>
+
+<p>To understand the sample code in detail, see [Using a Kaltura Client Library][3].</p>
+
+<h2 id="sample-code--available-languages">Sample Code – Available Languages</h2>
+
+<p>Sample code appears for the following languages:</p>
+
+<ul>
+  <li>PHP</li>
+  <li>Java</li>
+  <li>C#</li>
+  <li>Python</li>
+  <li>Ruby</li>
+  <li>AS3</li>
+  <li>JavaScript</li>
+  <li>Objective-C/Cocoa</li>
+</ul>
+
+<h3 id="php5">PHP5</h3>
+
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="nv">require_once</span> <span class="s">'KalturaClient.php'</span><span class="p">;</span> 
+<span class="nv">$kalturaConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">KalturaConfiguration</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span> <span class="sr">//</span> <span class="nv">where</span> <span class="mi">123</span> <span class="nv">is</span> <span class="nv">your</span> <span class="nv">partner</span> <span class="nv">ID</span> 
+<span class="nv">$kalturaConfig</span><span class="o">-&gt;</span><span class="nv">serviceUrl</span> <span class="o">=</span> <span class="s">'http://KalturaServerDomain'</span><span class="p">;</span> <span class="sr">//</span> <span class="k">if</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">communicate</span> <span class="nv">with</span> <span class="nv">a</span> <span class="nv">Kaltura</span> <span class="nv">server</span> <span class="nv">which</span> <span class="nv">is</span> <span class="nv">other</span> <span class="nv">than</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">http:</span><span class="sr">//</span><span class="nv">www</span><span class="o">.</span><span class="nv">kaltura</span><span class="o">.</span><span class="nv">com</span> 
+<span class="nv">$kalturaClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">KalturaClient</span><span class="p">(</span><span class="nv">$kalturaConfig</span><span class="p">);</span> 
+<span class="nv">$ks</span> <span class="o">=</span> <span class="nv">$kalturaClient</span><span class="o">-&gt;</span><span class="nv">generateSession</span><span class="p">(</span><span class="nv">$adminSecret</span><span class="p">,</span> <span class="nv">$userId</span><span class="p">,</span> <span class="nn">KalturaSessionType::</span><span class="nv">ADMIN</span><span class="p">,</span> <span class="nv">$partnerId</span><span class="p">,</span> <span class="nv">$expiry</span><span class="p">,</span><span class="nv">$privileges</span><span class="p">);</span> 
+<span class="nv">$kalturaClient</span><span class="o">-&gt;</span><span class="nv">setKs</span><span class="p">(</span><span class="nv">$ks</span><span class="p">);</span> 
+<span class="nv">$entryId</span> <span class="o">=</span> <span class="s">'XXXYYYZZZA'</span><span class="p">;</span> <span class="sr">//</span> <span class="nv">a</span> <span class="nv">known</span> <span class="nv">ID</span> <span class="nv">of</span> <span class="nv">media</span> <span class="nv">entry</span> <span class="nv">that</span> <span class="nv">you</span> <span class="nv">have</span> 
+<span class="nv">try</span> <span class="p">{</span> 
+    <span class="nv">$mediaEntry</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nv">media</span><span class="o">-&gt;</span><span class="nv">get</span><span class="p">(</span><span class="nv">$entryId</span><span class="p">);</span> 
+    <span class="nv">echo</span> <span class="nv">$mediaEntry</span><span class="o">-&gt;</span><span class="nv">name</span><span class="p">;</span> 
+<span class="p">}</span> <span class="nv">catch</span><span class="p">(</span><span class="nv">Exception</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nv">echo</span> <span class="s">"could not get entry from Kaltura. Reason: "</span> <span class="o">.</span> <span class="nv">$ex</span><span class="o">-&gt;</span><span class="nv">getMessage</span><span class="p">();</span> 
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="java">Java</h3>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">kaltura</span><span class="o">.</span><span class="na">code</span><span class="o">.</span><span class="na">example</span><span class="o">;</span> 
+<span class="kn">import</span> <span class="nn">com.kaltura.client.enums.*</span><span class="o">;</span> 
+<span class="kn">import</span> <span class="nn">com.kaltura.client.types.*</span><span class="o">;</span> 
+<span class="kn">import</span> <span class="nn">com.kaltura.client.services.*</span><span class="o">;</span> 
+<span class="kn">import</span> <span class="nn">com.kaltura.client.KalturaApiException</span><span class="o">;</span> 
+<span class="kn">import</span> <span class="nn">com.kaltura.client.KalturaClient</span><span class="o">;</span> 
+<span class="kn">import</span> <span class="nn">com.kaltura.client.KalturaConfiguration</span><span class="o">;</span> 
+<span class="kd">class</span> <span class="nc">CodeExample</span>
+<span class="o">{</span> 
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+    <span class="o">{</span> 
+	<span class="n">KalturaConfiguration</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KalturaConfiguration</span><span class="o">();</span> 
+	<span class="n">config</span><span class="o">.</span><span class="na">setPartnerId</span><span class="o">(</span><span class="mi">123</span><span class="o">);</span> <span class="c1">// where 123 is your partner ID config.setEndpoint("http://www.kaltura.com/"); if you want to communicate with a Kaltura server which isother than the default http://www.kaltura.com </span>
+	<span class="n">KalturaClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KalturaClient</span><span class="o">(</span><span class="n">config</span><span class="o">);</span> 
+	<span class="n">String</span> <span class="n">entryId</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+	<span class="kt">int</span> <span class="n">version</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> 
+	<span class="n">String</span> <span class="n">ks</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">generateSession</span><span class="o">(</span> <span class="n">adminSecret</span><span class="o">,</span> <span class="n">userId</span><span class="o">,</span> <span class="n">type</span><span class="o">,</span> <span class="n">partnerId</span><span class="o">,</span> <span class="n">expiry</span><span class="o">,</span> <span class="n">privileges</span> <span class="o">);</span> 
+	<span class="n">client</span><span class="o">.</span><span class="na">setSessionId</span><span class="o">(</span><span class="n">ks</span><span class="o">);</span> <span class="n">entryId</span> <span class="o">=</span> <span class="s">"XXXYYYZZZA"</span><span class="o">;</span> <span class="c1">// a known ID of media entry that you have </span>
+	<span class="k">try</span><span class="o">{</span> 
+	    <span class="n">KalturaMediaEntry</span> <span class="n">mediaEntry</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">getMediaService</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">entryId</span><span class="o">);</span> 
+	    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">mediaEntry</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span> 
+	<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">KalturaApiException</span> <span class="n">e</span><span class="o">){</span> 
+	    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"could not get entry from Kaltura. Reason: "</span><span class="o">);</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> 
+	<span class="o">}</span> 
+    <span class="o">}</span> 
+<span class="o">}</span></code></pre></figure>
+
+<h3 id="c">C#</h3>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span> 
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span> 
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span> 
+<span class="k">namespace</span> <span class="nn">Kaltura</span>
+<span class="p">{</span> 
+    <span class="k">class</span> <span class="nc">CodeExample</span>
+    <span class="p">{</span> 
+	<span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+	    <span class="p">{</span> 
+		<span class="n">KalturaConfiguration</span> <span class="n">config</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">KalturaConfiguration</span><span class="p">(</span><span class="m">123</span><span class="p">);</span> <span class="c1">// where 123 is your partner ID 
+</span>		<span class="n">config</span><span class="p">.</span><span class="n">ServiceUrl</span> <span class="p">=</span> <span class="s">"http://www.kaltura.com/"</span><span class="p">;</span> <span class="c1">// if you want to communicate with a Kaltura server which is other than the default http://www.kaltura.com 
+</span>		<span class="n">KalturaClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">KalturaClient</span><span class="p">(</span><span class="n">config</span><span class="p">);</span> 
+		<span class="n">String</span> <span class="n">ks</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">GenerateSession</span><span class="p">(</span> <span class="n">adminSecret</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">partnerId</span><span class="p">,</span> <span class="n">expiry</span><span class="p">,</span> <span class="n">privileges</span> <span class="p">);</span> <span class="c1">// GenerateSession method is already implemented in the C# library 
+</span>		<span class="n">String</span> <span class="n">entryId</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span> 
+		<span class="kt">int</span> <span class="n">version</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> 
+		<span class="n">client</span><span class="p">.</span><span class="n">KS</span> <span class="p">=</span> <span class="n">ks</span><span class="p">;</span> 
+		<span class="n">entryId</span> <span class="p">=</span> <span class="s">"XXXYYYZZZA"</span><span class="p">;</span> <span class="c1">// a known ID of media entry that you have 
+</span>		<span class="k">try</span> <span class="p">{</span> 
+		    <span class="n">KalturaMediaEntry</span> <span class="n">mediaEntry</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">MediaService</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="n">entryId</span><span class="p">);</span> 
+		    <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">mediaEntry</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> 
+		<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">KalturaException</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span> 
+		    <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"could not get entry from Kaltura. "</span><span class="p">);</span> 
+		    <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Reason: "</span><span class="p">);</span> <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span> 
+		<span class="p">}</span> 
+	    <span class="p">}</span> 
+    <span class="p">}</span> 
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="python">Python</h3>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">KalturaClient</span> <span class="kn">import</span> <span class="o">*</span> 
+<span class="n">config</span> <span class="o">=</span> <span class="n">KalturaConfiguration</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="c"># where 123 is your partner ID </span>
+<span class="n">config</span><span class="o">.</span><span class="n">serviceUrl</span> <span class="o">=</span> <span class="s">"http://devtests.kaltura.co.cc/"</span> <span class="c"># if you want to communicate with a Kaltura server which is other than the default http://www.kaltura.com </span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">KalturaClient</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> 
+<span class="n">ks</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">generateSession</span><span class="p">(</span><span class="n">adminSecret</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">partnerId</span><span class="p">,</span> <span class="n">expiry</span><span class="p">,</span> <span class="n">privileges</span><span class="p">)</span> 
+<span class="n">client</span><span class="o">.</span><span class="n">setKs</span><span class="p">(</span><span class="n">ks</span><span class="p">)</span> 
+<span class="n">entryId</span> <span class="o">=</span> <span class="s">"XXXYYYZZZA"</span><span class="p">;</span> <span class="c"># a known ID of media entry that you have </span>
+<span class="k">try</span><span class="p">:</span> 
+    <span class="n">mediaEntry</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">media</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">entryId</span><span class="p">)</span> 
+    <span class="k">print</span> <span class="n">mediaEntry</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> 
+<span class="k">except</span> <span class="n">KalturaException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> 
+    <span class="k">print</span> <span class="s">"could not get entry from Kaltura. Reason: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></code></pre></figure>
+
+<h3 id="ruby">Ruby</h3>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">"ruby_client.rb"</span> 
+<span class="kp">include</span> <span class="no">Kaltura</span> 
+<span class="n">config</span> <span class="o">=</span> <span class="no">KalturaConfiguration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="c1"># where 123 is your partner ID </span>
+<span class="n">config</span><span class="p">.</span><span class="nf">service_url</span> <span class="o">=</span> <span class="s1">'http://www.kaltura.com/'</span> <span class="c1"># if you want to communicate with a Kaltura server which is </span>
+<span class="c1"># other than the default http://www.kaltura.com </span>
+<span class="n">client</span> <span class="o">=</span> <span class="no">KalturaClient</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> 
+<span class="n">ks</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">session_service</span><span class="p">.</span><span class="nf">start</span> <span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">partnerId</span><span class="p">,</span> <span class="n">expiry</span><span class="p">,</span> <span class="n">privileges</span><span class="p">)</span> 
+<span class="n">client</span><span class="p">.</span><span class="nf">ks</span> <span class="o">=</span> <span class="n">ks</span> <span class="n">entry_id</span> <span class="o">=</span> <span class="s1">'XXXYYYZZZA'</span> 
+<span class="n">media_entry</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">media_service</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">entry_id</span><span class="p">)</span> 
+<span class="nb">puts</span> <span class="n">media_entry</span><span class="p">.</span><span class="nf">name</span></code></pre></figure>
+
+<blockquote>
+  <p>Note: The Ruby client library does not include a local generateSession function to generate a Kaltura session. Instead, use the session service to start a session.</p>
+</blockquote>
+
+<h3 id="as3">AS3</h3>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="p">{</span> <span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="n">kaltura</span><span class="p">.</span><span class="n">KalturaClient</span><span class="p">;</span> <span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="n">kaltura</span><span class="p">.</span><span class="n">commands</span><span class="p">.</span><span class="n">baseEntry</span><span class="p">.</span><span class="n">BaseEntryGet</span><span class="p">;</span> <span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="n">kaltura</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">KalturaConfig</span><span class="p">;</span> <span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="n">kaltura</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">KalturaEvent</span><span class="p">;</span> <span class="n">public</span> <span class="n">class</span> <span class="n">CodeExample</span> <span class="p">{</span> <span class="n">private</span> <span class="n">var</span> <span class="err">\</span><span class="n">_client</span><span class="o">:</span><span class="n">KalturaClient</span><span class="p">;</span> <span class="n">public</span> <span class="n">function</span> <span class="nf">CodeExample</span><span class="p">()</span> <span class="p">{</span> <span class="o">//</span> <span class="n">create</span> <span class="n">KalturaClient</span><span class="o">:</span> <span class="n">var</span> <span class="n">configuration</span><span class="o">:</span><span class="n">KalturaConfig</span> <span class="o">=</span> <span class="n">new</span> <span class="n">KalturaConfig</span><span class="p">();</span> <span class="n">configuration</span><span class="p">.</span><span class="n">partnerId</span> <span class="o">=</span> <span class="s">"123"</span><span class="p">;</span> <span class="o">//</span> <span class="n">where</span> <span class="mi">123</span> <span class="n">is</span> <span class="n">your</span> <span class="n">partner</span> <span class="n">ID</span> <span class="n">configuration</span><span class="p">.</span><span class="n">ignoreNull</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">configuration</span><span class="p">.</span><span class="n">ks</span> <span class="o">=</span> <span class="n">loaderInfo</span><span class="p">.</span><span class="n">parameters</span><span class="p">.</span><span class="n">ks</span><span class="p">;</span> <span class="o">//</span> <span class="n">ks</span> <span class="n">passed</span> <span class="n">in</span> <span class="n">as</span> <span class="n">flashvar</span> <span class="err">\</span><span class="n">_client</span> <span class="o">=</span> <span class="n">new</span> <span class="n">KalturaClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">);</span> <span class="n">var</span> <span class="n">entryId</span><span class="o">:</span><span class="n">String</span> <span class="o">=</span> <span class="s">"XXXYYYZZZA"</span><span class="p">;</span> <span class="o">//</span> <span class="n">a</span> <span class="n">known</span> <span class="n">ID</span> <span class="n">of</span> <span class="n">media</span> <span class="n">entry</span> <span class="n">that</span> <span class="n">you</span> <span class="n">have</span> <span class="n">var</span> <span class="n">beg</span><span class="o">:</span><span class="n">BaseEntryGet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">BaseEntryGet</span><span class="p">(</span><span class="n">entryId</span><span class="p">);</span> <span class="n">beg</span><span class="p">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="n">KalturaEvent</span><span class="p">.</span><span class="n">COMPLETE</span><span class="p">,</span> <span class="n">handleEntryGet</span><span class="p">);</span> <span class="n">beg</span><span class="p">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="n">KalturaEvent</span><span class="p">.</span><span class="n">FAILED</span><span class="p">,</span> <span class="n">handleEntryGet</span><span class="p">);</span> <span class="n">_client</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">beg</span><span class="p">);</span> <span class="p">}</span> <span class="n">private</span> <span class="n">function</span> <span class="n">handleEntryGet</span><span class="p">(</span><span class="n">e</span><span class="o">:</span><span class="n">KalturaEvent</span><span class="p">)</span><span class="o">:</span><span class="kt">void</span> <span class="p">{</span> <span class="n">e</span><span class="p">.</span><span class="n">target</span><span class="p">.</span><span class="n">removeEventListener</span><span class="p">(</span><span class="n">KalturaEvent</span><span class="p">.</span><span class="n">COMPLETE</span><span class="p">,</span> <span class="n">handleEntryGet</span><span class="p">);</span> <span class="n">e</span><span class="p">.</span><span class="n">target</span><span class="p">.</span><span class="n">removeEventListener</span><span class="p">(</span><span class="n">KalturaEvent</span><span class="p">.</span><span class="n">FAILED</span><span class="p">,</span> <span class="n">handleEntryGet</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">KalturaEvent</span><span class="p">.</span><span class="n">COMPLETE</span><span class="p">)</span> <span class="p">{</span> <span class="n">trace</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="n">trace</span><span class="p">(</span><span class="s">"could not get entry from Kaltura. Reason: "</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errorMsg</span><span class="p">);</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span></code></pre></figure>
+
+<h3 id="javascript">JavaScript</h3>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;</span> 
+<span class="kd">var</span> <span class="nx">kConfig</span><span class="p">;</span> 
+<span class="kd">var</span> <span class="nx">kClient</span><span class="p">;</span> 
+<span class="kd">var</span> <span class="nx">partnerId</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span> <span class="c1">// where 123 is your partner ID </span>
+<span class="kd">var</span> <span class="nx">userId</span> <span class="o">=</span> <span class="s2">"someone"</span><span class="p">;</span> 
+<span class="kd">var</span> <span class="nx">expiry</span> <span class="o">=</span> <span class="mi">86400</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">privileges</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span> <span class="c1">// call server side to generate a KS for you so secrets will not be compromised </span>
+<span class="kd">var</span> <span class="nx">ks</span> <span class="o">=</span> <span class="nx">ajaxGetKs</span><span class="p">(</span><span class="nx">partnerId</span><span class="p">,</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">expiry</span><span class="p">,</span> <span class="nx">privileges</span><span class="p">);</span> 
+<span class="kd">var</span> <span class="nx">entryId</span> <span class="o">=</span> <span class="s2">"XXXYYYZZZA"</span><span class="p">;</span> <span class="c1">// a known ID of media entry that you have </span>
+<span class="kd">function</span> <span class="nx">pageLoad</span><span class="p">()</span> 
+<span class="p">{</span> 
+    <span class="nx">kConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConfiguration</span><span class="p">(</span><span class="nx">partnerId</span><span class="p">);</span> 
+    <span class="nx">kConfig</span><span class="p">.</span><span class="nx">serviceUrl</span> <span class="o">=</span> <span class="s2">"http://www.kaltura.com"</span><span class="p">;</span> <span class="c1">// if you want to communicate with a Kaltura server which is </span>
+    <span class="c1">// other than the default http://www.kaltura.com </span>
+    <span class="nx">kClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaClient</span><span class="p">(</span><span class="nx">kConfig</span><span class="p">);</span> 
+    <span class="nx">kClient</span><span class="p">.</span><span class="nx">ks</span> <span class="o">=</span> <span class="nx">ks</span><span class="p">;</span> 
+    <span class="nx">getEntrySample</span><span class="p">();</span> 
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> 
+<span class="p">}</span> 
+<span class="kd">function</span> <span class="nx">getEntrySample</span><span class="p">()</span> 
+<span class="p">{</span> 
+    <span class="nx">kClient</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">getEntryResult</span><span class="p">,</span> <span class="nx">entryId</span><span class="p">);</span> 
+<span class="p">}</span> 
+<span class="kd">function</span> <span class="nx">getEntryResult</span><span class="p">(</span><span class="nx">success</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> 
+<span class="p">{</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span> 
+	<span class="nx">alert</span><span class="p">(</span><span class="s2">"Error: "</span><span class="o">+</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span> 
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> 
+	<span class="nx">alert</span><span class="p">(</span><span class="s2">"Your entry name: "</span><span class="o">+</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> 
+    <span class="p">}</span> 
+<span class="p">}</span> 
+<span class="o">&lt;</span><span class="sr">/script&gt;</span></code></pre></figure>
+
+<h4 id="handling-secrets">Handling Secrets</h4>
+
+<p>Because JavaScript is a client-side programming language, secrets included in the code are compromised. Exposing secrets causes a security issue.</p>
+
+<p>To avoid exposing the KS secret, Kaltura recommends calling an AJAX (or similar methodology) server‑side action that returns a KS. The sample code implements the recommendation:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">ks</span> <span class="o">=</span> <span class="nx">ajaxGetKs</span><span class="p">(</span><span class="nx">partnerId</span><span class="p">,</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">expiry</span><span class="p">,</span> <span class="nx">privileges</span><span class="p">);</span></code></pre></figure>
+
+<p>For more information about security issues related to accessing the Kaltura API using client-side technology, refer to <a href="/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura API Authentication and Security</a>.</p>
+
+<h3 id="objective-ccocoa">Objective-C/Cocoa</h3>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="cp">#import "KalturaClient.h" 
+#define SERVICE_URL (@"http://www.kaltura.com") 
+#define ADMIN_SECRET (@"1234abcd") 
+#define PARTNER_ID (1234) 
+#define USER_ID (@"user") 
+#define ENTRY_ID (@"0_12345678") 
+</span><span class="k">@interface</span> <span class="nc">GetEntrySample</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">sample</span><span class="p">;</span> <span class="k">@end</span> <span class="k">@implementation</span> <span class="nc">GetEntrySample</span> <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">sample</span> 
+<span class="p">{</span> 
+    <span class="n">KalturaClientConfiguration</span><span class="o">*</span> <span class="n">config</span> <span class="o">=</span> <span class="p">[[</span><span class="n">KalturaClientConfiguration</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span> 
+    <span class="n">config</span><span class="p">.</span><span class="n">serviceUrl</span> <span class="o">=</span> <span class="n">SERVICE_URL</span><span class="p">;</span> 
+    <span class="n">KalturaNSLogger</span><span class="o">*</span> <span class="n">logger</span> <span class="o">=</span> <span class="p">[[</span><span class="n">KalturaNSLogger</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span> 
+    <span class="n">config</span><span class="p">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span><span class="p">;</span> 
+    <span class="p">[</span><span class="n">logger</span> <span class="nf">release</span><span class="p">];</span> <span class="c1">// retained on config 
+</span>    <span class="n">config</span><span class="p">.</span><span class="n">partnerId</span> <span class="o">=</span> <span class="n">PARTNER_ID</span><span class="p">;</span> 
+    <span class="n">KalturaClient</span><span class="o">*</span> <span class="n">client</span> <span class="o">=</span> <span class="p">[[</span><span class="n">KalturaClient</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithConfig</span><span class="p">:</span><span class="n">config</span><span class="p">];</span> 
+    <span class="p">[</span><span class="n">config</span> <span class="nf">release</span><span class="p">];</span> <span class="c1">// retained on the client 
+</span>    <span class="n">client</span><span class="p">.</span><span class="n">ks</span> <span class="o">=</span> <span class="p">[</span><span class="n">KalturaClient</span> <span class="nf">generateSessionWithSecret</span><span class="p">:</span><span class="n">ADMIN_SECRET</span> <span class="nf">withUserId</span><span class="p">:</span><span class="n">USER_ID</span> <span class="n">withType</span><span class="o">:</span><span class="p">[</span><span class="n">KalturaSessionType</span> <span class="nf">ADMIN</span><span class="p">]</span> <span class="n">withPartnerId</span><span class="o">:</span><span class="n">PARTNER_ID</span> <span class="n">withExpiry</span><span class="o">:</span><span class="mi">86400</span> <span class="n">withPrivileges</span><span class="o">:</span><span class="s">@""</span><span class="p">];</span> 
+    <span class="n">KalturaMediaEntry</span><span class="o">*</span> <span class="n">mediaEntry</span> <span class="o">=</span> <span class="p">[</span><span class="n">client</span><span class="p">.</span><span class="n">media</span> <span class="nf">getWithEntryId</span><span class="p">:</span><span class="n">ENTRY_ID</span><span class="p">];</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">error</span> <span class="o">!=</span> <span class="nb">nil</span><span class="p">)</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Failed to get entry, domain=%@ code=%d"</span><span class="p">,</span> <span class="n">error</span><span class="p">.</span><span class="n">domain</span><span class="p">,</span> <span class="n">error</span><span class="p">.</span><span class="n">code</span><span class="p">);</span> 
+    <span class="k">else</span> <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Entry name %@"</span><span class="p">,</span> <span class="n">mediaEntry</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="p">[</span><span class="n">client</span> <span class="nf">release</span><span class="p">];</span> 
+<span class="p">}</span> 
+<span class="k">@end</span></code></pre></figure>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

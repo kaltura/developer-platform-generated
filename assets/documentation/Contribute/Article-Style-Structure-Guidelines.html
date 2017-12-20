@@ -1,0 +1,496 @@
+  <title>Article Style and Structure Guidelines</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Article Style and Structure Guidelines" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Contribute/Article-Style-Structure-Guidelines.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Contribute/Article-Style-Structure-Guidelines.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Article Style and Structure Guidelines</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Contribute/Article-Style-Structure-Guidelines.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (2 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (8 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura VPaaS Developer Site uses <a href="http://jekyllrb.com/">Jekyll engine</a> and markdown syntax as the basis of the articles.<br />
+To learn about Markdown basics and how to use the format, please read: <a href="https://help.github.com/articles/markdown-basics">GitHub markdown basics</a>.</p>
+
+<blockquote>
+  <p><strong>Important note</strong>: Always add new lines before and after every element (heading, table, image, lists, code, embeds, etc).</p>
+</blockquote>
+
+<h2 id="adding-kaltura-videos">Adding Kaltura Videos</h2>
+<p>{% onebox http://www.kaltura.com/tiny/nex76 %}</p>
+
+<p><strong>Will be rendered as:</strong></p>
+
+<div>
+<div class="video-player-wrapper">
+<div id="dummy" class="video-margin"></div>
+<div id="kaltura_player_1_h9zbypqv_26657121" class="video-player"></div>
+</div>
+<script src="https://cdnapisec.kaltura.com/p/1829791/sp/182979100/embedIframeJs/uiconf_id/26657121/partner_id/1829791"></script>
+<script>
+function embedVideo() {
+if (!window.kWidget) return setTimeout(embedVideo, 100);
+window.kWidget.embed({
+"targetId": "kaltura_player_1_h9zbypqv_26657121",
+"wid": "_1829791",
+"uiconf_id": 26657121,
+"flashvars": {
+"streamerType": "auto",
+},
+"cache_st": 1450868353,
+"entry_id": "1_h9zbypqv"
+});
+}
+embedVideo();
+</script>
+</div>
+
+<h2 id="adding-youtube-videos">Adding YouTube videos</h2>
+<p>{% onebox https://www.youtube.com/watch?v=Owh8nBt4QSs %}</p>
+
+<h2 id="adding-syntax-highligted-code">Adding Syntax Highligted Code</h2>
+
+<p>{% highlight c %}<br />
+int hello_world(char *world)  <br />
+{  <br />
+	printf(“Hello %s\n”, world);  <br />
+	return(0);<br />
+}  <br />
+{% endhighlight %}</p>
+
+<p><strong>Will render as:</strong></p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">hello_world</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">world</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"Hello %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">world</span><span class="p">);</span>
+	<span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="adding-multi-language-tabbed-divs">Adding Multi language tabbed divs</h2>
+
+<p>Add your code snippet for each lang dir under https://github.com/kaltura/DeveloperPortalDocs/tree/master/code_examples and then include the following in your MD:</p>
+
+<p>{% code_example snippet_file_name %}</p>
+
+<p><strong>Will render as:</strong></p>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="ruby">Ruby</a></li><li class="code-tab"><a href="#" class="a_button" target="c">C</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">print &quot;Hello World&quot;
+</code></pre>
+          </div>
+          <div class="highlight example ruby">
+            <pre><code class="ruby" data-lang="ruby">puts &quot;Hello World&quot;
+</code></pre>
+          </div>
+          <div class="highlight example c">
+            <pre><code class="c" data-lang="c">int hello_world(char *world)
+{
+	printf(&quot;Hello %s\n&quot;, world);
+	return(0);
+}
+</code></pre>
+          </div>
+</div>
+
+<p>See <a href="https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers">List of supported languages and lexers</a>.</p>
+
+<h2 id="adding-tables">Adding Tables</h2>
+
+<p>Markdown tables can become messy. Please write clean tables so it will be simple for contributors after you to edit and enhance your work.  <br />
+The clean way to add Markdown tables is as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  
+| HCell        | Header Cell Middle | HCell Align-Right |
+|:------------ |:------------------:|------------------:|
+| 1 line body  | text               | more txt          |
+| 2 line body  | some text          | other txt         |
+  
+</code></pre>
+</div>
+
+<p>Note the use of spaces at the end of cells to ensure a clean alignment in edit view.   <br />
+Always specify the alignment indicator (with <code class="highlighter-rouge">:</code>) to clearly indicate the alignment of the text.   <br />
+Be certain to ensure that there is a an empty line above and below each table.</p>
+
+<p>The table above, will be generated as:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">HCell</th>
+      <th style="text-align: center">Header Cell Middle</th>
+      <th style="text-align: right">HCell Align-Right</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">1 line body</td>
+      <td style="text-align: center">text</td>
+      <td style="text-align: right">more txt</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2 line body</td>
+      <td style="text-align: center">some text</td>
+      <td style="text-align: right">other txt</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can also use: <a href="http://www.tablesgenerator.com/markdown_tables">TablesGenerator.com</a>.</p>
+
+<h2 id="adding-images">Adding Images</h2>
+
+<p>Use the standard Markdown notation for images (<code class="highlighter-rouge">![Alt Text](url)</code>).  <br />
+Please always ensure that a descriptive Alt text is specified on your image to ensure compatibility with screen readers and better search indexing.</p>
+
+<h3 id="adding-an-image-folder">Adding an Image Folder</h3>
+
+<ol>
+  <li>Go to the folder inside which you want to create another folder.</li>
+  <li>Add a new file.</li>
+  <li>In the text field for the file name, first write the folder name you want to create and then type / , to create the folder.</li>
+  <li>Commit the new file.</li>
+</ol>
+
+<h2 id="adding-diagrams">Adding Diagrams</h2>
+<p>{% plantuml %}</p>
+
+<p>participant App<br />
+participant “Kaltura Player” as KP</p>
+
+<p>App-&gt;KP: setCustomURLProvider(localURLProvider)<br />
+App-&gt;KP: setConfig(entryConfig)<br />
+App-&gt;KP: play()<br />
+KP-&gt;localURLProvider: getURL(entryId)<br />
+localURLProvider–&gt;KP: localPath</p>
+
+<p>note over KP: Plays the downloaded file</p>
+
+<p>{% endplantuml %}</p>
+
+<p><strong>Will render as:</strong></p>
+<p><img src="assets/uml/c36124909720e7f8adfaaa48113b5bc5.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<h2 id="note-about-links-to-external-sites">Note about links to external sites</h2>
+<p>The VPaaS website will automatically detect if links are using the same domain or a different one.  <br />
+Links that are directed to external domains will automatically be appended with `target=”_blank”’ and will be opened in a new tab.</p>
+
+<p>A nifty tool to help you to see how your markdown looks as you create it: <a href="http://dillinger.io">dillinger.io</a></p>
+
+<p>For additional reading on the Markdown flavor in use, see: <a href="http://kramdown.gettalong.org/documentation.html">Kramdown</a>.</p>
+
+<h2 id="tips-for-creating-great-content">Tips for Creating Great Content</h2>
+
+<ul>
+  <li>Start with an introduction by answering the question “what will be learned in this document?”.</li>
+  <li>Think about the steps that will get your reader from A to Z in the fastest way possible while following Kaltura best-practices.</li>
+  <li>Do not add an H1 title (#) to your article. It will be added automatically from the metadata title defined in the <a href="#header-notation">“article header notation”</a> section.</li>
+  <li>All sections should be separated by H2 headings (##), subsections by H3 headings (###) and so on.</li>
+  <li><strong>Don’t forget to spell check!</strong></li>
+</ul>
+
+<h3 id="remember-that-your-audience-is-developer-focused-therefore">Remember that your audience is developer-focused, therefore:</h3>
+
+<p>Think about steps that will take your reader through actual scenarios’ breakdown, with code reference examples that are complete and easy to follow.</p>
+
+<ul>
+  <li>Include code snippets where relevant.</li>
+  <li>Create Interactive Code Workflows where possible (https://developer.kaltura.com/workflows).</li>
+  <li>Reference API end-points where applicable, and make sure to explain these API end-points and their respective request and response fields and formats.</li>
+  <li>Reference relevant github repositories where applicable.</li>
+  <li>Clearly explain the required workflows, and ensure they achieve a final and complete end-result.</li>
+  <li>When in doubt, assume that your reader will be a newbie and doesn’t know much about the context, so link to relevant reading material and explain information properly.</li>
+</ul>
+
+<h2 id="how-to-contribute-and-help-improve-the-documentation">How to Contribute and Help Improve the Documentation</h2>
+
+<ul>
+  <li>Every topic category (e.g. Content Ingestion &amp; Acquisition) has a respective directory under this repository.</li>
+  <li>All markdown documents should be saved in this repository under the respective topic category directory.</li>
+  <li>When naming your files, please use the same convention as the other documents on this repository:</li>
+  <li>Lower case</li>
+  <li>Spaces converted to dash</li>
+  <li>Filename always ends with <code class="highlighter-rouge">.md</code> as the file extension</li>
+  <li>The filename should always reflect the title of the article (i.e. H1 == filename)</li>
+  <li>Follow the guidelines for article header notation as per below</li>
+</ul>
+
+<h2 id="article-header-notation"><a name="header-notation"></a>Article Header Notation</h2>
+<p>At the top of every markdown file, you will find the notation as follows. This designates the type of page and its location in the website menu.</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="nn">---</span>
+<span class="s">layout</span><span class="pi">:</span> <span class="s">page</span>
+<span class="s">title</span><span class="pi">:</span> <span class="s">VPaaS Website Sample Article</span>
+<span class="nn">---</span></code></pre></figure>
+
+<h3 id="the-document-metadata-fields-are">The document metadata fields are:</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">layout:</code> for documents, this should always be set to <code class="highlighter-rouge">page</code></li>
+  <li><code class="highlighter-rouge">title:</code> this is the title of the page (correlates to <code class="highlighter-rouge">&lt;title&gt;&lt;/title&gt;</code> tag in HTML)</li>
+</ul>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>

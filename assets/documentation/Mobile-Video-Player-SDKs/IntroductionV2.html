@@ -1,0 +1,779 @@
+  <title>VPaaS - Video Platform as a Service | Kaltura</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="" >
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Mobile-Video-Player-SDKs/IntroductionV2.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Mobile-Video-Player-SDKs/IntroductionV2.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KKRG75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KKRG75');</script>
+<!-- End Google Tag Manager -->
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title"></h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Aug 8 13:28:22 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Mobile-Video-Player-SDKs/IntroductionV2.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Jan 15 04:38:30 2017, By: Oren Me</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 8 13:28:22 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Oren Me (1 commits) (<a href="mailto:oren.me@gmail.com">oren.me@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>Kaltura’s Mobile Video SDKs for iOS and Android provide the framework and tools to help you easily embed the <a href="http://player.kaltura.com/">Kaltura Video Player</a> into native environments in your iOS or Android applications, without having to build a Player UI, plugins, or capabilities from scratch.</p>
+
+<p>The SDK is essentially a native (i.e., Java or ObjectiveC-based code) wrapper that loads the same Kaltura Video Player inside a WebView. The Kaltura Video Player that is loaded into your native mobile application is essentially the <strong>same</strong> player that includes all of the customizations, themes, and plugins that are used on your website or web application. When the Kaltura Video Player loads into your native application, it seamlessly decides which is the best playback engine to leverage for playback (e.g., the native Media API of the device, a DRM provider’s API, etc.). This seamless behavior simplifies how you, the developer, build mobile video applications, by saving you the need to address video playback optimization, security, or (dz -ensuring the UI consistency) worry about maintaining the same UI across devices and platforms.</p>
+
+<p>The Kaltura Vidoe Player SDK for iOS and Android supports:</p>
+
+<ul>
+  <li>DRM</li>
+  <li>IMA (DFP)</li>
+  <li>Chromecast</li>
+  <li>AirPlay</li>
+  <li>Offline Mode (including DRM)</li>
+  <li>PIP</li>
+</ul>
+
+<p>and more…</p>
+
+<h2 id="mobile-video-player-sdk-architecture-overview">Mobile Video Player SDK Architecture Overview</h2>
+
+<p>The Kaltura Video Player’s architecture is designed to allow for a seamless integration experience, enabling you to connect mutltiple playback engines and platforms. The Kaltura Video Player wraps the playback engine with the same interface and events, thereby allowing the same plugin code to work across multiple platforms, including iOS, Android, and web.</p>
+
+<p>Each platform supports different types of streaming capabilites and DRMs. The Kaltura Video Player’s technology determines the best streaming delivery method and DRM as needed. Plugins can be used with or without the UI, and can work cross-platform. Some plugins require native support, such as Chromecast, DRM and ads. The Kaltura Video Player-SDK provides the DRM, Chromecast, and ads features out-of-the-box.</p>
+
+<p>The Kaltura Video Player exposes APIs - both basic APIs and common - for all platforms. If you are an iOS developer and you have already worked with AVFoundation, you should expect the same API as if you used the native player API.</p>
+
+<p>The Player API supports sending notifications to the Kaltura Video Player, listening to events, and evaulating properties.</p>
+
+<p>Each Kaltura Video Video Player configuration includes the UICONF object, which includes the player configuration and indicates which plugins should be loaded. Every componenet of the layer is designed as a plugin.</p>
+
+<h2 id="the-kaltura-video-player-architecture">The Kaltura Video Player Architecture</h2>
+
+<p>The following diagram visualizes the Kaltura Video Player architecture, and highlights its flexibility and robust capabilities across platforms and devices:</p>
+
+<p><img src="https://knowledge.kaltura.com/sites/default/files/styles/large/public/kaltura-player-toolkit.png" alt="Kaltura Video Player Architecture Diagram" /></p>
+
+<p>As the diagram above illustrates, you can leverage native components for <a href="https://github.com/kaltura/player-sdk-native-ios/">iOS</a> and <a href="https://github.com/kaltura/player-sdk-native-android">Android</a> in conjunction with HTML5 runtime and Adobe Flash or Microsoft Silverlight plugins, to transcend platform limitations across devices and browsers, while delivering the full Kaltura Video Player v2 Toolkit experience.</p>
+
+<h2 id="when-should-you-use-native-mobile-sdks">When Should You Use Native Mobile SDKs?</h2>
+
+<p>What are the advantages of using native mobile SDKs? Here is a feature list that explains the advantages of using the Kaltura Video Player Toolkit in native environments:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Player Feature</th>
+      <th style="text-align: left">iOS WebView</th>
+      <th style="text-align: left">iOS Native</th>
+      <th style="text-align: left">Android WebView</th>
+      <th style="text-align: left">Android Native</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">CSS skin</td>
+      <td style="text-align: left">Not supported on iPhone</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JS Plugins</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple HLS Playback[AES]</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Broken support across fragmented</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MPEG-Dash</td>
+      <td style="text-align: left">Unsupported</td>
+      <td style="text-align: left">Supported via partners software players</td>
+      <td style="text-align: left">Supported, with consistent experience across android versions</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">AutoPlay</td>
+      <td style="text-align: left">Not supported</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Not supported</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Chromecast</td>
+      <td style="text-align: left">Not supported</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">supported</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">DRM</td>
+      <td style="text-align: left">Not supported</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Not supported</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Ads</td>
+      <td style="text-align: left">Supported without dual buffer</td>
+      <td style="text-align: left">Supported</td>
+      <td style="text-align: left">Supported without dual buffer</td>
+      <td style="text-align: left">Supported</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="using-and-configuring-player-objects---native-vs-html5-controls">Using and Configuring Player Objects - Native vs HTML5 controls</h3>
+
+<p>One of the key features of the Player-SDK is the ability to use the HTML/CSS UI, which can be used on all platforms - iOS, Android and Web. As a developer you can choose if you want to:</p>
+
+<ul>
+  <li>Work with the default skin</li>
+  <li>Develop your own skin</li>
+  <li>Develop native controls</li>
+</ul>
+
+<h4 id="before-you-begin">Before You Begin</h4>
+
+<p>Before getting started, we recommend you read the following article on <a href="/api-docs/04_Web-Video-Player/Player-Configuration.html">configuring the Kaltura Media Player</a>. You should also verify that you have your Player configured via KMC.</p>
+
+<p>Additionally, the following article provides a detailed explanation on <a href="/api-docs/05_Mobile-Video-Player-SDKs/Kaltura-iOS-player-API-Base-Methods.html">accessing the iOS Player API base methods</a>.</p>
+
+<h4 id="removing-html5-ui-controls">Removing html5 UI Controls</h4>
+
+<p>Use these commands to remove the html5 UI controls:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[config addConfigKey:@"controlBarContainer.plugin" withValue:@"false"];
+[config addConfigKey:@"topBarContainer.plugin" withValue:@"false"];
+[config addConfigKey:@"largePlayBtn.plugin" withValue:@"false"];
+</code></pre>
+</div>
+
+<h4 id="disabling-the-html-spinner-and-controlling-it-with-a-custom-spinner">Disabling the HTML Spinner and Controlling it with a Custom Spinner</h4>
+
+<p>To disable the HTML Spinner and control it with a customer spinner, you will need to follow these configuration steps:</p>
+
+<ul>
+  <li>To disable the HTML spinner, use the disable “loadingSpinner.plugin”:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[config addConfigKey:@"loadingSpinner.plugin" withValue:@"false"];
+</code></pre>
+</div>
+<ul>
+  <li>To start a buffering event, use “onAddPlayerSpinner”:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[self.player addKPlayerEventListener:@"onAddPlayerSpinner" eventID:@"onAddPlayerSpinner" handler:^(NSString  
+ *eventName, NSString *params) {
+        //your code
+    }];
+</code></pre>
+</div>
+
+<ul>
+  <li>To stop a buffering event, use “onRemovePlayerSpinner”:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[self.player addKPlayerEventListener:@"onRemovePlayerSpinner" eventID:@"onRemovePlayerSpinner" 
+ handler:^(NSString *eventName, NSString *params) {
+        //your code
+    }];
+</code></pre>
+</div>
+
+<h4 id="disabling-thumbnails">Disabling Thumbnails</h4>
+
+<p>We can disable the loading of assets by setting uiconf:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[config addConfigKey:@"EmbedPlayer.HidePosterOnStart" withValue:@"true"];
+[config addConfigKey:@"scrubber.sliderPreview" withValue:@"false"];
+</code></pre>
+</div>
+
+<p>These settings will prevent loading the thumbnails assets.<br />
+Set this on your own discretion, as it is dependent of application usage (weather it uses web component scrubber or not, or if it needs poster on start or not).</p>
+
+<h2 id="player-version-managment">Player Version Managment</h2>
+
+<p>The Mobile Video Player SDKs are native iOS and Android wrapper libraries for the <a href="/api-docs/04_Web-Video-Player/Player-Configuration.html">Kaltura Web Video Player Library</a>.  <br />
+We recommend using the latest version of both the Kaltura Web Video Player and the native Mobile Player SDKs.</p>
+
+<ul>
+  <li>You can upgrade the version of your Kaltura Web Video Player by using the <a href="https://knowledge.kaltura.com/node/1148#Updating the Player">Player Studio</a> and clicking <strong>Upgrade</strong>.</li>
+  <li>To get the latest version of the Mobile Player SDK, always refer to the latest SDK tag on the github repository (<a href="https://github.com/kaltura/player-sdk-native-ios">iOS SDK</a>, <a href="https://github.com/kaltura/player-sdk-native-android">Android SDK</a>).</li>
+</ul>
+
+<h2 id="kaltura-player-plugins">Kaltura Player Plugins</h2>
+
+<p>Kaltura Player plugins use a combination of HTML, JavaScript and/or CSS to customize the Player, enabling you to use a plugin to add any feature that can be added to a web page. Plugins integrate with the Player by listening to and emitting events.</p>
+
+<p>You can develop plugins to:</p>
+<ul>
+  <li>Modify default behavior</li>
+  <li>Add functionality</li>
+  <li>Customize appearance</li>
+</ul>
+
+<p>The Player-SDK provides an extensive selection of supported Player plugins. These plugins can be included via the Player studio by simply editing the <strong>uiconf</strong> object or changing the configuration in the <strong>config</strong> object.</p>
+
+<p>The following are the Kaltura-provided plugins that you can implement in your system:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Plugin</th>
+      <th style="text-align: left">Desciption</th>
+      <th style="text-align: center">iOS</th>
+      <th style="text-align: center">Android</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">controlBarContainer</td>
+      <td style="text-align: left">The controls container, can change the hover mode of this plugin</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">titleLabel</td>
+      <td style="text-align: left">Shows the title at the top</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">logo</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">loadingSpinner</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">closedCaptions</td>
+      <td style="text-align: left">Out of band caption</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">watermark</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">theme</td>
+      <td style="text-align: left">Custom style for the player - supported only for the web theme, Mobile is TBD</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">infoScreen</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">share</td>
+      <td style="text-align: left">The share uses native capabilites for social networks</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">youbora</td>
+      <td style="text-align: left">analytics plugin - add link</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">DoubleClick</td>
+      <td style="text-align: left">Ads - Full native support</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">multiDrm</td>
+      <td style="text-align: left">To enable DRM you’ll need to enable this plugin</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Strings</td>
+      <td style="text-align: left">Used to overwrite player strings</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">chromecast</td>
+      <td style="text-align: left">By default this plugin is enabled</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">V</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">airPlay</td>
+      <td style="text-align: left">By default this plugin is enabled</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">pipBtn</td>
+      <td style="text-align: left">Picture-in-picture (PIP) -  By default this plugin is enabled and will work on supported devices</td>
+      <td style="text-align: center">V</td>
+      <td style="text-align: center">X</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="how-to-enablecreate-a-plugin">How to Enable/Create a Plugin</h3>
+<p>This section describes how to enable existing Kaltura plugins and how to create your own plugins.</p>
+
+<h5 id="using-an-existing-plugin">Using an Existing Plugin</h5>
+
+<ol>
+  <li>If you want to change or add a plugin, the key should begin with the plugin name, dot and the plugin attribute. Every plugin includes the plugin attributes required for enabling or disabling the plugin.</li>
+  <li>In order to add a plugin, use the addConfigKey function for <a href="https://github.com/kaltura/player-sdk-native-ios/blob/master/KALTURAPlayerSDK/KPPlayerConfig.h#L57">iOS</a> or <a href="https://github.com/kaltura/player-sdk-native-android/blob/master/playerSDK/src/main/java/com/kaltura/playersdk/KPPlayerConfig.java#L86">Android</a>. Note that the first parameter takes the key name and the second takes the value.</li>
+</ol>
+
+<p>In the example below, the loadingSpinner plugin has been disabled:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// objective_c
+[config addConfigKey:@"loadingSpinner.plugin" withValue:@"false"];
+</code></pre>
+</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>// Java
+config.addConfig("loadingSpinner.plugin", "false");
+</code></pre>
+</div>
+
+<h5 id="creating-custom-plugins">Creating Custom Plugins</h5>
+
+<p>To create custom plugins, follow the steps in the article <a href="/api-docs/Web-Video-Player/Player-Plugins.html">Extending the Kaltura Web Video Player Functionality Using Plugins</a>.</p>
+
+<h4 id="how-to-detect-if-configured-plugins-are-loaded">How to Detect if Configured Plugins are Loaded</h4>
+
+<ol>
+  <li>Open the iOS Player API base by following the steps in the article <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/master/documentation/05_Mobile-Video-Player-SDKs/Kaltura-iOS-player-API-Base-Methods.md">Accessing the iOS Player API Base Methods</a>.</li>
+  <li>Follow the instructions in * “Receiving  a Notification when the Player API is Ready” to detect if configured plugins are loaded.</li>
+</ol>
+
+<h4 id="how-to-get-notified-about-player-plugin-related-callbacks">How to Get Notified about Player Plugin-Related Callbacks</h4>
+
+<ol>
+  <li>Open the iOS Player API base by following the steps in the article <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/master/documentation/05_Mobile-Video-Player-SDKs/Kaltura-iOS-player-API-Base-Methods.md">Accessing the iOS Player API Base Methods</a>.</li>
+  <li>Follow the instructions in * addKPlayerEventListener * to receive notifications about Player plugin-related callbacks.</li>
+</ol>
+
+<h2 id="drm-support">DRM Support</h2>
+
+<p>The Player-SDK supports seamless playback of DRM content. Each platform supports a slightly different set of DRM schemes and features, which are detailed as follows.</p>
+
+<ul>
+  <li>Emulators
+    <ul>
+      <li><em>FairPlay</em> does not work on the iOS Simulator</li>
+      <li><em>Widevine Classic</em> does not work on Android Emulator and iOS Simulator</li>
+      <li><em>Widevine Modular</em> does not work on Android Emulator <strong>with API level below 23</strong>
+        <ul>
+          <li>On emulators with API level 23, it is considered a level-3 (L3) device</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="drm-server">DRM Server</h3>
+
+<p>The Player-SDK must communicate with a license server in order to get the license, for both online and offline playback. The API between the SDK and the server is a simple http POST, where all required identify/authorization parameters are provided in the query string.</p>
+
+<p>The license URL is provided to the DRM client by <code class="highlighter-rouge">PlayerViewController</code>/<code class="highlighter-rouge">KPViewController</code> in online mode (when playback is started), or by <code class="highlighter-rouge">LocalAssetManager</code>/<code class="highlighter-rouge">KPLocalAssetsManager</code> in offline mode (during asset registration/refresh).</p>
+
+<p>The following are the high level sequence diagrams. Please note that they are internal to the Player-SDK, and are provided here for informational purposes only.</p>
+
+<h4 id="online">Online</h4>
+
+<p><img src="assets/uml/bcface72e4179d69d514acff022dfa68.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<h4 id="offline">Offline</h4>
+
+<p><img src="assets/uml/b7679828caeadd55b96e9f86411db616.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<h3 id="offline-playback-integration">Offline Playback Integration</h3>
+
+<p>The native mobile SDKs (Android and iOS) allow applications to play downloaded content when the device is offline. Read this section to learn how to configure offline playback and to use downloaded files with the Player.</p>
+
+<blockquote>
+  <p>Note: The SDK <strong>does not</strong> provide the download function or the download URL. This should be provided by the application.</p>
+</blockquote>
+
+<h4 id="supported-use-case">Supported Use Case</h4>
+
+<p>This is the general supported use case for offline playback. Starting with a just-installed app, the following should work:</p>
+
+<ol>
+  <li>Play any video while online</li>
+  <li>Download and register another video</li>
+  <li>Go offline</li>
+  <li>Play the video that was downloaded in step 2.</li>
+</ol>
+
+<blockquote>
+  <p>The requirement to play any video while online (step 1) is a limitation that will be fixed in a future version of the Player SDK.</p>
+</blockquote>
+
+<h4 id="implementing-offline-playback">Implementing Offline Playback</h4>
+
+<p>From the application’s point-of-view, there are three parts to implementing offline playback:</p>
+
+<ol>
+  <li>Downloading the media files, including retrieving the URL of the content and downloading it.</li>
+  <li>Registering the downloaded files with the Player SDK (when the device is still online).</li>
+  <li>Overriding the streaming playback URL with the downloaded file.</li>
+</ol>
+
+<h4 id="integration-points">Integration Points</h4>
+
+<p>Playing back downloaded assets requires two integration points between the application and the SDK - <strong>management</strong> and <strong>playback</strong>.</p>
+
+<h5 id="asset-management">Asset Management</h5>
+
+<p>Local assets are managed in <code class="highlighter-rouge">LocalAssetsManager</code>/<code class="highlighter-rouge">KPLocalAssetsManager</code>. The following Asset Management operations are available:</p>
+
+<h6 id="register">Register</h6>
+
+<p>The application notifies the SDK about a new downloaded asset. The SDK fetches important metadata and a DRM license, if required.</p>
+
+<p><img src="assets/uml/de89705bb31e420083ae4001f4587cdb.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<p>####### Local Content ID</p>
+
+<p>The <code class="highlighter-rouge">entryConfig</code> object provided must include an additional field that is not used when streaming: <code class="highlighter-rouge">localContentId</code>. This unique string is used to map registration information to playback. The same unique string must be provided for both registration and playback.</p>
+<blockquote>
+  <p>Note: localContentId must <strong>not</strong> be set for online playback.</p>
+</blockquote>
+
+<h6 id="check-status">Check Status</h6>
+
+<p>This allows the application to verify that a downloaded asset is still playable. This applies mostly to DRM-protected assets.</p>
+
+<h6 id="refresh">Refresh</h6>
+
+<p>If possible, refresh the metadata obtained in <code class="highlighter-rouge">Register</code>, including the DRM license.</p>
+
+<h6 id="unregister">Unregister</h6>
+
+<p>The application notifies the SDK that it has deleted the asset. The SDK cleans up related resources.</p>
+
+<h6 id="arguments">Arguments</h6>
+
+<p>All methods share the same set of arguments:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">entry</code>: A configured <code class="highlighter-rouge">KPPlayerConfig</code> object that points at the asset, with all the parameters required for regular playback of the asset, in addition to <code class="highlighter-rouge">localContentId</code></li>
+  <li><code class="highlighter-rouge">flavor</code>: The flavor id of the downloaded file</li>
+  <li><code class="highlighter-rouge">localPath</code>: The <em>absolute</em> local path to the downloaded file</li>
+</ul>
+
+<p>Additional arguments:</p>
+
+<ul>
+  <li>Android: <code class="highlighter-rouge">Context</code>, listener</li>
+  <li>iOS: callback block</li>
+</ul>
+
+<h5 id="asset-playback">Asset Playback</h5>
+
+<p>To override the default (streaming) playback URL with a downloaded file, the application provides a delegate to the Player.</p>
+
+<ul>
+  <li>Android: Set <code class="highlighter-rouge">CustomSourceURLProvider</code> in <code class="highlighter-rouge">PlayerViewController</code> to an implementation of <code class="highlighter-rouge">PlayerViewController.SourceURLProvider</code></li>
+  <li>iOS: Set <code class="highlighter-rouge">customSourceURLProvider</code> in <code class="highlighter-rouge">KPViewController</code> to an implementation of <code class="highlighter-rouge">KPSourceURLProvider</code></li>
+</ul>
+
+<p>The delegate contains a single method that, given an entryId, returns an alternative (local) asset URL. If the method returns null, the Player uses the default playback URL. The method is meant to be hooked to a Download Manager’s lookup function.</p>
+
+<p>The Custom URL provider is called at the beginning of every playback. This allows the application to change the playback source dynamically. For example:</p>
+
+<ul>
+  <li>Download files for the highest available quality, play downloaded files even when online</li>
+  <li>Download files for medium quality (to save storage space), but when online, play ABR to get better quality.</li>
+</ul>
+
+<p><img src="assets/uml/c5c908266ca5de456b2b9957ed3af1d1.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+
+<p>As mentioned above, the <code class="highlighter-rouge">entryConfig</code> object must include the <code class="highlighter-rouge">localContentId</code> that was used during the registration of the same asset.</p>
+
+<h4 id="download-location-guidelines">Download Location Guidelines</h4>
+
+<p>Application developers are free to choose download locations, as allowed by the platform; however, Kaltura recommends the following locations:</p>
+
+<h5 id="android">Android</h5>
+
+<p>Store the downloaded files in a directory returned by <code class="highlighter-rouge">context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)</code> (or in a subdirectory of the directory). This directory is owned by the application, is deleted on uninstall, and typically resides on a relatively large partition. In addition, starting with <code class="highlighter-rouge">KITKAT</code>, this directory does not require read/write permissions to the shared storage (<code class="highlighter-rouge">WRITE_EXTERNAL_STORAGE</code>).</p>
+
+<h5 id="ios">iOS</h5>
+
+<p>As per Apple’s current recommendation, downloaded video files should be stored in a subdirectory of the application’s <em>Documents</em> directory – <code class="highlighter-rouge">[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]</code>:</p>
+
+<blockquote>
+  <p>Put user data in Documents/. User data generally includes any files you might want to expose to the user—anything you might want the user to create, import, delete or edit. For a drawing app, user data includes any graphic files the user might create. For a text editor, it includes the text files. <strong>Video and audio apps may even include files that the user has downloaded to watch or listen to later</strong>.</p>
+</blockquote>
+
+<p>The selected subdirectory <a href="https://developer.apple.com/library/ios/qa/qa1719/_index.html">must be excluded from iCloud backup</a>.</p>
+
+<p>For more information, see the Apple guide: <a href="https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW28">File System Programming Guide &gt; File System Basics &gt; Where You Should Put Your App’s Files</a>.</p>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script>
