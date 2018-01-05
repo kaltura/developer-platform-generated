@@ -626,6 +626,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Media_Analytics/stats/stats_reportError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Media_Analytics/stats/stats_reportKceError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/Deliver-and-Distribute-Media/videoSEO.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver-and-Distribute-Media/how-retrieve-download-or-streaming-url-using-api-calls.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media/playManifest</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media/syndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -678,7 +679,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/Access-Control-and-Content-Retrieval-on-Connected-Devices.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/kaltura-media-access-control-model.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/Kaltura_Audit-Trail_Viewer_Example_Application.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/videoSEO.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/partner</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/partner/partner_count</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/partner/partner_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3607,6 +3607,7 @@
 <url> <loc>https://developer.kaltura.com/console/Media_Analytics/stats/stats_reportError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Media_Analytics/stats/stats_reportKceError</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/Deliver-and-Distribute-Media/videoSEO.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver-and-Distribute-Media/how-retrieve-download-or-streaming-url-using-api-calls.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media/playManifest</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media/syndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3659,7 +3660,6 @@
 <url> <loc>https://developer.kaltura.com/console/Secure_Control_and_Govern/Access-Control-and-Content-Retrieval-on-Connected-Devices.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Secure_Control_and_Govern/kaltura-media-access-control-model.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Secure_Control_and_Govern/Kaltura_Audit-Trail_Viewer_Example_Application.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/Secure_Control_and_Govern/videoSEO.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Secure_Control_and_Govern/partner</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Secure_Control_and_Govern/partner/partner_count</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Secure_Control_and_Govern/partner/partner_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
