@@ -1,5 +1,5 @@
 (function() {
-  var COOKIE_TIMEOUT_MS = 900000;
+  var COOKIE_TIMEOUT_MS = 1800000;
   var STORAGE_KEY = 'LUCYBOT_RECIPE_CREDS';
   var user = window.kalturaUser = {};
 

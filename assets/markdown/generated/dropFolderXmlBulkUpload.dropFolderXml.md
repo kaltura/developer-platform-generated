@@ -553,6 +553,7 @@ table th {
       </xs:choice>
       <xs:element ref="subtitle-extension" minOccurs="0" maxOccurs="unbounded"></xs:element>
     </xs:sequence>
+    <xs:attribute name="label" type="xs:string" use="optional"></xs:attribute>
     <xs:attribute name="captionParamsId" type="xs:int" use="optional"></xs:attribute>
     <xs:attribute name="captionParams" type="xs:string" use="optional"></xs:attribute>
     <xs:attribute name="captionAssetId" type="xs:string" use="optional"></xs:attribute>
@@ -4950,6 +4951,15 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
+<tr>
+<td>label</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specify label you want to set for the caption asset</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
 <tr>
 <td>captionParamsId</td>
 <td>
