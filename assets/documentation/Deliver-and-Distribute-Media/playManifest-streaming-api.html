@@ -1,0 +1,358 @@
+<p>The Kaltura Player abstracts the need to retrieve direct access to the video file, and handles the various aspects of the video playback including multi-bitrate, choosing the correct codec and streaming protocols, DRM, Access Control and more.  <br />
+However, on occasion, your applications may need a direct access to stream or download media outside of the Kaltura Player.   <br />
+In cases where you need to access the playback stream directly, or just a link to download the video file, you will need to consider the target playback devices, the delivery profiles and security protocols applied to your Kaltura account and video entry, and then call the suitable API methods.</p>
+
+<p>This guide walks through using the <code class="highlighter-rouge">playManifest</code> API action to retrieve specific video flavors in various formats and protocols.   </p>
+
+<h2 id="the-playmanifest-service">The playManifest Service</h2>
+
+<p>The playManifest is a redirect action <a href="https://github.com/kaltura/server/blob/master/alpha/apps/kaltura/modules/extwidget/actions/playManifestAction.class.php">source code</a>, whose purpose is to direct video applications to the needed video stream. Combined with Kaltura’s <a href="https://github.com/kaltura/nginx-vod-module">on-the-fly video packager</a>, the Kaltura platform only stores your mp4 files, while creating packaged streams such as HLS, or DASH on the fly, and serving them through your configured CDN.</p>
+
+<p>The playManifest features return the following types:</p>
+
+<ol>
+  <li>A redirect to video file for <a href="http://en.wikipedia.org/wiki/Progressive_download">progressive download</a></li>
+  <li>An m3u8 stream descriptor for <a href="http://en.wikipedia.org/wiki/HTTP_Live_Streaming">Apple HTTP Streaming, aka HLS</a></li>
+  <li>An XML response in the form of a <a href="https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP">MPEG-DASH Media Presentation Description (aka MPD)</a></li>
+  <li>An XML response in the form of <a href="http://osmf.org/dev/osmf/specpdfs/FlashMediaManifestFileFormatSpecification.pdf">Flash Media Manifest File</a></li>
+</ol>
+
+<h3 id="retrieving-a-url-for-your-video-stream">Retrieving a URL for your Video Stream</h3>
+
+<p>To use the <code class="highlighter-rouge">playManifest</code> API action, consider the following steps:</p>
+
+<ol>
+  <li>Make sure you have the Partner ID (You account ID aka pid can be retrieved from the KMC &gt; Settings &gt; Integration Settings panel) and Entry ID (the ID of your video can be retrieved from the KMC &gt; Content tab) on hand, and then call the <code class="highlighter-rouge">playManifest</code> action using the following URL:</li>
+</ol>
+
+<blockquote>
+  <p><code class="highlighter-rouge">[serviceUrl]/p/[yourPartnerId]/sp/[yourPartnerId]00/playManifest/entryId/[entryId]/format/[format]/protocol/[protocol]/ks/[ks]/[paramN]/[valueN]/desiredFileName.[fileExtension]</code></p>
+</blockquote>
+
+<blockquote>
+  <p>Note that <code class="highlighter-rouge">/[paramN]/[valueN]/</code> designates any extra (optional) parameters. See below for a complete list of optional parameters. The structure for including these parameters in the url is similar to the required params, <code class="highlighter-rouge">/paramName/paramValue</code>. For example: <code class="highlighter-rouge">clipTo/10000</code> will designate chopping the video to the 10th second (clipTo is in milliseconds).</p>
+</blockquote>
+
+<ol>
+  <li>Replace the desired <strong><code class="highlighter-rouge">serviceUrl</code></strong>:</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Protocol + Domain</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>https://cdnapisec.kaltura.com</td>
+      <td>Secure HTTPS Request. <strong>Recommended</strong>.</td>
+    </tr>
+    <tr>
+      <td>http://cdnapi.kaltura.com</td>
+      <td>Standard HTTP Request.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>Next, replace the following <strong>required parameters</strong>:</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">[serviceUrl]</code></td>
+      <td>The base URL to the Kaltura Server</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">[yourPartnerId]</code></td>
+      <td>Your Kaltura account publisher ID (this can be retrieved from the Account Integration Settings page in the KMC).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">[entryId]</code></td>
+      <td>The Id of the video or playlist entry you’d like to retrieve (playlist id is only applicable when format is HLS or DASH manifest, when playlist is requested the response is a stitched playlist as a continuous video stream).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">format</code></td>
+      <td>See the list of available formats in the table below. This parameter is optional and defaults to <code class="highlighter-rouge">url</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Protocol</code></td>
+      <td>Whether video is to be delivered over HTTP or HTTPS. See the list of available protocols below for additional options. This parameter is optional and defaults to <code class="highlighter-rouge">http</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ks</code></td>
+      <td>A valid Kaltura Session. This parameter is only required when the media entry has an Access Control or Entitlement rules that limits anonymous access to the media.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">fileExtension</code></td>
+      <td>The file extension of the video you wish to retrieve (for example, mp4 if the video flavor is an MPEG4 file, or flv if the video flavor is an FLV file).</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>And set any <strong>optional parameters</strong>:</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">seekFrom</code></td>
+      <td>If a manifest format is used (not available in progressive download), will return a video chopped from a specific time. Specify time in Milliseconds.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clipTo</code></td>
+      <td>Will chop the video to a specific duration (available in all streaming formats). Specify time in Milliseconds.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">playbackRate</code></td>
+      <td>Will modify the playback speed of the stream (only available in Manifest formats). Value is a float number be between 0.5 to 2 (increments of 0.01 minimum)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">flavorParamIds</code> / <code class="highlighter-rouge">flavorParamId</code></td>
+      <td>The transcoding profile parameters to serve. If the requested entry was transcoded to this profile, the transcoded flavor will be returned. If manifest format is requested (e.g. HLS or DASH), multiple flavors may be included, comma separated.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">flavorIds</code> / <code class="highlighter-rouge">flavorId</code></td>
+      <td>The Id of specific transcoded video flavor you wish to serve. If manifest format is requested (e.g. HLS or DASH), multiple flavors may be included, comma separated. See section below for more info about flavorId vs. flavorParamId</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tags</code></td>
+      <td>Comma separated list of tags. If requested, will only return flavors that are tagged with any of the specified tags.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">minBitrate</code></td>
+      <td>Specify the minimum video flavor kbps to return in the result. Will only return flavors with higher bitrate than this value. Value is integer.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">maxBitrate</code></td>
+      <td>Specify the maximum video flavor kbps to return in the result. Will only return flavors with lower bitrate than this value. Value is integer.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">preferredBitrate</code></td>
+      <td>If specified, will place the video flavor that has the closest kbps value to this value at the top of the manifest. Value is integer.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">referrer</code></td>
+      <td>Base64 encoded URL that designates the referrer asking for this video. Used for Analytics and Access Control Domain Restriction. Value must be Base64 encoded.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">playbackContext</code></td>
+      <td>Used for Analytics, this String will be logged with the playback action per the user id (specified in the KS) and requested video entry id.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">storageId</code></td>
+      <td>The id of the Remote Storage Profile to use. Only available if a Remote Storage profile is configured on this account that permits delivery access.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">responseFormat</code></td>
+      <td>Overrides the default format of the returned manifest file (e.g. if <code class="highlighter-rouge">json</code> is set for <code class="highlighter-rouge">responseFormat</code> with <code class="highlighter-rouge">applehttp</code> in <code class="highlighter-rouge">format</code>, the response will be a json representation of the HLS manifest). Possible values are: <code class="highlighter-rouge">f4m</code>, <code class="highlighter-rouge">f4mv2</code>, <code class="highlighter-rouge">smil</code>, <code class="highlighter-rouge">m3u8</code>, <code class="highlighter-rouge">jsonp</code>, <code class="highlighter-rouge">json</code>, <code class="highlighter-rouge">redirect</code> (redirect is default, and will return the standard file format for the chosen manifest format)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="available-playback-formats">Available Playback Formats</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">mpegdash</code></td>
+      <td><strong>MPEG-DASH</strong> Streaming.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">applehttp</code></td>
+      <td><strong>HLS</strong> - Apple HTTP Live Streaming.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">url</code></td>
+      <td><strong>Progressive Download</strong>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hds</code></td>
+      <td>Adobe HTTP Dynamic Streaming. Not available for all Kaltura accounts.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rtmp</code></td>
+      <td>Real Time Messaging Protocol (RTMP). Recommended only for Live, or special use cases.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rtsp</code></td>
+      <td>Real Time Streaming Protocol (RTSP). For legacy devices, such as older Blackberry and Nokia phones.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hdnetworkmanifest</code></td>
+      <td>Akamai HDS delivery. Available only for accounts with Akamai delivery.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hdnetwork</code></td>
+      <td>Akamai Proprietary Delivery Protocol. Available only for accounts with Akamai delivery. (deprecated)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sl</code> / <code class="highlighter-rouge">multicast_silverlight</code></td>
+      <td>Microsoft Silverlight delivery. Available only for accounts with legacy Silverlight or Multicast profiles.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="available-protocol-parameters">Available Protocol Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Protocol</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">http</code></td>
+      <td>Redirect and streaming URLs make use of the HTTP protocol. (Default)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">https</code></td>
+      <td>Redirect and streaming URLs make use of the HTTPS protocol.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rtmp</code></td>
+      <td>(RTMP based streaming only) Streaming Server Base URL make use of the specified protocol (RTMP, RTMPE, RTMPT, or RTMPTE).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="examples">Examples</h3>
+
+<ul>
+  <li>An HLS stream clipped from second 1 to second 11: <code class="highlighter-rouge">https://cdnapisec.kaltura.com/p/811441/sp/81144100/playManifest/entryId/0_khge3cfm/format/applehttp/protocol/https/seekFrom/10000/clipTo/11000</code></li>
+  <li>A Progressive Download mp4 file clipped to 2 seconds: <code class="highlighter-rouge">https://cdnapisec.kaltura.com/p/811441/sp/81144100/playManifest/entryId/0_khge3cfm/format/url/protocol/https/clipTo/2000/name/2SecClip.mp4</code></li>
+</ul>
+
+<blockquote>
+  <p>Note: The playManifest API does not require a KS unless the media entries were specifically setup with Access Control or Entitlements rules to limit anonymous access to the media. If the media entry was assigned with Access Control or Entitlements, a KS (Kaltura Session) must be specified when calling the playManifest URL.</p>
+</blockquote>
+
+<h3 id="what-is-the-distinction-between-flavorparamid-and-flavorid">What is the Distinction between flavorParamId and flavorId?</h3>
+
+<ul>
+  <li><strong>flavorParamId</strong> represents the transcoding parameters that are used to generate a flavor. For example, all HD flavors in an account will usually have the same flavorParamId (across different entries)</li>
+  <li><strong>flavorId</strong> is the identifier of a specific video file, for example, the HD flavor will have a different flavorId for each entry that has an HD flavor.</li>
+</ul>
+
+<h4 id="when-to-you-use-each-flavor">When to You use each Flavor?</h4>
+
+<ul>
+  <li>If the flavorIds for the specific entry are known (e.g., the application is doing a flavorAsset.list with entryIdEqual), then use flavorId/flavorIds.</li>
+  <li>If the flavorIds are not known (e.g., the application would like to build a URL to the HD flavor, but does not want to perform flavorAsset.list) use flavorParamId/flavorParamIds.</li>
+</ul>
+
+<h3 id="downloading-a-video-file">Downloading a Video File</h3>
+
+<p>It is important to note that Kaltura entries can be set for private or protected modes, where access is only allowed when providing a valid admin <a href="/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">Kaltura Session</a>.</p>
+
+<p>For best practice, to retrieve a <strong>download</strong> URL (instead of streaming manifest) for a video entry, use the following steps:</p>
+
+<ol>
+  <li>Locate the ID of the desired video flavor (see below Video Flavor Id).</li>
+  <li>Call the <code class="highlighter-rouge">flavorAsset.geturl</code> API action.</li>
+</ol>
+
+<p>Below is a PHP code sample for retrieving the download URL of a web-playable flavor for a desired entry ID:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>//Client library configuration and instantiation...
+ 
+//when creating the Kaltura Session it is important to specify that this KS should bypass entitlements restrictions:
+$ks = $client-&gt;session-&gt;start($secret, $userId, KalturaSessionType::ADMIN, $partnerId, 86400, 'disableentitlement');
+$client-&gt;setKs($ks);
+ 
+$client-&gt;startMultiRequest();
+$entryId = '1_u7aj9kasw'; //replace this with your entry Id
+$client-&gt;flavorAsset-&gt;getwebplayablebyentryid($entryId);
+$req1ResultFlavorId = '{1:result:0:id}'; //get the first flavor from the result of getwebplayablebyentryid
+$client-&gt;flavorAsset-&gt;geturl($req1ResultFlavorId); //this action will return a valid download URL
+$multiRequestResults = $client-&gt;doMultiRequest();
+$downloadUrl = $multiRequestResults[1];
+echo 'The entry download URL is: '.$downloadUrl;
+</code></pre>
+</div>
+
+<h3 id="video-flavor-id">Video Flavor ID</h3>
+
+<p>The VideoFlavorId parameter determines which video flavor the API will return as download. This parameter has various options, depending on the Kaltura server deployment and publisher account.</p>
+
+<p>The following lists few of the conventional flavor IDs:</p>
+
+<blockquote>
+  <p>Note: Only flavor id 0 (zero) is static and the same across all Kaltura editions and accounts. The following list are common flavor Ids on the Kaltura VPaaS Cloud edition, but note flavors change and upgraded often (improved quality, new codecs, etc.) - Use this list for example purposes, but make sure to check your KMC &gt; Settings &gt; Transcoding Settings tab for the ids of your transcoding profile flavors.</p>
+</blockquote>
+
+<ul>
+  <li>The original uploaded video (before transcoding) = 0</li>
+  <li>iPhone / Android (mp4) = 301951</li>
+  <li>iPad (mp4) = 301971</li>
+  <li>Nokia/Blackberry (3gp) = 301991</li>
+  <li>Other devices (mp4) = 301961</li>
+</ul>
+
+<p>The correct flavor IDs (per account and Kaltura edition) can be retrieved using one of the following ways:</p>
+
+<ol>
+  <li>Visiting the KMC Settings &gt; <a href="http://knowledge.kaltura.com/faq/how-create-transcoding-profile">Transcoding Profiles</a>.</li>
+  <li>Making an API call to the <a href="https://developer.kaltura.com/api-docs/#/conversionProfile.list">ConversionProfile.list action</a>.</li>
+</ol>
+
+<h3 id="retrieving-streaming-url-for-mobile-applications">Retrieving Streaming URL for Mobile Applications</h3>
+
+<p>To retrieve streaming URL for mobile applications, use the following guidelines:</p>
+
+<ul>
+  <li>For Apple iPad devices – get all the flavors (marked ready) that have the tag ‘ipadnew’ and build the following URL:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorIds/'</span> <span class="o">+</span> <span class="nx">flavorIds</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/format/applehttp/protocol/http/a.m3u8?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>For Apple iPhone devices – get all the flavors (marked ready) that have the tag ’iphonenew’ tag and build the following URL:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorIds/'</span> <span class="o">+</span> <span class="nx">flavorIds</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/format/applehttp/protocol/http/a.m3u8?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>For Android devices that support HLS – get all the flavors (marked ready) that have the tag ’iphonenew’ tag (excluding audio-only flavors where width, height &amp; framerate fields equal to zero) and build the following URL:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorIds/'</span> <span class="o">+</span> <span class="nx">flavorIds</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/format/applehttp/protocol/http/a.m3u8?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>For Android devices that do not support HLS – get a single video flavor that has the ‘iPhoneNew’ tag and build the following URL:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">serviceUrl</span> <span class="o">+</span> <span class="s1">'/p/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'/sp/'</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s1">'00/playManifest/entryId/'</span> <span class="o">+</span> <span class="nx">entryId</span> <span class="o">+</span> <span class="s1">'/flavorId/'</span> <span class="o">+</span> <span class="nx">flavorId</span> <span class="o">+</span> <span class="s1">'/format/url/protocol/http/a.mp4?ks='</span> <span class="o">+</span> <span class="nx">ks</span> <span class="o">+</span> <span class="s1">'&amp;referrer='</span> <span class="o">+</span> <span class="nx">base64_encode</span><span class="p">(</span><span class="nx">application_name</span><span class="p">)</span>
+</code></pre>
+</div>
+
