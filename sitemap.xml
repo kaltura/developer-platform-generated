@@ -628,7 +628,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver-and-Distribute-Media/videoSEO.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver-and-Distribute-Media/playManifest-streaming-api.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/Deliver-and-Distribute-Media/how-retrieve-download-or-streaming-url-using-api-calls.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media/playManifest</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media/syndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Deliver_and_Distribute_Media/syndicationFeed/syndicationFeed_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3610,7 +3609,6 @@
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver-and-Distribute-Media/videoSEO.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver-and-Distribute-Media/playManifest-streaming-api.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/console/Deliver-and-Distribute-Media/how-retrieve-download-or-streaming-url-using-api-calls.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media/playManifest</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media/syndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/Deliver_and_Distribute_Media/syndicationFeed/syndicationFeed_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
