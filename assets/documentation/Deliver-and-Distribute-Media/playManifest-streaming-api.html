@@ -278,20 +278,21 @@ In cases where you need to access the playback stream directly, or just a link t
 
 <p>Below is a PHP code sample for retrieving the download URL of a web-playable flavor for a desired entry ID:</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code>//Client library configuration and instantiation...
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">//Client library configuration and instantiation...
+</span> 
+<span class="c1">//when creating the Kaltura Session it is important to specify that this KS should bypass entitlements restrictions:
+</span><span class="nv">$ks</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">(</span><span class="nv">$secret</span><span class="p">,</span> <span class="nv">$userId</span><span class="p">,</span> <span class="nx">KalturaSessionType</span><span class="o">::</span><span class="na">ADMIN</span><span class="p">,</span> <span class="nv">$partnerId</span><span class="p">,</span> <span class="mi">86400</span><span class="p">,</span> <span class="s1">'disableentitlement'</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setKs</span><span class="p">(</span><span class="nv">$ks</span><span class="p">);</span>
  
-//when creating the Kaltura Session it is important to specify that this KS should bypass entitlements restrictions:
-$ks = $client-&gt;session-&gt;start($secret, $userId, KalturaSessionType::ADMIN, $partnerId, 86400, 'disableentitlement');
-$client-&gt;setKs($ks);
- 
-$client-&gt;startMultiRequest();
-$entryId = '1_u7aj9kasw'; //replace this with your entry Id
-$client-&gt;flavorAsset-&gt;getwebplayablebyentryid($entryId);
-$req1ResultFlavorId = '{1:result:0:id}'; //get the first flavor from the result of getwebplayablebyentryid
-$client-&gt;flavorAsset-&gt;geturl($req1ResultFlavorId); //this action will return a valid download URL
-$multiRequestResults = $client-&gt;doMultiRequest();
-$downloadUrl = $multiRequestResults[1];
-echo 'The entry download URL is: '.$downloadUrl;
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">startMultiRequest</span><span class="p">();</span>
+<span class="nv">$entryId</span> <span class="o">=</span> <span class="s1">'1_u7aj9kasw'</span><span class="p">;</span> <span class="c1">//replace this with your entry Id
+</span><span class="nv">$client</span><span class="o">-&gt;</span><span class="na">flavorAsset</span><span class="o">-&gt;</span><span class="na">getwebplayablebyentryid</span><span class="p">(</span><span class="nv">$entryId</span><span class="p">);</span>
+<span class="nv">$req1ResultFlavorId</span> <span class="o">=</span> <span class="s1">'{1:result:0:id}'</span><span class="p">;</span> <span class="c1">//get the first flavor from the result of getwebplayablebyentryid
+</span><span class="nv">$client</span><span class="o">-&gt;</span><span class="na">flavorAsset</span><span class="o">-&gt;</span><span class="na">geturl</span><span class="p">(</span><span class="nv">$req1ResultFlavorId</span><span class="p">);</span> <span class="c1">//this action will return a valid download URL
+</span><span class="nv">$multiRequestResults</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">doMultiRequest</span><span class="p">();</span>
+<span class="nv">$downloadUrl</span> <span class="o">=</span> <span class="nv">$multiRequestResults</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="k">echo</span> <span class="s1">'The entry download URL is: '</span><span class="o">.</span><span class="nv">$downloadUrl</span><span class="p">;</span>
 </code></pre>
 </div>
 
