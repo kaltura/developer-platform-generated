@@ -1,1 +1,565 @@
-<!DOCTYPE html> <html> <head> <title></title> <meta http-equiv="Content-Type" content="text/html;charset=utf-8"> <meta content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no" name="viewport"> <base href="/"> <link rel="icon" href="assets/favicon.ico"> <link href="dist/bootstrap.css" rel="stylesheet"> <link href="dist/vendor.css" rel="stylesheet"> <link href="css/external.css" rel="stylesheet"> <script>function checkBooleanQueryParam(o){return!!window.location.href.substring(window.location.href.indexOf("?")).match(new RegExp("[?&]"+o+"=[^0f]"))}window.lucybot={},window.lucybot.openapi={},window.lucybot.prerender=checkBooleanQueryParam("prerender"),window.lucybot.embed=checkBooleanQueryParam("embed"),window.lucybot.showNavigation=checkBooleanQueryParam("showNavigation"),window.lucybot.env={target_api:"ovp"}</script> <link rel="stylesheet" href="assets/ovp.css"> <script src="assets/mixpanel.js"></script> <script src="assets/google-analytics.js"></script> <script src="assets/tracker.js"></script> <script src="assets/KalturaClient.min.js"></script> <script src="assets/KalturaSessionService.min.js"></script> <script src="assets/KalturaPartnerService.min.js"></script> <script src="assets/KalturaUiConfService.min.js"></script> <script src="assets/js/highlight.pack.js"></script> <script src="assets/js/modernizr.js"></script> </head> <body> <div id="LoadingIndicator"> <div id="LoadingIndicatorProgress" class="bg-primary"></div> </div> <div id="Navbar"> <div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h3 class="modal-title">Log in to your Kaltura.com account</h3> </div> <form onsubmit="return startKalturaLogin(),!1"> <div class="modal-body"> <div style="display:none" class="alert alert-danger"> There was an error signing in. Please check your account details and try again. </div> <p>Log into your Kaltura account using your e-mail and password</p> <label>E-mail</label> <div class="form-group"> <input class="form-control" type="text" name="KalturaEmail"> </div> <div class="partner-id-input"> <label>Partner ID</label> <div class="form-group"> <input class="form-control" type="number" name="KalturaPartnerId"> </div> </div> <label>Password</label> <div class="form-group"> <input class="form-control" type="password" name="KalturaPassword"> </div> <hr> <p>Or use a pre-generated Kaltura Session</p> <label>Kaltura Session ID (ks)</label> <div class="form-group"> <input class="form-control" type="text" name="KalturaSession"> </div> </div> <div class="modal-footer"> <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&utm_campaign=login&utm_medium=website">Try Kaltura for free!</a></p> <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button> </div> </form> </div> </div> </div> <div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h3 class="modal-title">Choose a Kaltura Account</h3> </div> <div class="modal-body"> <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p> <div class="dropdown"> <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a> <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul> </div> <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1> </div> </div> </div> </div> <nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top"> <div class="container-fluid"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i> </button> <a href="/" class="navbar-brand"> <img src="assets/img/kaltura_dev.png" height="50" width="212"> </a> </div> <div id="NavbarCollapse" class="collapse navbar-collapse"> <ul class="nav navbar-nav navbar-left"> <li class="navbar-link"> <a href="api-docs">API Docs</a> </li> <li class="navbar-link"> <a href="console">API Console</a> </li> <li class="navbar-link"> <a href="api-docs/Client_Libraries">Client Libraries</a> </li> <li class="navbar-link workflows-link"> <a href="workflows">Interactive Workflows</a> </li> </ul> <ul id="KalturaAuthLinks" class="nav navbar-nav navbar-right"> </ul> </div> </div> </nav> <div id="KalturaSidebar"> <div class="sidebar-content"> <div class="section"> <h4>Admin</h4> <hr> <div class="not-logged-in"> <p><i>Log in to see your account details</i></p> </div> <div class="logged-in" style="display:none"> <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p> <p id="KalturaShowSecrets"> <a onclick='window.jquery("#KalturaSecrets").show(),window.jquery("#KalturaShowSecrets").hide()'>Show secrets</a> </p> <div id="KalturaSecrets" style="display:none"> <p><label>User Secret:&nbsp;</label><span class="userSecret"></span></p> <p><label>Admin Secret:&nbsp;</label><span class="adminSecret"></span></p> </div> </div> </div> <div class="section"> <h4>Resources</h4> <hr> <p><a target="_blank" href="api-docs">API Docs</a></p> <p><a target="_blank" href="console">API Console</a></p> </div> <div class="section"> <h4>From our blog</h4> <hr> <div id="KalturaBlogContent"></div> </div> </div> <div class="sidebar-button"> <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a> <a class="show-sidebar" style="display:none" onclick="showKalturaSidebar()"> <img src="assets/img/notes.svg"> </a> </div> </div> <script>var elem,keepNav=!0,keepSidebar=!0;(window.lucybot.embed&&(keepNav=!1,window.lucybot.showNavigation||(keepSidebar=!1)),keepNav)?document.getElementsByTagName("body")[0].className+=" spaced-for-kaltura-nav":(elem=document.getElementById("KalturaNav"))&&elem.remove();keepSidebar?document.getElementsByTagName("body")[0].className+=" spaced-for-kaltura-sidebar":(elem=document.getElementById("KalturaSidebar"))&&elem.remove()</script> </div> <app class="loading"> <style>.loading-screen{min-height:500px;text-align:center;padding-top:100px}</style> <div id="LoadingScreen" class="loading-screen"> <h1><i class="fa fa-spin fa-refresh"></i><h1> </h1></h1></div> </app> <div id="Footer"> <div id="KalturaFooter" class="w-section footer-section"> <div class="w-container container footer-container"> <div class="row"> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">VPaaS</h5><a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&utm_campaign=login&utm_medium=website">Register for a Free Trial</a> </div> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">Tools</h5><a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/api-docs/Client_Libraries">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a> </div> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">Resources</h5><a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a> </div> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">Community</h5><a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="#" target="_blank">Kaltura Developer Days</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a> <h5 class="footer-headings footer-heading-margin">Open Source</h5><a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a> </div> </div> <div class="social-icon-container"> <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a> <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a> <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a> <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a> </div> </div> <div class="w-container container copyright-container"> <div class="row"> <div class="col-xs-8 col-md-6 copyright-column"> <div class="footer-copyright">Copyright &#xA9; <span id="KalturaYear"></span> Kaltura Inc.</div> <script>document.getElementById("KalturaYear").innerHTML=(new Date).getFullYear()</script> <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners. <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div> </div> <div class="col-xs-4 col-md-6 footer-last-links-column"><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a><a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a> </div> </div> </div> </div> <script>if(window.lucybot.embed){var elem=document.getElementById("KalturaFooter");elem&&elem.remove()}</script> </div> <script>if(!window.lucybot.prerender)var totalTime=5e3,curPct=0,interval=setInterval(function(){var t=document.getElementById("LoadingIndicatorProgress");!t||100<=curPct?clearInterval(interval):t.style.width=++curPct+"%"},totalTime/100)</script> <script src="dist/vendor.bundle.js"></script> <script src="dist/config.bundle.js"></script> <script src="js/external.js"></script> <script src="dist/app.bundle.js"></script> </body> </html> 
+<!DOCTYPE html><html><head>
+    <title>How to use the API to Add a New Conversion Profile - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style><meta name="title" content="How to use the API to Add a New Conversion Profile - Kaltura VPaaS API Documentation"><meta name="description" content="Full documentation for the Kaltura VPaaS API"><meta name="keywords" content=""></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="assets/img/kaltura_dev.png" height="50" width="212">
+      </a>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="navbar-link">
+          <a href="api-docs">API Docs</a>
+        </li>
+        <li class="navbar-link">
+          <a href="console">API Console</a>
+        </li>
+        <li class="navbar-link">
+          <a href="api-docs/Client_Libraries">Client Libraries</a>
+        </li>
+        <li class="navbar-link workflows-link">
+          <a href="workflows">Interactive Workflows</a>
+        </li>
+      </ul>
+      <ul id="KalturaAuthLinks" class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="userSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="adminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.9">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----><div _ngcontent-c1="" class="modal fade ng-star-inserted" id="AuthenticationModal" tabindex="-1"><div _ngcontent-c1="" class="modal-dialog"><form _ngcontent-c1="" class="modal-content ng-untouched ng-pristine ng-valid" novalidate=""><div _ngcontent-c1="" class="modal-header"><button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><i _ngcontent-c1="" class="fa fa-times"></i></button><div _ngcontent-c1="" class="modal-title"><h3 _ngcontent-c1="">API Authorization</h3></div></div><div _ngcontent-c1="" class="modal-body"><!----><ul _ngcontent-c1="" class="nav nav-tabs nav-justified" hidden=""><!----><li _ngcontent-c1="" class="active ng-star-inserted"><a _ngcontent-c1="" innerhtml="ks">ks</a></li></ul><!----><div _ngcontent-c1="" class="ng-star-inserted"><div _ngcontent-c1="" class="form-group"><label _ngcontent-c1="" innerhtml="ks">ks</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine ng-valid" name="apiKey" type="text" value=""></div></div><!----><!----></div><div _ngcontent-c1="" class="modal-footer"><!----><button _ngcontent-c1="" class="btn btn-success" type="submit"><!----><span _ngcontent-c1="" class="ng-star-inserted">Authorize</span><!----></button></div></form></div></div></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Overview" href="/api-docs/Overview"><span class="ng-tns-c5-0" innerhtml="Overview">Overview</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="VPaaS API Getting Started" href="/api-docs/VPaaS-API-Getting-Started"><span class="ng-tns-c5-1" innerhtml="VPaaS API Getting Started">VPaaS API Getting Started</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/api-docs/Client_Libraries"><span class="ng-tns-c5-2" innerhtml="Client Libraries">Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="XML Schemas" href="/api-docs/XML_Schemas"><span class="ng-tns-c5-3" innerhtml="XML Schemas">XML Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Generate API Sessions" href="/api-docs/Generate_API_Sessions"><span class="ng-tns-c5-4" innerhtml="Generate API Sessions">Generate API Sessions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Ingest and Upload Media" href="/api-docs/Ingest_and_Upload_Media"><span class="ng-tns-c5-5" innerhtml="Ingest and Upload Media">Ingest and Upload Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Execute Bulk Ingest and Updates" href="/api-docs/Execute_Bulk_Ingest_and_Updates"><span class="ng-tns-c5-6" innerhtml="Execute Bulk Ingest and Updates">Execute Bulk Ingest and Updates</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Convert and Transcode Media" href="/api-docs/Convert_and_Transcode_Media"><span class="ng-tns-c5-7" innerhtml="Convert and Transcode Media">Convert and Transcode Media</span></a></div><!----><div class="side-menu-children ng-tns-c5-7 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-25 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-25 active ng-star-inserted" preservefragment="" preservequeryparams="" title="How to use the API to Add a New Conversion Profile" href="/api-docs/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.html"><span class="ng-tns-c5-25" innerhtml="How to use the API to Add a New Conversion Profile">How to use the API to Add a New Conversion Profile</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-26 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="How to use the API to Add New Flavor Params" href="/api-docs/Convert-and-Transcode-Media/how-use-api-add-new-flavor-params.html"><span class="ng-tns-c5-26" innerhtml="How to use the API to Add New Flavor Params">How to use the API to Add New Flavor Params</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-27 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-27 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="How to Use the API to Create a New Flavor Asset for an Existing Entry" href="/api-docs/Convert-and-Transcode-Media/how-use-api-create-new-flavor-asset-existing-entry.html"><span class="ng-tns-c5-27" innerhtml="How to Use the API to Create a New Flavor Asset for an Existing Entry">How to Use the API to Create a New Flavor Asset for an Existing Entry</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-28 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-28 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="flavorAsset" href="/api-docs/service/flavorAsset"><span class="ng-tns-c5-28" innerhtml="flavorAsset">flavorAsset</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-29 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-29 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="flavorParams" href="/api-docs/service/flavorParams"><span class="ng-tns-c5-29" innerhtml="flavorParams">flavorParams</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-30 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-30 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="flavorParamsOutput" href="/api-docs/service/flavorParamsOutput"><span class="ng-tns-c5-30" innerhtml="flavorParamsOutput">flavorParamsOutput</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-31 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-31 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="conversionProfile" href="/api-docs/service/conversionProfile"><span class="ng-tns-c5-31" innerhtml="conversionProfile">conversionProfile</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-32 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-32 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="conversionProfileAssetParams" href="/api-docs/service/conversionProfileAssetParams"><span class="ng-tns-c5-32" innerhtml="conversionProfileAssetParams">conversionProfileAssetParams</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-33 ng-tns-c5-7 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-33 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="mediaInfo" href="/api-docs/service/mediaInfo"><span class="ng-tns-c5-33" innerhtml="mediaInfo">mediaInfo</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Stream and Broadcast" href="/api-docs/Live_Stream_and_Broadcast"><span class="ng-tns-c5-8" innerhtml="Live Stream and Broadcast">Live Stream and Broadcast</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Enrich and Organize Metadata" href="/api-docs/Enrich_and_Organize_Metadata"><span class="ng-tns-c5-9" innerhtml="Enrich and Organize Metadata">Enrich and Organize Metadata</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-10 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Search, Discover and Personalize" href="/api-docs/Search_Discover_and_Personalize"><span class="ng-tns-c5-10" innerhtml="Search, Discover and Personalize">Search, Discover and Personalize</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-11 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Engage and Publish" href="/api-docs/Engage_and_Publish"><span class="ng-tns-c5-11" innerhtml="Engage and Publish">Engage and Publish</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Media Analytics" href="/api-docs/Media_Analytics"><span class="ng-tns-c5-12" innerhtml="Media Analytics">Media Analytics</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-13 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Deliver and Distribute Media" href="/api-docs/Deliver_and_Distribute_Media"><span class="ng-tns-c5-13" innerhtml="Deliver and Distribute Media">Deliver and Distribute Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-14 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Secure, Control and Govern" href="/api-docs/Secure_Control_and_Govern"><span class="ng-tns-c5-14" innerhtml="Secure, Control and Govern">Secure, Control and Govern</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-15 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Optimize API Requests" href="/api-docs/Optimize_API_Requests"><span class="ng-tns-c5-15" innerhtml="Optimize API Requests">Optimize API Requests</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-16 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Integration, Scheduling and Hooks" href="/api-docs/Integration_Scheduling_and_Hooks"><span class="ng-tns-c5-16" innerhtml="Integration, Scheduling and Hooks">Integration, Scheduling and Hooks</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-17 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Encrypt and License Content" href="/api-docs/Encrypt_and_License_Content"><span class="ng-tns-c5-17" innerhtml="Encrypt and License Content">Encrypt and License Content</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-18 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Documents and Other Assets" href="/api-docs/Manage_Documents_and_Other_Assets"><span class="ng-tns-c5-18" innerhtml="Manage Documents and Other Assets">Manage Documents and Other Assets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-19 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage and Deliver Apps and Widgets" href="/api-docs/Manage_and_Deliver_Apps_and_Widgets"><span class="ng-tns-c5-19" innerhtml="Manage and Deliver Apps and Widgets">Manage and Deliver Apps and Widgets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-20 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Backend and Storage" href="/api-docs/Manage_Backend_and_Storage"><span class="ng-tns-c5-20" innerhtml="Manage Backend and Storage">Manage Backend and Storage</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-star-inserted" hidden=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-21 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Miscellaneous" href="/api-docs/Miscellaneous"><span class="ng-tns-c5-21" innerhtml="Miscellaneous">Miscellaneous</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-22 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/api-docs/Contribute"><span class="ng-tns-c5-22" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-23 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="General Objects" href="/api-docs/General_Objects"><span class="ng-tns-c5-23" innerhtml="General Objects">General Objects</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-24 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Error Codes" href="/api-docs/Error_Codes"><span class="ng-tns-c5-24" innerhtml="Error Codes">Error Codes</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">How to use the API to Add a New Conversion Profile</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>How to use the API to Add a New Conversion Profile</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="How to use the API to Add a New Conversion Profile">
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+
+
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+
+
+
+
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">How to use the API to Add a New Conversion Profile</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Apr 18 09:21:53 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Apr 18 08:11:11 2017, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Tue Apr 18 09:21:53 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (2 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>To add a conversion profile, call the <a href="https://developer.kaltura.com/api-docs/#/conversionProfile.add">conversionProfile.add</a> API action:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'lib/KalturaClient.php'</span><span class="p">);</span> 
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConfiguration</span><span class="p">(</span><span class="nv">$partnerId</span><span class="p">);</span> 
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">serviceUrl</span> <span class="o">=</span> <span class="s1">'https://www.kaltura.com/'</span><span class="p">;</span> 
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaClient</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span> 
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setKs</span><span class="p">(</span><span class="s1">'AddYourKS'</span><span class="p">);</span> 
+<span class="nv">$conversionProfile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConversionProfile</span><span class="p">();</span> 
+<span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">status</span> <span class="o">=</span> <span class="nx">KalturaConversionProfileStatus</span><span class="o">::</span><span class="na">ENABLED</span><span class="p">;</span> 
+<span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'YourConversionProfileName'</span><span class="p">;</span> 
+<span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">isDefault</span> <span class="o">=</span> <span class="nx">KalturaNullableBoolean</span><span class="o">::</span><span class="na">TRUE_VALUE</span><span class="p">;</span> 
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span> <span class="na">conversionProfile</span> <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$conversionProfile</span><span class="p">);</span></code></pre></figure>
+
+
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
+</div><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div id="KalturaFooter" class="w-section footer-section">
+  <div class="w-container container footer-container">
+    <div class="row">
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">VPaaS</h5><a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a Free Trial</a>
+      </div>
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">Tools</h5><a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/api-docs/Client_Libraries">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a>
+      </div>
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">Resources</h5><a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a>
+      </div>
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">Community</h5><a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="#" target="_blank">Kaltura Developer Days</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a>
+        <h5 class="footer-headings footer-heading-margin">Open Source</h5><a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a>
+      </div>
+    </div>
+    <div class="social-icon-container">
+      <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a>
+      <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a>
+      <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a>
+      <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a>
+    </div>
+  </div>
+  <div class="w-container container copyright-container">
+    <div class="row">
+      <div class="col-xs-8 col-md-6 copyright-column">
+        <div class="footer-copyright">Copyright © <span id="KalturaYear"></span> Kaltura Inc.</div>
+        <script>
+          document.getElementById('KalturaYear').innerHTML = (new Date()).getFullYear();
+        </script>
+        <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners.
+          <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div>
+      </div>
+      <div class="col-xs-4 col-md-6 footer-last-links-column"><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a><a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  if (window.lucybot.embed) {
+    var elem = document.getElementById('KalturaFooter');
+    if (elem) elem.remove();
+  }
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;G.http://localhost:3333/assets/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.html&q;:{&q;body&q;:&q;  &l;title&g;How to use the API to Add a New Conversion Profile&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;How to use the API to Add a New Conversion Profile\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n  &l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/main.css\&q;--&g;\n  &l;!--link rel=\&q;canonical\&q; href=\&q;http://localhost:4000/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.html\&q;&g;\n  &l;link rel=\&q;alternate\&q; type=\&q;application/rss+xml\&q; title=\&q;VPaaS - Video Platform as a Service | Kaltura\&q; href=\&q;http://localhost:4000/feed.xml\&q;&g;\n&l;link rel=\&q;sitemap\&q; type=\&q;application/xml\&q; title=\&q;Sitemap\&q; href=\&q;http://localhost:4000/sitemap.xml\&q; /&g;\n  \n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/normalize.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/kaltura-dev-site.webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/syntax.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/opentip.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/moving-logo.css\&q;--&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jekyll-code-example-buttons.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/highlightjs.css\&q;--&g;\n    &l;!--script src=\&q;assets/js/highlight.pack.js\&q;&g;&l;/script--&g;\n    &l;script&g;hljs.initHighlightingOnLoad();&l;/script&g;\n    \n  &l;!--script type=\&q;text/javascript\&q; src=\&q;https://use.typekit.net/rlx4cjm.js\&q;&g;&l;/script--&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/modernizr.js\&q;&g;&l;/script--&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;!--script src=\&q;assets/js/country.js\&q;&g;&l;/script--&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jQuery.exLink/jquery.exLink.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/js/jQuery.exLink/jquery.exLink.css\&q;--&g;\n&l;script type=\&q;text/javascript\&q;&g;\nexLink.init({\n    \tparentElementPath: &s;.template-page-content-column .post-content&s;,\n \tlinkWarning: false,\n\thostCompare: true,\n\tnoFollow: false,\n\tfancyBoxIgnore: true,\n\tgaTracking: true,\n\tgaTrackLabel: &s;External Links&s;,\n\tgaTrackOld: false,\n\tfileWarning: false\n    });\n\t//turn all headings into clicable anchors:\n    /*\n\t$(&s;.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6&s;).filter(&s;[id]&s;).each(function () {\n\t    $(this).html(&s;&l;a href=\&q;#&s;+$(this).attr(&s;id&s;)+&s;\&q; class=\&q;post-content\&q; aria-hidden=\&q;true\&q;&g;&s;+$(this).text()+&s;&l;/a&g;&s;);\n\t});\n\t\n\n\t//build the \&q;on this page\&q; menu:\n\tvar ToC =\n\t  \&q;&l;nav role=&s;navigation&s; class=&s;table-of-contents&s;&g;\&q; +\n\t    \&q;&l;h2&g;On this page:&l;/h2&g;\&q; +\n\t    \&q;&l;ul&g;\&q;;\n\t\n\tvar newLine, el, title, link;\n\tvar hasHeaders = false;\n\t$(&s;.post-content h2&s;).each(function() {\n\t  hasHeaders = true;\n\t  el = $(this);\n\t  title = el.text();\n\t  link = \&q;documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.md#\&q; + el.attr(\&q;id\&q;);\n\t\n\t  newLine =\n\t    \&q;&l;li&g;\&q; +\n\t      \&q;&l;a href=&s;\&q; + link + \&q;&s;&g;\&q; +\n\t        title +\n\t      \&q;&l;/a&g;\&q; +\n\t    \&q;&l;/li&g;\&q;;\n\t\n\t  ToC += newLine;\n\t\n\t});\n\t\n\tToC +=\n\t   \&q;&l;/ul&g;\&q; +\n\t  \&q;&l;/nav&g;\&q;;\n\t\n\tif (hasHeaders) $(\&q;div.post-content\&q;).prepend(ToC);\n\t*/\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;How to use the API to Add a New Conversion Profile&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Tue Apr 18 09:21:53 2017&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Tue Apr 18 08:11:11 2017, By: AnnaAleksandrowicz&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Tue Apr 18 09:21:53 2017, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;AnnaAleksandrowicz (2 commits) (&l;a href=\&q;mailto:Anna.Aleksandrowicz@kaltura.com\&q;&g;Anna.Aleksandrowicz@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Jess Portnoy (1 commits) (&l;a href=\&q;mailto:jess.portnoy@kaltura.com\&q;&g;jess.portnoy@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n    \t\t&l;p&g;To add a conversion profile, call the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/conversionProfile.add\&q;&g;conversionProfile.add&l;/a&g; API action:&l;/p&g;\n\n&l;figure class=\&q;highlight\&q;&g;&l;pre&g;&l;code class=\&q;language-php\&q; data-lang=\&q;php\&q;&g;&l;span class=\&q;cp\&q;&g;&a;lt;?php&l;/span&g; \n&l;span class=\&q;k\&q;&g;require_once&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;lib/KalturaClient.php&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConfiguration&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$partnerId&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;serviceUrl&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;https://www.kaltura.com/&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaClient&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;setKs&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;AddYourKS&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConversionProfile&l;/span&g;&l;span class=\&q;p\&q;&g;();&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;status&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConversionProfileStatus&l;/span&g;&l;span class=\&q;o\&q;&g;::&l;/span&g;&l;span class=\&q;na\&q;&g;ENABLED&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;name&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;YourConversionProfileName&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;isDefault&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaNullableBoolean&l;/span&g;&l;span class=\&q;o\&q;&g;::&l;/span&g;&l;span class=\&q;na\&q;&g;TRUE_VALUE&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$results&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g; &l;span class=\&q;na\&q;&g;conversionProfile&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;add&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;&l;/code&g;&l;/pre&g;&l;/figure&g;\n\n\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Wed, 11 Apr 2018 18:32:46 GMT&q;],&q;etag&q;:[&q;W/\&q;2eb9-162b5fb453c\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;11961&q;],&q;date&q;:[&q;Wed, 11 Apr 2018 18:38:43 GMT&q;],&q;connection&q;:[&q;keep-alive&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.html&q;},&q;/assets/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.html&q;:&q;  &l;title&g;How to use the API to Add a New Conversion Profile&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;How to use the API to Add a New Conversion Profile\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n  &l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/main.css\&q;--&g;\n  &l;!--link rel=\&q;canonical\&q; href=\&q;http://localhost:4000/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.html\&q;&g;\n  &l;link rel=\&q;alternate\&q; type=\&q;application/rss+xml\&q; title=\&q;VPaaS - Video Platform as a Service | Kaltura\&q; href=\&q;http://localhost:4000/feed.xml\&q;&g;\n&l;link rel=\&q;sitemap\&q; type=\&q;application/xml\&q; title=\&q;Sitemap\&q; href=\&q;http://localhost:4000/sitemap.xml\&q; /&g;\n  \n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/normalize.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/kaltura-dev-site.webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/syntax.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/opentip.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/moving-logo.css\&q;--&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jekyll-code-example-buttons.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/highlightjs.css\&q;--&g;\n    &l;!--script src=\&q;assets/js/highlight.pack.js\&q;&g;&l;/script--&g;\n    &l;script&g;hljs.initHighlightingOnLoad();&l;/script&g;\n    \n  &l;!--script type=\&q;text/javascript\&q; src=\&q;https://use.typekit.net/rlx4cjm.js\&q;&g;&l;/script--&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/modernizr.js\&q;&g;&l;/script--&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;!--script src=\&q;assets/js/country.js\&q;&g;&l;/script--&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jQuery.exLink/jquery.exLink.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/js/jQuery.exLink/jquery.exLink.css\&q;--&g;\n&l;script type=\&q;text/javascript\&q;&g;\nexLink.init({\n    \tparentElementPath: &s;.template-page-content-column .post-content&s;,\n \tlinkWarning: false,\n\thostCompare: true,\n\tnoFollow: false,\n\tfancyBoxIgnore: true,\n\tgaTracking: true,\n\tgaTrackLabel: &s;External Links&s;,\n\tgaTrackOld: false,\n\tfileWarning: false\n    });\n\t//turn all headings into clicable anchors:\n    /*\n\t$(&s;.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6&s;).filter(&s;[id]&s;).each(function () {\n\t    $(this).html(&s;&l;a href=\&q;#&s;+$(this).attr(&s;id&s;)+&s;\&q; class=\&q;post-content\&q; aria-hidden=\&q;true\&q;&g;&s;+$(this).text()+&s;&l;/a&g;&s;);\n\t});\n\t\n\n\t//build the \&q;on this page\&q; menu:\n\tvar ToC =\n\t  \&q;&l;nav role=&s;navigation&s; class=&s;table-of-contents&s;&g;\&q; +\n\t    \&q;&l;h2&g;On this page:&l;/h2&g;\&q; +\n\t    \&q;&l;ul&g;\&q;;\n\t\n\tvar newLine, el, title, link;\n\tvar hasHeaders = false;\n\t$(&s;.post-content h2&s;).each(function() {\n\t  hasHeaders = true;\n\t  el = $(this);\n\t  title = el.text();\n\t  link = \&q;documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.md#\&q; + el.attr(\&q;id\&q;);\n\t\n\t  newLine =\n\t    \&q;&l;li&g;\&q; +\n\t      \&q;&l;a href=&s;\&q; + link + \&q;&s;&g;\&q; +\n\t        title +\n\t      \&q;&l;/a&g;\&q; +\n\t    \&q;&l;/li&g;\&q;;\n\t\n\t  ToC += newLine;\n\t\n\t});\n\t\n\tToC +=\n\t   \&q;&l;/ul&g;\&q; +\n\t  \&q;&l;/nav&g;\&q;;\n\t\n\tif (hasHeaders) $(\&q;div.post-content\&q;).prepend(ToC);\n\t*/\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;How to use the API to Add a New Conversion Profile&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Tue Apr 18 09:21:53 2017&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Convert-and-Transcode-Media/how-use-api-add-new-conversion-profile.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Tue Apr 18 08:11:11 2017, By: AnnaAleksandrowicz&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Tue Apr 18 09:21:53 2017, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;AnnaAleksandrowicz (2 commits) (&l;a href=\&q;mailto:Anna.Aleksandrowicz@kaltura.com\&q;&g;Anna.Aleksandrowicz@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Jess Portnoy (1 commits) (&l;a href=\&q;mailto:jess.portnoy@kaltura.com\&q;&g;jess.portnoy@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n    \t\t&l;p&g;To add a conversion profile, call the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/conversionProfile.add\&q;&g;conversionProfile.add&l;/a&g; API action:&l;/p&g;\n\n&l;figure class=\&q;highlight\&q;&g;&l;pre&g;&l;code class=\&q;language-php\&q; data-lang=\&q;php\&q;&g;&l;span class=\&q;cp\&q;&g;&a;lt;?php&l;/span&g; \n&l;span class=\&q;k\&q;&g;require_once&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;lib/KalturaClient.php&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConfiguration&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$partnerId&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;serviceUrl&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;https://www.kaltura.com/&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaClient&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;setKs&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;AddYourKS&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConversionProfile&l;/span&g;&l;span class=\&q;p\&q;&g;();&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;status&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConversionProfileStatus&l;/span&g;&l;span class=\&q;o\&q;&g;::&l;/span&g;&l;span class=\&q;na\&q;&g;ENABLED&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;name&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;YourConversionProfileName&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;isDefault&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaNullableBoolean&l;/span&g;&l;span class=\&q;o\&q;&g;::&l;/span&g;&l;span class=\&q;na\&q;&g;TRUE_VALUE&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$results&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g; &l;span class=\&q;na\&q;&g;conversionProfile&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;add&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;&l;/code&g;&l;/pre&g;&l;/figure&g;\n\n\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;}</script></body></html>

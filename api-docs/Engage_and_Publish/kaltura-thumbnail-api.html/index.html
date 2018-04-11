@@ -1,1 +1,914 @@
-<!DOCTYPE html> <html> <head> <title></title> <meta http-equiv="Content-Type" content="text/html;charset=utf-8"> <meta content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no" name="viewport"> <base href="/"> <link rel="icon" href="assets/favicon.ico"> <link href="dist/bootstrap.css" rel="stylesheet"> <link href="dist/vendor.css" rel="stylesheet"> <link href="css/external.css" rel="stylesheet"> <script>function checkBooleanQueryParam(o){return!!window.location.href.substring(window.location.href.indexOf("?")).match(new RegExp("[?&]"+o+"=[^0f]"))}window.lucybot={},window.lucybot.openapi={},window.lucybot.prerender=checkBooleanQueryParam("prerender"),window.lucybot.embed=checkBooleanQueryParam("embed"),window.lucybot.showNavigation=checkBooleanQueryParam("showNavigation"),window.lucybot.env={target_api:"ovp"}</script> <link rel="stylesheet" href="assets/ovp.css"> <script src="assets/mixpanel.js"></script> <script src="assets/google-analytics.js"></script> <script src="assets/tracker.js"></script> <script src="assets/KalturaClient.min.js"></script> <script src="assets/KalturaSessionService.min.js"></script> <script src="assets/KalturaPartnerService.min.js"></script> <script src="assets/KalturaUiConfService.min.js"></script> <script src="assets/js/highlight.pack.js"></script> <script src="assets/js/modernizr.js"></script> </head> <body> <div id="LoadingIndicator"> <div id="LoadingIndicatorProgress" class="bg-primary"></div> </div> <div id="Navbar"> <div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h3 class="modal-title">Log in to your Kaltura.com account</h3> </div> <form onsubmit="return startKalturaLogin(),!1"> <div class="modal-body"> <div style="display:none" class="alert alert-danger"> There was an error signing in. Please check your account details and try again. </div> <p>Log into your Kaltura account using your e-mail and password</p> <label>E-mail</label> <div class="form-group"> <input class="form-control" type="text" name="KalturaEmail"> </div> <div class="partner-id-input"> <label>Partner ID</label> <div class="form-group"> <input class="form-control" type="number" name="KalturaPartnerId"> </div> </div> <label>Password</label> <div class="form-group"> <input class="form-control" type="password" name="KalturaPassword"> </div> <hr> <p>Or use a pre-generated Kaltura Session</p> <label>Kaltura Session ID (ks)</label> <div class="form-group"> <input class="form-control" type="text" name="KalturaSession"> </div> </div> <div class="modal-footer"> <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&utm_campaign=login&utm_medium=website">Try Kaltura for free!</a></p> <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button> </div> </form> </div> </div> </div> <div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h3 class="modal-title">Choose a Kaltura Account</h3> </div> <div class="modal-body"> <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p> <div class="dropdown"> <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a> <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul> </div> <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1> </div> </div> </div> </div> <nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top"> <div class="container-fluid"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i> </button> <a href="/" class="navbar-brand"> <img src="assets/img/kaltura_dev.png" height="50" width="212"> </a> </div> <div id="NavbarCollapse" class="collapse navbar-collapse"> <ul class="nav navbar-nav navbar-left"> <li class="navbar-link"> <a href="api-docs">API Docs</a> </li> <li class="navbar-link"> <a href="console">API Console</a> </li> <li class="navbar-link"> <a href="api-docs/Client_Libraries">Client Libraries</a> </li> <li class="navbar-link workflows-link"> <a href="workflows">Interactive Workflows</a> </li> </ul> <ul id="KalturaAuthLinks" class="nav navbar-nav navbar-right"> </ul> </div> </div> </nav> <div id="KalturaSidebar"> <div class="sidebar-content"> <div class="section"> <h4>Admin</h4> <hr> <div class="not-logged-in"> <p><i>Log in to see your account details</i></p> </div> <div class="logged-in" style="display:none"> <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p> <p id="KalturaShowSecrets"> <a onclick='window.jquery("#KalturaSecrets").show(),window.jquery("#KalturaShowSecrets").hide()'>Show secrets</a> </p> <div id="KalturaSecrets" style="display:none"> <p><label>User Secret:&nbsp;</label><span class="userSecret"></span></p> <p><label>Admin Secret:&nbsp;</label><span class="adminSecret"></span></p> </div> </div> </div> <div class="section"> <h4>Resources</h4> <hr> <p><a target="_blank" href="api-docs">API Docs</a></p> <p><a target="_blank" href="console">API Console</a></p> </div> <div class="section"> <h4>From our blog</h4> <hr> <div id="KalturaBlogContent"></div> </div> </div> <div class="sidebar-button"> <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a> <a class="show-sidebar" style="display:none" onclick="showKalturaSidebar()"> <img src="assets/img/notes.svg"> </a> </div> </div> <script>var elem,keepNav=!0,keepSidebar=!0;(window.lucybot.embed&&(keepNav=!1,window.lucybot.showNavigation||(keepSidebar=!1)),keepNav)?document.getElementsByTagName("body")[0].className+=" spaced-for-kaltura-nav":(elem=document.getElementById("KalturaNav"))&&elem.remove();keepSidebar?document.getElementsByTagName("body")[0].className+=" spaced-for-kaltura-sidebar":(elem=document.getElementById("KalturaSidebar"))&&elem.remove()</script> </div> <app class="loading"> <style>.loading-screen{min-height:500px;text-align:center;padding-top:100px}</style> <div id="LoadingScreen" class="loading-screen"> <h1><i class="fa fa-spin fa-refresh"></i><h1> </h1></h1></div> </app> <div id="Footer"> <div id="KalturaFooter" class="w-section footer-section"> <div class="w-container container footer-container"> <div class="row"> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">VPaaS</h5><a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&utm_campaign=login&utm_medium=website">Register for a Free Trial</a> </div> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">Tools</h5><a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/api-docs/Client_Libraries">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a> </div> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">Resources</h5><a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a> </div> <div class="col-xs-3 footer-links-columns"> <h5 class="footer-headings">Community</h5><a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="#" target="_blank">Kaltura Developer Days</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a> <h5 class="footer-headings footer-heading-margin">Open Source</h5><a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a> </div> </div> <div class="social-icon-container"> <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a> <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a> <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a> <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a> </div> </div> <div class="w-container container copyright-container"> <div class="row"> <div class="col-xs-8 col-md-6 copyright-column"> <div class="footer-copyright">Copyright &#xA9; <span id="KalturaYear"></span> Kaltura Inc.</div> <script>document.getElementById("KalturaYear").innerHTML=(new Date).getFullYear()</script> <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners. <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div> </div> <div class="col-xs-4 col-md-6 footer-last-links-column"><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a><a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a> </div> </div> </div> </div> <script>if(window.lucybot.embed){var elem=document.getElementById("KalturaFooter");elem&&elem.remove()}</script> </div> <script>if(!window.lucybot.prerender)var totalTime=5e3,curPct=0,interval=setInterval(function(){var t=document.getElementById("LoadingIndicatorProgress");!t||100<=curPct?clearInterval(interval):t.style.width=++curPct+"%"},totalTime/100)</script> <script src="dist/vendor.bundle.js"></script> <script src="dist/config.bundle.js"></script> <script src="js/external.js"></script> <script src="dist/app.bundle.js"></script> </body> </html> 
+<!DOCTYPE html><html><head>
+    <title>Kaltura Thumbnail API - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style><meta name="title" content="Kaltura Thumbnail API - Kaltura VPaaS API Documentation"><meta name="description" content="Full documentation for the Kaltura VPaaS API"><meta name="keywords" content=""></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="assets/img/kaltura_dev.png" height="50" width="212">
+      </a>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="navbar-link">
+          <a href="api-docs">API Docs</a>
+        </li>
+        <li class="navbar-link">
+          <a href="console">API Console</a>
+        </li>
+        <li class="navbar-link">
+          <a href="api-docs/Client_Libraries">Client Libraries</a>
+        </li>
+        <li class="navbar-link workflows-link">
+          <a href="workflows">Interactive Workflows</a>
+        </li>
+      </ul>
+      <ul id="KalturaAuthLinks" class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="userSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="adminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.9">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----><div _ngcontent-c1="" class="modal fade ng-star-inserted" id="AuthenticationModal" tabindex="-1"><div _ngcontent-c1="" class="modal-dialog"><form _ngcontent-c1="" class="modal-content ng-untouched ng-pristine ng-valid" novalidate=""><div _ngcontent-c1="" class="modal-header"><button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><i _ngcontent-c1="" class="fa fa-times"></i></button><div _ngcontent-c1="" class="modal-title"><h3 _ngcontent-c1="">API Authorization</h3></div></div><div _ngcontent-c1="" class="modal-body"><!----><ul _ngcontent-c1="" class="nav nav-tabs nav-justified" hidden=""><!----><li _ngcontent-c1="" class="active ng-star-inserted"><a _ngcontent-c1="" innerhtml="ks">ks</a></li></ul><!----><div _ngcontent-c1="" class="ng-star-inserted"><div _ngcontent-c1="" class="form-group"><label _ngcontent-c1="" innerhtml="ks">ks</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine ng-valid" name="apiKey" type="text" value=""></div></div><!----><!----></div><div _ngcontent-c1="" class="modal-footer"><!----><button _ngcontent-c1="" class="btn btn-success" type="submit"><!----><span _ngcontent-c1="" class="ng-star-inserted">Authorize</span><!----></button></div></form></div></div></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Overview" href="/api-docs/Overview"><span class="ng-tns-c5-0" innerhtml="Overview">Overview</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="VPaaS API Getting Started" href="/api-docs/VPaaS-API-Getting-Started"><span class="ng-tns-c5-1" innerhtml="VPaaS API Getting Started">VPaaS API Getting Started</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/api-docs/Client_Libraries"><span class="ng-tns-c5-2" innerhtml="Client Libraries">Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="XML Schemas" href="/api-docs/XML_Schemas"><span class="ng-tns-c5-3" innerhtml="XML Schemas">XML Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Generate API Sessions" href="/api-docs/Generate_API_Sessions"><span class="ng-tns-c5-4" innerhtml="Generate API Sessions">Generate API Sessions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Ingest and Upload Media" href="/api-docs/Ingest_and_Upload_Media"><span class="ng-tns-c5-5" innerhtml="Ingest and Upload Media">Ingest and Upload Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Execute Bulk Ingest and Updates" href="/api-docs/Execute_Bulk_Ingest_and_Updates"><span class="ng-tns-c5-6" innerhtml="Execute Bulk Ingest and Updates">Execute Bulk Ingest and Updates</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Convert and Transcode Media" href="/api-docs/Convert_and_Transcode_Media"><span class="ng-tns-c5-7" innerhtml="Convert and Transcode Media">Convert and Transcode Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Stream and Broadcast" href="/api-docs/Live_Stream_and_Broadcast"><span class="ng-tns-c5-8" innerhtml="Live Stream and Broadcast">Live Stream and Broadcast</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Enrich and Organize Metadata" href="/api-docs/Enrich_and_Organize_Metadata"><span class="ng-tns-c5-9" innerhtml="Enrich and Organize Metadata">Enrich and Organize Metadata</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-10 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Search, Discover and Personalize" href="/api-docs/Search_Discover_and_Personalize"><span class="ng-tns-c5-10" innerhtml="Search, Discover and Personalize">Search, Discover and Personalize</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-11 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Engage and Publish" href="/api-docs/Engage_and_Publish"><span class="ng-tns-c5-11" innerhtml="Engage and Publish">Engage and Publish</span></a></div><!----><div class="side-menu-children ng-tns-c5-11 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-25 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-25 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Adding a Thumbnail Flavor Parameter that Supports Resizing Auto-generated Thumbnails" href="/api-docs/Engage_and_Publish/how-add-thumbnail-flavor-param-supports-resizing-auto-generated-thumbnails-transcoding-profile.html"><span class="ng-tns-c5-25" innerhtml="Adding a Thumbnail Flavor Parameter that Supports Resizing Auto-generated Thumbnails">Adding a Thumbnail Flavor Parameter that Supports Resizing Auto-generated Thumbnails</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-26 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="How To Create a Video Thumbnail Rotator in JavaScript" href="/api-docs/Engage_and_Publish/how-create-video-thumbnail-rotator-javascript.html"><span class="ng-tns-c5-26" innerhtml="How To Create a Video Thumbnail Rotator in JavaScript">How To Create a Video Thumbnail Rotator in JavaScript</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-27 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-27 active ng-star-inserted" preservefragment="" preservequeryparams="" title="Kaltura Thumbnail API" href="/api-docs/Engage_and_Publish/kaltura-thumbnail-api.html"><span class="ng-tns-c5-27" innerhtml="Kaltura Thumbnail API">Kaltura Thumbnail API</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-28 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-28 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="playlist" href="/api-docs/service/playlist"><span class="ng-tns-c5-28" innerhtml="playlist">playlist</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-29 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-29 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="thumbnail" href="/api-docs/service/thumbnail"><span class="ng-tns-c5-29" innerhtml="thumbnail">thumbnail</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-30 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-30 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="cuePoint" href="/api-docs/service/cuePoint"><span class="ng-tns-c5-30" innerhtml="cuePoint">cuePoint</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-31 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-31 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="quiz" href="/api-docs/service/quiz"><span class="ng-tns-c5-31" innerhtml="quiz">quiz</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-32 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-32 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="userEntry" href="/api-docs/service/userEntry"><span class="ng-tns-c5-32" innerhtml="userEntry">userEntry</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-33 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-33 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="like" href="/api-docs/service/like"><span class="ng-tns-c5-33" innerhtml="like">like</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-34 ng-tns-c5-11 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-34 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="uiConf" href="/api-docs/service/uiConf"><span class="ng-tns-c5-34" innerhtml="uiConf">uiConf</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-35 ng-tns-c5-11 ng-star-inserted" hidden="" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-35 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="annotation" href="/api-docs/service/annotation"><span class="ng-tns-c5-35" innerhtml="annotation">annotation</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Media Analytics" href="/api-docs/Media_Analytics"><span class="ng-tns-c5-12" innerhtml="Media Analytics">Media Analytics</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-13 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Deliver and Distribute Media" href="/api-docs/Deliver_and_Distribute_Media"><span class="ng-tns-c5-13" innerhtml="Deliver and Distribute Media">Deliver and Distribute Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-14 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Secure, Control and Govern" href="/api-docs/Secure_Control_and_Govern"><span class="ng-tns-c5-14" innerhtml="Secure, Control and Govern">Secure, Control and Govern</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-15 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Optimize API Requests" href="/api-docs/Optimize_API_Requests"><span class="ng-tns-c5-15" innerhtml="Optimize API Requests">Optimize API Requests</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-16 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Integration, Scheduling and Hooks" href="/api-docs/Integration_Scheduling_and_Hooks"><span class="ng-tns-c5-16" innerhtml="Integration, Scheduling and Hooks">Integration, Scheduling and Hooks</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-17 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Encrypt and License Content" href="/api-docs/Encrypt_and_License_Content"><span class="ng-tns-c5-17" innerhtml="Encrypt and License Content">Encrypt and License Content</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-18 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Documents and Other Assets" href="/api-docs/Manage_Documents_and_Other_Assets"><span class="ng-tns-c5-18" innerhtml="Manage Documents and Other Assets">Manage Documents and Other Assets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-19 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage and Deliver Apps and Widgets" href="/api-docs/Manage_and_Deliver_Apps_and_Widgets"><span class="ng-tns-c5-19" innerhtml="Manage and Deliver Apps and Widgets">Manage and Deliver Apps and Widgets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-20 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Backend and Storage" href="/api-docs/Manage_Backend_and_Storage"><span class="ng-tns-c5-20" innerhtml="Manage Backend and Storage">Manage Backend and Storage</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-star-inserted" hidden=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-21 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Miscellaneous" href="/api-docs/Miscellaneous"><span class="ng-tns-c5-21" innerhtml="Miscellaneous">Miscellaneous</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-22 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/api-docs/Contribute"><span class="ng-tns-c5-22" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-23 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="General Objects" href="/api-docs/General_Objects"><span class="ng-tns-c5-23" innerhtml="General Objects">General Objects</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-24 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Error Codes" href="/api-docs/Error_Codes"><span class="ng-tns-c5-24" innerhtml="Error Codes">Error Codes</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Kaltura Thumbnail API</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>Kaltura Video Thumbnail and Image Transformation API</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura Video Thumbnail and Image Transformation API">
+    <meta property="st:published_at" content="">
+  <!--link rel="stylesheet" href="/css/main.css"-->
+  <!--link rel="canonical" href="http://localhost:4000/documentation/Engage_and_Publish/kaltura-thumbnail-api.html">
+  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
+  
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
+<!--link rel="stylesheet" href="/css/highlightjs.css"-->
+    <!--script src="assets/js/highlight.pack.js"></script-->
+    
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    
+  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+<!--script src="assets/js/country.js"></script-->
+
+<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
+<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
+
+
+<script type="text/javascript">
+exLink.init({
+    	parentElementPath: '.template-page-content-column .post-content',
+ 	linkWarning: false,
+	hostCompare: true,
+	noFollow: false,
+	fancyBoxIgnore: true,
+	gaTracking: true,
+	gaTrackLabel: 'External Links',
+	gaTrackOld: false,
+	fileWarning: false
+    });
+	//turn all headings into clicable anchors:
+    /*
+	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
+	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
+	});
+	
+
+	//build the "on this page" menu:
+	var ToC =
+	  "<nav role='navigation' class='table-of-contents'>" +
+	    "<h2>On this page:</h2>" +
+	    "<ul>";
+	
+	var newLine, el, title, link;
+	var hasHeaders = false;
+	$('.post-content h2').each(function() {
+	  hasHeaders = true;
+	  el = $(this);
+	  title = el.text();
+	  link = "documentation/Engage_and_Publish/kaltura-thumbnail-api.md#" + el.attr("id");
+	
+	  newLine =
+	    "<li>" +
+	      "<a href='" + link + "'>" +
+	        title +
+	      "</a>" +
+	    "</li>";
+	
+	  ToC += newLine;
+	
+	});
+	
+	ToC +=
+	   "</ul>" +
+	  "</nav>";
+	
+	if (hasHeaders) $("div.post-content").prepend(ToC);
+	*/
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+
+
+
+
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura Video Thumbnail and Image Transformation API</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Sun Apr 8 06:49:32 2018</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/kaltura-thumbnail-api.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Sun Apr 9 10:31:05 2017, By: AnnaAleksandrowicz</td></tr-->
+				<!--tr><td>Last commit: Sun Apr 8 06:49:32 2018, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>AnnaAleksandrowicz (4 commits) (<a href="mailto:Anna.Aleksandrowicz@kaltura.com">Anna.Aleksandrowicz@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (3 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (5 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (To see the static thumbnail assets management API refer to the <a href="https://developer.kaltura.com/api-docs/#/thumbAsset">thumbAsset</a>.</p>
+
+<p>The Thumbnail API provides simple means to dynamically transform (change size, cropping, etc.) image entries, and to generate images out of Kaltura video entries on the fly (while applying image transformations to the generated images).</p>
+
+<p>The images are generated upon request (with caching on disk and via CDN) by calling the following URL format -</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>https://cdnsecakmi.kaltura.com/p/{partner_id}/thumbnail/entry_id/{entry_id}
+</code></pre>
+</div>
+
+<p>The result of the thumbnail API is an image with one or more of the following features:</p>
+
+<ul>
+  <li>A re-sized / cropped version of the original thumbnail image.</li>
+  <li>A specific frame from a video clip.</li>
+  <li>An older version of the entry thumbnail.</li>
+  <li>A various compression quality of the thumbnail image.</li>
+</ul>
+
+<h2 id="using-the-thumbnail-api">Using the Thumbnail API</h2>
+
+<p>The parameters are passed in the following form:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>https://cdnsecakmi.kaltura.com/p/{partner_id}/thumbnail/entry_id/{entry_id}/paramX_name/paramX_value/...
+</code></pre>
+</div>
+
+<ol>
+  <li>Replace <code class="highlighter-rouge"><span class="p">{</span><span class="err">partner_id</span><span class="p">}</span></code> with your account ID (aka partnerId).</li>
+  <li>Replace <code class="highlighter-rouge"><span class="p">{</span><span class="err">entry_id</span><span class="p">}</span></code> with the id of the desired entry thumbnail.</li>
+  <li>Then append any of the parameters below according to the following format: <code class="highlighter-rouge">/paramX_name/paramX_value/...</code>.</li>
+</ol>
+
+<blockquote>
+  <p>Please always ensure that a descriptive Alt text is specified when using thumbnails as image in web apps to ensure compatibility with screen readers and better search indexing.</p>
+</blockquote>
+
+<h2 id="thumbnail-api-parameters">Thumbnail API Parameters</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter name</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>entry_id</td>
+      <td>String</td>
+      <td>Yes</td>
+      <td>The entry ID</td>
+    </tr>
+    <tr>
+      <td>widget_id</td>
+      <td>String</td>
+      <td>No</td>
+      <td>The widget ID</td>
+    </tr>
+    <tr>
+      <td>version</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>The thumbnail version</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Requested width in pixels</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Requested height in pixels</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Type of crop to be used – see remarks below</td>
+    </tr>
+    <tr>
+      <td>nearest_aspect_ratio</td>
+      <td>boolean (1/0)</td>
+      <td>No</td>
+      <td>If 1, the image will be resized to nearest aspect ratio (based on the original image/video), and only then cropped to the desired dimensions. This will override the type parameter</td>
+    </tr>
+    <tr>
+      <td>bgcolor</td>
+      <td>string</td>
+      <td>No</td>
+      <td>6 hex digits web color code</td>
+    </tr>
+    <tr>
+      <td>quality</td>
+      <td>string</td>
+      <td>No</td>
+      <td>JPEG quality for output (0-100). The default is 75</td>
+    </tr>
+    <tr>
+      <td>src_x</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>1st part of a rectangle to take from original picture</td>
+    </tr>
+    <tr>
+      <td>src_y</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>2nd part of a rectangle to take from original picture</td>
+    </tr>
+    <tr>
+      <td>src_w</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>3rd part of a rectangle to take from original picture</td>
+    </tr>
+    <tr>
+      <td>src_h</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>4th part of a rectangle to take from original picture</td>
+    </tr>
+    <tr>
+      <td>rel_width</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Actual width of the image from which the src_* parameters were taken</td>
+    </tr>
+    <tr>
+      <td>rel_height</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Actual height of the image from which the src_* parameters were taken</td>
+    </tr>
+    <tr>
+      <td>vid_sec</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>second to snap from video</td>
+    </tr>
+    <tr>
+      <td>vid_slice</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Number of slice out of number of slices</td>
+    </tr>
+    <tr>
+      <td>vid_slices</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>Number of slices</td>
+    </tr>
+    <tr>
+      <td>upload_token_id</td>
+      <td>string</td>
+      <td>No</td>
+      <td>An ID of an uploadToken object representing a file that was recently uploaded (upload tokens are invalid after 2 weeks) to generate the image from</td>
+    </tr>
+    <tr>
+      <td>flavor_id</td>
+      <td>integer</td>
+      <td>No</td>
+      <td>An ID of a specific video flavor to generate the image from</td>
+    </tr>
+    <tr>
+      <td>format</td>
+      <td>string</td>
+      <td>No</td>
+      <td>Specify an output file format for the generated image. Supported values are: JPG, JPEG, JXR, PNG, PNG8/24/32/48/64, BMP, GIF, TIF, PSD, and PDF.</td>
+    </tr>
+    <tr>
+      <td>ks</td>
+      <td>string</td>
+      <td>No</td>
+      <td>Kaltura Session string. Only mandatory if the account is configured to require session on thumbnails request</td>
+    </tr>
+    <tr>
+      <td>referrer</td>
+      <td>string</td>
+      <td>No</td>
+      <td>base64 of a URL, use if entry’s thumbnail access control is set to force domain</td>
+    </tr>
+    <tr>
+      <td>file_name</td>
+      <td>string</td>
+      <td>No</td>
+      <td>Used to specify a file name for the generated image. Must be the last parameter on the list to generate a URL that ends with a filename.extension</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="thumbnail-editing-parameters-explained">Thumbnail Editing Parameters Explained</h2>
+
+<p>To use the parameters, append each parameter name followed by the desired value in the following format: <code class="highlighter-rouge">/paramX_name/paramX_value/...</code></p>
+
+<ul>
+  <li>If both width and height were given a zero value the original image will be returned.</li>
+  <li>If neither width nor height were specified, the resulting size will be 120x90 (default thumbnail size).</li>
+  <li>If only width or height were specified, the given dimension combined with the type parameter will control the resulting size of the image.</li>
+  <li>If vid_slices is provided without vid_slice the result will be a horizontal strip with the different slices.</li>
+</ul>
+
+<h3 id="the-type-parameter-controls-the-resizecropping-options">The ‘type’ parameter controls the resize/cropping options:</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">type/1</code> - Resize maintaining the aspect ratio of the original video/image asset (overrides either width or height).</li>
+  <li><code class="highlighter-rouge">type/2</code> - Center the image within the given dimensions and fill the remaining space using the given background color.</li>
+  <li><code class="highlighter-rouge">type/3</code> - Crop the image to the given dimensions using the <strong>center</strong> of the image as gravity point, and fill the remaining space using the given background color.</li>
+  <li><code class="highlighter-rouge">type/4</code> - Crop the image to the given dimensions using the <strong>top</strong> of the image as gravity point, and fill the remaining space using the given background color.</li>
+  <li><code class="highlighter-rouge">type/5</code> - Stretch the image to desired dimensions.</li>
+</ul>
+
+<p>Let’s consider this as the original thumbnail we’ll play with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh
+</code></pre>
+</div>
+
+<p><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh" alt="Thumbnail without params"></p>
+
+<blockquote>
+  <p>Note: If neither width nor height were specified, the resulting size will be 120x90 (default thumbnail size).</p>
+</blockquote>
+
+<h3 id="resizing">Resizing</h3>
+
+<p>The thumbnail with dimensions of 500 x 400 (with maintain aspect-ratio from original) and defined quality: (X is JPEG quality ranging from 0 to 100)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/X
+</code></pre>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>10% Quality</th>
+      <th style="text-align: center">50% Quality</th>
+      <th style="text-align: right">100% Quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/10" alt="Resized thumbnail to 200x100 and Quality of 10%"></td>
+      <td style="text-align: center"><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/50" alt="Resized thumbnail to 200x100 and Quality of 50%"></td>
+      <td style="text-align: right"><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/100" alt="Resized thumbnail to 200x100 and Quality of 100%"></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Note: The Quality parameter affects the compression value of the JPEG algorithm. To learn more about JPEG Compressions, visit the <a href="http://en.wikipedia.org/wiki/JPEG#Effects_of_JPEG_compression">JPEG entry on Wikipedia</a>.</p>
+</blockquote>
+
+<h3 id="using-vid_sec-parameter">Using vid_sec parameter</h3>
+
+<p>The vid_sec parameter allows us to select a specific second in a video entry. The following will capture various frames from the 10th, 50th, 100th and 150th second in the video: (X is the second).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/vid_sec/X
+</code></pre>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>10th Second</th>
+      <th>50th Second</th>
+      <th style="text-align: center">100th Second</th>
+      <th style="text-align: right">150th Second</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/10" alt="Thumbnail from the 10th second of the video"></td>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/50" alt="Thumbnail from the 50th second of the video"></td>
+      <td style="text-align: center"><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/100" alt="Thumbnail from the 100th second of the video"></td>
+      <td style="text-align: right"><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/150" alt="Thumbnail from the 150th second of the video"></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>NOTE: If the given vid_sec is out of range, meaning, larger than the duration of the video, the returned thumbnail will be an image with the defined dimensions (as indicated by the width and height parameters)</p>
+</blockquote>
+
+<h3 id="cropping">Cropping</h3>
+
+<p>Using the <code class="highlighter-rouge">src_x</code>, <code class="highlighter-rouge">src_y</code>, <code class="highlighter-rouge">src_w</code> and <code class="highlighter-rouge">src_y</code> parameters, it is possible to define a cropping rectangle, indicating the X and Y to position the rectangle at and W and H to indicate the size of the rectangle. The returned thumbnail will then be the pixels of the image that are within the defined rectangle.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Source Thumbnail</th>
+      <th>Cropped (300, 100, 500, 400)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/vid_sec/10" alt="Uncropped Thumbnail"></td>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/200/vid_sec/10/src_x/300/src_y/100/src_w/500/src_h/400" alt="Cropped (300, 100, 500, 400)"></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>NOTE: To accurately calculate the dimension of the cropping rectangle, you should know the original video (source flavor) dimensions. In the above example, the dimensions were 1280 x 720. To avoid having to know the source dimensions, use the <code class="highlighter-rouge">rel_width</code> and <code class="highlighter-rouge">rel_height</code> parameters to define a “new-virtual-source-dimensions”, the Thumbnail API will use resize the frame to these dimensions and then perform the cropping.</p>
+</blockquote>
+
+<h3 id="slicing">Slicing</h3>
+
+<p>A more advanced use case of the Thumbnail API is to create “animated-thumbnails” where series of thumbnails from the video are shown in rotation one after another, creating the impression of a silent movie.</p>
+
+<p>Slicing can also be used in advanced CSS techniques using sprites.</p>
+
+<p>To learn how to put slicing together in a JavaScript based animated thumbnail, read: <a href="/api-docs/Engage_and_Publish/how-create-video-thumbnail-rotator-javascript.html">How To Create a Video Thumbnail Rotator in JavaScript</a></p>
+
+<p>To create thumbnail slices, use the <code class="highlighter-rouge">vid_slices and vid_slice</code> parameters. <code class="highlighter-rouge">vid_slices</code> defines the number of frame-slices the video will be divided to and the <code class="highlighter-rouge">vid_slice</code> indicates the specific frame-slice to retrieve in that specific call (think of it as pager size and page number).</p>
+
+<p>If vid_slices is provided without <code class="highlighter-rouge">vid_slice</code>, a stripe of all slices will be returned, which can be later used as CSS sprites.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Slice #15 out of 90</th>
+      <th>Slice #30 out of 90</th>
+      <th>Slice #60 out of 90</th>
+      <th>Slice #75 out of 90</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/15" alt="Video Slice #15 from a series of 90 slices starting"></td>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/30" alt="Video Slice #30 from a series of 90 slices starting"></td>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/60" alt="Video Slice #60 from a series of 90 slices starting"></td>
+      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/75" alt="Video Slice #90 from a series of 90 slices starting"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="stripe-of-thumbnail-slices-to-be-used-as-css-stripes">Stripe of thumbnail slices (to be used as <a href="https://www.w3schools.com/css/css_image_sprites.asp">CSS stripes</a>)</h3>
+
+<p>To create a long stripe of thumbnail slices simply remove the <code class="highlighter-rouge">vid_slice</code> parameter:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/vid_slices/8/
+</code></pre>
+</div>
+
+<p><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/vid_slices/8/widget_id/0" alt="Stripe of 8 slices"></p>
+
+<blockquote>
+  <p>NOTE: The slices are 0 indexed. The first slice in the series will always be 0.</p>
+</blockquote>
+
+
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
+</div><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div id="KalturaFooter" class="w-section footer-section">
+  <div class="w-container container footer-container">
+    <div class="row">
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">VPaaS</h5><a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a Free Trial</a>
+      </div>
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">Tools</h5><a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/api-docs/Client_Libraries">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a>
+      </div>
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">Resources</h5><a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a>
+      </div>
+      <div class="col-xs-3 footer-links-columns">
+        <h5 class="footer-headings">Community</h5><a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="#" target="_blank">Kaltura Developer Days</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a>
+        <h5 class="footer-headings footer-heading-margin">Open Source</h5><a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a>
+      </div>
+    </div>
+    <div class="social-icon-container">
+      <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a>
+      <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a>
+      <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a>
+      <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a>
+    </div>
+  </div>
+  <div class="w-container container copyright-container">
+    <div class="row">
+      <div class="col-xs-8 col-md-6 copyright-column">
+        <div class="footer-copyright">Copyright © <span id="KalturaYear"></span> Kaltura Inc.</div>
+        <script>
+          document.getElementById('KalturaYear').innerHTML = (new Date()).getFullYear();
+        </script>
+        <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners.
+          <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div>
+      </div>
+      <div class="col-xs-4 col-md-6 footer-last-links-column"><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a><a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a><a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  if (window.lucybot.embed) {
+    var elem = document.getElementById('KalturaFooter');
+    if (elem) elem.remove();
+  }
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;G.http://localhost:3333/assets/documentation/Engage_and_Publish/kaltura-thumbnail-api.html&q;:{&q;body&q;:&q;  &l;title&g;Kaltura Video Thumbnail and Image Transformation API&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Kaltura Video Thumbnail and Image Transformation API\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n  &l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/main.css\&q;--&g;\n  &l;!--link rel=\&q;canonical\&q; href=\&q;http://localhost:4000/documentation/Engage_and_Publish/kaltura-thumbnail-api.html\&q;&g;\n  &l;link rel=\&q;alternate\&q; type=\&q;application/rss+xml\&q; title=\&q;VPaaS - Video Platform as a Service | Kaltura\&q; href=\&q;http://localhost:4000/feed.xml\&q;&g;\n&l;link rel=\&q;sitemap\&q; type=\&q;application/xml\&q; title=\&q;Sitemap\&q; href=\&q;http://localhost:4000/sitemap.xml\&q; /&g;\n  \n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/normalize.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/kaltura-dev-site.webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/syntax.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/opentip.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/moving-logo.css\&q;--&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jekyll-code-example-buttons.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/highlightjs.css\&q;--&g;\n    &l;!--script src=\&q;assets/js/highlight.pack.js\&q;&g;&l;/script--&g;\n    &l;script&g;hljs.initHighlightingOnLoad();&l;/script&g;\n    \n  &l;!--script type=\&q;text/javascript\&q; src=\&q;https://use.typekit.net/rlx4cjm.js\&q;&g;&l;/script--&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/modernizr.js\&q;&g;&l;/script--&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;!--script src=\&q;assets/js/country.js\&q;&g;&l;/script--&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jQuery.exLink/jquery.exLink.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/js/jQuery.exLink/jquery.exLink.css\&q;--&g;\n&l;script type=\&q;text/javascript\&q;&g;\nexLink.init({\n    \tparentElementPath: &s;.template-page-content-column .post-content&s;,\n \tlinkWarning: false,\n\thostCompare: true,\n\tnoFollow: false,\n\tfancyBoxIgnore: true,\n\tgaTracking: true,\n\tgaTrackLabel: &s;External Links&s;,\n\tgaTrackOld: false,\n\tfileWarning: false\n    });\n\t//turn all headings into clicable anchors:\n    /*\n\t$(&s;.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6&s;).filter(&s;[id]&s;).each(function () {\n\t    $(this).html(&s;&l;a href=\&q;#&s;+$(this).attr(&s;id&s;)+&s;\&q; class=\&q;post-content\&q; aria-hidden=\&q;true\&q;&g;&s;+$(this).text()+&s;&l;/a&g;&s;);\n\t});\n\t\n\n\t//build the \&q;on this page\&q; menu:\n\tvar ToC =\n\t  \&q;&l;nav role=&s;navigation&s; class=&s;table-of-contents&s;&g;\&q; +\n\t    \&q;&l;h2&g;On this page:&l;/h2&g;\&q; +\n\t    \&q;&l;ul&g;\&q;;\n\t\n\tvar newLine, el, title, link;\n\tvar hasHeaders = false;\n\t$(&s;.post-content h2&s;).each(function() {\n\t  hasHeaders = true;\n\t  el = $(this);\n\t  title = el.text();\n\t  link = \&q;documentation/Engage_and_Publish/kaltura-thumbnail-api.md#\&q; + el.attr(\&q;id\&q;);\n\t\n\t  newLine =\n\t    \&q;&l;li&g;\&q; +\n\t      \&q;&l;a href=&s;\&q; + link + \&q;&s;&g;\&q; +\n\t        title +\n\t      \&q;&l;/a&g;\&q; +\n\t    \&q;&l;/li&g;\&q;;\n\t\n\t  ToC += newLine;\n\t\n\t});\n\t\n\tToC +=\n\t   \&q;&l;/ul&g;\&q; +\n\t  \&q;&l;/nav&g;\&q;;\n\t\n\tif (hasHeaders) $(\&q;div.post-content\&q;).prepend(ToC);\n\t*/\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Kaltura Video Thumbnail and Image Transformation API&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Sun Apr 8 06:49:32 2018&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/kaltura-thumbnail-api.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Sun Apr 9 10:31:05 2017, By: AnnaAleksandrowicz&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Sun Apr 8 06:49:32 2018, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;AnnaAleksandrowicz (4 commits) (&l;a href=\&q;mailto:Anna.Aleksandrowicz@kaltura.com\&q;&g;Anna.Aleksandrowicz@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Jess Portnoy (3 commits) (&l;a href=\&q;mailto:jess.portnoy@kaltura.com\&q;&g;jess.portnoy@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Zohar Babin (5 commits) (&l;a href=\&q;mailto:z.babin@gmail.com\&q;&g;z.babin@gmail.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n    \t\t&l;p&g;The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (To see the static thumbnail assets management API refer to the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/thumbAsset\&q;&g;thumbAsset&l;/a&g;.&l;/p&g;\n\n&l;p&g;The Thumbnail API provides simple means to dynamically transform (change size, cropping, etc.) image entries, and to generate images out of Kaltura video entries on the fly (while applying image transformations to the generated images).&l;/p&g;\n\n&l;p&g;The images are generated upon request (with caching on disk and via CDN) by calling the following URL format -&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnsecakmi.kaltura.com/p/{partner_id}/thumbnail/entry_id/{entry_id}\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;The result of the thumbnail API is an image with one or more of the following features:&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;A re-sized / cropped version of the original thumbnail image.&l;/li&g;\n  &l;li&g;A specific frame from a video clip.&l;/li&g;\n  &l;li&g;An older version of the entry thumbnail.&l;/li&g;\n  &l;li&g;A various compression quality of the thumbnail image.&l;/li&g;\n&l;/ul&g;\n\n&l;h2 id=\&q;using-the-thumbnail-api\&q;&g;Using the Thumbnail API&l;/h2&g;\n\n&l;p&g;The parameters are passed in the following form:&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnsecakmi.kaltura.com/p/{partner_id}/thumbnail/entry_id/{entry_id}/paramX_name/paramX_value/...\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;ol&g;\n  &l;li&g;Replace &l;code class=\&q;highlighter-rouge\&q;&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;&l;span class=\&q;err\&q;&g;partner_id&l;/span&g;&l;span class=\&q;p\&q;&g;}&l;/span&g;&l;/code&g; with your account ID (aka partnerId).&l;/li&g;\n  &l;li&g;Replace &l;code class=\&q;highlighter-rouge\&q;&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;&l;span class=\&q;err\&q;&g;entry_id&l;/span&g;&l;span class=\&q;p\&q;&g;}&l;/span&g;&l;/code&g; with the id of the desired entry thumbnail.&l;/li&g;\n  &l;li&g;Then append any of the parameters below according to the following format: &l;code class=\&q;highlighter-rouge\&q;&g;/paramX_name/paramX_value/...&l;/code&g;.&l;/li&g;\n&l;/ol&g;\n\n&l;blockquote&g;\n  &l;p&g;Please always ensure that a descriptive Alt text is specified when using thumbnails as image in web apps to ensure compatibility with screen readers and better search indexing.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h2 id=\&q;thumbnail-api-parameters\&q;&g;Thumbnail API Parameters&l;/h2&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Parameter name&l;/th&g;\n      &l;th&g;Type&l;/th&g;\n      &l;th&g;Mandatory&l;/th&g;\n      &l;th&g;Description&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;entry_id&l;/td&g;\n      &l;td&g;String&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;The entry ID&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;widget_id&l;/td&g;\n      &l;td&g;String&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;The widget ID&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;version&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;The thumbnail version&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;width&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Requested width in pixels&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;height&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Requested height in pixels&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;type&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Type of crop to be used – see remarks below&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;nearest_aspect_ratio&l;/td&g;\n      &l;td&g;boolean (1/0)&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;If 1, the image will be resized to nearest aspect ratio (based on the original image/video), and only then cropped to the desired dimensions. This will override the type parameter&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;bgcolor&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;6 hex digits web color code&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;quality&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;JPEG quality for output (0-100). The default is 75&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_x&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;1st part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_y&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;2nd part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_w&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;3rd part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_h&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;4th part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;rel_width&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Actual width of the image from which the src_* parameters were taken&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;rel_height&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Actual height of the image from which the src_* parameters were taken&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;vid_sec&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;second to snap from video&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;vid_slice&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Number of slice out of number of slices&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;vid_slices&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Number of slices&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;upload_token_id&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;An ID of an uploadToken object representing a file that was recently uploaded (upload tokens are invalid after 2 weeks) to generate the image from&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;flavor_id&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;An ID of a specific video flavor to generate the image from&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;format&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Specify an output file format for the generated image. Supported values are: JPG, JPEG, JXR, PNG, PNG8/24/32/48/64, BMP, GIF, TIF, PSD, and PDF.&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;ks&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Kaltura Session string. Only mandatory if the account is configured to require session on thumbnails request&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;referrer&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;base64 of a URL, use if entry’s thumbnail access control is set to force domain&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;file_name&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Used to specify a file name for the generated image. Must be the last parameter on the list to generate a URL that ends with a filename.extension&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;h2 id=\&q;thumbnail-editing-parameters-explained\&q;&g;Thumbnail Editing Parameters Explained&l;/h2&g;\n\n&l;p&g;To use the parameters, append each parameter name followed by the desired value in the following format: &l;code class=\&q;highlighter-rouge\&q;&g;/paramX_name/paramX_value/...&l;/code&g;&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;If both width and height were given a zero value the original image will be returned.&l;/li&g;\n  &l;li&g;If neither width nor height were specified, the resulting size will be 120x90 (default thumbnail size).&l;/li&g;\n  &l;li&g;If only width or height were specified, the given dimension combined with the type parameter will control the resulting size of the image.&l;/li&g;\n  &l;li&g;If vid_slices is provided without vid_slice the result will be a horizontal strip with the different slices.&l;/li&g;\n&l;/ul&g;\n\n&l;h3 id=\&q;the-type-parameter-controls-the-resizecropping-options\&q;&g;The ‘type’ parameter controls the resize/cropping options:&l;/h3&g;\n\n&l;ul&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/1&l;/code&g; - Resize maintaining the aspect ratio of the original video/image asset (overrides either width or height).&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/2&l;/code&g; - Center the image within the given dimensions and fill the remaining space using the given background color.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/3&l;/code&g; - Crop the image to the given dimensions using the &l;strong&g;center&l;/strong&g; of the image as gravity point, and fill the remaining space using the given background color.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/4&l;/code&g; - Crop the image to the given dimensions using the &l;strong&g;top&l;/strong&g; of the image as gravity point, and fill the remaining space using the given background color.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/5&l;/code&g; - Stretch the image to desired dimensions.&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;Let’s consider this as the original thumbnail we’ll play with:&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh\&q; alt=\&q;Thumbnail without params\&q; /&g;&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: If neither width nor height were specified, the resulting size will be 120x90 (default thumbnail size).&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;resizing\&q;&g;Resizing&l;/h3&g;\n\n&l;p&g;The thumbnail with dimensions of 500 x 400 (with maintain aspect-ratio from original) and defined quality: (X is JPEG quality ranging from 0 to 100)&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/X\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;10% Quality&l;/th&g;\n      &l;th style=\&q;text-align: center\&q;&g;50% Quality&l;/th&g;\n      &l;th style=\&q;text-align: right\&q;&g;100% Quality&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/10\&q; alt=\&q;Resized thumbnail to 200x100 and Quality of 10%\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: center\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/50\&q; alt=\&q;Resized thumbnail to 200x100 and Quality of 50%\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: right\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/100\&q; alt=\&q;Resized thumbnail to 200x100 and Quality of 100%\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: The Quality parameter affects the compression value of the JPEG algorithm. To learn more about JPEG Compressions, visit the &l;a href=\&q;http://en.wikipedia.org/wiki/JPEG#Effects_of_JPEG_compression\&q;&g;JPEG entry on Wikipedia&l;/a&g;.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;using-vid_sec-parameter\&q;&g;Using vid_sec parameter&l;/h3&g;\n\n&l;p&g;The vid_sec parameter allows us to select a specific second in a video entry. The following will capture various frames from the 10th, 50th, 100th and 150th second in the video: (X is the second).&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/vid_sec/X\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;10th Second&l;/th&g;\n      &l;th&g;50th Second&l;/th&g;\n      &l;th style=\&q;text-align: center\&q;&g;100th Second&l;/th&g;\n      &l;th style=\&q;text-align: right\&q;&g;150th Second&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/10\&q; alt=\&q;Thumbnail from the 10th second of the video\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/50\&q; alt=\&q;Thumbnail from the 50th second of the video\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: center\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/100\&q; alt=\&q;Thumbnail from the 100th second of the video\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: right\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/150\&q; alt=\&q;Thumbnail from the 150th second of the video\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;blockquote&g;\n  &l;p&g;NOTE: If the given vid_sec is out of range, meaning, larger than the duration of the video, the returned thumbnail will be an image with the defined dimensions (as indicated by the width and height parameters)&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;cropping\&q;&g;Cropping&l;/h3&g;\n\n&l;p&g;Using the &l;code class=\&q;highlighter-rouge\&q;&g;src_x&l;/code&g;, &l;code class=\&q;highlighter-rouge\&q;&g;src_y&l;/code&g;, &l;code class=\&q;highlighter-rouge\&q;&g;src_w&l;/code&g; and &l;code class=\&q;highlighter-rouge\&q;&g;src_y&l;/code&g; parameters, it is possible to define a cropping rectangle, indicating the X and Y to position the rectangle at and W and H to indicate the size of the rectangle. The returned thumbnail will then be the pixels of the image that are within the defined rectangle.&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Source Thumbnail&l;/th&g;\n      &l;th&g;Cropped (300, 100, 500, 400)&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/vid_sec/10\&q; alt=\&q;Uncropped Thumbnail\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/200/vid_sec/10/src_x/300/src_y/100/src_w/500/src_h/400\&q; alt=\&q;Cropped (300, 100, 500, 400)\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;blockquote&g;\n  &l;p&g;NOTE: To accurately calculate the dimension of the cropping rectangle, you should know the original video (source flavor) dimensions. In the above example, the dimensions were 1280 x 720. To avoid having to know the source dimensions, use the &l;code class=\&q;highlighter-rouge\&q;&g;rel_width&l;/code&g; and &l;code class=\&q;highlighter-rouge\&q;&g;rel_height&l;/code&g; parameters to define a “new-virtual-source-dimensions”, the Thumbnail API will use resize the frame to these dimensions and then perform the cropping.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;slicing\&q;&g;Slicing&l;/h3&g;\n\n&l;p&g;A more advanced use case of the Thumbnail API is to create “animated-thumbnails” where series of thumbnails from the video are shown in rotation one after another, creating the impression of a silent movie.&l;/p&g;\n\n&l;p&g;Slicing can also be used in advanced CSS techniques using sprites.&l;/p&g;\n\n&l;p&g;To learn how to put slicing together in a JavaScript based animated thumbnail, read: &l;a href=\&q;/api-docs/Engage_and_Publish/how-create-video-thumbnail-rotator-javascript.html\&q;&g;How To Create a Video Thumbnail Rotator in JavaScript&l;/a&g;&l;/p&g;\n\n&l;p&g;To create thumbnail slices, use the &l;code class=\&q;highlighter-rouge\&q;&g;vid_slices and vid_slice&l;/code&g; parameters. &l;code class=\&q;highlighter-rouge\&q;&g;vid_slices&l;/code&g; defines the number of frame-slices the video will be divided to and the &l;code class=\&q;highlighter-rouge\&q;&g;vid_slice&l;/code&g; indicates the specific frame-slice to retrieve in that specific call (think of it as pager size and page number).&l;/p&g;\n\n&l;p&g;If vid_slices is provided without &l;code class=\&q;highlighter-rouge\&q;&g;vid_slice&l;/code&g;, a stripe of all slices will be returned, which can be later used as CSS sprites.&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Slice #15 out of 90&l;/th&g;\n      &l;th&g;Slice #30 out of 90&l;/th&g;\n      &l;th&g;Slice #60 out of 90&l;/th&g;\n      &l;th&g;Slice #75 out of 90&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/15\&q; alt=\&q;Video Slice #15 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/30\&q; alt=\&q;Video Slice #30 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/60\&q; alt=\&q;Video Slice #60 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/75\&q; alt=\&q;Video Slice #90 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;h3 id=\&q;stripe-of-thumbnail-slices-to-be-used-as-css-stripes\&q;&g;Stripe of thumbnail slices (to be used as &l;a href=\&q;https://www.w3schools.com/css/css_image_sprites.asp\&q;&g;CSS stripes&l;/a&g;)&l;/h3&g;\n\n&l;p&g;To create a long stripe of thumbnail slices simply remove the &l;code class=\&q;highlighter-rouge\&q;&g;vid_slice&l;/code&g; parameter:&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/vid_slices/8/\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/vid_slices/8/widget_id/0\&q; alt=\&q;Stripe of 8 slices\&q; /&g;&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;NOTE: The slices are 0 indexed. The first slice in the series will always be 0.&l;/p&g;\n&l;/blockquote&g;\n\n\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Wed, 11 Apr 2018 18:32:46 GMT&q;],&q;etag&q;:[&q;W/\&q;65a5-162b5fb453c\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;26021&q;],&q;date&q;:[&q;Wed, 11 Apr 2018 18:50:50 GMT&q;],&q;connection&q;:[&q;keep-alive&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/Engage_and_Publish/kaltura-thumbnail-api.html&q;},&q;/assets/documentation/Engage_and_Publish/kaltura-thumbnail-api.html&q;:&q;  &l;title&g;Kaltura Video Thumbnail and Image Transformation API&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Kaltura Video Thumbnail and Image Transformation API\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n  &l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/main.css\&q;--&g;\n  &l;!--link rel=\&q;canonical\&q; href=\&q;http://localhost:4000/documentation/Engage_and_Publish/kaltura-thumbnail-api.html\&q;&g;\n  &l;link rel=\&q;alternate\&q; type=\&q;application/rss+xml\&q; title=\&q;VPaaS - Video Platform as a Service | Kaltura\&q; href=\&q;http://localhost:4000/feed.xml\&q;&g;\n&l;link rel=\&q;sitemap\&q; type=\&q;application/xml\&q; title=\&q;Sitemap\&q; href=\&q;http://localhost:4000/sitemap.xml\&q; /&g;\n  \n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/normalize.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/kaltura-dev-site.webflow.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/syntax.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/opentip.css\&q;&g;\n&l;link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;http://localhost:4000/css/moving-logo.css\&q;--&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jekyll-code-example-buttons.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; href=\&q;/css/highlightjs.css\&q;--&g;\n    &l;!--script src=\&q;assets/js/highlight.pack.js\&q;&g;&l;/script--&g;\n    &l;script&g;hljs.initHighlightingOnLoad();&l;/script&g;\n    \n  &l;!--script type=\&q;text/javascript\&q; src=\&q;https://use.typekit.net/rlx4cjm.js\&q;&g;&l;/script--&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/modernizr.js\&q;&g;&l;/script--&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;!--script src=\&q;assets/js/country.js\&q;&g;&l;/script--&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/jQuery.exLink/jquery.exLink.js\&q;&g;&l;/script--&g;\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/js/jQuery.exLink/jquery.exLink.css\&q;--&g;\n&l;script type=\&q;text/javascript\&q;&g;\nexLink.init({\n    \tparentElementPath: &s;.template-page-content-column .post-content&s;,\n \tlinkWarning: false,\n\thostCompare: true,\n\tnoFollow: false,\n\tfancyBoxIgnore: true,\n\tgaTracking: true,\n\tgaTrackLabel: &s;External Links&s;,\n\tgaTrackOld: false,\n\tfileWarning: false\n    });\n\t//turn all headings into clicable anchors:\n    /*\n\t$(&s;.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6&s;).filter(&s;[id]&s;).each(function () {\n\t    $(this).html(&s;&l;a href=\&q;#&s;+$(this).attr(&s;id&s;)+&s;\&q; class=\&q;post-content\&q; aria-hidden=\&q;true\&q;&g;&s;+$(this).text()+&s;&l;/a&g;&s;);\n\t});\n\t\n\n\t//build the \&q;on this page\&q; menu:\n\tvar ToC =\n\t  \&q;&l;nav role=&s;navigation&s; class=&s;table-of-contents&s;&g;\&q; +\n\t    \&q;&l;h2&g;On this page:&l;/h2&g;\&q; +\n\t    \&q;&l;ul&g;\&q;;\n\t\n\tvar newLine, el, title, link;\n\tvar hasHeaders = false;\n\t$(&s;.post-content h2&s;).each(function() {\n\t  hasHeaders = true;\n\t  el = $(this);\n\t  title = el.text();\n\t  link = \&q;documentation/Engage_and_Publish/kaltura-thumbnail-api.md#\&q; + el.attr(\&q;id\&q;);\n\t\n\t  newLine =\n\t    \&q;&l;li&g;\&q; +\n\t      \&q;&l;a href=&s;\&q; + link + \&q;&s;&g;\&q; +\n\t        title +\n\t      \&q;&l;/a&g;\&q; +\n\t    \&q;&l;/li&g;\&q;;\n\t\n\t  ToC += newLine;\n\t\n\t});\n\t\n\tToC +=\n\t   \&q;&l;/ul&g;\&q; +\n\t  \&q;&l;/nav&g;\&q;;\n\t\n\tif (hasHeaders) $(\&q;div.post-content\&q;).prepend(ToC);\n\t*/\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Kaltura Video Thumbnail and Image Transformation API&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Sun Apr 8 06:49:32 2018&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/kaltura-thumbnail-api.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Sun Apr 9 10:31:05 2017, By: AnnaAleksandrowicz&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Sun Apr 8 06:49:32 2018, By &l;span class=\&q;commit-author\&q;&g;Jess Portnoy&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;AnnaAleksandrowicz (4 commits) (&l;a href=\&q;mailto:Anna.Aleksandrowicz@kaltura.com\&q;&g;Anna.Aleksandrowicz@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Jess Portnoy (3 commits) (&l;a href=\&q;mailto:jess.portnoy@kaltura.com\&q;&g;jess.portnoy@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Zohar Babin (5 commits) (&l;a href=\&q;mailto:z.babin@gmail.com\&q;&g;z.babin@gmail.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n    \t\t&l;p&g;The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (To see the static thumbnail assets management API refer to the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/thumbAsset\&q;&g;thumbAsset&l;/a&g;.&l;/p&g;\n\n&l;p&g;The Thumbnail API provides simple means to dynamically transform (change size, cropping, etc.) image entries, and to generate images out of Kaltura video entries on the fly (while applying image transformations to the generated images).&l;/p&g;\n\n&l;p&g;The images are generated upon request (with caching on disk and via CDN) by calling the following URL format -&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnsecakmi.kaltura.com/p/{partner_id}/thumbnail/entry_id/{entry_id}\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;The result of the thumbnail API is an image with one or more of the following features:&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;A re-sized / cropped version of the original thumbnail image.&l;/li&g;\n  &l;li&g;A specific frame from a video clip.&l;/li&g;\n  &l;li&g;An older version of the entry thumbnail.&l;/li&g;\n  &l;li&g;A various compression quality of the thumbnail image.&l;/li&g;\n&l;/ul&g;\n\n&l;h2 id=\&q;using-the-thumbnail-api\&q;&g;Using the Thumbnail API&l;/h2&g;\n\n&l;p&g;The parameters are passed in the following form:&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnsecakmi.kaltura.com/p/{partner_id}/thumbnail/entry_id/{entry_id}/paramX_name/paramX_value/...\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;ol&g;\n  &l;li&g;Replace &l;code class=\&q;highlighter-rouge\&q;&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;&l;span class=\&q;err\&q;&g;partner_id&l;/span&g;&l;span class=\&q;p\&q;&g;}&l;/span&g;&l;/code&g; with your account ID (aka partnerId).&l;/li&g;\n  &l;li&g;Replace &l;code class=\&q;highlighter-rouge\&q;&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;&l;span class=\&q;err\&q;&g;entry_id&l;/span&g;&l;span class=\&q;p\&q;&g;}&l;/span&g;&l;/code&g; with the id of the desired entry thumbnail.&l;/li&g;\n  &l;li&g;Then append any of the parameters below according to the following format: &l;code class=\&q;highlighter-rouge\&q;&g;/paramX_name/paramX_value/...&l;/code&g;.&l;/li&g;\n&l;/ol&g;\n\n&l;blockquote&g;\n  &l;p&g;Please always ensure that a descriptive Alt text is specified when using thumbnails as image in web apps to ensure compatibility with screen readers and better search indexing.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h2 id=\&q;thumbnail-api-parameters\&q;&g;Thumbnail API Parameters&l;/h2&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Parameter name&l;/th&g;\n      &l;th&g;Type&l;/th&g;\n      &l;th&g;Mandatory&l;/th&g;\n      &l;th&g;Description&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;entry_id&l;/td&g;\n      &l;td&g;String&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;The entry ID&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;widget_id&l;/td&g;\n      &l;td&g;String&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;The widget ID&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;version&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;The thumbnail version&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;width&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Requested width in pixels&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;height&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Requested height in pixels&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;type&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Type of crop to be used – see remarks below&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;nearest_aspect_ratio&l;/td&g;\n      &l;td&g;boolean (1/0)&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;If 1, the image will be resized to nearest aspect ratio (based on the original image/video), and only then cropped to the desired dimensions. This will override the type parameter&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;bgcolor&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;6 hex digits web color code&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;quality&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;JPEG quality for output (0-100). The default is 75&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_x&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;1st part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_y&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;2nd part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_w&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;3rd part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;src_h&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;4th part of a rectangle to take from original picture&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;rel_width&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Actual width of the image from which the src_* parameters were taken&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;rel_height&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Actual height of the image from which the src_* parameters were taken&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;vid_sec&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;second to snap from video&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;vid_slice&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Number of slice out of number of slices&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;vid_slices&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Number of slices&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;upload_token_id&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;An ID of an uploadToken object representing a file that was recently uploaded (upload tokens are invalid after 2 weeks) to generate the image from&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;flavor_id&l;/td&g;\n      &l;td&g;integer&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;An ID of a specific video flavor to generate the image from&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;format&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Specify an output file format for the generated image. Supported values are: JPG, JPEG, JXR, PNG, PNG8/24/32/48/64, BMP, GIF, TIF, PSD, and PDF.&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;ks&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Kaltura Session string. Only mandatory if the account is configured to require session on thumbnails request&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;referrer&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;base64 of a URL, use if entry’s thumbnail access control is set to force domain&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;file_name&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;Used to specify a file name for the generated image. Must be the last parameter on the list to generate a URL that ends with a filename.extension&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;h2 id=\&q;thumbnail-editing-parameters-explained\&q;&g;Thumbnail Editing Parameters Explained&l;/h2&g;\n\n&l;p&g;To use the parameters, append each parameter name followed by the desired value in the following format: &l;code class=\&q;highlighter-rouge\&q;&g;/paramX_name/paramX_value/...&l;/code&g;&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;If both width and height were given a zero value the original image will be returned.&l;/li&g;\n  &l;li&g;If neither width nor height were specified, the resulting size will be 120x90 (default thumbnail size).&l;/li&g;\n  &l;li&g;If only width or height were specified, the given dimension combined with the type parameter will control the resulting size of the image.&l;/li&g;\n  &l;li&g;If vid_slices is provided without vid_slice the result will be a horizontal strip with the different slices.&l;/li&g;\n&l;/ul&g;\n\n&l;h3 id=\&q;the-type-parameter-controls-the-resizecropping-options\&q;&g;The ‘type’ parameter controls the resize/cropping options:&l;/h3&g;\n\n&l;ul&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/1&l;/code&g; - Resize maintaining the aspect ratio of the original video/image asset (overrides either width or height).&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/2&l;/code&g; - Center the image within the given dimensions and fill the remaining space using the given background color.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/3&l;/code&g; - Crop the image to the given dimensions using the &l;strong&g;center&l;/strong&g; of the image as gravity point, and fill the remaining space using the given background color.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/4&l;/code&g; - Crop the image to the given dimensions using the &l;strong&g;top&l;/strong&g; of the image as gravity point, and fill the remaining space using the given background color.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;type/5&l;/code&g; - Stretch the image to desired dimensions.&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;Let’s consider this as the original thumbnail we’ll play with:&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh\&q; alt=\&q;Thumbnail without params\&q; /&g;&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: If neither width nor height were specified, the resulting size will be 120x90 (default thumbnail size).&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;resizing\&q;&g;Resizing&l;/h3&g;\n\n&l;p&g;The thumbnail with dimensions of 500 x 400 (with maintain aspect-ratio from original) and defined quality: (X is JPEG quality ranging from 0 to 100)&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/X\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;10% Quality&l;/th&g;\n      &l;th style=\&q;text-align: center\&q;&g;50% Quality&l;/th&g;\n      &l;th style=\&q;text-align: right\&q;&g;100% Quality&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/10\&q; alt=\&q;Resized thumbnail to 200x100 and Quality of 10%\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: center\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/50\&q; alt=\&q;Resized thumbnail to 200x100 and Quality of 50%\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: right\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/quality/100\&q; alt=\&q;Resized thumbnail to 200x100 and Quality of 100%\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: The Quality parameter affects the compression value of the JPEG algorithm. To learn more about JPEG Compressions, visit the &l;a href=\&q;http://en.wikipedia.org/wiki/JPEG#Effects_of_JPEG_compression\&q;&g;JPEG entry on Wikipedia&l;/a&g;.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;using-vid_sec-parameter\&q;&g;Using vid_sec parameter&l;/h3&g;\n\n&l;p&g;The vid_sec parameter allows us to select a specific second in a video entry. The following will capture various frames from the 10th, 50th, 100th and 150th second in the video: (X is the second).&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/vid_sec/X\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;10th Second&l;/th&g;\n      &l;th&g;50th Second&l;/th&g;\n      &l;th style=\&q;text-align: center\&q;&g;100th Second&l;/th&g;\n      &l;th style=\&q;text-align: right\&q;&g;150th Second&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/10\&q; alt=\&q;Thumbnail from the 10th second of the video\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/50\&q; alt=\&q;Thumbnail from the 50th second of the video\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: center\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/100\&q; alt=\&q;Thumbnail from the 100th second of the video\&q; /&g;&l;/td&g;\n      &l;td style=\&q;text-align: right\&q;&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/150\&q; alt=\&q;Thumbnail from the 150th second of the video\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;blockquote&g;\n  &l;p&g;NOTE: If the given vid_sec is out of range, meaning, larger than the duration of the video, the returned thumbnail will be an image with the defined dimensions (as indicated by the width and height parameters)&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;cropping\&q;&g;Cropping&l;/h3&g;\n\n&l;p&g;Using the &l;code class=\&q;highlighter-rouge\&q;&g;src_x&l;/code&g;, &l;code class=\&q;highlighter-rouge\&q;&g;src_y&l;/code&g;, &l;code class=\&q;highlighter-rouge\&q;&g;src_w&l;/code&g; and &l;code class=\&q;highlighter-rouge\&q;&g;src_y&l;/code&g; parameters, it is possible to define a cropping rectangle, indicating the X and Y to position the rectangle at and W and H to indicate the size of the rectangle. The returned thumbnail will then be the pixels of the image that are within the defined rectangle.&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Source Thumbnail&l;/th&g;\n      &l;th&g;Cropped (300, 100, 500, 400)&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/vid_sec/10\&q; alt=\&q;Uncropped Thumbnail\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/200/vid_sec/10/src_x/300/src_y/100/src_w/500/src_h/400\&q; alt=\&q;Cropped (300, 100, 500, 400)\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;blockquote&g;\n  &l;p&g;NOTE: To accurately calculate the dimension of the cropping rectangle, you should know the original video (source flavor) dimensions. In the above example, the dimensions were 1280 x 720. To avoid having to know the source dimensions, use the &l;code class=\&q;highlighter-rouge\&q;&g;rel_width&l;/code&g; and &l;code class=\&q;highlighter-rouge\&q;&g;rel_height&l;/code&g; parameters to define a “new-virtual-source-dimensions”, the Thumbnail API will use resize the frame to these dimensions and then perform the cropping.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h3 id=\&q;slicing\&q;&g;Slicing&l;/h3&g;\n\n&l;p&g;A more advanced use case of the Thumbnail API is to create “animated-thumbnails” where series of thumbnails from the video are shown in rotation one after another, creating the impression of a silent movie.&l;/p&g;\n\n&l;p&g;Slicing can also be used in advanced CSS techniques using sprites.&l;/p&g;\n\n&l;p&g;To learn how to put slicing together in a JavaScript based animated thumbnail, read: &l;a href=\&q;/api-docs/Engage_and_Publish/how-create-video-thumbnail-rotator-javascript.html\&q;&g;How To Create a Video Thumbnail Rotator in JavaScript&l;/a&g;&l;/p&g;\n\n&l;p&g;To create thumbnail slices, use the &l;code class=\&q;highlighter-rouge\&q;&g;vid_slices and vid_slice&l;/code&g; parameters. &l;code class=\&q;highlighter-rouge\&q;&g;vid_slices&l;/code&g; defines the number of frame-slices the video will be divided to and the &l;code class=\&q;highlighter-rouge\&q;&g;vid_slice&l;/code&g; indicates the specific frame-slice to retrieve in that specific call (think of it as pager size and page number).&l;/p&g;\n\n&l;p&g;If vid_slices is provided without &l;code class=\&q;highlighter-rouge\&q;&g;vid_slice&l;/code&g;, a stripe of all slices will be returned, which can be later used as CSS sprites.&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Slice #15 out of 90&l;/th&g;\n      &l;th&g;Slice #30 out of 90&l;/th&g;\n      &l;th&g;Slice #60 out of 90&l;/th&g;\n      &l;th&g;Slice #75 out of 90&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/15\&q; alt=\&q;Video Slice #15 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/30\&q; alt=\&q;Video Slice #30 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/60\&q; alt=\&q;Video Slice #60 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n      &l;td&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/vid_slices/90/vid_slice/75\&q; alt=\&q;Video Slice #90 from a series of 90 slices starting\&q; /&g;&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;h3 id=\&q;stripe-of-thumbnail-slices-to-be-used-as-css-stripes\&q;&g;Stripe of thumbnail slices (to be used as &l;a href=\&q;https://www.w3schools.com/css/css_image_sprites.asp\&q;&g;CSS stripes&l;/a&g;)&l;/h3&g;\n\n&l;p&g;To create a long stripe of thumbnail slices simply remove the &l;code class=\&q;highlighter-rouge\&q;&g;vid_slice&l;/code&g; parameter:&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/vid_slices/8/\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;&l;img src=\&q;https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/vid_slices/8/widget_id/0\&q; alt=\&q;Stripe of 8 slices\&q; /&g;&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;NOTE: The slices are 0 indexed. The first slice in the series will always be 0.&l;/p&g;\n&l;/blockquote&g;\n\n\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;}</script></body></html>
