@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.10
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1763,7 +1763,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ɵWebAnimationsPlayer = exports.ɵsupportsWebAnimations = exports.ɵWebAnimationsDriver = exports.ɵAnimationEngine = exports.ɵNoopAnimationDriver = exports.ɵWebAnimationsStyleNormalizer = exports.ɵNoopAnimationStyleNormalizer = exports.ɵAnimationStyleNormalizer = exports.ɵAnimation = exports.AnimationDriver = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
-                                                                                                                                                                                                                                                                               * @license Angular v5.2.9
+                                                                                                                                                                                                                                                                               * @license Angular v5.2.10
                                                                                                                                                                                                                                                                                * (c) 2010-2018 Google, Inc. https://angular.io/
                                                                                                                                                                                                                                                                                * License: MIT
                                                                                                                                                                                                                                                                                */
@@ -5998,7 +5998,16 @@ var TransitionAnimationEngine = /** @class */function () {
         // code does not contain any animation code in it, but it is
         // just being called so that the node is marked as being inserted
         if (namespaceId) {
-            this._fetchNamespace(namespaceId).insertNode(element, parent);
+            var /** @type {?} */ns = this._fetchNamespace(namespaceId);
+            // This if-statement is a workaround for router issue #21947.
+            // The router sometimes hits a race condition where while a route
+            // is being instantiated a new navigation arrives, triggering leave
+            // animation of DOM that has not been fully initialized, until this
+            // is resolved, we need to handle the scenario when DOM is not in a
+            // consistent state during the animation.
+            if (ns) {
+                ns.insertNode(element, parent);
+            }
         }
         // only *directives and host elements are inserted before
         if (insertBefore) {
@@ -8122,7 +8131,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ɵf = exports.ɵg = exports.ɵb = exports.ɵa = exports.ɵd = exports.ɵe = exports.Location = exports.PathLocationStrategy = exports.HashLocationStrategy = exports.APP_BASE_HREF = exports.LocationStrategy = exports.LOCATION_INITIALIZED = exports.PlatformLocation = exports.VERSION = exports.isPlatformWorkerUi = exports.isPlatformWorkerApp = exports.isPlatformServer = exports.isPlatformBrowser = exports.ɵPLATFORM_WORKER_UI_ID = exports.ɵPLATFORM_WORKER_APP_ID = exports.ɵPLATFORM_SERVER_ID = exports.ɵPLATFORM_BROWSER_ID = exports.DeprecatedPercentPipe = exports.DeprecatedDecimalPipe = exports.DeprecatedCurrencyPipe = exports.DeprecatedDatePipe = exports.TitleCasePipe = exports.UpperCasePipe = exports.SlicePipe = exports.PercentPipe = exports.DecimalPipe = exports.CurrencyPipe = exports.LowerCasePipe = exports.JsonPipe = exports.I18nSelectPipe = exports.I18nPluralPipe = exports.DatePipe = exports.AsyncPipe = exports.DOCUMENT = exports.NgComponentOutlet = exports.NgTemplateOutlet = exports.NgSwitchDefault = exports.NgSwitchCase = exports.NgSwitch = exports.NgStyle = exports.NgPluralCase = exports.NgPlural = exports.NgIfContext = exports.NgIf = exports.NgForOfContext = exports.NgForOf = exports.NgClass = exports.DeprecatedI18NPipesModule = exports.CommonModule = exports.ɵparseCookieValue = exports.getLocaleCurrencySymbol = exports.getLocaleCurrencyName = exports.getLocaleNumberFormat = exports.getLocaleNumberSymbol = exports.getLocaleTimeFormat = exports.getLocalePluralCase = exports.getLocaleExtraDayPeriods = exports.getLocaleExtraDayPeriodRules = exports.getLocaleDateTimeFormat = exports.getLocaleDateFormat = exports.getLocaleFirstDayOfWeek = exports.getLocaleWeekEndRange = exports.getLocaleEraNames = exports.getLocaleId = exports.getLocaleMonthNames = exports.getLocaleDayNames = exports.getLocaleDayPeriods = exports.getCurrencySymbol = exports.WeekDay = exports.NumberSymbol = exports.FormatWidth = exports.TranslationWidth = exports.FormStyle = exports.NumberFormatStyle = exports.Plural = exports.registerLocaleData = exports.NgLocalization = exports.NgLocaleLocalization = exports.ɵregisterLocaleData = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
-                                                                                                                                                                                                                                                                               * @license Angular v5.2.9
+                                                                                                                                                                                                                                                                               * @license Angular v5.2.10
                                                                                                                                                                                                                                                                                * (c) 2010-2018 Google, Inc. https://angular.io/
                                                                                                                                                                                                                                                                                * License: MIT
                                                                                                                                                                                                                                                                                */
@@ -10079,10 +10088,10 @@ var NgClass = /** @class */function () {
              * @return {?}
              */
         function set(v) {
-            this._applyInitialClasses(true);
+            this._removeClasses(this._initialClasses);
             this._initialClasses = typeof v === 'string' ? v.split(/\s+/) : [];
-            this._applyInitialClasses(false);
-            this._applyClasses(this._rawClass, false);
+            this._applyClasses(this._initialClasses);
+            this._applyClasses(this._rawClass);
         },
         enumerable: true,
         configurable: true
@@ -10093,7 +10102,8 @@ var NgClass = /** @class */function () {
              * @return {?}
              */
         function set(v) {
-            this._cleanupClasses(this._rawClass);
+            this._removeClasses(this._rawClass);
+            this._applyClasses(this._initialClasses);
             this._iterableDiffer = null;
             this._keyValueDiffer = null;
             this._rawClass = typeof v === 'string' ? v.split(/\s+/) : v;
@@ -10126,18 +10136,6 @@ var NgClass = /** @class */function () {
                 this._applyKeyValueChanges(keyValueChanges);
             }
         }
-    };
-    /**
-     * @param {?} rawClassVal
-     * @return {?}
-     */
-    NgClass.prototype._cleanupClasses = /**
-                                        * @param {?} rawClassVal
-                                        * @return {?}
-                                        */
-    function (rawClassVal) {
-        this._applyClasses(rawClassVal, true);
-        this._applyInitialClasses(false);
     };
     /**
      * @param {?} changes
@@ -10183,39 +10181,61 @@ var NgClass = /** @class */function () {
         });
     };
     /**
-     * @param {?} isCleanup
-     * @return {?}
-     */
-    NgClass.prototype._applyInitialClasses = /**
-                                             * @param {?} isCleanup
-                                             * @return {?}
-                                             */
-    function (isCleanup) {
-        var _this = this;
-        this._initialClasses.forEach(function (klass) {
-            return _this._toggleClass(klass, !isCleanup);
-        });
-    };
-    /**
+     * Applies a collection of CSS classes to the DOM element.
+     *
+     * For argument of type Set and Array CSS class names contained in those collections are always
+     * added.
+     * For argument of type Map CSS class name in the map's key is toggled based on the value (added
+     * for truthy and removed for falsy).
      * @param {?} rawClassVal
-     * @param {?} isCleanup
      * @return {?}
      */
     NgClass.prototype._applyClasses = /**
+                                      * Applies a collection of CSS classes to the DOM element.
+                                      *
+                                      * For argument of type Set and Array CSS class names contained in those collections are always
+                                      * added.
+                                      * For argument of type Map CSS class name in the map's key is toggled based on the value (added
+                                      * for truthy and removed for falsy).
                                       * @param {?} rawClassVal
-                                      * @param {?} isCleanup
                                       * @return {?}
                                       */
-    function (rawClassVal, isCleanup) {
+    function (rawClassVal) {
         var _this = this;
         if (rawClassVal) {
             if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
                 /** @type {?} */rawClassVal.forEach(function (klass) {
-                    return _this._toggleClass(klass, !isCleanup);
+                    return _this._toggleClass(klass, true);
                 });
             } else {
                 Object.keys(rawClassVal).forEach(function (klass) {
-                    if (rawClassVal[klass] != null) _this._toggleClass(klass, !isCleanup);
+                    return _this._toggleClass(klass, !!rawClassVal[klass]);
+                });
+            }
+        }
+    };
+    /**
+     * Removes a collection of CSS classes from the DOM element. This is mostly useful for cleanup
+     * purposes.
+     * @param {?} rawClassVal
+     * @return {?}
+     */
+    NgClass.prototype._removeClasses = /**
+                                       * Removes a collection of CSS classes from the DOM element. This is mostly useful for cleanup
+                                       * purposes.
+                                       * @param {?} rawClassVal
+                                       * @return {?}
+                                       */
+    function (rawClassVal) {
+        var _this = this;
+        if (rawClassVal) {
+            if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
+                /** @type {?} */rawClassVal.forEach(function (klass) {
+                    return _this._toggleClass(klass, false);
+                });
+            } else {
+                Object.keys(rawClassVal).forEach(function (klass) {
+                    return _this._toggleClass(klass, false);
                 });
             }
         }
@@ -10389,6 +10409,7 @@ var NgComponentOutlet = /** @class */function () {
  */
 /**
  * \@stable
+ * @template T
  */
 var NgForOfContext = /** @class */function () {
     function NgForOfContext($implicit, ngForOf, index, count) {
@@ -10508,6 +10529,7 @@ var NgForOfContext = /** @class */function () {
  * example.
  *
  * \@stable
+ * @template T
  */
 var NgForOf = /** @class */function () {
     function NgForOf(_viewContainer, _template, _differs) {
@@ -10651,6 +10673,9 @@ var NgForOf = /** @class */function () {
     };
     return NgForOf;
 }();
+/**
+ * @template T
+ */
 var RecordViewTuple = /** @class */function () {
     function RecordViewTuple(record, view) {
         this.record = record;
@@ -14458,7 +14483,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new _core.Version('5.2.9');
+var VERSION = new _core.Version('5.2.10');
 
 /**
  * @fileoverview added by tsickle
@@ -14604,7 +14629,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ɵg = exports.ɵf = exports.ɵi = exports.ɵh = exports.ɵe = exports.ɵd = exports.ɵc = exports.ɵb = exports.ɵa = exports.HttpXsrfTokenExtractor = exports.XhrFactory = exports.HttpXhrBackend = exports.HttpResponseBase = exports.HttpResponse = exports.HttpHeaderResponse = exports.HttpEventType = exports.HttpErrorResponse = exports.HttpRequest = exports.HttpUrlEncodingCodec = exports.HttpParams = exports.ɵinterceptingHandler = exports.HttpClientXsrfModule = exports.HttpClientModule = exports.HttpClientJsonpModule = exports.JsonpInterceptor = exports.JsonpClientBackend = exports.HTTP_INTERCEPTORS = exports.HttpHeaders = exports.HttpClient = exports.HttpHandler = exports.HttpBackend = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
-                                                                                                                                                                                                                                                                               * @license Angular v5.2.9
+                                                                                                                                                                                                                                                                               * @license Angular v5.2.10
                                                                                                                                                                                                                                                                                * (c) 2010-2018 Google, Inc. https://angular.io/
                                                                                                                                                                                                                                                                                * License: MIT
                                                                                                                                                                                                                                                                                */
@@ -15086,11 +15111,6 @@ function standardEncoding(v) {
     return encodeURIComponent(v).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/gi, '$').replace(/%2C/gi, ',').replace(/%3B/gi, ';').replace(/%2B/gi, '+').replace(/%3D/gi, '=').replace(/%3F/gi, '?').replace(/%2F/gi, '/');
 }
 /**
- * Options used to construct an `HttpParams` instance.
- * @record
- */
-
-/**
  * An HTTP request/response body that represents serialized parameters,
  * per the MIME type `application/x-www-form-urlencoded`.
  *
@@ -15285,7 +15305,7 @@ var HttpParams = /** @class */function () {
                                  * @return {?}
                                  */
     function (update) {
-        var /** @type {?} */clone = new HttpParams( /** @type {?} */{ encoder: this.encoder });
+        var /** @type {?} */clone = new HttpParams({ encoder: this.encoder });
         clone.cloneFrom = this.cloneFrom || this;
         clone.updates = (this.updates || []).concat([update]);
         return clone;
@@ -15405,6 +15425,7 @@ function isFormData(value) {
  * method should be used.
  *
  * \@stable
+ * @template T
  */
 var HttpRequest = /** @class */function () {
     function HttpRequest(method, url, third, fourth) {
@@ -15719,6 +15740,7 @@ HttpEventType[HttpEventType.User] = "User";
  *
  * \@stable
  * @record
+ * @template T
  */
 
 /**
@@ -15823,6 +15845,7 @@ var HttpHeaderResponse = /** @class */function (_super) {
  * stream.
  *
  * \@stable
+ * @template T
  */
 var HttpResponse = /** @class */function (_super) {
     (0, _tslib.__extends)(HttpResponse, _super);
@@ -16070,7 +16093,7 @@ var HttpClient = /** @class */function () {
                 if (options.params instanceof HttpParams) {
                     params = options.params;
                 } else {
-                    params = new HttpParams( /** @type {?} */{ fromObject: options.params });
+                    params = new HttpParams({ fromObject: options.params });
                 }
             }
             // Construct the request.
@@ -17390,7 +17413,7 @@ exports.ɵg = XSRF_HEADER_NAME;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {Object.defineProperty(exports,"__esModule",{value:true});exports.ɵbb=exports.ɵba=exports.ɵd=exports.ɵa=exports.ɵbc=exports.ɵy=exports.ɵx=exports.ɵz=exports.ɵu=undefined;exports.ɵw=exports.ɵr=exports.ɵh=exports.ɵg=exports.ɵf=exports.ɵm=exports.ɵl=exports.ɵk=exports.ɵj=exports.ɵi=exports.ɵq=exports.ɵo=exports.ɵn=exports.ɵbe=exports.ɵbl=exports.ɵbi=exports.ɵbj=exports.ɵbh=exports.ɵbk=exports.ɵbg=exports.ɵbf=exports.transition=exports.keyframes=exports.state=exports.style=exports.sequence=exports.group=exports.animate=exports.trigger=exports.AUTO_STYLE=exports.ɵvid=exports.ɵunv=exports.ɵted=exports.ɵqud=exports.ɵppd=exports.ɵpod=exports.ɵpad=exports.ɵprd=exports.ɵpid=exports.ɵnov=exports.ɵncd=exports.ɵmpd=exports.ɵmod=exports.ɵinterpolate=exports.ɵinlineInterpolate=exports.ɵgetComponentViewDefinitionFactory=exports.ɵelementEventFullName=exports.ɵeld=exports.ɵdid=exports.ɵcrt=exports.ɵcmf=exports.ɵccf=exports.ɵand=exports.ɵEMPTY_MAP=exports.ɵEMPTY_ARRAY=exports.ɵregisterModuleFactory=exports.ɵv=exports.ɵt=exports.ɵs=exports.ɵp=exports.ɵe=exports.ɵcr=exports.ɵcR=exports.ɵc=exports.ɵb1=exports.ɵb=exports.ɵV=exports.ɵT=exports.ɵE=exports.ɵD=exports.ɵC=exports.ɵrenderComponent=exports.ɵdetectChanges=exports.ɵdefineComponent=exports.ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR=exports.ɵoverrideProvider=exports.ɵoverrideComponentView=exports.ɵclearOverrides=exports.ɵisPromise=exports.ɵisObservable=exports.ɵmakeDecorator=exports.ɵstringify=exports.ɵlooseIdentical=exports.ɵglobal=exports.ɵRenderDebugInfo=exports.ɵReflectionCapabilities=exports.ɵCodegenComponentFactoryResolver=exports.ɵComponentFactory=exports.ɵConsole=exports.ɵisDefaultChangeDetectionStrategy=exports.ɵChangeDetectorStatus=exports.ɵisListLikeIterable=exports.ɵdevModeEqual=exports.ɵAPP_ID_RANDOM_PROVIDER=exports.ɵALLOW_MULTIPLE_PLATFORMS=exports.platformCore=exports.WrappedValue=exports.SimpleChange=exports.KeyValueDiffers=exports.IterableDiffers=undefined;exports.DefaultIterableDiffer=exports.ChangeDetectorRef=exports.ChangeDetectionStrategy=exports.ViewRef=exports.EmbeddedViewRef=exports.ViewContainerRef=exports.TemplateRef=exports.SystemJsNgModuleLoaderConfig=exports.SystemJsNgModuleLoader=exports.QueryList=exports.getModuleFactory=exports.NgModuleFactoryLoader=exports.NgModuleRef=exports.NgModuleFactory=exports.ElementRef=exports.ComponentFactoryResolver=exports.ComponentRef=exports.ComponentFactory=exports.ModuleWithComponentFactories=exports.CompilerFactory=exports.Compiler=exports.COMPILER_OPTIONS=exports.RootRenderer=exports.RendererStyleFlags2=exports.RendererFactory2=exports.Renderer2=exports.Renderer=exports.RenderComponentType=exports.NgZone=exports.Host=exports.SkipSelf=exports.Self=exports.Injectable=exports.Optional=exports.Inject=exports.InjectionToken=exports.ReflectiveKey=exports.ResolvedReflectiveFactory=exports.ReflectiveInjector=exports.Injector=exports.resolveForwardRef=exports.forwardRef=exports.VERSION=exports.Version=exports.ViewEncapsulation=exports.NgModule=exports.NO_ERRORS_SCHEMA=exports.CUSTOM_ELEMENTS_SCHEMA=exports.Pipe=exports.Output=exports.Input=exports.HostListener=exports.HostBinding=exports.Directive=exports.Component=exports.ViewChildren=exports.ViewChild=exports.Query=exports.ContentChildren=exports.ContentChild=exports.Attribute=exports.ANALYZE_FOR_ENTRY_COMPONENTS=exports.SecurityContext=exports.Sanitizer=exports.ErrorHandler=exports.EventEmitter=exports.Type=exports.wtfEndTimeRange=exports.wtfStartTimeRange=exports.wtfLeave=exports.wtfCreateScope=exports.ApplicationModule=exports.MissingTranslationStrategy=exports.LOCALE_ID=exports.TRANSLATIONS_FORMAT=exports.TRANSLATIONS=exports.setTestabilityGetter=exports.TestabilityRegistry=exports.Testability=exports.getDebugNode=exports.asNativeElements=exports.DebugNode=exports.DebugElement=exports.ApplicationInitStatus=exports.APP_INITIALIZER=exports.APP_BOOTSTRAP_LISTENER=exports.PLATFORM_ID=exports.PLATFORM_INITIALIZER=exports.PACKAGE_ROOT_URL=exports.APP_ID=exports.NgProbeToken=exports.createPlatformFactory=exports.isDevMode=exports.enableProdMode=exports.ApplicationRef=exports.PlatformRef=exports.getPlatform=exports.destroyPlatform=exports.assertPlatform=exports.createPlatform=undefined;var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};/**
- * @license Angular v5.2.9
+ * @license Angular v5.2.10
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */var _tslib=__webpack_require__("./node_modules/tslib/tslib.es6.js");var _Observable=__webpack_require__("./node_modules/rxjs/_esm5/Observable.js");var _merge=__webpack_require__("./node_modules/rxjs/_esm5/observable/merge.js");var _share=__webpack_require__("./node_modules/rxjs/_esm5/operator/share.js");var _Subject=__webpack_require__("./node_modules/rxjs/_esm5/Subject.js");var _Subscription=__webpack_require__("./node_modules/rxjs/_esm5/Subscription.js");/**
@@ -17423,6 +17446,7 @@ exports.ɵg = XSRF_HEADER_NAME;
  * {\@example core/di/ts/injector_spec.ts region='InjectionToken'}
  *
  * \@stable
+ * @template T
  */var InjectionToken=/** @class */function(){function InjectionToken(_desc){this._desc=_desc;/**
          * \@internal
          */this.ngMetadataName='InjectionToken';}/**
@@ -17800,7 +17824,7 @@ var/** @type {?} */meta=constructor.hasOwnProperty(PROP_METADATA)?/** @type {?} 
  * \@stable
  */var Version=/** @class */function(){function Version(full){this.full=full;this.major=full.split('.')[0];this.minor=full.split('.')[1];this.patch=full.split('.').slice(2).join('.');}return Version;}();/**
  * \@stable
- */var VERSION=new Version('5.2.9');/**
+ */var VERSION=new Version('5.2.10');/**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  *//**
@@ -19223,7 +19247,7 @@ return!!obj&&typeof obj.then==='function';}/**
  * Determine if the argument is an Observable
  * @param {?} obj
  * @return {?}
- */function isObservable(obj){// TODO use Symbol.observable when https://github.com/ReactiveX/rxjs/issues/2415 will be resolved
+ */function isObservable(obj){// TODO: use Symbol.observable when https://github.com/ReactiveX/rxjs/issues/2415 will be resolved
 return!!obj&&typeof obj.subscribe==='function';}/**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
@@ -19324,6 +19348,7 @@ console.warn(message);};Console.decorators=[{type:Injectable}];/** @nocollapse *
  * Combination of NgModuleFactory and ComponentFactorys.
  *
  * \@experimental
+ * @template T
  */var ModuleWithComponentFactories=/** @class */function(){function ModuleWithComponentFactories(ngModuleFactory,componentFactories){this.ngModuleFactory=ngModuleFactory;this.componentFactories=componentFactories;}return ModuleWithComponentFactories;}();/**
  * @return {?}
  */function _throwError(){throw new Error("Runtime compiler is not loaded");}/**
@@ -19430,9 +19455,11 @@ console.warn(message);};Console.decorators=[{type:Injectable}];/** @nocollapse *
  * method.
  * \@stable
  * @abstract
+ * @template C
  */var ComponentRef=/** @class */function(){function ComponentRef(){}return ComponentRef;}();/**
  * \@stable
  * @abstract
+ * @template C
  */var ComponentFactory=/** @class */function(){function ComponentFactory(){}return ComponentFactory;}();/**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
@@ -19467,7 +19494,9 @@ console.warn(message);};Console.decorators=[{type:Injectable}];/** @nocollapse *
      * @template T
      * @param {?} component
      * @return {?}
-     */function(component){var/** @type {?} */factory=this._factories.get(component);if(!factory&&this._parent){factory=this._parent.resolveComponentFactory(component);}if(!factory){throw noComponentFactoryError(component);}return new ComponentFactoryBoundToModule(factory,this._ngModule);};return CodegenComponentFactoryResolver;}();var ComponentFactoryBoundToModule=/** @class */function(_super){(0,_tslib.__extends)(ComponentFactoryBoundToModule,_super);function ComponentFactoryBoundToModule(factory,ngModule){var _this=_super.call(this)||this;_this.factory=factory;_this.ngModule=ngModule;_this.selector=factory.selector;_this.componentType=factory.componentType;_this.ngContentSelectors=factory.ngContentSelectors;_this.inputs=factory.inputs;_this.outputs=factory.outputs;return _this;}/**
+     */function(component){var/** @type {?} */factory=this._factories.get(component);if(!factory&&this._parent){factory=this._parent.resolveComponentFactory(component);}if(!factory){throw noComponentFactoryError(component);}return new ComponentFactoryBoundToModule(factory,this._ngModule);};return CodegenComponentFactoryResolver;}();/**
+ * @template C
+ */var ComponentFactoryBoundToModule=/** @class */function(_super){(0,_tslib.__extends)(ComponentFactoryBoundToModule,_super);function ComponentFactoryBoundToModule(factory,ngModule){var _this=_super.call(this)||this;_this.factory=factory;_this.ngModule=ngModule;_this.selector=factory.selector;_this.componentType=factory.componentType;_this.ngContentSelectors=factory.ngContentSelectors;_this.inputs=factory.inputs;_this.outputs=factory.outputs;return _this;}/**
      * @param {?} injector
      * @param {?=} projectableNodes
      * @param {?=} rootSelectorOrNode
@@ -19496,11 +19525,14 @@ console.warn(message);};Console.decorators=[{type:Injectable}];/** @nocollapse *
  *
  * \@stable
  * @abstract
+ * @template T
  */var NgModuleRef=/** @class */function(){function NgModuleRef(){}return NgModuleRef;}();/**
  * @record
+ * @template T
  *//**
  * \@experimental
  * @abstract
+ * @template T
  */var NgModuleFactory=/** @class */function(){function NgModuleFactory(){}return NgModuleFactory;}();/**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
@@ -19661,6 +19693,7 @@ console.warn(message);};Console.decorators=[{type:Injectable}];/** @nocollapse *
  *
  * Once a reference implementation of the spec is available, switch to it.
  * \@stable
+ * @template T
  */var EventEmitter=/** @class */function(_super){(0,_tslib.__extends)(EventEmitter,_super);/**
      * Creates an instance of {@link EventEmitter}, which depending on `isAsync`,
      * delivers events synchronously or asynchronously.
@@ -20741,6 +20774,7 @@ this._views.slice().forEach(function(view){return view.destroy();});};Object.def
  * }
  * ```
  * \@stable
+ * @template T
  */var QueryList=/** @class */function(){function QueryList(){this.dirty=true;this._results=[];this.changes=new EventEmitter();this.length=0;}/**
      * See
      * [Array.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
@@ -20925,6 +20959,7 @@ this._views.slice().forEach(function(view){return view.destroy();});};Object.def
  * createEmbeddedView}, which will create the View and attach it to the View Container.
  * \@stable
  * @abstract
+ * @template C
  */var TemplateRef=/** @class */function(){function TemplateRef(){}return TemplateRef;}();/**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
@@ -21030,6 +21065,7 @@ this._views.slice().forEach(function(view){return view.destroy();});};Object.def
  * ```
  * \@experimental
  * @abstract
+ * @template C
  */var EmbeddedViewRef=/** @class */function(_super){(0,_tslib.__extends)(EmbeddedViewRef,_super);function EmbeddedViewRef(){return _super!==null&&_super.apply(this,arguments)||this;}return EmbeddedViewRef;}(ViewRef);/**
  * @record
  *//**
@@ -21153,6 +21189,7 @@ var _nativeNodeToDebugNode=new Map();/**
  *
  * \@experimental All debugging apis are currently experimental.
  * @record
+ * @template T
  *//**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
@@ -21269,6 +21306,7 @@ getSymbolIterator()in obj;// JS Iterable have a Symbol.iterator prop
      * @return {?}
      */function(trackByFn){return new DefaultIterableDiffer(trackByFn);};return DefaultIterableDifferFactory;}();var trackByIdentity=function trackByIdentity(index,item){return item;};/**
  * @deprecated v4.0.0 - Should not be part of public API.
+ * @template V
  */var DefaultIterableDiffer=/** @class */function(){function DefaultIterableDiffer(trackByFn){this.length=0;this._linkedRecords=null;this._unlinkedRecords=null;this._previousItHead=null;this._itHead=null;this._itTail=null;this._additionsHead=null;this._additionsTail=null;this._movesHead=null;this._movesTail=null;this._removalsHead=null;this._removalsTail=null;this._identityChangesHead=null;this._identityChangesTail=null;this._trackByFn=trackByFn||trackByIdentity;}/**
      * @param {?} fn
      * @return {?}
@@ -21360,7 +21398,7 @@ record=_this._verifyReinsertion(record,item,itemTrackBy,index);}if(!looseIdentic
      *
      * \@internal
      * @return {?}
-     */function(){if(this.isDirty){var/** @type {?} */record=void 0;var/** @type {?} */nextRecord=void 0;for(record=this._previousItHead=this._itHead;record!==null;record=record._next){record._nextPrevious=record._next;}for(record=this._additionsHead;record!==null;record=record._nextAdded){record.previousIndex=record.currentIndex;}this._additionsHead=this._additionsTail=null;for(record=this._movesHead;record!==null;record=nextRecord){record.previousIndex=record.currentIndex;nextRecord=record._nextMoved;}this._movesHead=this._movesTail=null;this._removalsHead=this._removalsTail=null;this._identityChangesHead=this._identityChangesTail=null;// todo(vicb) when assert gets supported
+     */function(){if(this.isDirty){var/** @type {?} */record=void 0;var/** @type {?} */nextRecord=void 0;for(record=this._previousItHead=this._itHead;record!==null;record=record._next){record._nextPrevious=record._next;}for(record=this._additionsHead;record!==null;record=record._nextAdded){record.previousIndex=record.currentIndex;}this._additionsHead=this._additionsTail=null;for(record=this._movesHead;record!==null;record=nextRecord){record.previousIndex=record.currentIndex;nextRecord=record._nextMoved;}this._movesHead=this._movesTail=null;this._removalsHead=this._removalsTail=null;this._identityChangesHead=this._identityChangesTail=null;// TODO(vicb): when assert gets supported
 // assert(!this.isDirty);
 }};/**
      * This is the core function which handles differences between collections.
@@ -21555,9 +21593,9 @@ while(record!==null){var/** @type {?} */nextRecord=record._next;this._addToRemov
      * @param {?} prevRecord
      * @param {?} index
      * @return {?}
-     */function(record,prevRecord,index){this._insertAfter(record,prevRecord,index);if(this._additionsTail===null){// todo(vicb)
+     */function(record,prevRecord,index){this._insertAfter(record,prevRecord,index);if(this._additionsTail===null){// TODO(vicb):
 // assert(this._additionsHead === null);
-this._additionsTail=this._additionsHead=record;}else{// todo(vicb)
+this._additionsTail=this._additionsHead=record;}else{// TODO(vicb):
 // assert(_additionsTail._nextAdded === null);
 // assert(record._nextAdded === null);
 this._additionsTail=this._additionsTail._nextAdded=record;}return record;};/** @internal *//**
@@ -21572,11 +21610,11 @@ this._additionsTail=this._additionsTail._nextAdded=record;}return record;};/** @
      * @param {?} prevRecord
      * @param {?} index
      * @return {?}
-     */function(record,prevRecord,index){// todo(vicb)
+     */function(record,prevRecord,index){// TODO(vicb):
 // assert(record != prevRecord);
 // assert(record._next === null);
 // assert(record._prev === null);
-var/** @type {?} */next=prevRecord===null?this._itHead:prevRecord._next;// todo(vicb)
+var/** @type {?} */next=prevRecord===null?this._itHead:prevRecord._next;// TODO(vicb):
 // assert(next != record);
 // assert(prevRecord != record);
 record._next=next;record._prev=prevRecord;if(next===null){this._itTail=record;}else{next._prev=record;}if(prevRecord===null){this._itHead=record;}else{prevRecord._next=record;}if(this._linkedRecords===null){this._linkedRecords=new _DuplicateMap();}this._linkedRecords.put(record);record.currentIndex=index;return record;};/** @internal *//**
@@ -21595,7 +21633,7 @@ record._next=next;record._prev=prevRecord;if(next===null){this._itTail=record;}e
      * \@internal
      * @param {?} record
      * @return {?}
-     */function(record){if(this._linkedRecords!==null){this._linkedRecords.remove(record);}var/** @type {?} */prev=record._prev;var/** @type {?} */next=record._next;// todo(vicb)
+     */function(record){if(this._linkedRecords!==null){this._linkedRecords.remove(record);}var/** @type {?} */prev=record._prev;var/** @type {?} */next=record._next;// TODO(vicb):
 // assert((record._prev = null) === null);
 // assert((record._next = null) === null);
 if(prev===null){this._itHead=next;}else{prev._next=next;}if(next===null){this._itTail=prev;}else{next._prev=prev;}return record;};/** @internal *//**
@@ -21608,11 +21646,11 @@ if(prev===null){this._itHead=next;}else{prev._next=next;}if(next===null){this._i
      * @param {?} record
      * @param {?} toIndex
      * @return {?}
-     */function(record,toIndex){// todo(vicb)
+     */function(record,toIndex){// TODO(vicb):
 // assert(record._nextMoved === null);
-if(record.previousIndex===toIndex){return record;}if(this._movesTail===null){// todo(vicb)
+if(record.previousIndex===toIndex){return record;}if(this._movesTail===null){// TODO(vicb):
 // assert(_movesHead === null);
-this._movesTail=this._movesHead=record;}else{// todo(vicb)
+this._movesTail=this._movesHead=record;}else{// TODO(vicb):
 // assert(_movesTail._nextMoved === null);
 this._movesTail=this._movesTail._nextMoved=record;}return record;};/**
      * @param {?} record
@@ -21620,9 +21658,9 @@ this._movesTail=this._movesTail._nextMoved=record;}return record;};/**
      */DefaultIterableDiffer.prototype._addToRemovals=/**
      * @param {?} record
      * @return {?}
-     */function(record){if(this._unlinkedRecords===null){this._unlinkedRecords=new _DuplicateMap();}this._unlinkedRecords.put(record);record.currentIndex=null;record._nextRemoved=null;if(this._removalsTail===null){// todo(vicb)
+     */function(record){if(this._unlinkedRecords===null){this._unlinkedRecords=new _DuplicateMap();}this._unlinkedRecords.put(record);record.currentIndex=null;record._nextRemoved=null;if(this._removalsTail===null){// TODO(vicb):
 // assert(_removalsHead === null);
-this._removalsTail=this._removalsHead=record;record._prevRemoved=null;}else{// todo(vicb)
+this._removalsTail=this._removalsHead=record;record._prevRemoved=null;}else{// TODO(vicb):
 // assert(_removalsTail._nextRemoved === null);
 // assert(record._nextRemoved === null);
 record._prevRemoved=this._removalsTail;this._removalsTail=this._removalsTail._nextRemoved=record;}return record;};/** @internal *//**
@@ -21637,6 +21675,7 @@ record._prevRemoved=this._removalsTail;this._removalsTail=this._removalsTail._ne
      * @return {?}
      */function(record,item){record.item=item;if(this._identityChangesTail===null){this._identityChangesTail=this._identityChangesHead=record;}else{this._identityChangesTail=this._identityChangesTail._nextIdentityChange=record;}return record;};return DefaultIterableDiffer;}();/**
  * \@stable
+ * @template V
  */var IterableChangeRecord_=/** @class */function(){function IterableChangeRecord_(item,trackById){this.item=item;this.trackById=trackById;this.currentIndex=null;this.previousIndex=null;/**
          * \@internal
          */this._nextPrevious=null;/**
@@ -21657,7 +21696,9 @@ record._prevRemoved=this._removalsTail;this._removalsTail=this._removalsTail._ne
          * \@internal
          */this._nextMoved=null;/**
          * \@internal
-         */this._nextIdentityChange=null;}return IterableChangeRecord_;}();var _DuplicateItemRecordList=/** @class */function(){function _DuplicateItemRecordList(){/**
+         */this._nextIdentityChange=null;}return IterableChangeRecord_;}();/**
+ * @template V
+ */var _DuplicateItemRecordList=/** @class */function(){function _DuplicateItemRecordList(){/**
          * \@internal
          */this._head=null;/**
          * \@internal
@@ -21677,7 +21718,7 @@ record._prevRemoved=this._removalsTail;this._removalsTail=this._removalsTail._ne
      * Note: by design all records in the list of duplicates hold the same value in record.item.
      * @param {?} record
      * @return {?}
-     */function(record){if(this._head===null){this._head=this._tail=record;record._nextDup=null;record._prevDup=null;}else{/** @type {?} */// todo(vicb)
+     */function(record){if(this._head===null){this._head=this._tail=record;record._nextDup=null;record._prevDup=null;}else{/** @type {?} */// TODO(vicb):
 // assert(record.item ==  _head.item ||
 //       record.item is num && record.item.isNaN && _head.item is num && _head.item.isNaN);
 this._tail._nextDup=record;record._prevDup=this._tail;record._nextDup=null;this._tail=record;}};// Returns a IterableChangeRecord_ having IterableChangeRecord_.trackById == trackById and
@@ -21706,7 +21747,7 @@ this._tail._nextDup=record;record._prevDup=this._tail;record._nextDup=null;this.
      * Returns whether the list of duplicates is empty.
      * @param {?} record
      * @return {?}
-     */function(record){// todo(vicb)
+     */function(record){// TODO(vicb):
 // assert(() {
 //  // verify that the record being removed is in the list.
 //  for (IterableChangeRecord_ cursor = _head; cursor != null; cursor = cursor._nextDup) {
@@ -21714,7 +21755,9 @@ this._tail._nextDup=record;record._prevDup=this._tail;record._nextDup=null;this.
 //  }
 //  return false;
 //});
-var/** @type {?} */prev=record._prevDup;var/** @type {?} */next=record._nextDup;if(prev===null){this._head=next;}else{prev._nextDup=next;}if(next===null){this._tail=prev;}else{next._prevDup=prev;}return this._head===null;};return _DuplicateItemRecordList;}();var _DuplicateMap=/** @class */function(){function _DuplicateMap(){this.map=new Map();}/**
+var/** @type {?} */prev=record._prevDup;var/** @type {?} */next=record._nextDup;if(prev===null){this._head=next;}else{prev._nextDup=next;}if(next===null){this._tail=prev;}else{next._prevDup=prev;}return this._head===null;};return _DuplicateItemRecordList;}();/**
+ * @template V
+ */var _DuplicateMap=/** @class */function(){function _DuplicateMap(){this.map=new Map();}/**
      * @param {?} record
      * @return {?}
      */_DuplicateMap.prototype.put=/**
@@ -21781,6 +21824,8 @@ if(recordList.remove(record)){this.map.delete(key);}return record;};Object.defin
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
+ *//**
+ * @template K, V
  */var DefaultKeyValueDifferFactory=/** @class */function(){function DefaultKeyValueDifferFactory(){}/**
      * @param {?} obj
      * @return {?}
@@ -21793,7 +21838,9 @@ if(recordList.remove(record)){this.map.delete(key);}return record;};Object.defin
      */DefaultKeyValueDifferFactory.prototype.create=/**
      * @template K, V
      * @return {?}
-     */function(){return new DefaultKeyValueDiffer();};return DefaultKeyValueDifferFactory;}();var DefaultKeyValueDiffer=/** @class */function(){function DefaultKeyValueDiffer(){this._records=new Map();this._mapHead=null;this._appendAfter=null;this._previousMapHead=null;this._changesHead=null;this._changesTail=null;this._additionsHead=null;this._additionsTail=null;this._removalsHead=null;this._removalsTail=null;}Object.defineProperty(DefaultKeyValueDiffer.prototype,"isDirty",{get:/**
+     */function(){return new DefaultKeyValueDiffer();};return DefaultKeyValueDifferFactory;}();/**
+ * @template K, V
+ */var DefaultKeyValueDiffer=/** @class */function(){function DefaultKeyValueDiffer(){this._records=new Map();this._mapHead=null;this._appendAfter=null;this._previousMapHead=null;this._changesHead=null;this._changesTail=null;this._additionsHead=null;this._additionsTail=null;this._removalsHead=null;this._removalsTail=null;}Object.defineProperty(DefaultKeyValueDiffer.prototype,"isDirty",{get:/**
          * @return {?}
          */function get(){return this._additionsHead!==null||this._changesHead!==null||this._removalsHead!==null;},enumerable:true,configurable:true});/**
      * @param {?} fn
@@ -21921,6 +21968,7 @@ for(record=this._changesHead;record!==null;record=record._nextChanged){record.pr
      * @return {?}
      */function(obj,fn){if(obj instanceof Map){obj.forEach(fn);}else{Object.keys(obj).forEach(function(k){return fn(obj[k],k);});}};return DefaultKeyValueDiffer;}();/**
  * \@stable
+ * @template K, V
  */var KeyValueChangeRecord_=/** @class */function(){function KeyValueChangeRecord_(key){this.key=key;this.previousValue=null;this.currentValue=null;/**
          * \@internal
          */this._nextPrevious=null;/**
@@ -21948,26 +21996,31 @@ for(record=this._changesHead;record!==null;record=record._nextChanged){record.pr
  *
  * \@stable
  * @record
+ * @template V
  *//**
  * An object describing the changes in the `Iterable` collection since last time
  * `IterableDiffer#diff()` was invoked.
  *
  * \@stable
  * @record
+ * @template V
  *//**
  * Record representing the item change information.
  *
  * \@stable
  * @record
+ * @template V
  *//**
  * @deprecated v4.0.0 - Use IterableChangeRecord instead.
  * @record
+ * @template V
  *//**
  * An optional function passed into {\@link NgForOf} that defines how to track
  * items in an iterable (e.g. fby index or id)
  *
  * \@stable
  * @record
+ * @template T
  *//**
  * Provides a factory for {\@link IterableDiffer}.
  *
@@ -22069,17 +22122,20 @@ deps:[[IterableDiffers,new SkipSelf(),new Optional()]]};};/**
  *
  * \@stable
  * @record
+ * @template K, V
  *//**
  * An object describing the changes in the `Map` or `{[k:string]: string}` since last time
  * `KeyValueDiffer#diff()` was invoked.
  *
  * \@stable
  * @record
+ * @template K, V
  *//**
  * Record representing the item change information.
  *
  * \@stable
  * @record
+ * @template K, V
  *//**
  * Provides a factory for {\@link KeyValueDiffer}.
  *
@@ -22318,19 +22374,23 @@ function ApplicationModule(appRef){}ApplicationModule.decorators=[{type:NgModule
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
- *//**
+ */// unsupported: template constraints.
+/**
  * Factory for ViewDefinitions/NgModuleDefinitions.
  * We use a function so we can reexeute it in case an error happens and use the given logger
  * function to log the error from the definition of the node, which is shown in all browser
  * logs.
  * @record
+ * @template D
  *//**
  * Function to call console.error at the right source location. This is an indirection
  * via another function as browser will log the location that actually called
  * `console.error`.
  * @record
- *//**
+ */// unsupported: template constraints.
+/**
  * @record
+ * @template DF
  *//**
  * @record
  *//**
@@ -24754,6 +24814,9 @@ injector=value&mask?injector.parent:null;}return null;}/**
  *//**
  * A predicate which determines if a given element/directive should be included in the query
  * @record
+ * @template T
+ *//**
+ * @template T
  */var QueryList_=/** @class */function(){function QueryList_(){this.dirty=false;/**
          * \@internal
          */this._valuesTree=null;/**
@@ -26697,7 +26760,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ɵr = exports.ɵw = exports.ɵu = exports.ɵv = exports.ɵt = exports.ɵs = exports.ɵp = exports.ɵq = exports.ɵo = exports.ɵm = exports.ɵn = exports.ɵl = exports.ɵk = exports.ɵj = exports.ɵbe = exports.ɵbd = exports.ɵi = exports.ɵh = exports.ɵbc = exports.ɵbb = exports.ɵbf = exports.ɵg = exports.ɵf = exports.ɵe = exports.ɵd = exports.ɵc = exports.ɵb = exports.ɵa = exports.ɵy = exports.ɵx = exports.ɵz = exports.ɵba = exports.ReactiveFormsModule = exports.FormsModule = exports.VERSION = exports.Validators = exports.NG_VALIDATORS = exports.NG_ASYNC_VALIDATORS = exports.FormGroup = exports.FormControl = exports.FormArray = exports.AbstractControl = exports.FormBuilder = exports.RequiredValidator = exports.PatternValidator = exports.MinLengthValidator = exports.MaxLengthValidator = exports.EmailValidator = exports.CheckboxRequiredValidator = exports.SelectMultipleControlValueAccessor = exports.SelectControlValueAccessor = exports.NgSelectOption = exports.FormGroupName = exports.FormArrayName = exports.FormGroupDirective = exports.FormControlName = exports.FormControlDirective = exports.RadioControlValueAccessor = exports.NgModelGroup = exports.NgModel = exports.NgForm = exports.NgControlStatusGroup = exports.NgControlStatus = exports.NgControl = exports.DefaultValueAccessor = exports.COMPOSITION_BUFFER_MODE = exports.NG_VALUE_ACCESSOR = exports.ControlContainer = exports.CheckboxControlValueAccessor = exports.AbstractFormGroupDirective = exports.AbstractControlDirective = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
-                                                                                                                                                                                                                                                                               * @license Angular v5.2.9
+                                                                                                                                                                                                                                                                               * @license Angular v5.2.10
                                                                                                                                                                                                                                                                                * (c) 2010-2018 Google, Inc. https://angular.io/
                                                                                                                                                                                                                                                                                * License: MIT
                                                                                                                                                                                                                                                                                */
@@ -29229,6 +29292,7 @@ function syncPendingControls(form, directives) {
  */
 function selectValueAccessor(dir, valueAccessors) {
   if (!valueAccessors) return null;
+  if (!Array.isArray(valueAccessors)) _throwError(dir, 'Value accessor was not provided as an array for form control with');
   var /** @type {?} */defaultAccessor = undefined;
   var /** @type {?} */builtinAccessor = undefined;
   var /** @type {?} */customAccessor = undefined;
@@ -34898,7 +34962,7 @@ var FormBuilder = /** @class */function () {
 /**
  * \@stable
  */
-var VERSION = new _core.Version('5.2.9');
+var VERSION = new _core.Version('5.2.10');
 
 /**
  * @fileoverview added by tsickle
@@ -35188,7 +35252,7 @@ var BrowserAnimationBuilder = /** @class */function (_super) {
   };
   return BrowserAnimationBuilder;
 }(_animations.AnimationBuilder); /**
-                                  * @license Angular v5.2.9
+                                  * @license Angular v5.2.10
                                   * (c) 2010-2018 Google, Inc. https://angular.io/
                                   * License: MIT
                                   */
@@ -36129,7 +36193,7 @@ var _DOM = /** @type {?} */null;
  * @return {?}
  */
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.10
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -41616,7 +41680,7 @@ var By = /** @class */function () {
 /**
  * \@stable
  */
-var VERSION = new _core.Version('5.2.9');
+var VERSION = new _core.Version('5.2.10');
 
 /**
  * @fileoverview added by tsickle
@@ -41721,7 +41785,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ɵl = exports.ɵk = exports.ɵe = exports.ɵb = exports.ɵf = exports.ɵj = exports.ɵc = exports.ɵd = exports.ɵi = exports.ɵh = exports.ɵg = exports.ɵa = exports.ɵflatten = exports.ɵROUTER_PROVIDERS = exports.VERSION = exports.UrlTree = exports.UrlSerializer = exports.UrlSegmentGroup = exports.UrlSegment = exports.DefaultUrlSerializer = exports.UrlHandlingStrategy = exports.convertToParamMap = exports.PRIMARY_OUTLET = exports.RouterStateSnapshot = exports.RouterState = exports.ActivatedRouteSnapshot = exports.ActivatedRoute = exports.RouterPreloader = exports.PreloadingStrategy = exports.PreloadAllModules = exports.NoPreloading = exports.OutletContext = exports.ChildrenOutletContexts = exports.provideRoutes = exports.RouterModule = exports.ROUTER_INITIALIZER = exports.ROUTER_CONFIGURATION = exports.ROUTES = exports.Router = exports.RouteReuseStrategy = exports.RoutesRecognized = exports.RouterEvent = exports.RouteConfigLoadStart = exports.RouteConfigLoadEnd = exports.ResolveStart = exports.ResolveEnd = exports.NavigationStart = exports.NavigationError = exports.NavigationEnd = exports.NavigationCancel = exports.GuardsCheckStart = exports.GuardsCheckEnd = exports.ChildActivationStart = exports.ChildActivationEnd = exports.ActivationStart = exports.ActivationEnd = exports.RouterOutlet = exports.RouterLinkActive = exports.RouterLinkWithHref = exports.RouterLink = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
-                                                                                                                                                                                                                                                                               * @license Angular v5.2.9
+                                                                                                                                                                                                                                                                               * @license Angular v5.2.10
                                                                                                                                                                                                                                                                                * (c) 2010-2018 Google, Inc. https://angular.io/
                                                                                                                                                                                                                                                                                * License: MIT
                                                                                                                                                                                                                                                                                */
@@ -44158,6 +44222,9 @@ function getOutlet(route) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+/**
+ * @template T
+ */
 var Tree = /** @class */function () {
     function Tree(root) {
         this._root = root;
@@ -44301,6 +44368,9 @@ function findPath(value, node) {
     }
     return [];
 }
+/**
+ * @template T
+ */
 var TreeNode = /** @class */function () {
     function TreeNode(value, children) {
         this.value = value;
@@ -49252,7 +49322,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new _core.Version('5.2.9');
+var VERSION = new _core.Version('5.2.10');
 
 /**
  * @fileoverview added by tsickle

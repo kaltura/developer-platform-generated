@@ -7055,6 +7055,10 @@ h1.breadcrumbs {
   color: #999;
 }
 
+side-menu .fa-times {
+  color: #fff !important;
+}
+
 ---
 layout: null
 sitemap: false

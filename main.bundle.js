@@ -6113,7 +6113,7 @@ function View_SideMenuComponent_9(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "side-menu-item", [], [[8, "hidden", 0]], null, null, View_SideMenuItemComponent_0, RenderType_SideMenuItemComponent)), i0.ɵdid(1, 4243456, null, 0, i2.SideMenuItemComponent, [i3.UtilsService, i4.SearchService, i5.RoutesService], { item: [0, "item"], basePage: [1, "basePage"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _v.context.$implicit;var currVal_2 = _co.basePage;_ck(_v, 1, 0, currVal_1, currVal_2);
     }, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded;_ck(_v, 0, 0, currVal_0);
+        var _co = _v.component;var currVal_0 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded && !(_v.context.$implicit.searchable && _co.search.query);_ck(_v, 0, 0, currVal_0);
     });
 }
 function View_SideMenuComponent_0(_l) {
@@ -6190,7 +6190,7 @@ function View_SideMenuItemComponent_4(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "side-menu-item", [], [[8, "hidden", 0]], null, null, View_SideMenuItemComponent_0, RenderType_SideMenuItemComponent)), i0.ɵdid(1, 4243456, null, 0, i2.SideMenuItemComponent, [i3.UtilsService, i4.SearchService, i5.RoutesService], { item: [0, "item"], basePage: [1, "basePage"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _v.context.$implicit;var currVal_2 = _co.basePage;_ck(_v, 1, 0, currVal_1, currVal_2);
     }, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded;_ck(_v, 0, 0, currVal_0);
+        var _co = _v.component;var currVal_0 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded && !(_co.item.searchable && _co.search.query);_ck(_v, 0, 0, currVal_0);
     });
 }
 function View_SideMenuItemComponent_3(_l) {
@@ -6202,7 +6202,7 @@ function View_SideMenuItemComponent_3(_l) {
 }
 function View_SideMenuItemComponent_0(_l) {
     return i0.ɵvid(0, [i0.ɵpid(0, i6.MapSearchResultsPipe, [i4.SearchService]), (_l()(), i0.ɵeld(1, 0, null, null, 5, "div", [["class", "side-menu-item"]], [[2, "deprecated", null]], null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-left fa-ellipsis-v text-primary"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuItemComponent_1)), i0.ɵdid(4, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuItemComponent_2)), i0.ɵdid(6, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuItemComponent_3)), i0.ɵdid(8, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_2 = _co.item.link && _co.item.link.indexOf("http") === 0;_ck(_v, 4, 0, currVal_2);var currVal_3 = !_co.item.link || _co.item.link.indexOf("http") !== 0;_ck(_v, 6, 0, currVal_3);var currVal_4 = _co.item.children && (_co.item.expanded || _co.item.expand);_ck(_v, 8, 0, currVal_4);
+        var _co = _v.component;var currVal_2 = _co.item.link && _co.item.link.indexOf("http") === 0;_ck(_v, 4, 0, currVal_2);var currVal_3 = !_co.item.link || _co.item.link.indexOf("http") !== 0;_ck(_v, 6, 0, currVal_3);var currVal_4 = _co.item.children && (_co.item.expanded || _co.item.expand || _co.search.query);_ck(_v, 8, 0, currVal_4);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.item.deprecated;_ck(_v, 1, 0, currVal_0);var currVal_1 = !_co.item.expanded && !_co.item.active;_ck(_v, 2, 0, currVal_1);
     });
@@ -6273,6 +6273,13 @@ var SideMenuComponent = /** @class */ (function () {
         this.subscriptions.push(this.route.queryParams.subscribe(function (params) {
             _this.search.query = params['query'];
         }));
+        if (this.basePage === 'console') {
+            this.subscriptions.push(this.search.results.subscribe(function (results) {
+                var exactMatch = _this.menu.getItemWithCond(function (i) { return i.title === _this.search.query; });
+                if (exactMatch)
+                    _this.menu.setActiveItem(exactMatch);
+            }));
+        }
     };
     return SideMenuComponent;
 }());
@@ -7630,7 +7637,7 @@ var GetMenuItemFromSearchPipe = /** @class */ (function () {
             return [];
         var items = results
             .map(function (r) { return _this.menu.getItem(r.ref) || { hidden: true }; })
-            .filter(function (i) { return !i.hidden; });
+            .filter(function (i) { return !i.hidden || i.searchable; });
         if (!items.length)
             return [-1];
         return items;
@@ -7650,7 +7657,7 @@ var MapSearchResultsPipe = /** @class */ (function () {
             return items;
         results = (results || []).map(function (r) { return r.ref; });
         var matchesQuery = function (item) {
-            if (item.hidden)
+            if (item.hidden && !item.searchable)
                 return false;
             var matchesSearch = !_this.search.query || results.indexOf(item.path) !== -1;
             var matchesTag = !tag || (item.tags || []).indexOf(tag) !== -1;
@@ -8434,6 +8441,7 @@ var SearchService = /** @class */ (function () {
         window.searchService = window.lucybot.searchService = this;
         this.resultSubject = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["BehaviorSubject"](null);
         this.results = this.resultSubject.asObservable();
+        this.startSearchInterval();
         this.subscriptions.push(this.results.subscribe(function (val) {
             if (!val)
                 return;
@@ -8465,14 +8473,24 @@ var SearchService = /** @class */ (function () {
         var _this = this;
         if (!this.query)
             return this.resultSubject.next([]);
-        if (!this.index)
-            return setTimeout(function () { return _this.performSearch(); }, 100);
         this.tracker.track('search', { query: this.query });
-        this.resultSubject.next(this.index.search(this.query));
+        if (window.lucybot.search) {
+            window.lucybot.search(this.query, '', function (err, results) {
+                if (err)
+                    throw err;
+                _this.resultSubject.next(results);
+            });
+        }
+        else {
+            if (!this.index)
+                return setTimeout(function () { return _this.performSearch(); }, 100);
+            var results = this.index.search(this.query);
+            this.resultSubject.next(results);
+        }
     };
     SearchService.prototype.setItems = function (items) {
         var _this = this;
-        if (this.platformService.isServer) {
+        if (this.platformService.isServer || window.lucybot.search) {
             return;
         }
         this.index = null;
@@ -8487,7 +8505,6 @@ var SearchService = /** @class */ (function () {
             worker.terminate();
         };
         worker.postMessage({ requestID: this.requestID, items: items });
-        this.startSearchInterval();
     };
     return SearchService;
 }());
@@ -9453,12 +9470,14 @@ var language_opts = {
   },
   node: {
     ext: 'js',
-    declarationPrefix: 'var ',
+    declarationPrefix: 'let ',
     statementSuffix: ';',
-    objPrefix: 'new Kaltura.kc.objects.',
+    objPrefix: 'new kaltura.objects.',
     objSuffix: '()',
-    enumPrefix: 'Kaltura.kc.enums.',
-    rewriteAction: addActionSuffixIfReserved
+    enumPrefix: 'kaltura.enums.',
+    rewriteAction: addActionSuffixIfReserved,
+    rewriteEnum: removeKalturaPrefix,
+    rewriteType: removeKalturaPrefix
   },
   php: {
     ext: 'php',
