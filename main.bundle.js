@@ -2146,18 +2146,21 @@ function View_GalleryComponent_7(_l) {
     });
 }
 function View_GalleryComponent_12(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "div", [["class", "alert alert-warning"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["No items found."]))], null, null);
+}
+function View_GalleryComponent_14(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "a", [["class", "fill-link"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = i0.ɵnov(_v, 1).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), i0.ɵdid(1, 671744, null, 0, i1.RouterLinkWithHref, [i1.Router, i1.ActivatedRoute, i2.LocationStrategy], { routerLink: [0, "routerLink"] }, null), i0.ɵpad(2, 1)], function (_ck, _v) {
-        var currVal_2 = _ck(_v, 2, 0, _v.parent.context.$implicit.link);_ck(_v, 1, 0, currVal_2);
+        var currVal_2 = _ck(_v, 2, 0, _v.parent.parent.context.$implicit.link);_ck(_v, 1, 0, currVal_2);
     }, function (_ck, _v) {
         var currVal_0 = i0.ɵnov(_v, 1).target;var currVal_1 = i0.ɵnov(_v, 1).href;_ck(_v, 0, 0, currVal_0, currVal_1);
     });
 }
-function View_GalleryComponent_13(_l) {
+function View_GalleryComponent_15(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "a", [["class", "fill-link"], ["routerLink", "/new-workflow"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = i0.ɵnov(_v, 1).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
@@ -2169,7 +2172,7 @@ function View_GalleryComponent_13(_l) {
         var currVal_0 = i0.ɵnov(_v, 1).target;var currVal_1 = i0.ɵnov(_v, 1).href;_ck(_v, 0, 0, currVal_0, currVal_1);
     });
 }
-function View_GalleryComponent_14(_l) {
+function View_GalleryComponent_16(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 0, "a", [["class", "fill-link"]], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
             var pd_0 = (_co.showSuggestionForm = true) !== false;
@@ -2177,49 +2180,49 @@ function View_GalleryComponent_14(_l) {
         }return ad;
     }, null, null))], null, null);
 }
-function View_GalleryComponent_15(_l) {
+function View_GalleryComponent_17(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "a", [["class", "fill-link"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = i0.ɵnov(_v, 1).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), i0.ɵdid(1, 671744, null, 0, i1.RouterLinkWithHref, [i1.Router, i1.ActivatedRoute, i2.LocationStrategy], { routerLink: [0, "routerLink"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_2 = _co.routes.getNavigationLink(_v.parent.context.$implicit.path);_ck(_v, 1, 0, currVal_2);
+        var _co = _v.component;var currVal_2 = _co.routes.getNavigationLink(_v.parent.parent.context.$implicit.path);_ck(_v, 1, 0, currVal_2);
     }, function (_ck, _v) {
         var currVal_0 = i0.ɵnov(_v, 1).target;var currVal_1 = i0.ɵnov(_v, 1).href;_ck(_v, 0, 0, currVal_0, currVal_1);
     });
 }
-function View_GalleryComponent_16(_l) {
+function View_GalleryComponent_18(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "i", [["class", "fa fa-left"]], null, null, null, null, null)), i0.ɵdid(1, 278528, null, 0, i2.NgClass, [i0.IterableDiffers, i0.KeyValueDiffers, i0.ElementRef, i0.Renderer2], { klass: [0, "klass"], ngClass: [1, "ngClass"] }, null)], function (_ck, _v) {
-        var currVal_0 = "fa fa-left";var currVal_1 = "fa-" + (_v.parent.context.$implicit.icon || "plug");_ck(_v, 1, 0, currVal_0, currVal_1);
+        var currVal_0 = "fa fa-left";var currVal_1 = "fa-" + (_v.parent.parent.context.$implicit.icon || "plug");_ck(_v, 1, 0, currVal_0, currVal_1);
     }, null);
 }
-function View_GalleryComponent_17(_l) {
+function View_GalleryComponent_19(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 0, "img", [], [[8, "src", 4]], null, null, null, null))], null, function (_ck, _v) {
-        var currVal_0 = _v.parent.context.$implicit.icon;_ck(_v, 0, 0, currVal_0);
-    });
-}
-function View_GalleryComponent_18(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
-        var currVal_0 = _v.parent.context.$implicit.summary;_ck(_v, 2, 0, currVal_0);
+        var currVal_0 = _v.parent.parent.context.$implicit.icon;_ck(_v, 0, 0, currVal_0);
     });
 }
 function View_GalleryComponent_20(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
+        var currVal_0 = _v.parent.parent.context.$implicit.summary;_ck(_v, 2, 0, currVal_0);
+    });
+}
+function View_GalleryComponent_22(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "p", [["class", "child-title"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
         var currVal_0 = _v.context.index > 2;_ck(_v, 0, 0, currVal_0);var currVal_1 = _v.context.$implicit.title || "Untitled";_ck(_v, 2, 0, currVal_1);
     });
 }
-function View_GalleryComponent_19(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_20)), i0.ɵdid(2, 802816, null, 0, i2.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 2, "p", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "i", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", " More..."]))], function (_ck, _v) {
-        var currVal_0 = _v.parent.context.$implicit.children;_ck(_v, 2, 0, currVal_0);
+function View_GalleryComponent_21(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_22)), i0.ɵdid(2, 802816, null, 0, i2.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 2, "p", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "i", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", " More..."]))], function (_ck, _v) {
+        var currVal_0 = _v.parent.parent.context.$implicit.children;_ck(_v, 2, 0, currVal_0);
     }, function (_ck, _v) {
-        var currVal_1 = _v.parent.context.$implicit.children.length <= 3;_ck(_v, 3, 0, currVal_1);var currVal_2 = _v.parent.context.$implicit.children.length - 3;_ck(_v, 5, 0, currVal_2);
+        var currVal_1 = _v.parent.parent.context.$implicit.children.length <= 3;_ck(_v, 3, 0, currVal_1);var currVal_2 = _v.parent.parent.context.$implicit.children.length - 3;_ck(_v, 5, 0, currVal_2);
     });
 }
-function View_GalleryComponent_21(_l) {
+function View_GalleryComponent_23(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Use the workflow editor to contribute a new workflow."]))], null, null);
 }
-function View_GalleryComponent_22(_l) {
+function View_GalleryComponent_24(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Didn't find your workflow here? "])), (_l()(), i0.ɵeld(3, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
             var pd_0 = (_co.showSuggestionForm = true) !== false;
@@ -2227,11 +2230,18 @@ function View_GalleryComponent_22(_l) {
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(-1, null, ["Let us know!"]))], null, null);
 }
-function View_GalleryComponent_11(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 28, "div", [["class", "box-col col-xs-12 col-sm-6 col-md-4 col-lg-3"]], [[2, "contact-box", null]], null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 27, "div", [["class", "panel panel-default fill-link-container"]], [[2, "icon-center", null]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_12)), i0.ɵdid(3, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_13)), i0.ɵdid(5, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_14)), i0.ɵdid(7, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_15)), i0.ɵdid(9, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(10, 0, null, null, 9, "div", [["class", "panel-heading"]], null, null, null, null, null)), (_l()(), i0.ɵeld(11, 0, null, null, 4, "div", [["class", "heading-icon text-center"]], [[4, "background-color", null]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_16)), i0.ɵdid(13, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_17)), i0.ɵdid(15, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(16, 0, null, null, 2, "div", [["class", "heading-title text-left"]], null, null, null, null, null)), (_l()(), i0.ɵeld(17, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(18, null, ["", ""])), (_l()(), i0.ɵeld(19, 0, null, null, 0, "hr", [["class", "heading-underline"]], null, null, null, null, null)), (_l()(), i0.ɵeld(20, 0, null, null, 8, "div", [["class", "panel-body text-left"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_18)), i0.ɵdid(22, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_19)), i0.ɵdid(24, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_21)), i0.ɵdid(26, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_22)), i0.ɵdid(28, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_2 = _v.context.$implicit.link;_ck(_v, 3, 0, currVal_2);var currVal_3 = _v.context.$implicit.isAdd;_ck(_v, 5, 0, currVal_3);var currVal_4 = _v.context.$implicit.isContact;_ck(_v, 7, 0, currVal_4);var currVal_5 = !_v.context.$implicit.link && !_v.context.$implicit.isAdd && !_v.context.$implicit.isContact;_ck(_v, 9, 0, currVal_5);var currVal_7 = !_v.context.$implicit.icon || !_co.isImage(_v.context.$implicit.icon);_ck(_v, 13, 0, currVal_7);var currVal_8 = _v.context.$implicit.icon && _co.isImage(_v.context.$implicit.icon);_ck(_v, 15, 0, currVal_8);var currVal_10 = _v.context.$implicit.summary;_ck(_v, 22, 0, currVal_10);var currVal_11 = _v.context.$implicit.children;_ck(_v, 24, 0, currVal_11);var currVal_12 = _v.context.$implicit.isAdd;_ck(_v, 26, 0, currVal_12);var currVal_13 = _v.context.$implicit.isContact;_ck(_v, 28, 0, currVal_13);
+function View_GalleryComponent_13(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 27, "div", [["class", "panel panel-default fill-link-container"]], [[2, "icon-center", null]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_14)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_15)), i0.ɵdid(4, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_16)), i0.ɵdid(6, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_17)), i0.ɵdid(8, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(9, 0, null, null, 9, "div", [["class", "panel-heading"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 4, "div", [["class", "heading-icon text-center"]], [[4, "background-color", null]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_18)), i0.ɵdid(12, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_19)), i0.ɵdid(14, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(15, 0, null, null, 2, "div", [["class", "heading-title text-left"]], null, null, null, null, null)), (_l()(), i0.ɵeld(16, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(17, null, ["", ""])), (_l()(), i0.ɵeld(18, 0, null, null, 0, "hr", [["class", "heading-underline"]], null, null, null, null, null)), (_l()(), i0.ɵeld(19, 0, null, null, 8, "div", [["class", "panel-body text-left"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_20)), i0.ɵdid(21, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_21)), i0.ɵdid(23, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_23)), i0.ɵdid(25, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_24)), i0.ɵdid(27, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _v.parent.context.$implicit.link;_ck(_v, 2, 0, currVal_1);var currVal_2 = _v.parent.context.$implicit.isAdd;_ck(_v, 4, 0, currVal_2);var currVal_3 = _v.parent.context.$implicit.isContact;_ck(_v, 6, 0, currVal_3);var currVal_4 = !_v.parent.context.$implicit.link && !_v.parent.context.$implicit.isAdd && !_v.parent.context.$implicit.isContact;_ck(_v, 8, 0, currVal_4);var currVal_6 = !_v.parent.context.$implicit.icon || !_co.isImage(_v.parent.context.$implicit.icon);_ck(_v, 12, 0, currVal_6);var currVal_7 = _v.parent.context.$implicit.icon && _co.isImage(_v.parent.context.$implicit.icon);_ck(_v, 14, 0, currVal_7);var currVal_9 = _v.parent.context.$implicit.summary;_ck(_v, 21, 0, currVal_9);var currVal_10 = _v.parent.context.$implicit.children;_ck(_v, 23, 0, currVal_10);var currVal_11 = _v.parent.context.$implicit.isAdd;_ck(_v, 25, 0, currVal_11);var currVal_12 = _v.parent.context.$implicit.isContact;_ck(_v, 27, 0, currVal_12);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _v.context.$implicit.isContact;_ck(_v, 0, 0, currVal_0);var currVal_1 = _co.centerIcons;_ck(_v, 1, 0, currVal_1);var currVal_6 = _v.context.$implicit.iconBackground || "transparent";_ck(_v, 11, 0, currVal_6);var currVal_9 = _v.context.$implicit.title;_ck(_v, 18, 0, currVal_9);
+        var _co = _v.component;var currVal_0 = _co.centerIcons;_ck(_v, 0, 0, currVal_0);var currVal_5 = _v.parent.context.$implicit.iconBackground || "transparent";_ck(_v, 10, 0, currVal_5);var currVal_8 = _v.parent.context.$implicit.title;_ck(_v, 17, 0, currVal_8);
+    });
+}
+function View_GalleryComponent_11(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "box-col col-xs-12 col-sm-6 col-md-4 col-lg-3"]], [[2, "contact-box", null]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_12)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_13)), i0.ɵdid(4, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var currVal_1 = _v.context.$implicit === 0 - 1;_ck(_v, 2, 0, currVal_1);var currVal_2 = _v.context.$implicit !== 0 - 1;_ck(_v, 4, 0, currVal_2);
+    }, function (_ck, _v) {
+        var currVal_0 = _v.context.$implicit.isContact;_ck(_v, 0, 0, currVal_0);
     });
 }
 function View_GalleryComponent_1(_l) {
@@ -2290,18 +2300,18 @@ function View_GalleryComponent_1(_l) {
         var _co = _v.component;var currVal_3 = i0.ɵnov(_v, 18).ngClassUntouched;var currVal_4 = i0.ɵnov(_v, 18).ngClassTouched;var currVal_5 = i0.ɵnov(_v, 18).ngClassPristine;var currVal_6 = i0.ɵnov(_v, 18).ngClassDirty;var currVal_7 = i0.ɵnov(_v, 18).ngClassValid;var currVal_8 = i0.ɵnov(_v, 18).ngClassInvalid;var currVal_9 = i0.ɵnov(_v, 18).ngClassPending;_ck(_v, 13, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9);var currVal_13 = _co.marked(_co.intro);_ck(_v, 24, 0, currVal_13);var currVal_15 = _co.menu.tags.length;_ck(_v, 28, 0, currVal_15);var currVal_16 = _co.boxes.length && (_co.boxes.length > 1 || !_co.boxes[0].isContact);_ck(_v, 29, 0, currVal_16);var currVal_18 = !_co.showSuggestionForm;_ck(_v, 37, 0, currVal_18);var currVal_19 = !_co.suggestSuccess;_ck(_v, 42, 0, currVal_19);var currVal_20 = i0.ɵnov(_v, 48).ngClassUntouched;var currVal_21 = i0.ɵnov(_v, 48).ngClassTouched;var currVal_22 = i0.ɵnov(_v, 48).ngClassPristine;var currVal_23 = i0.ɵnov(_v, 48).ngClassDirty;var currVal_24 = i0.ɵnov(_v, 48).ngClassValid;var currVal_25 = i0.ɵnov(_v, 48).ngClassInvalid;var currVal_26 = i0.ɵnov(_v, 48).ngClassPending;_ck(_v, 44, 0, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26);var currVal_27 = i0.ɵnov(_v, 57).ngClassUntouched;var currVal_28 = i0.ɵnov(_v, 57).ngClassTouched;var currVal_29 = i0.ɵnov(_v, 57).ngClassPristine;var currVal_30 = i0.ɵnov(_v, 57).ngClassDirty;var currVal_31 = i0.ɵnov(_v, 57).ngClassValid;var currVal_32 = i0.ɵnov(_v, 57).ngClassInvalid;var currVal_33 = i0.ɵnov(_v, 57).ngClassPending;_ck(_v, 52, 0, currVal_27, currVal_28, currVal_29, currVal_30, currVal_31, currVal_32, currVal_33);
     });
 }
-function View_GalleryComponent_24(_l) {
+function View_GalleryComponent_26(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "recipe", [], null, null, null, i4.View_RecipeComponent_0, i4.RenderType_RecipeComponent)), i0.ɵdid(1, 770048, null, 0, i5.RecipeComponent, [i1.ActivatedRoute, i1.Router, i6.RoutesService, i7.UtilsService, i8.TrackerService, i9.SecretService, i10.MenuService, i11.OpenAPIService, i12.GitHubService], { name: [0, "name"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.leafChoice.workflow;_ck(_v, 1, 0, currVal_0);
     }, null);
 }
-function View_GalleryComponent_23(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_24)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+function View_GalleryComponent_25(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_26)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.leafChoice.workflow;_ck(_v, 2, 0, currVal_0);
     }, null);
 }
 function View_GalleryComponent_0(_l) {
-    return i0.ɵvid(0, [i0.ɵpid(0, i10.MapSearchResultsPipe, [i13.SearchService]), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_1)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_23)), i0.ɵdid(4, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+    return i0.ɵvid(0, [i0.ɵpid(0, i10.MapSearchResultsPipe, [i13.SearchService]), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_1)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_GalleryComponent_25)), i0.ɵdid(4, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = !_co.leafChoice;_ck(_v, 2, 0, currVal_0);var currVal_1 = _co.leafChoice;_ck(_v, 4, 0, currVal_1);
     }, null);
 }
@@ -7614,9 +7624,6 @@ var MenuService = /** @class */ (function () {
         }
         var path = this.getPathFromParams(params);
         var chosen = this.expandForPath(path);
-        if (this.onlyAPICalls && (!chosen || !chosen.operation)) {
-            chosen = this.expandWithCondition(function (i) { return i.operation; }, chosen ? chosen.children : null);
-        }
         var curRoute = this.routes.getCurrentRoute();
         var defaultRoute = this.routes.getDefaultRoute();
         if (!chosen) {
@@ -7626,6 +7633,9 @@ var MenuService = /** @class */ (function () {
             else if (curRoute.ui === 'documentation') {
                 chosen = chosen || this.items[0];
             }
+        }
+        if (this.onlyAPICalls && (!chosen || !chosen.operation)) {
+            chosen = this.expandWithCondition(function (i) { return i.operation; }, chosen ? chosen.children : null);
         }
         this.setActiveItem(chosen);
     };
@@ -7764,7 +7774,7 @@ var MapSearchResultsPipe = /** @class */ (function () {
             return (matchesSearch && matchesTag) || !!(item.children || []).filter(function (i) { return matchesQuery(i); }).length;
         };
         var matches = items.filter(function (item) { return matchesQuery(item); });
-        return matches;
+        return matches.length ? matches : [-1];
     };
     return MapSearchResultsPipe;
 }());
