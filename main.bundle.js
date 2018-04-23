@@ -9798,6 +9798,7 @@ CodeTemplate.prototype.setOperationInputFields = function (input) {
   input.answers = input.answers || {};
   input.answers.secret = input.answers.secret || 'YOUR_KALTURA_SECRET';
   input.answers.userId = input.answers.userId || 'YOUR_USER_ID';
+  input.noSession = input.operation.security && !input.operation.security.length;
   input.plugins = [];
   var tag = this.swagger.tags.filter(function (t) {
     return t.name === input.serviceName;
