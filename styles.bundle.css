@@ -5860,7 +5860,7 @@ schema { }
   color: #e7e7e7;
 }
 
-.social-div {
+#KalturaFooter .social-div {
   color: #ccc;
   margin-top: 26px;
   margin-right: 38px;
@@ -5885,6 +5885,28 @@ schema { }
 
 .footer-copyright {
   font-weight: 700;
+}
+
+#KalturaFooter .collapse {
+  display: block;
+}
+
+#KalturaFooter i.fa.fa-chevron-up {
+  display: none;
+}
+
+#KalturaFooter h5 a {
+  color: #fff;
+}
+
+#KalturaFooter .social-icon-container a {
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  #KalturaFooter .kaltura-links {
+    text-align: center;
+  }
 }
 
 .docs-contents pre {
