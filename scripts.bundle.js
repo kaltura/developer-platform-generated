@@ -4589,7 +4589,7 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
     })
   }
 
-  var maybeContinueSession = function() {
+  window.maybeContinueSession = function() {
     var ksMatch = window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]ks=([^&]+)'));
     if (ksMatch) ksMatch = window.decodeURIComponent(ksMatch[1]);
     var cookies = document.cookie.split(';').map(function(c) {return c.trim()});
@@ -4605,23 +4605,21 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
       if (user && typeof user === 'object' && Object.keys(user).length) {
         if (ksMatch) user.ks = ksMatch;
         setKalturaUser(user);
-        return;
+        return true;
       }
     }
     if (ksMatch) {
       setKalturaUser({ks: ksMatch});
+      return true;
     } else {
       setKalturaUser();
+      return false;
     }
   };
 
   window.lucybot.startLogin = function() {
     window.jquery('#KalturaSignInModal').modal('show');
   }
-
-  window.jquery(document).ready(function() {
-    maybeContinueSession();
-  })
 
   window.startKalturaLogin = function() {
     window.jquery('#KalturaSignInModal .alert-danger').hide();
@@ -4725,6 +4723,7 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
       window.jquery('#KalturaSignInModal .alert-danger').show();
     });
   }
+
 })();
 
 ;
@@ -5142,6 +5141,10 @@ window.setUpKalturaClient = function(creds, cb) {
       setKalturaSession(creds, cb);
     });
   }
+}
+
+if (!maybeContinueSession() && window.location.href.indexOf('signIn=true') !== -1) {
+  window.lucybot.startLogin();
 }
 
 
