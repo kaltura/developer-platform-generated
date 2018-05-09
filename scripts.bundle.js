@@ -4517,15 +4517,24 @@ kparams.pager=pager;return new KalturaRequestBuilder("uiconf","listTemplates",kp
 Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
 
 ;(function() {
-  var COOKIE_TIMEOUT_MS = 1800000;
+  var COOKIE_TIMEOUT_MS = 30 * 60 * 1000;
+  var PROMPT_TIMEOUT_MS = COOKIE_TIMEOUT_MS - 2 * 60 * 1000;
   var STORAGE_KEY = 'LUCYBOT_RECIPE_CREDS';
   var user = window.kalturaUser = {};
+  var promptTimeout = null;
+  var logoutTimeout = null;
 
   function loggedInTemplate() {
-    return '<li class="navbar-link"><a onclick="setKalturaUser()">' +
-        '<span class="hidden-md">' + (user.name || '') + ' - </span>' +
-        '<span>' + (user.partnerId || '') + '&nbsp;</span>' +
-        '<span class="text-primary">[sign out]</span></a></li>';
+    return '<li class="dropdown" id="KalturaPartnerIDDropdown">' +
+        '<a class="dropdown-toggle" data-toggle="dropdown">' +
+          '<span class="hidden-md">' + (user.name || '') + ' - </span>' +
+          '<span>' + (user.partnerId || '') + '</span>' +
+          '<i class="fa fa-right fa-caret-down"></i>' +
+        '</a>' +
+        '<ul class="dropdown-menu">' +
+          partnerChoicesTemplate(window.kalturaPartners || []) +
+          '<li><a onclick="setKalturaUser()">Sign Out</a></li>' +
+        '</ul></li>'
   }
 
   var LOGGED_OUT_HTML =
@@ -4534,12 +4543,30 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
         + '</li>'
         + '<li class="navbar-link"><a onclick="lucybot.startLogin()">Sign In</a></li>';
 
+  function partnerChoicesTemplate(partners) {
+    return partners.map(function(partner) {
+      return '<li><a onclick="setKalturaPartnerID(' + partner.id + ')">' + partner.name + ' (' + partner.id + ')</a></li>'
+    }).join('\n');
+  }
+
   var setCookie = function(creds) {
     var val = creds ? encodeURIComponent(JSON.stringify(creds)) : '';
     var now = new Date();
     var expires = new Date(now.getTime() + COOKIE_TIMEOUT_MS);
     var cookie = STORAGE_KEY + '=' + val + '; expires=' + expires.toUTCString() + '; Path=/';
     document.cookie = cookie;
+    if (promptTimeout) clearTimeout(promptTimeout);
+    if (logoutTimeout) clearTimeout(logoutTimeout);
+    if (creds) {
+      promptTimeout = setTimeout(function() {
+        var renew = confirm("Your Kaltura session is about to expire. Do you want to stay logged in?");
+        if (renew) setCookie(creds);
+        else setKalturaUser();
+      }, PROMPT_TIMEOUT_MS);
+      logoutTimeout = setTimeout(function() {
+        setKalturaUser();
+      }, COOKIE_TIMEOUT_MS);
+    }
   }
 
   var updateViewsForLogin = function(creds) {
@@ -4565,7 +4592,7 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
 
   window.setKalturaUser = function(creds) {
     function clearUser() {
-      user = {};
+      window.kalturaUser = user = {};
       if (window.secretService) window.secretService.clearSecrets();
       setCookie();
     }
@@ -4574,7 +4601,7 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
       updateViewsForLogin(null);
       return;
     }
-    user = creds;
+    window.kalturaUser = user = creds;
     window.setUpKalturaClient(creds, function(err, newCreds) {
       if (err) {
         clearUser();
@@ -4674,11 +4701,11 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
       window.lucybot.tracker('login_success', {
         email: creds.email,
       });
-      var partnerChoicesHTML = response.map(function(partner) {
-        return '<li><a onclick="setKalturaPartnerID(' + partner.id + ')">' + partner.name + ' (' + partner.id + ')</a></li>'
-      }).join('\n');
+      window.kalturaPartners = response;
+      var partnerChoicesHTML = partnerChoicesTemplate(response);
+      window.jquery('#KalturaPartnerIDDropdown').find('ul.dropdown-menu').html(partnerChoicesHTML);
       window.jquery('#KalturaPartnerIDModal').find('ul.dropdown-menu').html(partnerChoicesHTML);
-      user = creds;
+      window.kalturaUser = user = creds;
     })
     .fail(function(xhr) {
       window.lucybot.tracker('login_error', {
@@ -4698,7 +4725,11 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
     window.jquery.ajax({
       url: '/auth/selectPartner',
       method: 'POST',
-      data: JSON.stringify(user),
+      data: JSON.stringify({
+        email: user.email,
+        partnerId: user.partnerId,
+        password: user.password,
+      }),
       headers: {'Content-Type': 'application/json'},
     })
     .done(function(data) {
@@ -4708,6 +4739,8 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
         userId: user.email,
         partnerId: user.partnerId,
         name: data.name,
+        email: user.email,
+        password: user.password,
       }
       setKalturaUser(creds);
     })
