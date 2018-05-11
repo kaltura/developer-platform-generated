@@ -7033,7 +7033,7 @@ var __slice = [].slice;
 })(jQuery);
 
 ;
-var URL = 'http://api.swiftype.com/api/v1/public/engines/search?engine_key=nDV8CSbwfyrqCNQgpt79&';
+var URL = 'https://api.swiftype.com/api/v1/public/engines/search?engine_key=nDV8CSbwfyrqCNQgpt79&';
 
 window.lucybot.search = function(query, page, callback) {
   var url = URL + 'q=' + encodeURIComponent(query);
