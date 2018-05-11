@@ -9670,6 +9670,19 @@ var language_opts = {
     rewriteEnum: removeKalturaPrefix,
     rewriteType: removeKalturaPrefix
   },
+  swift: {
+    ext: 'swift',
+    declarationPrefix: 'var ',
+    rewriteService: capitalize,
+    objSuffix: '()',
+    rewriteEnum: removeKalturaPrefix,
+    rewriteType: function rewriteType(type) {
+      type = removeKalturaPrefix(type);
+      if (type === 'integer') type = 'Int';
+      type = capitalize(type);
+      return type;
+    }
+  },
   ruby: {
     ext: 'rb',
     enumAccessor: '::',
