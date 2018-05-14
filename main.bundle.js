@@ -5644,13 +5644,13 @@ var _platform = __webpack_require__("./src/app/services/platform.service.ts");
 
 var i3 = _interopRequireWildcard(_platform);
 
-var _router = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-
-var i4 = _interopRequireWildcard(_router);
-
 var _common = __webpack_require__("./node_modules/@angular/common/esm5/common.js");
 
-var i5 = _interopRequireWildcard(_common);
+var i4 = _interopRequireWildcard(_common);
+
+var _router = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+
+var i5 = _interopRequireWildcard(_router);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -5690,133 +5690,138 @@ var styles_SubschemaComponent = ["subschema[_ngcontent-%COMP%] {\n        displa
 var RenderType_SubschemaComponent = i0.ɵcrt({ encapsulation: 0, styles: styles_SubschemaComponent, data: {} });
 exports.RenderType_SubschemaComponent = RenderType_SubschemaComponent;
 
+function View_SubschemaComponent_2(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [["class", "text-primary"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["*"]))], null, null);
+}
 function View_SubschemaComponent_1(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [["class", "schema-name token attr-name"]], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""])), (_l()(), i0.ɵeld(3, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [":"]))], null, function (_ck, _v) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [["class", "schema-name token attr-name"]], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_2)), i0.ɵdid(4, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(5, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [":"]))], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.required;_ck(_v, 4, 0, currVal_1);
+    }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.name;_ck(_v, 2, 0, currVal_0);
     });
 }
-function View_SubschemaComponent_3(_l) {
+function View_SubschemaComponent_4(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [["class", "token keyword"]], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""])), (_l()(), i0.ɵeld(3, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [":"])), (_l()(), i0.ɵeld(5, 0, null, null, 4, "a", [["class", "token variable"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = i0.ɵnov(_v, 6).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), i0.ɵdid(6, 671744, null, 0, i4.RouterLinkWithHref, [i4.Router, i4.ActivatedRoute, i5.LocationStrategy], { routerLink: [0, "routerLink"] }, null), i0.ɵpod(7, { definition: 0 }), i0.ɵpad(8, 2), (_l()(), i0.ɵted(9, null, ["", ""]))], function (_ck, _v) {
+    }, null, null)), i0.ɵdid(6, 671744, null, 0, i5.RouterLinkWithHref, [i5.Router, i5.ActivatedRoute, i4.LocationStrategy], { routerLink: [0, "routerLink"] }, null), i0.ɵpod(7, { definition: 0 }), i0.ɵpad(8, 2), (_l()(), i0.ɵted(9, null, ["", ""]))], function (_ck, _v) {
         var _co = _v.component;var currVal_3 = _ck(_v, 8, 0, ".", _ck(_v, 7, 0, _co.getTitle(_co.schema.items)));_ck(_v, 6, 0, currVal_3);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.getType(_co.schema.items);_ck(_v, 2, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 6).target;var currVal_2 = i0.ɵnov(_v, 6).href;_ck(_v, 5, 0, currVal_1, currVal_2);var currVal_4 = _co.getTitle(_co.schema.items);_ck(_v, 9, 0, currVal_4);
     });
 }
-function View_SubschemaComponent_2(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["["])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_3)), i0.ɵdid(4, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(5, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["]"]))], function (_ck, _v) {
+function View_SubschemaComponent_3(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["["])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_4)), i0.ɵdid(4, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(5, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["]"]))], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.schema.items;_ck(_v, 4, 0, currVal_0);
     }, null);
 }
-function View_SubschemaComponent_4(_l) {
+function View_SubschemaComponent_5(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [":"])), (_l()(), i0.ɵeld(3, 0, null, null, 4, "a", [["class", "schema-title token variable"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = i0.ɵnov(_v, 4).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), i0.ɵdid(4, 671744, null, 0, i4.RouterLinkWithHref, [i4.Router, i4.ActivatedRoute, i5.LocationStrategy], { routerLink: [0, "routerLink"] }, null), i0.ɵpod(5, { definition: 0 }), i0.ɵpad(6, 2), (_l()(), i0.ɵted(7, null, ["", ""]))], function (_ck, _v) {
+    }, null, null)), i0.ɵdid(4, 671744, null, 0, i5.RouterLinkWithHref, [i5.Router, i5.ActivatedRoute, i4.LocationStrategy], { routerLink: [0, "routerLink"] }, null), i0.ɵpod(5, { definition: 0 }), i0.ɵpad(6, 2), (_l()(), i0.ɵted(7, null, ["", ""]))], function (_ck, _v) {
         var _co = _v.component;var currVal_2 = _ck(_v, 6, 0, ".", _ck(_v, 5, 0, _co.title));_ck(_v, 4, 0, currVal_2);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = i0.ɵnov(_v, 4).target;var currVal_1 = i0.ɵnov(_v, 4).href;_ck(_v, 3, 0, currVal_0, currVal_1);var currVal_3 = _co.title;_ck(_v, 7, 0, currVal_3);
     });
 }
-function View_SubschemaComponent_8(_l) {
+function View_SubschemaComponent_9(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [", "]))], null, null);
 }
-function View_SubschemaComponent_9(_l) {
+function View_SubschemaComponent_10(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [["class", "token string"]], null, null, null, null, null)), (_l()(), i0.ɵted(1, null, ["", ""]))], null, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.schema["x-enumLabels"][_v.parent.context.index];_ck(_v, 1, 0, currVal_0);
     });
 }
-function View_SubschemaComponent_10(_l) {
+function View_SubschemaComponent_11(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" ["]))], null, null);
 }
-function View_SubschemaComponent_11(_l) {
+function View_SubschemaComponent_12(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["]"]))], null, null);
 }
-function View_SubschemaComponent_7(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 10, "span", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_8)), i0.ɵdid(2, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_9)), i0.ɵdid(4, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_10)), i0.ɵdid(6, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(7, 0, null, null, 1, "span", [["class", "token number"]], null, null, null, null, null)), (_l()(), i0.ɵted(8, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_11)), i0.ɵdid(10, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+function View_SubschemaComponent_8(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 10, "span", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_9)), i0.ɵdid(2, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_10)), i0.ɵdid(4, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_11)), i0.ɵdid(6, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(7, 0, null, null, 1, "span", [["class", "token number"]], null, null, null, null, null)), (_l()(), i0.ɵted(8, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_12)), i0.ɵdid(10, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _v.context.index !== 0;_ck(_v, 2, 0, currVal_0);var currVal_1 = _co.schema["x-enumLabels"];_ck(_v, 4, 0, currVal_1);var currVal_2 = _co.schema["x-enumLabels"];_ck(_v, 6, 0, currVal_2);var currVal_4 = _co.schema["x-enumLabels"];_ck(_v, 10, 0, currVal_4);
     }, function (_ck, _v) {
         var currVal_3 = _v.context.$implicit;_ck(_v, 8, 0, currVal_3);
     });
 }
-function View_SubschemaComponent_6(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "enum"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Enum: "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_7)), i0.ɵdid(4, 802816, null, 0, i5.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+function View_SubschemaComponent_7(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "enum"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Enum: "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_8)), i0.ɵdid(4, 802816, null, 0, i4.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.schema.enum;_ck(_v, 4, 0, currVal_0);
     }, null);
 }
-function View_SubschemaComponent_12(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "subschema", [], null, null, null, View_SubschemaComponent_0, RenderType_SubschemaComponent)), i0.ɵdid(1, 638976, null, 0, i1.SubschemaComponent, [i2.OpenAPIService], { name: [0, "name"], schema: [1, "schema"], depth: [2, "depth"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _v.context.$implicit;var currVal_1 = _co.schema.properties[_v.context.$implicit];var currVal_2 = _co.depth - 1;_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2);
+function View_SubschemaComponent_13(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "subschema", [], null, null, null, View_SubschemaComponent_0, RenderType_SubschemaComponent)), i0.ɵdid(1, 638976, null, 0, i1.SubschemaComponent, [i2.OpenAPIService], { name: [0, "name"], schema: [1, "schema"], depth: [2, "depth"], required: [3, "required"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _v.context.$implicit;var currVal_1 = _co.schema.properties[_v.context.$implicit];var currVal_2 = _co.depth - 1;var currVal_3 = (_co.schema.required || i0.ɵEMPTY_ARRAY).indexOf(_v.context.$implicit) !== 0 - 1;_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3);
     }, null);
 }
-function View_SubschemaComponent_14(_l) {
+function View_SubschemaComponent_15(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "subschema", [], null, null, null, View_SubschemaComponent_0, RenderType_SubschemaComponent)), i0.ɵdid(1, 638976, null, 0, i1.SubschemaComponent, [i2.OpenAPIService], { schema: [0, "schema"], depth: [1, "depth"], expanded: [2, "expanded"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _v.context.$implicit;var currVal_1 = _co.depth - 1;var currVal_2 = false;_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2);
     }, null);
 }
-function View_SubschemaComponent_13(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "sibling-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "h5", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [["class", "token variable"]], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" must also match all of:"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_14)), i0.ɵdid(7, 802816, null, 0, i5.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+function View_SubschemaComponent_14(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "sibling-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "h5", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [["class", "token variable"]], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" must also match all of:"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_15)), i0.ɵdid(7, 802816, null, 0, i4.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _co.schema.allOf;_ck(_v, 7, 0, currVal_1);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.title;_ck(_v, 3, 0, currVal_0);
     });
 }
-function View_SubschemaComponent_16(_l) {
+function View_SubschemaComponent_17(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "subschema", [], null, null, null, View_SubschemaComponent_0, RenderType_SubschemaComponent)), i0.ɵdid(1, 638976, null, 0, i1.SubschemaComponent, [i2.OpenAPIService], { schema: [0, "schema"], depth: [1, "depth"], expanded: [2, "expanded"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _v.context.$implicit;var currVal_1 = _co.depth - 1;var currVal_2 = false;_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2);
     }, null);
 }
-function View_SubschemaComponent_15(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "sibling-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "h5", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [["class", "token variable"]], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" must also match any of:"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_16)), i0.ɵdid(7, 802816, null, 0, i5.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+function View_SubschemaComponent_16(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "sibling-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "h5", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [["class", "token variable"]], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" must also match any of:"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_17)), i0.ɵdid(7, 802816, null, 0, i4.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _co.schema.anyOf;_ck(_v, 7, 0, currVal_1);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.title;_ck(_v, 3, 0, currVal_0);
     });
 }
-function View_SubschemaComponent_18(_l) {
+function View_SubschemaComponent_19(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "subschema", [], null, null, null, View_SubschemaComponent_0, RenderType_SubschemaComponent)), i0.ɵdid(1, 638976, null, 0, i1.SubschemaComponent, [i2.OpenAPIService], { schema: [0, "schema"], depth: [1, "depth"], expanded: [2, "expanded"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _v.context.$implicit;var currVal_1 = _co.depth - 1;var currVal_2 = false;_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2);
     }, null);
 }
-function View_SubschemaComponent_17(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "sibling-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "h5", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [["class", "token variable"]], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" must also match one of:"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_18)), i0.ɵdid(7, 802816, null, 0, i5.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+function View_SubschemaComponent_18(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "sibling-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "h5", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [["class", "token variable"]], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" must also match one of:"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_19)), i0.ɵdid(7, 802816, null, 0, i4.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _co.schema.oneOf;_ck(_v, 7, 0, currVal_1);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.title;_ck(_v, 3, 0, currVal_0);
     });
 }
-function View_SubschemaComponent_19(_l) {
+function View_SubschemaComponent_20(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "sibling-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "h5", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [["class", "token variable"]], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" must not match:"])), (_l()(), i0.ɵeld(6, 0, null, null, 1, "subschema", [], null, null, null, View_SubschemaComponent_0, RenderType_SubschemaComponent)), i0.ɵdid(7, 638976, null, 0, i1.SubschemaComponent, [i2.OpenAPIService], { schema: [0, "schema"], depth: [1, "depth"], expanded: [2, "expanded"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _co.schema.not;var currVal_2 = _co.depth - 1;var currVal_3 = false;_ck(_v, 7, 0, currVal_1, currVal_2, currVal_3);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.title;_ck(_v, 3, 0, currVal_0);
     });
 }
-function View_SubschemaComponent_20(_l) {
+function View_SubschemaComponent_21(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "subschema", [], null, null, null, View_SubschemaComponent_0, RenderType_SubschemaComponent)), i0.ɵdid(1, 638976, null, 0, i1.SubschemaComponent, [i2.OpenAPIService], { schema: [0, "schema"], depth: [1, "depth"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.schema.items;var currVal_1 = _co.depth - 1;_ck(_v, 1, 0, currVal_0, currVal_1);
     }, null);
 }
-function View_SubschemaComponent_5(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 15, "div", [["class", "schema-details"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_6)), i0.ɵdid(2, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 0, "div", [["class", "description"]], [[8, "hidden", 0], [8, "innerHTML", 1]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_12)), i0.ɵdid(5, 802816, null, 0, i5.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_13)), i0.ɵdid(7, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_15)), i0.ɵdid(9, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_17)), i0.ɵdid(11, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_19)), i0.ɵdid(13, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_20)), i0.ɵdid(15, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+function View_SubschemaComponent_6(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 15, "div", [["class", "schema-details"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_7)), i0.ɵdid(2, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 0, "div", [["class", "description"]], [[8, "hidden", 0], [8, "innerHTML", 1]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_13)), i0.ɵdid(5, 802816, null, 0, i4.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_14)), i0.ɵdid(7, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_16)), i0.ɵdid(9, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_18)), i0.ɵdid(11, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_20)), i0.ɵdid(13, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_21)), i0.ɵdid(15, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.schema.enum;_ck(_v, 2, 0, currVal_0);var currVal_3 = _co.properties;_ck(_v, 5, 0, currVal_3);var currVal_4 = _co.schema.allOf;_ck(_v, 7, 0, currVal_4);var currVal_5 = _co.schema.anyOf;_ck(_v, 9, 0, currVal_5);var currVal_6 = _co.schema.oneOf;_ck(_v, 11, 0, currVal_6);var currVal_7 = _co.schema.not;_ck(_v, 13, 0, currVal_7);var currVal_8 = _co.schema.items;_ck(_v, 15, 0, currVal_8);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_1 = !_co.description;var currVal_2 = _co.marked(_co.description);_ck(_v, 3, 0, currVal_1, currVal_2);
     });
 }
 function View_SubschemaComponent_0(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 11, "span", [["class", "title-line"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_1)), i0.ɵdid(2, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 4, "span", [["class", "schema-type token keyword"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_2)), i0.ɵdid(7, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_4)), i0.ɵdid(9, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(10, 0, null, null, 1, "a", [], [[8, "hidden", 0]], [[null, "click"]], function (_v, en, $event) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 11, "span", [["class", "title-line"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_1)), i0.ɵdid(2, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 4, "span", [["class", "schema-type token keyword"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_3)), i0.ɵdid(7, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_5)), i0.ɵdid(9, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(10, 0, null, null, 1, "a", [], [[8, "hidden", 0]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
             var pd_0 = (_co.expanded = !_co.expanded) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(11, 0, null, null, 0, "i", [["class", "fa fa-right"]], [[2, "fa-caret-down", null], [2, "fa-caret-left", null]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_5)), i0.ɵdid(13, 16384, null, 0, i5.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+    }, null, null)), (_l()(), i0.ɵeld(11, 0, null, null, 0, "i", [["class", "fa fa-right"]], [[2, "fa-caret-down", null], [2, "fa-caret-left", null]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SubschemaComponent_6)), i0.ɵdid(13, 16384, null, 0, i4.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _co.name;_ck(_v, 2, 0, currVal_1);var currVal_3 = _co.type === "array";_ck(_v, 7, 0, currVal_3);var currVal_4 = _co.title;_ck(_v, 9, 0, currVal_4);var currVal_8 = _co.expanded;_ck(_v, 13, 0, currVal_8);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.hideTitleLine;_ck(_v, 0, 0, currVal_0);var currVal_2 = _co.type;_ck(_v, 5, 0, currVal_2);var currVal_5 = _co.isPrimitive();_ck(_v, 10, 0, currVal_5);var currVal_6 = _co.expanded;var currVal_7 = !_co.expanded;_ck(_v, 11, 0, currVal_6, currVal_7);
@@ -5827,7 +5832,7 @@ function View_SubschemaComponent_Host_0(_l) {
         _ck(_v, 1, 0);
     }, null);
 }
-var SubschemaComponentNgFactory = i0.ɵccf("subschema", i1.SubschemaComponent, View_SubschemaComponent_Host_0, { inputTitle: "title", name: "name", schema: "schema", depth: "depth", expanded: "expanded", hideTitleLine: "hideTitleLine" }, {}, []);
+var SubschemaComponentNgFactory = i0.ɵccf("subschema", i1.SubschemaComponent, View_SubschemaComponent_Host_0, { inputTitle: "title", name: "name", schema: "schema", depth: "depth", expanded: "expanded", hideTitleLine: "hideTitleLine", required: "required" }, {}, []);
 exports.SubschemaComponentNgFactory = SubschemaComponentNgFactory;
 
 /***/ }),
@@ -5950,6 +5955,7 @@ var SubschemaComponent = /** @class */ (function () {
     function SubschemaComponent(openapi) {
         this.openapi = openapi;
         this.depth = 0;
+        this.required = false;
         this.properties = [];
         this.marked = window.marked;
     }
@@ -5981,6 +5987,7 @@ var SubschemaComponent = /** @class */ (function () {
         }
     };
     SubschemaComponent.prototype.setSchema = function (schema) {
+        var _this = this;
         this.schema = schema || {};
         if (this.schema.title)
             this.title = this.schema.title;
@@ -5991,6 +5998,17 @@ var SubschemaComponent = /** @class */ (function () {
         }
         if (this.schema.properties) {
             this.properties = Object.keys(this.schema.properties);
+            if (this.schema.required) {
+                this.properties.sort(function (p1, p2) {
+                    var r1 = _this.schema.required.indexOf(p1) + 1;
+                    var r2 = _this.schema.required.indexOf(p2) + 1;
+                    if (r1 && !r2)
+                        return -1;
+                    if (r2 && !r1)
+                        return 1;
+                    return 0;
+                });
+            }
         }
     };
     SubschemaComponent.prototype.isPrimitive = function () {
@@ -6251,14 +6269,19 @@ function View_SideMenuComponent_8(_l) {
     }, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\xA0"])), (_l()(), i0.ɵeld(3, 0, null, null, 0, "i", [["class", "fa fa-times"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\xA0"]))], null, null);
 }
 function View_SideMenuComponent_9(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "side-menu-item", [["class", "exact-match"]], null, null, null, View_SideMenuItemComponent_0, RenderType_SideMenuItemComponent)), i0.ɵdid(1, 4243456, null, 0, i2.SideMenuItemComponent, [i3.UtilsService, i4.SearchService, i5.RoutesService], { item: [0, "item"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.exactMatch;_ck(_v, 1, 0, currVal_0);
+    }, null);
+}
+function View_SideMenuComponent_10(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "side-menu-item", [], [[8, "hidden", 0]], null, null, View_SideMenuItemComponent_0, RenderType_SideMenuItemComponent)), i0.ɵdid(1, 4243456, null, 0, i2.SideMenuItemComponent, [i3.UtilsService, i4.SearchService, i5.RoutesService], { item: [0, "item"], basePage: [1, "basePage"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_1 = _v.context.$implicit;var currVal_2 = _co.basePage;_ck(_v, 1, 0, currVal_1, currVal_2);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded && !(_v.context.$implicit.searchable && _co.search.query);_ck(_v, 0, 0, currVal_0);
+        var _co = _v.component;var currVal_0 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded && !(_v.context.$implicit.searchable && _co.search.query) || _v.context.$implicit === _co.exactMatch;_ck(_v, 0, 0, currVal_0);
     });
 }
 function View_SideMenuComponent_0(_l) {
-    return i0.ɵvid(0, [i0.ɵpid(0, i6.MapSearchResultsPipe, [i4.SearchService]), (_l()(), i0.ɵeld(1, 0, null, null, 39, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 36, "div", [["class", "col-xs-12 side-menu-col"]], [[2, "col-sm-4", null], [2, "col-md-3", null], [2, "col-sm-1", null], [2, "text-center", null]], null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 4, "a", [["class", "btn btn-default visible-xs show-menu-mobile-button"]], [[8, "hidden", 0], [4, "border-bottom", null]], [[null, "click"]], function (_v, en, $event) {
+    return i0.ɵvid(0, [i0.ɵpid(0, i6.MapSearchResultsPipe, [i4.SearchService]), (_l()(), i0.ɵeld(1, 0, null, null, 41, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 38, "div", [["class", "col-xs-12 side-menu-col"]], [[2, "col-sm-4", null], [2, "col-md-3", null], [2, "col-sm-1", null], [2, "text-center", null]], null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 4, "a", [["class", "btn btn-default visible-xs show-menu-mobile-button"]], [[8, "hidden", 0], [4, "border-bottom", null]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
             var pd_0 = (_co.hideMenu = !_co.hideMenu) !== false;
             ad = pd_0 && ad;
@@ -6268,7 +6291,7 @@ function View_SideMenuComponent_0(_l) {
             var pd_0 = (_co.hideMenu = false) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(9, 0, null, null, 0, "i", [["class", "fa fa-bars"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 28, "div", [["class", "side-menu"]], [[8, "hidden", 0], [2, "hidden-xs", null]], null, null, null, null)), (_l()(), i0.ɵeld(11, 0, null, null, 9, "h6", [["class", "menu-heading"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_3)), i0.ɵdid(13, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_4)), i0.ɵdid(15, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_5)), i0.ɵdid(17, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(18, 0, null, null, 2, "div", [["class", "close-menu-button pull-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(19, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+    }, null, null)), (_l()(), i0.ɵeld(9, 0, null, null, 0, "i", [["class", "fa fa-bars"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 30, "div", [["class", "side-menu"]], [[8, "hidden", 0], [2, "hidden-xs", null]], null, null, null, null)), (_l()(), i0.ɵeld(11, 0, null, null, 9, "h6", [["class", "menu-heading"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_3)), i0.ɵdid(13, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_4)), i0.ɵdid(15, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_5)), i0.ɵdid(17, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(18, 0, null, null, 2, "div", [["class", "close-menu-button pull-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(19, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
             var pd_0 = (_co.hideMenu = true) !== false;
             ad = pd_0 && ad;
@@ -6292,10 +6315,10 @@ function View_SideMenuComponent_0(_l) {
         }return ad;
     }, null, null)), i0.ɵdid(23, 16384, null, 0, i7.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i7.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i7.NG_VALUE_ACCESSOR, function (p0_0) {
         return [p0_0];
-    }, [i7.DefaultValueAccessor]), i0.ɵdid(25, 671744, null, 0, i7.NgModel, [[8, null], [8, null], [8, null], [2, i7.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i7.NgControl, null, [i7.NgModel]), i0.ɵdid(27, 16384, null, 0, i7.NgControlStatus, [i7.NgControl], null, null), (_l()(), i0.ɵeld(28, 0, null, null, 4, "span", [["class", "input-group-btn"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_7)), i0.ɵdid(30, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_8)), i0.ɵdid(32, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(33, 0, null, null, 5, "div", [["class", "menu-items"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 4, null, View_SideMenuComponent_9)), i0.ɵdid(35, 802816, null, 0, i1.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), i0.ɵpid(131072, i1.AsyncPipe, [i0.ChangeDetectorRef]), i0.ɵpad(37, 1), i0.ɵppd(38, 2), (_l()(), i0.ɵeld(39, 0, null, null, 1, "div", [["class", "col-xs-12"]], [[2, "col-sm-8", null], [2, "col-md-9", null], [2, "col-sm-11", null]], null, null, null, null)), i0.ɵncd(null, 0)], function (_ck, _v) {
-        var _co = _v.component;var currVal_6 = _co.hideMenu || _co.platformService.isServer;_ck(_v, 5, 0, currVal_6);var currVal_7 = !_co.hideMenu && !_co.platformService.isServer;_ck(_v, 7, 0, currVal_7);var currVal_11 = _co.openapi.currentVersion === _co.openapi.versions[0];_ck(_v, 13, 0, currVal_11);var currVal_12 = _co.openapi.currentVersion !== _co.openapi.versions[0];_ck(_v, 15, 0, currVal_12);var currVal_13 = _co.openapi.versions && _co.openapi.versions.length > 1;_ck(_v, 17, 0, currVal_13);var currVal_21 = _co.search.query;_ck(_v, 25, 0, currVal_21);var currVal_22 = !_co.search.query;_ck(_v, 30, 0, currVal_22);var currVal_23 = _co.search.query;_ck(_v, 32, 0, currVal_23);var currVal_24 = i0.ɵunv(_v, 35, 0, _ck(_v, 38, 0, i0.ɵnov(_v, 0), i0.ɵunv(_v, 35, 0, i0.ɵnov(_v, 36).transform(_co.search.results)), _ck(_v, 37, 0, _co.menu.items)));_ck(_v, 35, 0, currVal_24);
+    }, [i7.DefaultValueAccessor]), i0.ɵdid(25, 671744, null, 0, i7.NgModel, [[8, null], [8, null], [8, null], [2, i7.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i7.NgControl, null, [i7.NgModel]), i0.ɵdid(27, 16384, null, 0, i7.NgControlStatus, [i7.NgControl], null, null), (_l()(), i0.ɵeld(28, 0, null, null, 4, "span", [["class", "input-group-btn"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_7)), i0.ɵdid(30, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_8)), i0.ɵdid(32, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(33, 0, null, null, 7, "div", [["class", "menu-items"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SideMenuComponent_9)), i0.ɵdid(35, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 4, null, View_SideMenuComponent_10)), i0.ɵdid(37, 802816, null, 0, i1.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), i0.ɵpid(131072, i1.AsyncPipe, [i0.ChangeDetectorRef]), i0.ɵpad(39, 1), i0.ɵppd(40, 2), (_l()(), i0.ɵeld(41, 0, null, null, 1, "div", [["class", "col-xs-12"]], [[2, "col-sm-8", null], [2, "col-md-9", null], [2, "col-sm-11", null]], null, null, null, null)), i0.ɵncd(null, 0)], function (_ck, _v) {
+        var _co = _v.component;var currVal_6 = _co.hideMenu || _co.platformService.isServer;_ck(_v, 5, 0, currVal_6);var currVal_7 = !_co.hideMenu && !_co.platformService.isServer;_ck(_v, 7, 0, currVal_7);var currVal_11 = _co.openapi.currentVersion === _co.openapi.versions[0];_ck(_v, 13, 0, currVal_11);var currVal_12 = _co.openapi.currentVersion !== _co.openapi.versions[0];_ck(_v, 15, 0, currVal_12);var currVal_13 = _co.openapi.versions && _co.openapi.versions.length > 1;_ck(_v, 17, 0, currVal_13);var currVal_21 = _co.search.query;_ck(_v, 25, 0, currVal_21);var currVal_22 = !_co.search.query;_ck(_v, 30, 0, currVal_22);var currVal_23 = _co.search.query;_ck(_v, 32, 0, currVal_23);var currVal_24 = _co.exactMatch;_ck(_v, 35, 0, currVal_24);var currVal_25 = i0.ɵunv(_v, 37, 0, _ck(_v, 40, 0, i0.ɵnov(_v, 0), i0.ɵunv(_v, 37, 0, i0.ɵnov(_v, 38).transform(_co.search.results)), _ck(_v, 39, 0, _co.menu.items)));_ck(_v, 37, 0, currVal_25);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = !_co.hideMenu;var currVal_1 = !_co.hideMenu;var currVal_2 = _co.hideMenu;var currVal_3 = _co.hideMenu;_ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3);var currVal_4 = _co.search.query;var currVal_5 = _co.hideMenu || _co.platformService.isServer ? "" : "none";_ck(_v, 3, 0, currVal_4, currVal_5);var currVal_8 = !_co.hideMenu;_ck(_v, 8, 0, currVal_8);var currVal_9 = _co.hideMenu;var currVal_10 = _co.hideMenu === undefined && _co.platformService.isServer;_ck(_v, 10, 0, currVal_9, currVal_10);var currVal_14 = i0.ɵnov(_v, 27).ngClassUntouched;var currVal_15 = i0.ɵnov(_v, 27).ngClassTouched;var currVal_16 = i0.ɵnov(_v, 27).ngClassPristine;var currVal_17 = i0.ɵnov(_v, 27).ngClassDirty;var currVal_18 = i0.ɵnov(_v, 27).ngClassValid;var currVal_19 = i0.ɵnov(_v, 27).ngClassInvalid;var currVal_20 = i0.ɵnov(_v, 27).ngClassPending;_ck(_v, 22, 0, currVal_14, currVal_15, currVal_16, currVal_17, currVal_18, currVal_19, currVal_20);var currVal_25 = !_co.hideMenu;var currVal_26 = !_co.hideMenu;var currVal_27 = _co.hideMenu;_ck(_v, 39, 0, currVal_25, currVal_26, currVal_27);
+        var _co = _v.component;var currVal_0 = !_co.hideMenu;var currVal_1 = !_co.hideMenu;var currVal_2 = _co.hideMenu;var currVal_3 = _co.hideMenu;_ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3);var currVal_4 = _co.search.query;var currVal_5 = _co.hideMenu || _co.platformService.isServer ? "" : "none";_ck(_v, 3, 0, currVal_4, currVal_5);var currVal_8 = !_co.hideMenu;_ck(_v, 8, 0, currVal_8);var currVal_9 = _co.hideMenu;var currVal_10 = _co.hideMenu === undefined && _co.platformService.isServer;_ck(_v, 10, 0, currVal_9, currVal_10);var currVal_14 = i0.ɵnov(_v, 27).ngClassUntouched;var currVal_15 = i0.ɵnov(_v, 27).ngClassTouched;var currVal_16 = i0.ɵnov(_v, 27).ngClassPristine;var currVal_17 = i0.ɵnov(_v, 27).ngClassDirty;var currVal_18 = i0.ɵnov(_v, 27).ngClassValid;var currVal_19 = i0.ɵnov(_v, 27).ngClassInvalid;var currVal_20 = i0.ɵnov(_v, 27).ngClassPending;_ck(_v, 22, 0, currVal_14, currVal_15, currVal_16, currVal_17, currVal_18, currVal_19, currVal_20);var currVal_26 = !_co.hideMenu;var currVal_27 = !_co.hideMenu;var currVal_28 = _co.hideMenu;_ck(_v, 41, 0, currVal_26, currVal_27, currVal_28);
     });
 }
 function View_SideMenuComponent_Host_0(_l) {
@@ -6399,6 +6422,7 @@ var SideMenuComponent = /** @class */ (function () {
         this.openapi = openapi;
         this.menu = menu;
         this.search = search;
+        this.exactMatch = null;
         this.subscriptions = [];
         window.sideMenuComponent = this;
         var BOOTSTRAP_XS_MAX = 768;
@@ -6416,9 +6440,10 @@ var SideMenuComponent = /** @class */ (function () {
         }));
         if (this.basePage === 'console') {
             this.subscriptions.push(this.search.results.subscribe(function (results) {
-                var exactMatch = _this.menu.getItemWithCond(function (i) { return i.title === _this.search.query; });
-                if (exactMatch)
-                    _this.menu.setActiveItem(exactMatch);
+                if (!_this.search.query)
+                    return _this.exactMatch = null;
+                var lower = _this.search.query.toLowerCase();
+                _this.exactMatch = _this.menu.getItemWithCond(function (i) { return i.title.toLowerCase() === lower; });
             }));
         }
     };
@@ -6879,7 +6904,7 @@ var JSONSchemaFormComponent = /** @class */ (function () {
 
 
 Object.defineProperty(exports, "__esModule", {
-        value: true
+    value: true
 });
 exports.SchemaLabelComponentNgFactory = exports.RenderType_SchemaLabelComponent = undefined;
 exports.View_SchemaLabelComponent_0 = View_SchemaLabelComponent_0;
@@ -6893,99 +6918,135 @@ var _common = __webpack_require__("./node_modules/@angular/common/esm5/common.js
 
 var i1 = _interopRequireWildcard(_common);
 
+var _TooltipContent = __webpack_require__("./node_modules/ngx-tooltip/TooltipContent.ngfactory.js");
+
+var i2 = _interopRequireWildcard(_TooltipContent);
+
+var _TooltipContent2 = __webpack_require__("./node_modules/ngx-tooltip/TooltipContent.js");
+
+var i3 = _interopRequireWildcard(_TooltipContent2);
+
+var _Tooltip = __webpack_require__("./node_modules/ngx-tooltip/Tooltip.js");
+
+var i4 = _interopRequireWildcard(_Tooltip);
+
 var _schemaLabel = __webpack_require__("./src/app/json-schema-form/schema-label.component.ts");
 
-var i2 = _interopRequireWildcard(_schemaLabel);
+var i5 = _interopRequireWildcard(_schemaLabel);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var styles_SchemaLabelComponent = [".type-choice.dropdown[_ngcontent-%COMP%] {\n        display: inline-block;\n        margin-left: 5px;\n      }"]; /**
-                                                                                                                                                       * @fileoverview This file was generated by the Angular template compiler. Do not edit.
-                                                                                                                                                       *
-                                                                                                                                                       * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
-                                                                                                                                                       * tslint:disable
-                                                                                                                                                       */
-
+/**
+ * @fileoverview This file was generated by the Angular template compiler. Do not edit.
+ *
+ * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
+ * tslint:disable
+ */
+var styles_SchemaLabelComponent = [".type-choice.dropdown[_ngcontent-%COMP%] {\n        display: inline-block;\n        margin-left: 5px;\n      }"];
 var RenderType_SchemaLabelComponent = i0.ɵcrt({ encapsulation: 0, styles: styles_SchemaLabelComponent, data: {} });
 exports.RenderType_SchemaLabelComponent = RenderType_SchemaLabelComponent;
 
 function View_SchemaLabelComponent_1(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "a", [], null, [[null, "click"]], function (_v, en, $event) {
-                var ad = true;var _co = _v.component;if ("click" === en) {
-                        var pd_0 = _co.clickRemove() !== false;
-                        ad = pd_0 && ad;
-                }return ad;
-        }, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-left fa-times text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n  "]))], null, null);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            var pd_0 = _co.clickRemove() !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-left fa-times text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n  "]))], null, null);
 }
 function View_SchemaLabelComponent_2(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [["class", "text-primary"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["*"]))], null, null);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [["class", "text-primary"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["*"]))], null, null);
 }
 function View_SchemaLabelComponent_3(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [["class", "hl-key"]], null, null, null, null, null)), (_l()(), i0.ɵted(1, null, ["", ""]))], null, function (_ck, _v) {
-                var _co = _v.component;var currVal_0 = _co.type;_ck(_v, 1, 0, currVal_0);
-        });
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [["class", "hl-key"]], null, null, null, null, null)), (_l()(), i0.ɵted(1, null, ["", ""]))], null, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.type;_ck(_v, 1, 0, currVal_0);
+    });
 }
 function View_SchemaLabelComponent_5(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "li", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n        "])), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
-                var ad = true;var _co = _v.component;if ("click" === en) {
-                        _co.type = _v.context.$implicit;
-                        var pd_0 = _co.typeChange.emit(_co.type) !== false;
-                        ad = pd_0 && ad;
-                }return ad;
-        }, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "]))], null, function (_ck, _v) {
-                var currVal_0 = _v.context.$implicit;_ck(_v, 3, 0, currVal_0);
-        });
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "li", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n        "])), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            _co.type = _v.context.$implicit;
+            var pd_0 = _co.typeChange.emit(_co.type) !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "]))], null, function (_ck, _v) {
+        var currVal_0 = _v.context.$implicit;_ck(_v, 3, 0, currVal_0);
+    });
 }
 function View_SchemaLabelComponent_4(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 15, "div", [["class", "type-choice dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 6, "a", [["class", "btn btn-xs btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(7, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(10, 0, null, null, 4, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_5)), i0.ɵdid(13, 802816, null, 0, i1.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n  "]))], function (_ck, _v) {
-                var _co = _v.component;var currVal_1 = _co.typeChoices;_ck(_v, 13, 0, currVal_1);
-        }, function (_ck, _v) {
-                var _co = _v.component;var currVal_0 = _co.type;_ck(_v, 5, 0, currVal_0);
-        });
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 15, "div", [["class", "type-choice dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 6, "a", [["class", "btn btn-xs btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(7, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(10, 0, null, null, 4, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_5)), i0.ɵdid(13, 802816, null, 0, i1.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n  "]))], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.typeChoices;_ck(_v, 13, 0, currVal_1);
+    }, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.type;_ck(_v, 5, 0, currVal_0);
+    });
 }
 function View_SchemaLabelComponent_7(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "li", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n        "])), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
-                var ad = true;var _co = _v.component;if ("click" === en) {
-                        _co.subtype = _v.context.$implicit;
-                        _co.expand ? null : _co.toggleExpand();
-                        var pd_0 = _co.subtypeChange.emit(_v.context.$implicit) !== false;
-                        ad = pd_0 && ad;
-                }return ad;
-        }, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "]))], null, function (_ck, _v) {
-                var currVal_0 = _v.context.$implicit.title;_ck(_v, 3, 0, currVal_0);
-        });
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "li", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n        "])), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            _co.subtype = _v.context.$implicit;
+            _co.expand ? null : _co.toggleExpand();
+            var pd_0 = _co.subtypeChange.emit(_v.context.$implicit) !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "]))], null, function (_ck, _v) {
+        var currVal_0 = _v.context.$implicit.title;_ck(_v, 3, 0, currVal_0);
+    });
 }
 function View_SchemaLabelComponent_6(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 15, "div", [["class", "type-choice dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 6, "a", [["class", "btn btn-xs btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(7, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(10, 0, null, null, 4, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_7)), i0.ɵdid(13, 802816, null, 0, i1.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n  "]))], function (_ck, _v) {
-                var _co = _v.component;var currVal_1 = _co.subtypeChoices;_ck(_v, 13, 0, currVal_1);
-        }, function (_ck, _v) {
-                var _co = _v.component;var currVal_0 = (_co.subtype == null ? null : _co.subtype.title) || "Choose one";_ck(_v, 5, 0, currVal_0);
-        });
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 15, "div", [["class", "type-choice dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 6, "a", [["class", "btn btn-xs btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵeld(7, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(10, 0, null, null, 4, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_7)), i0.ɵdid(13, 802816, null, 0, i1.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n  "]))], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.subtypeChoices;_ck(_v, 13, 0, currVal_1);
+    }, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = (_co.subtype == null ? null : _co.subtype.title) || "Choose one";_ck(_v, 5, 0, currVal_0);
+    });
 }
 function View_SchemaLabelComponent_8(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "a", [], null, [[null, "click"]], function (_v, en, $event) {
-                var ad = true;var _co = _v.component;if ("click" === en) {
-                        var pd_0 = _co.toggleExpand() !== false;
-                        ad = pd_0 && ad;
-                }return ad;
-        }, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-right"]], [[2, "fa-plus-square-o", null], [2, "fa-minus-square-o", null]], null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n  "]))], null, function (_ck, _v) {
-                var _co = _v.component;var currVal_0 = !_co.expand;var currVal_1 = _co.expand;_ck(_v, 2, 0, currVal_0, currVal_1);
-        });
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "tooltip-content", [], null, null, null, i2.View_TooltipContent_0, i2.RenderType_TooltipContent)), i0.ɵdid(1, 4243456, [[1, 4], ["descriptionTooltip", 4]], 0, i3.TooltipContent, [i0.ElementRef, i0.ChangeDetectorRef], null, null), (_l()(), i0.ɵted(-1, 0, ["\n    "])), (_l()(), i0.ɵeld(3, 0, null, 0, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), i0.ɵted(-1, 0, ["\n  "]))], null, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.marked(_co.description);_ck(_v, 3, 0, currVal_0);
+    });
 }
 function View_SchemaLabelComponent_9(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "p", [["class", "text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Unknown schema"]))], null, null);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 16777216, null, null, 4, "a", [["tooltipPlacement", "right"]], null, [[null, "focusin"], [null, "mouseenter"], [null, "focusout"], [null, "mouseleave"]], function (_v, en, $event) {
+        var ad = true;if ("focusin" === en) {
+            var pd_0 = i0.ɵnov(_v, 1).show() !== false;
+            ad = pd_0 && ad;
+        }if ("mouseenter" === en) {
+            var pd_1 = i0.ɵnov(_v, 1).show() !== false;
+            ad = pd_1 && ad;
+        }if ("focusout" === en) {
+            var pd_2 = i0.ɵnov(_v, 1).hide() !== false;
+            ad = pd_2 && ad;
+        }if ("mouseleave" === en) {
+            var pd_3 = i0.ɵnov(_v, 1).hide() !== false;
+            ad = pd_3 && ad;
+        }return ad;
+    }, null, null)), i0.ɵdid(1, 16384, null, 0, i4.Tooltip, [i0.ViewContainerRef, i0.ComponentFactoryResolver], { content: [0, "content"], tooltipPlacement: [1, "tooltipPlacement"] }, null), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(3, 0, null, null, 0, "i", [["class", "fa fa-right fa-question-circle"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(0, null, null, 0))], function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.descriptionTooltip;var currVal_1 = "right";_ck(_v, 1, 0, currVal_0, currVal_1);
+    }, null);
+}
+function View_SchemaLabelComponent_10(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            var pd_0 = _co.toggleExpand() !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-right"]], [[2, "fa-plus-square-o", null], [2, "fa-minus-square-o", null]], null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n  "]))], null, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = !_co.expand;var currVal_1 = _co.expand;_ck(_v, 2, 0, currVal_0, currVal_1);
+    });
+}
+function View_SchemaLabelComponent_11(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "p", [["class", "text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Unknown schema"]))], null, null);
 }
 function View_SchemaLabelComponent_0(_l) {
-        return i0.ɵvid(0, [i0.ɵqud(402653184, 1, { descriptionTooltip: 0 }), (_l()(), i0.ɵted(-1, null, ["\n"])), (_l()(), i0.ɵeld(2, 0, null, null, 26, "label", [["class", "monospace"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_1)), i0.ɵdid(6, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_2)), i0.ɵdid(9, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵeld(11, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(12, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵeld(14, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [":"])), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_3)), i0.ɵdid(18, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_4)), i0.ɵdid(21, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_6)), i0.ɵdid(24, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_8)), i0.ɵdid(27, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n"])), (_l()(), i0.ɵted(-1, null, ["\n"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_9)), i0.ɵdid(31, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n    "]))], function (_ck, _v) {
-                var _co = _v.component;var currVal_0 = _co.showRemove;_ck(_v, 6, 0, currVal_0);var currVal_1 = _co.required;_ck(_v, 9, 0, currVal_1);var currVal_3 = !_co.typeChoices;_ck(_v, 18, 0, currVal_3);var currVal_4 = _co.typeChoices;_ck(_v, 21, 0, currVal_4);var currVal_5 = _co.subtypeChoices;_ck(_v, 24, 0, currVal_5);var currVal_6 = _co.showExpand && (_co.type === "object" || _co.type === "array") || _co.schema.$ref;_ck(_v, 27, 0, currVal_6);var currVal_7 = !_co.schema;_ck(_v, 31, 0, currVal_7);
-        }, function (_ck, _v) {
-                var _co = _v.component;var currVal_2 = _co.label;_ck(_v, 12, 0, currVal_2);
-        });
+    return i0.ɵvid(0, [i0.ɵqud(671088640, 1, { descriptionTooltip: 0 }), (_l()(), i0.ɵted(-1, null, ["\n"])), (_l()(), i0.ɵeld(2, 0, null, null, 31, "label", [["class", "monospace"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_1)), i0.ɵdid(5, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵeld(7, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(8, null, ["", ""])), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_2)), i0.ɵdid(11, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵeld(13, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [":"])), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_3)), i0.ɵdid(17, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_4)), i0.ɵdid(20, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_6)), i0.ɵdid(23, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_8)), i0.ɵdid(26, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_9)), i0.ɵdid(29, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n  "])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_10)), i0.ɵdid(32, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n"])), (_l()(), i0.ɵted(-1, null, ["\n"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_SchemaLabelComponent_11)), i0.ɵdid(36, 16384, null, 0, i1.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵted(-1, null, ["\n    "]))], function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.showRemove;_ck(_v, 5, 0, currVal_0);var currVal_2 = _co.required;_ck(_v, 11, 0, currVal_2);var currVal_3 = !_co.typeChoices;_ck(_v, 17, 0, currVal_3);var currVal_4 = _co.typeChoices;_ck(_v, 20, 0, currVal_4);var currVal_5 = _co.subtypeChoices;_ck(_v, 23, 0, currVal_5);var currVal_6 = _co.description;_ck(_v, 26, 0, currVal_6);var currVal_7 = _co.description;_ck(_v, 29, 0, currVal_7);var currVal_8 = _co.showExpand && (_co.type === "object" || _co.type === "array") || _co.schema.$ref;_ck(_v, 32, 0, currVal_8);var currVal_9 = !_co.schema;_ck(_v, 36, 0, currVal_9);
+    }, function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.label;_ck(_v, 8, 0, currVal_1);
+    });
 }
 function View_SchemaLabelComponent_Host_0(_l) {
-        return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "schema-label", [], null, null, null, View_SchemaLabelComponent_0, RenderType_SchemaLabelComponent)), i0.ɵdid(1, 573440, null, 0, i2.SchemaLabelComponent, [], null, null)], null, null);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "schema-label", [], null, null, null, View_SchemaLabelComponent_0, RenderType_SchemaLabelComponent)), i0.ɵdid(1, 573440, null, 0, i5.SchemaLabelComponent, [], null, null)], null, null);
 }
-var SchemaLabelComponentNgFactory = i0.ɵccf("schema-label", i2.SchemaLabelComponent, View_SchemaLabelComponent_Host_0, { inputSchema: "schema", refBase: "refBase", label: "label", required: "required", expand: "expand", showRemove: "showRemove", showExpand: "showExpand" }, { typeChange: "typeChange", subtypeChange: "subtypeChange", expandChange: "expandChange", schemaChange: "schemaChange", onRemoved: "onRemoved" }, []);
+var SchemaLabelComponentNgFactory = i0.ɵccf("schema-label", i5.SchemaLabelComponent, View_SchemaLabelComponent_Host_0, { inputSchema: "schema", refBase: "refBase", label: "label", required: "required", expand: "expand", showRemove: "showRemove", showExpand: "showExpand" }, { typeChange: "typeChange", subtypeChange: "subtypeChange", expandChange: "expandChange", schemaChange: "schemaChange", onRemoved: "onRemoved" }, []);
 exports.SchemaLabelComponentNgFactory = SchemaLabelComponentNgFactory;
 
 /***/ }),
@@ -7009,6 +7070,7 @@ var SchemaLabelComponent = /** @class */ (function () {
         this.expandChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.schemaChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onRemoved = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.marked = window.marked;
     }
     SchemaLabelComponent.prototype.clickRemove = function () {
         this.onRemoved.emit();
@@ -9899,7 +9961,9 @@ CodeTemplate.prototype.setOperationInputFields = function (input) {
     });
     this.gatherAnswersForPost(input);
   } else {
-    input.parameterNames = input.parameters.map(function (p) {
+    input.parameterNames = input.operation.parameters.filter(function (p) {
+      return !p.$ref;
+    }).map(function (p) {
       return p.name;
     }).map(function (n) {
       return _this.rewriteVariable(n);
