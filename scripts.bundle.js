@@ -4563,7 +4563,7 @@ kparams.pager=pager;return new KalturaRequestBuilder("uiconf","listTemplates",kp
 Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
 
 ;(function() {
-  var COOKIE_TIMEOUT_MS = 30 * 60 * 1000;
+  var COOKIE_TIMEOUT_MS = 60 * 60 * 1000;
   var PROMPT_TIMEOUT_MS = COOKIE_TIMEOUT_MS - 2 * 60 * 1000;
   var STORAGE_KEY = 'LUCYBOT_RECIPE_CREDS';
   var user = window.kalturaUser = {};
@@ -4605,7 +4605,7 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
     if (logoutTimeout) clearTimeout(logoutTimeout);
     if (creds) {
       promptTimeout = setTimeout(function() {
-        var renew = confirm("Your Kaltura session is about to expire. Do you want to stay logged in?");
+        var renew = confirm("Your session is about to expire. Do you want to stay logged in?");
         if (renew) setCookie(creds);
         else setKalturaUser();
       }, PROMPT_TIMEOUT_MS);

@@ -9746,9 +9746,6 @@ var language_opts = {
     objSuffix: '()',
     enumAccessor: '::',
     rewriteAction: addActionSuffixIfReserved,
-    rewriteService: function rewriteService(s) {
-      return 'get' + s.charAt(0).toUpperCase() + s.substring(1) + 'Service()';
-    },
     rewriteVariable: function rewriteVariable(s) {
       return '$' + s;
     },
@@ -9821,6 +9818,9 @@ var language_opts = {
       if (s === 'string') return 'String';
       if (s === 'integer') return 'int';
       return s;
+    },
+    rewriteEnumValue: function rewriteEnumValue(type, name, value) {
+      return removeKalturaPrefix(type) + '.' + name + '.getValue()';
     }
   },
   csharp: {

@@ -7082,6 +7082,10 @@ side-menu .fa-times {
   color: #fff !important;
 }
 
+pre code {
+  font-size: 12px;
+}
+
 ---
 layout: null
 sitemap: false
