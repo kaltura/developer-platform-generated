@@ -4605,9 +4605,7 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
     if (logoutTimeout) clearTimeout(logoutTimeout);
     if (creds) {
       promptTimeout = setTimeout(function() {
-        var renew = confirm("Your session is about to expire. Do you want to stay logged in?");
-        if (renew) setCookie(creds);
-        else setKalturaUser();
+        window.jquery('#KalturaContinueSessionModal').modal('show');
       }, PROMPT_TIMEOUT_MS);
       logoutTimeout = setTimeout(function() {
         setKalturaUser();

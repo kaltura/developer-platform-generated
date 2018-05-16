@@ -132,6 +132,26 @@
   </div>
 </div>
 
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
