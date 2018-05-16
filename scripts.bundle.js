@@ -4589,6 +4589,13 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
         + '</li>'
         + '<li class="navbar-link"><a onclick="lucybot.startLogin()">Sign In</a></li>';
 
+  function setPartnerChoices(choices) {
+    window.kalturaPartners = choices;
+    var partnerChoicesHTML = partnerChoicesTemplate(choices);
+    window.jquery('#KalturaPartnerIDDropdown').find('ul.dropdown-menu').html(partnerChoicesHTML);
+    window.jquery('#KalturaPartnerIDModal').find('ul.dropdown-menu').html(partnerChoicesHTML);
+  }
+
   function partnerChoicesTemplate(partners) {
     return partners.map(function(partner) {
       return '<li><a onclick="setKalturaPartnerID(' + partner.id + ')">' + partner.name + ' (' + partner.id + ')</a></li>'
@@ -4675,7 +4682,17 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
       } catch(e) {}
       if (user && typeof user === 'object' && Object.keys(user).length) {
         if (ksMatch) user.ks = ksMatch;
-        setKalturaUser(user);
+        console.log('found user', user);
+        window.jquery.ajax({
+          url: '/auth/loginByKs',
+          method: 'POST',
+          data: JSON.stringify({ks: user.ks, partnerId: user.partnerId}),
+          headers: {'Content-Type': 'application/json'},
+        })
+        .done(function(response) {
+          setPartnerChoices(response);
+          setKalturaUser(user);
+        })
         return true;
       }
     }
@@ -4745,10 +4762,7 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
       window.lucybot.tracker('login_success', {
         email: creds.email,
       });
-      window.kalturaPartners = response;
-      var partnerChoicesHTML = partnerChoicesTemplate(response);
-      window.jquery('#KalturaPartnerIDDropdown').find('ul.dropdown-menu').html(partnerChoicesHTML);
-      window.jquery('#KalturaPartnerIDModal').find('ul.dropdown-menu').html(partnerChoicesHTML);
+      setPartnerChoices(response);
       window.kalturaUser = user = creds;
     })
     .fail(function(xhr) {
