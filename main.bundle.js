@@ -9682,7 +9682,10 @@ var language_opts = {
     statementSuffix: ';',
     objPrefix: 'new ',
     objSuffix: '()',
-    rewriteAction: addActionSuffixIfReserved
+    rewriteAction: addActionSuffixIfReserved,
+    fileCode: function fileCode() {
+      return 'new File("/path/to/file")';
+    }
   },
   ajax: {
     ext: 'js',
@@ -9710,7 +9713,10 @@ var language_opts = {
     enumPrefix: 'kaltura.enums.',
     rewriteAction: addActionSuffixIfReserved,
     rewriteEnum: removeKalturaPrefix,
-    rewriteType: removeKalturaPrefix
+    rewriteType: removeKalturaPrefix,
+    fileCode: function fileCode() {
+      return "'/path/to/file'";
+    }
   },
   angular: {
     ext: 'ts',
@@ -9736,6 +9742,9 @@ var language_opts = {
     rewriteAction: addActionSuffixIfReserved,
     rewriteVariable: function rewriteVariable(s) {
       return '$' + s;
+    },
+    fileCode: function fileCode() {
+      return '"/path/to/file"';
     }
   },
   php53: {
@@ -9750,7 +9759,10 @@ var language_opts = {
       return '$' + s;
     },
     rewriteEnum: removeKalturaPrefix,
-    rewriteType: removeKalturaPrefix
+    rewriteType: removeKalturaPrefix,
+    fileCode: function fileCode() {
+      return '"/path/to/file"';
+    }
   },
   swift: {
     ext: 'swift',
@@ -9781,6 +9793,9 @@ var language_opts = {
     },
     rewriteService: function rewriteService(s) {
       return camelCaseToUnderscore(s) + '_service';
+    },
+    fileCode: function fileCode() {
+      return 'File.open("/path/to/file")';
     }
   },
   java: {
@@ -9848,6 +9863,9 @@ var language_opts = {
       if (s.indexOf('Kaltura') === 0) return s.substring('Kaltura'.length);
       if (s === 'integer') return 'int';
       return s;
+    },
+    fileCode: function fileCode() {
+      return 'new FileStream("/path/to/file", FileMode.Open, FileAccess.Read)';
     }
   },
   python: {
@@ -9868,6 +9886,9 @@ var language_opts = {
       var pieces = id.split('_');
       if (pieces.length === 1) return name;
       return pieces[0] + '.' + name;
+    },
+    fileCode: function fileCode() {
+      return "open('/path/to/file', 'r')";
     }
   }
 };
@@ -10230,6 +10251,7 @@ CodeTemplate.prototype.lvalue = function (param) {
 };
 
 CodeTemplate.prototype.rvalue = function (param, answers, parent) {
+  if (param.schema.type === 'file' && this.fileCode) return this.fileCode();
   var self = this;
   var enm = param.schema.enum;
   var enumLabels = param.schema['x-enumLabels'];
