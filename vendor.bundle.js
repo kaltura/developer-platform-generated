@@ -69153,6 +69153,7 @@ var DelaySubscriber = /*@__PURE__*/ /*@__PURE__*/function (_super) {
             var delay_1 = Math.max(0, queue[0].time - scheduler.now());
             this.schedule(state, delay_1);
         } else {
+            this.unsubscribe();
             source.active = false;
         }
     };

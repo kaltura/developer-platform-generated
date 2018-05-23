@@ -9832,10 +9832,14 @@ var language_opts = {
       s = removeKalturaPrefix(s);
       if (s === 'string') return 'String';
       if (s === 'integer') return 'int';
+      if (s === 'file') return 'File';
       return s;
     },
     rewriteEnumValue: function rewriteEnumValue(type, name, value) {
       return removeKalturaPrefix(type) + '.' + name + '.getValue()';
+    },
+    fileCode: function fileCode() {
+      return 'new FileInputStream("/path/to/file")';
     }
   },
   csharp: {
@@ -9974,21 +9978,14 @@ CodeTemplate.prototype.setOperationInputFields = function (input) {
   if (tag['x-plugin']) {
     input.plugins.push(tag['x-plugin']);
   }
+  input.parameterNames = input.operation['x-kaltura-parameters'].map(function (n) {
+    return _this.rewriteVariable(n);
+  });
   input.parameters = [];
   var opType = input.operation['x-kaltura-format'] || 'post';
   if (opType === 'post') {
-    input.parameterNames = input.operation['x-kaltura-parameters'].map(function (n) {
-      return _this.rewriteVariable(n);
-    });
     this.gatherAnswersForPost(input);
   } else {
-    input.parameterNames = input.operation.parameters.filter(function (p) {
-      return !p.$ref;
-    }).map(function (p) {
-      return p.name;
-    }).map(function (n) {
-      return _this.rewriteVariable(n);
-    });
     this.gatherAnswersForGet(input);
   }
 };
