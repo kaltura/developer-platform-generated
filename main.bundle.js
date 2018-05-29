@@ -1262,9 +1262,11 @@ function View_ConsoleComponent_6(_l) {
     }, null);
 }
 function View_ConsoleComponent_4(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Use the API Console to make live calls to the API.\nSelect an operation from the menu, fill out the parameters, and hit\n\"Send Request\" when you're ready."])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_5)), i0.ɵdid(4, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_6)), i0.ɵdid(6, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.apiCallComponent;_ck(_v, 4, 0, currVal_0);var currVal_1 = _co.apiCall;_ck(_v, 6, 0, currVal_1);
-    }, null);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_5)), i0.ɵdid(3, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_6)), i0.ɵdid(5, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.apiCallComponent;_ck(_v, 3, 0, currVal_1);var currVal_2 = _co.apiCall;_ck(_v, 5, 0, currVal_2);
+    }, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.marked(_co.utils.config.uiOptions.messages.console);_ck(_v, 1, 0, currVal_0);
+    });
 }
 function View_ConsoleComponent_0(_l) {
     return i0.ɵvid(0, [i0.ɵqud(671088640, 1, { apiCallComponent: 0 }), (_l()(), i0.ɵeld(1, 0, null, null, 1, "auth", [], null, null, null, i8.View_AuthComponent_0, i8.RenderType_AuthComponent)), i0.ɵdid(2, 180224, null, 0, i9.AuthComponent, [i5.OpenAPIService, i10.SecretService], null, null), (_l()(), i0.ɵeld(3, 0, null, null, 4, "div", [["class", "tour-button btn btn-lg hidden-xs btn-primary"]], [[8, "hidden", 0]], [[null, "click"]], function (_v, en, $event) {
@@ -1317,6 +1319,7 @@ var ConsoleComponent = /** @class */ (function () {
         this.menu = menu;
         this.tour = tour;
         this.title = 'Console';
+        this.marked = window.marked;
         this.subscriptions = [];
         window.consoleComponent = this;
         this.subscriptions.push(this.menu.choose.subscribe(function (choice) {
@@ -6420,7 +6423,6 @@ var SideMenuComponent = /** @class */ (function () {
         this.exactMatch = null;
         this.subscriptions = [];
         window.sideMenuComponent = this;
-        console.log('const');
         var BOOTSTRAP_XS_MAX = 768;
         if (window.innerWidth < BOOTSTRAP_XS_MAX) {
             this.hideMenu = true;
@@ -7733,9 +7735,6 @@ var MenuService = /** @class */ (function () {
             else if (curRoute.ui === 'documentation') {
                 chosen = chosen || this.items[0];
             }
-        }
-        if (this.onlyAPICalls && (!chosen || !chosen.operation)) {
-            chosen = this.expandWithCondition(function (i) { return i.operation; }, chosen ? chosen.children : null);
         }
         this.setActiveItem(chosen);
     };
