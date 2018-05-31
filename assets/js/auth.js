@@ -7,7 +7,7 @@
   var logoutTimeout = null;
 
   function loggedInTemplate() {
-    return '<li class="dropdown" id="KalturaPartnerIDDropdown">' +
+    return '<li class="dropdown auth-link" id="KalturaPartnerIDDropdown">' +
         '<a class="dropdown-toggle" data-toggle="dropdown">' +
           '<span class="hidden-md">' + (user.name || '') + ' - </span>' +
           '<span>' + (user.partnerId || '') + '</span>' +
@@ -20,10 +20,7 @@
   }
 
   var LOGGED_OUT_HTML =
-          '<li class="navbar-link">'
-        +   '<a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&utm_campaign=login&utm_medium=website">Sign Up</a>'
-        + '</li>'
-        + '<li class="navbar-link"><a onclick="lucybot.startLogin()">Sign In</a></li>';
+      '<li class="navbar-link auth-link"><a class="btn btn-success" onclick="lucybot.startLogin()">Sign In</a></li>';
 
   function setPartnerChoices(choices) {
     window.kalturaPartners = choices;
@@ -58,15 +55,16 @@
 
   var updateViewsForLogin = function(creds) {
     window.jquery('#KalturaSignInModal .alert-danger').hide();
+    window.jquery('#KalturaNav ul.nav li.auth-link').remove();
     if (!creds) {
-      window.jquery('#KalturaAuthLinks').html(LOGGED_OUT_HTML);
+      window.jquery('#KalturaNav ul.nav').append(LOGGED_OUT_HTML);
       window.jquery('#KalturaSidebar .logged-in').hide();
       window.jquery('#KalturaSidebar .not-logged-in').show();
       window.jquery('input[name="KalturaEmail"]').val('');
       window.jquery('input[name="KalturaPassword"]').val('');
       window.jquery('input[name="KalturaSession"]').val('');
     } else {
-      window.jquery('#KalturaAuthLinks').html(loggedInTemplate());
+      window.jquery('#KalturaNav ul.nav').append(loggedInTemplate());
       window.jquery('#KalturaSidebar .not-logged-in').hide();
       window.jquery('#KalturaSidebar .logged-in').show();
       window.jquery('#KalturaSidebar .partnerId').text(creds.partnerId || '');
@@ -215,6 +213,7 @@
 
   window.setKalturaPartnerID = function(id) {
     user.partnerId = id;
+    window.jquery('#KalturaPartnerIDDropdown a.dropdown-toggle').html('<i class="fa fa-spin fa-refresh"></i>');
     window.jquery('#KalturaPartnerIDModal .kaltura-loading').show();
     window.jquery.ajax({
       url: '/auth/selectPartner',
