@@ -138,8 +138,10 @@ var AppComponent = /** @class */ (function () {
                     if (url.indexOf(window.config.basePath) === 0) {
                         url = url.substring(window.config.basePath.length, url.length);
                     }
-                    self.routes.navigate(self.routes.getPathParts(url), false, { queryParams: {} });
-                    return false;
+                    if (url) {
+                        self.routes.navigate(self.routes.getPathParts(url), false, { queryParams: {} });
+                        return false;
+                    }
                 }
             });
         }
