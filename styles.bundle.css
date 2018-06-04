@@ -5075,16 +5075,13 @@ body {
   min-height: 100%;
 }
 
-app .main-container {
-  padding-bottom: 100px;
+app {
+  display: block;
+  min-height: 500px;
 }
 
-#Footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #fff;
+app .main-container {
+  padding-bottom: 100px;
 }
 
 .fa-right {
@@ -5847,6 +5844,10 @@ schema { }
   font-size: 14px;
   text-transform: uppercase;
   color: #fff;
+  cursor: default;
+}
+.footer h5 a:hover {
+  text-decoration: none;
 }
 .footer h5 i.fa {
   display: none;
@@ -5932,6 +5933,7 @@ schema { }
   .footer h5 a {
     width: 100%;
     display: inline-block;
+    cursor: pointer;
   }
   .footer h5 a i.fa {
     float: right;
@@ -6874,7 +6876,7 @@ sitemap: false
     font-size: 14px;
   }
   body.spaced-for-kaltura-nav #KalturaSidebar {
-    top: 72px;
+    top: 87px;
   }
 
   #KalturaSidebar .sidebar-content {
