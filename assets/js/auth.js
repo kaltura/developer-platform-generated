@@ -116,17 +116,7 @@
       } catch(e) {}
       if (user && typeof user === 'object' && Object.keys(user).length) {
         if (ksMatch) user.ks = ksMatch;
-        console.log('found user', user);
-        window.jquery.ajax({
-          url: '/auth/loginByKs',
-          method: 'POST',
-          data: JSON.stringify({ks: user.ks, partnerId: user.partnerId}),
-          headers: {'Content-Type': 'application/json'},
-        })
-        .done(function(response) {
-          setPartnerChoices(response);
-          setKalturaUser(user);
-        })
+        window.loginByKs(user);
         return true;
       }
     }
@@ -139,6 +129,19 @@
     }
   };
 
+  window.loginByKs = function(user) {
+    window.jquery.ajax({
+      url: '/auth/loginByKs',
+      method: 'POST',
+      data: JSON.stringify({ks: user.ks, partnerId: user.partnerId}),
+      headers: {'Content-Type': 'application/json'},
+    })
+    .done(function(response) {
+      setPartnerChoices(response);
+      setKalturaUser(user);
+    })
+  }
+
   window.lucybot.startLogin = function() {
     window.jquery('#KalturaSignInModal').modal('show');
   }
@@ -148,7 +151,7 @@
     var creds = {}
     creds.ks = window.jquery('input[name="KalturaSession"]').val();
     if (creds.ks) {
-      setKalturaUser(creds);
+      window.loginByKs(creds);
       return;
     }
 
