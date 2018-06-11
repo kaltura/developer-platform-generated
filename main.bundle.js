@@ -3574,7 +3574,7 @@ var ParameterComponent = /** @class */ (function () {
         }
         if (this.fillFromSecrets) {
             this.subscriptions.push(this.secrets.onChange.subscribe(function (newSecrets) {
-                if (newSecrets[_this.parameter.name]) {
+                if (newSecrets[_this.parameter.name] !== undefined) {
                     _this.model[_this.parameter.name] = newSecrets[_this.parameter.name];
                     _this.onChange();
                 }
@@ -7959,6 +7959,12 @@ var OpenAPIService = /** @class */ (function () {
                 title: spec.info.title,
             });
         }));
+        this.subscriptions.push(this.secrets.onChange.subscribe(function (newSecrets) {
+            for (var key in newSecrets)
+                _this.globalParameters[key] = newSecrets[key];
+        }));
+        for (var key in this.secrets.secrets)
+            this.globalParameters[key] = this.secrets.secrets[key];
         this.subscriptions.push(this.routes.currentRoute.subscribe(function (route) {
             if (route)
                 _this.retrieveSpec(route.openapi);

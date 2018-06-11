@@ -1,12 +1,16 @@
 window.KC = null;
 
 function setKalturaSession(creds, cb) {
+  window.KC = window.KC || new KalturaClient(new KalturaConfiguration());
   window.lucybot.tracker('kaltura_session', {
     partnerId: creds.partnerId,
   });
   KC.setKs(creds.ks);
   var filter = {
     objTypeEqual: 1, // KalturaUiConfObjType.PLAYER
+  }
+  if (!creds.partnerId) {
+    return cb(null, creds);
   }
   KalturaUiConfService.listAction(filter).execute(KC, function(success, results) {
     var uiConfs = results.objects || [];
@@ -77,7 +81,12 @@ window.setUpKalturaClient = function(creds, cb) {
   }
 }
 
-if (!maybeContinueSession() && window.location.href.indexOf('signIn=true') !== -1) {
-  window.lucybot.startLogin();
-}
+let interval = setInterval(function() {
+  console.log('Waiting for LucyBot...');
+  if (!window.secretService) return;
+  clearInterval(interval);
+  if (!maybeContinueSession() && window.location.href.indexOf('signIn=true') !== -1) {
+    window.lucybot.startLogin();
+  }
+}, 100)
 

@@ -4573,8 +4573,8 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
   function loggedInTemplate() {
     return '<li class="dropdown auth-link" id="KalturaPartnerIDDropdown">' +
         '<a class="dropdown-toggle" data-toggle="dropdown">' +
-          '<span class="hidden-md">' + (user.name || '') + ' - </span>' +
-          '<span>' + (user.partnerId || '') + '</span>' +
+          '<span class="hidden-md">' + (user.name ? user.name + ' - ' : '') + '</span>' +
+          '<span>' + (user.partnerId || '[Using Custom KS]') + '</span>' +
           '<i class="fa fa-right fa-caret-down"></i>' +
         '</a>' +
         '<ul class="dropdown-menu">' +
@@ -4651,17 +4651,18 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
       return;
     }
     window.kalturaUser = user = creds;
-    window.setUpKalturaClient(creds, function(err, newCreds) {
+
+    let fn = creds.partnerId ? window.setUpKalturaClient : window.setKalturaSession;
+    fn(creds, function(err, newCreds) {
       if (err) {
         clearUser();
         window.jquery('#KalturaSignInModal .alert-danger').show();
-        return;
+        return
       }
       window.jquery('#KalturaSignInModal').modal('hide');
-
       updateViewsForLogin(creds);
       setCookie(creds);
-      if (window.secretService) window.secretService.setSecrets(creds);
+      window.secretService.setSecrets(creds);
     })
   }
 
@@ -4694,16 +4695,21 @@ Modernizr.addTest('ios', /(ipod|iphone|ipad)/i.test(navigator.userAgent));
   };
 
   window.loginByKs = function(user) {
-    window.jquery.ajax({
-      url: '/auth/loginByKs',
-      method: 'POST',
-      data: JSON.stringify({ks: user.ks, partnerId: user.partnerId}),
-      headers: {'Content-Type': 'application/json'},
-    })
-    .done(function(response) {
-      setPartnerChoices(response);
+    if (user.partnerId) {
+      window.jquery.ajax({
+        url: '/auth/loginByKs',
+        method: 'POST',
+        data: JSON.stringify({ks: user.ks, partnerId: user.partnerId}),
+        headers: {'Content-Type': 'application/json'},
+      })
+      .done(function(response) {
+        setPartnerChoices(response);
+        setKalturaUser(user);
+      })
+    } else {
+      setPartnerChoices([]);
       setKalturaUser(user);
-    })
+    }
   }
 
   window.lucybot.startLogin = function() {
@@ -5156,12 +5162,16 @@ var exLink = (function() {
 ;window.KC = null;
 
 function setKalturaSession(creds, cb) {
+  window.KC = window.KC || new KalturaClient(new KalturaConfiguration());
   window.lucybot.tracker('kaltura_session', {
     partnerId: creds.partnerId,
   });
   KC.setKs(creds.ks);
   var filter = {
     objTypeEqual: 1, // KalturaUiConfObjType.PLAYER
+  }
+  if (!creds.partnerId) {
+    return cb(null, creds);
   }
   KalturaUiConfService.listAction(filter).execute(KC, function(success, results) {
     var uiConfs = results.objects || [];
@@ -5232,9 +5242,14 @@ window.setUpKalturaClient = function(creds, cb) {
   }
 }
 
-if (!maybeContinueSession() && window.location.href.indexOf('signIn=true') !== -1) {
-  window.lucybot.startLogin();
-}
+let interval = setInterval(function() {
+  console.log('Waiting for LucyBot...');
+  if (!window.secretService) return;
+  clearInterval(interval);
+  if (!maybeContinueSession() && window.location.href.indexOf('signIn=true') !== -1) {
+    window.lucybot.startLogin();
+  }
+}, 100)
 
 
 ;/*! Lity - v1.6.6 - 2016-04-22
