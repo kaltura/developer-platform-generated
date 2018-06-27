@@ -215,7 +215,7 @@ if (!keepSidebar) {
 </div><!----><!----><!----><div _ngcontent-c0="" class="docs-children ng-star-inserted"><h4 _ngcontent-c0="">Subtopics</h4><ul _ngcontent-c0=""><!----><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/count"><span _ngcontent-c0="">partner.count</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/get"><span _ngcontent-c0="">partner.get</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/getInfo"><span _ngcontent-c0="">partner.getInfo</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/getSecrets"><span _ngcontent-c0="">partner.getSecrets</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/getStatistics"><span _ngcontent-c0="">partner.getStatistics</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/getUsage"><span _ngcontent-c0="">partner.getUsage</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/list"><span _ngcontent-c0="">partner.list</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/listFeatureStatus"><span _ngcontent-c0="">partner.listFeatureStatus</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/listPartnersForUser"><span _ngcontent-c0="">partner.listPartnersForUser</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/register"><span _ngcontent-c0="">partner.register</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/partner/action/update"><span _ngcontent-c0="">partner.update</span></a></li></ul></div></div></div><!----></div></div></side-menu></div></documentation>
       </app>
 
-    <div id="Footer"><div class="footer">
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
 <div id="KalturaFooter" class="w-section footer-section">
   <div class="w-container container footer-container">
     <div class="row">
@@ -285,6 +285,13 @@ if (!keepSidebar) {
   </div>
 </div>
 </div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
 </div>
   <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
 

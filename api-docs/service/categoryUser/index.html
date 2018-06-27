@@ -215,7 +215,7 @@ if (!keepSidebar) {
 </div><!----><!----><!----><div _ngcontent-c0="" class="docs-children ng-star-inserted"><h4 _ngcontent-c0="">Subtopics</h4><ul _ngcontent-c0=""><!----><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/activate"><span _ngcontent-c0="">categoryUser.activate</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/add"><span _ngcontent-c0="">categoryUser.add</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/addFromBulkUpload"><span _ngcontent-c0="">categoryUser.addFromBulkUpload</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/copyFromCategory"><span _ngcontent-c0="">categoryUser.copyFromCategory</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/deactivate"><span _ngcontent-c0="">categoryUser.deactivate</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/delete"><span _ngcontent-c0="">categoryUser.delete</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/get"><span _ngcontent-c0="">categoryUser.get</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/index"><span _ngcontent-c0="">categoryUser.index</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/list"><span _ngcontent-c0="">categoryUser.list</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/categoryUser/action/update"><span _ngcontent-c0="">categoryUser.update</span></a></li></ul></div></div></div><!----></div></div></side-menu></div></documentation>
       </app>
 
-    <div id="Footer"><div class="footer">
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
 <div id="KalturaFooter" class="w-section footer-section">
   <div class="w-container container footer-container">
     <div class="row">
@@ -285,6 +285,13 @@ if (!keepSidebar) {
   </div>
 </div>
 </div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
 </div>
   <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
 

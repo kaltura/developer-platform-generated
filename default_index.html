@@ -205,7 +205,7 @@ if (!keepSidebar) {
 
     <app class="loading"></app>
 
-    <div id="Footer"><div class="footer">
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
 <div id="KalturaFooter" class="w-section footer-section">
   <div class="w-container container footer-container">
     <div class="row">
@@ -275,6 +275,13 @@ if (!keepSidebar) {
   </div>
 </div>
 </div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
 </div>
   <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
 </html>

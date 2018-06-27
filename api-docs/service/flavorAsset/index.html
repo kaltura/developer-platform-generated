@@ -215,7 +215,7 @@ if (!keepSidebar) {
 </div><!----><!----><!----><div _ngcontent-c0="" class="docs-children ng-star-inserted"><h4 _ngcontent-c0="">Subtopics</h4><ul _ngcontent-c0=""><!----><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/add"><span _ngcontent-c0="">flavorAsset.add</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/convert"><span _ngcontent-c0="">flavorAsset.convert</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/delete"><span _ngcontent-c0="">flavorAsset.delete</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/deleteLocalContent"><span _ngcontent-c0="">flavorAsset.deleteLocalContent</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/export"><span _ngcontent-c0="">flavorAsset.export</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/get"><span _ngcontent-c0="">flavorAsset.get</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/getByEntryId"><span _ngcontent-c0="">flavorAsset.getByEntryId</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/getDownloadUrl"><span _ngcontent-c0="">flavorAsset.getDownloadUrl</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/getFlavorAssetsWithParams"><span _ngcontent-c0="">flavorAsset.getFlavorAssetsWithParams</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/getRemotePaths"><span _ngcontent-c0="">flavorAsset.getRemotePaths</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/getUrl"><span _ngcontent-c0="">flavorAsset.getUrl</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/getVolumeMap"><span _ngcontent-c0="">flavorAsset.getVolumeMap</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/getWebPlayableByEntryId"><span _ngcontent-c0="">flavorAsset.getWebPlayableByEntryId</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/list"><span _ngcontent-c0="">flavorAsset.list</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/reconvert"><span _ngcontent-c0="">flavorAsset.reconvert</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/serveAdStitchCmd"><span _ngcontent-c0="">flavorAsset.serveAdStitchCmd</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/setAsSource"><span _ngcontent-c0="">flavorAsset.setAsSource</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/setContent"><span _ngcontent-c0="">flavorAsset.setContent</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/flavorAsset/action/update"><span _ngcontent-c0="">flavorAsset.update</span></a></li></ul></div></div></div><!----></div></div></side-menu></div></documentation>
       </app>
 
-    <div id="Footer"><div class="footer">
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
 <div id="KalturaFooter" class="w-section footer-section">
   <div class="w-container container footer-container">
     <div class="row">
@@ -285,6 +285,13 @@ if (!keepSidebar) {
   </div>
 </div>
 </div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
 </div>
   <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
 

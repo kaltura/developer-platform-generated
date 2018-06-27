@@ -217,7 +217,7 @@ if (!keepSidebar) {
 </div><!----><!----><!----><div _ngcontent-c0="" class="docs-children ng-star-inserted"><h4 _ngcontent-c0="">Subtopics</h4><ul _ngcontent-c0=""><!----><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/add"><span _ngcontent-c0="">user.add</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/addFromBulkUpload"><span _ngcontent-c0="">user.addFromBulkUpload</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/checkLoginDataExists"><span _ngcontent-c0="">user.checkLoginDataExists</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/delete"><span _ngcontent-c0="">user.delete</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/disableLogin"><span _ngcontent-c0="">user.disableLogin</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/enableLogin"><span _ngcontent-c0="">user.enableLogin</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/exportToCsv"><span _ngcontent-c0="">user.exportToCsv</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/get"><span _ngcontent-c0="">user.get</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/getByLoginId"><span _ngcontent-c0="">user.getByLoginId</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/index"><span _ngcontent-c0="">user.index</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/list"><span _ngcontent-c0="">user.list</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/login"><span _ngcontent-c0="">user.login</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/loginByKs"><span _ngcontent-c0="">user.loginByKs</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/loginByLoginId"><span _ngcontent-c0="">user.loginByLoginId</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/notifyBan"><span _ngcontent-c0="">user.notifyBan</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/resetPassword"><span _ngcontent-c0="">user.resetPassword</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/serveCsv"><span _ngcontent-c0="">user.serveCsv</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/setInitialPassword"><span _ngcontent-c0="">user.setInitialPassword</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/update"><span _ngcontent-c0="">user.update</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/user/action/updateLoginData"><span _ngcontent-c0="">user.updateLoginData</span></a></li></ul></div></div></div><!----></div></div></side-menu></div></documentation>
       </app>
 
-    <div id="Footer"><div class="footer">
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
 <div id="KalturaFooter" class="w-section footer-section">
   <div class="w-container container footer-container">
     <div class="row">
@@ -287,6 +287,13 @@ if (!keepSidebar) {
   </div>
 </div>
 </div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
 </div>
   <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
 

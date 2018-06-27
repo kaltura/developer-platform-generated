@@ -215,7 +215,7 @@ if (!keepSidebar) {
 </div><!----><!----><!----><div _ngcontent-c0="" class="docs-children ng-star-inserted"><h4 _ngcontent-c0="">Subtopics</h4><ul _ngcontent-c0=""><!----><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/add"><span _ngcontent-c0="">metadataProfile.add</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/addFromFile"><span _ngcontent-c0="">metadataProfile.addFromFile</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/delete"><span _ngcontent-c0="">metadataProfile.delete</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/get"><span _ngcontent-c0="">metadataProfile.get</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/list"><span _ngcontent-c0="">metadataProfile.list</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/listFields"><span _ngcontent-c0="">metadataProfile.listFields</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/revert"><span _ngcontent-c0="">metadataProfile.revert</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/serve"><span _ngcontent-c0="">metadataProfile.serve</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/serveView"><span _ngcontent-c0="">metadataProfile.serveView</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/update"><span _ngcontent-c0="">metadataProfile.update</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/updateDefinitionFromFile"><span _ngcontent-c0="">metadataProfile.updateDefinitionFromFile</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/updateTransformationFromFile"><span _ngcontent-c0="">metadataProfile.updateTransformationFromFile</span></a></li><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/api-docs/service/metadataProfile/action/updateViewsFromFile"><span _ngcontent-c0="">metadataProfile.updateViewsFromFile</span></a></li></ul></div></div></div><!----></div></div></side-menu></div></documentation>
       </app>
 
-    <div id="Footer"><div class="footer">
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
 <div id="KalturaFooter" class="w-section footer-section">
   <div class="w-container container footer-container">
     <div class="row">
@@ -285,6 +285,13 @@ if (!keepSidebar) {
   </div>
 </div>
 </div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
 </div>
   <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
 
