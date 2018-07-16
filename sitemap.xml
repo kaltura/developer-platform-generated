@@ -1530,7 +1530,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchCategoryOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchCategoryOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchCategoryParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchCategoryQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchCategoryResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchCategoryResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchCategoryUserItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1545,7 +1544,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchEntryOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchEntryOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchEntryParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchEntryQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchEntryResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchEntryResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchHighlight</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1568,7 +1566,6 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchUserOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchUserOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchUserParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchUserQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchUserResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaESearchUserResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaEdgeServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5506,7 +5503,6 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchCategoryOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchCategoryOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchCategoryParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchCategoryQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchCategoryResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchCategoryResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchCategoryUserItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5521,7 +5517,6 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchEntryOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchEntryOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchEntryParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchEntryQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchEntryResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchEntryResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchHighlight</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5544,7 +5539,6 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchUserOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchUserOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchUserParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchUserQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchUserResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaESearchUserResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaEdgeServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7776,7 +7770,6 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchCategoryOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchCategoryOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchCategoryParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchCategoryQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchCategoryResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchCategoryResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchCategoryUserItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7791,7 +7784,6 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchEntryOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchEntryOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchEntryParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchEntryQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchEntryResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchEntryResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchHighlight</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7814,7 +7806,6 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchUserOperator</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchUserOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchUserParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchUserQuery</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchUserResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaESearchUserResult</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaEdgeServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
