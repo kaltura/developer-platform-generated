@@ -7116,6 +7116,12 @@ var SchemaLabelComponent = /** @class */ (function () {
                 return s.$ref ? Object(__WEBPACK_IMPORTED_MODULE_1__util__["h" /* resolveReference */])(s.$ref, _this.refBase) : s;
             });
         }
+        if (this.schema.anyOf) {
+            this.subtypeChoices = this.schema.anyOf.map(function (s) {
+                return s.$ref ? Object(__WEBPACK_IMPORTED_MODULE_1__util__["h" /* resolveReference */])(s.$ref, _this.refBase) : s;
+            });
+            this.subtypeChoices.unshift(this.schema);
+        }
         this.typeChange.emit(this.type);
         this.schemaChange.emit(this.schema);
     };
