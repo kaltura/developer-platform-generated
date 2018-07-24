@@ -7111,16 +7111,11 @@ var SchemaLabelComponent = /** @class */ (function () {
         else {
             this.type = type;
         }
-        if (this.schema.oneOf) {
-            this.subtypeChoices = this.schema.oneOf.map(function (s) {
+        if (this.schema.oneOf || this.schema.anyOf) {
+            var choices = (this.schema.oneOf || []).concat(this.schema.anyOf || []);
+            this.subtypeChoices = choices.map(function (s) {
                 return s.$ref ? Object(__WEBPACK_IMPORTED_MODULE_1__util__["h" /* resolveReference */])(s.$ref, _this.refBase) : s;
             });
-        }
-        if (this.schema.anyOf) {
-            this.subtypeChoices = this.schema.anyOf.map(function (s) {
-                return s.$ref ? Object(__WEBPACK_IMPORTED_MODULE_1__util__["h" /* resolveReference */])(s.$ref, _this.refBase) : s;
-            });
-            this.subtypeChoices.unshift(this.schema);
         }
         this.typeChange.emit(this.type);
         this.schemaChange.emit(this.schema);
