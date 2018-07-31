@@ -9943,12 +9943,6 @@ var getDefName = function getDefName(ref) {
   return ref.substring('#/definitions/'.length);
 };
 
-var maybeResolveRef = function maybeResolveRef(schema, swagger) {
-  if (!schema.$ref) return schema;
-  var name = getDefName(schema.$ref);
-  return swagger.definitions[name];
-};
-
 CodeTemplate.prototype.render = function (input) {
   var self = this;
   if (input.path) {
@@ -9973,11 +9967,11 @@ CodeTemplate.prototype.setOperationInputFields = function (input) {
   input.operation = this.swagger.paths[input.path][input.method];
   var responseSchema = input.operation.responses[200].schema;
   if (responseSchema) {
-    if (responseSchema.$ref) responseSchema = this.swagger.definitions[getDefName(responseSchema.$ref)];
+    responseSchema = this.maybeResolveRef(responseSchema);
     input.responseType = this.rewriteType(responseSchema.title || responseSchema.type);
     if (responseSchema.title && responseSchema.title.match(/ListResponse$/)) {
       var items = responseSchema.properties.objects.items;
-      if (items.$ref) items = this.swagger.definitions[getDefName(items.$ref)];
+      items = this.maybeResolveRef(items);
       input.responseListType = this.rewriteType(items.title || items.type);
     }
   }
@@ -10013,7 +10007,7 @@ CodeTemplate.prototype.gatherAnswersForPost = function (input) {
   var _this2 = this;
 
   var findSubschema = function findSubschema(schema, key) {
-    if (schema.$ref) schema = _this2.swagger.definitions[getDefName(schema.$ref)];
+    schema = _this2.maybeResolveRef(schema);
     if (schema.properties && schema.properties[key]) return schema.properties[key];
     var alternatives = (schema.allOf || []).concat(schema.oneOf || []);
     for (var i = 0; i < alternatives.length; ++i) {
@@ -10031,7 +10025,7 @@ CodeTemplate.prototype.gatherAnswersForPost = function (input) {
     }
   };
   var addAnswer = function addAnswer(key, answer, schema) {
-    if (schema.$ref) schema = _this2.swagger.definitions[getDefName(schema.$ref)];
+    schema = _this2.maybeResolveRef(schema);
     addSchema(schema);
     if (Array.isArray(answer)) {
       answer.forEach(function (ans, idx) {
@@ -10062,7 +10056,7 @@ CodeTemplate.prototype.gatherAnswersForPost = function (input) {
 
   input.operation['x-kaltura-parameters'].forEach(function (name) {
     var schema = bodyParam.schema.properties[name];
-    if (schema.$ref) schema = _this2.swagger.definitions[getDefName(schema.$ref)];
+    schema = _this2.maybeResolveRef(schema);
     var param = { name: name, schema: schema };
     input.parameters.push(param);
     addSchema(schema);
@@ -10144,7 +10138,7 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
   }
 
   var findSubschema = function findSubschema(subParamName, schema) {
-    if (schema.$ref) schema = _this5.swagger.definitions[schema.$ref.substring('#/definitions/'.length)];
+    schema = _this5.maybeResolveRef(schema);
     var propName = subParamName.split(/\[/).map(function (s) {
       return s.replace(/\]/g, '');
     }).pop();
@@ -10199,8 +10193,9 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
       return arraySubsetterNames.lastIndexOf(n) === idx;
     });
     subsetterStatements = subsetterStatements.concat(arraySubsetterNames.map(function (arrayName) {
-      var schema = param.schema.properties[arrayName];
-      var itemSchema = maybeResolveRef(schema.items, self.swagger);
+      var schema = _this5.getPropertySchema(param.schema, arrayName);
+      if (!schema) throw new Error("Schema not found for property " + arrayName + " in " + param.schema.title);
+      var itemSchema = _this5.maybeResolveRef(schema.items);
       var subparam = { name: param.name + '[' + arrayName + ']', schema: schema };
       var indices = Object.keys(answers).map(function (n) {
         return n.match(arraySubparamRegexp);
@@ -10236,11 +10231,7 @@ CodeTemplate.prototype.lvalue = function (param) {
     enumType = param.schema.title;
   }
 
-  if (param.schema.$ref) {
-    var name = param.schema.$ref.substring('#/definitions/'.length);
-    param.schema = this.swagger.definitions[name];
-    param.schema.title = name;
-  }
+  param.schema = this.maybeResolveRef(param.schema);
 
   var lvalue = this.statementPrefix;
   if (isChild) {
@@ -10264,6 +10255,45 @@ CodeTemplate.prototype.lvalue = function (param) {
     lvalue += EJS.render(self.declarationPrefix, { type: type }) + self.rewriteVariable(param.name);
   }
   return lvalue;
+};
+
+CodeTemplate.prototype.getPropertySchema = function (schema, prop) {
+  schema = this.maybeResolveRef(schema);
+  if (schema.properties && schema.properties[prop]) {
+    return schema.properties[prop];
+  }
+  var subs = (schema.allOf || []).concat(schema.anyOf || []);
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = subs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var sub = _step.value;
+
+      var propSchema = this.getPropertySchema(sub, prop);
+      if (propSchema) return propSchema;
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+};
+
+CodeTemplate.prototype.maybeResolveRef = function (schema) {
+  if (!schema.$ref) return schema;
+  var name = schema.$ref.substring('#/definitions/'.length);
+  return this.swagger.definitions[name];
 };
 
 CodeTemplate.prototype.rvalue = function (param, answers, parent) {
