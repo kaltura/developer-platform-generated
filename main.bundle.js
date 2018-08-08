@@ -9634,7 +9634,6 @@ var getDefaultValueForType = function getDefaultValueForType(type) {
 
 var isPrimitiveSchema = function isPrimitiveSchema(schema) {
   if (schema.type === 'object' || schema.type === 'array') return false;
-  if (schema.items || schema.properties) return false;
   return true;
 };
 
@@ -9861,11 +9860,12 @@ var language_opts = {
     rewriteAction: function rewriteAction(s) {
       return capitalize(replaceActionSuffix(s));
     },
-    rewriteType: function rewriteType(s) {
+    rewriteType: function rewriteType(s, arrayType) {
       s = removeKalturaPrefix(s);
       if (s === 'string') return 'String';
       if (s === 'integer') return 'int';
       if (s === 'file') return 'File';
+      if (s === 'array') return 'ArrayList<' + removeKalturaPrefix(arrayType) + '>';
       return s;
     },
     rewriteEnumValue: function rewriteEnumValue(type, name, value) {
@@ -9979,14 +9979,14 @@ CodeTemplate.prototype.setOperationInputFields = function (input) {
   this.currentInput = input;
   input.path = pathParts[1];
   input.operation = this.swagger.paths[input.path][input.method];
-  var responseSchema = input.operation.responses[200].schema;
+  var responseSchema = this.maybeResolveRef(input.operation.responses[200].schema);
   if (responseSchema) {
-    responseSchema = this.maybeResolveRef(responseSchema);
-    input.responseType = this.rewriteType(responseSchema.title || responseSchema.type);
+    var items = this.maybeResolveRef(responseSchema.items);
+    input.responseType = this.rewriteType(responseSchema.title || responseSchema.type, items ? items.title || items.type : null);
     if (responseSchema.title && responseSchema.title.match(/ListResponse$/)) {
-      var items = responseSchema.properties.objects.items;
-      items = this.maybeResolveRef(items);
-      input.responseListType = this.rewriteType(items.title || items.type);
+      var _items = responseSchema.properties.objects.items;
+      _items = this.maybeResolveRef(_items);
+      input.responseListType = this.rewriteType(_items.title || _items.type);
     }
   }
   input.actionID = pathParts[3];
@@ -10043,7 +10043,7 @@ CodeTemplate.prototype.gatherAnswersForPost = function (input) {
     addSchema(schema);
     if (Array.isArray(answer)) {
       answer.forEach(function (ans, idx) {
-        addAnswer(key + '[' + idx + ']', ans, schema.items);
+        addAnswer(key + '[' + idx + ']', ans, _this2.maybeResolveRef(schema.items));
       });
     } else if (answer !== null && (typeof answer === 'undefined' ? 'undefined' : _typeof(answer)) === 'object') {
       if (answer.objectType) {
@@ -10130,8 +10130,9 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
   var _this5 = this;
 
   var self = this;
+  var schema = this.maybeResolveRef(param.schema);
   var subtype = answers[param.name + '[objectType]'];
-  if (subtype && subtype !== param.schema.title) {
+  if (subtype && subtype !== schema.title) {
     var newParam = {
       name: param.name,
       schema: this.swagger.definitions[subtype]
@@ -10174,7 +10175,7 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
     }
     return null;
   };
-  if (!isPrimitiveSchema(param.schema)) {
+  if (!isPrimitiveSchema(schema)) {
     var subparamRegexp = '^' + param.name.replace(/\[/g, '\\[').replace(/\]/g, '\\]');
     subparamRegexp += '\\[(\\w+)\\]';
     var objectSubparamRegexp = new RegExp(subparamRegexp + '\\[objectType\\]$');
@@ -10183,7 +10184,7 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
     var subsetters = Object.keys(answers).filter(function (n) {
       return n !== param.name && n.match(subparamRegexp) && !n.match(/\[objectType\]$/);
     }).map(function (n) {
-      return { name: n, schema: findSubschema(n, param.schema) };
+      return { name: n, schema: findSubschema(n, schema) };
     });
     var objSubsetters = Object.keys(answers).filter(function (n) {
       return n.match(objectSubparamRegexp);
@@ -10207,10 +10208,10 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
       return arraySubsetterNames.lastIndexOf(n) === idx;
     });
     subsetterStatements = subsetterStatements.concat(arraySubsetterNames.map(function (arrayName) {
-      var schema = _this5.getPropertySchema(param.schema, arrayName);
-      if (!schema) throw new Error("Schema not found for property " + arrayName + " in " + param.schema.title);
-      var itemSchema = _this5.maybeResolveRef(schema.items);
-      var subparam = { name: param.name + '[' + arrayName + ']', schema: schema };
+      var subschema = _this5.getPropertySchema(schema, arrayName);
+      if (!subschema) throw new Error("Schema not found for property " + arrayName + " in " + schema.title);
+      var itemSchema = _this5.maybeResolveRef(subschema.items);
+      var subparam = { name: param.name + '[' + arrayName + ']', schema: subschema };
       var indices = Object.keys(answers).map(function (n) {
         return n.match(arraySubparamRegexp);
       }).filter(function (match) {
@@ -10221,7 +10222,9 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
       indices = indices.filter(function (i, idx) {
         return indices.lastIndexOf(i) === idx;
       });
-      var statement = self.assign(self.lvalue(subparam), self.emptyArray(self.rewriteType(itemSchema.title), indices.length)) + self.statementSuffix;
+      var subItemSchema = _this5.maybeResolveRef(itemSchema.items);
+      var arrType = self.rewriteType(itemSchema.title, subItemSchema ? subItemSchema.title || subItemSchema.type : null);
+      var statement = self.assign(self.lvalue(subparam), self.emptyArray(arrType, indices.length)) + self.statementSuffix;
       var itemStatements = indices.map(function (index) {
         return {
           schema: itemSchema,
@@ -10240,12 +10243,11 @@ CodeTemplate.prototype.assignment = function (param, answers, parent) {
 CodeTemplate.prototype.lvalue = function (param) {
   var self = this;
   var isChild = param.name.indexOf('[') !== -1;
-  var enumType = param.schema['x-enumType'];
-  if (param.schema.oneOf && param.schema.oneOf[0].enum) {
-    enumType = param.schema.title;
+  var schema = this.maybeResolveRef(param.schema);
+  var enumType = schema['x-enumType'];
+  if (schema.oneOf && schema.oneOf[0].enum) {
+    enumType = schema.title;
   }
-
-  param.schema = this.maybeResolveRef(param.schema);
 
   var lvalue = this.statementPrefix;
   if (isChild) {
@@ -10264,8 +10266,9 @@ CodeTemplate.prototype.lvalue = function (param) {
       }
     }).join('');
   } else {
-    var type = enumType || (isPrimitiveSchema(param.schema) ? param.schema.type : param.schema.title) || 'UnknownType';
-    type = this.rewriteType(type);
+    var type = enumType || (schema.type === 'object' ? schema.title : schema.type) || 'UnknownType';
+    var items = this.maybeResolveRef(schema.items);
+    type = this.rewriteType(type, items && (items.title || items.type));
     lvalue += EJS.render(self.declarationPrefix, { type: type }) + self.rewriteVariable(param.name);
   }
   return lvalue;
@@ -10305,25 +10308,27 @@ CodeTemplate.prototype.getPropertySchema = function (schema, prop) {
 };
 
 CodeTemplate.prototype.maybeResolveRef = function (schema) {
-  if (!schema.$ref) return schema;
+  if (!schema || !schema.$ref) return schema;
   var name = schema.$ref.substring('#/definitions/'.length);
   return this.swagger.definitions[name];
 };
 
 CodeTemplate.prototype.rvalue = function (param, answers, parent) {
-  if (param.schema.type === 'file' && this.fileCode) return this.fileCode();
+  var schema = this.maybeResolveRef(param.schema);
+  var itemSchema = this.maybeResolveRef(schema.items);
+  if (schema.type === 'file' && this.fileCode) return this.fileCode();
   var self = this;
-  var enm = param.schema.enum;
-  var enumLabels = param.schema['x-enumLabels'];
-  var enumType = param.schema['x-enumType'];
-  if (param.schema.oneOf && param.schema.oneOf[0].enum) {
-    enm = param.schema.oneOf.map(function (sub) {
+  var enm = schema.enum;
+  var enumLabels = schema['x-enumLabels'];
+  var enumType = schema['x-enumType'];
+  if (schema.oneOf && schema.oneOf[0].enum) {
+    enm = schema.oneOf.map(function (sub) {
       return sub.enum[0];
     });
-    enumLabels = param.schema.oneOf.map(function (sub) {
+    enumLabels = schema.oneOf.map(function (sub) {
       return sub.title;
     });
-    enumType = param.schema.title;
+    enumType = schema.title;
   } else if (param.name.match(/\[orderBy\]/) && parent) {
     enumType = parent.schema.title.replace(/Filter$/, 'OrderBy');
     var enumDef = this.swagger['x-enums'][enumType];
@@ -10338,17 +10343,19 @@ CodeTemplate.prototype.rvalue = function (param, answers, parent) {
   }
   var answer = answers[param.name];
   if (answer === undefined) {
-    answer = getDefaultValueForType(param.schema.type);
+    answer = getDefaultValueForType(schema.type);
   }
-  if (param.schema['x-inputType'] === 'password' && answer) {
+  if (schema['x-inputType'] === 'password' && answer) {
     var pass = '';
     for (var i = 0; i < answer.length; ++i) {
       pass += '*';
     }answer = pass;
   }
 
-  if (!isPrimitiveSchema(param.schema)) {
-    return self.objPrefix + self.rewriteType(param.schema.title) + self.objSuffix;
+  if (schema.type === 'object') {
+    return self.objPrefix + self.rewriteType(schema.title, itemSchema && (itemSchema.title || itemSchema.type)) + self.objSuffix;
+  } else if (schema.type === 'array') {
+    return self.emptyArray(this.rewriteType(itemSchema.title || itemSchema.type), 0);
   } else {
     if (enm && enumLabels) {
       var enumName = enumLabels[enm.indexOf(answer)];
