@@ -9598,7 +9598,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var EJS = window.ejs;
 
-var RESERVED_NAMES = ['list', 'clone', 'delete'];
+var RESERVED_NAMES = {
+  javascript: ['delete'],
+  php: ['list', 'clone']
+};
+
 var TMPL_DIR = __dirname + '/templates';
 
 var replaceActionSuffix = function replaceActionSuffix(str) {
@@ -9634,8 +9638,8 @@ var isPrimitiveSchema = function isPrimitiveSchema(schema) {
   return true;
 };
 
-var addActionSuffixIfReserved = function addActionSuffixIfReserved(action) {
-  if (RESERVED_NAMES.indexOf(action) !== -1) action += 'Action';
+var addActionSuffixIfReserved = function addActionSuffixIfReserved(lang, action) {
+  if (RESERVED_NAMES[lang].indexOf(action) !== -1) action += 'Action';
   return action;
 };
 
@@ -9687,7 +9691,9 @@ var language_opts = {
     statementSuffix: ';',
     objPrefix: 'new ',
     objSuffix: '()',
-    rewriteAction: addActionSuffixIfReserved,
+    rewriteAction: function rewriteAction(s) {
+      return addActionSuffixIfReserved('javascript', s);
+    },
     fileCode: function fileCode() {
       return 'new File("/path/to/file")';
     }
@@ -9701,7 +9707,9 @@ var language_opts = {
     rewriteType: function rewriteType(s) {
       if (s.indexOf('Kaltura') === 0) return '{objectType: "' + s + '"}';
     },
-    rewriteAction: addActionSuffixIfReserved,
+    rewriteAction: function rewriteAction(s) {
+      return addActionSuffixIfReserved('javascript', s);
+    },
     rewriteService: function rewriteService(s) {
       return 'Kaltura' + capitalize(s) + 'Service';
     },
@@ -9716,7 +9724,9 @@ var language_opts = {
     objPrefix: 'new kaltura.objects.',
     objSuffix: '()',
     enumPrefix: 'kaltura.enums.',
-    rewriteAction: addActionSuffixIfReserved,
+    rewriteAction: function rewriteAction(s) {
+      return addActionSuffixIfReserved('javascript', s);
+    },
     rewriteEnum: removeKalturaPrefix,
     rewriteType: removeKalturaPrefix,
     fileCode: function fileCode() {
@@ -9758,7 +9768,9 @@ var language_opts = {
     objPrefix: 'new ',
     objSuffix: '()',
     enumAccessor: '::',
-    rewriteAction: addActionSuffixIfReserved,
+    rewriteAction: function rewriteAction(s) {
+      return addActionSuffixIfReserved('php', s);
+    },
     rewriteVariable: function rewriteVariable(s) {
       return '$' + s;
     },
@@ -9773,7 +9785,9 @@ var language_opts = {
     objPrefix: 'new ',
     objSuffix: '()',
     enumAccessor: '::',
-    rewriteAction: addActionSuffixIfReserved,
+    rewriteAction: function rewriteAction(s) {
+      return addActionSuffixIfReserved('php', s);
+    },
     rewriteVariable: function rewriteVariable(s) {
       return '$' + s;
     },
