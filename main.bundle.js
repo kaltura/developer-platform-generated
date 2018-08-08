@@ -9599,8 +9599,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var EJS = window.ejs;
 
 var RESERVED_NAMES = {
-  javascript: ['delete'],
-  php: ['list', 'clone']
+  javascript: ['delete', 'list', 'clone', 'export'],
+  php: ['list', 'clone', 'goto']
 };
 
 var TMPL_DIR = __dirname + '/templates';
