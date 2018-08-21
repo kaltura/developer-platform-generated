@@ -8122,11 +8122,15 @@ var OpenAPIService = /** @class */ (function () {
             }
             else if (parameter.in === 'body') {
                 contentType = parameter.contentType || consumes[0];
-                req.body = answer;
-                if (contentType === 'application/json')
-                    req.body = JSON.parse(answer);
-                else
-                    req.body = answer;
+                if (req.body) {
+                    if (typeof answer === 'string' && typeof req.body === 'object') {
+                        answer = JSON.parse(answer);
+                    }
+                    req.body = Object.assign({}, req.body, answer);
+                }
+                else {
+                    req.body = contentType === 'application/json' ? JSON.parse(answer) : answer;
+                }
             }
         };
         var extendBody = {};
