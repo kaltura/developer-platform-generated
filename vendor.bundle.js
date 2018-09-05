@@ -59160,7 +59160,7 @@ var AjaxSubscriber = /*@__PURE__*/ /*@__PURE__*/exports.AjaxSubscriber = functio
         switch (contentType) {
             case 'application/x-www-form-urlencoded':
                 return Object.keys(body).map(function (key) {
-                    return encodeURI(key) + "=" + encodeURI(body[key]);
+                    return encodeURIComponent(key) + "=" + encodeURIComponent(body[key]);
                 }).join('&');
             case 'application/json':
                 return JSON.stringify(body);
@@ -78661,8 +78661,8 @@ var AsyncAction = /*@__PURE__*/ /*@__PURE__*/exports.AsyncAction = function (_su
     function AsyncAction(scheduler, work) {
         _super.call(this, scheduler, work);
         this.scheduler = scheduler;
-        this.work = work;
         this.pending = false;
+        this.work = work;
     }
     AsyncAction.prototype.schedule = function (state, delay) {
         if (delay === void 0) {

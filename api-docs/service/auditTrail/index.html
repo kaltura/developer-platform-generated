@@ -213,22 +213,100 @@ if (!keepSidebar) {
     <app class="loading" ng-version="5.2.11">
       <router-outlet></router-outlet><markdown>
         <div class="container">
-          <div class="markdown-container" innerhtml="<h1 id=&quot;404-page-not-found&quot;>404: Page not found</h1>
-<p>Sorry, but the page you requested doesn&amp;#39;t exist.</p>
-<p>Try one of these pages:</p>
-<ul>
-<li><a href=&quot;/api-docs&quot;>Documentation</a></li>
-<li><a href=&quot;/console&quot;>API Console</a></li>
-<li><a href=&quot;/workflows&quot;>Interactive Workflows</a></li>
-</ul>
-"><h1 id="404-page-not-found">404: Page not found</h1>
-<p>Sorry, but the page you requested doesn't exist.</p>
-<p>Try one of these pages:</p>
-<ul>
-<li><a href="/api-docs">Documentation</a></li>
-<li><a href="/console">API Console</a></li>
-<li><a href="/workflows">Interactive Workflows</a></li>
-</ul>
+          <div class="markdown-container" innerhtml="<style>
+  @media(max-width: 1200px) {
+    app {
+      min-height: 300px;
+    }
+  }
+  @media(max-width: 768px) {
+    app {
+      min-height: auto !important;
+    }
+  }
+  video {
+    position: absolute;
+    width: 100%;
+    min-width: 800px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+    filter: brightness(50%);
+    margin-top: 65px;
+  }
+
+  #Title404 {
+    margin-top: 140px;
+    color: #fff;
+  }
+  #Title404 h1 {
+    color: #fff;
+    font-style: italic;
+  }
+  #Title404 .btn {
+    border: 1px solid #fff;
+    color: #fff;
+  }
+</style>
+
+<p><div id=&quot;Title404&quot; class=&quot;text-center&quot;>
+  <h1>The page you are looking for doesn&amp;#39;t exist</h1>
+  <a href=&quot;/&quot; class=&quot;btn btn-lg btn-link&quot;>Visit our Homepage</a>
+</div></p>
+<video preload=&quot;auto&quot; autoplay=&quot;autoplay&quot; loop=&quot;true&quot; playsinline=&quot;playsinline&quot; muted=&quot;muted&quot;>
+
+        <source src=&quot;https://cfvod.kaltura.com/pd/p/2421271/sp/242127100/serveFlavor/entryId/1_tb5x7mg4/v/1/flavorId/1_23s8qu3n/name/a.mp4&quot; type=&quot;video/mp4&quot;>
+
+</video>
+"><style>
+  @media(max-width: 1200px) {
+    app {
+      min-height: 300px;
+    }
+  }
+  @media(max-width: 768px) {
+    app {
+      min-height: auto !important;
+    }
+  }
+  video {
+    position: absolute;
+    width: 100%;
+    min-width: 800px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+    filter: brightness(50%);
+    margin-top: 65px;
+  }
+
+  #Title404 {
+    margin-top: 140px;
+    color: #fff;
+  }
+  #Title404 h1 {
+    color: #fff;
+    font-style: italic;
+  }
+  #Title404 .btn {
+    border: 1px solid #fff;
+    color: #fff;
+  }
+</style>
+
+<p></p><div id="Title404" class="text-center">
+  <h1>The page you are looking for doesn't exist</h1>
+  <a href="/" class="btn btn-lg btn-link">Visit our Homepage</a>
+</div><p></p>
+<video preload="auto" autoplay="autoplay" loop="true" playsinline="playsinline" muted="muted">
+
+        <source src="https://cfvod.kaltura.com/pd/p/2421271/sp/242127100/serveFlavor/entryId/1_tb5x7mg4/v/1/flavorId/1_23s8qu3n/name/a.mp4" type="video/mp4">
+
+</video>
 </div>
       </div></markdown>
       </app>

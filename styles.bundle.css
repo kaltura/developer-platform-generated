@@ -6048,7 +6048,7 @@ body.spaced-for-kaltura-nav {
   font-size: 20px;
   color: rgb(33, 37, 41);
 }
-@media (max-width: 380px) {
+@media (max-width: 402px) {
   #KalturaNav .brand-subtitle {
     display: none;
   }
