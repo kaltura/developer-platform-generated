@@ -9952,7 +9952,7 @@ var language_opts = {
       return pieces[0] + '.' + name;
     },
     fileCode: function fileCode() {
-      return "open('/path/to/file', 'r')";
+      return "open('/path/to/file', 'rb')";
     }
   }
 };
