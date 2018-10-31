@@ -10040,7 +10040,7 @@ CodeTemplate.prototype.setOperationInputFields = function (input) {
   if (opType === 'post') {
     this.gatherAnswersForPost(input);
   } else {
-    this.gatherAnswersForGet(input);
+    this.gatherAnswersForGetOrFile(input);
   }
 };
 
@@ -10115,7 +10115,7 @@ CodeTemplate.prototype.gatherAnswersForPost = function (input) {
   });
 };
 
-CodeTemplate.prototype.gatherAnswersForGet = function (input) {
+CodeTemplate.prototype.gatherAnswersForGetOrFile = function (input) {
   var _this3 = this;
 
   var addedParameters = [];
@@ -10143,6 +10143,28 @@ CodeTemplate.prototype.gatherAnswersForGet = function (input) {
     if (input.answers[p.name] === undefined) {
       if (p.schema.default !== undefined) input.answers[p.name] = p.schema.default;else if (p.schema['x-consoleDefault'] !== undefined) input.answers[p.name] = p.schema['x-consoleDefault'];
     }
+  });
+  input.objects = [];
+  input.enums = [];
+  var addSchema = function addSchema(schema) {
+    var enm = schema['x-enumType'];
+    if (enm && input.enums.indexOf(enm) === -1) {
+      input.enums.push(enm);
+    }
+    if (schema.title && input.objects.indexOf(schema.title) === -1) {
+      input.objects.push(schema.title);
+    }
+  };
+  input.parameters.filter(function (p) {
+    return p.schema;
+  }).forEach(function (p) {
+    addSchema(p.schema);
+  });
+  input.enums = input.enums.map(function (e) {
+    return _this3.rewriteEnum(e);
+  });
+  input.objects = input.objects.map(function (e) {
+    return _this3.rewriteType(e);
   });
 };
 
