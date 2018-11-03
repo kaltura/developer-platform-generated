@@ -180,9 +180,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Aug 21 09:36:06 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Fri Nov 2 15:31:20 2018</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
-				<!--tr><td>Last commit: Mon Aug 21 09:36:06 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Fri Nov 2 15:31:20 2018, By <span class="commit-author">Jess Portnoy</span></td></tr-->
 			
 				<!-- 
 				
@@ -193,13 +193,13 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Jess Portnoy (7 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+					<td>Jess Portnoy (12 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
 				
 				<tr>
-					<td>Zohar Babin (3 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+					<td>Zohar Babin (4 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -212,561 +212,660 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>Building video experiences consists of ingesting media files, playing back videos, and reviewing usage and engagement analytics. In between, there is a world of nuances required for your unique use-case and application. Kaltura VPaaS is built on the principles of atomic services, SDKs, and tools that allow you full control and flexibility over every element and process in your media’s lifecycle.</p>
+    		<h1 id="getting-started">Getting Started</h1>
 
-<p>The guides on this site, together with the <a href="https://developer.kaltura.com">Kaltura Developer Tools</a>, enable you to get started building your own video experiences and workflows, and provide you with everything you need to further explore the platform’s capabilities and to become an expert.</p>
+<p>This guide will enable you to quickly and easily get started with building your own video experiences and exploring the platform’s basic capabilities.</p>
 
-<p>To get started, let’s review the foundational building blocks of a video experience.</p>
+<h2 id="before-you-begin">Before You begin</h2>
 
-<h2 id="before-you-begin">Before You Begin</h2>
+<p>You will need your Kaltura account credentials. If you don’t have them yet, start a <a href="https://vpaas.kaltura.com/register">free trial</a>.<br />
+If you’ve signed in, you can click on your account info at the top right of this page to view your credentials.<br />
+You can also find them at any time in the KMC’s (Kaltura Management Console) by clicking the <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">Integration Settings tab</a>.</p>
 
-<p>To access the Kaltura API, you will need the following:</p>
+<p>The simplest way to make requests to the Kaltura REST API is by using one of the <a href="https://developer.kaltura.com/api-docs/Client_Libraries/">Kaltura API Client Libraries</a>. We don’t recommend making REST API requests directly, as your URL requests might get really long and tricky.</p>
 
-<ul>
-  <li>A Kaltura publisher account - To obtain a Kaltura account, start a <a href="http://corp.kaltura.com/free-trial">free trial</a>, <a href="http://corp.kaltura.com/company/contact-us">contact us</a>, or <a href="https://github.com/kaltura/platform-install-packages">download Kaltura CE</a>.</li>
-  <li>Your Kaltura API publisher credentials, which are available through the <a href="http://www.kaltura.com/index.php/kmc/kmc4#account/integration">KMC Integration Settings</a>.</li>
-</ul>
+<p>Once you’ve downloaded the client library, you’ll need to import the library and instantiate a KalturaClient object with which you’ll make calls to the API. <br />
+Setup looks like this:</p>
 
-<h2 id="your-kaltura-account-id-partnerid">Your Kaltura Account ID (PartnerId)</h2>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">from KalturaClient import *
 
-<p>Your Kaltura Partner ID, or PID, is a unique number that identifies your Kaltura account. Your PID is easily available at any time through the Kaltura Management Console (KMC), by simply clicking the <a href="https://www.kaltura.com/index.php/kmc/kmc#account/overview">Account Settings tab</a>.</p>
+config = KalturaConfiguration()
+client = KalturaClient(config)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">require_once(&apos;lib/KalturaClient.php&apos;);
 
-<blockquote>
-  <p>Remember: You’ll need to pass the PID parameter every time you authenticate with the Kaltura API, or connect with integrated applications.</p>
-</blockquote>
+$config = new KalturaConfiguration();
+$client = new KalturaClient($config);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">const kaltura = require(&apos;kaltura-client&apos;);
+const config = new kaltura.Configuration();
+const client = new kaltura.Client(config);</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">public static Client generateKalturaClient() {
+        Configuration config = new Configuration();
+        Client client = new Client(config);
+        return client;
+    }</code></pre>
+          </div>
+</div>
 
-<h2 id="creating-a-kaltura-session">Creating a Kaltura Session</h2>
+<h2 id="kaltura-session">Kaltura Session</h2>
 
-<p>The Kaltura API is <a href="https://en.wikipedia.org/wiki/Stateless_protocol">stateless</a>, which means that every request made to the Kaltura API requires an authenticated session string to be passed along with your request. This is the Kaltura Session, which identifies the Kaltura account and user for which the executed API action is to be executed. The Kaltura Session can also specify various permissions and configurations, such as setting the role of the user dynamically, setting the time duration for the session, and more.</p>
+<p>Because the Kaltura API is stateless, every request made to the API requires an authentication session to be passed along with the request. With the client library, it’s easy to set it once using the <a href="https://developer.kaltura.com/console/service/session/action/start"><code class="highlighter-rouge">session.start</code></a> API action, like this:</p>
 
-<blockquote>
-  <p>Remember: For every API call you make, you will need to provide a Kaltura Session.</p>
-</blockquote>
-
-<p>To learn more about creating a Kaltura Session, see <a href="/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">How to Create a Kaltura Session</a>.</p>
-
-<h2 id="uploading-your-media-files">Uploading Your Media Files</h2>
-
-<p>Media files are uploaded to Kaltura through <a href="https://www.w3.org/wiki/CORS_Enabled">CORS-enabled</a> REST API.  <br />
-You can implement an upload flow by using a Kaltura tested JavaScript widget for web pages, or by implementing direct calls to the API.  <br />
-Alternatively, Kaltura also provides methods for bulk-ingest and import of content. To learn more, read the <a href="/api-docs/Ingest_and_Upload_Media/Bulk-Content-Ingestion.html">Kaltura Bulk Content Ingestion API article</a>.</p>
-
-<blockquote>
-  <p>Note: Kaltura manages all forms of media files, including video, image, and audio files. It even provides APIs to host, deliver and process document files, such as PDF and PPT files, to create rich experiences such as synchronized side-by-side video and presentation slides.</p>
-</blockquote>
-
-<p>Which method you chose to implement depends on your application needs. The following are the two main methods for uploading files.</p>
-
-<h3 id="upload-files-using-javascript-with-the-jquery-upload-widget">Upload Files Using JavaScript with the jQuery Upload Widget</h3>
-
-<p>If your application is HTML5 based, you can implement a reliable and fault-tolerant large-files upload with an automatic pause-and-resume functionality, by including the Kaltura Upload JavaScript widget. The <a href="https://github.com/kaltura/chunked-file-upload-jquery">Kaltura Upload JavaScript widget</a> provides a simple JavaScript library that abstracts the use of the Kaltura API and handles the files locally (such as file chunking and pause-resume).</p>
-
-<p>The <a href="https://github.com/kaltura/chunked-file-upload-jquery">Kaltura Upload jQuery project</a> can be used as reference or basis to implement your own reliable chunked file upload to Kaltura.</p>
-
-<p>For a quick view of how this method works:</p>
-
-<ol>
-  <li>Download the project to your localhost, edit the index.php file, and switch the value of <code class="highlighter-rouge">$the_user_ks_to_use</code> to a valid Kaltura Session.</li>
-  <li>Next, load the page from your localhost, open your browser console and try uploading a file. You’ll see all the steps printed to the browser console.</li>
-</ol>
-
-<h3 id="upload-files-by-calling-the-api-directly">Upload Files by Calling the API Directly</h3>
-
-<p>Uploading a file directly via the REST API requires knowledge of handling files in your preferred programming language. The <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Kaltura Client Libraries</a> simplify constructing the REST API calls to Kaltura and provide a simple API for a simple file upload request. However, if you’d like to support chunked file upload and pause-resume in your application, you will need to handle the file-chunking according to your preferred programming language standards.</p>
-
-<blockquote>
-  <p>If you’re using Java, to achieve a chunked file upload in your Java application follow the information in <a href="https://github.com/kaltura/Sample-Kaltura-Chunked-Upload-Java">chunked uploads in the Java reference implementation</a>.</p>
-</blockquote>
-
-<p>To learn how to use the file upload API, follow the recipe below:</p>
-
-<div class="recipe-container"><iframe src="https://developer.kaltura.com/recipes/upload/embed#/start" frameborder="0" allowfullscreen="" class="recipe-iframe"></iframe></div>
-
-<h2 id="working-with-media-entries">Working with Media Entries</h2>
-
-<p>Uploading a file creates a <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMediaEntry">KalturaMediaEntry</a> object by calling the <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media/media_add">media.add</a> action. The uploaded file is then assigned to this media entry by calling the <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media/media_addContent">media.addContent</a> action.</p>
-
-<p>Now that you have content in your account, you will want to implement a library search to create galleries or search for media discovery. The main service you will be working with is the <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media">media service</a>.</p>
-
-<h3 id="searching-entries---medialist">Searching Entries - media.list</h3>
-
-<p>Note that you can combine several filter parameters together to further narrow down your search results.</p>
-
-<div class="recipe-container"><iframe src="https://developer.kaltura.com/recipes/video_search/embed#/start" frameborder="0" allowfullscreen="" class="recipe-iframe"></iframe></div>
-
-<h3 id="retrieving-entry-details---mediaget">Retrieving Entry Details - media.get</h3>
-
-<p>To retrieve the data of an object using its ID, call the object’s <code class="highlighter-rouge">get</code> action. With media entries, call the <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media/media_get"><code class="highlighter-rouge">media.get</code></a> action to retrieve the data of a specific entry.</p>
-
-<h3 id="updating-entry-details---mediaupdate">Updating Entry Details - media.update</h3>
-
-<p>To update any object in Kaltura’s VPaaS, use the <code class="highlighter-rouge">update</code> action. <br />
-To update media entries, call the <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media/media_update"><code class="highlighter-rouge">media.update</code></a> action by providing an instance of the <code class="highlighter-rouge">KalturaMediaEntry</code> object.</p>
-
-<p>Additionally, media entries in Kaltura have several related objects, including:</p>
-
-<ul>
-  <li><a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/captionAsset/">captionAsset</a> for caption files</li>
-  <li><a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/thumbAsset/">thumbAsset</a> for editorial thumbnails</li>
-  <li><a href="https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/accessControl">access control</a> profiles to set rules that allow or deny access to the media</li>
-  <li><a href="https://developer.kaltura.com/workflows/Enrich_and_Organize_Metadata/Working_with_metadata">custom metadata</a> profiles to enhance the base fields available in your account</li>
-  <li>And more</li>
-</ul>
-
-<p>We recommend reading these guides and reviewing the <a href="https://developer.kaltura.com/workflows/">Interactive Code Workflows</a> to learn more about the many capabilities of Kaltura’s VPaaS.</p>
-
-<h2 id="dynamic-thumbnails">Dynamic Thumbnails</h2>
-
-<p>An important tool for dealing with video and building video experiences are thumbnails, images that represent your video file. Kaltura provides two methods for creating and handling thumbnails:</p>
-
-<ul>
-  <li>The <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/thumbAsset/">thumbAsset Service</a>: Enables you to edit and manage editorial thumbnail assets that are associated with your video.</li>
-  <li>The <a href="/api-docs/Engage_and_Publish/kaltura-thumbnail-api.html">Dynamic Thumbnail API</a>: Provides a simple API for creating thumbnails on-the-fly (in real-time) from the source media (the file originally uploaded).</li>
-</ul>
-
-<p>The images are generated on-demand (with caching on disk and via CDN) by calling the following URL:</p>
-
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">http://www.kaltura.com/p/{partner_id}/thumbnail/entry_id/{entry_id}/param1/value1/param2/value2/...</code></pre></figure>
-
-<p>The result of the thumbnail API is a JPEG image with one or more of the following features:</p>
-
-<ul>
-  <li>Re-sized, cropped and/or rotated version of the original</li>
-  <li>Taking a specific frame from a the video, in real-time</li>
-  <li>Controlling the compression quality of the created thumbnail image</li>
-  <li>Preparation of Imahe Stripes for animating thumbnails via CSS</li>
-  <li>And more.</li>
-</ul>
-
-<blockquote>
-  <p>Read more about the <a href="/api-docs/Engage_and_Publish/kaltura-thumbnail-api.html">Dynamic Thumbnail API</a> and explore the <a href="https://developer.kaltura.com/workflows/Engage_and_Publish/Animated_Thumbnails_with_CSS_Stripes">Thumbnail Animation with CSS Stripes Code Recipe</a>.</p>
-</blockquote>
-
-<h2 id="embed-and-customize-your-video-player">Embed and Customize Your Video Player</h2>
-
-<p>The example below shows the most basic Player embed. Player embed is a JavaScript code that references your partnerId, entryId and the uiConfId - a Player widget instance ID.</p>
-
-<div class="w-row">
-<div class="w-col w-col-6">
-  <div class="highlighter-rouge" style="padding-right: 10px;"><pre class="highlight" style="margin: 0;background: none;"><code><span class="c1">kWidget</span><span class="c1">.</span><span class="c1">embed</span><span class="c1">({</span>
-    <span class="s1">'targetId'</span><span class="c1">:</span> <span class="s1">'playerDivId'</span><span class="c1">,</span>
-    <span class="s1">'wid'</span><span class="c1">:</span> <span class="s1">'_811441'</span><span class="c1">,</span>
-    <span class="s1">'uiconf_id'</span> <span class="c1">:</span> <span class="s1">34599271</span><span class="c1">,</span>
-    <span class="s1">'entry_id'</span> <span class="c1">:</span> <span class="s1">'0_4kwzg46z'</span><span class="c1">,</span>
-    <span class="s1">'flashvars'</span> <span class="c1">:</span> <span class="c1">{</span>
-        <span class="nx">// Add dynamic configs such as page-specific or user-specific</span>
-    <span class="c1">}</span>
-<span class="c1">});</span>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">ks = client.session.start(
+  &lt;&quot;ADMIN SECRET&quot;&gt;,
+  &lt;&quot;UNIQUE USER ID&quot;&gt;,
+  KalturaSessionType.ADMIN,
+  &lt;PARTNER ID&gt;, 
+  &lt;EXPIRY&gt;, 
+  &quot;appId:appName-appDomain&quot;) 
+client.setKs(ks)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$ks = $client-&gt;session-&gt;start(
+  &lt;&quot;ADMIN SECRET&quot;&gt;,
+  &lt;&quot;UNIQUE USER ID&quot;&gt;,
+  KalturaSessionType::ADMIN,
+  &lt;PARTNER ID&gt;,
+  &lt;EXPIRY&gt;,
+  &quot;appId:appName-appDomain&quot;);
+$client-&gt;setKS($ks);
 </code></pre>
-  </div>
-</div>
-<div class="w-col w-col-6">
-  <div class="w-embed w-iframe w-script media-embed-div">
-      <!-- Outer div defines maximum space the player can take -->
-      <div style="width: 100%;display: inline-block;position: relative;">
-        <!--  inner pusher div defines aspect ratio: in this case 16:9 ~ 56.25% -->
-        <div id="dummy" style="margin-top: 56.25%;"></div>
-        <!--  the player embed target, set to take up available absolute space   -->
-        <script src="https://cdnapisec.kaltura.com/p/811441/sp/81144100/embedIframeJs/uiconf_id/35015842/partner_id/811441" style="margin: 0px 0px 0px 0px;"></script>
-        <div id="kaltura_player_1461185766" style="position:absolute;top:0;left:0;left: 0;right: 0;bottom:0;border:none;"></div>
-      </div>
-      <script>
-      function embedVideo() {
-        if (!window.kWidget) return setTimeout(embedVideo, 100);
-          window.kWidget.embed({
-            "targetId": "kaltura_player_1461185766",
-            "wid": "_811441",
-            "uiconf_id": 35015842,
-            "flashvars": {
-              "streamerType": "auto"
-            },
-            "entry_id": "0_4kwzg46z"
-          });
-      }
-      embedVideo();
-      </script>
-  </div>
-</div>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">kaltura.services.session.start(
+	&lt;&quot;ADMIN SECRET&quot;&gt;,
+	&lt;&quot;UNIQUE USER ID&quot;&gt;,
+	kaltura.enums.SessionType.ADMIN,
+	&lt;PARTNER ID&gt;,
+	&lt;EXPIRY&gt;,
+	&quot;appId:appName-appDomain&quot;)
+.completion((success, ks) =&gt; {
+	client.setKs(ks);
+});
+</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">String session = client.getSessionService().start(
+	&lt;&quot;ADMIN SECRET&quot;&gt;, 
+	&lt;&quot;UNIQUE USER ID&quot;&gt;, 
+	KalturaSessionType.ADMIN, 
+	&lt;PARTNER ID&gt;, 
+	&lt;EXPIRY&gt;, 
+	&quot;appId:appName-appDomain&quot;);
+
+client.setSessionId(session);</code></pre>
+          </div>
 </div>
 
-<p>The Kaltura Player is the building block that enables you to deliver video experiences to your users. The Player abstracts the complexities of delivery of video across devices, browsers and native applications, and provides a cross-platform UI framework, easy branding and customization features and even in-video quizzes, advertising integrations.</p>
+<p><em>Specifying an <code class="highlighter-rouge">app id</code> which contains the name and domain of the app allows you to get specific analytics per application, for cases where you’re running your application on various domains.</em></p>
 
-<p>The Player’s robust plugins-framework also enables you to create your own unique experiences, while the uiConf service simplifies the management of many such Player instances and configurations.</p>
+<p>Try it interactively <a href="https://developer.kaltura.com/workflows/Generate_API_Sessions/Authentication">with this workflow</a>.</p>
 
-<p>The uiConfId is used to reference the Player instance you wish to render when embedding a video in your pages or application views.</p>
+<p>Generating a KS with <code class="highlighter-rouge">session.start</code> is simple, and great for applications which you alone have access to. <br />
+Other methods include the <code class="highlighter-rouge">user.loginByLoginId</code> action, which allows users to log in using their own KMC credentials, and the <code class="highlighter-rouge">appToken</code> service, which is recommended when providing access to applications in production that are managed by others. <br />
+Learn more <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html/">here</a> about various ways to create a Kaltura Session.</p>
 
-<h3 id="creating-and-managing-player-widgets---uiconf-service">Creating and Managing Player Widgets - uiConf Service</h3>
+<h2 id="uploading-media-files">Uploading Media Files</h2>
+<p>Kaltura is built to handle files of all types and size. To best handle the upload of large files, Kaltura’s upload API provides the ability to upload files in smaller chunks, in parallel (multiple chunks can be uploaded simultaneously to improve network utilization), as well as pause-and-resume and chunk upload retries in case of temporary network failures.</p>
 
-<div class="recipe-container"><iframe src="https://developer.kaltura.com/recipes/player_uiconf/embed#/start" frameborder="0" allowfullscreen="" class="recipe-iframe"></iframe></div>
+<p><strong>Step 1: Create an Upload Token</strong></p>
 
-<h3 id="getting-started-with-the-player-features">Getting Started with the Player Features</h3>
+<p>You’ll use <a href="https://developer.kaltura.com/console/service/uploadToken/action/add"><code class="highlighter-rouge">uploadToken.add</code></a> to create an uploadToken for your new video.</p>
 
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">upload_token = KalturaUploadToken()
+token = client.uploadToken.add(upload_token);</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$uploadToken = new KalturaUploadToken();
+$token = $client-&gt;uploadToken-&gt;add($uploadToken);
+</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
+
+kaltura.services.uploadToken.add(uploadToken)
+.execute(client)
+.then(token =&gt; {
+    console.log(token);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">UploadToken uploadToken = new UploadToken();
+
+AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
+.setCompletion(new OnCompletion&lt;Response&lt;UploadToken&gt;&gt;() {
+    @Override
+    public void onComplete(Response&lt;UploadToken&gt; token) {
+        System.out.println(token);
+    }
+});</code></pre>
+          </div>
+</div>
+
+<p>An UploadToken is essentially a container that holds any file that will be uploaded to Kaltura. The token has an ID that is attached to the location of the file.  This process allows the upload to happen independently of the entry creation. In the case of large files, for example, the same uploadToken ID is used for each chunk of the same file.</p>
+
+<h3 id="about-chunked-file-uploading">About Chunked File Uploading</h3>
+
+<p>How it works:</p>
 <ul>
-  <li><a href="http://player.kaltura.com/docs/responsive">Responsive Player embed</a>.</li>
-  <li><a href="http://player.kaltura.com/docs/kwidget">JavaScript function for the Player embed method</a>.</li>
-  <li><a href="http://player.kaltura.com/docs/thumb">JavaScript function thumbnail embed (clicking turns thumbnail to Player)</a>.</li>
-  <li><a href="http://player.kaltura.com/docs/autoEmbed">JavaScript tag player embed</a>.</li>
-  <li><a href="http://player.kaltura.com/docs/NativeCallout">Enabling a robust web to native bridge</a>.</li>
+  <li>On the client side of the app, the file is chunked into multiple fragments (of adjustable size)</li>
+  <li>The chunks are then uploaded to Kaltura storage (in some cases simultaneously)</li>
+  <li>Once all the chunks have arrived, they are assembled to form the original file [on the server side] so that file processing can begin</li>
 </ul>
 
-<h2 id="analyze-engagement-analytics">Analyze Engagement Analytics</h2>
-
-<p>Make decisions based on complete data - the Kaltura VPaaS usage and engagement analytics reports provide you with the insight you need to manage your content, reach your audience, and optimize your video workflow. View a quick snapshot of high-level figures, or drill down to user-specific or video-specific information. Use the analytics reports to gain business insights, and understand user trends. Already using an analytics or audience measurement tool? Leverage the Kaltura pre-integrated plugins for all major analytics providers and consolidate your data securely and reliably.</p>
-
-<p>Integrated Analytics Partners - <a href="https://knowledge.kaltura.com/universal-studio-information-guide#configuring_analytics">See Configuring Analytics Plugins</a>: <a href="https://knowledge.kaltura.com/node/1675">Youbora</a>, <a href="http://player.kaltura.com/docs/ComscoreAnalytics">comScore</a>, <a href="http://player.kaltura.com/docs/NielsenVideoCensus">Nielsen</a>, <a href="http://support.chartbeat.com/docs/video.html#kaltura">Chartbeat</a>, and <a href="https://knowledge.kaltura.com/node/1148#googleanalytics">Google Analytics</a>.</p>
-
-<p>Follow the Code Recipe below to get started with the Kaltura Analytics <a href="https://developer.kaltura.com/api-docs/Review_Media_Analytics/report">report service</a>.</p>
-
-<div class="recipe-container"><iframe src="https://developer.kaltura.com/recipes/analytics/embed" frameborder="0" allowfullscreen="" class="recipe-iframe"></iframe></div>
-
-<h2 id="kaltura-api-documentation">Kaltura API Documentation</h2>
-
-<p>This section details the Kaltura API documentation that is available to developers working with Kaltura’s APIs.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Guide</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://developer.kaltura.com/">Interactive Code Workflows and Examples</a></td>
-      <td>Kaltura provides APIs for every core feature. You can use the Kaltura API to incorporate Kaltura features in web applications and web sites.</td>
-    </tr>
-    <tr>
-      <td><a href="http://knowledge.kaltura.com/glossary">Kaltura Knowledge Center Glossary</a></td>
-      <td>As a reference for understanding technical terms related to Online Video, Media Asset Management and Kaltura.</td>
-    </tr>
-    <tr>
-      <td><a href="/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura’s API Authentication and Security</a></td>
-      <td>Protecting personal user data, video streaming and limiting access to features are at the heart of the Kaltura Media Asset Management Platform. This guide will take you through the basic concepts and practices of authentication and security in the Kaltura API v3.</td>
-    </tr>
-    <tr>
-      <td>The Kaltura Media Access Control Model</td>
-      <td>An Access Control Profile defines authorized and restricted domains where your content can or cannot be displayed, countries from which it can or cannot be viewed, white and black lists of IP addresses and authorized and unauthorized domains and devices in which your media can be embedded.</td>
-    </tr>
-    <tr>
-      <td><a href="/api-docs/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.hmtl">Introduction to Kaltura Client Libraries</a></td>
-      <td>Kaltura client libraries are SDKs in numerous programming languages that provide easy access to the Kaltura API and facilitate developing Kaltura applications.</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="/api-docs/Engage_and_Publish/kaltura-thumbnail-api.html">The Kaltura Thumbnail API</a></td>
-      <td>The Thumbnail API provides an easy interface to dynamically manipulate images or video snapshots to be used as thumbnails. Using the thumbnail API it is possible to resize, cropped versions of the original Kaltura video thumbnail, a specific frame from in the video and manipulate the thumbnail image and various ways.</td>
-    </tr>
-    <tr>
-      <td><a href="/api-docs/Mobile-Video-Player-SDKs/how-create-video-thumbnail-rotator-javascrip.html">How To Create a Video Thumbnail Rotator in JavaScript</a></td>
-      <td>Case Study of using Kaltura’s Thumbnail API to create a rotating video thumbnail.</td>
-    </tr>
-    <tr>
-      <td><a href="/api-docs/VPaaS-API-Getting-Started/examples/how-handle-kaltura-server-notifications-in-php.html">How To Handle Kaltura Server Notifications in PHP</a></td>
-      <td>Often applications require the ability to respond to asynchronous events that occurred on the Kaltura server. For example, when a Media Entry was uploaded, finished transcoding or any other status update.</td>
-    </tr>
-    <tr>
-      <td><a href="/api-docs/Mobile-Video-Player-SDKs/introduction-kalturas-cross-platform-media-players.html">Introduction to Kaltura’s Cross-Platform Media Players</a></td>
-      <td>Kaltura’s flexible HTML5 and Adobe OSMF (Flash)-based media players provide media online publishing solutions that are easy to use and embed.</td>
-    </tr>
-    <tr>
-      <td><a href="/api-docs/Mobile-Video-Player-SDKs/javascript-api-kaltura-media-players.html">JavaScript API for Kaltura Media Players</a></td>
-      <td>Kaltura’s powerful media player JavaScript API enables you to design flexible, multifaceted interaction with the player.</td>
-    </tr>
-    <tr>
-      <td><a href="http://exchange.kaltura.com/">Kaltura Exchange</a></td>
-      <td>If you use a CMS such as Drupal or WordPress, or an LMS such as Moodle, Sakai or Blackboard, make sure to check the Kaltura Exchange for a Kaltura integration to your CMS of choice.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="common-api-related-tasks">Common API Related Tasks</h2>
-
+<p>Kaltura has three widgets that you can use for chunked uploading:</p>
 <ul>
-  <li><a href="/api-docs/VPaaS-API-Getting-Started/examples/create-new-kaltura-entry-and-upload-video-file-using-kaltura-api.html">Create A New Kaltura Entry And Upload Video File Using The Kaltura API</a></li>
-  <li><a href="http://blog.kaltura.org/kaltura-api-how-to-get-started-video">Getting Started with the Kaltura API - Blog post and Webinar</a></li>
-  <li><a href="/api-docs/VPaaS-API-Getting-Started/examples/how-retrieve-download-or-streaming-url-using-api-calls.html">How to retrieve the download or streaming URL using API calls?</a></li>
-  <li><a href="/api-docs/VPaaS-API-Getting-Started/examples/how-retrieve-metadata-media-entry-using-api.html">How to retrieve a media entry details and metadata?</a></li>
-  <li><a href="/api-docs/VPaaS-API-Getting-Started/examples/how-search-kaltura-works-how-perform-and-or-not-and-exact-match-searches-api.html">How the Search in Kaltura Works (How to perform AND, OR, NOT and Exact Match searches in API)</a>.</li>
+  <li><a href="https://github.com/kaltura/kaltura-parallel-upload-resumablejs">JS Library</a> (supports parallel uploading)</li>
+  <li><a href="https://github.com/kaltura/Sample-Kaltura-Chunked-Upload-Java">Java Library</a> (supports parallel uploading)</li>
+  <li><a href="https://github.com/kaltura/chunked-file-upload-jquery">jQuery Library</a> (for jQuery based applications)</li>
 </ul>
 
-<h2 id="kaltura-api-usage-guidelines">Kaltura API Usage Guidelines</h2>
+<p>To upload manually, continue following the steps:</p>
 
-<h3 id="document-conventions">Document Conventions</h3>
+<p><strong>Step 2: Upload the File Data</strong></p>
 
-<p>A string in brackets [] represents a value. Replace the string – including the brackets – with an actual value.  For example: replace <em>[SERVICENAME]</em> with <em>syndicationFeed</em>.</p>
+<p>We’ll call <a href="https://developer.kaltura.com/console/service/uploadToken/action/upload"><code class="highlighter-rouge">uploadToken.upload</code></a> to upload a new video file using the newly created token. If you don’t have a video file handy, you can right-click <a href="http://cfvod.kaltura.com/pd/p/811441/sp/81144100/serveFlavor/entryId/1_2bjlk7qb/v/2/flavorId/1_d1ft34uv/fileName/Kaltura_Logo_Animation.flv/name/a.flv">this link</a> to save a sample video of Kaltura’s logo. In the case of large files, <code class="highlighter-rouge">resume</code> should be set to <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">finalChunk</code> is set to <code class="highlighter-rouge">false</code> until the final chunk. <code class="highlighter-rouge">resumeAt</code> determines at which byte to chunk the next fragment.</p>
 
-<h3 id="finding-the-latest-api-version-number">Finding the Latest API Version Number</h3>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">upload_token_id = token.id
+file_data =  open(&apos;Kaltura_Logo_Animation.flv&apos;, &apos;r&apos;)
+resume = False
+final_chunk = True	
+resume_at = 0
+result = client.uploadToken.upload(upload_token_id, file_data, resume, final_chunk, resume_at)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$uploadTokenId = $token-&gt;id;
+$fileData = &quot;/path/to/file&quot;;
+$resume = false;
+$finalChunk = true;
+$resumeAt = -1;
 
-<p>To find the version number of the API that contains the latest updates, go to the full XML description of the API schema: <a href="http://www.kaltura.com/api_v3/api_schema.php">http://www.kaltura.com/api_v3/api_schema.php</a>.</p>
+$result = $client-&gt;uploadToken-&gt;upload($uploadTokenId, $fileData, $resume, $finalChunk, $resumeAt);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
 
-<p>The version and date of the API schema appear near the beginning of the file.</p>
+kaltura.services.uploadToken.add(uploadToken)
+.execute(client)
+.then(token =&gt; {
+    let uploadTokenId = token.id;
+	let fileData = &apos;/path/to/file&apos;;
+	let resume = false;
+	let finalChunk = true;
+	let resumeAt = -1;
 
-<h3 id="getting-a-client-library-for-the-kaltura-api">Getting a Client Library for the Kaltura API</h3>
+	kaltura.services.uploadToken.upload(uploadTokenId, fileData, resume, finalChunk, resumeAt)
+	.execute(client)
+	.then(result =&gt; {
+	    console.log(result);
+	});
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">UploadToken uploadToken = new UploadToken();
 
-<p>To work with the Kaltura API, you need code that can:</p>
+AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
+.setCompletion(new OnCompletion&lt;Response&lt;UploadToken&gt;&gt;() {
+    @Override
+    public void onComplete(Response&lt;UploadToken&gt; token) {
+        String uploadTokenId = token.id;
+		File fileData = new FileInputStream(&quot;/path/to/file&quot;);
+		boolean resume = false;
+		boolean finalChunk = true;
+		int resumeAt = -1;
 
-<ul>
-  <li>Construct a Kaltura request.</li>
-  <li>Perform an HTTP request.</li>
-  <li>Parse the result of a Kaltura request.</li>
-</ul>
+		UploadUploadTokenBuilder requestBuilder = UploadTokenService.upload(uploadTokenId, fileData, resume, finalChunk, resumeAt)
+	    .setCompletion(new OnCompletion&lt;Response&lt;UploadToken&gt;&gt;() {
+	        @Override
+	        public void onComplete(Response&lt;UploadToken&gt; result) {
+	            System.out.println(result);
+	        }
+	    });
+    }
+});</code></pre>
+          </div>
+</div>
 
-<p>To save you time, Kaltura provides client libraries. A client library is a set of classes that includes:</p>
+<p><strong>Step 3: Creating the Kaltura Media Entry</strong></p>
 
-<ul>
-  <li>The functional infrastructure for communication with the Kaltura API: constructing a request, performing an HTTP request, and parsing a response</li>
-  <li>A full object representation of all the entities that are available through the Kaltura API, including enumeration objects</li>
-  <li>Infrastructure for developers, such as built-in log capabilities</li>
-</ul>
+<p>Here’s where you’ll set your video’s name and description use <a href="https://developer.kaltura.com/console/service/media/action/add"><code class="highlighter-rouge">media.add</code></a> to create the entry.</p>
 
-<p>The Kaltura API SDK includes client library packages in different languages, including PHP, Java, C#, and JavaScript. For the latest version of all client libraries, refer to <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Kaltura API SDK - Native Client Libraries</a>.</p>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">media_entry = KalturaMediaEntry()
+media_entry.name = &quot;Kaltura Logo&quot;
+media_entry.description = &quot;sample video of kaltura logo&quot;
+media_entry.mediaType = KalturaMediaType.VIDEO
+entry = client.media.add(media_entry)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$mediaEntry = new KalturaMediaEntry();
+$mediaEntry-&gt;name = &quot;Kaltura Logo&quot;;
+$mediaEntry-&gt;description = &quot;sample video of kaltura logo&quot;;
+$mediaEntry-&gt;mediaType = KalturaMediaType::VIDEO;
 
-<p>To get the entire API in your IDE, just download the client library for the language that you use to develop your applications and include the client library in your application or project.</p>
+$entry = $client-&gt;media-&gt;add($mediaEntry);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
 
-<h3 id="getting-a-client-library-for-a-language-that-kaltura-does-not-provide">Getting a Client Library for a Language that Kaltura Does Not Provide</h3>
+kaltura.services.uploadToken.add(uploadToken)
+.execute(client)
+.then(token =&gt; {
+    let uploadTokenId = token.id;
+	let fileData = &apos;/path/to/file&apos;;
+	let resume = false;
+	let finalChunk = true;
+	let resumeAt = -1;
 
-<p>The Kaltura client libraries are generated automatically based on API schema. Kaltura also strives to include contributions from the community and customers, and we welcome contributions of client libraries for languages that Kaltura does not yet provide.</p>
+	kaltura.services.uploadToken.upload(uploadTokenId, fileData, resume, finalChunk, resumeAt)
+	.execute(client)
+	.then(result =&gt; {
+	    let mediaEntry = new kaltura.objects.MediaEntry();
+		mediaEntry.name = &quot;Kaltura Logo&quot;;
+		mediaEntry.description = &quot;sample video of kaltura logo&quot;;
+		mediaEntry.mediaType = kaltura.enums.MediaType.VIDEO;
 
-<p>You can write a custom generator class in PHP that generates code in the language of your choice.</p>
+		kaltura.services.media.add(mediaEntry)
+		.execute(client)
+		.then(entry =&gt; {
+		    console.log(entry);
+		});
+	});
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">UploadToken uploadToken = new UploadToken();
 
-<p>If you provide the generator class to Kaltura, Kaltura will include your generator class in the Kaltura core generator. The new client library will be automatically generated and will be publicly available.</p>
+AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
+.setCompletion(new OnCompletion&lt;Response&lt;UploadToken&gt;&gt;() {
+    @Override
+    public void onComplete(Response&lt;UploadToken&gt; token) {
+        String uploadTokenId = token.id;
+		File fileData = new FileInputStream(&quot;/path/to/file&quot;);
+		boolean resume = false;
+		boolean finalChunk = true;
+		int resumeAt = -1;
 
-<p>For more information on creating a client library generator, refer to <a href="/api-docs/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html">Adding New Kaltura API Client Library Generator</a>.</p>
+		UploadUploadTokenBuilder requestBuilder = UploadTokenService.upload(uploadTokenId, fileData, resume, finalChunk, resumeAt)
+	    .setCompletion(new OnCompletion&lt;Response&lt;UploadToken&gt;&gt;() {
+	        @Override
+	        public void onComplete(Response&lt;UploadToken&gt; result) {
+	            MediaEntry mediaEntry = new MediaEntry();
+	            AddMediaBuilder requestBuilder = MediaService.add(mediaEntry)
+    			.setCompletion(new OnCompletion&lt;Response&lt;MediaEntry&gt;&gt;() {
+	        		@Override
+	        		public void onComplete(Response&lt;MediaEntry&gt; entry) {
+	            		System.out.println(entry);
+	        		}
+    			});
+    		}
+	    });
+    }
+});</code></pre>
+          </div>
+</div>
 
-<h3 id="api-authentication-and-kaltura-sessions">API Authentication and Kaltura Sessions</h3>
+<p>The Kaltura Entry is a logical object that package all of the related assets to the uploaded file. The Media Entry represents Media assets (such as Image, Audio, or Video assets) and references all of the metadata, caption assets, transcoded renditions (flavors), thumbnails, access control rules, entitled users or any other related asset that is a part of that particular media item.</p>
 
-<p>Most Kaltura API calls require you to authenticate before executing a call. Calls that require authentication usually have a response that cannot be shared between different accounts. For the Kaltura server to know that you are allowed to “ask that question,” you must authenticate before executing the call.</p>
+<p><strong>Step 4: Attach the Video</strong></p>
 
-<p>To learn more about the Kaltura Session and API Authentication, read: <a href="/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura’s API Authentication and Security</a>.</p>
+<p>Now that you have your entry, you need to associate it with the uploaded video token using <a href="https://developer.kaltura.com/console/service/media/action/addContent"><code class="highlighter-rouge">media.addContent</code></a>.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Error Code</th>
-      <th>Error Message</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>INTERNAL_SERVERL_ERROR</td>
-      <td>Internal server error occurred</td>
-    </tr>
-    <tr>
-      <td>MISSING_KS</td>
-      <td>Missing KS, session not established</td>
-    </tr>
-    <tr>
-      <td>INVALID_KS</td>
-      <td>Invalid KS “%KS%”, Error “%KS_ERROR_CODE%,%KS_ERROR_DESCRIPTION%”</td>
-    </tr>
-    <tr>
-      <td>SERVICE_NOT_SPECIFIED</td>
-      <td>Service name was not specified, please specify one</td>
-    </tr>
-    <tr>
-      <td>SERVICE_DOES_NOT_EXISTS</td>
-      <td>Service “%SERVICE_NAME%” does not exist</td>
-    </tr>
-    <tr>
-      <td>ACTION_NOT_SPECIFIED</td>
-      <td>Action name was not specified, please specify one</td>
-    </tr>
-    <tr>
-      <td>ACTION_DOES_NOT_EXISTS</td>
-      <td>Action “%ACTION_NAME%” does not exist for service “%SERVICE_NAME%”</td>
-    </tr>
-    <tr>
-      <td>MISSING_MANDATORY_PARAMETER</td>
-      <td>Missing parameter “%PARAMETER_NAME%”</td>
-    </tr>
-  </tbody>
-</table>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">entry_id = entry.id
+resource = KalturaUploadedFileTokenResource()
+resource.token = upload_token_id
 
-<h3 id="kaltura-api-responserequest-format">Kaltura API Response/Request Format</h3>
+result = client.media.addContent(entry_id, resource)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$entryId = $entry-&gt;id;
+$resource = new KalturaUploadedFileTokenResource();
+$resource-&gt;token = $uploadTokenId;
 
-<h4 id="request-structure">Request Structure</h4>
+$result = $client-&gt;media-&gt;addContent($entryId, $resource);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
 
-<p>The Kaltura API implements a standard HTTP POST/GET URL encoded request structure. URL-encoded requests are targeted to a specific API method.</p>
+kaltura.services.uploadToken.add(uploadToken)
+.execute(client)
+.then(token =&gt; {
+    let uploadTokenId = token.id;
+	let fileData = &apos;/path/to/file&apos;;
+	let resume = false;
+	let finalChunk = true;
+	let resumeAt = -1;
 
-<p>Each API method location is concatenated from:</p>
+	kaltura.services.uploadToken.upload(uploadTokenId, fileData, resume, finalChunk, resumeAt)
+	.execute(client)
+	.then(result =&gt; {
+	    let mediaEntry = new kaltura.objects.MediaEntry();
+		mediaEntry.name = &quot;Kaltura Logo&quot;;
+		mediaEntry.description = &quot;sample video of kaltura logo&quot;;
+		mediaEntry.mediaType = kaltura.enums.MediaType.VIDEO;
 
-<ul>
-  <li>Base URI</li>
-  <li>Service identifier string</li>
-  <li>Action identifier string</li>
-</ul>
+		kaltura.services.media.add(mediaEntry)
+		.execute(client)
+		.then(entry =&gt; {
+		    let entryId = entry.id
+			let resource = new kaltura.objects.UploadedFileTokenResource();
+			resource.token = uploadTokenId;
 
-<p>The format of the API method location is: /api_v3/service/[SERVICENAME]/action/[ACTIONNAME], where</p>
+			kaltura.services.media.addContent(entryId, resource)
+			.execute(client)
+			.then(result =&gt; {
+			    console.log(result);
+			});
+		});
+	});
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">UploadToken uploadToken = new UploadToken();
 
-<ul>
-  <li>[SERVICENAME] represents a specific service</li>
-  <li>[ACTIONNAME] represent an action to be applied in the specific service</li>
-</ul>
+AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
+.setCompletion(new OnCompletion&lt;Response&lt;UploadToken&gt;&gt;() {
+    @Override
+    public void onComplete(Response&lt;UploadToken&gt; token) {
+        String uploadTokenId = token.id;
+		File fileData = new FileInputStream(&quot;/path/to/file&quot;);
+		boolean resume = false;
+		boolean finalChunk = true;
+		int resumeAt = -1;
 
-<h4 id="request-input-parameters">Request Input Parameters</h4>
+		UploadUploadTokenBuilder requestBuilder = UploadTokenService.upload(uploadTokenId, fileData, resume, finalChunk, resumeAt)
+	    .setCompletion(new OnCompletion&lt;Response&lt;UploadToken&gt;&gt;() {
+	        @Override
+	        public void onComplete(Response&lt;UploadToken&gt; result) {
+	            MediaEntry mediaEntry = new MediaEntry();
+	            AddMediaBuilder requestBuilder = MediaService.add(mediaEntry)
+			    .setCompletion(new OnCompletion&lt;Response&lt;MediaEntry&gt;&gt;() {
+			        @Override
+			        public void onComplete(Response&lt;MediaEntry&gt; entry) {
+			            String entryId = entry.id;
+						UploadedFileTokenResource resource = new UploadedFileTokenResource();
 
-<p>Each API method receives a different set of input parameters.</p>
+						AddContentMediaBuilder requestBuilder = MediaService.addContent(entryId, resource)
+    					.setCompletion(new OnCompletion&lt;Response&lt;MediaEntry&gt;&gt;() {
+					        @Override
+					        public void onComplete(Response&lt;MediaEntry&gt; result) {
+					            System.out.println(result);
+					        }
+    					});
+        			}
+    			});
+        	}
+    	});
+    }
+});</code></pre>
+          </div>
+</div>
 
-<p>For all request types:</p>
+<p>At this point, Kaltura will start analyzing the uploaded file, prepare for the transcoding and distribution flows and any other predefined workflows or notifications.</p>
 
-<ul>
-  <li>Send input parameters as a standard URL-encoded key-value string.</li>
-  <li>When an input parameter is an object, flatten it to pairs of ObjectName:Param keys.</li>
-</ul>
+<h2 id="searching-entries">Searching Entries</h2>
+<p>To retrieve that newly uploaded entry, we’ll use the <a href="https://developer.kaltura.com/console/service/eSearch/action/searchEntry">Kaltura Search API</a>.</p>
 
-<h4 id="request-input-parameters-example">Request Input Parameters Example</h4>
+<p><strong>Step 1: Params and Operator</strong><br />
+If you have multiple search conditions, you would set an <code class="highlighter-rouge">AND</code> or <code class="highlighter-rouge">OR</code> to your operator, but in this case we’ll only be searching for one item. However, you still need to add a searchItems array to the operator.</p>
 
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">id=abc12&amp;name=name%20with%20spaces&amp;entry:tag=mytag&amp;entry:description=mydesc</code></pre></figure>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">searchParams = KalturaESearchEntryParams()
+searchParams.searchOperator = KalturaESearchEntryOperator()
+searchParams.searchOperator.searchItems = []</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$elasticSearchPlugin = KalturaElasticSearchClientPlugin::get($client);
+$searchParams = new KalturaESearchEntryParams();
+$searchParams-&gt;searchOperator = new KalturaESearchEntryOperator();
+$searchParams-&gt;searchOperator-&gt;searchItems = [];</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let searchParams = new kaltura.objects.ESearchEntryParams();
+searchParams.searchOperator = new kaltura.objects.ESearchEntryOperator();
+searchParams.searchOperator.searchItems = [];
+</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">ESearchEntryParams searchParams = new ESearchEntryParams();
+searchParams.setSearchOperator(new ESearchEntryOperator());
+searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBaseItem&gt;(1));</code></pre>
+          </div>
+</div>
 
-<p>In the example, the following parameters are URL encoded and are passed as API input parameters:</p>
+<p><strong>Step 2: Search Type</strong></p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">id</span> <span class="o">=</span> <span class="s1">'abc'</span>
-<span class="nx">name</span> <span class="o">=</span> <span class="s1">'name with spaces'</span>
-<span class="nx">entry</span> <span class="p">{</span>
-	<span class="nx">tag</span> <span class="o">=</span> <span class="s1">'mytag'</span><span class="p">,</span>
-	<span class="nx">description</span> <span class="o">=</span> <span class="s1">'mydesc'</span>
-<span class="p">}</span></code></pre></figure>
+<p>We’ll be using the Unified search, which searches through all entry data, such as metadata and captions. Other options are <code class="highlighter-rouge">KalturaESearchEntryMetadataItem</code> or <code class="highlighter-rouge">KalturaESearchEntryCuePointItem</code>. We’ll add that search item to the first index of the search operator.</p>
 
-<h3 id="api-errors-and-error-handling">API Errors and Error Handling</h3>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0] = KalturaESearchUnifiedItem()</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0] = new KalturaESearchUnifiedItem();</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0] = new kaltura.objects.ESearchUnifiedItem();</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().set(0, new ESearchUnifiedItem());</code></pre>
+          </div>
+</div>
 
-<p>The Kaltura API can return errors, which are represented by an error identifier followed by a description:</p>
+<p><strong>Step 3: Search Term</strong></p>
 
-<ul>
-  <li>An error ID is a unique string. The parts of the string are separated by underscores.</li>
-  <li>An error description is textual. The description may include a dynamic value.</li>
-</ul>
+<p>We’ll search for the kaltura logo sample video, which we named accordingly.</p>
 
-<p>A comma separates the error ID from the description.</p>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0].searchTerm = &quot;kaltura logo&quot;</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;searchTerm = &quot;kaltura logo&quot;;</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0].searchTerm = &quot;kaltura logo&quot;;</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setSearchTerm(&quot;kaltura logo&quot;);</code></pre>
+          </div>
+</div>
 
-<h4 id="api-error-example">API Error Example</h4>
+<p><strong>Step 4: Search Item Type</strong></p>
 
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">ENTRY_ID_NOT_FOUND,Entry id "%s" not found </code></pre></figure>
+<p>In this case, we want an exact match of the text in our search term. Other options are <code class="highlighter-rouge">partial</code> or <code class="highlighter-rouge">startsWith</code>.</p>
 
-<p>where <em>%s</em> is replaced with the value that is sent to the API call.</p>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0].itemType = KalturaESearchItemType.EXACT_MATCH</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;itemType = KalturaESearchItemType::EXACT_MATCH;</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0].itemType = kaltura.enums.ESearchItemType.EXACT_MATCH;</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setItemType(ESearchItemType.EXACT_MATCH.getValue());
+</code></pre>
+          </div>
+</div>
 
-<p>In the response XML:</p>
+<p><strong>Step 5: Add Highlight</strong></p>
 
-<ul>
-  <li>The *<code>* node contains the error code (such as *ENTRY\_ID\_NOT_FOUND*).</code></li>
-  <li>The *<message>* node contains the description (such as *Entry id “%s” not found*).</message></li>
-</ul>
+<p>We set <code class="highlighter-rouge">addHighlight</code> to True so that we can see exactly where our search term appeared in the search results.</p>
 
-<h4 id="errorresponse">ErrorResponse</h4>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0].addHighlight = True</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;addHighlight = true;</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0].addHighlight = true;</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setAddHighlight(true);</code></pre>
+          </div>
+</div>
 
-<p><strong>Error Handling</strong></p>
+<p><strong>Step 6: Search</strong></p>
 
-<p>In most client libraries, the client library code throws an exception when an error is returned from the API. Depending on the programming language, catching the exception to read the code and/or the message enables user-friendly error handling. Errors that you encounter during development usually are caused by incorrect implementation.</p>
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">result = client.elasticsearch.eSearch.searchEntry(searchParams);
+print(result);</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$result = $elasticSearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">kaltura.services.eSearch.searchEntry(searchParams)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">SearchEntryESearchBuilder requestBuilder = ESearchService.searchEntry(searchParams)
+    .setCompletion(new OnCompletion&lt;Response&lt;ESearchEntryResponse&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;ESearchEntryResponse&gt; result) {
+            System.out.println(result);
+        }
+    });</code></pre>
+          </div>
+</div>
 
-<h3 id="the-multi-request-api">The Multi-request API</h3>
+<p>Success! The result will return as a list of  <code class="highlighter-rouge">KalturaMediaEntry</code> objects.</p>
 
-<h4 id="understanding-the-multi-request-feature">Understanding the Multi-request Feature</h4>
+<h2 id="embedding-your-video-player">Embedding Your Video Player</h2>
+<p>You have your entry ID, so you’re just about ready to embed the kaltura player, but first you’ll need a <code class="highlighter-rouge">UI Conf ID</code>, which is basically the ID of the player in which the video is shown. <br />
+For this you’ll need to log into the KMC and click on the <a href="https://kmc.kaltura.com/index.php/kmcng/studio/v2">Studio</a> tab.</p>
 
-<p>The Kaltura API can execute several API calls in a single HTTP request to Kaltura. The multi-request feature improves performance in Kaltura integrations. The feature enables a developer to stack multiple API calls and issue them in a single request. This reduces the number of round-trips from server-side or client-side developer code to Kaltura.</p>
+<p>Notice that there are two studio options: TV and Universal. <br />
+The Universal player (or mwEmbed as we call it) offers legacy support - such as for enterprise customers using the old internet explorer - and also features interactivity options, like the dual player or In-Video Quizzes. <br />
+The TV player (or playkit) is built on modern javascript and focuses more on performance. Both players are totally responsive.</p>
 
-<p>The Kaltura API processes each of the API calls that are included in the single HTTP request. The response essentially is a list of the results for each of the calls in the request. The multi-request feature includes the ability to have one request depend on the result of another request.</p>
-
-<p>While the Kaltura API is processing each of the API calls in a multi-request, it detects when there is a dependency in one of the call parameters. The Kaltura API parses the dependency and replaces it with the result of the relevant call.</p>
-
-<h4 id="using-the-multi-request-feature">Using the Multi-request Feature</h4>
-
-<h5 id="multi-request-with-dependency---sample-use-case">Multi-request with Dependency - Sample Use Case</h5>
-
-<p>To create a new entry out of a file in your server, execute several different API calls:</p>
+<p>We will focus on the TV player:</p>
 
 <ol>
-  <li>uploadToken.add</li>
-  <li>uploadToken.upload</li>
-  <li>baseEntry.addFromUploadedFile</li>
+  <li>Create a new TV player, give it a name, and check out the various player options.</li>
+  <li>Save the player and go back to players list; you should now see it the top of the player list. Notice that player ID - that is your <code class="highlighter-rouge">UI Conf ID</code>. <br />
+Now you can use it for embedding your player:</li>
 </ol>
 
-<p>The result of <em>uploadToken.add</em> is an <em>uploadToken</em> object that consists of a token string.</p>
+<p><strong>Dynamic Player Embed</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript"&gt;
+		var kalturaPlayer = KalturaPlayer.setup({
+			targetId: "kalturaplayer",
+			provider: {
+				partnerId: PARTER_ID,
+				uiConfId: UI_CONF_ID
+			},
+			playback: {
+				autoplay: true
+			}
+		});
+		var mediaInfo = {
+			entryId: ENTRY_ID,
+			ks: KS
+		};
+		kalturaPlayer.loadMedia(mediaInfo);
+	&lt;/script&gt;
+</code></pre>
+</div>
+<p>Learn about other embed types <a href="https://github.com/kaltura/kaltura-player-js/blob/master/docs/embed-types.md">here.</a></p>
 
-<p>You’ll need the token string when executing the next action – uploading the file, therefore, you must complete the first action to call the second one.</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
 
-<p>Using the multi-request feature, in the second request you specify obtaining the value of the token parameter from the token property that is the result of the first request.</p>
+<p>Including a kaltura session allows you to keep track of user analytics for each entry and set permissions and privileges. Notice that in this case, the KS is created on the server side of the app.</p>
 
-<h3 id="multi-request-structure">Multi-request Structure</h3>
-
-<p>To perform a multi-request call:</p>
-
-<ol>
-  <li>
-    <p>Define the <em>GET</em> parameter of <em>service</em> as <em>multirequest</em> and define the <em>action</em> as <em>null</em> using (http://www.kaltura.com/api_v3/?service=multirequest&amp;action=null).</p>
-  </li>
-  <li>
-    <p>Prefix each API call with a number that represents its order in the multi-request call, followed by a colon. Prefix the first call with <em>1:</em>, the second with <em>2:</em>, and so on.</p>
-  </li>
-  <li>
-    <p>Use the prefix for each of an API call’s parameters (service, action, and action parameters).</p>
-  </li>
-</ol>
-
-<h3 id="multi-request-structure-example">Multi-Request Structure Example</h3>
-
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">Request URL: api_v3/index.php?service=multirequest&amp;action=null
-	POST variables:
-		1:service=baseEntry
-		1:action=get
-		1:version=-1
-		1:entryId=0_zsadqv3e
-		2:service=flavorasset
-		2:action=getWebPlayableByEntryId
-		2:entryId=0_zsadqv3e
-		2:version=-1
-		ks={ks}</code></pre></figure>
-
-<h3 id="multi-request-with-dependency---structure">Multi-request with Dependency - Structure</h3>
-
-<p>To create a multi-request with a dependent request, use the following structure as input in the variable whose value you want to replace with a result of a preceding request:</p>
-
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">{num:result:propertyName}</code></pre></figure>
-
-<p>where:</p>
-
+<p><strong>Congrats! You’ve learned how to:</strong></p>
 <ul>
-  <li><em>num</em> is the number of the request from which to collect data.</li>
-  <li><em>result</em> instructs the Kaltura API to replace this value with a result from another request.</li>
-  <li><em>propertyName</em> is the property to obtain from the object of the required result.</li>
+  <li>Create a kaltura session</li>
+  <li>Upload media to your Kaltura account</li>
+  <li>Search for your media</li>
+  <li>Show your media in a Kaltura Player</li>
 </ul>
 
-<h3 id="multi-request-with-dependency---example">Multi-Request With Dependency - Example</h3>
+<p><strong>Next steps:</strong></p>
+<ul>
+  <li>Read the eSearch <a href="https://corp.kaltura.com/blog/introducing-esearch-the-new-kaltura-search-api/">blog post</a></li>
+  <li>Learn how to create and handle <a href="https://developer.kaltura.com/api-docs/Engage_and_Publish/kaltura-thumbnail-api.html/">thumbnails</a></li>
+  <li>Analyze Engagement <a href="https://developer.kaltura.com/api-docs/Video-Analytics-and-Insights/media-analytics.html">Analytics</a></li>
+</ul>
 
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">Request URL: api_v3/index.php?service=multirequest&amp;action=null
-	POST variables:
-		1:service=media
-		1:action=list
-		1:filter:nameLike=myentry
-		2:service=media
-		2:action=get
-		2:entryId={1:result:objects:0:id}
-		ks={ks}</code></pre></figure>
+<p>You can learn more about these steps in our <a href="https://developer.kaltura.com/api-docs/">docs</a>, play around in the <a href="https://developer.kaltura.com/console">console</a>, or enjoy full interactive experiences with our <a href="https://developer.kaltura.com/workflows">workflows</a>.</p>
 
-<p>In the example, the first request lists entries whose names resemble <em>myentry</em>. The <em>media.list</em> request returns an object of type <em>KalturaMediaListResponse</em>, which contains an object named <em>objects</em> of type <em>KalturaMediaEntryArray</em>.</p>
+<p>And of course, feel free to reach out at vpaas@kaltura.com if you have any questions.</p>
 
-<p>The second request is <em>media.get</em>, which uses <em>entryId</em> as input.</p>
-
-<p>The <em>entryId</em> input is dynamic, and the value is obtained from the first request. Since the <em>media.list</em> response is constructed of array object within a response object, the first property to access is <em>KalturaMediaEntryArray</em>.</p>
-
-<p>Since in the <code class="highlighter-rouge">KalturaMediaEntryArray</code> you want to obtain the first element (index <em>*), add *:0</em> to the request value.</p>
-
-<p>Since from the first element you want only the ID that is the input for the second request, add <em>:id</em> to the request value.</p>
-
-<h2 id="maintaining-backward-compatibility-and-tracking-version-changes">Maintaining Backward Compatibility and Tracking Version Changes</h2>
-
-<p>Maintaining backward compatibility during API upgrades is a common concern for developers utilizing APIs to build applications. </p>
-
-<p>Kaltura’s client libraries are automatically generated from the server code, that include an automatic client libraries’ generator mechanism. See <a href="https://knowledge.kaltura.com/node/43">Adding the New Kaltura API Client Library Generator</a> for more information. As a result, the Kaltura API client libraries are not available as a static code repository that you can track for changes.</p>
-
-<p>To keep up to date with the changes between releases, follow the <a href="https://twitter.com/Kaltura_API">Kaltura API Twitter account</a>. </p>
-
-<p>For each Kaltura release, the Kaltura API Twitter account notifies followers about additions and changes made to the REST APIs, Players APIs, and changes to the Client Libraries, and release notes are provided about the new release.</p>
-
-<p>Kaltura API based applications do not require frequent updates to the client library used. Kaltura is committed to provide full backward computability to the API layer, keeping deprecated APIs functional, and ensuring that additions or changes introduced in new versions will not break existing applications. </p>
-
-<p>When new functionalities for your applications are introduced, or when maintenance upgrades are made to your applications, we encourage you to keep your client libraries updated even though an upgrade based on the availability of new Kaltura releases is not required.</p>
 
 		
 </article>

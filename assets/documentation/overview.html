@@ -180,20 +180,26 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon May 28 10:33:40 2018</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/overview.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Thu Nov 1 04:41:24 2018</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/overview.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Aug 1 09:32:06 2017, By: Jess Portnoy</td></tr-->
-				<!--tr><td>Last commit: Mon May 28 10:33:40 2018, By <span class="commit-author">Zohar Babin</span></td></tr-->
+				<!--tr><td>Last commit: Thu Nov 1 04:41:24 2018, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Jess Portnoy (4 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+					<td>Jess Portnoy (5 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
 				
 				<tr>
 					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (2 commits) (<a href="mailto:avitaltzubeli@gmail.com">avitaltzubeli@gmail.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -206,81 +212,11 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="kaltura-api-overview">Kaltura API Overview</h1>
+    		<h1 id="welcome-to-the-kaltura-api-docs">Welcome to the Kaltura API Docs</h1>
 
-<p>Building video experiences consists of ingesting media files, playing back videos, and reviewing usage and engagement analytics. In between, there is a world of nuances required for your unique use-case and application. Kaltura VPaaS is built on the principles of atomic services, SDKs, and tools that allow you full control and flexibility over every element and process in your media’s life cycle.</p>
+<iframe src="https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedIframeJs/uiconf_id/42925761/partner_id/2421271?iframeembed=true&amp;entry_id=1_8b9rjzjy&amp;flashvars[streamerType]=auto" frameborder="0" title="Welcome to Kaltura VPaaS - Interactive Intro Video for Developers"></iframe>
 
-<h2 id="using-the-kaltura-api">Using the Kaltura API</h2>
-
-<p>The Kaltura REST API implements an HTTP POST/GET url-encoded requests structure. The API consist of service and actions for querying, setting, updating and listing entities as well as for configuring account settings, and for executing processes. Service and actions are grouped according to the entity type they are applied on, and provide all actions relevant to the specific entity.</p>
-
-<p>This API documentation provides specific information on:</p>
-
-<ul>
-  <li>Kaltura Services and their related actions</li>
-  <li>Kaltura Objects and their related properties</li>
-  <li>Kaltura Enumerated Types and their values</li>
-</ul>
-
-<blockquote>
-  <p>Note: A prerequisite for using Kaltura APIs is obtaining your Kaltura account ID (aka the Partner ID or PID).<br />
-If you already have a Kaltura account you will find your account ID and API secret in the KMC under the Settings &gt; Integration Settings tab. To create a new Kaltura account, <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=overviewpage&amp;utm_medium=website">register here for a free-trial Kaltura VPaaS account</a>.</p>
-</blockquote>
-
-<p>If you’re just starting out with Kaltura, we recommend reading: <a href="/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html">Getting Started with Kaltura VPaaS</a>.</p>
-
-<p>Being a REST API, the Kaltura API can be used by constructing and making calls to direct URLs as such http://www.kaltura.com/api_v3/index.php/service/The_Service_To_Use/action/The_Action_To_Execute.</p>
-
-<p>Notice how the service and action are stated in the URL after each parameter name. Replace the placeholders above with the service name and action you’d like to execute:</p>
-
-<ul>
-  <li>The_Service_To_Use — The service (entity in the system) to call. You can find the list of services in the <a href="https://developer.kaltura.com">API side panel</a> under each of the categories (e.g. <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/session">session</a>, <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/appToken">appToken</a>, <a href="https://developer.kaltura.com/api-docs/Search_Discover_and_Personalize/user">user</a>, <a href="https://developer.kaltura.com/api-docs/Search_Discover_and_Personalize/media">media</a>, etc.)</li>
-  <li>The_Action_To_Execute — The action you wish to execute on the service. You can find the list of actions available for each service in the <a href="https://developer.kaltura.com">API side panel</a> under each of the services (e.g. <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/session/session_start">session.start</a>, <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/session/session_end">session.end</a>, etc.)</li>
-</ul>
-
-<p>For example, to use the ping action to check if the API is up, you can use the <code class="highlighter-rouge">system</code> service and <code class="highlighter-rouge">ping</code> action: http://www.kaltura.com/api_v3/index.php/service/system/action/ping .</p>
-
-<blockquote>
-  <p>Note: Most services will require a proper Kaltura Session (KS) key; therefore, in addition to your call, you’ll also need to create a KS to be passed as a parameter in your request.</p>
-</blockquote>
-
-<p>For example, to retrieve a list of media entries, you’ll need to call the list action on the media service, and provide a valid KS string. Therefore, the steps will be:</p>
-
-<ol>
-  <li>Call <code class="highlighter-rouge">session.start</code> providing your account credentials.</li>
-  <li>Pass the result of <code class="highlighter-rouge">session.start</code> to the media.list API. E.g.: https://www.kaltura.com/api_v3/service/media/action/list/ks/Your_KS_String.</li>
-</ol>
-
-<p>To learn more, follow these guides:</p>
-<ul>
-  <li><a href="/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">How to Create a Kaltura Session</a></li>
-  <li><a href="/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura API Authentication and Security</a></li>
-  <li><a href="/api-docs/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html">Introduction to Kaltura’s Client Libraries</a></li>
-</ul>
-
-<p>For reference, at each action page of the <a href="https://developer.kaltura.com">API docs</a> you’ll see respected request GET URL at the top of the page.</p>
-
-<p>For example, if you follow the <a href="https://blog.kaltura.com/server-side-clipping-and-trimming/">guide for clipping and trimming</a>, you’ll note that to trim an entry, the service you’ll need to use is called <code class="highlighter-rouge">media</code>, and the action is called <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media/media_updateContent/"><code class="highlighter-rouge">updateContent</code></a>. You’ll also notice that the input of this API action is expected to receive two parameters:</p>
-
-<ul>
-  <li>The ID of the entry to replace with the newly trimmed entry</li>
-  <li>A resource object representing the operations to execute on that entry<br />
-The resource is an object of type <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaOperationResource/"><code class="highlighter-rouge">KalturaOperationResource</code></a>, and it in itself also expects to be filled with an object of <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaClipAttributes"><code class="highlighter-rouge">KalturaClipAttributes</code></a>, which describes the operations to perform on the entry and the <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaEntryResource/"><code class="highlighter-rouge">KalturaEntryResource</code></a> that describes the entry that carries out the operation.</li>
-</ul>
-
-<blockquote>
-  <p>Note: Kaltura does <strong>not</strong> recommend making direct calls via GET URLs without using a client library, since the API requires constructing objects for requests, requests can end up with complex URL structures that, if constructed manually, might result in semantic mistakes. Instead, Kaltura provides native client libraries for many programming languages that we recommend using in your applications instead of constructing direct URL calls.</p>
-</blockquote>
-
-<h2 id="resources">Resources</h2>
-<p>We recommend you explore these tools as well:</p>
-<ul>
-  <li>The Kaltura VPaaS <a href="/api-docs/01_VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html">Developer Guides</a>.</li>
-  <li>The Kaltura VPaaS <a href="https://developer.kaltura.com/workflows">Interactive Workflows</a>, providing a quick way to learn about video workflows with Kaltura and see from real examples how to write application with Kaltura.</li>
-  <li>The <a href="https://developer.kaltura.com/console">API Test Console</a>, providing a quick exploration and discovery for each service and action, allowing you to try each action easily, and serving as code-example generator.</li>
-</ul>
-
-<p>For support, please visit <a href="http://www.kaltura.org/forums">Kaltura Community Forums</a>.</p>
+<p>To get started, click <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html">here</a>.</p>
 
 		
 </article>
