@@ -4,32 +4,14 @@
 ">
     <meta property="st:title" content="Introduction to Kaltura's Client Libraries" >
     <meta property="st:published_at" content="">
-  <!--link rel="stylesheet" href="/css/main.css"-->
-  <!--link rel="canonical" href="http://localhost:4000/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html">
-  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
-<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
-  
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
 window.jQuery = window.jquery;
 </script>
-<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
-<!--link rel="stylesheet" href="/css/highlightjs.css"-->
-    <!--script src="assets/js/highlight.pack.js"></script-->
-    <script>hljs.initHighlightingOnLoad();</script>
-    
-  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
   <script type="text/javascript">
     try{Typekit.load();}catch(e){}
   </script>
-  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
   <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script type="text/javascript">
@@ -38,60 +20,7 @@ window.jQuery = window.jquery;
   <script type="text/javascript">var switchTo5x=true;</script>
 
   
-<!--script src="assets/js/country.js"></script-->
-
-<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
-<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
 <script type="text/javascript">
-exLink.init({
-    	parentElementPath: '.template-page-content-column .post-content',
- 	linkWarning: false,
-	hostCompare: true,
-	noFollow: false,
-	fancyBoxIgnore: true,
-	gaTracking: true,
-	gaTrackLabel: 'External Links',
-	gaTrackOld: false,
-	fileWarning: false
-    });
-	//turn all headings into clicable anchors:
-    /*
-	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
-	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
-	});
-	
-
-	//build the "on this page" menu:
-	var ToC =
-	  "<nav role='navigation' class='table-of-contents'>" +
-	    "<h2>On this page:</h2>" +
-	    "<ul>";
-	
-	var newLine, el, title, link;
-	var hasHeaders = false;
-	$('.post-content h2').each(function() {
-	  hasHeaders = true;
-	  el = $(this);
-	  title = el.text();
-	  link = "documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.md#" + el.attr("id");
-	
-	  newLine =
-	    "<li>" +
-	      "<a href='" + link + "'>" +
-	        title +
-	      "</a>" +
-	    "</li>";
-	
-	  ToC += newLine;
-	
-	});
-	
-	ToC +=
-	   "</ul>" +
-	  "</nav>";
-	
-	if (hasHeaders) $("div.post-content").prepend(ToC);
-	*/
     	
 	//back to top
 	if ($('#back-to-top').length) {
@@ -180,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue May 1 10:44:05 2018</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Mar 5 07:57:00 2017, By: AnnaAleksandrowicz</td></tr-->
-				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Tue May 1 10:44:05 2018, By <span class="commit-author">Jess Portnoy</span></td></tr-->
 			
 				<!-- 
 				
@@ -193,7 +122,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+					<td>Jess Portnoy (3 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -338,9 +267,7 @@ Example: Replace <em>[yourClientLibraryName]</em> with <em>Java</em>.</p>
 
 <p>If you use a standard Kaltura CE, you need local client libraries. See <a href="#GeneratingaClientLibraryoaLocalServer">Generating a Client Library for Kaltura On Prem and Kaltura CE</a>.</p>
 
-<p class="mce-heading-3">
-  <a name="GeneratingaClientLibraryforaLanguagethat"></a>Generating a Client Library for a Language that Kaltura Does Not Provide
-</p>
+<h2 id="generating-a-client-library-for-a-language-that-kaltura-does-not-provide">Generating a Client Library for a Language that Kaltura Does Not Provide</h2>
 
 <p>If you want a client library for a language that Kaltura does not provide, you need to <a href="#GeneratingaKalturaClientLibrary">generate a specialized Kaltura client library</a>.</p>
 
@@ -404,9 +331,7 @@ Example: Replace <em>[yourClientLibraryName]</em> with <em>Java</em>.</p>
 
 <p>If you have specialized needs, see <a href="#GeneratingaKalturaClientLibrary">Generating a Specialized Kaltura Client Library</a>.</p>
 
-<p class="mce-heading-4">
-  Understanding Client Libraries and Self-Hosted Kaltura Servers
-</p>
+<h2 id="understanding-client-libraries-and-self-hosted-kaltura-servers">Understanding Client Libraries and Self-Hosted Kaltura Servers</h2>
 
 <p>Kaltura On-Prem and Kaltura CE use self-hosted Kaltura servers.</p>
 
@@ -1075,7 +1000,7 @@ try { // tell the client to start stacking actions for multi-request
   $mediaEntry = $results[0]; 
   $updatedMediaEntry = $results[1]; 
   echo "entry tags: " . $mediaEntry-&gt;tags; 
-  echo "new entry desription: " . $updatedMediaEntry-&gt;description; 
+  echo "new entry description: " . $updatedMediaEntry-&gt;description; 
 } catch(Exception $ex) { 
   echo "could not get entry from Kaltura. Reason: " . $ex-&gt;getMessage(); 
 }</code></pre></figure>

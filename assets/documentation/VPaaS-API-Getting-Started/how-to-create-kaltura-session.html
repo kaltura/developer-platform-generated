@@ -4,32 +4,14 @@
 ">
     <meta property="st:title" content="How to Create a Kaltura Session" >
     <meta property="st:published_at" content="">
-  <!--link rel="stylesheet" href="/css/main.css"-->
-  <!--link rel="canonical" href="http://localhost:4000/documentation/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">
-  <link rel="alternate" type="application/rss+xml" title="VPaaS - Video Platform as a Service | Kaltura" href="http://localhost:4000/feed.xml">
-<link rel="sitemap" type="application/xml" title="Sitemap" href="http://localhost:4000/sitemap.xml" />
-  
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/normalize.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/webflow.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/kaltura-dev-site.webflow.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/syntax.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/opentip.css">
-<link rel="stylesheet" type="text/css" href="http://localhost:4000/css/moving-logo.css"-->
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
 window.jQuery = window.jquery;
 </script>
-<!--script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script-->
-<!--link rel="stylesheet" href="/css/highlightjs.css"-->
-    <!--script src="assets/js/highlight.pack.js"></script-->
-    <script>hljs.initHighlightingOnLoad();</script>
-    
-  <!--script type="text/javascript" src="https://use.typekit.net/rlx4cjm.js"></script-->
   <script type="text/javascript">
     try{Typekit.load();}catch(e){}
   </script>
-  <!--script type="text/javascript" src="assets/js/modernizr.js"></script-->
   <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script type="text/javascript">
@@ -38,60 +20,7 @@ window.jQuery = window.jquery;
   <script type="text/javascript">var switchTo5x=true;</script>
 
   
-<!--script src="assets/js/country.js"></script-->
-
-<!--script type="text/javascript" src="assets/js/jQuery.exLink/jquery.exLink.js"></script-->
-<!--link rel="stylesheet" type="text/css" href="assets/js/jQuery.exLink/jquery.exLink.css"-->
 <script type="text/javascript">
-exLink.init({
-    	parentElementPath: '.template-page-content-column .post-content',
- 	linkWarning: false,
-	hostCompare: true,
-	noFollow: false,
-	fancyBoxIgnore: true,
-	gaTracking: true,
-	gaTrackLabel: 'External Links',
-	gaTrackOld: false,
-	fileWarning: false
-    });
-	//turn all headings into clicable anchors:
-    /*
-	$('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').filter('[id]').each(function () {
-	    $(this).html('<a href="#'+$(this).attr('id')+'" class="post-content" aria-hidden="true">'+$(this).text()+'</a>');
-	});
-	
-
-	//build the "on this page" menu:
-	var ToC =
-	  "<nav role='navigation' class='table-of-contents'>" +
-	    "<h2>On this page:</h2>" +
-	    "<ul>";
-	
-	var newLine, el, title, link;
-	var hasHeaders = false;
-	$('.post-content h2').each(function() {
-	  hasHeaders = true;
-	  el = $(this);
-	  title = el.text();
-	  link = "documentation/VPaaS-API-Getting-Started/how-to-create-kaltura-session.md#" + el.attr("id");
-	
-	  newLine =
-	    "<li>" +
-	      "<a href='" + link + "'>" +
-	        title +
-	      "</a>" +
-	    "</li>";
-	
-	  ToC += newLine;
-	
-	});
-	
-	ToC +=
-	   "</ul>" +
-	  "</nav>";
-	
-	if (hasHeaders) $("div.post-content").prepend(ToC);
-	*/
     	
 	//back to top
 	if ($('#back-to-top').length) {
@@ -180,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Aug 21 09:37:56 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/how-to-create-kaltura-session.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Wed Oct 10 15:26:01 2018</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/how-to-create-kaltura-session.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed Feb 22 04:21:26 2017, By: AnnaAleksandrowicz</td></tr-->
-				<!--tr><td>Last commit: Mon Aug 21 09:37:56 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Wed Oct 10 15:26:01 2018, By <span class="commit-author">Zohar Babin</span></td></tr-->
 			
 				<!-- 
 				
@@ -199,7 +128,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Zohar Babin (2 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+					<td>Zohar Babin (3 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -212,7 +141,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura API is representational state transfer (REST)(http://en.wikipedia.org/wiki/Representational_state_transfer), which is a style of software architecture for distributed systems such as the World Wide Web. REST has emerged over the past few years as a predominant Web service design model. REST has increasingly displaced other design models such as SOAP and WSDL due to its simpler style and <a href="http://en.wikipedia.org/wiki/Stateless_protocol">statelessness</a>. Every call (request) made to the Kaltura API requires an authentication key, the Kaltura Session (aka KS), identifying the account on which the action to be carried, the authenticated user and its role.</p>
+    		<p>The Kaltura API is representational state transfer <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>, which is a style of software architecture for distributed systems such as the World Wide Web. REST has emerged over the past few years as a predominant Web service design model. REST has increasingly displaced other design models such as SOAP and WSDL due to its simpler style and <a href="http://en.wikipedia.org/wiki/Stateless_protocol">statelessness</a>. Every call (request) made to the Kaltura API requires an authentication key, the Kaltura Session (aka KS), identifying the account on which the action to be carried, the authenticated user and its role.</p>
 
 <h3 id="methods-for-generating-a-kaltura-session">Methods for Generating a Kaltura Session</h3>
 
@@ -220,78 +149,22 @@ rtp('get', 'campaign',true);
 
 <ul>
   <li>Calling the <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/session/session_start">session.start action</a>: This method is recommended for scripts and applications to which you alone will have access.</li>
-  <li>Calling the <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/user_loginByLoginId">user.loginByLoginId action</a>: This method is recommended for managing registered users in Kaltura, and allowing users to log in using email and password. When you log in to the KMC, the KMC application calls the user.loginByLoginId action to authenticate you using your registered email and password.</li>
-  <li>Using the <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/appToken">appToken service</a>: This method is recommended when providing access to scripts or applications that are managed by others; this method provides tools to manage API tokens per application provider, revoke access to specific applications, and more.</li>
+  <li>Using the <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html">appToken service</a>: This method is recommended when providing access to scripts or applications that are managed by others; this method provides tools to manage API tokens per application provider, revoke access to specific applications, and more.</li>
+  <li>Calling the <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/user_loginByLoginId">user.loginByLoginId action</a>: This method is recommended for managing registered users in Kaltura, and allowing users to log in using email and password. When you log in to the KMC, the KMC application calls the user.loginByLoginId action to authenticate you using your registered email and password. </li>
 </ul>
 
-<p>The examples above use the <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Kaltura PHP5 Client Library</a>.</p>
-
-<blockquote>
-  <p>To learn more about the Kaltura Session, its algorithm, guidelines and options read the <a href="https://knowledge.kaltura.com/node/229">Kaltura API Authentication and Security article</a>.<br />
- </p>
-</blockquote>
-
-<h2 id="important-security-notes">Important Security Notes</h2>
+<h2 id="important-notes-when-generating-kaltura-sessions">Important Notes When Generating Kaltura Sessions</h2>
 
 <ol>
-  <li>The ADMIN type KS provides super admin privileges to the Kaltura account. If you’re creating an application where the session will be exposed to the end-user, make sure that you are using a USER type KS and not ADMIN type. Exposing an ADMIN type KS in non-administrative context will expose your Kaltura account to risks of being used by malicious users with unrestricted access.&lt;/strong&gt;</li>
-  <li>Sharing the account API secret keys with 3rd party vendors should be avoided, as secret keys can not be regenerated or blocked for access. Kaltura API based application developers and 3rd party application vendors should build their application to leverage the user.loginByLoginId API and ask the publisher for their email, password and account Id (aka partnerId). Users can be easily created, removed or blocked and their password can easily be changed.</li>
+  <li>Familiarize yourself with the concepts of user roles, privileges, access control and entitlements by reading the <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura API Authentication and Security guide</a> to ensure that your application is secured.</li>
+  <li>Sharing the account API secret keys with 3rd party vendors should be avoided, as secret keys can not be regenerated or blocked for access. Kaltura API based application developers and 3rd party application vendors should build their application to leverage the appToken API to manage (create and revoke access) application tokens.</li>
+  <li>To ensure best security and analytics tracking during playback, always pass a Kaltura Session to the player embed.</li>
+  <li>To ensure tracking of end-user analytics, always pass a value to the userId field that is truly unique and represents a unique user in your system.</li>
+  <li>To ensure tracking of application level analytics make sure to pass the appid privilege (in the format of “appid:$appName-$appDomain” where $appName is a unique string to identify your application and appDomain is the domain where this app is hosted).</li>
 </ol>
 
-<h2 id="code-example-for-configuring-a-kaltura-session">Code Example for Configuring a Kaltura Session</h2>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="c1">// include the KalturaClient PHP client library to be able to use its functions/objects
-</span><span class="k">require_once</span><span class="p">(</span><span class="nb">dirname</span><span class="p">(</span><span class="k">__FILE__</span><span class="p">)</span><span class="o">.</span><span class="s1">'/lib/KalturaClient.php'</span><span class="p">);</span>
-
-
-<span class="sd">/*********************** ACCOUNT CONFIGURATION START ***********************/</span>
-
-<span class="c1">// Kaltura account ID (partner ID)
-</span><span class="nb">define</span><span class="p">(</span><span class="s1">'KALTURA_PARTNER_ID'</span><span class="p">,</span> <span class="nx">PARTNER_ID</span><span class="p">);</span>
-
-<span class="c1">// Kaltura account admin secret
-</span><span class="nb">define</span><span class="p">(</span><span class="s1">'KALTURA_ADMIN_SECRET'</span><span class="p">,</span> <span class="nx">ADMIN_SECRET</span><span class="p">);</span>
-
-<span class="c1">// Kaltura service URL (can be changed to work with on-prem deployments)
-</span><span class="nb">define</span><span class="p">(</span><span class="s1">'KALTURA_SERVICE_URL'</span><span class="p">,</span> <span class="s1">'http://www.kaltura.com/'</span><span class="p">);</span>
-
-<span class="sd">/************************ ACCOUNT CONFIGURATION END ************************/</span>
-
-
-<span class="sd">/**
-* @return KalturaClient object with a valid KS according to the supplied parameters
-* @param KalturaSessionType $sessionType
-* @param string $userId
-* @param int $sessionExpiry
-* @param string $sessionPrivileges
-*/</span>
-<span class="k">function</span> <span class="nf">getClient</span><span class="p">(</span><span class="nv">$sessionType</span><span class="p">,</span> <span class="nv">$userId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nv">$sessionExpiry</span> <span class="o">=</span> <span class="mi">86400</span><span class="p">,</span> <span class="nv">$sessionPrivileges</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="c1">// Create KalturaClient object using the accound configuration
-</span>  <span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConfiguration</span><span class="p">(</span><span class="nx">KALTURA_PARTNER_ID</span><span class="p">);</span>
-  <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">serviceUrl</span> <span class="o">=</span> <span class="nx">KALTURA_SERVICE_URL</span><span class="p">;</span>
-  <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaClient</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
-
-  <span class="c1">// Generate KS string locally, without calling the API
-</span>  <span class="nv">$ks</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">generateSession</span><span class="p">(</span>
-    <span class="nx">KALTURA_ADMIN_SECRET</span><span class="p">,</span>
-    <span class="nv">$userId</span><span class="p">,</span>
-    <span class="nv">$sessionType</span><span class="p">,</span>
-    <span class="nv">$config</span><span class="o">-&gt;</span><span class="na">partnerId</span><span class="p">,</span>
-    <span class="nv">$sessionExpiry</span><span class="p">,</span>
-    <span class="nv">$sessionPrivileges</span>
-  <span class="p">);</span>
-
-  <span class="c1">// Set the generated KS to be used for future API calls from this KalturaClient object
-</span>  <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setKs</span><span class="p">(</span><span class="nv">$ks</span><span class="p">);</span>
-
-  <span class="c1">// return the KalturaClient object
-</span>  <span class="k">return</span> <span class="nv">$client</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
 <blockquote>
-  <p>Note: To use the Kaltura API, you will need a Publisher Account with API access. Start a <a href="http://corp.kaltura.com/free-trial">free Kaltura.com trial</a> or <a href="https://github.com/kaltura/platform-install-packages">download Kaltura CE</a>.</p>
+  <p>Note: To use the Kaltura API, you will need a Publisher Account with API access. <a href="https://vpaas.kaltura.com/register.html">Get a free Kaltura VPaaS trial</a>.</p>
 </blockquote>
 
 		
