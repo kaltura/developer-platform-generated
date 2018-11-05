@@ -7,16 +7,17 @@
   var logoutTimeout = null;
 
   function loggedInTemplate() {
-    return '<li class="dropdown auth-link" id="KalturaPartnerIDDropdown">' +
-        '<a class="dropdown-toggle" data-toggle="dropdown">' +
-          '<span class="hidden-md">' + (user.name ? user.name + ' - ' : '') + '</span>' +
-          '<span>' + (user.partnerId || '[Using Custom KS]') + '</span>' +
-          '<i class="fa fa-right fa-caret-down"></i>' +
-        '</a>' +
-        '<ul class="dropdown-menu">' +
-          partnerChoicesTemplate(window.kalturaPartners || []) +
-          '<li><a onclick="setKalturaUser()">Sign Out</a></li>' +
-        '</ul></li>'
+    return '<li class="dropdown auth-link" id="KalturaPartnerIDDropdown">'
+        + '<a class="dropdown-toggle" data-toggle="dropdown">'
+        +   '<span class="hidden-md">' + (user.name ? user.name + ' - ' : '') + '</span>'
+        +   '<span>' + (user.partnerId || '[Using Custom KS]') + '</span>'
+        +   '<i class="fa fa-right fa-caret-down"></i>'
+        + '</a>'
+        + '<ul class="dropdown-menu">'
+        +   '<li><a data-toggle="modal" data-target="#KalturaSecretsModal">View secrets</a></li>'
+        +   '<li><a data-toggle="modal" data-target="#KalturaPartnerIDModal">Switch accounts</a></li>'
+        +   '<li><a onclick="setKalturaUser()">Sign Out</a></li>'
+        + '</ul></li>';
   }
 
   var LOGGED_OUT_HTML =
@@ -68,8 +69,8 @@
       window.jquery('#KalturaSidebar .not-logged-in').hide();
       window.jquery('#KalturaSidebar .logged-in').show();
       window.jquery('#KalturaSidebar .partnerId').text(creds.partnerId || '');
-      window.jquery('#KalturaSidebar .userSecret').text(creds.userSecret || '');
-      window.jquery('#KalturaSidebar .adminSecret').text(creds.secret || '');
+      window.jquery('.kalturaUserSecret').text(creds.userSecret || '');
+      window.jquery('.kalturaAdminSecret').text(creds.secret || '');
       window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
       window.jquery('#KalturaPartnerIDModal').modal('hide');
     }

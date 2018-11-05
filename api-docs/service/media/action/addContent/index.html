@@ -161,6 +161,21 @@
   </div>
 </div>
 
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -209,8 +224,8 @@
           <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
         </p>
         <div id="KalturaSecrets" style="display:none">
-          <p><label>User Secret:&nbsp;</label><span class="userSecret"></span></p>
-          <p><label>Admin Secret:&nbsp;</label><span class="adminSecret"></span></p>
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
         </div>
       </div>
     </div>
