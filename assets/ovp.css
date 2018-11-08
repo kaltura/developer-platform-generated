@@ -36,7 +36,7 @@ ul.code-tab li a {
 ul.code-tab li a:hover {background-color: #ddd;}
 
 /* Create an active/current tablink class */
-ul.code-tab li a:focus, .active {background-color: #ccc;}
+ul.code-tab li a:focus {background-color: #ccc;}
 
 /* Style the tab content */
 .tabcontent {

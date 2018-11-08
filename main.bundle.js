@@ -1253,23 +1253,42 @@ function View_ConsoleComponent_5(_l) {
     });
 }
 function View_ConsoleComponent_7(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 2, "a", [], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
+        var ad = true;if ("click" === en) {
+            var pd_0 = i0.ɵnov(_v, 2).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), i0.ɵdid(2, 671744, null, 0, i1.RouterLinkWithHref, [i1.Router, i1.ActivatedRoute, i2.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i0.ɵted(3, null, ["", ""]))], function (_ck, _v) {
+        var _co = _v.component;var currVal_2 = _co.routes.getNavigationLink(_v.context.$implicit.path);_ck(_v, 2, 0, currVal_2);
+    }, function (_ck, _v) {
+        var currVal_0 = i0.ɵnov(_v, 2).target;var currVal_1 = i0.ɵnov(_v, 2).href;_ck(_v, 1, 0, currVal_0, currVal_1);var currVal_3 = _v.context.$implicit.title;_ck(_v, 3, 0, currVal_3);
+    });
+}
+function View_ConsoleComponent_6(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "h3", [], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["Choose an operation for ", ":"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_7)), i0.ɵdid(4, 802816, null, 0, i2.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.choices;_ck(_v, 4, 0, currVal_1);
+    }, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.tagName;_ck(_v, 2, 0, currVal_0);
+    });
+}
+function View_ConsoleComponent_9(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "alert alert-info"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-left fa-exclamation-circle"]], null, null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(4, null, ["", ""]))], null, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.utils.config.uiOptions.messages.beta;_ck(_v, 4, 0, currVal_0);
     });
 }
-function View_ConsoleComponent_8(_l) {
+function View_ConsoleComponent_10(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "alert alert-warning"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 3, "p", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-left fa-exclamation-circle"]], null, null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(4, null, ["", ""]))], null, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.utils.config.uiOptions.messages.deprecated;_ck(_v, 4, 0, currVal_0);
     });
 }
-function View_ConsoleComponent_6(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_7)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_8)), i0.ɵdid(4, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(5, 0, null, null, 1, "api-call", [], null, null, null, i3.View_APICallComponent_0, i3.RenderType_APICallComponent)), i0.ɵdid(6, 638976, [[1, 4], ["apiCallComponent", 4]], 0, i4.APICallComponent, [i5.OpenAPIService, i6.UtilsService, i7.TrackerService, i0.ElementRef], { apiCall: [0, "apiCall"] }, null)], function (_ck, _v) {
+function View_ConsoleComponent_8(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 6, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_9)), i0.ɵdid(2, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_10)), i0.ɵdid(4, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(5, 0, null, null, 1, "api-call", [], null, null, null, i3.View_APICallComponent_0, i3.RenderType_APICallComponent)), i0.ɵdid(6, 638976, [[1, 4], ["apiCallComponent", 4]], 0, i4.APICallComponent, [i5.OpenAPIService, i6.UtilsService, i7.TrackerService, i0.ElementRef], { apiCall: [0, "apiCall"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.apiCall.operation["x-beta"];_ck(_v, 2, 0, currVal_0);var currVal_1 = _co.apiCall.operation.deprecated;_ck(_v, 4, 0, currVal_1);var currVal_2 = _co.apiCall;_ck(_v, 6, 0, currVal_2);
     }, null);
 }
 function View_ConsoleComponent_4(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 5, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_5)), i0.ɵdid(3, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_6)), i0.ɵdid(5, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_1 = _co.apiCallComponent;_ck(_v, 3, 0, currVal_1);var currVal_2 = _co.apiCall;_ck(_v, 5, 0, currVal_2);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_5)), i0.ɵdid(3, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_6)), i0.ɵdid(5, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_ConsoleComponent_8)), i0.ɵdid(7, 16384, null, 0, i2.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.apiCallComponent;_ck(_v, 3, 0, currVal_1);var currVal_2 = !_co.apiCall && _co.choices;_ck(_v, 5, 0, currVal_2);var currVal_3 = _co.apiCall;_ck(_v, 7, 0, currVal_3);
     }, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.marked(_co.utils.config.uiOptions.messages.console);_ck(_v, 1, 0, currVal_0);
     });
@@ -1329,8 +1348,12 @@ var ConsoleComponent = /** @class */ (function () {
         this.subscriptions = [];
         window.consoleComponent = this;
         this.subscriptions.push(this.menu.choose.subscribe(function (choice) {
-            if (choice)
-                _this.setAPICall(choice.operation);
+            if (choice) {
+                if (choice.operation)
+                    _this.setAPICall(choice.operation);
+                else if (choice.tag)
+                    _this.setChoices(choice);
+            }
         }));
         this.subscriptions.push(this.openapi.spec.subscribe(function (spec) {
             _this.setAPICall(_this.operationName);
@@ -1347,6 +1370,10 @@ var ConsoleComponent = /** @class */ (function () {
         this.operationName = name;
         if (this.openapi.apiCalls)
             this.apiCall = this.openapi.apiCalls.filter(function (a) { return a.title === name; })[0];
+    };
+    ConsoleComponent.prototype.setChoices = function (choice) {
+        this.tagName = choice.title || choice.tag;
+        this.choices = choice.children;
     };
     return ConsoleComponent;
 }());
