@@ -6816,6 +6816,7 @@ var JSONSchemaFormComponent = /** @class */ (function () {
     }
     JSONSchemaFormComponent.prototype.ngOnChanges = function () {
         this.setSchema(this.inputSchema);
+        this.readOnly = this.readOnly || this.schema.readOnly;
         if (this.value !== this.inputValue) {
             this.value = this.parameterModel[this.parameter.name] = this.inputValue;
             if (Array.isArray(this.value)) {
@@ -8418,10 +8419,13 @@ var OpenAPIService = /** @class */ (function () {
             _this.fillSchema(smaller, subschema);
         });
         for (var key in smaller.properties) {
-            if (!schema.properties[key])
+            var subschema = schema.properties[key];
+            if (!subschema)
                 continue;
-            smaller.properties[key] = Object.assign({}, schema.properties[key], smaller.properties[key], { $ref: undefined });
-            this.fillSchema(smaller.properties[key], schema.properties[key]);
+            if (subschema.$ref)
+                subschema = this.resolveReference(subschema.$ref);
+            smaller.properties[key] = Object.assign({}, subschema, smaller.properties[key], { $ref: undefined });
+            this.fillSchema(smaller.properties[key], subschema);
         }
     };
     return OpenAPIService;
