@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Fri Nov 2 15:31:20 2018</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Nov 13 04:45:45 2018</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
-				<!--tr><td>Last commit: Fri Nov 2 15:31:20 2018, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Tue Nov 13 04:45:45 2018, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
@@ -129,6 +129,12 @@ rtp('get', 'campaign',true);
 				
 				<tr>
 					<td>Zohar Babin (4 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (2 commits) (<a href="mailto:avitaltzubeli@gmail.com">avitaltzubeli@gmail.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -158,7 +164,7 @@ Setup looks like this:</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -186,6 +192,9 @@ const client = new kaltura.Client(config);</code></pre>
     }</code></pre>
           </div>
 </div>
+<p> </p>
+
+<p>The steps below will walk you through a few basic Kaltura APIs. If you’re looking for languages that are not available here, you can click on any of the actions mentioned to see them in our <a href="https://developer.kaltura.com/console">interactive console</a>.</p>
 
 <h2 id="kaltura-session">Kaltura Session</h2>
 
@@ -193,7 +202,7 @@ const client = new kaltura.Client(config);</code></pre>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -242,13 +251,13 @@ $client-&gt;setKS($ks);
 client.setSessionId(session);</code></pre>
           </div>
 </div>
-
-<p><em>Specifying an <code class="highlighter-rouge">app id</code> which contains the name and domain of the app allows you to get specific analytics per application, for cases where you’re running your application on various domains.</em></p>
+<p> <br />
+<em>Specifying an <code class="highlighter-rouge">app id</code> which contains the name and domain of the app allows you to get specific analytics per application, for cases where you’re running your application on various domains.</em></p>
 
 <p>Try it interactively <a href="https://developer.kaltura.com/workflows/Generate_API_Sessions/Authentication">with this workflow</a>.</p>
 
-<p>Generating a KS with <code class="highlighter-rouge">session.start</code> is simple, and great for applications which you alone have access to. <br />
-Other methods include the <code class="highlighter-rouge">user.loginByLoginId</code> action, which allows users to log in using their own KMC credentials, and the <code class="highlighter-rouge">appToken</code> service, which is recommended when providing access to applications in production that are managed by others. <br />
+<p>Generating a KS with <a href="https://developer.kaltura.com/console/service/session/action/start"><code class="highlighter-rouge">session.start</code></a> is simple, and great for applications which you alone have access to. <br />
+Other methods include the <a href="https://developer.kaltura.com/api-docs/service/user/action/loginByLoginId"><code class="highlighter-rouge">user.loginByLoginId</code></a> action, which allows users to log in using their own KMC credentials, and the <code class="highlighter-rouge">appToken</code> service, which is recommended when providing access to applications in production that are managed by others. <br />
 Learn more <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html/">here</a> about various ways to create a Kaltura Session.</p>
 
 <h2 id="uploading-media-files">Uploading Media Files</h2>
@@ -260,7 +269,7 @@ Learn more <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Sta
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -293,6 +302,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 });</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p>An UploadToken is essentially a container that holds any file that will be uploaded to Kaltura. The token has an ID that is attached to the location of the file.  This process allows the upload to happen independently of the entry creation. In the case of large files, for example, the same uploadToken ID is used for each chunk of the same file.</p>
 
@@ -320,7 +330,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -383,6 +393,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 });</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p><strong>Step 3: Creating the Kaltura Media Entry</strong></p>
 
@@ -390,7 +401,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -476,7 +487,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -569,6 +580,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 });</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p>At this point, Kaltura will start analyzing the uploaded file, prepare for the transcoding and distribution flows and any other predefined workflows or notifications.</p>
 
@@ -580,7 +592,7 @@ If you have multiple search conditions, you would set an <code class="highlighte
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -606,6 +618,7 @@ searchParams.setSearchOperator(new ESearchEntryOperator());
 searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBaseItem&gt;(1));</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p><strong>Step 2: Search Type</strong></p>
 
@@ -613,7 +626,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -629,6 +642,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
             <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().set(0, new ESearchUnifiedItem());</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p><strong>Step 3: Search Term</strong></p>
 
@@ -636,7 +650,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -652,6 +666,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
             <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setSearchTerm(&quot;kaltura logo&quot;);</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p><strong>Step 4: Search Item Type</strong></p>
 
@@ -659,7 +674,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -676,6 +691,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 </code></pre>
           </div>
 </div>
+<p> </p>
 
 <p><strong>Step 5: Add Highlight</strong></p>
 
@@ -683,7 +699,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -699,12 +715,13 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
             <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setAddHighlight(true);</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p><strong>Step 6: Search</strong></p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Javascript</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -731,6 +748,7 @@ print(result);</code></pre>
     });</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p>Success! The result will return as a list of  <code class="highlighter-rouge">KalturaMediaEntry</code> objects.</p>
 
@@ -842,5 +860,5 @@ Now you can use it for embedding your player:</li>
   document.getElementsByTagName('head')[0].appendChild(s);
 })();
 </script>
+
 <script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script>
-<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
