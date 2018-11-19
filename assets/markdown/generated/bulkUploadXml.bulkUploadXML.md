@@ -370,9 +370,10 @@ table th {
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="T_categories">
-    <xs:sequence>
+    <xs:choice>
       <xs:element maxOccurs="32" minOccurs="0" name="category" type="xs:string"></xs:element>
-    </xs:sequence>
+      <xs:element maxOccurs="32" minOccurs="0" name="categoryId" type="xs:int"></xs:element>
+    </xs:choice>
   </xs:complexType>
   <xs:complexType name="T_pluginReplacementOptions">
     <xs:sequence></xs:sequence>
@@ -3990,8 +3991,20 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class="">
-<td class="first" colspan="2">category</td>
+<tbody>
+<tr class="choice-head ">
+<td class="first" colspan="2">Choice</td>
+<td></td>
+<td>Yes</td>
+<td>Unbounded</td>
+<td></td>
+<td class="last">
+						One of the following choices
+					</td>
+</tr>
+<tr class="choice choice-start">
+<td class="first">category</td>
+<td rowspan="1">Option 1</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies a single category assigned to an entry. Use the &gt; character (`&amp;gt;`) to indicate the position of the category in the category tree hierarchy</xs:documentation></span><br>
 </td>
@@ -3999,7 +4012,19 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
 <td>32</td>
 <td>string</td>
 <td class="last"></td>
-</tr></tbody>
+</tr>
+<tr class="choice choice-end">
+<td class="first">categoryId</td>
+<td rowspan="1">Option 2</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies a single category ID assigned to an entry. </xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>32</td>
+<td>int</td>
+<td class="last"></td>
+</tr>
+</tbody>
 </table>
 
 
@@ -4018,6 +4043,22 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
     <category>examples
 					&gt;
 				example2</category>
+  </categories>
+  <media>...</media>
+  <contentAssets>...</contentAssets>
+</item>
+```
+
+##### XML Example: Entry categories IDs
+
+
+
+```xml
+<item>
+  <action>add</action>
+  <categories>
+    <categoryId>1234</categoryId>
+    <categoryId>5678</categoryId>
   </categories>
   <media>...</media>
   <contentAssets>...</contentAssets>
