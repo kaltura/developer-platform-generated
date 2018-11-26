@@ -227,7 +227,8 @@ AddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)
 </code></pre>
           </div>
           <div class="highlight example php">
-            <pre><code class="php" data-lang="php">appToken.sessionPrivileges = &quot;setrole:1234567&quot;;</code></pre>
+            <pre><code class="php" data-lang="php">$appToken-&gt;sessionPrivileges = &quot;setrole:1234567&quot;;
+</code></pre>
           </div>
           <div class="highlight example javascript">
             <pre><code class="javascript" data-lang="javascript">appToken.sessionPrivileges = &quot;setrole:1234567&quot;;</code></pre>
@@ -245,9 +246,12 @@ To enable entitlements on the category, select Add Entitlements in the Integrati
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">appToken.sessionPrivileges = &quot;setrole:1234567,privacycontext:application&quot;</code></pre>
+          </div>
           <div class="highlight example php">
             <pre><code class="php" data-lang="php">$appToken-&gt;sessionPrivileges = &quot;setrole:1234567,privacycontext:application&quot;;</code></pre>
           </div>
