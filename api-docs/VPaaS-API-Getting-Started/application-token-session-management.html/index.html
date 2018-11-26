@@ -1,0 +1,949 @@
+<!DOCTYPE html><html><head>
+    <title>Application Token Session Management - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style><meta name="title" content="Application Token Session Management - Kaltura VPaaS API Documentation"><meta name="description" content="Full documentation for the Kaltura VPaaS API"><meta name="keywords" content=""></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/homepage/assets/images/Kaltura-logo.png">
+        <span class="brand-subtitle">Developer</span>
+      </a>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+          <a href="api-docs">API Docs</a>
+        </li>
+        <li class="navbar-link">
+          <a href="console">API Console</a>
+        </li>
+        <li class="navbar-link workflows-link">
+          <a href="workflows">Workflows</a>
+        </li>
+        <!--li class="navbar-link">
+          <a href="#">Player</a>
+        </li-->
+        <li class="navbar-link">
+          <a href="api-docs/Client_Libraries">Client Libraries</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----><div _ngcontent-c1="" class="modal fade ng-star-inserted" id="AuthenticationModal" tabindex="-1"><div _ngcontent-c1="" class="modal-dialog"><form _ngcontent-c1="" class="modal-content ng-untouched ng-pristine ng-valid" novalidate=""><div _ngcontent-c1="" class="modal-header"><button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><i _ngcontent-c1="" class="fa fa-times"></i></button><div _ngcontent-c1="" class="modal-title"><h3 _ngcontent-c1="">API Authorization</h3></div></div><div _ngcontent-c1="" class="modal-body"><!----><ul _ngcontent-c1="" class="nav nav-tabs nav-justified" hidden=""><!----><li _ngcontent-c1="" class="active ng-star-inserted"><a _ngcontent-c1="" innerhtml="ks">ks</a></li></ul><!----><div _ngcontent-c1="" class="ng-star-inserted"><div _ngcontent-c1="" class="form-group"><label _ngcontent-c1="" innerhtml="ks">ks</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine ng-valid" name="apiKey" type="text" value=""></div></div><!----><!----></div><div _ngcontent-c1="" class="modal-footer"><!----><button _ngcontent-c1="" class="btn btn-success" type="submit"><!----><span _ngcontent-c1="" class="ng-star-inserted">Authorize</span><!----></button></div></form></div></div></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Overview" href="/api-docs/Overview"><span class="ng-tns-c5-0" innerhtml="Overview">Overview</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="VPaaS API Getting Started" href="/api-docs/VPaaS-API-Getting-Started"><span class="ng-tns-c5-1" innerhtml="VPaaS API Getting Started">VPaaS API Getting Started</span></a></div><!----><div class="side-menu-children ng-tns-c5-1 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-25 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-25 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Get Started with Kaltura VPaaS" href="/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html"><span class="ng-tns-c5-25" innerhtml="Get Started with Kaltura VPaaS">Get Started with Kaltura VPaaS</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-26 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="How to Create a Kaltura Session" href="/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html"><span class="ng-tns-c5-26" innerhtml="How to Create a Kaltura Session">How to Create a Kaltura Session</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-27 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-27 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Kaltura API Authentication and Security" href="/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html"><span class="ng-tns-c5-27" innerhtml="Kaltura API Authentication and Security">Kaltura API Authentication and Security</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-28 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-28 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Introduction to Kaltura's Client Libraries" href="/api-docs/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html"><span class="ng-tns-c5-28" innerhtml="Introduction to Kaltura's Client Libraries">Introduction to Kaltura's Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-29 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-29 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="How to use Kaltura's API Abstract Classes" href="/api-docs/VPaaS-API-Getting-Started/how-use-kaltura-api-abstract-classes.html"><span class="ng-tns-c5-29" innerhtml="How to use Kaltura's API Abstract Classes">How to use Kaltura's API Abstract Classes</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-30 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-30 active ng-star-inserted" preservefragment="" preservequeryparams="" title="Application Token Session Management" href="/api-docs/VPaaS-API-Getting-Started/application-token-session-management.html"><span class="ng-tns-c5-30" innerhtml="Application Token Session Management">Application Token Session Management</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-31 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-31 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Creating an Application Token" href="/api-docs/VPaaS-API-Getting-Started/Account-Representative-Steps.html"><span class="ng-tns-c5-31" innerhtml="Creating an Application Token">Creating an Application Token</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-32 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-32 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Authorizing with an Application Token" href="/api-docs/VPaaS-API-Getting-Started/Authorizing-With-Application-Token.html"><span class="ng-tns-c5-32" innerhtml="Authorizing with an Application Token">Authorizing with an Application Token</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-33 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-33 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Generating Kaltura Sessions with Application Tokens" href="/api-docs/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html"><span class="ng-tns-c5-33" innerhtml="Generating Kaltura Sessions with Application Tokens">Generating Kaltura Sessions with Application Tokens</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/api-docs/Client_Libraries"><span class="ng-tns-c5-2" innerhtml="Client Libraries">Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="XML Schemas" href="/api-docs/XML_Schemas"><span class="ng-tns-c5-3" innerhtml="XML Schemas">XML Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Generate API Sessions" href="/api-docs/Generate_API_Sessions"><span class="ng-tns-c5-4" innerhtml="Generate API Sessions">Generate API Sessions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Ingest and Upload Media" href="/api-docs/Ingest_and_Upload_Media"><span class="ng-tns-c5-5" innerhtml="Ingest and Upload Media">Ingest and Upload Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Execute Bulk Ingest and Updates" href="/api-docs/Execute_Bulk_Ingest_and_Updates"><span class="ng-tns-c5-6" innerhtml="Execute Bulk Ingest and Updates">Execute Bulk Ingest and Updates</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Convert and Transcode Media" href="/api-docs/Convert_and_Transcode_Media"><span class="ng-tns-c5-7" innerhtml="Convert and Transcode Media">Convert and Transcode Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Stream and Broadcast" href="/api-docs/Live_Stream_and_Broadcast"><span class="ng-tns-c5-8" innerhtml="Live Stream and Broadcast">Live Stream and Broadcast</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Enrich and Organize Metadata" href="/api-docs/Enrich_and_Organize_Metadata"><span class="ng-tns-c5-9" innerhtml="Enrich and Organize Metadata">Enrich and Organize Metadata</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-10 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Search, Discover and Personalize" href="/api-docs/Search_Discover_and_Personalize"><span class="ng-tns-c5-10" innerhtml="Search, Discover and Personalize">Search, Discover and Personalize</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-11 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Engage and Publish" href="/api-docs/Engage_and_Publish"><span class="ng-tns-c5-11" innerhtml="Engage and Publish">Engage and Publish</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Media Analytics" href="/api-docs/Media_Analytics"><span class="ng-tns-c5-12" innerhtml="Media Analytics">Media Analytics</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-13 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Deliver and Distribute Media" href="/api-docs/Deliver_and_Distribute_Media"><span class="ng-tns-c5-13" innerhtml="Deliver and Distribute Media">Deliver and Distribute Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-14 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Secure, Control and Govern" href="/api-docs/Secure_Control_and_Govern"><span class="ng-tns-c5-14" innerhtml="Secure, Control and Govern">Secure, Control and Govern</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-15 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Optimize API Requests" href="/api-docs/Optimize_API_Requests"><span class="ng-tns-c5-15" innerhtml="Optimize API Requests">Optimize API Requests</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-16 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Integration, Scheduling and Hooks" href="/api-docs/Integration_Scheduling_and_Hooks"><span class="ng-tns-c5-16" innerhtml="Integration, Scheduling and Hooks">Integration, Scheduling and Hooks</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-17 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Encrypt and License Content" href="/api-docs/Encrypt_and_License_Content"><span class="ng-tns-c5-17" innerhtml="Encrypt and License Content">Encrypt and License Content</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-18 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Documents and Other Assets" href="/api-docs/Manage_Documents_and_Other_Assets"><span class="ng-tns-c5-18" innerhtml="Manage Documents and Other Assets">Manage Documents and Other Assets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-19 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage and Deliver Apps and Widgets" href="/api-docs/Manage_and_Deliver_Apps_and_Widgets"><span class="ng-tns-c5-19" innerhtml="Manage and Deliver Apps and Widgets">Manage and Deliver Apps and Widgets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-20 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Backend and Storage" href="/api-docs/Manage_Backend_and_Storage"><span class="ng-tns-c5-20" innerhtml="Manage Backend and Storage">Manage Backend and Storage</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-star-inserted" hidden=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-21 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Miscellaneous" href="/api-docs/Miscellaneous"><span class="ng-tns-c5-21" innerhtml="Miscellaneous">Miscellaneous</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-22 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/api-docs/Contribute"><span class="ng-tns-c5-22" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-23 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="General Objects" href="/api-docs/General_Objects"><span class="ng-tns-c5-23" innerhtml="General Objects">General Objects</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-24 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Error Codes" href="/api-docs/Error_Codes"><span class="ng-tns-c5-24" innerhtml="Error Codes">Error Codes</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Application Token Session Management</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>Kaltura App Token Session Management</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura App Token Session Management">
+    <meta property="st:published_at" content="">
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+
+
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura App Token Session Management</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Nov 26 07:17:00 2018</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/application-token-session-management.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Nov 26 07:05:13 2018, By: tzubeli</td></tr-->
+				<!--tr><td>Last commit: Mon Nov 26 07:17:00 2018, By <span class="commit-author">tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (3 commits) (<a href="mailto:avitaltzubeli@gmail.com">avitaltzubeli@gmail.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<h1 id="application-token-session-management">Application Token Session Management</h1>
+
+<p>An Application Token is useful in cases where different applications with varying permissions need access to your Kaltura account, without using your Admin Secret. <br>
+The appToken is created and customized by the account administrator, and then used by the developers to generate Kaltura Sessions for their respective applications. This allows access to the API to be revoked at any time with the deletion of the appToken.</p>
+
+<h2 id="before-you-start">Before You Start</h2>
+
+<p>Before you create an appToken, you need to decide whether to create a “blank” appToken, or one preconfigured with permissions. If your only concern is giving access without sharing your Admin secret, a basic appToken is sufficient. But if you want to always limit the permissions of a specific application, you’ll need to create the appToken with pre-configured <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">privileges</a>. Similarly, it is also possible to limit the appToken to a particular user ID should your implementation call for it.</p>
+
+<blockquote>
+  <p>Note: Any configurations (privileges or user ID) included in the creation of the appToken (<a href="https://developer.kaltura.com/console/service/appToken/action/add"><code class="highlighter-rouge">appToken.add</code></a>) <em>cannot</em> be overridden when the session is created with that appToken (<a href="https://developer.kaltura.com/console/service/appToken/action/startSession"><code class="highlighter-rouge">appToken.startSession</code></a>).</p>
+</blockquote>
+
+<p>The <strong>privileges string</strong> that could be included in the appToken is made up of <code class="highlighter-rouge">key:value</code> pairs that determine the actions available to this Kaltura Session. The following are common privileges for limiting your appTokens access:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">setrole</code>: When assigning App Tokens to your apps, the easiest way to configure the permitted actions is with User Roles. Roles are created <a href="https://kmc.kaltura.com/index.php/kmcng/administration/roles/list">in the KMC</a>, and give you the option of adding and removing specific actions available to the app. The ID of the Role is then mapped to the <code class="highlighter-rouge">setrole</code> privilege key in the permissions string. This allows you to easily manage the permitted actions by editing the role at any time after.</li>
+  <li><code class="highlighter-rouge">privacycontext</code>: If you want to limit the app to the content of a specific category, you could <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">set entitlements</a> on that category and map it to the <code class="highlighter-rouge">privacycontext</code> key (examples below). Keep in mind however, that if you set the category’s Content Privacy to Private, all end users who will need to access the content in this category must be added as members of the category.</li>
+</ul>
+
+<blockquote>
+  <p>Note: While a user ID <em>can</em> be added to an App Token during session generation (if no user ID was specified in the App Token creation), privileges can NOT be added during session generation.</p>
+</blockquote>
+
+<h2 id="creating-the-app-token">Creating the App Token</h2>
+
+<p>We will cover App Token creation with and without pre-configured privileges. Notice that the App Token has a sessionType. If set to type ADMIN (2), any session created with it will be a ADMIN session. If set to USER (0), however, various actions including <code class="highlighter-rouge">baseEntry.list</code>, will not be available. A USER App Token would be useful in cases where the application is only uploading media but not viewing it afterwards. Furthermore, we recommend using hash of type <a href="https://en.wikipedia.org/wiki/SHA-2"><code class="highlighter-rouge">SHA256</code></a>, but whichever you use, make sure to be consistent in the session creation.</p>
+
+<h3 id="basic-app-token">Basic App Token</h3>
+
+<p>We’ll start with an App Token without privileges, without a user, and without an expiry date, using <a href="https://developer.kaltura.com/console/service/appToken/action/add"><code class="highlighter-rouge">appToken.add</code></a>:</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">appToken = KalturaAppToken()
+appToken.description = "Basic App Token"
+appToken.hashType = KalturaAppTokenHashType.SHA256
+appToken.sessionType = KalturaSessionType.ADMIN
+
+result = client.appToken.add(appToken)
+print(result)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$appToken = new KalturaAppToken();
+$appToken-&gt;description = "Basic App Token";
+$appToken-&gt;hashType = KalturaAppTokenHashType::SHA256;
+$appToken-&gt;sessionType = KalturaSessionType::ADMIN;
+
+$result = $client-&gt;appToken-&gt;add($appToken);
+var_dump($result);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let appToken = new kaltura.objects.AppToken();
+appToken.description = "Basic App Token";
+appToken.hashType = kaltura.enums.AppTokenHashType.SHA256;
+appToken.sessionType = kaltura.enums.SessionType.ADMIN;
+
+kaltura.services.appToken.add(appToken)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">AppToken appToken = new AppToken();
+appToken.setDescription("Basic App Token");
+appToken.setHashType(AppTokenHashType.SHA256.getValue());
+appToken.setSessionType(SessionType.ADMIN.getValue());
+
+AddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)
+    .setCompletion(new OnCompletion&lt;Response&lt;AppToken&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;AppToken&gt; result) {
+            System.out.println(result);
+    }
+});
+</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<p>In the result you’ll see an <code class="highlighter-rouge">id</code> as well as a <code class="highlighter-rouge">token</code>. Hold on to those as you’ll need them for session creation. You can also view all your App Tokens with the <a href="https://developer.kaltura.com/console/service/appToken/action/list"><code class="highlighter-rouge">appToken.list</code></a> action.</p>
+
+<h3 id="set-a-user-role">Set a User Role</h3>
+
+<p>The easy way to create a User Role is <a href="https://kmc.kaltura.com/index.php/kmcng/administration/roles/list">in the KMC</a>. You’ll have options to name and describe the new role (make it specific) and then select permitted actions. You’ll see that for each category, there is the option to allow all permissions, or to select specific permissions. For example, under Content Moderation, you may allow this User Role to perform all actions except for deleting. You can also switch off a specific category altogether. Hit save and you should now see your new User Role in the list.</p>
+
+<p>Alternatively, if you know exactly which actions you’d like to include in your User Role, you can use the <a href="https://developer.kaltura.com/console/service/userRole/action/add"><code class="highlighter-rouge">userRole.add</code></a> API action to create a new role. You can see all of the available permission names and descriptions by listing them with <a href="https://developer.kaltura.com/console/service/permission/action/list"><code class="highlighter-rouge">permission.list</code></a>. Be sure to set the status of your role to Active (1).</p>
+
+<blockquote>
+  <p>Note: You will not be able to see in the KMC any roles that are created outside the KMC.</p>
+</blockquote>
+
+<p>You can get a list of all your existing roles, with the <a href="https://developer.kaltura.com/console/service/userRole/action/list"><code class="highlighter-rouge">userRole.list</code></a> action. Make note of the <code class="highlighter-rouge">id</code> of your new User Role as you’ll be needing it for your App Token, where you can set the role like this:</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">appToken.sessionPrivileges = "setrole:1234567"
+</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">appToken.sessionPrivileges = "setrole:1234567";</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">appToken.sessionPrivileges = "setrole:1234567";</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">appToken.setSessionPrivileges("setrole:1234567");</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<h3 id="add-a-privacy-context">Add a Privacy Context</h3>
+
+<p>Adding a privacy context will limit the session to the contents of a particular category.  <br>
+To enable entitlements on the category, select Add Entitlements in the Integration Settings in <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">KMC</a>. Then select a category and give it a Privacy Context Label. That is the name that should be used in the Privileges String when adding the <code class="highlighter-rouge">privacycontext</code> key.</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$appToken-&gt;sessionPrivileges = "setrole:1234567,privacycontext:application";</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">appToken.sessionPrivileges = "setrole:1234567,privacycontext:application";</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">appToken.setSessionPrivileges("setrole:1234567,privacycontext:application");</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<h3 id="add-a-user-to-the-category">Add a User to the Category</h3>
+
+<p>If you set the Content Privacy setting of that category to Private, for users to access this category, they will also need to be members of the category, which can be done in the Entitlements tab in the Category Settings. You can also use the <a href="https://developer.kaltura.com/console/service/categoryUser/action/add"><code class="highlighter-rouge">categoryUser.add</code></a> action, where you’ll need the category ID and the user ID, which can be any string identifying that user.</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">categoryUser = KalturaCategoryUser()
+categoryUser.categoryId = 123456789
+categoryUser.permissionLevel = KalturaCategoryUserPermissionLevel.MEMBER
+categoryUser.userId = "JaneDoe"
+
+result = client.categoryUser.add(categoryUser)
+print(result)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$categoryUser = new KalturaCategoryUser();
+$categoryUser-&gt;categoryId = 123456789;
+$categoryUser-&gt;permissionLevel = KalturaCategoryUserPermissionLevel::MEMBER;
+$categoryUser-&gt;userId = "JaneDoe";
+
+$result = $client-&gt;categoryUser-&gt;add($categoryUser);
+var_dump($result);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let categoryUser = new kaltura.objects.CategoryUser();
+categoryUser.categoryId = 123456789;
+categoryUser.permissionLevel = kaltura.enums.CategoryUserPermissionLevel.MEMBER;
+categoryUser.userId = "JaneDoe";
+
+kaltura.services.categoryUser.add(categoryUser)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">CategoryUser categoryUser = new CategoryUser();
+categoryUser.setCategoryId(123456789);
+categoryUser.setPermissionLevel(CategoryUserPermissionLevel.MEMBER.getValue());
+categoryUser.setUserId("JaneDoe");
+
+AddCategoryUserBuilder requestBuilder = CategoryUserService.add(categoryUser)
+    .setCompletion(new OnCompletion&lt;Response&lt;CategoryUser&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;CategoryUser&gt; result) {
+            System.out.println(result);
+    }
+});</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<h3 id="add-a-user-to-the-app-token">Add a User to the App Token</h3>
+
+<p>In cases where you’d like to use App Tokens to grant access to particular users, you can include the user ID during the creation of the App Token (<code class="highlighter-rouge">appToken.add</code>). When including a user ID in the App Token object, that user ID can not be overridden when calling <code class="highlighter-rouge">appToken.startSession</code>. This can be useful when wanting to grant particular users with API access and ensure they can not mask their ID as someone else while carrying API actions.</p>
+
+<p>Let’s bring it all together. We have a user. We have a User Role, and its ID. We will use hash of type <code class="highlighter-rouge">SHA256</code> and give the session a duration of one day.</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">appToken = KalturaAppToken()
+appToken.description = "App Token with User and Privileges"
+appToken.hashType = KalturaAppTokenHashType.SHA256
+appToken.sessionDuration = 86400
+appToken.sessionPrivileges = "setrole:1234567"
+appToken.sessionType = KalturaSessionType.ADMIN
+appToken.sessionUserId = "dummyuser@kaltura.com"
+
+result = client.appToken.add(appToken)
+print(result)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$appToken = new KalturaAppToken();
+$appToken-&gt;description = "App Token with User and Privileges";
+$appToken-&gt;hashType = KalturaAppTokenHashType::SHA256;
+$appToken-&gt;sessionDuration = 86400;
+$appToken-&gt;sessionPrivileges = "setrole:1234567";
+$appToken-&gt;sessionType = KalturaSessionType::ADMIN;
+$appToken-&gt;sessionUserId = "dummyuser@kaltura.com";
+
+$result = $client-&gt;appToken-&gt;add($appToken);
+var_dump($result);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let appToken = new kaltura.objects.AppToken();
+appToken.description = "App Token with User and Privileges";
+appToken.hashType = kaltura.enums.AppTokenHashType.SHA256;
+appToken.sessionDuration = 86400;
+appToken.sessionPrivileges = "setrole:1234567";
+appToken.sessionType = kaltura.enums.SessionType.ADMIN;
+appToken.sessionUserId = "dummyuser@kaltura.com";
+
+kaltura.services.appToken.add(appToken)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">AppToken appToken = new AppToken();
+appToken.setDescription("App Token with User and Privileges");
+appToken.setHashType(AppTokenHashType.SHA256.getValue());
+appToken.setSessionDuration(86400);
+appToken.setSessionPrivileges("setrole:1234567");
+appToken.setSessionType(SessionType.ADMIN.getValue());
+appToken.setSessionUserId("dummyuser@kaltura.com");
+
+AddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)
+.setCompletion(new OnCompletion&lt;Response&lt;AppToken&gt;&gt;() {
+    @Override
+    public void onComplete(Response&lt;AppToken&gt; result) {
+        System.out.println(result);
+    }
+});</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<blockquote>
+  <p>Reminder: You can get a list of all your App Tokens with the <a href="https://developer.kaltura.com/console/service/appToken/action/list"><code class="highlighter-rouge">appToken.list</code></a> action.</p>
+</blockquote>
+
+<h2 id="generate-kaltura-sessions-with-the-app-token">Generate Kaltura Sessions with the App Token</h2>
+
+<p>The Kaltura Session generated with the App Token will have the content and action permissions that were configured in the App Token.</p>
+
+<h3 id="step-1-create-a-kaltura-session">Step 1: Create a Kaltura Session</h3>
+
+<p>Because a Kaltura Session is required for every call to the API, we’ll need to create an unprivileged session before being able to create the App Token session. We use the <a href="https://developer.kaltura.com/console/service/appToken/action/startSession"><code class="highlighter-rouge">session.startWidgetSession</code></a> action with the widget ID, which is your partner ID with an underscore prefix.</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">widgetId = "_1234567"
+expiry = 86400
+
+result = client.session.startWidgetSession(widgetId, expiry);
+print(result)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$widgetId = "_1234567";
+$expiry = 86400;
+
+$result = $client-&gt;session-&gt;startWidgetSession($widgetId, $expiry);
+var_dump($result);</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let widgetId = "_1234567";
+let expiry = 86400;
+
+kaltura.services.session.startWidgetSession(widgetId, expiry)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});
+</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">String widgetId = "_1234567";
+int expiry = 86400;
+
+StartWidgetSessionSessionBuilder requestBuilder = SessionService.startWidgetSession(widgetId, expiry)
+    .setCompletion(new OnCompletion&lt;Response&lt;StartWidgetSessionResponse&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;StartWidgetSessionResponse&gt; result) {
+            System.out.println(result);
+        }
+});</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<p>The result will contain that unprivileged KS which you need for the next step.</p>
+
+<h3 id="step-2-compute-the-token-hash">Step 2: Compute the Token Hash</h3>
+
+<p>We’ll create a hash of the App Token <code class="highlighter-rouge">token</code> value together with the unprivileged KS, using a hash function in the language of your choice.</p>
+
+<blockquote>
+  <p>Important Note: Make sure to use the same hash type as the one used for creating the App Token.</p>
+</blockquote>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">hashString = hashlib.sha256((result.ks + appToken).encode('ascii')).hexdigest()</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$client-&gt;setKS($result-&gt;ks);
+$hashString = hash('sha256', $client-&gt;ks . "123456512341234");</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">var crypto = require('crypto');
+var shasum = crypto.createHash('sha256');
+
+client.ks = result.ks;
+shasum.update(client.ks + "123456512341234");
+var hash = shasum.digest('hex');</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">client.setSessionId(result.ks);
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+md.update(client.Ks + "123456512341234");
+byte[] res = md.digest();
+String hashString = toHexString(res);</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<p>The resulting string is the <code class="highlighter-rouge">tokenHash</code> which you’ll use in the next step.</p>
+
+<h3 id="step-3-generate-the-session">Step 3: Generate the Session</h3>
+
+<p>We’ll use the <a href="https://developer.kaltura.com/console/service/appToken/action/startSession"><code class="highlighter-rouge">App Token.startSession</code></a> action with the unprivileged KS, the hashToken, and the token <code class="highlighter-rouge">ID</code>:</p>
+
+<blockquote>
+  <p>Note: If you created an App Token with a user ID, it will override any user ID value used in <code class="highlighter-rouge">appToken.startSession</code>.</p>
+</blockquote>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">id = "&lt;tokenID&gt;"
+tokenHash = "&lt;tokenHash&gt;"
+userId = "enduser"
+type = KalturaSessionType.ADMIN
+expiry = 0
+sessionPrivileges = ""
+
+result = client.appToken.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)
+print(result)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$id = "&lt;tokenID&gt;";
+$tokenHash = "&lt;tokenHash&gt;";
+$userId = "enduser";
+$type = KalturaSessionType::ADMIN;
+$expiry = 0;
+$sessionPrivileges = "";
+
+$result = $client-&gt;appToken-&gt;startSession($id, $tokenHash, $userId, $type, $expiry, $sessionPrivileges);
+var_dump($result);
+</code></pre>
+          </div>
+          <div class="highlight example javascript">
+            <pre><code class="javascript" data-lang="javascript">let id = "&lt;tokenID&gt;";
+let tokenHash = "&lt;tokenHash&gt;";
+let userId = "enduser";
+let type = kaltura.enums.SessionType.ADMIN;
+let expiry = 0;
+let sessionPrivileges = "";
+
+kaltura.services.appToken.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">String id = "&lt;tokenID&gt;";
+String tokenHash = "&lt;tokenHash&gt;";
+String userId = "enduser";
+SessionType type = SessionType.ADMIN.getValue();
+int expiry = 0;
+String sessionPrivileges = "";
+
+StartSessionAppTokenBuilder requestBuilder = AppTokenService.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)
+    .setCompletion(new OnCompletion&lt;Response&lt;SessionInfo&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;SessionInfo&gt; result) {
+            System.out.println(result);
+    }
+});</code></pre>
+          </div>
+</div>
+<p>&nbsp;</p>
+
+<p>You’ll notice that the response contains any existing configurations from the App Token creation, regardless of what was passed in during the startSession. The expiry is set to an hour (although you can change this), meaning that after that time has passed, a new session will need to be generated. So if you wish to change permissions on this App Token, you can make those changes to the Role, User, or Privacy Context associated with the App Token.</p>
+
+<p>Congrats - now let’s build an app! Get started <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html/">here</a>.</p>
+
+
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+
+
+<script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script>
+
+
+</div><!----><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+<div id="KalturaFooter" class="w-section footer-section">
+  <div class="w-container container footer-container">
+    <div class="row">
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#vpaasLinks">VPaaS<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="vpaasLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a Free Trial</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#toolsLinks">Tools<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="toolsLinks" class="collapse">
+          <a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/api-docs/Client_Libraries">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#resourcesLinks">Resources<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="resourcesLinks" class="collapse">
+          <a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#communityLinks">Community<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="communityLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a>
+        </div>
+        <div class="secondary-links">
+          <h5 class="footer-headings footer-heading-margin"><a data-toggle="collapse" data-target="#openSourceLinks">Open Source<i class="fa fa-chevron-up"></i></a></h5>
+          <div id="openSourceLinks" class="collapse">
+            <a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kaltura-links">
+    <div class="container">
+      <div class="row">
+        <div class="col col-xs-12 col-sm-4">
+          <img src="/homepage/assets/images/Kaltura-Logo-white.png">
+        </div>
+        <div class="col col-xs-12 col-sm-4 footer-last-links-column">
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a>
+          <a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a>
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a>
+        </div>
+        <div class="social-icon-container col col-xs-12 col-sm-4">
+          <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a>
+          <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a>
+          <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a>
+          <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-container container copyright-container">
+    <div class="row">
+      <div class="col col-xs-12 copyright-column">
+        <div class="footer-copyright">Copyright © <span id="KalturaYear"></span> Kaltura Inc.</div>
+        <script>
+          document.getElementById('KalturaYear').innerHTML = (new Date()).getFullYear();
+        </script>
+        <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners.
+          <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;G.http://localhost:3333/assets/documentation/VPaaS-API-Getting-Started/application-token-session-management.html&q;:{&q;body&q;:&q;  &l;title&g;Kaltura App Token Session Management&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Kaltura App Token Session Management\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;script type=\&q;text/javascript\&q;&g;\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Kaltura App Token Session Management&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Mon Nov 26 07:17:00 2018&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;tzubeli&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/application-token-session-management.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Mon Nov 26 07:05:13 2018, By: tzubeli&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Mon Nov 26 07:17:00 2018, By &l;span class=\&q;commit-author\&q;&g;tzubeli&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;tzubeli (3 commits) (&l;a href=\&q;mailto:avitaltzubeli@gmail.com\&q;&g;avitaltzubeli@gmail.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n    \t\t&l;h1 id=\&q;application-token-session-management\&q;&g;Application Token Session Management&l;/h1&g;\n\n&l;p&g;An Application Token is useful in cases where different applications with varying permissions need access to your Kaltura account, without using your Admin Secret. &l;br /&g;\nThe appToken is created and customized by the account administrator, and then used by the developers to generate Kaltura Sessions for their respective applications. This allows access to the API to be revoked at any time with the deletion of the appToken.&l;/p&g;\n\n&l;h2 id=\&q;before-you-start\&q;&g;Before You Start&l;/h2&g;\n\n&l;p&g;Before you create an appToken, you need to decide whether to create a “blank” appToken, or one preconfigured with permissions. If your only concern is giving access without sharing your Admin secret, a basic appToken is sufficient. But if you want to always limit the permissions of a specific application, you’ll need to create the appToken with pre-configured &l;a href=\&q;https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html\&q;&g;privileges&l;/a&g;. Similarly, it is also possible to limit the appToken to a particular user ID should your implementation call for it.&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: Any configurations (privileges or user ID) included in the creation of the appToken (&l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.add&l;/code&g;&l;/a&g;) &l;em&g;cannot&l;/em&g; be overridden when the session is created with that appToken (&l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/startSession\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.startSession&l;/code&g;&l;/a&g;).&l;/p&g;\n&l;/blockquote&g;\n\n&l;p&g;The &l;strong&g;privileges string&l;/strong&g; that could be included in the appToken is made up of &l;code class=\&q;highlighter-rouge\&q;&g;key:value&l;/code&g; pairs that determine the actions available to this Kaltura Session. The following are common privileges for limiting your appTokens access:&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;setrole&l;/code&g;: When assigning App Tokens to your apps, the easiest way to configure the permitted actions is with User Roles. Roles are created &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/administration/roles/list\&q;&g;in the KMC&l;/a&g;, and give you the option of adding and removing specific actions available to the app. The ID of the Role is then mapped to the &l;code class=\&q;highlighter-rouge\&q;&g;setrole&l;/code&g; privilege key in the permissions string. This allows you to easily manage the permitted actions by editing the role at any time after.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;privacycontext&l;/code&g;: If you want to limit the app to the content of a specific category, you could &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings\&q;&g;set entitlements&l;/a&g; on that category and map it to the &l;code class=\&q;highlighter-rouge\&q;&g;privacycontext&l;/code&g; key (examples below). Keep in mind however, that if you set the category’s Content Privacy to Private, all end users who will need to access the content in this category must be added as members of the category.&l;/li&g;\n&l;/ul&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: While a user ID &l;em&g;can&l;/em&g; be added to an App Token during session generation (if no user ID was specified in the App Token creation), privileges can NOT be added during session generation.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h2 id=\&q;creating-the-app-token\&q;&g;Creating the App Token&l;/h2&g;\n\n&l;p&g;We will cover App Token creation with and without pre-configured privileges. Notice that the App Token has a sessionType. If set to type ADMIN (2), any session created with it will be a ADMIN session. If set to USER (0), however, various actions including &l;code class=\&q;highlighter-rouge\&q;&g;baseEntry.list&l;/code&g;, will not be available. A USER App Token would be useful in cases where the application is only uploading media but not viewing it afterwards. Furthermore, we recommend using hash of type &l;a href=\&q;https://en.wikipedia.org/wiki/SHA-2\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;SHA256&l;/code&g;&l;/a&g;, but whichever you use, make sure to be consistent in the session creation.&l;/p&g;\n\n&l;h3 id=\&q;basic-app-token\&q;&g;Basic App Token&l;/h3&g;\n\n&l;p&g;We’ll start with an App Token without privileges, without a user, and without an expiry date, using &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.add&l;/code&g;&l;/a&g;:&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;appToken = KalturaAppToken()\nappToken.description = &a;quot;Basic App Token&a;quot;\nappToken.hashType = KalturaAppTokenHashType.SHA256\nappToken.sessionType = KalturaSessionType.ADMIN\n\nresult = client.appToken.add(appToken)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$appToken = new KalturaAppToken();\n$appToken-&a;gt;description = &a;quot;Basic App Token&a;quot;;\n$appToken-&a;gt;hashType = KalturaAppTokenHashType::SHA256;\n$appToken-&a;gt;sessionType = KalturaSessionType::ADMIN;\n\n$result = $client-&a;gt;appToken-&a;gt;add($appToken);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let appToken = new kaltura.objects.AppToken();\nappToken.description = &a;quot;Basic App Token&a;quot;;\nappToken.hashType = kaltura.enums.AppTokenHashType.SHA256;\nappToken.sessionType = kaltura.enums.SessionType.ADMIN;\n\nkaltura.services.appToken.add(appToken)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;AppToken appToken = new AppToken();\nappToken.setDescription(&a;quot;Basic App Token&a;quot;);\nappToken.setHashType(AppTokenHashType.SHA256.getValue());\nappToken.setSessionType(SessionType.ADMIN.getValue());\n\nAddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;AppToken&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;AppToken&a;gt; result) {\n            System.out.println(result);\n    }\n});\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;In the result you’ll see an &l;code class=\&q;highlighter-rouge\&q;&g;id&l;/code&g; as well as a &l;code class=\&q;highlighter-rouge\&q;&g;token&l;/code&g;. Hold on to those as you’ll need them for session creation. You can also view all your App Tokens with the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.list&l;/code&g;&l;/a&g; action.&l;/p&g;\n\n&l;h3 id=\&q;set-a-user-role\&q;&g;Set a User Role&l;/h3&g;\n\n&l;p&g;The easy way to create a User Role is &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/administration/roles/list\&q;&g;in the KMC&l;/a&g;. You’ll have options to name and describe the new role (make it specific) and then select permitted actions. You’ll see that for each category, there is the option to allow all permissions, or to select specific permissions. For example, under Content Moderation, you may allow this User Role to perform all actions except for deleting. You can also switch off a specific category altogether. Hit save and you should now see your new User Role in the list.&l;/p&g;\n\n&l;p&g;Alternatively, if you know exactly which actions you’d like to include in your User Role, you can use the &l;a href=\&q;https://developer.kaltura.com/console/service/userRole/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;userRole.add&l;/code&g;&l;/a&g; API action to create a new role. You can see all of the available permission names and descriptions by listing them with &l;a href=\&q;https://developer.kaltura.com/console/service/permission/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;permission.list&l;/code&g;&l;/a&g;. Be sure to set the status of your role to Active (1).&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: You will not be able to see in the KMC any roles that are created outside the KMC.&l;/p&g;\n&l;/blockquote&g;\n\n&l;p&g;You can get a list of all your existing roles, with the &l;a href=\&q;https://developer.kaltura.com/console/service/userRole/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;userRole.list&l;/code&g;&l;/a&g; action. Make note of the &l;code class=\&q;highlighter-rouge\&q;&g;id&l;/code&g; of your new User Role as you’ll be needing it for your App Token, where you can set the role like this:&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;appToken.setSessionPrivileges(&a;quot;setrole:1234567&a;quot;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;h3 id=\&q;add-a-privacy-context\&q;&g;Add a Privacy Context&l;/h3&g;\n\n&l;p&g;Adding a privacy context will limit the session to the contents of a particular category.  &l;br /&g;\nTo enable entitlements on the category, select Add Entitlements in the Integration Settings in &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings\&q;&g;KMC&l;/a&g;. Then select a category and give it a Privacy Context Label. That is the name that should be used in the Privileges String when adding the &l;code class=\&q;highlighter-rouge\&q;&g;privacycontext&l;/code&g; key.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$appToken-&a;gt;sessionPrivileges = &a;quot;setrole:1234567,privacycontext:application&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567,privacycontext:application&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;appToken.setSessionPrivileges(&a;quot;setrole:1234567,privacycontext:application&a;quot;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;h3 id=\&q;add-a-user-to-the-category\&q;&g;Add a User to the Category&l;/h3&g;\n\n&l;p&g;If you set the Content Privacy setting of that category to Private, for users to access this category, they will also need to be members of the category, which can be done in the Entitlements tab in the Category Settings. You can also use the &l;a href=\&q;https://developer.kaltura.com/console/service/categoryUser/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;categoryUser.add&l;/code&g;&l;/a&g; action, where you’ll need the category ID and the user ID, which can be any string identifying that user.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;categoryUser = KalturaCategoryUser()\ncategoryUser.categoryId = 123456789\ncategoryUser.permissionLevel = KalturaCategoryUserPermissionLevel.MEMBER\ncategoryUser.userId = &a;quot;JaneDoe&a;quot;\n\nresult = client.categoryUser.add(categoryUser)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$categoryUser = new KalturaCategoryUser();\n$categoryUser-&a;gt;categoryId = 123456789;\n$categoryUser-&a;gt;permissionLevel = KalturaCategoryUserPermissionLevel::MEMBER;\n$categoryUser-&a;gt;userId = &a;quot;JaneDoe&a;quot;;\n\n$result = $client-&a;gt;categoryUser-&a;gt;add($categoryUser);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let categoryUser = new kaltura.objects.CategoryUser();\ncategoryUser.categoryId = 123456789;\ncategoryUser.permissionLevel = kaltura.enums.CategoryUserPermissionLevel.MEMBER;\ncategoryUser.userId = &a;quot;JaneDoe&a;quot;;\n\nkaltura.services.categoryUser.add(categoryUser)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;CategoryUser categoryUser = new CategoryUser();\ncategoryUser.setCategoryId(123456789);\ncategoryUser.setPermissionLevel(CategoryUserPermissionLevel.MEMBER.getValue());\ncategoryUser.setUserId(&a;quot;JaneDoe&a;quot;);\n\nAddCategoryUserBuilder requestBuilder = CategoryUserService.add(categoryUser)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;CategoryUser&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;CategoryUser&a;gt; result) {\n            System.out.println(result);\n    }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;h3 id=\&q;add-a-user-to-the-app-token\&q;&g;Add a User to the App Token&l;/h3&g;\n\n&l;p&g;In cases where you’d like to use App Tokens to grant access to particular users, you can include the user ID during the creation of the App Token (&l;code class=\&q;highlighter-rouge\&q;&g;appToken.add&l;/code&g;). When including a user ID in the App Token object, that user ID can not be overridden when calling &l;code class=\&q;highlighter-rouge\&q;&g;appToken.startSession&l;/code&g;. This can be useful when wanting to grant particular users with API access and ensure they can not mask their ID as someone else while carrying API actions.&l;/p&g;\n\n&l;p&g;Let’s bring it all together. We have a user. We have a User Role, and its ID. We will use hash of type &l;code class=\&q;highlighter-rouge\&q;&g;SHA256&l;/code&g; and give the session a duration of one day.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;appToken = KalturaAppToken()\nappToken.description = &a;quot;App Token with User and Privileges&a;quot;\nappToken.hashType = KalturaAppTokenHashType.SHA256\nappToken.sessionDuration = 86400\nappToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;\nappToken.sessionType = KalturaSessionType.ADMIN\nappToken.sessionUserId = &a;quot;dummyuser@kaltura.com&a;quot;\n\nresult = client.appToken.add(appToken)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$appToken = new KalturaAppToken();\n$appToken-&a;gt;description = &a;quot;App Token with User and Privileges&a;quot;;\n$appToken-&a;gt;hashType = KalturaAppTokenHashType::SHA256;\n$appToken-&a;gt;sessionDuration = 86400;\n$appToken-&a;gt;sessionPrivileges = &a;quot;setrole:1234567&a;quot;;\n$appToken-&a;gt;sessionType = KalturaSessionType::ADMIN;\n$appToken-&a;gt;sessionUserId = &a;quot;dummyuser@kaltura.com&a;quot;;\n\n$result = $client-&a;gt;appToken-&a;gt;add($appToken);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let appToken = new kaltura.objects.AppToken();\nappToken.description = &a;quot;App Token with User and Privileges&a;quot;;\nappToken.hashType = kaltura.enums.AppTokenHashType.SHA256;\nappToken.sessionDuration = 86400;\nappToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;;\nappToken.sessionType = kaltura.enums.SessionType.ADMIN;\nappToken.sessionUserId = &a;quot;dummyuser@kaltura.com&a;quot;;\n\nkaltura.services.appToken.add(appToken)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;AppToken appToken = new AppToken();\nappToken.setDescription(&a;quot;App Token with User and Privileges&a;quot;);\nappToken.setHashType(AppTokenHashType.SHA256.getValue());\nappToken.setSessionDuration(86400);\nappToken.setSessionPrivileges(&a;quot;setrole:1234567&a;quot;);\nappToken.setSessionType(SessionType.ADMIN.getValue());\nappToken.setSessionUserId(&a;quot;dummyuser@kaltura.com&a;quot;);\n\nAddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)\n.setCompletion(new OnCompletion&a;lt;Response&a;lt;AppToken&a;gt;&a;gt;() {\n    @Override\n    public void onComplete(Response&a;lt;AppToken&a;gt; result) {\n        System.out.println(result);\n    }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Reminder: You can get a list of all your App Tokens with the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.list&l;/code&g;&l;/a&g; action.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h2 id=\&q;generate-kaltura-sessions-with-the-app-token\&q;&g;Generate Kaltura Sessions with the App Token&l;/h2&g;\n\n&l;p&g;The Kaltura Session generated with the App Token will have the content and action permissions that were configured in the App Token.&l;/p&g;\n\n&l;h3 id=\&q;step-1-create-a-kaltura-session\&q;&g;Step 1: Create a Kaltura Session&l;/h3&g;\n\n&l;p&g;Because a Kaltura Session is required for every call to the API, we’ll need to create an unprivileged session before being able to create the App Token session. We use the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/startSession\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;session.startWidgetSession&l;/code&g;&l;/a&g; action with the widget ID, which is your partner ID with an underscore prefix.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;widgetId = &a;quot;_1234567&a;quot;\nexpiry = 86400\n\nresult = client.session.startWidgetSession(widgetId, expiry);\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$widgetId = &a;quot;_1234567&a;quot;;\n$expiry = 86400;\n\n$result = $client-&a;gt;session-&a;gt;startWidgetSession($widgetId, $expiry);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let widgetId = &a;quot;_1234567&a;quot;;\nlet expiry = 86400;\n\nkaltura.services.session.startWidgetSession(widgetId, expiry)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;String widgetId = &a;quot;_1234567&a;quot;;\nint expiry = 86400;\n\nStartWidgetSessionSessionBuilder requestBuilder = SessionService.startWidgetSession(widgetId, expiry)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;StartWidgetSessionResponse&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;StartWidgetSessionResponse&a;gt; result) {\n            System.out.println(result);\n        }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;The result will contain that unprivileged KS which you need for the next step.&l;/p&g;\n\n&l;h3 id=\&q;step-2-compute-the-token-hash\&q;&g;Step 2: Compute the Token Hash&l;/h3&g;\n\n&l;p&g;We’ll create a hash of the App Token &l;code class=\&q;highlighter-rouge\&q;&g;token&l;/code&g; value together with the unprivileged KS, using a hash function in the language of your choice.&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Important Note: Make sure to use the same hash type as the one used for creating the App Token.&l;/p&g;\n&l;/blockquote&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;hashString = hashlib.sha256((result.ks + appToken).encode(&a;apos;ascii&a;apos;)).hexdigest()&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$client-&a;gt;setKS($result-&a;gt;ks);\n$hashString = hash(&a;apos;sha256&a;apos;, $client-&a;gt;ks . &a;quot;123456512341234&a;quot;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;var crypto = require(&a;apos;crypto&a;apos;);\nvar shasum = crypto.createHash(&a;apos;sha256&a;apos;);\n\nclient.ks = result.ks;\nshasum.update(client.ks + &a;quot;123456512341234&a;quot;);\nvar hash = shasum.digest(&a;apos;hex&a;apos;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;client.setSessionId(result.ks);\nMessageDigest md = MessageDigest.getInstance(&a;quot;SHA-256&a;quot;);\nmd.update(client.Ks + &a;quot;123456512341234&a;quot;);\nbyte[] res = md.digest();\nString hashString = toHexString(res);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;The resulting string is the &l;code class=\&q;highlighter-rouge\&q;&g;tokenHash&l;/code&g; which you’ll use in the next step.&l;/p&g;\n\n&l;h3 id=\&q;step-3-generate-the-session\&q;&g;Step 3: Generate the Session&l;/h3&g;\n\n&l;p&g;We’ll use the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/startSession\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;App Token.startSession&l;/code&g;&l;/a&g; action with the unprivileged KS, the hashToken, and the token &l;code class=\&q;highlighter-rouge\&q;&g;ID&l;/code&g;:&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: If you created an App Token with a user ID, it will override any user ID value used in &l;code class=\&q;highlighter-rouge\&q;&g;appToken.startSession&l;/code&g;.&l;/p&g;\n&l;/blockquote&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;\ntokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;\nuserId = &a;quot;enduser&a;quot;\ntype = KalturaSessionType.ADMIN\nexpiry = 0\nsessionPrivileges = &a;quot;&a;quot;\n\nresult = client.appToken.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;;\n$tokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;;\n$userId = &a;quot;enduser&a;quot;;\n$type = KalturaSessionType::ADMIN;\n$expiry = 0;\n$sessionPrivileges = &a;quot;&a;quot;;\n\n$result = $client-&a;gt;appToken-&a;gt;startSession($id, $tokenHash, $userId, $type, $expiry, $sessionPrivileges);\nvar_dump($result);\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;;\nlet tokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;;\nlet userId = &a;quot;enduser&a;quot;;\nlet type = kaltura.enums.SessionType.ADMIN;\nlet expiry = 0;\nlet sessionPrivileges = &a;quot;&a;quot;;\n\nkaltura.services.appToken.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;String id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;;\nString tokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;;\nString userId = &a;quot;enduser&a;quot;;\nSessionType type = SessionType.ADMIN.getValue();\nint expiry = 0;\nString sessionPrivileges = &a;quot;&a;quot;;\n\nStartSessionAppTokenBuilder requestBuilder = AppTokenService.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;SessionInfo&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;SessionInfo&a;gt; result) {\n            System.out.println(result);\n    }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;You’ll notice that the response contains any existing configurations from the App Token creation, regardless of what was passed in during the startSession. The expiry is set to an hour (although you can change this), meaning that after that time has passed, a new session will need to be generated. So if you wish to change permissions on this App Token, you can make those changes to the Role, User, or Privacy Context associated with the App Token.&l;/p&g;\n\n&l;p&g;Congrats - now let’s build an app! Get started &l;a href=\&q;https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html/\&q;&g;here&l;/a&g;.&l;/p&g;\n\n\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/jekyll-code-example-buttons.js\&q;&g;&l;/script&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Mon, 26 Nov 2018 12:38:33 GMT&q;],&q;etag&q;:[&q;W/\&q;7cf7-167500748e5\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;31991&q;],&q;date&q;:[&q;Mon, 26 Nov 2018 12:39:24 GMT&q;],&q;connection&q;:[&q;keep-alive&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/VPaaS-API-Getting-Started/application-token-session-management.html&q;},&q;/assets/documentation/VPaaS-API-Getting-Started/application-token-session-management.html&q;:&q;  &l;title&g;Kaltura App Token Session Management&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Kaltura App Token Session Management\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;script type=\&q;text/javascript\&q;&g;\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Kaltura App Token Session Management&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Mon Nov 26 07:17:00 2018&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;tzubeli&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/application-token-session-management.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Mon Nov 26 07:05:13 2018, By: tzubeli&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Mon Nov 26 07:17:00 2018, By &l;span class=\&q;commit-author\&q;&g;tzubeli&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;tzubeli (3 commits) (&l;a href=\&q;mailto:avitaltzubeli@gmail.com\&q;&g;avitaltzubeli@gmail.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n    \t\t&l;h1 id=\&q;application-token-session-management\&q;&g;Application Token Session Management&l;/h1&g;\n\n&l;p&g;An Application Token is useful in cases where different applications with varying permissions need access to your Kaltura account, without using your Admin Secret. &l;br /&g;\nThe appToken is created and customized by the account administrator, and then used by the developers to generate Kaltura Sessions for their respective applications. This allows access to the API to be revoked at any time with the deletion of the appToken.&l;/p&g;\n\n&l;h2 id=\&q;before-you-start\&q;&g;Before You Start&l;/h2&g;\n\n&l;p&g;Before you create an appToken, you need to decide whether to create a “blank” appToken, or one preconfigured with permissions. If your only concern is giving access without sharing your Admin secret, a basic appToken is sufficient. But if you want to always limit the permissions of a specific application, you’ll need to create the appToken with pre-configured &l;a href=\&q;https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html\&q;&g;privileges&l;/a&g;. Similarly, it is also possible to limit the appToken to a particular user ID should your implementation call for it.&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: Any configurations (privileges or user ID) included in the creation of the appToken (&l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.add&l;/code&g;&l;/a&g;) &l;em&g;cannot&l;/em&g; be overridden when the session is created with that appToken (&l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/startSession\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.startSession&l;/code&g;&l;/a&g;).&l;/p&g;\n&l;/blockquote&g;\n\n&l;p&g;The &l;strong&g;privileges string&l;/strong&g; that could be included in the appToken is made up of &l;code class=\&q;highlighter-rouge\&q;&g;key:value&l;/code&g; pairs that determine the actions available to this Kaltura Session. The following are common privileges for limiting your appTokens access:&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;setrole&l;/code&g;: When assigning App Tokens to your apps, the easiest way to configure the permitted actions is with User Roles. Roles are created &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/administration/roles/list\&q;&g;in the KMC&l;/a&g;, and give you the option of adding and removing specific actions available to the app. The ID of the Role is then mapped to the &l;code class=\&q;highlighter-rouge\&q;&g;setrole&l;/code&g; privilege key in the permissions string. This allows you to easily manage the permitted actions by editing the role at any time after.&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;privacycontext&l;/code&g;: If you want to limit the app to the content of a specific category, you could &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings\&q;&g;set entitlements&l;/a&g; on that category and map it to the &l;code class=\&q;highlighter-rouge\&q;&g;privacycontext&l;/code&g; key (examples below). Keep in mind however, that if you set the category’s Content Privacy to Private, all end users who will need to access the content in this category must be added as members of the category.&l;/li&g;\n&l;/ul&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: While a user ID &l;em&g;can&l;/em&g; be added to an App Token during session generation (if no user ID was specified in the App Token creation), privileges can NOT be added during session generation.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h2 id=\&q;creating-the-app-token\&q;&g;Creating the App Token&l;/h2&g;\n\n&l;p&g;We will cover App Token creation with and without pre-configured privileges. Notice that the App Token has a sessionType. If set to type ADMIN (2), any session created with it will be a ADMIN session. If set to USER (0), however, various actions including &l;code class=\&q;highlighter-rouge\&q;&g;baseEntry.list&l;/code&g;, will not be available. A USER App Token would be useful in cases where the application is only uploading media but not viewing it afterwards. Furthermore, we recommend using hash of type &l;a href=\&q;https://en.wikipedia.org/wiki/SHA-2\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;SHA256&l;/code&g;&l;/a&g;, but whichever you use, make sure to be consistent in the session creation.&l;/p&g;\n\n&l;h3 id=\&q;basic-app-token\&q;&g;Basic App Token&l;/h3&g;\n\n&l;p&g;We’ll start with an App Token without privileges, without a user, and without an expiry date, using &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.add&l;/code&g;&l;/a&g;:&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;appToken = KalturaAppToken()\nappToken.description = &a;quot;Basic App Token&a;quot;\nappToken.hashType = KalturaAppTokenHashType.SHA256\nappToken.sessionType = KalturaSessionType.ADMIN\n\nresult = client.appToken.add(appToken)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$appToken = new KalturaAppToken();\n$appToken-&a;gt;description = &a;quot;Basic App Token&a;quot;;\n$appToken-&a;gt;hashType = KalturaAppTokenHashType::SHA256;\n$appToken-&a;gt;sessionType = KalturaSessionType::ADMIN;\n\n$result = $client-&a;gt;appToken-&a;gt;add($appToken);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let appToken = new kaltura.objects.AppToken();\nappToken.description = &a;quot;Basic App Token&a;quot;;\nappToken.hashType = kaltura.enums.AppTokenHashType.SHA256;\nappToken.sessionType = kaltura.enums.SessionType.ADMIN;\n\nkaltura.services.appToken.add(appToken)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;AppToken appToken = new AppToken();\nappToken.setDescription(&a;quot;Basic App Token&a;quot;);\nappToken.setHashType(AppTokenHashType.SHA256.getValue());\nappToken.setSessionType(SessionType.ADMIN.getValue());\n\nAddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;AppToken&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;AppToken&a;gt; result) {\n            System.out.println(result);\n    }\n});\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;In the result you’ll see an &l;code class=\&q;highlighter-rouge\&q;&g;id&l;/code&g; as well as a &l;code class=\&q;highlighter-rouge\&q;&g;token&l;/code&g;. Hold on to those as you’ll need them for session creation. You can also view all your App Tokens with the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.list&l;/code&g;&l;/a&g; action.&l;/p&g;\n\n&l;h3 id=\&q;set-a-user-role\&q;&g;Set a User Role&l;/h3&g;\n\n&l;p&g;The easy way to create a User Role is &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/administration/roles/list\&q;&g;in the KMC&l;/a&g;. You’ll have options to name and describe the new role (make it specific) and then select permitted actions. You’ll see that for each category, there is the option to allow all permissions, or to select specific permissions. For example, under Content Moderation, you may allow this User Role to perform all actions except for deleting. You can also switch off a specific category altogether. Hit save and you should now see your new User Role in the list.&l;/p&g;\n\n&l;p&g;Alternatively, if you know exactly which actions you’d like to include in your User Role, you can use the &l;a href=\&q;https://developer.kaltura.com/console/service/userRole/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;userRole.add&l;/code&g;&l;/a&g; API action to create a new role. You can see all of the available permission names and descriptions by listing them with &l;a href=\&q;https://developer.kaltura.com/console/service/permission/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;permission.list&l;/code&g;&l;/a&g;. Be sure to set the status of your role to Active (1).&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: You will not be able to see in the KMC any roles that are created outside the KMC.&l;/p&g;\n&l;/blockquote&g;\n\n&l;p&g;You can get a list of all your existing roles, with the &l;a href=\&q;https://developer.kaltura.com/console/service/userRole/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;userRole.list&l;/code&g;&l;/a&g; action. Make note of the &l;code class=\&q;highlighter-rouge\&q;&g;id&l;/code&g; of your new User Role as you’ll be needing it for your App Token, where you can set the role like this:&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;appToken.setSessionPrivileges(&a;quot;setrole:1234567&a;quot;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;h3 id=\&q;add-a-privacy-context\&q;&g;Add a Privacy Context&l;/h3&g;\n\n&l;p&g;Adding a privacy context will limit the session to the contents of a particular category.  &l;br /&g;\nTo enable entitlements on the category, select Add Entitlements in the Integration Settings in &l;a href=\&q;https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings\&q;&g;KMC&l;/a&g;. Then select a category and give it a Privacy Context Label. That is the name that should be used in the Privileges String when adding the &l;code class=\&q;highlighter-rouge\&q;&g;privacycontext&l;/code&g; key.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$appToken-&a;gt;sessionPrivileges = &a;quot;setrole:1234567,privacycontext:application&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;appToken.sessionPrivileges = &a;quot;setrole:1234567,privacycontext:application&a;quot;;&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;appToken.setSessionPrivileges(&a;quot;setrole:1234567,privacycontext:application&a;quot;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;h3 id=\&q;add-a-user-to-the-category\&q;&g;Add a User to the Category&l;/h3&g;\n\n&l;p&g;If you set the Content Privacy setting of that category to Private, for users to access this category, they will also need to be members of the category, which can be done in the Entitlements tab in the Category Settings. You can also use the &l;a href=\&q;https://developer.kaltura.com/console/service/categoryUser/action/add\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;categoryUser.add&l;/code&g;&l;/a&g; action, where you’ll need the category ID and the user ID, which can be any string identifying that user.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;categoryUser = KalturaCategoryUser()\ncategoryUser.categoryId = 123456789\ncategoryUser.permissionLevel = KalturaCategoryUserPermissionLevel.MEMBER\ncategoryUser.userId = &a;quot;JaneDoe&a;quot;\n\nresult = client.categoryUser.add(categoryUser)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$categoryUser = new KalturaCategoryUser();\n$categoryUser-&a;gt;categoryId = 123456789;\n$categoryUser-&a;gt;permissionLevel = KalturaCategoryUserPermissionLevel::MEMBER;\n$categoryUser-&a;gt;userId = &a;quot;JaneDoe&a;quot;;\n\n$result = $client-&a;gt;categoryUser-&a;gt;add($categoryUser);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let categoryUser = new kaltura.objects.CategoryUser();\ncategoryUser.categoryId = 123456789;\ncategoryUser.permissionLevel = kaltura.enums.CategoryUserPermissionLevel.MEMBER;\ncategoryUser.userId = &a;quot;JaneDoe&a;quot;;\n\nkaltura.services.categoryUser.add(categoryUser)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;CategoryUser categoryUser = new CategoryUser();\ncategoryUser.setCategoryId(123456789);\ncategoryUser.setPermissionLevel(CategoryUserPermissionLevel.MEMBER.getValue());\ncategoryUser.setUserId(&a;quot;JaneDoe&a;quot;);\n\nAddCategoryUserBuilder requestBuilder = CategoryUserService.add(categoryUser)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;CategoryUser&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;CategoryUser&a;gt; result) {\n            System.out.println(result);\n    }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;h3 id=\&q;add-a-user-to-the-app-token\&q;&g;Add a User to the App Token&l;/h3&g;\n\n&l;p&g;In cases where you’d like to use App Tokens to grant access to particular users, you can include the user ID during the creation of the App Token (&l;code class=\&q;highlighter-rouge\&q;&g;appToken.add&l;/code&g;). When including a user ID in the App Token object, that user ID can not be overridden when calling &l;code class=\&q;highlighter-rouge\&q;&g;appToken.startSession&l;/code&g;. This can be useful when wanting to grant particular users with API access and ensure they can not mask their ID as someone else while carrying API actions.&l;/p&g;\n\n&l;p&g;Let’s bring it all together. We have a user. We have a User Role, and its ID. We will use hash of type &l;code class=\&q;highlighter-rouge\&q;&g;SHA256&l;/code&g; and give the session a duration of one day.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;appToken = KalturaAppToken()\nappToken.description = &a;quot;App Token with User and Privileges&a;quot;\nappToken.hashType = KalturaAppTokenHashType.SHA256\nappToken.sessionDuration = 86400\nappToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;\nappToken.sessionType = KalturaSessionType.ADMIN\nappToken.sessionUserId = &a;quot;dummyuser@kaltura.com&a;quot;\n\nresult = client.appToken.add(appToken)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$appToken = new KalturaAppToken();\n$appToken-&a;gt;description = &a;quot;App Token with User and Privileges&a;quot;;\n$appToken-&a;gt;hashType = KalturaAppTokenHashType::SHA256;\n$appToken-&a;gt;sessionDuration = 86400;\n$appToken-&a;gt;sessionPrivileges = &a;quot;setrole:1234567&a;quot;;\n$appToken-&a;gt;sessionType = KalturaSessionType::ADMIN;\n$appToken-&a;gt;sessionUserId = &a;quot;dummyuser@kaltura.com&a;quot;;\n\n$result = $client-&a;gt;appToken-&a;gt;add($appToken);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let appToken = new kaltura.objects.AppToken();\nappToken.description = &a;quot;App Token with User and Privileges&a;quot;;\nappToken.hashType = kaltura.enums.AppTokenHashType.SHA256;\nappToken.sessionDuration = 86400;\nappToken.sessionPrivileges = &a;quot;setrole:1234567&a;quot;;\nappToken.sessionType = kaltura.enums.SessionType.ADMIN;\nappToken.sessionUserId = &a;quot;dummyuser@kaltura.com&a;quot;;\n\nkaltura.services.appToken.add(appToken)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;AppToken appToken = new AppToken();\nappToken.setDescription(&a;quot;App Token with User and Privileges&a;quot;);\nappToken.setHashType(AppTokenHashType.SHA256.getValue());\nappToken.setSessionDuration(86400);\nappToken.setSessionPrivileges(&a;quot;setrole:1234567&a;quot;);\nappToken.setSessionType(SessionType.ADMIN.getValue());\nappToken.setSessionUserId(&a;quot;dummyuser@kaltura.com&a;quot;);\n\nAddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)\n.setCompletion(new OnCompletion&a;lt;Response&a;lt;AppToken&a;gt;&a;gt;() {\n    @Override\n    public void onComplete(Response&a;lt;AppToken&a;gt; result) {\n        System.out.println(result);\n    }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Reminder: You can get a list of all your App Tokens with the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/list\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;appToken.list&l;/code&g;&l;/a&g; action.&l;/p&g;\n&l;/blockquote&g;\n\n&l;h2 id=\&q;generate-kaltura-sessions-with-the-app-token\&q;&g;Generate Kaltura Sessions with the App Token&l;/h2&g;\n\n&l;p&g;The Kaltura Session generated with the App Token will have the content and action permissions that were configured in the App Token.&l;/p&g;\n\n&l;h3 id=\&q;step-1-create-a-kaltura-session\&q;&g;Step 1: Create a Kaltura Session&l;/h3&g;\n\n&l;p&g;Because a Kaltura Session is required for every call to the API, we’ll need to create an unprivileged session before being able to create the App Token session. We use the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/startSession\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;session.startWidgetSession&l;/code&g;&l;/a&g; action with the widget ID, which is your partner ID with an underscore prefix.&l;/p&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;widgetId = &a;quot;_1234567&a;quot;\nexpiry = 86400\n\nresult = client.session.startWidgetSession(widgetId, expiry);\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$widgetId = &a;quot;_1234567&a;quot;;\n$expiry = 86400;\n\n$result = $client-&a;gt;session-&a;gt;startWidgetSession($widgetId, $expiry);\nvar_dump($result);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let widgetId = &a;quot;_1234567&a;quot;;\nlet expiry = 86400;\n\nkaltura.services.session.startWidgetSession(widgetId, expiry)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;String widgetId = &a;quot;_1234567&a;quot;;\nint expiry = 86400;\n\nStartWidgetSessionSessionBuilder requestBuilder = SessionService.startWidgetSession(widgetId, expiry)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;StartWidgetSessionResponse&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;StartWidgetSessionResponse&a;gt; result) {\n            System.out.println(result);\n        }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;The result will contain that unprivileged KS which you need for the next step.&l;/p&g;\n\n&l;h3 id=\&q;step-2-compute-the-token-hash\&q;&g;Step 2: Compute the Token Hash&l;/h3&g;\n\n&l;p&g;We’ll create a hash of the App Token &l;code class=\&q;highlighter-rouge\&q;&g;token&l;/code&g; value together with the unprivileged KS, using a hash function in the language of your choice.&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Important Note: Make sure to use the same hash type as the one used for creating the App Token.&l;/p&g;\n&l;/blockquote&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;hashString = hashlib.sha256((result.ks + appToken).encode(&a;apos;ascii&a;apos;)).hexdigest()&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$client-&a;gt;setKS($result-&a;gt;ks);\n$hashString = hash(&a;apos;sha256&a;apos;, $client-&a;gt;ks . &a;quot;123456512341234&a;quot;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;var crypto = require(&a;apos;crypto&a;apos;);\nvar shasum = crypto.createHash(&a;apos;sha256&a;apos;);\n\nclient.ks = result.ks;\nshasum.update(client.ks + &a;quot;123456512341234&a;quot;);\nvar hash = shasum.digest(&a;apos;hex&a;apos;);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;client.setSessionId(result.ks);\nMessageDigest md = MessageDigest.getInstance(&a;quot;SHA-256&a;quot;);\nmd.update(client.Ks + &a;quot;123456512341234&a;quot;);\nbyte[] res = md.digest();\nString hashString = toHexString(res);&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;The resulting string is the &l;code class=\&q;highlighter-rouge\&q;&g;tokenHash&l;/code&g; which you’ll use in the next step.&l;/p&g;\n\n&l;h3 id=\&q;step-3-generate-the-session\&q;&g;Step 3: Generate the Session&l;/h3&g;\n\n&l;p&g;We’ll use the &l;a href=\&q;https://developer.kaltura.com/console/service/appToken/action/startSession\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;App Token.startSession&l;/code&g;&l;/a&g; action with the unprivileged KS, the hashToken, and the token &l;code class=\&q;highlighter-rouge\&q;&g;ID&l;/code&g;:&l;/p&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: If you created an App Token with a user ID, it will override any user ID value used in &l;code class=\&q;highlighter-rouge\&q;&g;appToken.startSession&l;/code&g;.&l;/p&g;\n&l;/blockquote&g;\n\n&l;div class=\&q;code-examples\&q;&g;            &l;div class=\&q;the_buttons examples\&q;&g;\n              &l;ul class=\&q;code-tab\&q;&g;\n                &l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;python\&q;&g;Python&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;php\&q;&g;PHP&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;javascript\&q;&g;NodeJS&l;/a&g;&l;/li&g;&l;li class=\&q;code-tab\&q;&g;&l;a href=\&q;#\&q; class=\&q;a_button\&q; target=\&q;java\&q;&g;Java&l;/a&g;&l;/li&g;\n              &l;/ul&g;\n            &l;/div&g;\n          &l;div class=\&q;highlight example python\&q;&g;\n            &l;pre&g;&l;code class=\&q;python\&q; data-lang=\&q;python\&q;&g;id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;\ntokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;\nuserId = &a;quot;enduser&a;quot;\ntype = KalturaSessionType.ADMIN\nexpiry = 0\nsessionPrivileges = &a;quot;&a;quot;\n\nresult = client.appToken.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)\nprint(result)&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example php\&q;&g;\n            &l;pre&g;&l;code class=\&q;php\&q; data-lang=\&q;php\&q;&g;$id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;;\n$tokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;;\n$userId = &a;quot;enduser&a;quot;;\n$type = KalturaSessionType::ADMIN;\n$expiry = 0;\n$sessionPrivileges = &a;quot;&a;quot;;\n\n$result = $client-&a;gt;appToken-&a;gt;startSession($id, $tokenHash, $userId, $type, $expiry, $sessionPrivileges);\nvar_dump($result);\n&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example javascript\&q;&g;\n            &l;pre&g;&l;code class=\&q;javascript\&q; data-lang=\&q;javascript\&q;&g;let id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;;\nlet tokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;;\nlet userId = &a;quot;enduser&a;quot;;\nlet type = kaltura.enums.SessionType.ADMIN;\nlet expiry = 0;\nlet sessionPrivileges = &a;quot;&a;quot;;\n\nkaltura.services.appToken.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)\n.execute(client)\n.then(result =&a;gt; {\n    console.log(result);\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n          &l;div class=\&q;highlight example java\&q;&g;\n            &l;pre&g;&l;code class=\&q;java\&q; data-lang=\&q;java\&q;&g;String id = &a;quot;&a;lt;tokenID&a;gt;&a;quot;;\nString tokenHash = &a;quot;&a;lt;tokenHash&a;gt;&a;quot;;\nString userId = &a;quot;enduser&a;quot;;\nSessionType type = SessionType.ADMIN.getValue();\nint expiry = 0;\nString sessionPrivileges = &a;quot;&a;quot;;\n\nStartSessionAppTokenBuilder requestBuilder = AppTokenService.startSession(id, tokenHash, userId, type, expiry, sessionPrivileges)\n    .setCompletion(new OnCompletion&a;lt;Response&a;lt;SessionInfo&a;gt;&a;gt;() {\n        @Override\n        public void onComplete(Response&a;lt;SessionInfo&a;gt; result) {\n            System.out.println(result);\n    }\n});&l;/code&g;&l;/pre&g;\n          &l;/div&g;\n&l;/div&g;\n&l;p&g; &l;/p&g;\n\n&l;p&g;You’ll notice that the response contains any existing configurations from the App Token creation, regardless of what was passed in during the startSession. The expiry is set to an hour (although you can change this), meaning that after that time has passed, a new session will need to be generated. So if you wish to change permissions on this App Token, you can make those changes to the Role, User, or Privacy Context associated with the App Token.&l;/p&g;\n\n&l;p&g;Congrats - now let’s build an app! Get started &l;a href=\&q;https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html/\&q;&g;here&l;/a&g;.&l;/p&g;\n\n\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/jekyll-code-example-buttons.js\&q;&g;&l;/script&g;\n&q;}</script></body></html>
