@@ -769,25 +769,25 @@ Now you can use it for embedding your player:</li>
 </ol>
 
 <p><strong>Dynamic Player Embed</strong></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript"&gt;
-		var kalturaPlayer = KalturaPlayer.setup({
-			targetId: "kalturaplayer",
-			provider: {
-				partnerId: PARTER_ID,
-				uiConfId: UI_CONF_ID
-			},
-			playback: {
-				autoplay: true
-			}
-		});
-		var mediaInfo = {
-			entryId: ENTRY_ID,
-			ks: KS
-		};
-		kalturaPlayer.loadMedia(mediaInfo);
-	&lt;/script&gt;
-</code></pre>
-</div>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">&lt;script</span><span class="w"> </span><span class="err">type=</span><span class="s2">"text/javascript"</span><span class="err">&gt;</span><span class="w">
+		</span><span class="err">var</span><span class="w"> </span><span class="err">kalturaPlayer</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">KalturaPlayer.setup(</span><span class="p">{</span><span class="w">
+			</span><span class="err">targetId:</span><span class="w"> </span><span class="nt">"kalturaplayer"</span><span class="err">,</span><span class="w">
+			</span><span class="err">provider</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+				</span><span class="err">partnerId:</span><span class="w"> </span><span class="err">PARTER_ID,</span><span class="w">
+				</span><span class="err">uiConfId:</span><span class="w"> </span><span class="err">UI_CONF_ID</span><span class="w">
+			</span><span class="p">},</span><span class="w">
+			</span><span class="err">playback</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+				</span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true</span><span class="w">
+			</span><span class="p">}</span><span class="w">
+		</span><span class="p">}</span><span class="err">);</span><span class="w">
+		</span><span class="err">var</span><span class="w"> </span><span class="err">mediaInfo</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w">
+			</span><span class="err">entryId:</span><span class="w"> </span><span class="err">ENTRY_ID,</span><span class="w">
+			</span><span class="err">ks:</span><span class="w"> </span><span class="err">KS</span><span class="w">
+		</span><span class="p">}</span><span class="err">;</span><span class="w">
+		</span><span class="err">kalturaPlayer.loadMedia(mediaInfo);</span><span class="w">
+	</span><span class="err">&lt;/script&gt;</span></code></pre></figure>
+
 <p>Learn about other embed types <a href="https://github.com/kaltura/kaltura-player-js/blob/master/docs/embed-types.md">here.</a></p>
 
 <h2 id="wrapping-up">Wrapping Up</h2>
