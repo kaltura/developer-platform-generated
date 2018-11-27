@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Nov 12 16:03:22 2018</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Video-Analytics-and-Insights/media-analytics.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Nov 27 12:38:11 2018</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Video-Analytics-and-Insights/media-analytics.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
-				<!--tr><td>Last commit: Mon Nov 12 16:03:22 2018, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Tue Nov 27 12:38:11 2018, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
@@ -134,7 +134,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>tzubeli (2 commits) (<a href="mailto:avitaltzubeli@gmail.com">avitaltzubeli@gmail.com</a>)</td>
+					<td>tzubeli (3 commits) (<a href="mailto:avitaltzubeli@gmail.com">avitaltzubeli@gmail.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -245,9 +245,7 @@ GetTableReportBuilder requestBuilder = ReportService.getTable(reportType, report
 <p> </p>
 
 <p>The result header looks like this:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>object_id,entry_name,count_plays,sum_time_viewed,avg_time_viewed,count_loads,load_play_ratio,avg_view_drop_off
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-csv" data-lang="csv">object_id,entry_name,count_plays,sum_time_viewed,avg_time_viewed,count_loads,load_play_ratio,avg_view_drop_off</code></pre></figure>
 
 <p>Maybe you only want insights for a particular <em>channel</em> in your media. In this case you’d set <code class="highlighter-rouge">categories</code> on the filter to the <em>full name</em> of your category, which can be found in the KMC by hovering over the category name, OR by calling <code class="highlighter-rouge">category.get</code> action with the category ID. The full name of the category usually includes its parent directories.</p>
 
@@ -348,9 +346,7 @@ GetTableReportBuilder requestBuilder = ReportService.getTable(reportType, report
 <p> </p>
 
 <p>The result header looks like this:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>name,unique_videos,count_plays,sum_time_viewed,avg_time_viewed,avg_view_drop_off,count_loads,load_play_ratio
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-csv" data-lang="csv">name,unique_videos,count_plays,sum_time_viewed,avg_time_viewed,avg_view_drop_off,count_loads,load_play_ratio</code></pre></figure>
 
 <h2 id="user-reports">User Reports</h2>
 <p>Perhaps you’re interested in which employees at the company have contributed the most videos. In the example below, we set the <code class="highlighter-rouge">reportType</code> to Top Contributors (5) and order by the total count.</p>
@@ -423,9 +419,7 @@ GetTableReportBuilder requestBuilder = ReportService.getTable(reportType, report
 <p> </p>
 
 <p>Result header:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>object_id,name,count_total,count_video,count_audio,count_image,count_mix
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-csv" data-lang="csv">object_id,name,count_total,count_video,count_audio,count_image,count_mix</code></pre></figure>
 
 <p>You can also get engagement insights by <strong>geographic region</strong>, by changing the <code class="highlighter-rouge">reportType</code> to Map Overlay (4). Setting the <code class="highlighter-rouge">objectIds</code> to one of the regions from the results will break down those insights by city.</p>
 
@@ -501,9 +495,7 @@ GetTableReportBuilder requestBuilder = ReportService.getTable(reportType, report
 </div>
 
 <p>Result header:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>object_id,location_name,count_plays,count_plays_25,count_plays_50,count_plays_75,count_plays_100,play_through_ratio
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-csv" data-lang="csv">object_id,location_name,count_plays,count_plays_25,count_plays_50,count_plays_75,count_plays_100,play_through_ratio</code></pre></figure>
 
 <p>As you can see, there are many ways to customize your report based on your business use cases. You can easily try them out using our <a href="https://developer.kaltura.com/console/service/report/action/getTable">Interactive Console</a> or see what they look like in the <a href="https://kmc.kaltura.com/index.php/kmc/kmc4#analytics\|contentDashboard">KMC</a>.</p>
 
