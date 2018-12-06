@@ -7,17 +7,23 @@
   var logoutTimeout = null;
 
   function loggedInTemplate() {
-    return '<li class="dropdown auth-link" id="KalturaPartnerIDDropdown">'
-        + '<a class="dropdown-toggle" data-toggle="dropdown">'
-        +   '<span class="hidden-md">' + (user.name ? user.name + ' - ' : '') + '</span>'
-        +   '<span>' + (user.partnerId || '[Using Custom KS]') + '</span>'
-        +   '<i class="fa fa-right fa-caret-down"></i>'
-        + '</a>'
-        + '<ul class="dropdown-menu">'
-        +   '<li><a data-toggle="modal" data-target="#KalturaSecretsModal">View secrets</a></li>'
-        +   '<li><a data-toggle="modal" data-target="#KalturaPartnerIDModal">Switch accounts</a></li>'
-        +   '<li><a onclick="setKalturaUser()">Sign Out</a></li>'
-        + '</ul></li>';
+    var template = '<li class="dropdown auth-link" id="KalturaPartnerIDDropdown">'
+      + '<a class="dropdown-toggle" data-toggle="dropdown">'
+      +   '<span class="hidden-md">' + (user.name ? user.name + ' - ' : '') + '</span>'
+      +   '<span>' + (user.partnerId || '[Using Custom KS]') + '</span>'
+      +   '<i class="fa fa-right fa-caret-down"></i>'
+      + '</a>'
+      + '<ul class="dropdown-menu">';
+
+    if (window.lucybot.env.target_api === 'ovp') {
+      template += '<li><a data-toggle="modal" data-target="#KalturaSecretsModal">View secrets</a></li>'
+        +   '<li><a data-toggle="modal" data-target="#KalturaPartnerIDModal">Switch accounts</a></li>';
+    }
+
+    template += '<li><a onclick="setKalturaUser()">Sign Out</a></li>'
+      + '</ul></li>';
+
+    return template;
   }
 
   var LOGGED_OUT_HTML =
@@ -104,6 +110,24 @@
   }
 
   window.maybeContinueSession = function() {
+    if (window.lucybot.env.target_api === 'ott') {
+      var cookies = document.cookie.split(';').map(function(c) {return c.trim()});
+      var credCookie = cookies.filter(function(c) {
+        return c.indexOf(STORAGE_KEY) === 0;
+      })[0];
+
+      if (credCookie && credCookie.substring(STORAGE_KEY.length + 1)) {
+        var creds = JSON.parse(decodeURIComponent(credCookie.substring(STORAGE_KEY.length + 1)));
+        setKalturaUser(creds);
+        return true;
+      }
+      else {
+        setKalturaUser();
+        return false;
+      }
+      
+    }
+    
     var ksMatch = window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]ks=([^&]+)'));
     if (ksMatch) ksMatch = window.decodeURIComponent(ksMatch[1]);
     var cookies = document.cookie.split(';').map(function(c) {return c.trim()});
@@ -132,6 +156,55 @@
   };
 
   window.loginByKs = function(user) {
+    
+    if (window.lucybot.env.target_api === 'ott') {
+      window.jquery.ajax({
+        url: 'https://' + window.lucybot.openapiService.original.host + window.lucybot.openapiService.original.basePath + '/service/multirequest',
+        contentType: "application/json",
+        dataType: 'json',
+        method: "POST",
+        data: JSON.stringify(
+          {  
+            "0":{  
+               "service":"session",
+               "action":"get",
+               "ks": user.ks
+            },
+            "1":{  
+               "service":"ottUser",
+               "action":"get",
+               "ks":"{1:result:ks}"
+            },
+            "format":1
+         })
+      })
+      .done(function(response) {
+        if (!response.result[0].error && !response.result[1].error) {
+          var creds = {
+            email: response.result[1].email,
+            user: response.result[1].username,
+            name: response.result[1].username,
+            partnerId: response.result[0].partnerId,
+            ks: response.result[0].ks
+          }
+          setKalturaUser(creds);
+        }
+        else {
+          window.jquery('#KalturaSignInModal .alert-danger').show();
+          return;
+        }
+      })
+      .fail(function(xhr) {
+        window.jquery('#KalturaSignInModal .alert-danger').show();
+        return;
+      })
+      .always(function() {
+        return;
+      });
+
+      return;
+    }
+
     if (user.partnerId) {
       window.jquery.ajax({
         url: '/auth/loginByKs',
@@ -167,24 +240,77 @@
     creds.password = window.jquery('input[name="KalturaPassword"]').val();
     creds.partnerId = window.jquery('input[name="KalturaPartnerId"]').val();
 
+    if (window.lucybot.env.target_api === 'ott') {
+      window.jquery.ajax({
+        url: 'https://' + window.lucybot.openapiService.original.host + window.lucybot.openapiService.original.basePath + '/service/ottuser/action/login',
+        contentType: "application/json",
+        dataType: 'json',
+        method: "POST",
+        data: JSON.stringify({
+          partnerId: creds.partnerId,
+          username: creds.email,
+          password: creds.password
+        })
+      })
+      .done(function(response) {
+        window.jquery('#KalturaSignInModal').modal('hide');
+        if (window.lucybot.env.target_api === 'ott') {
+          creds.ks = response.result.loginSession.ks;
+          creds.name = response.result.user.username;
+          setKalturaUser(creds);
+          return;
+        }
+        window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
+        window.jquery('#KalturaPartnerIDModal').modal('show');
+        if (window.ga) {
+          ga('set', 'userId', creds.email);
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'login',
+            eventAction: 'login',
+            eventLabel: 'partnerId',
+            eventValue: creds.partnerId,
+          });
+        }
+        if (window.mixpanel) {
+          mixpanel.identify(creds.email);
+          mixpanel.people.set({
+            '$email': creds.email,
+          })
+        }
+        window.lucybot.tracker('login_success', {
+          email: creds.email,
+        });
+        setPartnerChoices(response);
+        window.kalturaUser = user = creds;
+      })
+      .fail(function(xhr) {
+        window.lucybot.tracker('login_error', {
+          email: creds.email,
+          error: xhr.responseText,
+        })
+        window.jquery('#KalturaSignInModal .alert-danger').show();
+      })
+      .always(function() {
+        return;
+      });
+
+
+      return;
+    }
+
     window.lucybot.tracker('login_submit', {
-      email: creds.email,
+      email: creds.email
     });
-    var url = window.lucybot.env.target_api === 'ott' ? '/auth/ottLogin' : '/auth/login';
+
     window.jquery.ajax({
-      url: url,
+      url: '/auth/login',
       method: 'POST',
       data: JSON.stringify({email: creds.email, password: creds.password, partnerId: creds.partnerId}),
       headers: {'Content-Type': 'application/json'},
     })
     .done(function(response) {
       window.jquery('#KalturaSignInModal').modal('hide');
-      if (window.lucybot.env.target_api === 'ott') {
-        creds.ks = response.login_session.ks;
-        creds.name = response.user.email;
-        setKalturaUser(creds);
-        return;
-      }
       window.jquery('#KalturaPartnerIDModal .kaltura-loading').hide();
       window.jquery('#KalturaPartnerIDModal').modal('show');
       if (window.ga) {

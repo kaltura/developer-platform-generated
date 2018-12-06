@@ -1,4 +1,6 @@
-nav li.workflows-link,
 nav li.vpaas-link {
   display: none;
+}
+sample-code .show-setup-checkbox {
+  display: none !important;
 }
