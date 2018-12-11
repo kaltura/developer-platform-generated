@@ -188,21 +188,21 @@ var _markdown = __webpack_require__("./src/app/components/markdown.ngfactory.js"
 
 var i5 = _interopRequireWildcard(_markdown);
 
-var _documentation = __webpack_require__("./src/app/components/documentation.ngfactory.js");
+var _recipe = __webpack_require__("./src/app/components/recipe.ngfactory.js");
 
-var i6 = _interopRequireWildcard(_documentation);
-
-var _console = __webpack_require__("./src/app/components/console.ngfactory.js");
-
-var i7 = _interopRequireWildcard(_console);
+var i6 = _interopRequireWildcard(_recipe);
 
 var _gallery = __webpack_require__("./src/app/components/gallery.ngfactory.js");
 
-var i8 = _interopRequireWildcard(_gallery);
+var i7 = _interopRequireWildcard(_gallery);
 
-var _recipe = __webpack_require__("./src/app/components/recipe.ngfactory.js");
+var _console = __webpack_require__("./src/app/components/console.ngfactory.js");
 
-var i9 = _interopRequireWildcard(_recipe);
+var i8 = _interopRequireWildcard(_console);
+
+var _documentation = __webpack_require__("./src/app/components/documentation.ngfactory.js");
+
+var i9 = _interopRequireWildcard(_documentation);
 
 var _appComponent = __webpack_require__("./src/app/app.component.ngfactory.js");
 
@@ -292,21 +292,21 @@ var _markdown2 = __webpack_require__("./src/app/components/markdown.ts");
 
 var i31 = _interopRequireWildcard(_markdown2);
 
-var _documentation2 = __webpack_require__("./src/app/components/documentation.ts");
+var _recipe2 = __webpack_require__("./src/app/components/recipe.ts");
 
-var i32 = _interopRequireWildcard(_documentation2);
-
-var _console2 = __webpack_require__("./src/app/components/console.ts");
-
-var i33 = _interopRequireWildcard(_console2);
+var i32 = _interopRequireWildcard(_recipe2);
 
 var _gallery2 = __webpack_require__("./src/app/components/gallery.ts");
 
-var i34 = _interopRequireWildcard(_gallery2);
+var i33 = _interopRequireWildcard(_gallery2);
 
-var _recipe2 = __webpack_require__("./src/app/components/recipe.ts");
+var _console2 = __webpack_require__("./src/app/components/console.ts");
 
-var i35 = _interopRequireWildcard(_recipe2);
+var i34 = _interopRequireWildcard(_console2);
+
+var _documentation2 = __webpack_require__("./src/app/components/documentation.ts");
+
+var i35 = _interopRequireWildcard(_documentation2);
 
 var _index = __webpack_require__("./node_modules/ngx-tooltip/index.js");
 
@@ -325,7 +325,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * tslint:disable
  */
 var AppModuleNgFactory = i0.ɵcmf(i1.AppModule, [i2.AppComponent], function (_l) {
-  return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.TooltipContentNgFactory, i4.Ng2DatetimePickerComponentNgFactory, i5.MarkdownComponentNgFactory, i6.DocumentationComponentNgFactory, i7.ConsoleComponentNgFactory, i8.GalleryComponentNgFactory, i9.RecipeComponentNgFactory, i10.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(4608, i11.HttpXsrfTokenExtractor, i11.ɵh, [i12.DOCUMENT, i0.PLATFORM_ID, i11.ɵf]), i0.ɵmpd(4608, i11.ɵi, i11.ɵi, [i11.HttpXsrfTokenExtractor, i11.ɵg]), i0.ɵmpd(5120, i13.TransferState, i13.ɵc, [i12.DOCUMENT, i0.APP_ID]), i0.ɵmpd(4608, i14.ɵa, i14.ɵa, [i0.ApplicationRef, i13.TransferState]), i0.ɵmpd(5120, i11.HTTP_INTERCEPTORS, function (p0_0, p1_0) {
+  return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.TooltipContentNgFactory, i4.Ng2DatetimePickerComponentNgFactory, i5.MarkdownComponentNgFactory, i6.RecipeComponentNgFactory, i7.GalleryComponentNgFactory, i8.ConsoleComponentNgFactory, i9.DocumentationComponentNgFactory, i10.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(4608, i11.HttpXsrfTokenExtractor, i11.ɵh, [i12.DOCUMENT, i0.PLATFORM_ID, i11.ɵf]), i0.ɵmpd(4608, i11.ɵi, i11.ɵi, [i11.HttpXsrfTokenExtractor, i11.ɵg]), i0.ɵmpd(5120, i13.TransferState, i13.ɵc, [i12.DOCUMENT, i0.APP_ID]), i0.ɵmpd(4608, i14.ɵa, i14.ɵa, [i0.ApplicationRef, i13.TransferState]), i0.ɵmpd(5120, i11.HTTP_INTERCEPTORS, function (p0_0, p1_0) {
     return [p0_0, p1_0];
   }, [i11.ɵi, i14.ɵa]), i0.ɵmpd(4608, i11.ɵe, i11.ɵe, []), i0.ɵmpd(6144, i11.XhrFactory, null, [i11.ɵe]), i0.ɵmpd(4608, i11.HttpXhrBackend, i11.HttpXhrBackend, [i11.XhrFactory]), i0.ɵmpd(6144, i11.HttpBackend, null, [i11.HttpXhrBackend]), i0.ɵmpd(4608, i11.HttpHandler, i11.ɵc, [i11.HttpBackend, i0.Injector]), i0.ɵmpd(4608, i11.HttpClient, i11.HttpClient, [i11.HttpHandler]), i0.ɵmpd(4608, i15.ɵi, i15.ɵi, []), i0.ɵmpd(5120, i0.LOCALE_ID, i0.ɵq, [[3, i0.LOCALE_ID]]), i0.ɵmpd(4608, i12.NgLocalization, i12.NgLocaleLocalization, [i0.LOCALE_ID, [2, i12.ɵa]]), i0.ɵmpd(5120, i0.IterableDiffers, i0.ɵn, []), i0.ɵmpd(5120, i0.KeyValueDiffers, i0.ɵo, []), i0.ɵmpd(4608, i13.DomSanitizer, i13.ɵe, [i12.DOCUMENT]), i0.ɵmpd(6144, i0.Sanitizer, null, [i13.DomSanitizer]), i0.ɵmpd(4608, i13.HAMMER_GESTURE_CONFIG, i13.HammerGestureConfig, []), i0.ɵmpd(5120, i13.EVENT_MANAGER_PLUGINS, function (p0_0, p0_1, p1_0, p2_0, p2_1) {
     return [new i13.ɵDomEventsPlugin(p0_0, p0_1), new i13.ɵKeyEventsPlugin(p1_0), new i13.ɵHammerGesturesPlugin(p2_0, p2_1)];
@@ -336,7 +336,7 @@ var AppModuleNgFactory = i0.ɵcmf(i1.AppModule, [i2.AppComponent], function (_l)
   }, []), i0.ɵmpd(256, i0.APP_ID, "lucybot-doc-app", []), i0.ɵmpd(2048, i13.ɵTRANSITION_ID, null, [i0.APP_ID]), i0.ɵmpd(512, i20.ɵg, i20.ɵg, [i0.Injector]), i0.ɵmpd(1024, i0.APP_INITIALIZER, function (p0_0, p1_0, p1_1, p1_2, p2_0) {
     return [i13.ɵh(p0_0), i13.ɵf(p1_0, p1_1, p1_2), i20.ɵh(p2_0)];
   }, [[2, i0.NgProbeToken], i13.ɵTRANSITION_ID, i12.DOCUMENT, i0.Injector, i20.ɵg]), i0.ɵmpd(512, i0.ApplicationInitStatus, i0.ApplicationInitStatus, [[2, i0.APP_INITIALIZER]]), i0.ɵmpd(131584, i0.ApplicationRef, i0.ApplicationRef, [i0.NgZone, i0.ɵConsole, i0.Injector, i0.ErrorHandler, i0.ComponentFactoryResolver, i0.ApplicationInitStatus]), i0.ɵmpd(512, i0.ApplicationModule, i0.ApplicationModule, [i0.ApplicationRef]), i0.ɵmpd(512, i13.BrowserModule, i13.BrowserModule, [[3, i13.BrowserModule]]), i0.ɵmpd(512, i13.BrowserTransferStateModule, i13.BrowserTransferStateModule, []), i0.ɵmpd(512, i14.TransferHttpCacheModule, i14.TransferHttpCacheModule, []), i0.ɵmpd(512, i17.BrowserAnimationsModule, i17.BrowserAnimationsModule, []), i0.ɵmpd(1024, i20.ɵa, i20.ɵd, [[3, i20.Router]]), i0.ɵmpd(512, i20.UrlSerializer, i20.DefaultUrlSerializer, []), i0.ɵmpd(512, i20.ChildrenOutletContexts, i20.ChildrenOutletContexts, []), i0.ɵmpd(256, i12.APP_BASE_HREF, i1.ɵ0, []), i0.ɵmpd(256, i20.ROUTER_CONFIGURATION, { useHash: false }, []), i0.ɵmpd(1024, i12.LocationStrategy, i20.ɵc, [i12.PlatformLocation, [2, i12.APP_BASE_HREF], i20.ROUTER_CONFIGURATION]), i0.ɵmpd(512, i12.Location, i12.Location, [i12.LocationStrategy]), i0.ɵmpd(512, i0.Compiler, i0.Compiler, []), i0.ɵmpd(512, i0.NgModuleFactoryLoader, i0.SystemJsNgModuleLoader, [i0.Compiler, [2, i0.SystemJsNgModuleLoaderConfig]]), i0.ɵmpd(1024, i20.ROUTES, function () {
-    return [[{ path: "", redirectTo: "/api-docs", pathMatch: "full" }, { path: "404-not-found", component: i31.MarkdownComponent }, { path: "404-not-found/:item0", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1/:item2", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1/:item2/:item3", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1/:item2/:item3/:item4", component: i31.MarkdownComponent }, { path: "api-docs", component: i32.DocumentationComponent }, { path: "api-docs/:item0", component: i32.DocumentationComponent }, { path: "api-docs/:item0/:item1", component: i32.DocumentationComponent }, { path: "api-docs/:item0/:item1/:item2", component: i32.DocumentationComponent }, { path: "api-docs/:item0/:item1/:item2/:item3", component: i32.DocumentationComponent }, { path: "api-docs/:item0/:item1/:item2/:item3/:item4", component: i32.DocumentationComponent }, { path: "console", component: i33.ConsoleComponent }, { path: "console/:item0", component: i33.ConsoleComponent }, { path: "console/:item0/:item1", component: i33.ConsoleComponent }, { path: "console/:item0/:item1/:item2", component: i33.ConsoleComponent }, { path: "console/:item0/:item1/:item2/:item3", component: i33.ConsoleComponent }, { path: "console/:item0/:item1/:item2/:item3/:item4", component: i33.ConsoleComponent }, { path: "workflows", component: i34.GalleryComponent }, { path: "workflows/:item0", component: i34.GalleryComponent }, { path: "workflows/:item0/:item1", component: i34.GalleryComponent }, { path: "workflows/:item0/:item1/:item2", component: i34.GalleryComponent }, { path: "workflows/:item0/:item1/:item2/:item3", component: i34.GalleryComponent }, { path: "workflows/:item0/:item1/:item2/:item3/:item4", component: i34.GalleryComponent }, { path: "new-workflow", component: i35.RecipeComponent }, { path: "new-workflow/:item0", component: i35.RecipeComponent }, { path: "new-workflow/:item0/:item1", component: i35.RecipeComponent }, { path: "new-workflow/:item0/:item1/:item2", component: i35.RecipeComponent }, { path: "new-workflow/:item0/:item1/:item2/:item3", component: i35.RecipeComponent }, { path: "new-workflow/:item0/:item1/:item2/:item3/:item4", component: i35.RecipeComponent }, { path: "preview-workflow", component: i35.RecipeComponent }, { path: "preview-workflow/:item0", component: i35.RecipeComponent }, { path: "preview-workflow/:item0/:item1", component: i35.RecipeComponent }, { path: "preview-workflow/:item0/:item1/:item2", component: i35.RecipeComponent }, { path: "preview-workflow/:item0/:item1/:item2/:item3", component: i35.RecipeComponent }, { path: "preview-workflow/:item0/:item1/:item2/:item3/:item4", component: i35.RecipeComponent }, { path: "recipes", redirectTo: "/workflows", pathMatch: "full" }, { path: "recipes/ad_cue_points", redirectTo: "/workflows/Engage_and_Publish/Advertisement_Cue_Points", pathMatch: "full" }, { path: "recipes/analytics", redirectTo: "/workflows/Review_Media_Analytics/Analytics_Reports", pathMatch: "full" }, { path: "recipes/app_tokens", redirectTo: "/workflows/Generate_API_Sessions/App_Token_Authentication", pathMatch: "full" }, { path: "recipes/authentication", redirectTo: "/workflows/Generate_API_Sessions/Authentication", pathMatch: "full" }, { path: "recipes/backend_notifications", redirectTo: "/workflows/Integration_Scheduling_and_Hooks/Backend_and_Email_Notifications", pathMatch: "full" }, { path: "recipes/captions", redirectTo: "/workflows/Enrich_and_Organize_Metadata/Captions", pathMatch: "full" }, { path: "recipes/code_cue_points", redirectTo: "/workflows/Engage_and_Publish/Cue_Points", pathMatch: "full" }, { path: "recipes/dynamic_thumbnails", redirectTo: "/workflows/Engage_and_Publish/Animated_Thumbnails_with_CSS_Stripes", pathMatch: "full" }, { path: "recipes/leaderboard_reports", redirectTo: "/workflows/Integration_Scheduling_and_Hooks/Leaderboard_Reports", pathMatch: "full" }, { path: "recipes/live_broadcast", redirectTo: "/workflows/Live_Stream_and_Broadcast", pathMatch: "full" }, { path: "recipes/metadata", redirectTo: "/workflows/Enrich_and_Organize_Metadata/Working_with_metadata", pathMatch: "full" }, { path: "recipes/player_external_skin_overrides", redirectTo: "/workflows/Engage_and_Publish/Kaltura_Player_External_Skin_Overrides", pathMatch: "full" }, { path: "recipes/player_uiconf", redirectTo: "/workflows/Engage_and_Publish/Player_UI_conf", pathMatch: "full" }, { path: "recipes/quiz", redirectTo: "/workflows/Engage_and_Publish/Quiz", pathMatch: "full" }, { path: "recipes/upload", redirectTo: "/workflows/Ingest_and_Upload_Media", pathMatch: "full" }, { path: "recipes/using_css_states", redirectTo: "/workflows/Engage_and_Publish/Using_CSS_states", pathMatch: "full" }, { path: "recipes/video_search", redirectTo: "/workflows/Search_Discover_and_Personalize/Kaltura_Media_Library_Search", pathMatch: "full" }, { path: "recipes/webvtt_captions", redirectTo: "/workflows/Enrich_and_Organize_Metadata/Serve_WebVTT_Captions", pathMatch: "full" }, { path: "**", redirectTo: "404-not-found", pathMatch: "full" }]];
+    return [[{ path: "recipes/captions", redirectTo: "/workflows/Enrich_and_Organize_Metadata/Captions", pathMatch: "full" }, { path: "recipes/webvtt_captions", redirectTo: "/workflows/Enrich_and_Organize_Metadata/Serve_WebVTT_Captions", pathMatch: "full" }, { path: "recipes/video_search", redirectTo: "/workflows/Search_Discover_and_Personalize/Kaltura_Media_Library_Search", pathMatch: "full" }, { path: "recipes/using_css_states", redirectTo: "/workflows/Engage_and_Publish/Using_CSS_states", pathMatch: "full" }, { path: "recipes/upload", redirectTo: "/workflows/Ingest_and_Upload_Media", pathMatch: "full" }, { path: "recipes/quiz", redirectTo: "/workflows/Engage_and_Publish/Quiz", pathMatch: "full" }, { path: "recipes/player_uiconf", redirectTo: "/workflows/Engage_and_Publish/Player_UI_conf", pathMatch: "full" }, { path: "recipes/player_external_skin_overrides", redirectTo: "/workflows/Engage_and_Publish/Kaltura_Player_External_Skin_Overrides", pathMatch: "full" }, { path: "recipes/ad_cue_points", redirectTo: "/workflows/Engage_and_Publish/Advertisement_Cue_Points", pathMatch: "full" }, { path: "recipes/analytics", redirectTo: "/workflows/Review_Media_Analytics/Analytics_Reports", pathMatch: "full" }, { path: "recipes/app_tokens", redirectTo: "/workflows/Generate_API_Sessions/App_Token_Authentication", pathMatch: "full" }, { path: "recipes/authentication", redirectTo: "/workflows/Generate_API_Sessions/Authentication", pathMatch: "full" }, { path: "recipes/backend_notifications", redirectTo: "/workflows/Integration_Scheduling_and_Hooks/Backend_and_Email_Notifications", pathMatch: "full" }, { path: "recipes/metadata", redirectTo: "/workflows/Enrich_and_Organize_Metadata/Working_with_metadata", pathMatch: "full" }, { path: "recipes/code_cue_points", redirectTo: "/workflows/Engage_and_Publish/Cue_Points", pathMatch: "full" }, { path: "recipes/dynamic_thumbnails", redirectTo: "/workflows/Engage_and_Publish/Animated_Thumbnails_with_CSS_Stripes", pathMatch: "full" }, { path: "recipes/leaderboard_reports", redirectTo: "/workflows/Integration_Scheduling_and_Hooks/Leaderboard_Reports", pathMatch: "full" }, { path: "recipes/live_broadcast", redirectTo: "/workflows/Live_Stream_and_Broadcast", pathMatch: "full" }, { path: "404-not-found", component: i31.MarkdownComponent }, { path: "404-not-found/:item0", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1/:item2", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1/:item2/:item3", component: i31.MarkdownComponent }, { path: "404-not-found/:item0/:item1/:item2/:item3/:item4", component: i31.MarkdownComponent }, { path: "recipes", redirectTo: "/workflows", pathMatch: "full" }, { path: "preview-workflow", component: i32.RecipeComponent }, { path: "preview-workflow/:item0", component: i32.RecipeComponent }, { path: "preview-workflow/:item0/:item1", component: i32.RecipeComponent }, { path: "preview-workflow/:item0/:item1/:item2", component: i32.RecipeComponent }, { path: "preview-workflow/:item0/:item1/:item2/:item3", component: i32.RecipeComponent }, { path: "preview-workflow/:item0/:item1/:item2/:item3/:item4", component: i32.RecipeComponent }, { path: "new-workflow", component: i32.RecipeComponent }, { path: "new-workflow/:item0", component: i32.RecipeComponent }, { path: "new-workflow/:item0/:item1", component: i32.RecipeComponent }, { path: "new-workflow/:item0/:item1/:item2", component: i32.RecipeComponent }, { path: "new-workflow/:item0/:item1/:item2/:item3", component: i32.RecipeComponent }, { path: "new-workflow/:item0/:item1/:item2/:item3/:item4", component: i32.RecipeComponent }, { path: "workflows", component: i33.GalleryComponent }, { path: "workflows/:item0", component: i33.GalleryComponent }, { path: "workflows/:item0/:item1", component: i33.GalleryComponent }, { path: "workflows/:item0/:item1/:item2", component: i33.GalleryComponent }, { path: "workflows/:item0/:item1/:item2/:item3", component: i33.GalleryComponent }, { path: "workflows/:item0/:item1/:item2/:item3/:item4", component: i33.GalleryComponent }, { path: "console", component: i34.ConsoleComponent }, { path: "console/:item0", component: i34.ConsoleComponent }, { path: "console/:item0/:item1", component: i34.ConsoleComponent }, { path: "console/:item0/:item1/:item2", component: i34.ConsoleComponent }, { path: "console/:item0/:item1/:item2/:item3", component: i34.ConsoleComponent }, { path: "console/:item0/:item1/:item2/:item3/:item4", component: i34.ConsoleComponent }, { path: "api-docs", component: i35.DocumentationComponent }, { path: "api-docs/:item0", component: i35.DocumentationComponent }, { path: "api-docs/:item0/:item1", component: i35.DocumentationComponent }, { path: "api-docs/:item0/:item1/:item2", component: i35.DocumentationComponent }, { path: "api-docs/:item0/:item1/:item2/:item3", component: i35.DocumentationComponent }, { path: "api-docs/:item0/:item1/:item2/:item3/:item4", component: i35.DocumentationComponent }, { path: "", redirectTo: "/api-docs", pathMatch: "full" }, { path: "**", redirectTo: "404-not-found", pathMatch: "full" }]];
   }, []), i0.ɵmpd(1024, i20.Router, i20.ɵe, [i0.ApplicationRef, i20.UrlSerializer, i20.ChildrenOutletContexts, i12.Location, i0.Injector, i0.NgModuleFactoryLoader, i0.Compiler, i20.ROUTES, i20.ROUTER_CONFIGURATION, [2, i20.UrlHandlingStrategy], [2, i20.RouteReuseStrategy]]), i0.ɵmpd(512, i20.RouterModule, i20.RouterModule, [[2, i20.ɵa], [2, i20.Router]]), i0.ɵmpd(512, i36.TooltipModule, i36.TooltipModule, []), i0.ɵmpd(512, i37.Ng2DatetimePickerModule, i37.Ng2DatetimePickerModule, []), i0.ɵmpd(512, i1.AppModule, i1.AppModule, []), i0.ɵmpd(256, i11.ɵf, "XSRF-TOKEN", []), i0.ɵmpd(256, i11.ɵg, "X-XSRF-TOKEN", []), i0.ɵmpd(256, "ORIGIN_URL", "", [])]);
 });
 exports.AppModuleNgFactory = AppModuleNgFactory;
@@ -5905,19 +5905,21 @@ var SchemaComponent = /** @class */ (function () {
         this.showing = 'schema';
     }
     SchemaComponent.prototype.ngOnChanges = function () {
-        var example = null;
-        if (this.examples && Object.keys(this.examples).length) {
-            var keys = Object.keys(this.examples);
-            // FIXME: have a dropdown for different content types.
-            if (keys.indexOf('application/json') !== -1) {
-                example = this.examples['application/json'];
+        var example = this.schema.example;
+        if (!example) {
+            if (this.examples && Object.keys(this.examples).length) {
+                var keys = Object.keys(this.examples);
+                // FIXME: have a dropdown for different content types.
+                if (keys.indexOf('application/json') !== -1) {
+                    example = this.examples['application/json'];
+                }
+                else {
+                    example = this.examples[keys[0]];
+                }
             }
             else {
-                example = this.examples[keys[0]];
+                example = this.getExample(this.schema);
             }
-        }
-        else {
-            example = this.getExample(this.schema);
         }
         var exampleStr = JSON.stringify(example, null, 2) || '';
         if (window.Prism !== null) {
@@ -8423,11 +8425,13 @@ var OpenAPIService = /** @class */ (function () {
                 if (__WEBPACK_IMPORTED_MODULE_5__utils__["METHODS"].indexOf(method_1.toUpperCase()) === -1)
                     continue;
                 var operation = this.parsed.paths[path_1][method_1];
+                var id = operation.operationId || method_1.toUpperCase() + ' ' + path_1;
                 var apiCall = {
+                    id: id,
                     path: path_1,
                     method: method_1,
                     operation: operation,
-                    title: operation.operationId || method_1.toUpperCase() + ' ' + path_1,
+                    title: id,
                 };
                 this.apiCalls.push(apiCall);
             }
@@ -8665,7 +8669,7 @@ var RoutesService = /** @class */ (function () {
                 return;
             for (var i = 0; i < items.length; ++i) {
                 var item = items[i];
-                if (item.operation === apiCall.operation.operationId)
+                if (item.operation === apiCall.id)
                     return item;
                 var child = getLink(item.children);
                 if (child)
@@ -9227,8 +9231,6 @@ var initializeNavigation = module.exports = function (nav, config, openapi) {
         })
       });
     }
-  } else {
-    nav = JSON.parse(JSON.stringify(nav));
   }
   nav.forEach(function (navItem) {
     return initializeNavigationItem(navItem, config, openapi);
