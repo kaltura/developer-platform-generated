@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Sun Jul 15 05:22:40 2018</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/kaltura-thumbnail-api.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Jan 8 09:10:57 2019</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/kaltura-thumbnail-api.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Apr 9 10:31:05 2017, By: AnnaAleksandrowicz</td></tr-->
-				<!--tr><td>Last commit: Sun Jul 15 05:22:40 2018, By <span class="commit-author">Zohar Babin</span></td></tr-->
+				<!--tr><td>Last commit: Tue Jan 8 09:10:57 2019, By <span class="commit-author">Zohar Babin</span></td></tr-->
 			
 				<!-- 
 				
@@ -129,6 +129,12 @@ rtp('get', 'campaign',true);
 				
 				<tr>
 					<td>Zohar Babin (7 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:zohar.babin@kaltura.com">zohar.babin@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -282,9 +288,9 @@ rtp('get', 'campaign',true);
     </tr>
     <tr>
       <td>vid_sec</td>
-      <td>integer</td>
+      <td>float</td>
       <td>No</td>
-      <td>second to snap from video</td>
+      <td>The time to snap a frame from the video (to get a specific frame # use; <code class="highlighter-rouge">second=frame/(durationSec * FPS)</code></td>
     </tr>
     <tr>
       <td>vid_slice</td>
@@ -416,33 +422,57 @@ https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/h
 
 <h3 id="using-vid_sec-parameter">Using vid_sec parameter</h3>
 
-<p>The vid_sec parameter allows us to select a specific second in a video entry. The following will capture various frames from the 10th, 50th, 100th and 150th second in the video: (X is the second).</p>
+<p>The vid_sec parameter allows us to capture a frame from a specific time in a video entry. <br />
+vid_sec is a float, you can use decimal numbers to get particular frames from the video.<br />
+To get the time of a particular frame in the video, use the following formula: <code class="highlighter-rouge">frameSec = frameNumber / (durationSeconds * FPS)</code> .  <br />
+The following example shows capturing various frames in the video: 0 (first frame), 10th frame, 100th frame, 500th, 2,000th, 4,000th, 40,000th, and 50,000th.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/100/type/1/vid_sec/X
+<div class="highlighter-rouge"><pre class="highlight"><code>https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/vid_sec/X
 </code></pre>
 </div>
 
 <table>
   <thead>
     <tr>
-      <th>10th Second</th>
-      <th>50th Second</th>
-      <th style="text-align: center">100th Second</th>
-      <th style="text-align: right">150th Second</th>
+      <th>Frame</th>
+      <th>0 (first frame)</th>
+      <th>10th frame</th>
+      <th>100th</th>
+      <th>500th</th>
+      <th>2,000th</th>
+      <th>4,000th</th>
+      <th>40,000th</th>
+      <th>50,000th</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/10" alt="Thumbnail from the 10th second of the video" /></td>
-      <td><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/50" alt="Thumbnail from the 50th second of the video" /></td>
-      <td style="text-align: center"><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/100" alt="Thumbnail from the 100th second of the video" /></td>
-      <td style="text-align: right"><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/type/1/vid_sec/150" alt="Thumbnail from the 150th second of the video" /></td>
+      <td>Second</td>
+      <td>0</td>
+      <td>0.003252033</td>
+      <td>0.032520325</td>
+      <td>0.162601626</td>
+      <td>0.650406504</td>
+      <td>1.300813008</td>
+      <td>13.00813008</td>
+      <td>16.2601626</td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/0" alt="Thumbnail from the 0 second of the video" /></td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/0.0032520325203252" alt="Thumbnail from the 0.0032520325203252 second of the video" /></td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/0.032520325203252" alt="Thumbnail from the 0.032520325203252 second of the video" /></td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/0.16260162601626" alt="Thumbnail from the 0.16260162601626 second of the video" /></td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/0.650406504065041" alt="Thumbnail from the 0.650406504065041 second of the video" /></td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/1.30081300813008" alt="Thumbnail from the 1.30081300813008 second of the video" /></td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/13.0081300813008" alt="Thumbnail from the 13.0081300813008 second of the video" /></td>
+      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/16.260162601626" alt="Thumbnail from the 16.260162601626 second of the video" /></td>
     </tr>
   </tbody>
 </table>
 
 <blockquote>
-  <p>NOTE: If the given vid_sec is out of range, meaning, larger than the duration of the video, the returned thumbnail will be an image with the defined dimensions (as indicated by the width and height parameters)</p>
+  <p>NOTE: If the given vid_sec is out of range, meaning, larger than the duration of the video, the returned thumbnail will be the last frame.</p>
 </blockquote>
 
 <h3 id="cropping">Cropping</h3>

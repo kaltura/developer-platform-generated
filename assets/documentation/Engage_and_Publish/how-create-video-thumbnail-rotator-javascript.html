@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Aug 21 10:13:42 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/how-create-video-thumbnail-rotator-javascript.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Jan 8 10:09:05 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/how-create-video-thumbnail-rotator-javascript.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Apr 9 10:22:30 2017, By: AnnaAleksandrowicz</td></tr-->
-				<!--tr><td>Last commit: Mon Aug 21 10:13:42 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Tue Jan 8 10:09:05 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
 			
 				<!-- 
 				
@@ -122,7 +122,13 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Zohar Babin (1 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -135,40 +141,37 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes the steps to create a Video Thumbnail Rotator in JavaScript. The Video Thumbnail Rotator is a JS widget that provides a thumbnail slideshow preview for videos hosted on the Kaltura Server.</p>
+    		<h1 id="using-the-kaltura-video-thumbnails-animator">Using the Kaltura Video Thumbnails Animator</h1>
 
-<h2 id="how-to-use-the-thumb-rotator">How to use the Thumb Rotator</h2>
+<p>Get the JS script and documentation from the <a href="https://github.com/kaltura/VideoThumbnailAnimator"><strong>Kaltura Video Thumbnails Animator github repo</strong></a>.</p>
 
-<p>To use the KalturaThumbRotator, include its javascript code and attach two events to each img element you want to turn into a slideshow preview:</p>
+<p>This script provides a simple way to dynamically create video thumbnails using Kaltura’s Image Transformation API with a tiny, single JS file. The script also including a low-rest blurred loading while the animation stripe loads in the background.</p>
 
-<p>1 .  Download the <a href="http://knowledge.kaltura.com/sites/default/files/dl_resources/kalturaThumbRotator.zip">Kaltura Video Thumbnail Rotator script</a>.</p>
+<p>To achieve responsive behavior and adapt to any dimensions, the script uses percentages based CSS logic to create the animated video thumbnails while using CSS stripes of the video animation frames created by the <a href="https://developer.kaltura.com/api-docs/Engage_and_Publish/kaltura-thumbnail-api.html/">Kaltura Thumbnail API</a>.</p>
 
-<p>2 .  Next, include the JavaScript, add the following line at the <strong>head</strong> of the document:</p>
-
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"kaltura_thumb_rotator.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt;</span></code></pre></figure>
-
-<p>3 .  Add the <strong><img /></strong> tag where you want the thumbnail to be as follows:</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"http://cdn.kaltura.com/p/309/sp/0/thumbnail/entry\_id/1\_gdmcbimk/width/120/height/90"</span> <span class="na">width=</span><span class="s">"120"</span> <span class="na">height=</span><span class="s">"90"</span> <span class="na">onmouseover=</span><span class="s">"KalturaThumbRotator.start(this)"</span> <span class="na">onmouseout=</span><span class="s">"KalturaThumbRotator.end(this)"</span><span class="nt">&gt;</span></code></pre></figure>
-
-<p>4 .  Change the width and height parameters in the thumbnail URL as well as the img tag attributes to suit the dimensions you want the thumbnail to be.</p>
-
-<p> </p>
-<h2 id="the-javascript-api">The JavaScript API</h2>
-
-<p>KalturaThumbRotator provide two actions:</p>
+<h3 id="the-percentages-based-background-image-sizeposition-logic">The percentages based background image size/position logic</h3>
 
 <ul>
-  <li><code class="highlighter-rouge">KalturaThumbRotator.start(this)</code> - Cancels the current running preview and starts a new one. </li>
-  <li><code class="highlighter-rouge">KalturaThumbRotator.end(this)</code> - Cancels the current running preview and restores the original thumbnail.</li>
+  <li>Thumbnail Stripe Width in Percentage: total slices multiplied by 100.</li>
+  <li>Thumbnail Stripe X Position in Percentage: the total slices minus 1 (0-index) described as percent (100 divided by total slices minus 1), multiplied by the current slice number (0-index).</li>
 </ul>
 
-<p>You can adjust the following settings in the Kaltura Thumb Rotator js file:</p>
-
-<ul>
-  <li>slices - The number of thumbnails to pull for the video (default is 16).</li>
-  <li>frameRate - The frame rate in milliseconds for changing thumbnails (time to wait between thumbnail replacement, default is 1000ms).</li>
-</ul>
+<h1 id="setting-up">Setting up</h1>
+<p>View-source on <a href="https://kaltura.github.io/VideoThumbnailAnimator/"><code class="highlighter-rouge">index.html</code></a> for a quick reference example.<br />
+Include the ThumbAnimator script:</p>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./KalturaThumbAnimator.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"videothumbnail"</span> <span class="na">kfps=</span><span class="s">"4.5"</span> <span class="na">kslices=</span><span class="s">"30"</span> <span class="na">kwidth=</span><span class="s">"600"</span> <span class="na">kpid=</span><span class="s">"2421271"</span> <span class="na">kentryid=</span><span class="s">"1_fjqtp7ki"</span> <span class="na">kquality=</span><span class="s">"75"</span> <span class="na">kcrop=</span><span class="s">"2"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+    <span class="kd">var</span> <span class="nx">thumbAnimator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaThumbAnimator</span><span class="p">();</span>
+    <span class="nx">thumbAnimator</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="s2">"videothumbnail"</span><span class="p">,</span> <span class="s2">"https://cfvod.kaltura.com"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">//use blurred defered loading</span>
+    <span class="nx">thumbAnimator</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="s2">"videothumbnail"</span><span class="p">);</span> <span class="c1">//regular load</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre>
+</div>
 
 		
 </article>
