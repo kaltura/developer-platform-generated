@@ -7445,6 +7445,7 @@ var LOCAL_STORAGE_KEY = 'github_token';
 var BASE_URL = 'https://api.github.com';
 var REDIRECT_URI = window.config.github.redirect_uri;
 var GITHUB_CLIENT_ID = window.config.github.client_id;
+var WORKFLOW_DIRECTORY = window.config.workflowDirectory || 'workflows';
 var GitHubService = /** @class */ (function () {
     function GitHubService(http, zone, tracker, platformService, secrets) {
         this.http = http;
@@ -7557,7 +7558,7 @@ var GitHubService = /** @class */ (function () {
         var _this = this;
         this.get('/repos/' + forkName)
             .then(function (repo) {
-            return _this.get('/repos/' + forkName + '/contents/workflows');
+            return _this.get('/repos/' + forkName + '/contents/' + WORKFLOW_DIRECTORY);
         })
             .then(function (contents) {
             _this.forkWorkflows = contents.map(function (c) { return c.name; });
@@ -7569,7 +7570,7 @@ var GitHubService = /** @class */ (function () {
             .then(function (pulls) { return _this.pullRequests = pulls.filter(function (p) { return p.head.repo; }); });
     };
     GitHubService.prototype.getWorkflowPreviewURL = function (forkName, workflowName) {
-        return "https://raw.githubusercontent.com/" + forkName + "/master/workflows/" + workflowName + "/readme.md";
+        return "https://raw.githubusercontent.com/" + forkName + "/master/" + WORKFLOW_DIRECTORY + "/" + workflowName + "/readme.md";
     };
     GitHubService.prototype.handleError = function (error) {
         var errMsg = (error.message) ? error.message :

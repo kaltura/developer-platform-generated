@@ -110,6 +110,8 @@ table th {
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" ref="entitledUsersEdit"></xs:element>
+      <xs:element maxOccurs="1" minOccurs="0" ref="entitledUsersPublish"></xs:element>
       <xs:element maxOccurs="1" minOccurs="0" name="name">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -364,6 +366,11 @@ table th {
 				=+$,%#-\[\]]+)+)"></xs:pattern>
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="T_entitledUsers">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="user" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="T_tags">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="tag" type="xs:string"></xs:element>
@@ -401,6 +408,8 @@ table th {
   <xs:element name="remoteStorageContentResources" type="T_remoteStorageContentResources"></xs:element>
   <xs:element name="entryContentResource" type="T_entryContentResource"></xs:element>
   <xs:element name="assetContentResource" type="T_assetContentResource"></xs:element>
+  <xs:element name="entitledUsersEdit" type="T_entitledUsers"></xs:element>
+  <xs:element name="entitledUsersPublish" type="T_entitledUsers"></xs:element>
   <xs:element name="tags" type="T_tags"></xs:element>
   <xs:element name="categories" type="T_categories"></xs:element>
   <xs:element name="mrss-extension"></xs:element>
@@ -1760,6 +1769,26 @@ table th {
 <td class="last">
 					 Maximum length: 100 characters<br>
 </td>
+</tr>
+<tr class="">
+<td class="first" colspan="2"><span>entitledUsersEdit</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Comma-separated list of entry&apos;s co-editors</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td></td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2"><span>entitledUsersPublish</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Comma-separated list of entry&apos;s co-publishers</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td></td>
+<td class="last"></td>
 </tr>
 <tr class="">
 <td class="first" colspan="2">name</td>
@@ -3956,6 +3985,128 @@ tK1yWx3LOnxokoJUtNRSdEi</privateKey>
       <assetContentResource assetId="{existing asset id}"></assetContentResource>
     </content>
   </contentAssets>
+</item>
+```
+
+--------
+
+
+
+
+
+<span class="k-et">entitledUsersEdit element</span>
+
+
+
+
+
+<span class="element-description">Co-editors</span>
+
+
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody><tr class="">
+<td class="first" colspan="2">user</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies a single user to set for an entry&apos;s co-publishers</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>Unbounded</td>
+<td>string</td>
+<td class="last"></td>
+</tr></tbody>
+</table>
+
+
+
+##### XML Example: Entry tags
+
+
+
+```xml
+<item>
+  <action>add</action>
+  <entitledUsersEdit>
+    <user>user1</user>
+    <user>user2</user>
+  </entitledUsersEdit>
+  <media>...</media>
+  <contentAssets>...</contentAssets>
+</item>
+```
+
+--------
+
+
+
+
+
+<span class="k-et">entitledUsersPublish element</span>
+
+
+
+
+
+<span class="element-description">Co-editors</span>
+
+
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody><tr class="">
+<td class="first" colspan="2">user</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies a single user to set for an entry&apos;s co-publishers</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>Unbounded</td>
+<td>string</td>
+<td class="last"></td>
+</tr></tbody>
+</table>
+
+
+
+##### XML Example: Entry tags
+
+
+
+```xml
+<item>
+  <action>add</action>
+  <entitledUsersEdit>
+    <user>user1</user>
+    <user>user2</user>
+  </entitledUsersEdit>
+  <media>...</media>
+  <contentAssets>...</contentAssets>
 </item>
 ```
 

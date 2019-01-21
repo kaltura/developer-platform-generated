@@ -31041,7 +31041,7 @@ var Reflect;
         function CreateMapPolyfill() {
             var cacheSentinel = {};
             var arraySentinel = [];
-            var MapIterator = function () {
+            var MapIterator = /** @class */function () {
                 function MapIterator(keys, values, selector) {
                     this._index = 0;
                     this._keys = keys;
@@ -31087,84 +31087,85 @@ var Reflect;
                 };
                 return MapIterator;
             }();
-            return function () {
-                function Map() {
-                    this._keys = [];
-                    this._values = [];
-                    this._cacheKey = cacheSentinel;
-                    this._cacheIndex = -2;
-                }
-                Object.defineProperty(Map.prototype, "size", {
-                    get: function get() {
-                        return this._keys.length;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Map.prototype.has = function (key) {
-                    return this._find(key, /*insert*/false) >= 0;
-                };
-                Map.prototype.get = function (key) {
-                    var index = this._find(key, /*insert*/false);
-                    return index >= 0 ? this._values[index] : undefined;
-                };
-                Map.prototype.set = function (key, value) {
-                    var index = this._find(key, /*insert*/true);
-                    this._values[index] = value;
-                    return this;
-                };
-                Map.prototype.delete = function (key) {
-                    var index = this._find(key, /*insert*/false);
-                    if (index >= 0) {
-                        var size = this._keys.length;
-                        for (var i = index + 1; i < size; i++) {
-                            this._keys[i - 1] = this._keys[i];
-                            this._values[i - 1] = this._values[i];
+            return (/** @class */function () {
+                    function Map() {
+                        this._keys = [];
+                        this._values = [];
+                        this._cacheKey = cacheSentinel;
+                        this._cacheIndex = -2;
+                    }
+                    Object.defineProperty(Map.prototype, "size", {
+                        get: function get() {
+                            return this._keys.length;
+                        },
+                        enumerable: true,
+                        configurable: true
+                    });
+                    Map.prototype.has = function (key) {
+                        return this._find(key, /*insert*/false) >= 0;
+                    };
+                    Map.prototype.get = function (key) {
+                        var index = this._find(key, /*insert*/false);
+                        return index >= 0 ? this._values[index] : undefined;
+                    };
+                    Map.prototype.set = function (key, value) {
+                        var index = this._find(key, /*insert*/true);
+                        this._values[index] = value;
+                        return this;
+                    };
+                    Map.prototype.delete = function (key) {
+                        var index = this._find(key, /*insert*/false);
+                        if (index >= 0) {
+                            var size = this._keys.length;
+                            for (var i = index + 1; i < size; i++) {
+                                this._keys[i - 1] = this._keys[i];
+                                this._values[i - 1] = this._values[i];
+                            }
+                            this._keys.length--;
+                            this._values.length--;
+                            if (key === this._cacheKey) {
+                                this._cacheKey = cacheSentinel;
+                                this._cacheIndex = -2;
+                            }
+                            return true;
                         }
-                        this._keys.length--;
-                        this._values.length--;
-                        if (key === this._cacheKey) {
-                            this._cacheKey = cacheSentinel;
-                            this._cacheIndex = -2;
+                        return false;
+                    };
+                    Map.prototype.clear = function () {
+                        this._keys.length = 0;
+                        this._values.length = 0;
+                        this._cacheKey = cacheSentinel;
+                        this._cacheIndex = -2;
+                    };
+                    Map.prototype.keys = function () {
+                        return new MapIterator(this._keys, this._values, getKey);
+                    };
+                    Map.prototype.values = function () {
+                        return new MapIterator(this._keys, this._values, getValue);
+                    };
+                    Map.prototype.entries = function () {
+                        return new MapIterator(this._keys, this._values, getEntry);
+                    };
+                    Map.prototype["@@iterator"] = function () {
+                        return this.entries();
+                    };
+                    Map.prototype[iteratorSymbol] = function () {
+                        return this.entries();
+                    };
+                    Map.prototype._find = function (key, insert) {
+                        if (this._cacheKey !== key) {
+                            this._cacheIndex = this._keys.indexOf(this._cacheKey = key);
                         }
-                        return true;
-                    }
-                    return false;
-                };
-                Map.prototype.clear = function () {
-                    this._keys.length = 0;
-                    this._values.length = 0;
-                    this._cacheKey = cacheSentinel;
-                    this._cacheIndex = -2;
-                };
-                Map.prototype.keys = function () {
-                    return new MapIterator(this._keys, this._values, getKey);
-                };
-                Map.prototype.values = function () {
-                    return new MapIterator(this._keys, this._values, getValue);
-                };
-                Map.prototype.entries = function () {
-                    return new MapIterator(this._keys, this._values, getEntry);
-                };
-                Map.prototype["@@iterator"] = function () {
-                    return this.entries();
-                };
-                Map.prototype[iteratorSymbol] = function () {
-                    return this.entries();
-                };
-                Map.prototype._find = function (key, insert) {
-                    if (this._cacheKey !== key) {
-                        this._cacheIndex = this._keys.indexOf(this._cacheKey = key);
-                    }
-                    if (this._cacheIndex < 0 && insert) {
-                        this._cacheIndex = this._keys.length;
-                        this._keys.push(key);
-                        this._values.push(undefined);
-                    }
-                    return this._cacheIndex;
-                };
-                return Map;
-            }();
+                        if (this._cacheIndex < 0 && insert) {
+                            this._cacheIndex = this._keys.length;
+                            this._keys.push(key);
+                            this._values.push(undefined);
+                        }
+                        return this._cacheIndex;
+                    };
+                    return Map;
+                }()
+            );
             function getKey(key, _) {
                 return key;
             }
@@ -31177,79 +31178,81 @@ var Reflect;
         }
         // naive Set shim
         function CreateSetPolyfill() {
-            return function () {
-                function Set() {
-                    this._map = new _Map();
-                }
-                Object.defineProperty(Set.prototype, "size", {
-                    get: function get() {
-                        return this._map.size;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Set.prototype.has = function (value) {
-                    return this._map.has(value);
-                };
-                Set.prototype.add = function (value) {
-                    return this._map.set(value, value), this;
-                };
-                Set.prototype.delete = function (value) {
-                    return this._map.delete(value);
-                };
-                Set.prototype.clear = function () {
-                    this._map.clear();
-                };
-                Set.prototype.keys = function () {
-                    return this._map.keys();
-                };
-                Set.prototype.values = function () {
-                    return this._map.values();
-                };
-                Set.prototype.entries = function () {
-                    return this._map.entries();
-                };
-                Set.prototype["@@iterator"] = function () {
-                    return this.keys();
-                };
-                Set.prototype[iteratorSymbol] = function () {
-                    return this.keys();
-                };
-                return Set;
-            }();
+            return (/** @class */function () {
+                    function Set() {
+                        this._map = new _Map();
+                    }
+                    Object.defineProperty(Set.prototype, "size", {
+                        get: function get() {
+                            return this._map.size;
+                        },
+                        enumerable: true,
+                        configurable: true
+                    });
+                    Set.prototype.has = function (value) {
+                        return this._map.has(value);
+                    };
+                    Set.prototype.add = function (value) {
+                        return this._map.set(value, value), this;
+                    };
+                    Set.prototype.delete = function (value) {
+                        return this._map.delete(value);
+                    };
+                    Set.prototype.clear = function () {
+                        this._map.clear();
+                    };
+                    Set.prototype.keys = function () {
+                        return this._map.keys();
+                    };
+                    Set.prototype.values = function () {
+                        return this._map.values();
+                    };
+                    Set.prototype.entries = function () {
+                        return this._map.entries();
+                    };
+                    Set.prototype["@@iterator"] = function () {
+                        return this.keys();
+                    };
+                    Set.prototype[iteratorSymbol] = function () {
+                        return this.keys();
+                    };
+                    return Set;
+                }()
+            );
         }
         // naive WeakMap shim
         function CreateWeakMapPolyfill() {
             var UUID_SIZE = 16;
             var keys = HashMap.create();
             var rootKey = CreateUniqueKey();
-            return function () {
-                function WeakMap() {
-                    this._key = CreateUniqueKey();
-                }
-                WeakMap.prototype.has = function (target) {
-                    var table = GetOrCreateWeakMapTable(target, /*create*/false);
-                    return table !== undefined ? HashMap.has(table, this._key) : false;
-                };
-                WeakMap.prototype.get = function (target) {
-                    var table = GetOrCreateWeakMapTable(target, /*create*/false);
-                    return table !== undefined ? HashMap.get(table, this._key) : undefined;
-                };
-                WeakMap.prototype.set = function (target, value) {
-                    var table = GetOrCreateWeakMapTable(target, /*create*/true);
-                    table[this._key] = value;
-                    return this;
-                };
-                WeakMap.prototype.delete = function (target) {
-                    var table = GetOrCreateWeakMapTable(target, /*create*/false);
-                    return table !== undefined ? delete table[this._key] : false;
-                };
-                WeakMap.prototype.clear = function () {
-                    // NOTE: not a real clear, just makes the previous data unreachable
-                    this._key = CreateUniqueKey();
-                };
-                return WeakMap;
-            }();
+            return (/** @class */function () {
+                    function WeakMap() {
+                        this._key = CreateUniqueKey();
+                    }
+                    WeakMap.prototype.has = function (target) {
+                        var table = GetOrCreateWeakMapTable(target, /*create*/false);
+                        return table !== undefined ? HashMap.has(table, this._key) : false;
+                    };
+                    WeakMap.prototype.get = function (target) {
+                        var table = GetOrCreateWeakMapTable(target, /*create*/false);
+                        return table !== undefined ? HashMap.get(table, this._key) : undefined;
+                    };
+                    WeakMap.prototype.set = function (target, value) {
+                        var table = GetOrCreateWeakMapTable(target, /*create*/true);
+                        table[this._key] = value;
+                        return this;
+                    };
+                    WeakMap.prototype.delete = function (target) {
+                        var table = GetOrCreateWeakMapTable(target, /*create*/false);
+                        return table !== undefined ? delete table[this._key] : false;
+                    };
+                    WeakMap.prototype.clear = function () {
+                        // NOTE: not a real clear, just makes the previous data unreachable
+                        this._key = CreateUniqueKey();
+                    };
+                    return WeakMap;
+                }()
+            );
             function CreateUniqueKey() {
                 var key;
                 do {
@@ -31301,7 +31304,6 @@ var Reflect;
         }
     });
 })(Reflect || (Reflect = {}));
-//# sourceMappingURL=Reflect.js.map
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js"), __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
