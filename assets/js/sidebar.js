@@ -24,7 +24,9 @@ window.jquery(document).ready(function() {
 
   window.jquery.getJSON(BLOG_URL)
   .done(function(data) {
-    window.jquery('#KalturaBlogContent').html(data.posts.map(postTemplate).join('\n'));
+    if (data && data.posts) {
+      window.jquery('#KalturaBlogContent').html(data.posts.map(postTemplate).join('\n'));
+    }
   })
   .fail(function(xhr) {
     console.log('blog failure', xhr);
