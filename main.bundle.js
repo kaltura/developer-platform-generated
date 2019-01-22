@@ -116,9 +116,13 @@ var AppComponent = /** @class */ (function () {
         this.platformService = platformService;
         this.subscriptions = [];
         window.app = this;
+        var isFirst = true;
         this.subscriptions.push(this.router.events.subscribe(function (event) {
             if (_this.platformService.isBrowser && event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_router__["NavigationEnd"] && window.innerWidth > MAX_XS_WIDTH) {
-                window.scrollTo(0, 0);
+                if (!isFirst) {
+                    window.scrollTo(0, 0);
+                }
+                isFirst = false;
             }
         }));
     }
@@ -1961,19 +1965,18 @@ var DocumentationComponent = /** @class */ (function () {
         this.error = null;
         this.showResults = false;
         this.activeItem = item;
+        var stateKey = Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["makeStateKey"])(item.markdownURL || '');
         if (item.contents) {
             this.setActiveItemHTML(item.contents, !item.isHTML);
         }
         else if (item.markdownURL) {
-            var stateKey_1 = Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["makeStateKey"])(item.markdownURL);
             item.isHTML = !!item.markdownURL.match(/\.html$/);
-            item.contents = this.state.get(stateKey_1, null);
+            item.contents = this.state.get(stateKey, null);
             if (!item.contents) {
                 this.http.get(this.originUrl + item.markdownURL, { responseType: 'text' })
                     .toPromise()
                     .then(function (md) {
                     item.contents = md;
-                    _this.state.set(stateKey_1, item.contents);
                     _this.setActiveItemHTML(item.contents, !item.isHTML);
                 })
                     .catch(function (e) {
@@ -1983,6 +1986,9 @@ var DocumentationComponent = /** @class */ (function () {
             else {
                 this.setActiveItemHTML(item.contents, !item.isHTML);
             }
+        }
+        if (this.platformService.isServer) {
+            this.state.set(stateKey, item.contents);
         }
         if (this.platformService.isBrowser) {
             setTimeout(function () {
