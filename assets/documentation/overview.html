@@ -151,20 +151,20 @@ rtp('get', 'campaign',true);
 <script src="https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedIframeJs/uiconf_id/42925761/partner_id/2421271"></script>
 <script>
 function embedVideo() {
-if (!window.kWidget) return setTimeout(embedVideo, 100);
-window.kWidget.embed({
-"targetId": "kaltura_player_1_8b9rjzjy_42923951",
-"wid": "_2421271",
-"uiconf_id": 42925761,
-"flashvars": {
-"streamerType": "auto",
-"raptMedia.plugin": true,
-"raptMediaDurationLabel.plugin": true,
-"raptMediaScrubber.plugin": true
-},
-"cache_st": 1450868353,
-"entry_id": "1_8b9rjzjy"
-});
+  if (!window.kWidget || !window.lucyBotReady) return setTimeout(embedVideo, 100);
+  window.kWidget.embed({
+    "targetId": "kaltura_player_1_8b9rjzjy_42923951",
+    "wid": "_2421271",
+    "uiconf_id": 42925761,
+    "flashvars": {
+      "streamerType": "auto",
+      "raptMedia.plugin": true,
+      "raptMediaDurationLabel.plugin": true,
+      "raptMediaScrubber.plugin": true
+    },
+    "cache_st": 1450868353,
+    "entry_id": "1_8b9rjzjy"
+  });
 }
 embedVideo();
 </script>
