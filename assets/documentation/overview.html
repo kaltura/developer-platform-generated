@@ -149,24 +149,28 @@ rtp('get', 'campaign',true);
 <div id="kaltura_player_1_8b9rjzjy_42923951" class="video-player"></div>
 </div>
 
+
 <script src="https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedPlaykitJs/uiconf_id/43473121/partner_id/2421271"></script>
 <script>
-   // Rapt config
-   var kconfig = {
-        targetId: 'kaltura_player_1_8b9rjzjy_42923951',
-        playback:{
-                autoplay:true,
-                preload:"auto"
-        },   
-        provider: {
-                partnerId: 2421271,
-                uiConfId: 43473121
-        },   
-       rapt:{}
-   };   
-   var raptPlayer = PathKalturaPlayer.setup(kconfig);
-   raptPlayer.loadMedia({playlistId: '1_8b9rjzjy'});
-
+function embedVideo() {
+	if (!window.kconfig || !window.lucyBotReady) return setTimeout(embedVideo, 100);
+	   // Rapt config
+	   var kconfig = {
+		targetId: 'kaltura_player_1_8b9rjzjy_42923951',
+		playback:{
+			autoplay:true,
+			preload:"auto"
+		},   
+		provider: {
+			partnerId: 2421271,
+			uiConfId: 43473121
+		},   
+	       rapt:{}
+	   };   
+	   var raptPlayer = PathKalturaPlayer.setup(kconfig);
+	   raptPlayer.loadMedia({playlistId: '1_8b9rjzjy'});
+}
+embedVideo();
 </script>
 </div>
 
