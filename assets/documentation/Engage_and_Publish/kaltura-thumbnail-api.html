@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Jan 8 09:10:57 2019</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/kaltura-thumbnail-api.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Sun Feb 3 13:54:15 2019</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Engage_and_Publish/kaltura-thumbnail-api.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Apr 9 10:31:05 2017, By: AnnaAleksandrowicz</td></tr-->
-				<!--tr><td>Last commit: Tue Jan 8 09:10:57 2019, By <span class="commit-author">Zohar Babin</span></td></tr-->
+				<!--tr><td>Last commit: Sun Feb 3 13:54:15 2019, By <span class="commit-author">Zohar Babin</span></td></tr-->
 			
 				<!-- 
 				
@@ -134,7 +134,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Zohar Babin (1 commits) (<a href="mailto:zohar.babin@kaltura.com">zohar.babin@kaltura.com</a>)</td>
+					<td>Zohar Babin (2 commits) (<a href="mailto:zohar.babin@kaltura.com">zohar.babin@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -305,6 +305,18 @@ rtp('get', 'campaign',true);
       <td>Number of slices</td>
     </tr>
     <tr>
+      <td>start_sec</td>
+      <td>float</td>
+      <td>No</td>
+      <td>The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition). The value defaults to 0 if not set or invalid. If start_sec will be set to a higher number than end_sec, the API will return 404 error.</td>
+    </tr>
+    <tr>
+      <td>end_sec</td>
+      <td>float</td>
+      <td>No</td>
+      <td>The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains a few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video). The value defaults to the duration of the video if not provided or set to invalid value.</td>
+    </tr>
+    <tr>
       <td>upload_token_id</td>
       <td>string</td>
       <td>No</td>
@@ -425,7 +437,7 @@ https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/h
 <p>The vid_sec parameter allows us to capture a frame from a specific time in a video entry. <br />
 vid_sec is a float, you can use decimal numbers to get particular frames from the video.<br />
 To get the time of a particular frame in the video, use the following formula: <code class="highlighter-rouge">frameSec = frameNumber / (durationSeconds * FPS)</code> .  <br />
-The following example shows capturing various frames in the video: 0 (first frame), 10th frame, 100th frame, 500th, 2,000th, 4,000th, 40,000th, and 50,000th.</p>
+The following example shows capturing various frames in the video: 0 (first frame), 10th frame, 100th frame, 500th, 2,000th, and 4,000th.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/vid_sec/X
 </code></pre>
@@ -441,8 +453,6 @@ The following example shows capturing various frames in the video: 0 (first fram
       <th>500th</th>
       <th>2,000th</th>
       <th>4,000th</th>
-      <th>40,000th</th>
-      <th>50,000th</th>
     </tr>
   </thead>
   <tbody>
@@ -454,8 +464,6 @@ The following example shows capturing various frames in the video: 0 (first fram
       <td>0.162601626</td>
       <td>0.650406504</td>
       <td>1.300813008</td>
-      <td>13.00813008</td>
-      <td>16.2601626</td>
     </tr>
     <tr>
       <td>Image</td>
@@ -465,8 +473,6 @@ The following example shows capturing various frames in the video: 0 (first fram
       <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/0.16260162601626" alt="Thumbnail from the 0.16260162601626 second of the video" /></td>
       <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/0.650406504065041" alt="Thumbnail from the 0.650406504065041 second of the video" /></td>
       <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/1.30081300813008" alt="Thumbnail from the 1.30081300813008 second of the video" /></td>
-      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/13.0081300813008" alt="Thumbnail from the 13.0081300813008 second of the video" /></td>
-      <td><img src="https://cfvod.kaltura.com/p/811441/thumbnail/entry_id/0_cm8rhiwp/width/120/vid_sec/16.260162601626" alt="Thumbnail from the 16.260162601626 second of the video" /></td>
     </tr>
   </tbody>
 </table>
@@ -540,9 +546,8 @@ The following example shows capturing various frames in the video: 0 (first fram
 <p><img src="https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/120/vid_slices/8/widget_id/0" alt="Stripe of 8 slices" /></p>
 
 <blockquote>
-  <p>NOTE: The slices are 0 indexed. The first slice in the series will always be 0.</p>
+  <p>NOTE: The slices are 0 indexed. By default, the first slice in the series will always be 0. If you wish to extract a frames stripe from a shorter segment (clip) of your video, add the <code class="highlighter-rouge">start_sec</code> and <code class="highlighter-rouge">end_sec</code> params to indicate the segment of which the thumbnail stripe should be extracted from.</p>
 </blockquote>
-
 
 		
 </article>
