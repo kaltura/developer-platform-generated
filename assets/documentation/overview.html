@@ -148,7 +148,7 @@ rtp('get', 'campaign',true);
 <div id="dummy" class="video-margin"></div>
 
 <style>
-  .video-player-loading {
+  .video-player {
     background-color: #000;
     width: 100%;
     max-width: 800px;
@@ -156,7 +156,7 @@ rtp('get', 'campaign',true);
   }
 </style>
 
-<div id="kaltura_player_1_8b9rjzjy_42923951" class="video-player video-player-loading"></div>
+<div id="kaltura_player_1_8b9rjzjy_42923951" class="video-player"></div>
 </div>
 
 
@@ -167,7 +167,6 @@ function embedVideo() {
   if (window.kalturaIntroVideoLoaded) return;
   if (!window.lucyBotReady) return setTimeout(embedVideo, 100);
   window.kalturaIntroVideoLoaded = true;
-  $('.video-player').removeClass('video-player-loading');
 
   var kconfig = {
         targetId: 'kaltura_player_1_8b9rjzjy_42923951',
