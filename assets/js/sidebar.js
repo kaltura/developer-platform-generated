@@ -19,13 +19,13 @@ var BLOG_URL = 'https://corp.kaltura.com/wp-json/wp/v2/blog/?blog-category=77&pe
 window.jquery(document).ready(function() {
 
   function postTemplate(post) {
-    return '<p><a href="' + post.url + '" target="_blank">' + post.title + '</a></p>';
+    return '<p><a href="' + post.link + '" target="_blank">' + post.title.rendered + '</a></p>';
   }
 
   window.jquery.getJSON(BLOG_URL)
   .done(function(data) {
-    if (data && data.posts) {
-      window.jquery('#KalturaBlogContent').html(data.posts.map(postTemplate).join('\n'));
+    if (data) {
+      window.jquery('#KalturaBlogContent').html(data.map(postTemplate).join('\n'));
     }
   })
   .fail(function(xhr) {
