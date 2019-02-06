@@ -1358,6 +1358,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBeaconSearchParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBeaconSearchScheduledResourceOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBeaconSearchScheduledResourceOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBlackoutScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBooleanField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBooleanValue</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBpmEventNotificationIntegrationJobTriggerData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1379,6 +1380,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBulkUploadResultCategoryEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBulkUploadResultCategoryUser</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBulkUploadResultEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBulkUploadResultJob</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBulkUploadResultScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBulkUploadResultScheduleResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBulkUploadResultUser</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2245,6 +2247,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaComcastMrssDistributionProviderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCommercialUseType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaConditionType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaConfMapsSourceLocation</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaConferenceRoomStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaConferenceServerNodeOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaConfigurableDistributionProfileOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2599,6 +2602,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaResponseType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaRuleActionType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaScheduleEventClassificationType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaScheduleEventConflictType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaScheduleEventOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaScheduleEventRecurrenceDay</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaScheduleEventRecurrenceFrequency</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2793,6 +2797,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaBeaconBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaBeaconEnhanceFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaBeaconFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaBlackoutScheduleEventFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaBulkServiceFilterData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaBulkUploadBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaBulkUploadFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5268,6 +5273,8 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBeaconSearchParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBeaconSearchScheduledResourceOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBeaconSearchScheduledResourceOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBlackoutScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBlackoutScheduleEventFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBooleanField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBooleanValue</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBpmEventNotificationIntegrationJobTriggerData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5293,6 +5300,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBulkUploadResultCategoryEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBulkUploadResultCategoryUser</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBulkUploadResultEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBulkUploadResultJob</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBulkUploadResultScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBulkUploadResultScheduleResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaBulkUploadResultUser</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7566,6 +7574,8 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBeaconSearchParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBeaconSearchScheduledResourceOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBeaconSearchScheduledResourceOrderByItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBlackoutScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBlackoutScheduleEventFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBooleanField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBooleanValue</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBpmEventNotificationIntegrationJobTriggerData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7591,6 +7601,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBulkUploadResultCategoryEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBulkUploadResultCategoryUser</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBulkUploadResultEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBulkUploadResultJob</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBulkUploadResultScheduleEvent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBulkUploadResultScheduleResource</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaBulkUploadResultUser</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
