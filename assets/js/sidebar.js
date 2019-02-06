@@ -14,7 +14,7 @@ window.hideKalturaSidebar = function() {
   window.jquery('app .container-fluid').css('margin-left', '79px')
 }
 
-var BLOG_URL = 'https://corp.kaltura.com/wp-json?json=get_category_posts&slug=technology&count=5&status=publish&page=1';
+var BLOG_URL = 'https://corp.kaltura.com/wp-json/wp/v2/blog/?blog-category=77&per_page=5';
 
 window.jquery(document).ready(function() {
 
