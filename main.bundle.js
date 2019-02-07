@@ -7474,9 +7474,10 @@ var GitHubService = /** @class */ (function () {
         if (params === void 0) { params = {}; }
         var search = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["HttpParams"]();
         for (var k in params)
-            search.set(k, params[k]);
-        if (this.access_token)
-            search.set('access_token', this.access_token);
+            search = search.set(k, params[k]);
+        if (this.access_token) {
+            search = search.set('access_token', this.access_token);
+        }
         return this.setUpRequest(this.http.get(BASE_URL + url, { params: search }));
     };
     GitHubService.prototype.putOrPost = function (method, url, body, query) {
