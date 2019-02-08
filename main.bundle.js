@@ -5184,6 +5184,7 @@ var RecipeComponent = /** @class */ (function () {
                     .filter(function (k) { return param[k] === undefined; })
                     .forEach(function (k) { return param[k] = opParam[k]; });
                 if (!usingDefaultParameters && param.schema) {
+                    param.origSchema = JSON.parse(JSON.stringify(param.schema));
                     _this.openapi.fillSchema(param.schema, opParam.schema);
                 }
             });
@@ -5193,38 +5194,47 @@ var RecipeComponent = /** @class */ (function () {
         this.setTemplateInput();
     };
     RecipeComponent.prototype.deinitializeRecipe = function () {
-        var deinit = JSON.parse(JSON.stringify(this.recipe));
-        deinit.steps
-            .filter(function (s) { return s.apiCall && s.parameters; })
-            .forEach(function (step, stepIdx) {
+        var deinit = Object.assign({}, this.recipe);
+        deinit.steps = this.recipe.steps
+            .map(function (step, stepIdx) {
+            var newStep = Object.assign({}, step);
+            if (!step.apiCall || !step.parameters)
+                return newStep;
             var op = step.apiCall.operation;
-            step.apiCall = { path: step.apiCall.path, method: step.apiCall.method };
+            newStep.apiCall = { path: step.apiCall.path, method: step.apiCall.method };
             var hasOneEditedParam = false;
-            step.parameters.forEach(function (param, paramIdx) {
+            newStep.parameters = step.ignoreParameters ? undefined : step.parameters.map(function (param, paramIdx) {
+                var newParam = Object.assign({}, param);
                 if (typeof param.group === 'object') {
-                    param.group = param.group.name;
-                    return;
+                    newParam.group = param.group.name;
+                    return newParam;
                 }
                 var opParam = op.parameters.filter(function (p) { return p.name === param.name; })[0];
+                if (opParam && opParam.schema && newParam.schema) {
+                    newParam.schema = newParam.origSchema;
+                    delete newParam.origSchema;
+                }
                 for (var key in param) {
                     if (key === 'name')
                         continue;
                     if (key.indexOf('x-') === 0) {
                         var nonX = key.substring(2);
                         if (nonX in param)
-                            delete param[nonX];
+                            delete newParam[nonX];
                     }
-                    if (opParam && JSON.stringify(param[key]) === JSON.stringify(opParam[key])) {
-                        delete param[key];
+                    if (opParam && param[key] === opParam[key]) {
+                        delete newParam[key];
                     }
                 }
-                hasOneEditedParam = hasOneEditedParam || Object.keys(param).length > 1;
+                hasOneEditedParam = hasOneEditedParam || Object.keys(newParam).length > 1;
+                return newParam;
             });
             var numParams = step.parameters.length + (step.ignoreParameters || []).length;
             var numOpParams = op.parameters.filter(function (p) { return !p.global; }).length;
             if (numParams === numOpParams && !hasOneEditedParam) {
-                delete step.parameters;
+                delete newStep.parameters;
             }
+            return newStep;
         });
         return deinit;
     };
@@ -5348,7 +5358,7 @@ var RecipeComponent = /** @class */ (function () {
         if (!this.name)
             this.name = this.recipe.title.replace(/\W/g, '_').replace(/_+/g, '_').toLowerCase();
         var repoPath = '/repos/' + window.config.github.repo;
-        var filePath = '/contents/' + window.config.github.workflowDirectory + '/' + this.name + '/readme.md';
+        var filePath = '/contents/' + window.config.workflowDirectory + '/' + this.name + '/readme.md';
         var fork = null;
         var recipeMarkdown = this.utils.recipeToMarkdown(this.deinitializeRecipe());
         var promise = this.github.post(repoPath + '/forks')
@@ -7470,7 +7480,7 @@ var GitHubService = /** @class */ (function () {
         this.setPullRequests();
         this.checkAuth();
     }
-    GitHubService.prototype.get = function (url, params) {
+    GitHubService.prototype.buildSearch = function (params) {
         if (params === void 0) { params = {}; }
         var search = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["HttpParams"]();
         for (var k in params)
@@ -7478,18 +7488,18 @@ var GitHubService = /** @class */ (function () {
         if (this.access_token) {
             search = search.set('access_token', this.access_token);
         }
-        return this.setUpRequest(this.http.get(BASE_URL + url, { params: search }));
+        return search;
+    };
+    GitHubService.prototype.get = function (url, params) {
+        if (params === void 0) { params = {}; }
+        return this.setUpRequest(this.http.get(BASE_URL + url, { params: this.buildSearch(params) }));
     };
     GitHubService.prototype.putOrPost = function (method, url, body, query) {
         if (body === void 0) { body = {}; }
         if (query === void 0) { query = {}; }
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["HttpHeaders"]({ 'Content-Type': 'application/json' });
-        var search = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["HttpParams"]();
-        for (var k in query)
-            search.set(k, query[k]);
-        if (this.access_token)
-            search.set('access_token', this.access_token);
-        return this.setUpRequest(this.http[method](BASE_URL + url, JSON.stringify(body), { headers: headers, params: search }));
+        var params = this.buildSearch(query);
+        return this.setUpRequest(this.http[method](BASE_URL + url, JSON.stringify(body), { headers: headers, params: params }));
     };
     GitHubService.prototype.post = function (url, body, query) {
         if (body === void 0) { body = {}; }
@@ -9597,7 +9607,12 @@ var apiCallTemplate = function apiCallTemplate(apiCall) {
 };
 
 var LANG_HIGHLIGHT_NAMES = {
-  'node': 'javascript'
+  'node': 'javascript',
+  'php53': 'php',
+  'angular': 'typescript',
+  'python': 'py',
+  'ajax': 'javascript',
+  'curl': 'bash'
 };
 
 var codeSnippetTemplate = function codeSnippetTemplate(snippets) {
