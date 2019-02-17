@@ -430,22 +430,22 @@ To retrieving an iCal file format, add <code class="highlighter-rouge">format/ic
 <p>For example:</p>
 
 <ul>
-  <li>To retrieve events for a specific resource use the  <code class="highlighter-rouge">filter[resourceIdsLike]</code> filter parameter (replace RESOURCE-ID with the ID of the resource to get events for):</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="err">http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter[objectType]/KalturaScheduleEventFilter/filter[resourceIdsLike]/RESOURCE-ID</span></code></pre></figure>
-
-<ul>
-  <li>To get the next 30 events from now, set <code class="highlighter-rouge">startDateGreaterThanOrEqual</code> to 0 (now):</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="err">http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter[objectType]/KalturaScheduleEventBaseFilter/filter[startDateGreaterThanOrEqual]/0</span></code></pre></figure>
-
-<ul>
+  <li>To retrieve events for a specific resource use the  <code class="highlighter-rouge">filter[resourceIdsLike]</code> filter parameter (replace RESOURCE-ID with the ID of the resource to get events for):
+    <div class="highlighter-rouge"><pre class="highlight"><code>http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter[objectType]/KalturaScheduleEventFilter/filter[resourceIdsLike]/RESOURCE-ID
+</code></pre>
+    </div>
+  </li>
+  <li>To get the next 30 events from now, set <code class="highlighter-rouge">startDateGreaterThanOrEqual</code> to 0 (now):
+    <div class="highlighter-rouge"><pre class="highlight"><code>http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter[objectType]/KalturaScheduleEventBaseFilter/filter[startDateGreaterThanOrEqual]/0
+</code></pre>
+    </div>
+  </li>
   <li>To page through the results, and increase the page size to 500 results per page, set the <code class="highlighter-rouge">pager</code> object’s <code class="highlighter-rouge">pageSize</code> and <code class="highlighter-rouge">pageIndex</code> parameters:</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="err">http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter[objectType]/KalturaScheduleEventFilter/pager[pageSize]/500/pager[pageIndex]/2</span></code></pre></figure>
+<div class="highlighter-rouge"><pre class="highlight"><code>http://www.kaltura.com/api_v3/service/schedule_scheduleevent/action/list/format/ical/filter[objectType]/KalturaScheduleEventFilter/pager[pageSize]/500/pager[pageIndex]/2
+</code></pre>
+</div>
 
 <h4 id="relative-time-filters">Relative Time Filters</h4>
 <p>Time attributes support both absolute and relative times. <br />
