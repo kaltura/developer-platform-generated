@@ -3942,8 +3942,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
  * tslint:disable
  */
-var styles_RecipeComponent = [];
-var RenderType_RecipeComponent = i0.ɵcrt({ encapsulation: 2, styles: styles_RecipeComponent, data: {} });
+var styles_RecipeComponent = [".remove-param-button[_ngcontent-%COMP%] {\n        cursor: pointer;\n      }"];
+var RenderType_RecipeComponent = i0.ɵcrt({ encapsulation: 0, styles: styles_RecipeComponent, data: {} });
 exports.RenderType_RecipeComponent = RenderType_RecipeComponent;
 
 function View_RecipeComponent_1(_l) {
@@ -4288,45 +4288,71 @@ function View_RecipeComponent_27(_l) {
     });
 }
 function View_RecipeComponent_26(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 14, "div", [["class", "parameter-editor"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""])), (_l()(), i0.ɵeld(3, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Default"])), (_l()(), i0.ɵeld(6, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 17, "div", [["class", "parameter-editor"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "label", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            var pd_0 = _co.removeParameterFromStep(_v.context.$implicit.name, _v.parent.parent.parent.parent.context.$implicit) !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 0, "i", [["class", "fa fa-left fa-times text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵeld(6, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Default"])), (_l()(), i0.ɵeld(9, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
         var ad = true;if ("input" === en) {
-            var pd_0 = i0.ɵnov(_v, 7)._handleInput($event.target.value) !== false;
+            var pd_0 = i0.ɵnov(_v, 10)._handleInput($event.target.value) !== false;
             ad = pd_0 && ad;
         }if ("blur" === en) {
-            var pd_1 = i0.ɵnov(_v, 7).onTouched() !== false;
+            var pd_1 = i0.ɵnov(_v, 10).onTouched() !== false;
             ad = pd_1 && ad;
         }if ("compositionstart" === en) {
-            var pd_2 = i0.ɵnov(_v, 7)._compositionStart() !== false;
+            var pd_2 = i0.ɵnov(_v, 10)._compositionStart() !== false;
             ad = pd_2 && ad;
         }if ("compositionend" === en) {
-            var pd_3 = i0.ɵnov(_v, 7)._compositionEnd($event.target.value) !== false;
+            var pd_3 = i0.ɵnov(_v, 10)._compositionEnd($event.target.value) !== false;
             ad = pd_3 && ad;
         }if ("ngModelChange" === en) {
             var pd_4 = (_v.context.$implicit.consoleDefault = $event) !== false;
             ad = pd_4 && ad;
         }return ad;
-    }, null, null)), i0.ɵdid(7, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
+    }, null, null)), i0.ɵdid(10, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
         return [p0_0];
-    }, [i4.DefaultValueAccessor]), i0.ɵdid(9, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(11, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_27)), i0.ɵdid(13, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(14, 0, null, null, 0, "hr", [], null, null, null, null, null))], function (_ck, _v) {
-        var _co = _v.component;var currVal_8 = _v.context.$implicit.consoleDefault;_ck(_v, 9, 0, currVal_8);var currVal_9 = _co.origRecipe.steps.indexOf(_v.parent.parent.parent.parent.context.$implicit) !== 0;_ck(_v, 13, 0, currVal_9);
+    }, [i4.DefaultValueAccessor]), i0.ɵdid(12, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(14, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_27)), i0.ɵdid(16, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(17, 0, null, null, 0, "hr", [], null, null, null, null, null))], function (_ck, _v) {
+        var _co = _v.component;var currVal_8 = _v.context.$implicit.consoleDefault;_ck(_v, 12, 0, currVal_8);var currVal_9 = _co.origRecipe.steps.indexOf(_v.parent.parent.parent.parent.context.$implicit) !== 0;_ck(_v, 16, 0, currVal_9);
     }, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit.name;_ck(_v, 2, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 11).ngClassUntouched;var currVal_2 = i0.ɵnov(_v, 11).ngClassTouched;var currVal_3 = i0.ɵnov(_v, 11).ngClassPristine;var currVal_4 = i0.ɵnov(_v, 11).ngClassDirty;var currVal_5 = i0.ɵnov(_v, 11).ngClassValid;var currVal_6 = i0.ɵnov(_v, 11).ngClassInvalid;var currVal_7 = i0.ɵnov(_v, 11).ngClassPending;_ck(_v, 6, 0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7);
+        var currVal_0 = _v.context.$implicit.name;_ck(_v, 5, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 14).ngClassUntouched;var currVal_2 = i0.ɵnov(_v, 14).ngClassTouched;var currVal_3 = i0.ɵnov(_v, 14).ngClassPristine;var currVal_4 = i0.ɵnov(_v, 14).ngClassDirty;var currVal_5 = i0.ɵnov(_v, 14).ngClassValid;var currVal_6 = i0.ɵnov(_v, 14).ngClassInvalid;var currVal_7 = i0.ɵnov(_v, 14).ngClassPending;_ck(_v, 9, 0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7);
     });
 }
 function View_RecipeComponent_32(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "li", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
             var pd_0 = _co.addParameterToStep(_v.context.$implicit, _v.parent.parent.parent.parent.context.$implicit) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit;_ck(_v, 2, 0, currVal_0);
+        var _co = _v.component;var currVal_0 = _co.paramSearch && _v.context.$implicit.indexOf(_co.paramSearch) === 0 - 1;_ck(_v, 0, 0, currVal_0);var currVal_1 = _v.context.$implicit;_ck(_v, 2, 0, currVal_1);
     });
 }
 function View_RecipeComponent_25(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "div", [["class", "parameters-editor"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_26)), i0.ɵdid(2, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 2, "a", [["class", "btn btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Add Parameter"])), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_32)), i0.ɵdid(9, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.getFlatParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 2, 0, currVal_0);var currVal_1 = _co.getAddableParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 9, 0, currVal_1);
-    }, null);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 19, "div", [["class", "parameters-editor"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_26)), i0.ɵdid(2, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 16, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 2, "a", [["class", "btn btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Add Parameter"])), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 12, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵeld(8, 0, null, null, 9, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(9, 0, null, null, 8, "div", [["class", "input-group dropdown-search"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("input" === en) {
+            var pd_0 = i0.ɵnov(_v, 11)._handleInput($event.target.value) !== false;
+            ad = pd_0 && ad;
+        }if ("blur" === en) {
+            var pd_1 = i0.ɵnov(_v, 11).onTouched() !== false;
+            ad = pd_1 && ad;
+        }if ("compositionstart" === en) {
+            var pd_2 = i0.ɵnov(_v, 11)._compositionStart() !== false;
+            ad = pd_2 && ad;
+        }if ("compositionend" === en) {
+            var pd_3 = i0.ɵnov(_v, 11)._compositionEnd($event.target.value) !== false;
+            ad = pd_3 && ad;
+        }if ("ngModelChange" === en) {
+            var pd_4 = (_co.paramSearch = $event) !== false;
+            ad = pd_4 && ad;
+        }return ad;
+    }, null, null)), i0.ɵdid(11, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
+        return [p0_0];
+    }, [i4.DefaultValueAccessor]), i0.ɵdid(13, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(15, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵeld(16, 0, null, null, 1, "span", [["class", "input-group-addon"]], null, null, null, null, null)), (_l()(), i0.ɵeld(17, 0, null, null, 0, "i", [["class", "fa fa-search"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_32)), i0.ɵdid(19, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.getFlatParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 2, 0, currVal_0);var currVal_8 = _co.paramSearch;_ck(_v, 13, 0, currVal_8);var currVal_9 = _co.getAddableParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 19, 0, currVal_9);
+    }, function (_ck, _v) {
+        var currVal_1 = i0.ɵnov(_v, 15).ngClassUntouched;var currVal_2 = i0.ɵnov(_v, 15).ngClassTouched;var currVal_3 = i0.ɵnov(_v, 15).ngClassPristine;var currVal_4 = i0.ɵnov(_v, 15).ngClassDirty;var currVal_5 = i0.ɵnov(_v, 15).ngClassValid;var currVal_6 = i0.ɵnov(_v, 15).ngClassInvalid;var currVal_7 = i0.ɵnov(_v, 15).ngClassPending;_ck(_v, 10, 0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7);
+    });
 }
 function View_RecipeComponent_20(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "parameters-box"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_21)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_25)), i0.ɵdid(4, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
@@ -4919,7 +4945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var PARAM_DEPTH_FOR_EDITOR = 3;
+var PARAM_DEPTH_FOR_EDITOR = 7;
 var NEW_WORKFLOW_DESCRIPTION = ("\nUse the text editor to write a description of what your workflow\nwill cover. You can use\n[markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)\n\nTo add the first step, click the  <i class=\"fa fa-plus\"></i>  icon in the progress bar above.\n\nIf you want to see how your workflow looks, open the menu\n<code><i class=\"fa fa-caret-down\"></i></code>\nabove the progress bar (next to the title) and click `Preview`.\nTo come back to the editor, click `Edit` in the same menu.\n\nOnce you're done, open the menu\nabove the progress bar and click `Save`. We'll open a pull request in\n[" + window.config.github.repo + "](https://github.com/" + window.config.github.repo + ")\nwhich adds the new workflow. It will go live shortly after being merged.\n\nOnce it's saved to GitHub, you can always come back to your workflow by clicking the\n`Load` button in the same menu. You can get the URL for your saved workflow\nby going to the pull request you generated, choosing the recipe's `readme.md`\nfile, and clicking 'Raw'.\n").trim();
 var RecipeComponent = /** @class */ (function () {
     function RecipeComponent(route, router, routes, utils, tracker, secrets, menu, openapi, github) {
@@ -5296,6 +5322,8 @@ var RecipeComponent = /** @class */ (function () {
         if (!bodyParam)
             return params;
         var expandForSchema = function (base, schema, depth) {
+            if (!schema.properties)
+                return;
             Object.keys(schema.properties).forEach(function (p) {
                 var param = schema.properties[p];
                 param.name = base + '.' + p;
@@ -5323,10 +5351,22 @@ var RecipeComponent = /** @class */ (function () {
                 schema = _this.openapi.resolveReference(schema.$ref);
             if (!schema.properties)
                 return;
+            if (depth > 0) {
+                var subs_1 = [];
+                [schema.allOf, schema.oneOf, schema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_1 = subs_1.concat(s); });
+                subs_1.forEach(function (subschema) {
+                    expandForSchema(base, subschema, depth - 1);
+                });
+            }
             Object.keys(schema.properties).forEach(function (p) {
-                params.push(base + '.' + p);
+                var pSchema = schema.properties[p];
+                var newKey = base + '.' + p;
+                var existing = params.find(function (p) { return p === newKey; });
+                if (!pSchema.readOnly && !existing) {
+                    params.push(newKey);
+                }
                 if (depth > 0) {
-                    expandForSchema(base + '.' + p, schema.properties[p], depth - 1);
+                    expandForSchema(newKey, schema.properties[p], depth - 1);
                 }
             });
         };
@@ -5334,7 +5374,6 @@ var RecipeComponent = /** @class */ (function () {
         return params;
     };
     RecipeComponent.prototype.addParameterToStep = function (name, step) {
-        console.log('add param', name);
         step.parameters = step.parameters || [];
         if (name.indexOf('body.') === 0) {
             var bodyParam = step.parameters.find(function (p) { return p.schema; });
@@ -5351,10 +5390,27 @@ var RecipeComponent = /** @class */ (function () {
                 schema.properties = schema.properties || {};
                 schema = schema.properties[part] = schema.properties[part] || {};
             }
-            console.log('added', parts, bodyParam);
         }
         else {
             step.parameters.push({ name: name });
+        }
+    };
+    RecipeComponent.prototype.removeParameterFromStep = function (name, step) {
+        if (name.indexOf('body.') === 0) {
+            var bodyParam = step.parameters.find(function (p) { return p.schema; });
+            var parts = name.split('.');
+            parts.shift();
+            var schema = bodyParam.schema;
+            for (var i = 0; i < parts.length - 1; ++i) {
+                schema = schema.properties[parts[i]];
+            }
+            delete schema.properties[parts.pop()];
+            if (Object.keys(schema.properties).length === 0) {
+                delete schema.properties;
+            }
+        }
+        else {
+            step.parameters = step.parameters.filter(function (s) { return s.name !== name; });
         }
     };
     RecipeComponent.prototype.addAssetToUpload = function (evt) {
