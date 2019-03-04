@@ -4015,7 +4015,7 @@ function View_RecipeComponent_9(_l) {
     }, null, null)), i0.ɵdid(4, 16384, null, 0, i2.Tooltip, [i0.ViewContainerRef, i0.ComponentFactoryResolver], { content: [0, "content"], tooltipAnimation: [1, "tooltipAnimation"], tooltipPlacement: [2, "tooltipPlacement"] }, null), (_l()(), i0.ɵeld(5, 0, null, null, 1, "span", [["class", "step-progress-check"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-check"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "span", [["class", "recipe-number"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵted(8, null, ["", ""])), (_l()(), i0.ɵeld(9, 0, null, null, 2, "div", [["class", "step-progress-title"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(11, null, ["", ""]))], function (_ck, _v) {
         var _co = _v.component;var currVal_3 = _co.linkToStep(_v.context.index);_ck(_v, 1, 0, currVal_3);var currVal_4 = i0.ɵinlineInterpolate(1, "", _v.context.$implicit.title, "");var currVal_5 = false;var currVal_6 = "bottom";_ck(_v, 4, 0, currVal_4, currVal_5, currVal_6);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.activeStep === _v.context.$implicit;var currVal_1 = _co.stepStates[_co.recipe.steps.indexOf(_v.context.$implicit)].completed;var currVal_2 = _co.activeStep !== _v.context.$implicit && !_co.menuExpanded;_ck(_v, 0, 0, currVal_0, currVal_1, currVal_2);var currVal_7 = _co.editing || !_co.stepStates[_co.recipe.steps.indexOf(_v.context.$implicit)].completed;_ck(_v, 5, 0, currVal_7);var currVal_8 = !_co.editing && _co.stepStates[_co.recipe.steps.indexOf(_v.context.$implicit)].completed;_ck(_v, 7, 0, currVal_8);var currVal_9 = _v.context.index + 1;_ck(_v, 8, 0, currVal_9);var currVal_10 = _v.context.$implicit.title;_ck(_v, 11, 0, currVal_10);
+        var _co = _v.component;var currVal_0 = _co.activeStep === _v.context.$implicit;var currVal_1 = !_co.editing && (_co.stepStates[_v.context.index] == null ? null : _co.stepStates[_v.context.index].completed);var currVal_2 = _co.activeStep !== _v.context.$implicit && !_co.menuExpanded;_ck(_v, 0, 0, currVal_0, currVal_1, currVal_2);var currVal_7 = _co.editing || !(_co.stepStates[_v.context.index] == null ? null : _co.stepStates[_v.context.index].completed);_ck(_v, 5, 0, currVal_7);var currVal_8 = !_co.editing && (_co.stepStates[_v.context.index] == null ? null : _co.stepStates[_v.context.index].completed);_ck(_v, 7, 0, currVal_8);var currVal_9 = _v.context.index + 1;_ck(_v, 8, 0, currVal_9);var currVal_10 = _v.context.$implicit.title;_ck(_v, 11, 0, currVal_10);
     });
 }
 function View_RecipeComponent_10(_l) {
@@ -4041,7 +4041,7 @@ function View_RecipeComponent_10(_l) {
     }, null, null)), i0.ɵdid(4, 16384, null, 0, i2.Tooltip, [i0.ViewContainerRef, i0.ComponentFactoryResolver], { content: [0, "content"], tooltipAnimation: [1, "tooltipAnimation"], tooltipPlacement: [2, "tooltipPlacement"] }, null), (_l()(), i0.ɵeld(5, 0, null, null, 1, "span", [["class", "step-progress-check"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-check"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "span", [["class", "recipe-number"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵted(8, null, ["", ""])), (_l()(), i0.ɵeld(9, 0, null, null, 2, "div", [["class", "step-progress-title"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(11, null, ["", ""]))], function (_ck, _v) {
         var _co = _v.component;var currVal_3 = _co.linkToStep(_v.context.index);_ck(_v, 1, 0, currVal_3);var currVal_4 = i0.ɵinlineInterpolate(1, "", _v.context.$implicit.title, "");var currVal_5 = false;var currVal_6 = "bottom";_ck(_v, 4, 0, currVal_4, currVal_5, currVal_6);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.activeStep === _v.context.$implicit;var currVal_1 = _co.stepStates[_co.recipe.steps.indexOf(_v.context.$implicit)].completed;var currVal_2 = _co.activeStep !== _v.context.$implicit && !_co.menuExpanded;_ck(_v, 0, 0, currVal_0, currVal_1, currVal_2);var currVal_7 = _co.editing || !_co.stepStates[_co.recipe.steps.indexOf(_v.context.$implicit)].completed;_ck(_v, 5, 0, currVal_7);var currVal_8 = !_co.editing && _co.stepStates[_co.recipe.steps.indexOf(_v.context.$implicit)].completed;_ck(_v, 7, 0, currVal_8);var currVal_9 = _v.context.index + 1;_ck(_v, 8, 0, currVal_9);var currVal_10 = _v.context.$implicit.title;_ck(_v, 11, 0, currVal_10);
+        var _co = _v.component;var currVal_0 = _co.activeStep === _v.context.$implicit;var currVal_1 = !_co.editing && (_co.stepStates[_v.context.index] == null ? null : _co.stepStates[_v.context.index].completed);var currVal_2 = _co.activeStep !== _v.context.$implicit && !_co.menuExpanded;_ck(_v, 0, 0, currVal_0, currVal_1, currVal_2);var currVal_7 = _co.editing || !(_co.stepStates[_v.context.index] == null ? null : _co.stepStates[_v.context.index].completed);_ck(_v, 5, 0, currVal_7);var currVal_8 = !_co.editing && (_co.stepStates[_v.context.index] == null ? null : _co.stepStates[_v.context.index].completed);_ck(_v, 7, 0, currVal_8);var currVal_9 = _v.context.index + 1;_ck(_v, 8, 0, currVal_9);var currVal_10 = _v.context.$implicit.title;_ck(_v, 11, 0, currVal_10);
     });
 }
 function View_RecipeComponent_11(_l) {
@@ -4130,21 +4130,21 @@ function View_RecipeComponent_17(_l) {
         return [p0_0];
     }, [i4.DefaultValueAccessor]), i0.ɵdid(9, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(11, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵeld(12, 0, null, null, 9, "div", [["class", "col-xs-12 col-sm-3"]], null, null, null, null, null)), (_l()(), i0.ɵeld(13, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Step order"])), (_l()(), i0.ɵeld(15, 0, null, null, 0, "br", [], null, null, null, null, null)), (_l()(), i0.ɵeld(16, 0, null, null, 1, "button", [["class", "btn btn-link"]], [[8, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
-            _co.recipe.steps[_v.parent.context.index] = _co.recipe.steps[_v.parent.context.index - 1];
-            _co.recipe.steps[_v.parent.context.index - 1] = _v.parent.context.$implicit;
+            _co.origRecipe.steps[_v.parent.context.index] = _co.origRecipe.steps[_v.parent.context.index - 1];
+            _co.origRecipe.steps[_v.parent.context.index - 1] = _v.parent.context.$implicit;
             var pd_0 = _co.navigateToStep(_v.parent.context.index - 1) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵeld(17, 0, null, null, 0, "i", [["class", "fa fa-caret-up"]], null, null, null, null, null)), (_l()(), i0.ɵeld(18, 0, null, null, 1, "button", [["class", "btn btn-link"]], [[8, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
-            _co.recipe.steps[_v.parent.context.index] = _co.recipe.steps[_v.parent.context.index + 1];
-            _co.recipe.steps[_v.parent.context.index + 1] = _v.parent.context.$implicit;
+            _co.origRecipe.steps[_v.parent.context.index] = _co.origRecipe.steps[_v.parent.context.index + 1];
+            _co.origRecipe.steps[_v.parent.context.index + 1] = _v.parent.context.$implicit;
             var pd_0 = _co.navigateToStep(_v.parent.context.index + 1) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵeld(19, 0, null, null, 0, "i", [["class", "fa fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(20, 0, null, null, 1, "button", [["class", "btn btn-link"]], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
-            _co.recipe.steps.splice(_v.parent.context.index, 1);
+            _co.origRecipe.steps.splice(_v.parent.context.index, 1);
             var pd_0 = _co.navigateToStep("intro") !== false;
             ad = pd_0 && ad;
         }return ad;
@@ -4194,31 +4194,31 @@ function View_RecipeComponent_17(_l) {
     }, [i4.DefaultValueAccessor]), i0.ɵdid(53, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(55, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_7 = _v.parent.context.$implicit.title;_ck(_v, 9, 0, currVal_7);var currVal_18 = _co.operationSearch;_ck(_v, 36, 0, currVal_18);var currVal_19 = _co.openapi.apiCalls;_ck(_v, 46, 0, currVal_19);var currVal_27 = _v.parent.context.$implicit.description;_ck(_v, 53, 0, currVal_27);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = i0.ɵnov(_v, 11).ngClassUntouched;var currVal_1 = i0.ɵnov(_v, 11).ngClassTouched;var currVal_2 = i0.ɵnov(_v, 11).ngClassPristine;var currVal_3 = i0.ɵnov(_v, 11).ngClassDirty;var currVal_4 = i0.ɵnov(_v, 11).ngClassValid;var currVal_5 = i0.ɵnov(_v, 11).ngClassInvalid;var currVal_6 = i0.ɵnov(_v, 11).ngClassPending;_ck(_v, 6, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6);var currVal_8 = _v.parent.context.index === 0;_ck(_v, 16, 0, currVal_8);var currVal_9 = _v.parent.context.index === _co.recipe.steps.length - 1;_ck(_v, 18, 0, currVal_9);var currVal_10 = _v.parent.context.$implicit.apiCall ? _co.getAPICallTitle(_v.parent.context.$implicit.apiCall) : "No API call for this step";_ck(_v, 28, 0, currVal_10);var currVal_11 = i0.ɵnov(_v, 38).ngClassUntouched;var currVal_12 = i0.ɵnov(_v, 38).ngClassTouched;var currVal_13 = i0.ɵnov(_v, 38).ngClassPristine;var currVal_14 = i0.ɵnov(_v, 38).ngClassDirty;var currVal_15 = i0.ɵnov(_v, 38).ngClassValid;var currVal_16 = i0.ɵnov(_v, 38).ngClassInvalid;var currVal_17 = i0.ɵnov(_v, 38).ngClassPending;_ck(_v, 33, 0, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15, currVal_16, currVal_17);var currVal_20 = i0.ɵnov(_v, 55).ngClassUntouched;var currVal_21 = i0.ɵnov(_v, 55).ngClassTouched;var currVal_22 = i0.ɵnov(_v, 55).ngClassPristine;var currVal_23 = i0.ɵnov(_v, 55).ngClassDirty;var currVal_24 = i0.ɵnov(_v, 55).ngClassValid;var currVal_25 = i0.ɵnov(_v, 55).ngClassInvalid;var currVal_26 = i0.ɵnov(_v, 55).ngClassPending;_ck(_v, 50, 0, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26);
-    });
-}
-function View_RecipeComponent_21(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(1, null, ["All parameters for ", " will be used. "]))], null, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.getAPICallTitle(_v.parent.parent.parent.context.$implicit.apiCall);_ck(_v, 1, 0, currVal_0);
+        var _co = _v.component;var currVal_0 = i0.ɵnov(_v, 11).ngClassUntouched;var currVal_1 = i0.ɵnov(_v, 11).ngClassTouched;var currVal_2 = i0.ɵnov(_v, 11).ngClassPristine;var currVal_3 = i0.ɵnov(_v, 11).ngClassDirty;var currVal_4 = i0.ɵnov(_v, 11).ngClassValid;var currVal_5 = i0.ɵnov(_v, 11).ngClassInvalid;var currVal_6 = i0.ɵnov(_v, 11).ngClassPending;_ck(_v, 6, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6);var currVal_8 = _v.parent.context.index === 0;_ck(_v, 16, 0, currVal_8);var currVal_9 = _v.parent.context.index === _co.origRecipe.steps.length - 1;_ck(_v, 18, 0, currVal_9);var currVal_10 = _v.parent.context.$implicit.apiCall ? _co.getAPICallTitle(_v.parent.context.$implicit.apiCall) : "No API call for this step";_ck(_v, 28, 0, currVal_10);var currVal_11 = i0.ɵnov(_v, 38).ngClassUntouched;var currVal_12 = i0.ɵnov(_v, 38).ngClassTouched;var currVal_13 = i0.ɵnov(_v, 38).ngClassPristine;var currVal_14 = i0.ɵnov(_v, 38).ngClassDirty;var currVal_15 = i0.ɵnov(_v, 38).ngClassValid;var currVal_16 = i0.ɵnov(_v, 38).ngClassInvalid;var currVal_17 = i0.ɵnov(_v, 38).ngClassPending;_ck(_v, 33, 0, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15, currVal_16, currVal_17);var currVal_20 = i0.ɵnov(_v, 55).ngClassUntouched;var currVal_21 = i0.ɵnov(_v, 55).ngClassTouched;var currVal_22 = i0.ɵnov(_v, 55).ngClassPristine;var currVal_23 = i0.ɵnov(_v, 55).ngClassDirty;var currVal_24 = i0.ɵnov(_v, 55).ngClassValid;var currVal_25 = i0.ɵnov(_v, 55).ngClassInvalid;var currVal_26 = i0.ɵnov(_v, 55).ngClassPending;_ck(_v, 50, 0, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25, currVal_26);
     });
 }
 function View_RecipeComponent_22(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" to override"]))], null, null);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(1, null, ["All parameters for ", " will be used. "]))], null, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.getAPICallTitle(_v.parent.parent.parent.parent.context.$implicit.apiCall);_ck(_v, 1, 0, currVal_0);
+    });
 }
 function View_RecipeComponent_23(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" to override"]))], null, null);
+}
+function View_RecipeComponent_24(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, [" to add parameters"]))], null, null);
 }
-function View_RecipeComponent_20(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 8, "p", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_21)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+function View_RecipeComponent_21(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 8, "p", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_22)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
-            var pd_0 = (_v.parent.parent.context.$implicit.parameters = []) !== false;
+            var pd_0 = (_v.parent.parent.parent.context.$implicit.parameters = []) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), (_l()(), i0.ɵted(-1, null, ["Click here"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_22)), i0.ɵdid(6, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_23)), i0.ɵdid(8, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var currVal_0 = _v.parent.parent.context.$implicit.apiCall;_ck(_v, 2, 0, currVal_0);var currVal_1 = _v.parent.parent.context.$implicit.apiCall;_ck(_v, 6, 0, currVal_1);var currVal_2 = !_v.parent.parent.context.$implicit.apiCall;_ck(_v, 8, 0, currVal_2);
+    }, null, null)), (_l()(), i0.ɵted(-1, null, ["Click here"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_23)), i0.ɵdid(6, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_24)), i0.ɵdid(8, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var currVal_0 = _v.parent.parent.parent.context.$implicit.apiCall;_ck(_v, 2, 0, currVal_0);var currVal_1 = _v.parent.parent.parent.context.$implicit.apiCall;_ck(_v, 6, 0, currVal_1);var currVal_2 = !_v.parent.parent.parent.context.$implicit.apiCall;_ck(_v, 8, 0, currVal_2);
     }, null);
 }
-function View_RecipeComponent_28(_l) {
+function View_RecipeComponent_29(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = (_v.parent.parent.parent.context.$implicit.dynamicValue.fromStep = _v.context.index) !== false;
@@ -4228,19 +4228,26 @@ function View_RecipeComponent_28(_l) {
         var currVal_0 = _v.context.index + 1;_ck(_v, 2, 0, currVal_0);
     });
 }
-function View_RecipeComponent_29(_l) {
+function View_RecipeComponent_31(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
-            _v.parent.parent.parent.context.$implicit.dynamicValue.answer = _v.context.$implicit.name;
-            var pd_0 = (_v.parent.parent.parent.context.$implicit.dynamicValue.value = undefined) !== false;
+            _v.parent.parent.parent.parent.context.$implicit.dynamicValue.answer = _v.context.$implicit.name;
+            var pd_0 = (_v.parent.parent.parent.parent.context.$implicit.dynamicValue.value = undefined) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
         var currVal_0 = _v.context.$implicit.name;_ck(_v, 2, 0, currVal_0);
     });
 }
-function View_RecipeComponent_27(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 29, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 9, "div", [["class", "col-xs-4"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["From Step"])), (_l()(), i0.ɵeld(4, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(5, 0, null, null, 2, "a", [["class", "btn btn-link dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(6, null, ["", ""])), (_l()(), i0.ɵeld(7, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(8, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_28)), i0.ɵdid(10, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(11, 0, null, null, 8, "div", [["class", "col-xs-4"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(12, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Value"])), (_l()(), i0.ɵeld(14, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
+function View_RecipeComponent_30(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "div", [["class", "col-xs-4"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Answer"])), (_l()(), i0.ɵeld(3, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 2, "a", [["class", "btn btn-link dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_31)), i0.ɵdid(9, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.origRecipe.steps[_v.parent.parent.parent.context.$implicit.dynamicValue.fromStep].parameters;_ck(_v, 9, 0, currVal_1);
+    }, function (_ck, _v) {
+        var currVal_0 = _v.parent.parent.parent.context.$implicit.dynamicValue.answer;_ck(_v, 5, 0, currVal_0);
+    });
+}
+function View_RecipeComponent_28(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 21, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 9, "div", [["class", "col-xs-4"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["From Step"])), (_l()(), i0.ɵeld(4, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(5, 0, null, null, 2, "a", [["class", "btn btn-link dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(6, null, ["", ""])), (_l()(), i0.ɵeld(7, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(8, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_29)), i0.ɵdid(10, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(11, 0, null, null, 8, "div", [["class", "col-xs-4"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(12, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Value"])), (_l()(), i0.ɵeld(14, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
         var ad = true;if ("input" === en) {
             var pd_0 = i0.ɵnov(_v, 15)._handleInput($event.target.value) !== false;
             ad = pd_0 && ad;
@@ -4262,119 +4269,140 @@ function View_RecipeComponent_27(_l) {
         }return ad;
     }, null, null)), i0.ɵdid(15, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
         return [p0_0];
-    }, [i4.DefaultValueAccessor]), i0.ɵdid(17, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(19, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵeld(20, 0, null, null, 9, "div", [["class", "col-xs-4"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(21, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Answer"])), (_l()(), i0.ɵeld(23, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(24, 0, null, null, 2, "a", [["class", "btn btn-link dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(25, null, ["", ""])), (_l()(), i0.ɵeld(26, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(27, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_29)), i0.ɵdid(29, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_1 = _co.recipe.steps;_ck(_v, 10, 0, currVal_1);var currVal_10 = _v.parent.parent.context.$implicit.dynamicValue.value;_ck(_v, 17, 0, currVal_10);var currVal_13 = _co.recipe.steps[_v.parent.parent.context.$implicit.dynamicValue.fromStep].parameters;_ck(_v, 29, 0, currVal_13);
+    }, [i4.DefaultValueAccessor]), i0.ɵdid(17, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(19, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_30)), i0.ɵdid(21, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_1 = _co.origRecipe.steps;_ck(_v, 10, 0, currVal_1);var currVal_10 = _v.parent.parent.context.$implicit.dynamicValue.value;_ck(_v, 17, 0, currVal_10);var currVal_11 = _v.parent.parent.context.$implicit.dynamicValue.fromStep !== undefined;_ck(_v, 21, 0, currVal_11);
     }, function (_ck, _v) {
-        var currVal_0 = _v.parent.parent.context.$implicit.dynamicValue.fromStep;_ck(_v, 6, 0, currVal_0);var currVal_2 = _v.parent.parent.context.$implicit.dynamicValue.fromStep === undefined;_ck(_v, 11, 0, currVal_2);var currVal_3 = i0.ɵnov(_v, 19).ngClassUntouched;var currVal_4 = i0.ɵnov(_v, 19).ngClassTouched;var currVal_5 = i0.ɵnov(_v, 19).ngClassPristine;var currVal_6 = i0.ɵnov(_v, 19).ngClassDirty;var currVal_7 = i0.ɵnov(_v, 19).ngClassValid;var currVal_8 = i0.ɵnov(_v, 19).ngClassInvalid;var currVal_9 = i0.ɵnov(_v, 19).ngClassPending;_ck(_v, 14, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9);var currVal_11 = _v.parent.parent.context.$implicit.dynamicValue.fromStep === undefined;_ck(_v, 20, 0, currVal_11);var currVal_12 = _v.parent.parent.context.$implicit.dynamicValue.answer;_ck(_v, 25, 0, currVal_12);
+        var currVal_0 = _v.parent.parent.context.$implicit.dynamicValue.fromStep;_ck(_v, 6, 0, currVal_0);var currVal_2 = _v.parent.parent.context.$implicit.dynamicValue.fromStep === undefined;_ck(_v, 11, 0, currVal_2);var currVal_3 = i0.ɵnov(_v, 19).ngClassUntouched;var currVal_4 = i0.ɵnov(_v, 19).ngClassTouched;var currVal_5 = i0.ɵnov(_v, 19).ngClassPristine;var currVal_6 = i0.ɵnov(_v, 19).ngClassDirty;var currVal_7 = i0.ɵnov(_v, 19).ngClassValid;var currVal_8 = i0.ɵnov(_v, 19).ngClassInvalid;var currVal_9 = i0.ɵnov(_v, 19).ngClassPending;_ck(_v, 14, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9);
     });
 }
-function View_RecipeComponent_26(_l) {
+function View_RecipeComponent_27(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Dynamic Value "])), (_l()(), i0.ɵeld(3, 0, null, null, 2, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = (_v.parent.context.$implicit.dynamicValue = _v.parent.context.$implicit.dynamicValue ? null : {}) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_27)), i0.ɵdid(7, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+    }, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_28)), i0.ɵdid(7, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
         var currVal_1 = _v.parent.context.$implicit.dynamicValue;_ck(_v, 7, 0, currVal_1);
     }, function (_ck, _v) {
         var currVal_0 = _v.parent.context.$implicit.dynamicValue ? "remove" : "add";_ck(_v, 5, 0, currVal_0);
     });
 }
-function View_RecipeComponent_25(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 20, "div", [["class", "parameter-editor"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 7, "label", [], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""])), (_l()(), i0.ɵeld(3, 0, null, null, 1, "button", [["class", "btn btn-link"]], null, [[null, "click"]], function (_v, en, $event) {
-        var ad = true;if ("click" === en) {
-            var pd_0 = _v.parent.parent.parent.context.$implicit.parameters.splice(_v.context.index, 1) !== false;
-            ad = pd_0 && ad;
-        }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 0, "i", [["class", "text-danger fa fa-times"]], null, null, null, null, null)), (_l()(), i0.ɵeld(5, 0, null, null, 1, "button", [["class", "btn btn-link"]], [[8, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
-        var ad = true;if ("click" === en) {
-            _v.parent.parent.parent.context.$implicit.parameters[_v.context.index] = _v.parent.parent.parent.context.$implicit.parameters[_v.context.index - 1];
-            var pd_0 = (_v.parent.parent.parent.context.$implicit.parameters[_v.context.index - 1] = _v.context.$implicit) !== false;
-            ad = pd_0 && ad;
-        }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-caret-up"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "button", [["class", "btn btn-link"]], [[8, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
-        var ad = true;if ("click" === en) {
-            _v.parent.parent.parent.context.$implicit.parameters[_v.context.index] = _v.parent.parent.parent.context.$implicit.parameters[_v.context.index + 1];
-            var pd_0 = (_v.parent.parent.parent.context.$implicit.parameters[_v.context.index + 1] = _v.context.$implicit) !== false;
-            ad = pd_0 && ad;
-        }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(8, 0, null, null, 0, "i", [["class", "fa fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(9, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Default"])), (_l()(), i0.ɵeld(12, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
+function View_RecipeComponent_26(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 14, "div", [["class", "parameter-editor"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), i0.ɵted(2, null, ["", ""])), (_l()(), i0.ɵeld(3, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Default"])), (_l()(), i0.ɵeld(6, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
         var ad = true;if ("input" === en) {
-            var pd_0 = i0.ɵnov(_v, 13)._handleInput($event.target.value) !== false;
+            var pd_0 = i0.ɵnov(_v, 7)._handleInput($event.target.value) !== false;
             ad = pd_0 && ad;
         }if ("blur" === en) {
-            var pd_1 = i0.ɵnov(_v, 13).onTouched() !== false;
+            var pd_1 = i0.ɵnov(_v, 7).onTouched() !== false;
             ad = pd_1 && ad;
         }if ("compositionstart" === en) {
-            var pd_2 = i0.ɵnov(_v, 13)._compositionStart() !== false;
+            var pd_2 = i0.ɵnov(_v, 7)._compositionStart() !== false;
             ad = pd_2 && ad;
         }if ("compositionend" === en) {
-            var pd_3 = i0.ɵnov(_v, 13)._compositionEnd($event.target.value) !== false;
+            var pd_3 = i0.ɵnov(_v, 7)._compositionEnd($event.target.value) !== false;
             ad = pd_3 && ad;
         }if ("ngModelChange" === en) {
             var pd_4 = (_v.context.$implicit.consoleDefault = $event) !== false;
             ad = pd_4 && ad;
         }return ad;
-    }, null, null)), i0.ɵdid(13, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
+    }, null, null)), i0.ɵdid(7, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
         return [p0_0];
-    }, [i4.DefaultValueAccessor]), i0.ɵdid(15, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(17, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_26)), i0.ɵdid(19, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(20, 0, null, null, 0, "hr", [], null, null, null, null, null))], function (_ck, _v) {
-        var _co = _v.component;var currVal_10 = _v.context.$implicit.consoleDefault;_ck(_v, 15, 0, currVal_10);var currVal_11 = _co.recipe.steps.indexOf(_v.parent.parent.parent.context.$implicit) !== 0;_ck(_v, 19, 0, currVal_11);
+    }, [i4.DefaultValueAccessor]), i0.ɵdid(9, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(11, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_27)), i0.ɵdid(13, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(14, 0, null, null, 0, "hr", [], null, null, null, null, null))], function (_ck, _v) {
+        var _co = _v.component;var currVal_8 = _v.context.$implicit.consoleDefault;_ck(_v, 9, 0, currVal_8);var currVal_9 = _co.origRecipe.steps.indexOf(_v.parent.parent.parent.parent.context.$implicit) !== 0;_ck(_v, 13, 0, currVal_9);
     }, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit.name;_ck(_v, 2, 0, currVal_0);var currVal_1 = _v.context.index === 0;_ck(_v, 5, 0, currVal_1);var currVal_2 = _v.context.index === _v.parent.parent.parent.context.$implicit.parameters.length - 1;_ck(_v, 7, 0, currVal_2);var currVal_3 = i0.ɵnov(_v, 17).ngClassUntouched;var currVal_4 = i0.ɵnov(_v, 17).ngClassTouched;var currVal_5 = i0.ɵnov(_v, 17).ngClassPristine;var currVal_6 = i0.ɵnov(_v, 17).ngClassDirty;var currVal_7 = i0.ɵnov(_v, 17).ngClassValid;var currVal_8 = i0.ɵnov(_v, 17).ngClassInvalid;var currVal_9 = i0.ɵnov(_v, 17).ngClassPending;_ck(_v, 12, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9);
+        var currVal_0 = _v.context.$implicit.name;_ck(_v, 2, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 11).ngClassUntouched;var currVal_2 = i0.ɵnov(_v, 11).ngClassTouched;var currVal_3 = i0.ɵnov(_v, 11).ngClassPristine;var currVal_4 = i0.ɵnov(_v, 11).ngClassDirty;var currVal_5 = i0.ɵnov(_v, 11).ngClassValid;var currVal_6 = i0.ɵnov(_v, 11).ngClassInvalid;var currVal_7 = i0.ɵnov(_v, 11).ngClassPending;_ck(_v, 6, 0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7);
     });
 }
-function View_RecipeComponent_30(_l) {
+function View_RecipeComponent_32(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
-        var ad = true;if ("click" === en) {
-            var pd_0 = _v.parent.parent.parent.context.$implicit.parameters.push({ name: _v.context.$implicit.name }) !== false;
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            var pd_0 = _co.addParameterToStep(_v.context.$implicit, _v.parent.parent.parent.parent.context.$implicit) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit.name;_ck(_v, 2, 0, currVal_0);
+        var currVal_0 = _v.context.$implicit;_ck(_v, 2, 0, currVal_0);
     });
 }
-function View_RecipeComponent_24(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "div", [["class", "parameters-editor"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_25)), i0.ɵdid(2, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 2, "a", [["class", "btn btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Add Parameter"])), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_30)), i0.ɵdid(9, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _v.parent.parent.context.$implicit.parameters;_ck(_v, 2, 0, currVal_0);var currVal_1 = !_v.parent.parent.context.$implicit.apiCall ? i0.ɵEMPTY_ARRAY : _co.openapi.parsed.paths[_v.parent.parent.context.$implicit.apiCall.path][_v.parent.parent.context.$implicit.apiCall.method].parameters;_ck(_v, 9, 0, currVal_1);
+function View_RecipeComponent_25(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "div", [["class", "parameters-editor"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_26)), i0.ɵdid(2, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 2, "a", [["class", "btn btn-default dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Add Parameter"])), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_32)), i0.ɵdid(9, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.getFlatParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 2, 0, currVal_0);var currVal_1 = _co.getAddableParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 9, 0, currVal_1);
     }, null);
 }
-function View_RecipeComponent_32(_l) {
+function View_RecipeComponent_20(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "parameters-box"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_21)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_25)), i0.ɵdid(4, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var currVal_0 = !_v.parent.parent.context.$implicit.parameters;_ck(_v, 2, 0, currVal_0);var currVal_1 = _v.parent.parent.context.$implicit.parameters;_ck(_v, 4, 0, currVal_1);
+    }, null);
+}
+function View_RecipeComponent_35(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "parameter-group", [], null, [[null, "valueChange"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("valueChange" === en) {
             var pd_0 = _co.onInputChange() !== false;
             ad = pd_0 && ad;
         }return ad;
     }, i5.View_ParameterGroupComponent_0, i5.RenderType_ParameterGroupComponent)), i0.ɵdid(1, 573440, null, 0, i6.ParameterGroupComponent, [], { group: [0, "group"], parameterSet: [1, "parameterSet"], model: [2, "model"], view: [3, "view"] }, { valueChange: "valueChange" })], function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _v.parent.context.$implicit.group;var currVal_1 = _v.parent.parent.parent.context.$implicit.apiCall.operation.parameters;var currVal_2 = _co.stepStates[_v.parent.parent.parent.context.index].answers;var currVal_3 = "console";_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3);
+        var _co = _v.component;var currVal_0 = _v.parent.context.$implicit.group;var currVal_1 = _v.parent.parent.parent.parent.context.$implicit.apiCall.operation.parameters;var currVal_2 = _co.stepStates[_v.parent.parent.parent.parent.context.index].answers;var currVal_3 = "console";_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3);
     }, null);
 }
-function View_RecipeComponent_33(_l) {
+function View_RecipeComponent_36(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "parameter", [], [[8, "hidden", 0]], [[null, "valueChange"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("valueChange" === en) {
             var pd_0 = _co.onInputChange() !== false;
             ad = pd_0 && ad;
         }return ad;
     }, i5.View_ParameterComponent_0, i5.RenderType_ParameterComponent)), i0.ɵdid(1, 770048, null, 0, i6.ParameterComponent, [i7.OpenAPIService, i8.SecretService, i9.UtilsService], { inputParameter: [0, "inputParameter"], model: [1, "model"], depth: [2, "depth"] }, { valueChange: "valueChange" })], function (_ck, _v) {
-        var _co = _v.component;var currVal_1 = _v.parent.context.$implicit;var currVal_2 = _co.stepStates[_v.parent.parent.parent.context.index].answers;var currVal_3 = 2;_ck(_v, 1, 0, currVal_1, currVal_2, currVal_3);
+        var _co = _v.component;var currVal_1 = _v.parent.context.$implicit;var currVal_2 = _co.stepStates[_v.parent.parent.parent.parent.context.index].answers;var currVal_3 = 2;_ck(_v, 1, 0, currVal_1, currVal_2, currVal_3);
     }, function (_ck, _v) {
         var currVal_0 = _v.parent.context.$implicit.hidden;_ck(_v, 0, 0, currVal_0);
     });
 }
-function View_RecipeComponent_31(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_32)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_33)), i0.ɵdid(4, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+function View_RecipeComponent_34(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_35)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_36)), i0.ɵdid(4, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
         var currVal_0 = _v.context.$implicit.group && _v.context.$implicit.group.name;_ck(_v, 2, 0, currVal_0);var currVal_1 = !_v.context.$implicit.group || !_v.context.$implicit.group.name;_ck(_v, 4, 0, currVal_1);
     }, null);
 }
-function View_RecipeComponent_35(_l) {
+function View_RecipeComponent_33(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 24, "div", [["class", "parameters-box"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 23, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "submit"], [null, "reset"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("submit" === en) {
+            var pd_0 = i0.ɵnov(_v, 3).onSubmit($event) !== false;
+            ad = pd_0 && ad;
+        }if ("reset" === en) {
+            var pd_1 = i0.ɵnov(_v, 3).onReset() !== false;
+            ad = pd_1 && ad;
+        }if ("submit" === en) {
+            var pd_2 = _co.executeStep() !== false;
+            ad = pd_2 && ad;
+        }return ad;
+    }, null, null)), i0.ɵdid(2, 16384, null, 0, i4.ɵbf, [], null, null), i0.ɵdid(3, 4210688, null, 0, i4.NgForm, [[8, null], [8, null]], null, null), i0.ɵprd(2048, null, i4.ControlContainer, null, [i4.NgForm]), i0.ɵdid(5, 16384, null, 0, i4.NgControlStatusGroup, [i4.ControlContainer], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_34)), i0.ɵdid(7, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(8, 0, null, null, 16, "div", [["class", "recipe-controls"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(9, 0, null, null, 15, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 4, "div", [["class", "col-xs-3"]], null, null, null, null, null)), (_l()(), i0.ɵeld(11, 0, null, null, 3, "a", [["class", "btn btn-link navigate-button"]], null, [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            var pd_0 = _co.onNavigate(0 - 1) !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵeld(12, 0, null, null, 0, "i", [["class", "fa fa-left fa-chevron-left"]], null, null, null, null, null)), (_l()(), i0.ɵeld(13, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Back"])), (_l()(), i0.ɵeld(15, 0, null, null, 4, "div", [["class", "col-xs-6"]], null, null, null, null, null)), (_l()(), i0.ɵeld(16, 0, null, null, 3, "button", [["class", "btn execute-button"], ["type", "submit"]], [[8, "hidden", 0], [2, "btn-primary", null], [2, "btn-link", null], [8, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            var pd_0 = _co.executeStep() !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵeld(17, 0, null, null, 1, "span", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵted(18, null, ["", ""])), (_l()(), i0.ɵeld(19, 0, null, null, 0, "i", [["class", "fa fa-spin fa-refresh"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(20, 0, null, null, 4, "div", [["class", "col-xs-3 text-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(21, 0, null, null, 3, "a", [["class", "btn btn-link navigate-button pull-right"]], [[2, "btn-primary", null], [2, "btn-link", null]], [[null, "click"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("click" === en) {
+            var pd_0 = _co.onNavigate(1) !== false;
+            ad = pd_0 && ad;
+        }return ad;
+    }, null, null)), (_l()(), i0.ɵeld(22, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Next"])), (_l()(), i0.ɵeld(24, 0, null, null, 0, "i", [["class", "fa fa-right fa-chevron-right"]], null, null, null, null, null))], function (_ck, _v) {
+        var currVal_7 = _v.parent.parent.context.$implicit.parameters || i0.ɵEMPTY_ARRAY;_ck(_v, 7, 0, currVal_7);
+    }, function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = i0.ɵnov(_v, 5).ngClassUntouched;var currVal_1 = i0.ɵnov(_v, 5).ngClassTouched;var currVal_2 = i0.ɵnov(_v, 5).ngClassPristine;var currVal_3 = i0.ɵnov(_v, 5).ngClassDirty;var currVal_4 = i0.ɵnov(_v, 5).ngClassValid;var currVal_5 = i0.ɵnov(_v, 5).ngClassInvalid;var currVal_6 = i0.ɵnov(_v, 5).ngClassPending;_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6);var currVal_8 = _co.editing;_ck(_v, 8, 0, currVal_8);var currVal_9 = !_v.parent.parent.context.$implicit.demoHTML && !_v.parent.parent.context.$implicit.apiCall;var currVal_10 = !_co.stepStates[_v.parent.parent.context.index].completed;var currVal_11 = _co.stepStates[_v.parent.parent.context.index].completed;var currVal_12 = _co.executing;_ck(_v, 16, 0, currVal_9, currVal_10, currVal_11, currVal_12);var currVal_13 = _co.executing;_ck(_v, 17, 0, currVal_13);var currVal_14 = !_co.secrets.isAuthenticated(_v.parent.parent.context.$implicit.apiCall ? _v.parent.parent.context.$implicit.apiCall.operation : null) ? "Sign in to execute" : "Execute";_ck(_v, 18, 0, currVal_14);var currVal_15 = !_co.executing;_ck(_v, 19, 0, currVal_15);var currVal_16 = _co.stepStates[_v.parent.parent.context.index].completed;var currVal_17 = !_co.stepStates[_v.parent.parent.context.index].completed;_ck(_v, 21, 0, currVal_16, currVal_17);
+    });
+}
+function View_RecipeComponent_38(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "sample-code", [], null, null, null, i10.View_SampleCodeComponent_0, i10.RenderType_SampleCodeComponent)), i0.ɵdid(1, 4767744, [[1, 4], ["sampleCode", 4]], 0, i11.SampleCodeComponent, [i7.OpenAPIService, i9.UtilsService, i12.TrackerService], { codeSnippets: [0, "codeSnippets"], answers: [1, "answers"], apiCall: [2, "apiCall"], templateInput: [3, "templateInput"], editing: [4, "editing"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _v.parent.parent.parent.context.$implicit.codeSnippet;var currVal_1 = _co.stepStates[_v.parent.parent.parent.context.index].answers;var currVal_2 = _v.parent.parent.parent.context.$implicit.apiCall;var currVal_3 = _co.templateInput;var currVal_4 = _co.editing;_ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4);
     }, null);
 }
-function View_RecipeComponent_36(_l) {
+function View_RecipeComponent_39(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "i", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Sample code will be autogenerated for this step "])), (_l()(), i0.ɵeld(2, 0, null, null, 0, "br", [], null, null, null, null, null))], null, null);
 }
-function View_RecipeComponent_34(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "div", [["class", "col-xs-12 col-sm-6"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_35)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 6, "div", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_36)), i0.ɵdid(5, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(6, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+function View_RecipeComponent_37(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "div", [["class", "col-xs-12 col-sm-6"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_38)), i0.ɵdid(2, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(3, 0, null, null, 6, "div", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_39)), i0.ɵdid(5, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(6, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = (_v.parent.parent.context.$implicit.codeSnippet = {}) !== false;
             ad = pd_0 && ad;
@@ -4385,12 +4413,12 @@ function View_RecipeComponent_34(_l) {
         var _co = _v.component;var currVal_1 = !_co.editing || _v.parent.parent.context.$implicit.codeSnippet;_ck(_v, 3, 0, currVal_1);
     });
 }
-function View_RecipeComponent_37(_l) {
+function View_RecipeComponent_40(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "demo", [], null, null, null, i13.View_DemoComponent_0, i13.RenderType_DemoComponent)), i0.ɵdid(2, 573440, [[3, 4], ["demo", 4]], 0, i14.DemoComponent, [i15.DomSanitizer, i9.UtilsService], { demoHTML: [0, "demoHTML"], templateInput: [1, "templateInput"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _v.parent.parent.context.$implicit.demoHTML;var currVal_1 = _co.templateInput;_ck(_v, 2, 0, currVal_0, currVal_1);
     }, null);
 }
-function View_RecipeComponent_38(_l) {
+function View_RecipeComponent_41(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 8, "div", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Demo HTML"])), (_l()(), i0.ɵeld(3, 0, null, null, 5, "textarea", [["class", "form-control code-editor"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
         var ad = true;if ("input" === en) {
             var pd_0 = i0.ɵnov(_v, 4)._handleInput($event.target.value) !== false;
@@ -4416,42 +4444,16 @@ function View_RecipeComponent_38(_l) {
         var currVal_0 = i0.ɵnov(_v, 8).ngClassUntouched;var currVal_1 = i0.ɵnov(_v, 8).ngClassTouched;var currVal_2 = i0.ɵnov(_v, 8).ngClassPristine;var currVal_3 = i0.ɵnov(_v, 8).ngClassDirty;var currVal_4 = i0.ɵnov(_v, 8).ngClassValid;var currVal_5 = i0.ɵnov(_v, 8).ngClassInvalid;var currVal_6 = i0.ɵnov(_v, 8).ngClassPending;_ck(_v, 3, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6);
     });
 }
-function View_RecipeComponent_39(_l) {
+function View_RecipeComponent_42(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "div", [["class", "response"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "api-response", [], null, null, null, i16.View_APIResponseComponent_0, i16.RenderType_APIResponseComponent)), i0.ɵdid(2, 573440, [[2, 4], ["apiResponse", 4]], 0, i17.APIResponseComponent, [i9.UtilsService, i7.OpenAPIService], { response: [0, "response"], headers: [1, "headers"], statusCode: [2, "statusCode"], isRecipe: [3, "isRecipe"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.stepStates[_v.parent.parent.context.index].response;var currVal_1 = _co.stepStates[_v.parent.parent.context.index].headers;var currVal_2 = _co.stepStates[_v.parent.parent.context.index].statusCode;var currVal_3 = true;_ck(_v, 2, 0, currVal_0, currVal_1, currVal_2, currVal_3);
     }, null);
 }
 function View_RecipeComponent_19(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 47, "div", [["class", "step-body"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 39, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 36, "div", [["class", "col-xs-12 col-sm-6"]], null, null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 5, "div", [["class", "parameters-title"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Parameters"])), (_l()(), i0.ɵeld(6, 0, null, null, 2, "p", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "i", [], null, null, null, null, null)), (_l()(), i0.ɵted(8, null, ["", ""])), (_l()(), i0.ɵeld(9, 0, null, null, 4, "div", [["class", "parameters-box"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_20)), i0.ɵdid(11, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_24)), i0.ɵdid(13, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(14, 0, null, null, 24, "div", [["class", "parameters-box"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(15, 0, null, null, 23, "form", [["novalidate", ""]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "submit"], [null, "reset"]], function (_v, en, $event) {
-        var ad = true;var _co = _v.component;if ("submit" === en) {
-            var pd_0 = i0.ɵnov(_v, 17).onSubmit($event) !== false;
-            ad = pd_0 && ad;
-        }if ("reset" === en) {
-            var pd_1 = i0.ɵnov(_v, 17).onReset() !== false;
-            ad = pd_1 && ad;
-        }if ("submit" === en) {
-            var pd_2 = _co.executeStep() !== false;
-            ad = pd_2 && ad;
-        }return ad;
-    }, null, null)), i0.ɵdid(16, 16384, null, 0, i4.ɵbf, [], null, null), i0.ɵdid(17, 4210688, null, 0, i4.NgForm, [[8, null], [8, null]], null, null), i0.ɵprd(2048, null, i4.ControlContainer, null, [i4.NgForm]), i0.ɵdid(19, 16384, null, 0, i4.NgControlStatusGroup, [i4.ControlContainer], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_31)), i0.ɵdid(21, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(22, 0, null, null, 16, "div", [["class", "recipe-controls"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(23, 0, null, null, 15, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(24, 0, null, null, 4, "div", [["class", "col-xs-3"]], null, null, null, null, null)), (_l()(), i0.ɵeld(25, 0, null, null, 3, "a", [["class", "btn btn-link navigate-button"]], null, [[null, "click"]], function (_v, en, $event) {
-        var ad = true;var _co = _v.component;if ("click" === en) {
-            var pd_0 = _co.onNavigate(0 - 1) !== false;
-            ad = pd_0 && ad;
-        }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(26, 0, null, null, 0, "i", [["class", "fa fa-left fa-chevron-left"]], null, null, null, null, null)), (_l()(), i0.ɵeld(27, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Back"])), (_l()(), i0.ɵeld(29, 0, null, null, 4, "div", [["class", "col-xs-6"]], null, null, null, null, null)), (_l()(), i0.ɵeld(30, 0, null, null, 3, "button", [["class", "btn execute-button"], ["type", "submit"]], [[8, "hidden", 0], [2, "btn-primary", null], [2, "btn-link", null], [8, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
-        var ad = true;var _co = _v.component;if ("click" === en) {
-            var pd_0 = _co.executeStep() !== false;
-            ad = pd_0 && ad;
-        }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(31, 0, null, null, 1, "span", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵted(32, null, ["", ""])), (_l()(), i0.ɵeld(33, 0, null, null, 0, "i", [["class", "fa fa-spin fa-refresh"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(34, 0, null, null, 4, "div", [["class", "col-xs-3 text-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(35, 0, null, null, 3, "a", [["class", "btn btn-link navigate-button pull-right"]], [[2, "btn-primary", null], [2, "btn-link", null]], [[null, "click"]], function (_v, en, $event) {
-        var ad = true;var _co = _v.component;if ("click" === en) {
-            var pd_0 = _co.onNavigate(1) !== false;
-            ad = pd_0 && ad;
-        }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(36, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Next"])), (_l()(), i0.ɵeld(38, 0, null, null, 0, "i", [["class", "fa fa-right fa-chevron-right"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_34)), i0.ɵdid(40, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(41, 0, null, null, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_37)), i0.ɵdid(43, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_38)), i0.ɵdid(45, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_39)), i0.ɵdid(47, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_3 = !_v.parent.context.$implicit.parameters;_ck(_v, 11, 0, currVal_3);var currVal_4 = _v.parent.context.$implicit.parameters;_ck(_v, 13, 0, currVal_4);var currVal_13 = _v.parent.context.$implicit.parameters || i0.ɵEMPTY_ARRAY;_ck(_v, 21, 0, currVal_13);var currVal_24 = !_co.utils.config.codegen.disabled;_ck(_v, 40, 0, currVal_24);var currVal_25 = !_co.editing && _v.parent.context.$implicit.demoHTML && _co.stepStates[_v.parent.context.index].completed;_ck(_v, 43, 0, currVal_25);var currVal_26 = _co.editing;_ck(_v, 45, 0, currVal_26);var currVal_27 = !_co.editing;_ck(_v, 47, 0, currVal_27);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 21, "div", [["class", "step-body"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 13, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 10, "div", [["class", "col-xs-12 col-sm-6"]], null, null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 5, "div", [["class", "parameters-title"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Parameters"])), (_l()(), i0.ɵeld(6, 0, null, null, 2, "p", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "i", [], null, null, null, null, null)), (_l()(), i0.ɵted(8, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_20)), i0.ɵdid(10, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_33)), i0.ɵdid(12, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_37)), i0.ɵdid(14, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(15, 0, null, null, 4, "div", [["class", "demo"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_40)), i0.ɵdid(17, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_41)), i0.ɵdid(19, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_42)), i0.ɵdid(21, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_2 = _co.editing;_ck(_v, 10, 0, currVal_2);var currVal_3 = !_co.editing;_ck(_v, 12, 0, currVal_3);var currVal_4 = !_co.utils.config.codegen.disabled;_ck(_v, 14, 0, currVal_4);var currVal_5 = !_co.editing && _v.parent.context.$implicit.demoHTML && _co.stepStates[_v.parent.context.index].completed;_ck(_v, 17, 0, currVal_5);var currVal_6 = _co.editing;_ck(_v, 19, 0, currVal_6);var currVal_7 = !_co.editing;_ck(_v, 21, 0, currVal_7);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.editing;_ck(_v, 6, 0, currVal_0);var currVal_1 = _co.hasVisibleParameters(_v.parent.context.$implicit) ? "Set the values below to try this step" : "This step has no parameters";_ck(_v, 8, 0, currVal_1);var currVal_2 = !_co.editing;_ck(_v, 9, 0, currVal_2);var currVal_5 = _co.editing;_ck(_v, 14, 0, currVal_5);var currVal_6 = i0.ɵnov(_v, 19).ngClassUntouched;var currVal_7 = i0.ɵnov(_v, 19).ngClassTouched;var currVal_8 = i0.ɵnov(_v, 19).ngClassPristine;var currVal_9 = i0.ɵnov(_v, 19).ngClassDirty;var currVal_10 = i0.ɵnov(_v, 19).ngClassValid;var currVal_11 = i0.ɵnov(_v, 19).ngClassInvalid;var currVal_12 = i0.ɵnov(_v, 19).ngClassPending;_ck(_v, 15, 0, currVal_6, currVal_7, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12);var currVal_14 = _co.editing;_ck(_v, 22, 0, currVal_14);var currVal_15 = !_v.parent.context.$implicit.demoHTML && !_v.parent.context.$implicit.apiCall;var currVal_16 = !_co.stepStates[_v.parent.context.index].completed;var currVal_17 = _co.stepStates[_v.parent.context.index].completed;var currVal_18 = _co.executing;_ck(_v, 30, 0, currVal_15, currVal_16, currVal_17, currVal_18);var currVal_19 = _co.executing;_ck(_v, 31, 0, currVal_19);var currVal_20 = !_co.secrets.isAuthenticated(_v.parent.context.$implicit.apiCall ? _v.parent.context.$implicit.apiCall.operation : null) ? "Sign in to execute" : "Execute";_ck(_v, 32, 0, currVal_20);var currVal_21 = !_co.executing;_ck(_v, 33, 0, currVal_21);var currVal_22 = _co.stepStates[_v.parent.context.index].completed;var currVal_23 = !_co.stepStates[_v.parent.context.index].completed;_ck(_v, 35, 0, currVal_22, currVal_23);
+        var _co = _v.component;var currVal_0 = _co.editing;_ck(_v, 6, 0, currVal_0);var currVal_1 = _co.hasVisibleParameters(_v.parent.context.$implicit) ? "Set the values below to try this step" : "This step has no parameters";_ck(_v, 8, 0, currVal_1);
     });
 }
 function View_RecipeComponent_13(_l) {
@@ -4461,12 +4463,12 @@ function View_RecipeComponent_13(_l) {
         var _co = _v.component;var currVal_0 = _co.activeStep !== _v.context.$implicit;_ck(_v, 0, 0, currVal_0);var currVal_2 = _co.editing;_ck(_v, 4, 0, currVal_2);var currVal_3 = _v.context.$implicit.title;_ck(_v, 7, 0, currVal_3);var currVal_6 = _co.marked(_v.context.$implicit.description);_ck(_v, 12, 0, currVal_6);
     });
 }
-function View_RecipeComponent_40(_l) {
+function View_RecipeComponent_43(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], null, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.marked(_co.recipe.finishText);_ck(_v, 0, 0, currVal_0);
+        var _co = _v.component;var currVal_0 = _co.marked(_co.origRecipe.finishText);_ck(_v, 0, 0, currVal_0);
     });
 }
-function View_RecipeComponent_42(_l) {
+function View_RecipeComponent_45(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 11, "tr", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""])), (_l()(), i0.ɵeld(4, 0, null, null, 3, "td", [], null, null, null, null, null)), (_l()(), i0.ɵeld(5, 0, null, null, 2, "a", [], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = i0.ɵnov(_v, 6).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
@@ -4483,12 +4485,12 @@ function View_RecipeComponent_42(_l) {
         var _co = _v.component;var currVal_0 = _co.getAPICallTitle(_v.context.$implicit);_ck(_v, 3, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 6).target;var currVal_2 = i0.ɵnov(_v, 6).href;_ck(_v, 5, 0, currVal_1, currVal_2);var currVal_4 = i0.ɵnov(_v, 10).target;var currVal_5 = i0.ɵnov(_v, 10).href;_ck(_v, 9, 0, currVal_4, currVal_5);
     });
 }
-function View_RecipeComponent_41(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 8, "div", [["class", "finish-section"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Learn more"])), (_l()(), i0.ɵeld(3, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["You can learn more about the operations used in this workflow by visiting the API Console and Documentation"])), (_l()(), i0.ɵeld(5, 0, null, null, 3, "table", [["class", "learn-more-table"]], null, null, null, null, null)), (_l()(), i0.ɵeld(6, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_42)), i0.ɵdid(8, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+function View_RecipeComponent_44(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 8, "div", [["class", "finish-section"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Learn more"])), (_l()(), i0.ɵeld(3, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["You can learn more about the operations used in this workflow by visiting the API Console and Documentation"])), (_l()(), i0.ɵeld(5, 0, null, null, 3, "table", [["class", "learn-more-table"]], null, null, null, null, null)), (_l()(), i0.ɵeld(6, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_45)), i0.ɵdid(8, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.allAPICalls;_ck(_v, 8, 0, currVal_0);
     }, null);
 }
-function View_RecipeComponent_44(_l) {
+function View_RecipeComponent_47(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 11, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 10, "div", [["class", "col-xs-12"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 9, "div", [["class", "related-recipe"]], null, null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 6, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (_l()(), i0.ɵeld(5, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\xA0\xA0"])), (_l()(), i0.ɵeld(7, 0, null, null, 2, "a", [], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
             var pd_0 = i0.ɵnov(_v, 8).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
@@ -4500,12 +4502,12 @@ function View_RecipeComponent_44(_l) {
         var _co = _v.component;var currVal_0 = i0.ɵinlineInterpolate(1, "fa fa-left fa-", _co.recipes[_v.context.$implicit].icon, "");_ck(_v, 4, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 8).target;var currVal_2 = i0.ɵnov(_v, 8).href;_ck(_v, 7, 0, currVal_1, currVal_2);var currVal_4 = _co.recipes[_v.context.$implicit].title;_ck(_v, 9, 0, currVal_4);var currVal_5 = _co.recipes[_v.context.$implicit].summary;_ck(_v, 11, 0, currVal_5);
     });
 }
-function View_RecipeComponent_43(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "finish-section related-recipes"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Related workflows"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_44)), i0.ɵdid(4, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.recipe.relatedRecipes;_ck(_v, 4, 0, currVal_0);
+function View_RecipeComponent_46(_l) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 4, "div", [["class", "finish-section related-recipes"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "h4", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Related workflows"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_47)), i0.ɵdid(4, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_0 = _co.origRecipe.relatedRecipes;_ck(_v, 4, 0, currVal_0);
     }, null);
 }
-function View_RecipeComponent_45(_l) {
+function View_RecipeComponent_48(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 39, "div", [["class", "finish-section"], ["id", "Feedback"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 38, "div", [["class", "row"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 14, "div", [["class", "col-xs-12 col-sm-6"]], null, null, null, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 1, "h4", [["class", "finish-title"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Was this workflow useful?"])), (_l()(), i0.ɵeld(5, 0, null, null, 11, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(6, 0, null, null, 10, "div", [["class", "btn-toolbar rate-buttons"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 3, "a", [["class", "btn btn-link"]], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
             var pd_0 = _co.rateRecipe(4) !== false;
@@ -4554,14 +4556,12 @@ function View_RecipeComponent_8(_l) {
         }return ad;
     }, null, null)), i0.ɵdid(7, 671744, null, 0, i1.RouterLinkWithHref, [i1.Router, i1.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i0.ɵted(-1, null, ["Workflows"])), (_l()(), i0.ɵeld(9, 0, null, null, 0, "i", [["class", "fa fa-right fa-left fa-chevron-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(10, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(11, null, ["", ""])), (_l()(), i0.ɵeld(12, 0, null, null, 20, "span", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(13, 0, null, null, 2, "a", [["class", "btn btn-link dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(14, 0, null, null, 0, "i", [["class", "fa fa-caret-down"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(15, 0, null, null, 0, "i", [["class", "fa fa-spin fa-refresh"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(16, 0, null, null, 16, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵeld(17, 0, null, null, 2, "li", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(18, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
-            _co.editing = true;
-            var pd_0 = (_co.edited = true) !== false;
+            var pd_0 = _co.startEditing() !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(-1, null, ["Edit"])), (_l()(), i0.ɵeld(20, 0, null, null, 2, "li", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(21, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
-            _co.initializeRecipe();
-            var pd_0 = (_co.editing = false) !== false;
+            var pd_0 = _co.stopEditing() !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(-1, null, ["Preview"])), (_l()(), i0.ɵeld(23, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(24, 0, null, null, 1, "a", [["data-target", "#SaveRecipeModal"], ["data-toggle", "modal"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Save"])), (_l()(), i0.ɵeld(26, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(27, 0, null, null, 1, "a", [["data-target", "#LoadRecipeModal"], ["data-toggle", "modal"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Load"])), (_l()(), i0.ɵeld(29, 0, null, null, 3, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(30, 0, null, null, 2, "a", [["routerLink", "/new-workflow"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], function (_v, en, $event) {
@@ -4732,7 +4732,7 @@ function View_RecipeComponent_8(_l) {
             var pd_3 = i0.ɵnov(_v, 145)._compositionEnd($event.target.value) !== false;
             ad = pd_3 && ad;
         }if ("ngModelChange" === en) {
-            var pd_4 = (_co.recipe.title = $event) !== false;
+            var pd_4 = (_co.origRecipe.title = $event) !== false;
             ad = pd_4 && ad;
         }return ad;
     }, null, null)), i0.ɵdid(145, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
@@ -4751,7 +4751,7 @@ function View_RecipeComponent_8(_l) {
             var pd_3 = i0.ɵnov(_v, 154)._compositionEnd($event.target.value) !== false;
             ad = pd_3 && ad;
         }if ("ngModelChange" === en) {
-            var pd_4 = (_co.recipe.summary = $event) !== false;
+            var pd_4 = (_co.origRecipe.summary = $event) !== false;
             ad = pd_4 && ad;
         }return ad;
     }, null, null)), i0.ɵdid(154, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
@@ -4775,7 +4775,7 @@ function View_RecipeComponent_8(_l) {
             var pd_3 = i0.ɵnov(_v, 177)._compositionEnd($event.target.value) !== false;
             ad = pd_3 && ad;
         }if ("ngModelChange" === en) {
-            var pd_4 = (_co.recipe.description = $event) !== false;
+            var pd_4 = (_co.origRecipe.description = $event) !== false;
             ad = pd_4 && ad;
         }return ad;
     }, null, null)), i0.ɵdid(177, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
@@ -4790,7 +4790,7 @@ function View_RecipeComponent_8(_l) {
             var pd_0 = i0.ɵnov(_v, 194).onClick($event.button, $event.ctrlKey, $event.metaKey, $event.shiftKey) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), i0.ɵdid(194, 671744, null, 0, i1.RouterLinkWithHref, [i1.Router, i1.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i0.ɵted(-1, null, ["Let's go!"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_13)), i0.ɵdid(197, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(198, 0, null, null, 20, "div", [["class", "step finish"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(199, 0, null, null, 1, "h3", [["class", "step-title"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Finish"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_40)), i0.ɵdid(202, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(203, 0, null, null, 8, "div", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(204, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Finish Text"])), (_l()(), i0.ɵeld(206, 0, null, null, 5, "textarea", [["class", "form-control markdown-editor"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
+    }, null, null)), i0.ɵdid(194, 671744, null, 0, i1.RouterLinkWithHref, [i1.Router, i1.ActivatedRoute, i3.LocationStrategy], { routerLink: [0, "routerLink"] }, null), (_l()(), i0.ɵted(-1, null, ["Let's go!"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_13)), i0.ɵdid(197, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null), (_l()(), i0.ɵeld(198, 0, null, null, 20, "div", [["class", "step finish"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(199, 0, null, null, 1, "h3", [["class", "step-title"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Finish"])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_43)), i0.ɵdid(202, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(203, 0, null, null, 8, "div", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(204, 0, null, null, 1, "label", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Finish Text"])), (_l()(), i0.ɵeld(206, 0, null, null, 5, "textarea", [["class", "form-control markdown-editor"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("input" === en) {
             var pd_0 = i0.ɵnov(_v, 207)._handleInput($event.target.value) !== false;
             ad = pd_0 && ad;
@@ -4804,15 +4804,15 @@ function View_RecipeComponent_8(_l) {
             var pd_3 = i0.ɵnov(_v, 207)._compositionEnd($event.target.value) !== false;
             ad = pd_3 && ad;
         }if ("ngModelChange" === en) {
-            var pd_4 = (_co.recipe.finishText = $event) !== false;
+            var pd_4 = (_co.origRecipe.finishText = $event) !== false;
             ad = pd_4 && ad;
         }return ad;
     }, null, null)), i0.ɵdid(207, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
         return [p0_0];
-    }, [i4.DefaultValueAccessor]), i0.ɵdid(209, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(211, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵeld(212, 0, null, null, 0, "hr", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_41)), i0.ɵdid(214, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_43)), i0.ɵdid(216, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_45)), i0.ɵdid(218, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_3 = _co.routes.getLink("workflows");_ck(_v, 7, 0, currVal_3);var currVal_11 = "/new-workflow";_ck(_v, 31, 0, currVal_11);var currVal_26 = "recipeQuery";var currVal_27 = _co.recipeQuery;_ck(_v, 44, 0, currVal_26, currVal_27);var currVal_30 = _co.linkToStep("intro");_ck(_v, 59, 0, currVal_30);var currVal_31 = "Intro";var currVal_32 = false;var currVal_33 = "bottom";_ck(_v, 63, 0, currVal_31, currVal_32, currVal_33);var currVal_34 = _co.recipe.steps;_ck(_v, 70, 0, currVal_34);var currVal_37 = "Add Step";var currVal_38 = false;var currVal_39 = "bottom";_ck(_v, 74, 0, currVal_37, currVal_38, currVal_39);var currVal_42 = _co.linkToStep("finish");_ck(_v, 81, 0, currVal_42);var currVal_43 = "Finish";var currVal_44 = false;var currVal_45 = "bottom";_ck(_v, 84, 0, currVal_43, currVal_44, currVal_45);var currVal_50 = _co.linkToStep("intro");_ck(_v, 97, 0, currVal_50);var currVal_51 = "Intro";var currVal_52 = false;var currVal_53 = "bottom";_ck(_v, 101, 0, currVal_51, currVal_52, currVal_53);var currVal_54 = _co.recipe.steps;_ck(_v, 108, 0, currVal_54);var currVal_57 = "Add Step";var currVal_58 = false;var currVal_59 = "bottom";_ck(_v, 112, 0, currVal_57, currVal_58, currVal_59);var currVal_62 = _co.linkToStep("finish");_ck(_v, 119, 0, currVal_62);var currVal_63 = "Finish";var currVal_64 = false;var currVal_65 = "bottom";_ck(_v, 122, 0, currVal_63, currVal_64, currVal_65);var currVal_80 = _co.recipe.title;_ck(_v, 147, 0, currVal_80);var currVal_88 = _co.recipe.summary;_ck(_v, 156, 0, currVal_88);var currVal_89 = _co.assetsToUpload;_ck(_v, 169, 0, currVal_89);var currVal_99 = _co.recipe.description;_ck(_v, 179, 0, currVal_99);var currVal_102 = _co.recipe.steps;_ck(_v, 191, 0, currVal_102);var currVal_106 = _co.linkToStep(0);_ck(_v, 194, 0, currVal_106);var currVal_107 = _co.recipe.steps;_ck(_v, 197, 0, currVal_107);var currVal_109 = _co.recipe.finishText;_ck(_v, 202, 0, currVal_109);var currVal_118 = _co.recipe.finishText;_ck(_v, 209, 0, currVal_118);var currVal_120 = !_co.editing;_ck(_v, 214, 0, currVal_120);var currVal_121 = _co.recipe.relatedRecipes && _co.recipe.relatedRecipes.length && !_co.editing;_ck(_v, 216, 0, currVal_121);var currVal_122 = !_co.editing;_ck(_v, 218, 0, currVal_122);
+    }, [i4.DefaultValueAccessor]), i0.ɵdid(209, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(211, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵeld(212, 0, null, null, 0, "hr", [], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_44)), i0.ɵdid(214, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_46)), i0.ɵdid(216, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_48)), i0.ɵdid(218, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_3 = _co.routes.getLink("workflows");_ck(_v, 7, 0, currVal_3);var currVal_11 = "/new-workflow";_ck(_v, 31, 0, currVal_11);var currVal_26 = "recipeQuery";var currVal_27 = _co.recipeQuery;_ck(_v, 44, 0, currVal_26, currVal_27);var currVal_30 = _co.linkToStep("intro");_ck(_v, 59, 0, currVal_30);var currVal_31 = "Intro";var currVal_32 = false;var currVal_33 = "bottom";_ck(_v, 63, 0, currVal_31, currVal_32, currVal_33);var currVal_34 = (_co.editing ? _co.origRecipe : _co.recipe).steps;_ck(_v, 70, 0, currVal_34);var currVal_37 = "Add Step";var currVal_38 = false;var currVal_39 = "bottom";_ck(_v, 74, 0, currVal_37, currVal_38, currVal_39);var currVal_42 = _co.linkToStep("finish");_ck(_v, 81, 0, currVal_42);var currVal_43 = "Finish";var currVal_44 = false;var currVal_45 = "bottom";_ck(_v, 84, 0, currVal_43, currVal_44, currVal_45);var currVal_50 = _co.linkToStep("intro");_ck(_v, 97, 0, currVal_50);var currVal_51 = "Intro";var currVal_52 = false;var currVal_53 = "bottom";_ck(_v, 101, 0, currVal_51, currVal_52, currVal_53);var currVal_54 = (_co.editing ? _co.origRecipe : _co.recipe).steps;_ck(_v, 108, 0, currVal_54);var currVal_57 = "Add Step";var currVal_58 = false;var currVal_59 = "bottom";_ck(_v, 112, 0, currVal_57, currVal_58, currVal_59);var currVal_62 = _co.linkToStep("finish");_ck(_v, 119, 0, currVal_62);var currVal_63 = "Finish";var currVal_64 = false;var currVal_65 = "bottom";_ck(_v, 122, 0, currVal_63, currVal_64, currVal_65);var currVal_80 = _co.origRecipe.title;_ck(_v, 147, 0, currVal_80);var currVal_88 = _co.origRecipe.summary;_ck(_v, 156, 0, currVal_88);var currVal_89 = _co.assetsToUpload;_ck(_v, 169, 0, currVal_89);var currVal_99 = _co.origRecipe.description;_ck(_v, 179, 0, currVal_99);var currVal_102 = _co.origRecipe.steps;_ck(_v, 191, 0, currVal_102);var currVal_106 = _co.linkToStep(0);_ck(_v, 194, 0, currVal_106);var currVal_107 = (_co.editing ? _co.origRecipe : _co.recipe).steps;_ck(_v, 197, 0, currVal_107);var currVal_109 = _co.origRecipe.finishText;_ck(_v, 202, 0, currVal_109);var currVal_118 = _co.origRecipe.finishText;_ck(_v, 209, 0, currVal_118);var currVal_120 = !_co.editing;_ck(_v, 214, 0, currVal_120);var currVal_121 = _co.origRecipe.relatedRecipes && _co.origRecipe.relatedRecipes.length && !_co.editing;_ck(_v, 216, 0, currVal_121);var currVal_122 = !_co.editing;_ck(_v, 218, 0, currVal_122);
     }, function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.utils.lucybot.embed && !_co.utils.lucybot.showNavigation;_ck(_v, 3, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 7).target;var currVal_2 = i0.ɵnov(_v, 7).href;_ck(_v, 6, 0, currVal_1, currVal_2);var currVal_4 = _co.recipe.title;_ck(_v, 11, 0, currVal_4);var currVal_5 = _co.saving;_ck(_v, 14, 0, currVal_5);var currVal_6 = !_co.saving;_ck(_v, 15, 0, currVal_6);var currVal_7 = _co.editing;_ck(_v, 17, 0, currVal_7);var currVal_8 = !_co.editing;_ck(_v, 20, 0, currVal_8);var currVal_9 = i0.ɵnov(_v, 31).target;var currVal_10 = i0.ɵnov(_v, 31).href;_ck(_v, 30, 0, currVal_9, currVal_10);var currVal_12 = i0.ɵnov(_v, 38).ngClassUntouched;var currVal_13 = i0.ɵnov(_v, 38).ngClassTouched;var currVal_14 = i0.ɵnov(_v, 38).ngClassPristine;var currVal_15 = i0.ɵnov(_v, 38).ngClassDirty;var currVal_16 = i0.ɵnov(_v, 38).ngClassValid;var currVal_17 = i0.ɵnov(_v, 38).ngClassInvalid;var currVal_18 = i0.ɵnov(_v, 38).ngClassPending;_ck(_v, 34, 0, currVal_12, currVal_13, currVal_14, currVal_15, currVal_16, currVal_17, currVal_18);var currVal_19 = i0.ɵnov(_v, 46).ngClassUntouched;var currVal_20 = i0.ɵnov(_v, 46).ngClassTouched;var currVal_21 = i0.ɵnov(_v, 46).ngClassPristine;var currVal_22 = i0.ɵnov(_v, 46).ngClassDirty;var currVal_23 = i0.ɵnov(_v, 46).ngClassValid;var currVal_24 = i0.ɵnov(_v, 46).ngClassInvalid;var currVal_25 = i0.ɵnov(_v, 46).ngClassPending;_ck(_v, 41, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25);var currVal_28 = _co.activeStep === "intro";var currVal_29 = _co.activeStep !== "intro" && !_co.menuExpanded;_ck(_v, 58, 0, currVal_28, currVal_29);var currVal_35 = !_co.editing;var currVal_36 = !_co.menuExpanded;_ck(_v, 71, 0, currVal_35, currVal_36);var currVal_40 = _co.activeStep === "finish";var currVal_41 = _co.activeStep !== "finish" && !_co.menuExpanded;_ck(_v, 80, 0, currVal_40, currVal_41);var currVal_46 = !_co.menuExpanded;var currVal_47 = _co.menuExpanded;_ck(_v, 92, 0, currVal_46, currVal_47);var currVal_48 = _co.activeStep === "intro";var currVal_49 = _co.activeStep !== "intro" && !_co.menuExpanded;_ck(_v, 96, 0, currVal_48, currVal_49);var currVal_55 = !_co.editing;var currVal_56 = !_co.menuExpanded;_ck(_v, 109, 0, currVal_55, currVal_56);var currVal_60 = _co.activeStep === "finish";var currVal_61 = _co.activeStep !== "finish" && !_co.menuExpanded;_ck(_v, 118, 0, currVal_60, currVal_61);var currVal_66 = !_co.menuExpanded;var currVal_67 = _co.menuExpanded;_ck(_v, 130, 0, currVal_66, currVal_67);var currVal_68 = _co.activeStep !== "intro";_ck(_v, 132, 0, currVal_68);var currVal_69 = _co.editing;_ck(_v, 135, 0, currVal_69);var currVal_70 = _co.recipe.title;_ck(_v, 137, 0, currVal_70);var currVal_71 = _co.recipe.summary;_ck(_v, 139, 0, currVal_71);var currVal_72 = !_co.editing;_ck(_v, 140, 0, currVal_72);var currVal_73 = i0.ɵnov(_v, 149).ngClassUntouched;var currVal_74 = i0.ɵnov(_v, 149).ngClassTouched;var currVal_75 = i0.ɵnov(_v, 149).ngClassPristine;var currVal_76 = i0.ɵnov(_v, 149).ngClassDirty;var currVal_77 = i0.ɵnov(_v, 149).ngClassValid;var currVal_78 = i0.ɵnov(_v, 149).ngClassInvalid;var currVal_79 = i0.ɵnov(_v, 149).ngClassPending;_ck(_v, 144, 0, currVal_73, currVal_74, currVal_75, currVal_76, currVal_77, currVal_78, currVal_79);var currVal_81 = i0.ɵnov(_v, 158).ngClassUntouched;var currVal_82 = i0.ɵnov(_v, 158).ngClassTouched;var currVal_83 = i0.ɵnov(_v, 158).ngClassPristine;var currVal_84 = i0.ɵnov(_v, 158).ngClassDirty;var currVal_85 = i0.ɵnov(_v, 158).ngClassValid;var currVal_86 = i0.ɵnov(_v, 158).ngClassInvalid;var currVal_87 = i0.ɵnov(_v, 158).ngClassPending;_ck(_v, 153, 0, currVal_81, currVal_82, currVal_83, currVal_84, currVal_85, currVal_86, currVal_87);var currVal_90 = _co.marked(_co.recipe.description);_ck(_v, 172, 0, currVal_90);var currVal_91 = !_co.editing;_ck(_v, 173, 0, currVal_91);var currVal_92 = i0.ɵnov(_v, 181).ngClassUntouched;var currVal_93 = i0.ɵnov(_v, 181).ngClassTouched;var currVal_94 = i0.ɵnov(_v, 181).ngClassPristine;var currVal_95 = i0.ɵnov(_v, 181).ngClassDirty;var currVal_96 = i0.ɵnov(_v, 181).ngClassValid;var currVal_97 = i0.ɵnov(_v, 181).ngClassInvalid;var currVal_98 = i0.ɵnov(_v, 181).ngClassPending;_ck(_v, 176, 0, currVal_92, currVal_93, currVal_94, currVal_95, currVal_96, currVal_97, currVal_98);var currVal_100 = _co.recipe.steps.length;_ck(_v, 184, 0, currVal_100);var currVal_101 = !_co.editing;_ck(_v, 187, 0, currVal_101);var currVal_103 = _co.editing;_ck(_v, 192, 0, currVal_103);var currVal_104 = i0.ɵnov(_v, 194).target;var currVal_105 = i0.ɵnov(_v, 194).href;_ck(_v, 193, 0, currVal_104, currVal_105);var currVal_108 = _co.activeStep !== "finish";_ck(_v, 198, 0, currVal_108);var currVal_110 = !_co.editing;_ck(_v, 203, 0, currVal_110);var currVal_111 = i0.ɵnov(_v, 211).ngClassUntouched;var currVal_112 = i0.ɵnov(_v, 211).ngClassTouched;var currVal_113 = i0.ɵnov(_v, 211).ngClassPristine;var currVal_114 = i0.ɵnov(_v, 211).ngClassDirty;var currVal_115 = i0.ɵnov(_v, 211).ngClassValid;var currVal_116 = i0.ɵnov(_v, 211).ngClassInvalid;var currVal_117 = i0.ɵnov(_v, 211).ngClassPending;_ck(_v, 206, 0, currVal_111, currVal_112, currVal_113, currVal_114, currVal_115, currVal_116, currVal_117);var currVal_119 = !_co.recipe.finishText;_ck(_v, 212, 0, currVal_119);
+        var _co = _v.component;var currVal_0 = _co.utils.lucybot.embed && !_co.utils.lucybot.showNavigation;_ck(_v, 3, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 7).target;var currVal_2 = i0.ɵnov(_v, 7).href;_ck(_v, 6, 0, currVal_1, currVal_2);var currVal_4 = _co.origRecipe.title;_ck(_v, 11, 0, currVal_4);var currVal_5 = _co.saving;_ck(_v, 14, 0, currVal_5);var currVal_6 = !_co.saving;_ck(_v, 15, 0, currVal_6);var currVal_7 = _co.editing;_ck(_v, 17, 0, currVal_7);var currVal_8 = !_co.editing;_ck(_v, 20, 0, currVal_8);var currVal_9 = i0.ɵnov(_v, 31).target;var currVal_10 = i0.ɵnov(_v, 31).href;_ck(_v, 30, 0, currVal_9, currVal_10);var currVal_12 = i0.ɵnov(_v, 38).ngClassUntouched;var currVal_13 = i0.ɵnov(_v, 38).ngClassTouched;var currVal_14 = i0.ɵnov(_v, 38).ngClassPristine;var currVal_15 = i0.ɵnov(_v, 38).ngClassDirty;var currVal_16 = i0.ɵnov(_v, 38).ngClassValid;var currVal_17 = i0.ɵnov(_v, 38).ngClassInvalid;var currVal_18 = i0.ɵnov(_v, 38).ngClassPending;_ck(_v, 34, 0, currVal_12, currVal_13, currVal_14, currVal_15, currVal_16, currVal_17, currVal_18);var currVal_19 = i0.ɵnov(_v, 46).ngClassUntouched;var currVal_20 = i0.ɵnov(_v, 46).ngClassTouched;var currVal_21 = i0.ɵnov(_v, 46).ngClassPristine;var currVal_22 = i0.ɵnov(_v, 46).ngClassDirty;var currVal_23 = i0.ɵnov(_v, 46).ngClassValid;var currVal_24 = i0.ɵnov(_v, 46).ngClassInvalid;var currVal_25 = i0.ɵnov(_v, 46).ngClassPending;_ck(_v, 41, 0, currVal_19, currVal_20, currVal_21, currVal_22, currVal_23, currVal_24, currVal_25);var currVal_28 = _co.activeStep === "intro";var currVal_29 = _co.activeStep !== "intro" && !_co.menuExpanded;_ck(_v, 58, 0, currVal_28, currVal_29);var currVal_35 = !_co.editing;var currVal_36 = !_co.menuExpanded;_ck(_v, 71, 0, currVal_35, currVal_36);var currVal_40 = _co.activeStep === "finish";var currVal_41 = _co.activeStep !== "finish" && !_co.menuExpanded;_ck(_v, 80, 0, currVal_40, currVal_41);var currVal_46 = !_co.menuExpanded;var currVal_47 = _co.menuExpanded;_ck(_v, 92, 0, currVal_46, currVal_47);var currVal_48 = _co.activeStep === "intro";var currVal_49 = _co.activeStep !== "intro" && !_co.menuExpanded;_ck(_v, 96, 0, currVal_48, currVal_49);var currVal_55 = !_co.editing;var currVal_56 = !_co.menuExpanded;_ck(_v, 109, 0, currVal_55, currVal_56);var currVal_60 = _co.activeStep === "finish";var currVal_61 = _co.activeStep !== "finish" && !_co.menuExpanded;_ck(_v, 118, 0, currVal_60, currVal_61);var currVal_66 = !_co.menuExpanded;var currVal_67 = _co.menuExpanded;_ck(_v, 130, 0, currVal_66, currVal_67);var currVal_68 = _co.activeStep !== "intro";_ck(_v, 132, 0, currVal_68);var currVal_69 = _co.editing;_ck(_v, 135, 0, currVal_69);var currVal_70 = _co.origRecipe.title;_ck(_v, 137, 0, currVal_70);var currVal_71 = _co.origRecipe.summary;_ck(_v, 139, 0, currVal_71);var currVal_72 = !_co.editing;_ck(_v, 140, 0, currVal_72);var currVal_73 = i0.ɵnov(_v, 149).ngClassUntouched;var currVal_74 = i0.ɵnov(_v, 149).ngClassTouched;var currVal_75 = i0.ɵnov(_v, 149).ngClassPristine;var currVal_76 = i0.ɵnov(_v, 149).ngClassDirty;var currVal_77 = i0.ɵnov(_v, 149).ngClassValid;var currVal_78 = i0.ɵnov(_v, 149).ngClassInvalid;var currVal_79 = i0.ɵnov(_v, 149).ngClassPending;_ck(_v, 144, 0, currVal_73, currVal_74, currVal_75, currVal_76, currVal_77, currVal_78, currVal_79);var currVal_81 = i0.ɵnov(_v, 158).ngClassUntouched;var currVal_82 = i0.ɵnov(_v, 158).ngClassTouched;var currVal_83 = i0.ɵnov(_v, 158).ngClassPristine;var currVal_84 = i0.ɵnov(_v, 158).ngClassDirty;var currVal_85 = i0.ɵnov(_v, 158).ngClassValid;var currVal_86 = i0.ɵnov(_v, 158).ngClassInvalid;var currVal_87 = i0.ɵnov(_v, 158).ngClassPending;_ck(_v, 153, 0, currVal_81, currVal_82, currVal_83, currVal_84, currVal_85, currVal_86, currVal_87);var currVal_90 = _co.marked(_co.origRecipe.description);_ck(_v, 172, 0, currVal_90);var currVal_91 = !_co.editing;_ck(_v, 173, 0, currVal_91);var currVal_92 = i0.ɵnov(_v, 181).ngClassUntouched;var currVal_93 = i0.ɵnov(_v, 181).ngClassTouched;var currVal_94 = i0.ɵnov(_v, 181).ngClassPristine;var currVal_95 = i0.ɵnov(_v, 181).ngClassDirty;var currVal_96 = i0.ɵnov(_v, 181).ngClassValid;var currVal_97 = i0.ɵnov(_v, 181).ngClassInvalid;var currVal_98 = i0.ɵnov(_v, 181).ngClassPending;_ck(_v, 176, 0, currVal_92, currVal_93, currVal_94, currVal_95, currVal_96, currVal_97, currVal_98);var currVal_100 = _co.origRecipe.steps.length;_ck(_v, 184, 0, currVal_100);var currVal_101 = !_co.editing;_ck(_v, 187, 0, currVal_101);var currVal_103 = _co.editing;_ck(_v, 192, 0, currVal_103);var currVal_104 = i0.ɵnov(_v, 194).target;var currVal_105 = i0.ɵnov(_v, 194).href;_ck(_v, 193, 0, currVal_104, currVal_105);var currVal_108 = _co.activeStep !== "finish";_ck(_v, 198, 0, currVal_108);var currVal_110 = !_co.editing;_ck(_v, 203, 0, currVal_110);var currVal_111 = i0.ɵnov(_v, 211).ngClassUntouched;var currVal_112 = i0.ɵnov(_v, 211).ngClassTouched;var currVal_113 = i0.ɵnov(_v, 211).ngClassPristine;var currVal_114 = i0.ɵnov(_v, 211).ngClassDirty;var currVal_115 = i0.ɵnov(_v, 211).ngClassValid;var currVal_116 = i0.ɵnov(_v, 211).ngClassInvalid;var currVal_117 = i0.ɵnov(_v, 211).ngClassPending;_ck(_v, 206, 0, currVal_111, currVal_112, currVal_113, currVal_114, currVal_115, currVal_116, currVal_117);var currVal_119 = !_co.origRecipe.finishText;_ck(_v, 212, 0, currVal_119);
     });
 }
 function View_RecipeComponent_0(_l) {
@@ -4919,6 +4919,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+var PARAM_DEPTH_FOR_EDITOR = 3;
 var NEW_WORKFLOW_DESCRIPTION = ("\nUse the text editor to write a description of what your workflow\nwill cover. You can use\n[markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)\n\nTo add the first step, click the  <i class=\"fa fa-plus\"></i>  icon in the progress bar above.\n\nIf you want to see how your workflow looks, open the menu\n<code><i class=\"fa fa-caret-down\"></i></code>\nabove the progress bar (next to the title) and click `Preview`.\nTo come back to the editor, click `Edit` in the same menu.\n\nOnce you're done, open the menu\nabove the progress bar and click `Save`. We'll open a pull request in\n[" + window.config.github.repo + "](https://github.com/" + window.config.github.repo + ")\nwhich adds the new workflow. It will go live shortly after being merged.\n\nOnce it's saved to GitHub, you can always come back to your workflow by clicking the\n`Load` button in the same menu. You can get the URL for your saved workflow\nby going to the pull request you generated, choosing the recipe's `readme.md`\nfile, and clicking 'Raw'.\n").trim();
 var RecipeComponent = /** @class */ (function () {
     function RecipeComponent(route, router, routes, utils, tracker, secrets, menu, openapi, github) {
@@ -4951,8 +4952,8 @@ var RecipeComponent = /** @class */ (function () {
         return -1;
     };
     RecipeComponent.prototype.ngOnChanges = function () {
-        if (this.name && this.recipe !== this.recipes[this.name]) {
-            this.recipe = this.recipes[this.name];
+        if (this.name && this.origRecipe !== this.recipes[this.name]) {
+            this.origRecipe = this.recipes[this.name];
             this.initializeRecipe();
         }
     };
@@ -4964,7 +4965,7 @@ var RecipeComponent = /** @class */ (function () {
         this.subscriptions.push(this.route.params.subscribe(function (params) {
             if (params['recipe'] && params['recipe'] !== _this.name) {
                 window.RECIPE_NAME = _this.name = params['recipe'];
-                _this.recipe = _this.recipes[_this.name];
+                _this.origRecipe = _this.recipes[_this.name];
                 _this.initializeRecipe();
             }
             else if (params['previewURL'] && _this.previewURL !== params['previewURL']) {
@@ -4974,8 +4975,8 @@ var RecipeComponent = /** @class */ (function () {
                 window.jQuery('body').removeClass('modal-open');
                 window.jQuery('.modal-backdrop').remove();
             }
-            else if (_this.route.snapshot.url[0].path === 'new-workflow' && !_this.recipe) {
-                _this.recipe = {
+            else if (_this.route.snapshot.url[0].path === 'new-workflow' && !_this.origRecipe) {
+                _this.origRecipe = {
                     title: 'New Workflow',
                     description: NEW_WORKFLOW_DESCRIPTION,
                     steps: [],
@@ -4988,7 +4989,7 @@ var RecipeComponent = /** @class */ (function () {
             }
             else if (params['step'] !== undefined) {
                 var step = +params['step'] - 1;
-                _this.activeStep = _this.recipe.steps[step];
+                _this.activeStep = (_this.editing ? _this.origRecipe : _this.recipe).steps[step];
                 if (!_this.activeStep)
                     return _this.navigateToStep('intro');
             }
@@ -5002,6 +5003,15 @@ var RecipeComponent = /** @class */ (function () {
             _this.error = null;
             _this.menuExpanded = false;
         }));
+    };
+    RecipeComponent.prototype.startEditing = function () {
+        this.navigateToStep('intro');
+        this.editing = this.edited = true;
+    };
+    RecipeComponent.prototype.stopEditing = function () {
+        this.navigateToStep('intro');
+        this.initializeRecipe();
+        this.editing = false;
     };
     RecipeComponent.prototype.executeStep = function () {
         var _this = this;
@@ -5078,7 +5088,7 @@ var RecipeComponent = /** @class */ (function () {
     };
     RecipeComponent.prototype.setParameterValuesForActiveStep = function () {
         var _this = this;
-        if (!this.activeStep || typeof this.activeStep === 'string')
+        if (this.editing || !this.activeStep || typeof this.activeStep === 'string')
             return;
         var activeState = this.stepStates[this.recipe.steps.indexOf(this.activeStep)];
         if (!this.activeStep.apiCall && !this.activeStep.demoHTML) {
@@ -5144,6 +5154,7 @@ var RecipeComponent = /** @class */ (function () {
             console.log('OpenAPI not loaded yet, waiting...');
             return setTimeout(function () { return _this.initializeRecipe(); }, 100);
         }
+        this.recipe = JSON.parse(JSON.stringify(this.origRecipe));
         this.stepStates = this.recipe.steps.map(function (s) { return ({ answers: {} }); });
         this.recipe.steps
             .filter(function (s) { return s.apiCall; })
@@ -5193,57 +5204,12 @@ var RecipeComponent = /** @class */ (function () {
         this.setParameterValuesForActiveStep();
         this.setTemplateInput();
     };
-    RecipeComponent.prototype.deinitializeRecipe = function () {
-        var deinit = Object.assign({}, this.recipe);
-        deinit.steps = this.recipe.steps
-            .map(function (step, stepIdx) {
-            var newStep = Object.assign({}, step);
-            if (!step.apiCall || !step.parameters)
-                return newStep;
-            var op = step.apiCall.operation;
-            newStep.apiCall = { path: step.apiCall.path, method: step.apiCall.method };
-            var hasOneEditedParam = false;
-            newStep.parameters = step.ignoreParameters ? undefined : step.parameters.map(function (param, paramIdx) {
-                var newParam = Object.assign({}, param);
-                if (typeof param.group === 'object') {
-                    newParam.group = param.group.name;
-                    return newParam;
-                }
-                var opParam = op.parameters.filter(function (p) { return p.name === param.name; })[0];
-                if (opParam && opParam.schema && newParam.schema) {
-                    newParam.schema = newParam.origSchema;
-                    delete newParam.origSchema;
-                }
-                for (var key in param) {
-                    if (key === 'name')
-                        continue;
-                    if (key.indexOf('x-') === 0) {
-                        var nonX = key.substring(2);
-                        if (nonX in param)
-                            delete newParam[nonX];
-                    }
-                    if (opParam && param[key] === opParam[key]) {
-                        delete newParam[key];
-                    }
-                }
-                hasOneEditedParam = hasOneEditedParam || Object.keys(newParam).length > 1;
-                return newParam;
-            });
-            var numParams = step.parameters.length + (step.ignoreParameters || []).length;
-            var numOpParams = op.parameters.filter(function (p) { return !p.global; }).length;
-            if (numParams === numOpParams && !hasOneEditedParam) {
-                delete newStep.parameters;
-            }
-            return newStep;
-        });
-        return deinit;
-    };
     RecipeComponent.prototype.initializeRecipeFromURL = function (url) {
         var _this = this;
         this.previewURL = url;
         window.jQuery.get(url)
             .done(function (data) {
-            _this.recipe = _this.utils.markdownToRecipe(data);
+            _this.origRecipe = _this.utils.markdownToRecipe(data);
             _this.name = url.match(/.*\/([^\/]+)\/readme.md$/)[1];
             _this.activeStep = 'intro';
             _this.initializeRecipe();
@@ -5287,7 +5253,7 @@ var RecipeComponent = /** @class */ (function () {
         });
     };
     RecipeComponent.prototype.setTemplateInput = function () {
-        if (!this.activeStep || typeof this.activeStep === 'string')
+        if (this.editing || !this.activeStep || typeof this.activeStep === 'string')
             return;
         var curStepState = this.stepStates[this.recipe.steps.indexOf(this.activeStep)];
         this.templateInput = {
@@ -5317,12 +5283,79 @@ var RecipeComponent = /** @class */ (function () {
         var newStep = {
             title: 'New Step',
         };
-        if (!this.recipe.steps.length) {
+        if (!this.origRecipe.steps.length) {
             newStep.description = "\n## Adding your first step\nEach step of the recipe should describe a single task, usually an API call.\nUse this area to tell the user what's happening, and how this step relates to the\nworkflow as a whole.\n\nBelow, you can select an API call that the user will make in this step.\nBy default, all of it's parameters will be available to the user, but you can also\nadd them manually.\n\nIn later steps, you can use the 'Dynamic Value' section under each parameter\nif you want to auto-fill the input using the users's answer from a previous\nstep, or a field in the API response (JSON only).\n\nIf you're making an API call, we'll auto-generate sample code in a few different\nprogramming languages. You can also manually add code using the 'Sample Code' box below.\n\nIn manually entered sample code, you can use EJS to create templates that utilize\nthe user's answers in the Parameters box, or fields from the API response. For example:\n\n```\nvar myName = \"<%- answers.name %>\";\n```\n\nAt the bottom of the page, you can also include an HTML demo which will be displayed\nin an iframe. This too can be an EJS template that utilizes the user's inputs or\nAPI response. For example:\n\n```\n<h2>Search results</h2>\n<% if (response) { -%>\n<%   for (var i = 0; i < response.length; ++i) { -%>\n  <h4><%- response[i].title %></h4>\n  <p><%- response[i].description %></p>\n<%   } -%>\n<% } -%>\n```\n".trim();
         }
-        this.recipe.steps.push(newStep);
+        this.origRecipe.steps.push(newStep);
         this.stepStates.push({ answers: {} });
-        this.navigateToStep(this.recipe.steps.length - 1);
+        this.navigateToStep(this.origRecipe.steps.length - 1);
+    };
+    RecipeComponent.prototype.getFlatParameters = function (step) {
+        var params = step.parameters.map(function (p) { return p; });
+        var bodyParam = params.find(function (p) { return p.schema; });
+        if (!bodyParam)
+            return params;
+        var expandForSchema = function (base, schema, depth) {
+            Object.keys(schema.properties).forEach(function (p) {
+                var param = schema.properties[p];
+                param.name = base + '.' + p;
+                params.push(param);
+                if (depth > 0 && schema.properties[p].properties) {
+                    expandForSchema(base + '.' + p, schema.properties[p], depth - 1);
+                }
+            });
+        };
+        expandForSchema('body', bodyParam.schema, PARAM_DEPTH_FOR_EDITOR);
+        window.flats = params;
+        return params;
+    };
+    RecipeComponent.prototype.getAddableParameters = function (step) {
+        var _this = this;
+        if (!step.apiCall)
+            return [];
+        var op = this.openapi.parsed.paths[step.apiCall.path][step.apiCall.method];
+        var params = op.parameters.map(function (p) { return p.name; });
+        var body = op.parameters.find(function (p) { return p.in === 'body' && !p['x-global']; });
+        if (!body || !body.schema)
+            return params;
+        var expandForSchema = function (base, schema, depth) {
+            if (schema.$ref)
+                schema = _this.openapi.resolveReference(schema.$ref);
+            if (!schema.properties)
+                return;
+            Object.keys(schema.properties).forEach(function (p) {
+                params.push(base + '.' + p);
+                if (depth > 0) {
+                    expandForSchema(base + '.' + p, schema.properties[p], depth - 1);
+                }
+            });
+        };
+        expandForSchema('body', body.schema, PARAM_DEPTH_FOR_EDITOR);
+        return params;
+    };
+    RecipeComponent.prototype.addParameterToStep = function (name, step) {
+        console.log('add param', name);
+        step.parameters = step.parameters || [];
+        if (name.indexOf('body.') === 0) {
+            var bodyParam = step.parameters.find(function (p) { return p.schema; });
+            if (!bodyParam) {
+                bodyParam = { name: 'body', schema: { type: 'object', properties: {} } };
+                step.parameters.push(bodyParam);
+            }
+            var parts = name.split('.');
+            parts.shift();
+            var schema = bodyParam.schema;
+            for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+                var part = parts_1[_i];
+                schema.type = schema.type || 'object';
+                schema.properties = schema.properties || {};
+                schema = schema.properties[part] = schema.properties[part] || {};
+            }
+            console.log('added', parts, bodyParam);
+        }
+        else {
+            step.parameters.push({ name: name });
+        }
     };
     RecipeComponent.prototype.addAssetToUpload = function (evt) {
         var _this = this;
@@ -5356,11 +5389,11 @@ var RecipeComponent = /** @class */ (function () {
         this.saving = true;
         this.saveSuccess = false;
         if (!this.name)
-            this.name = this.recipe.title.replace(/\W/g, '_').replace(/_+/g, '_').toLowerCase();
+            this.name = this.origRecipe.title.replace(/\W/g, '_').replace(/_+/g, '_').toLowerCase();
         var repoPath = '/repos/' + window.config.github.repo;
         var filePath = '/contents/' + window.config.workflowDirectory + '/' + this.name + '/readme.md';
         var fork = null;
-        var recipeMarkdown = this.utils.recipeToMarkdown(this.deinitializeRecipe());
+        var recipeMarkdown = this.utils.recipeToMarkdown(this.origRecipe);
         var promise = this.github.post(repoPath + '/forks')
             .then(function (repo) {
             fork = repo;
@@ -7722,6 +7755,7 @@ var MenuService = /** @class */ (function () {
         if (needsInit) {
             this.clearNavigation();
             this.items = initializeNavigation(nav, window.config, this.openapi.parsed) || [];
+            this.routes.setCurrentNavigation(this.items);
             this.search.setItems(this.items);
             this.setTags();
         }
@@ -8654,6 +8688,9 @@ var RoutesService = /** @class */ (function () {
             nav = window.config[nav];
         return nav;
     };
+    RoutesService.prototype.setCurrentNavigation = function (nav) {
+        this.getCurrentRoute().navigation = nav;
+    };
     RoutesService.prototype.getPathParts = function (path) {
         if (path === void 0) { path = ''; }
         if (path.charAt(0) === '/')
@@ -8678,7 +8715,8 @@ var RoutesService = /** @class */ (function () {
     };
     RoutesService.prototype.getAPICallLink = function (apiCall, docsOrConsole) {
         var link = this.getLink(docsOrConsole);
-        var route = window.config.routes[link[0]];
+        var base = this.getBasePath(link);
+        var route = window.config.routes[base];
         if (typeof route.navigation === 'string') {
             route.navigation = window.config[route.navigation];
         }
@@ -8696,7 +8734,7 @@ var RoutesService = /** @class */ (function () {
         }
         var sublink = getLink(route.navigation);
         if (!sublink)
-            throw new Error("nav not found for " + apiCall);
+            throw new Error("nav not found for " + apiCall.method + ' ' + apiCall.path);
         return link.concat(sublink.path.substring(1).split('/'));
     };
     RoutesService.prototype.getNavigationLink = function (path) {
