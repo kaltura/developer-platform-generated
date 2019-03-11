@@ -5209,7 +5209,6 @@ var RecipeComponent = /** @class */ (function () {
                     .filter(function (k) { return param[k] === undefined; })
                     .forEach(function (k) { return param[k] = opParam[k]; });
                 if (!usingDefaultParameters && param.schema) {
-                    param.origSchema = JSON.parse(JSON.stringify(param.schema));
                     _this.openapi.fillSchema(param.schema, opParam.schema);
                 }
             });
@@ -5330,11 +5329,15 @@ var RecipeComponent = /** @class */ (function () {
                     var name = base + '.' + p;
                     var details = bigSchema.properties[p];
                     if (!details) {
-                        var subs_1 = [];
-                        [bigSchema.allOf, bigSchema.oneOf, bigSchema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_1 = subs_1.concat(s); });
-                        subs_1.forEach(function (sub) {
-                            expandForSchema(base, smallSchema, sub, depth - 1);
-                        });
+                        if (depth > 0) {
+                            var subs_1 = [];
+                            [bigSchema.allOf, bigSchema.oneOf, bigSchema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_1 = subs_1.concat(s); });
+                            subs_1.forEach(function (sub) {
+                                if (params.length && params[params.length - 1].name === name)
+                                    return;
+                                expandForSchema(base, smallSchema, sub, depth - 1);
+                            });
+                        }
                     }
                     else {
                         details.name = name;
@@ -8576,7 +8579,7 @@ var OpenAPIService = /** @class */ (function () {
                 continue;
             if (subschema.$ref)
                 subschema = this.resolveReference(subschema.$ref);
-            smaller.properties[key] = Object.assign({}, subschema, smaller.properties[key], { $ref: undefined });
+            smaller.properties[key] = Object.assign({}, subschema, smaller.properties[key], { $ref: undefined, allOf: undefined, anyOf: undefined, oneOf: undefined });
             this.fillSchema(smaller.properties[key], subschema);
         }
     };
