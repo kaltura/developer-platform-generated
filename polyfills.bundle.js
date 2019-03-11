@@ -3629,12 +3629,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   /* global document */
   var domAll = typeof document === 'undefined' || !document ? null : document.all;
-  /* jshint eqnull:true */
   var isNullOrUndefined = domAll == null ? function isNullOrUndefined(x) {
-    /* jshint eqnull:true */
     return x == null;
   } : function isNullOrUndefinedAndNotDocumentAll(x) {
-    /* jshint eqnull:true */
     return x == null && x !== domAll;
   };
 
@@ -4776,9 +4773,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         if (receiver instanceof NumberShim && !valueOfSucceeds) {
           return new OrigNumber(primValue);
         }
-        /* jshint newcap: false */
         return OrigNumber(primValue);
-        /* jshint newcap: true */
       };
       return NumberShim;
     }();
@@ -4793,10 +4788,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     });
     /* globals Number: true */
     /* eslint-disable no-undef, no-global-assign */
-    /* jshint -W020 */
     Number = NumberShim;
     Value.redefine(globals, 'Number', NumberShim);
-    /* jshint +W020 */
     /* eslint-enable no-undef, no-global-assign */
     /* globals Number: false */
   }
@@ -4829,7 +4822,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   // implementations skipped holes in sparse arrays. (Note that the
   // implementations of find/findIndex indirectly use shimmed
   // methods of Number, so this test has to happen down here.)
-  /*jshint elision: true */
   /* eslint-disable no-sparse-arrays */
   if ([, 1].find(function () {
     return true;
@@ -4842,7 +4834,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     overrideNative(Array.prototype, 'findIndex', ArrayPrototypeShims.findIndex);
   }
   /* eslint-enable no-sparse-arrays */
-  /*jshint elision: false */
 
   var isEnumerableOn = Function.bind.call(Function.bind, Object.prototype.propertyIsEnumerable);
   var ensureEnumerable = function ensureEnumerable(obj, prop) {
@@ -5234,10 +5225,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     });
     /* globals RegExp: true */
     /* eslint-disable no-undef, no-global-assign */
-    /* jshint -W020 */
     RegExp = RegExpShim;
     Value.redefine(globals, 'RegExp', RegExpShim);
-    /* jshint +W020 */
     /* eslint-enable no-undef, no-global-assign */
     /* globals RegExp: false */
   }
@@ -5643,11 +5632,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       };
     };
     /*global process */
-    /* jscs:disable disallowMultiLineTernary */
     var enqueue = ES.IsCallable(globals.setImmediate) ? globals.setImmediate : (typeof process === 'undefined' ? 'undefined' : _typeof(process)) === 'object' && process.nextTick ? process.nextTick : makePromiseAsap() || (ES.IsCallable(makeZeroTimeout) ? makeZeroTimeout() : function (task) {
       setTimeout(task, 0);
     }); // fallback
-    /* jscs:enable disallowMultiLineTernary */
 
     // Constants for Promise implementation
     var PROMISE_IDENTITY = function PROMISE_IDENTITY(x) {
@@ -6111,9 +6098,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     if (!promiseSupportsSubclassing || !promiseIgnoresNonFunctionThenCallbacks || !promiseRequiresObjectContext || promiseResolveBroken || !getsThenSynchronously || hasBadResolverPromise) {
       /* globals Promise: true */
       /* eslint-disable no-undef, no-global-assign */
-      /* jshint -W020 */
       Promise = PromiseShim;
-      /* jshint +W020 */
       /* eslint-enable no-undef, no-global-assign */
       /* globals Promise: false */
       overrideNative(globals, 'Promise', PromiseShim);

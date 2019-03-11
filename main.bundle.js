@@ -3617,11 +3617,11 @@ var ParameterComponent = /** @class */ (function () {
                 }
             }));
         }
-        if (this.parameter.in === 'body' && this.parameter.consumes.indexOf('application/json') !== -1) {
+        if (this.parameter.in === 'body' && (this.parameter.consumes || []).indexOf('application/json') !== -1) {
             var startval = this.model[this.parameter.name];
             this.setContentType('application/json');
         }
-        else if (this.parameter.in === 'body') {
+        else if (this.parameter.in === 'body' && this.parameter.consumes) {
             this.setContentType(this.parameter.consumes[0]);
         }
     };
@@ -4221,7 +4221,7 @@ function View_RecipeComponent_21(_l) {
 function View_RecipeComponent_29(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
-            var pd_0 = (_v.parent.parent.parent.context.$implicit.dynamicValue.fromStep = _v.context.index) !== false;
+            var pd_0 = (_v.parent.parent.parent.context.$implicit.parameter.dynamicValue.fromStep = _v.context.index) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
@@ -4231,8 +4231,8 @@ function View_RecipeComponent_29(_l) {
 function View_RecipeComponent_31(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "li", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
-            _v.parent.parent.parent.parent.context.$implicit.dynamicValue.answer = _v.context.$implicit.name;
-            var pd_0 = (_v.parent.parent.parent.parent.context.$implicit.dynamicValue.value = undefined) !== false;
+            _v.parent.parent.parent.parent.context.$implicit.parameter.dynamicValue.answer = _v.context.$implicit.name;
+            var pd_0 = (_v.parent.parent.parent.parent.context.$implicit.parameter.dynamicValue.value = undefined) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵted(2, null, ["", ""]))], null, function (_ck, _v) {
@@ -4241,9 +4241,9 @@ function View_RecipeComponent_31(_l) {
 }
 function View_RecipeComponent_30(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 9, "div", [["class", "col-xs-4"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Answer"])), (_l()(), i0.ɵeld(3, 0, null, null, 6, "div", [["class", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 2, "a", [["class", "btn btn-link dropdown-toggle"], ["data-toggle", "dropdown"]], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵeld(6, 0, null, null, 0, "i", [["class", "fa fa-right fa-caret-down"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 2, "ul", [["class", "dropdown-menu"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_31)), i0.ɵdid(9, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_1 = _co.origRecipe.steps[_v.parent.parent.parent.context.$implicit.dynamicValue.fromStep].parameters;_ck(_v, 9, 0, currVal_1);
+        var _co = _v.component;var currVal_1 = _co.origRecipe.steps[_v.parent.parent.parent.context.$implicit.parameter.dynamicValue.fromStep].parameters;_ck(_v, 9, 0, currVal_1);
     }, function (_ck, _v) {
-        var currVal_0 = _v.parent.parent.parent.context.$implicit.dynamicValue.answer;_ck(_v, 5, 0, currVal_0);
+        var currVal_0 = _v.parent.parent.parent.context.$implicit.parameter.dynamicValue.answer;_ck(_v, 5, 0, currVal_0);
     });
 }
 function View_RecipeComponent_28(_l) {
@@ -4261,61 +4261,47 @@ function View_RecipeComponent_28(_l) {
             var pd_3 = i0.ɵnov(_v, 15)._compositionEnd($event.target.value) !== false;
             ad = pd_3 && ad;
         }if ("ngModelChange" === en) {
-            var pd_4 = (_v.parent.parent.context.$implicit.dynamicValue.value = $event) !== false;
+            var pd_4 = (_v.parent.parent.context.$implicit.parameter.dynamicValue.value = $event) !== false;
             ad = pd_4 && ad;
         }if ("ngModelChange" === en) {
-            var pd_5 = (_v.parent.parent.context.$implicit.dynamicValue.answer = undefined) !== false;
+            var pd_5 = (_v.parent.parent.context.$implicit.parameter.dynamicValue.answer = undefined) !== false;
             ad = pd_5 && ad;
         }return ad;
     }, null, null)), i0.ɵdid(15, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
         return [p0_0];
     }, [i4.DefaultValueAccessor]), i0.ɵdid(17, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(19, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_30)), i0.ɵdid(21, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_1 = _co.origRecipe.steps;_ck(_v, 10, 0, currVal_1);var currVal_10 = _v.parent.parent.context.$implicit.dynamicValue.value;_ck(_v, 17, 0, currVal_10);var currVal_11 = _v.parent.parent.context.$implicit.dynamicValue.fromStep !== undefined;_ck(_v, 21, 0, currVal_11);
+        var _co = _v.component;var currVal_1 = _co.origRecipe.steps;_ck(_v, 10, 0, currVal_1);var currVal_10 = _v.parent.parent.context.$implicit.parameter.dynamicValue.value;_ck(_v, 17, 0, currVal_10);var currVal_11 = _v.parent.parent.context.$implicit.parameter.dynamicValue.fromStep !== undefined;_ck(_v, 21, 0, currVal_11);
     }, function (_ck, _v) {
-        var currVal_0 = _v.parent.parent.context.$implicit.dynamicValue.fromStep;_ck(_v, 6, 0, currVal_0);var currVal_2 = _v.parent.parent.context.$implicit.dynamicValue.fromStep === undefined;_ck(_v, 11, 0, currVal_2);var currVal_3 = i0.ɵnov(_v, 19).ngClassUntouched;var currVal_4 = i0.ɵnov(_v, 19).ngClassTouched;var currVal_5 = i0.ɵnov(_v, 19).ngClassPristine;var currVal_6 = i0.ɵnov(_v, 19).ngClassDirty;var currVal_7 = i0.ɵnov(_v, 19).ngClassValid;var currVal_8 = i0.ɵnov(_v, 19).ngClassInvalid;var currVal_9 = i0.ɵnov(_v, 19).ngClassPending;_ck(_v, 14, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9);
+        var currVal_0 = _v.parent.parent.context.$implicit.parameter.dynamicValue.fromStep;_ck(_v, 6, 0, currVal_0);var currVal_2 = _v.parent.parent.context.$implicit.parameter.dynamicValue.fromStep === undefined;_ck(_v, 11, 0, currVal_2);var currVal_3 = i0.ɵnov(_v, 19).ngClassUntouched;var currVal_4 = i0.ɵnov(_v, 19).ngClassTouched;var currVal_5 = i0.ɵnov(_v, 19).ngClassPristine;var currVal_6 = i0.ɵnov(_v, 19).ngClassDirty;var currVal_7 = i0.ɵnov(_v, 19).ngClassValid;var currVal_8 = i0.ɵnov(_v, 19).ngClassInvalid;var currVal_9 = i0.ɵnov(_v, 19).ngClassPending;_ck(_v, 14, 0, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7, currVal_8, currVal_9);
     });
 }
 function View_RecipeComponent_27(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 7, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Dynamic Value "])), (_l()(), i0.ɵeld(3, 0, null, null, 2, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;if ("click" === en) {
-            var pd_0 = (_v.parent.context.$implicit.dynamicValue = _v.parent.context.$implicit.dynamicValue ? null : {}) !== false;
+            var pd_0 = (_v.parent.context.$implicit.parameter.dynamicValue = _v.parent.context.$implicit.parameter.dynamicValue ? null : {}) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_28)), i0.ɵdid(7, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null)], function (_ck, _v) {
-        var currVal_1 = _v.parent.context.$implicit.dynamicValue;_ck(_v, 7, 0, currVal_1);
+        var currVal_1 = _v.parent.context.$implicit.parameter.dynamicValue;_ck(_v, 7, 0, currVal_1);
     }, function (_ck, _v) {
-        var currVal_0 = _v.parent.context.$implicit.dynamicValue ? "remove" : "add";_ck(_v, 5, 0, currVal_0);
+        var currVal_0 = _v.parent.context.$implicit.parameter.dynamicValue ? "remove" : "add";_ck(_v, 5, 0, currVal_0);
     });
 }
 function View_RecipeComponent_26(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 17, "div", [["class", "parameter-editor"]], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "label", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 13, "div", [["class", "parameter-editor"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "label", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
-            var pd_0 = _co.removeParameterFromStep(_v.context.$implicit.name, _v.parent.parent.parent.parent.context.$implicit) !== false;
+            var pd_0 = _co.removeParameterFromStep(_v.context.$implicit.parameter.name, _v.parent.parent.parent.parent.context.$implicit) !== false;
             ad = pd_0 && ad;
         }return ad;
-    }, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 0, "i", [["class", "fa fa-left fa-times text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵeld(6, 0, null, null, 8, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Default"])), (_l()(), i0.ɵeld(9, 0, null, null, 5, "input", [["class", "form-control"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], function (_v, en, $event) {
-        var ad = true;if ("input" === en) {
-            var pd_0 = i0.ɵnov(_v, 10)._handleInput($event.target.value) !== false;
+    }, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 0, "i", [["class", "fa fa-left fa-times text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵeld(6, 0, null, null, 4, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Default"])), (_l()(), i0.ɵeld(9, 0, null, null, 1, "parameter", [], null, [[null, "valueChange"]], function (_v, en, $event) {
+        var ad = true;var _co = _v.component;if ("valueChange" === en) {
+            var pd_0 = (_v.context.$implicit.parameter.consoleDefault = _co.defaultModel[_v.context.$implicit.details.name]) !== false;
             ad = pd_0 && ad;
-        }if ("blur" === en) {
-            var pd_1 = i0.ɵnov(_v, 10).onTouched() !== false;
-            ad = pd_1 && ad;
-        }if ("compositionstart" === en) {
-            var pd_2 = i0.ɵnov(_v, 10)._compositionStart() !== false;
-            ad = pd_2 && ad;
-        }if ("compositionend" === en) {
-            var pd_3 = i0.ɵnov(_v, 10)._compositionEnd($event.target.value) !== false;
-            ad = pd_3 && ad;
-        }if ("ngModelChange" === en) {
-            var pd_4 = (_v.context.$implicit.consoleDefault = $event) !== false;
-            ad = pd_4 && ad;
         }return ad;
-    }, null, null)), i0.ɵdid(10, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
-        return [p0_0];
-    }, [i4.DefaultValueAccessor]), i0.ɵdid(12, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(14, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_27)), i0.ɵdid(16, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(17, 0, null, null, 0, "hr", [], null, null, null, null, null))], function (_ck, _v) {
-        var _co = _v.component;var currVal_8 = _v.context.$implicit.consoleDefault;_ck(_v, 12, 0, currVal_8);var currVal_9 = _co.origRecipe.steps.indexOf(_v.parent.parent.parent.parent.context.$implicit) !== 0;_ck(_v, 16, 0, currVal_9);
+    }, i5.View_ParameterComponent_0, i5.RenderType_ParameterComponent)), i0.ɵdid(10, 770048, null, 0, i6.ParameterComponent, [i7.OpenAPIService, i8.SecretService, i9.UtilsService], { inputParameter: [0, "inputParameter"], model: [1, "model"] }, { valueChange: "valueChange" }), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_27)), i0.ɵdid(12, 16384, null, 0, i3.NgIf, [i0.ViewContainerRef, i0.TemplateRef], { ngIf: [0, "ngIf"] }, null), (_l()(), i0.ɵeld(13, 0, null, null, 0, "hr", [], null, null, null, null, null))], function (_ck, _v) {
+        var _co = _v.component;var currVal_2 = _v.context.$implicit.details;var currVal_3 = _co.defaultModel;_ck(_v, 10, 0, currVal_2, currVal_3);var currVal_4 = _co.origRecipe.steps.indexOf(_v.parent.parent.parent.parent.context.$implicit) !== 0;_ck(_v, 12, 0, currVal_4);
     }, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit.name;_ck(_v, 5, 0, currVal_0);var currVal_1 = i0.ɵnov(_v, 14).ngClassUntouched;var currVal_2 = i0.ɵnov(_v, 14).ngClassTouched;var currVal_3 = i0.ɵnov(_v, 14).ngClassPristine;var currVal_4 = i0.ɵnov(_v, 14).ngClassDirty;var currVal_5 = i0.ɵnov(_v, 14).ngClassValid;var currVal_6 = i0.ɵnov(_v, 14).ngClassInvalid;var currVal_7 = i0.ɵnov(_v, 14).ngClassPending;_ck(_v, 9, 0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7);
+        var currVal_0 = _v.context.$implicit.schema == null ? null : _v.context.$implicit.schema.properties;_ck(_v, 0, 0, currVal_0);var currVal_1 = _v.context.$implicit.name;_ck(_v, 5, 0, currVal_1);
     });
 }
 function View_RecipeComponent_32(_l) {
@@ -4349,7 +4335,7 @@ function View_RecipeComponent_25(_l) {
     }, null, null)), i0.ɵdid(11, 16384, null, 0, i4.DefaultValueAccessor, [i0.Renderer2, i0.ElementRef, [2, i4.COMPOSITION_BUFFER_MODE]], null, null), i0.ɵprd(1024, null, i4.NG_VALUE_ACCESSOR, function (p0_0) {
         return [p0_0];
     }, [i4.DefaultValueAccessor]), i0.ɵdid(13, 671744, null, 0, i4.NgModel, [[8, null], [8, null], [8, null], [2, i4.NG_VALUE_ACCESSOR]], { model: [0, "model"] }, { update: "ngModelChange" }), i0.ɵprd(2048, null, i4.NgControl, null, [i4.NgModel]), i0.ɵdid(15, 16384, null, 0, i4.NgControlStatus, [i4.NgControl], null, null), (_l()(), i0.ɵeld(16, 0, null, null, 1, "span", [["class", "input-group-addon"]], null, null, null, null, null)), (_l()(), i0.ɵeld(17, 0, null, null, 0, "i", [["class", "fa fa-search"]], null, null, null, null, null)), (_l()(), i0.ɵand(16777216, null, null, 1, null, View_RecipeComponent_32)), i0.ɵdid(19, 802816, null, 0, i3.NgForOf, [i0.ViewContainerRef, i0.TemplateRef, i0.IterableDiffers], { ngForOf: [0, "ngForOf"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_0 = _co.getFlatParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 2, 0, currVal_0);var currVal_8 = _co.paramSearch;_ck(_v, 13, 0, currVal_8);var currVal_9 = _co.getAddableParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 19, 0, currVal_9);
+        var _co = _v.component;var currVal_0 = _co.flatParameters[_co.origRecipe.steps.indexOf(_v.parent.parent.parent.context.$implicit)];_ck(_v, 2, 0, currVal_0);var currVal_8 = _co.paramSearch;_ck(_v, 13, 0, currVal_8);var currVal_9 = _co.getAddableParameters(_v.parent.parent.parent.context.$implicit);_ck(_v, 19, 0, currVal_9);
     }, function (_ck, _v) {
         var currVal_1 = i0.ɵnov(_v, 15).ngClassUntouched;var currVal_2 = i0.ɵnov(_v, 15).ngClassTouched;var currVal_3 = i0.ɵnov(_v, 15).ngClassPristine;var currVal_4 = i0.ɵnov(_v, 15).ngClassDirty;var currVal_5 = i0.ɵnov(_v, 15).ngClassValid;var currVal_6 = i0.ɵnov(_v, 15).ngClassInvalid;var currVal_7 = i0.ɵnov(_v, 15).ngClassPending;_ck(_v, 10, 0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6, currVal_7);
     });
@@ -4959,6 +4945,7 @@ var RecipeComponent = /** @class */ (function () {
         this.openapi = openapi;
         this.github = github;
         this.recipes = window.config.workflows;
+        this.defaultModel = {};
         this.marked = window.marked;
         this.assetsToUpload = [];
         this.feedback = {};
@@ -5032,6 +5019,7 @@ var RecipeComponent = /** @class */ (function () {
     };
     RecipeComponent.prototype.startEditing = function () {
         this.navigateToStep('intro');
+        this.setFlatParameters();
         this.editing = this.edited = true;
     };
     RecipeComponent.prototype.stopEditing = function () {
@@ -5316,26 +5304,50 @@ var RecipeComponent = /** @class */ (function () {
         this.stepStates.push({ answers: {} });
         this.navigateToStep(this.origRecipe.steps.length - 1);
     };
-    RecipeComponent.prototype.getFlatParameters = function (step) {
-        var params = step.parameters.map(function (p) { return p; });
-        var bodyParam = params.find(function (p) { return p.schema; });
-        if (!bodyParam)
-            return params;
-        var expandForSchema = function (base, schema, depth) {
-            if (!schema.properties)
-                return;
-            Object.keys(schema.properties).forEach(function (p) {
-                var param = schema.properties[p];
-                param.name = base + '.' + p;
-                params.push(param);
-                if (depth > 0 && schema.properties[p].properties) {
-                    expandForSchema(base + '.' + p, schema.properties[p], depth - 1);
-                }
+    RecipeComponent.prototype.setFlatParameters = function () {
+        var _this = this;
+        this.flatParameters = [];
+        this.origRecipe.steps.forEach(function (step, stepIdx) {
+            var op = step.apiCall ? _this.openapi.parsed.paths[step.apiCall.path][step.apiCall.method] : null;
+            var params = step.parameters.map(function (p) {
+                return {
+                    parameter: p,
+                    name: p.name,
+                    details: op ? op.parameters.find(function (opP) { return p.name === opP.name; }) : p,
+                    schema: p.schema,
+                };
             });
-        };
-        expandForSchema('body', bodyParam.schema, PARAM_DEPTH_FOR_EDITOR);
-        window.flats = params;
-        return params;
+            var bodyParam = params.find(function (p) { return p.details.schema; });
+            if (!bodyParam)
+                return params;
+            var expandForSchema = function (base, smallSchema, bigSchema, depth) {
+                if (!smallSchema.properties)
+                    return;
+                Object.keys(smallSchema.properties).forEach(function (p) {
+                    var param = smallSchema.properties[p];
+                    if (bigSchema.$ref)
+                        bigSchema = _this.openapi.resolveReference(bigSchema.$ref);
+                    var name = base + '.' + p;
+                    var details = bigSchema.properties[p];
+                    if (!details) {
+                        var subs_1 = [];
+                        [bigSchema.allOf, bigSchema.oneOf, bigSchema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_1 = subs_1.concat(s); });
+                        subs_1.forEach(function (sub) {
+                            expandForSchema(base, smallSchema, sub, depth - 1);
+                        });
+                    }
+                    else {
+                        details.name = name;
+                        params.push({ parameter: param, schema: param, details: details, name: name });
+                    }
+                    if (depth > 0) {
+                        expandForSchema(name, smallSchema.properties[p], bigSchema.properties[p], depth - 1);
+                    }
+                });
+            };
+            expandForSchema('body', bodyParam.parameter.schema, bodyParam.details.schema, PARAM_DEPTH_FOR_EDITOR);
+            _this.flatParameters.push(params);
+        });
     };
     RecipeComponent.prototype.getAddableParameters = function (step) {
         var _this = this;
@@ -5352,9 +5364,9 @@ var RecipeComponent = /** @class */ (function () {
             if (!schema.properties)
                 return;
             if (depth > 0) {
-                var subs_1 = [];
-                [schema.allOf, schema.oneOf, schema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_1 = subs_1.concat(s); });
-                subs_1.forEach(function (subschema) {
+                var subs_2 = [];
+                [schema.allOf, schema.oneOf, schema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_2 = subs_2.concat(s); });
+                subs_2.forEach(function (subschema) {
                     expandForSchema(base, subschema, depth - 1);
                 });
             }
@@ -5394,6 +5406,7 @@ var RecipeComponent = /** @class */ (function () {
         else {
             step.parameters.push({ name: name });
         }
+        this.setFlatParameters();
     };
     RecipeComponent.prototype.removeParameterFromStep = function (name, step) {
         if (name.indexOf('body.') === 0) {
