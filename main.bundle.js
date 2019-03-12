@@ -4290,7 +4290,7 @@ function View_RecipeComponent_27(_l) {
 function View_RecipeComponent_26(_l) {
     return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 13, "div", [["class", "parameter-editor"]], [[8, "hidden", 0]], null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 4, "label", [], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "a", [], null, [[null, "click"]], function (_v, en, $event) {
         var ad = true;var _co = _v.component;if ("click" === en) {
-            var pd_0 = _co.removeParameterFromStep(_v.context.$implicit.parameter.name, _v.parent.parent.parent.parent.context.$implicit) !== false;
+            var pd_0 = _co.removeParameterFromStep(_v.context.$implicit.name, _v.parent.parent.parent.parent.context.$implicit) !== false;
             ad = pd_0 && ad;
         }return ad;
     }, null, null)), (_l()(), i0.ɵeld(3, 0, null, null, 0, "i", [["class", "fa fa-left fa-times text-danger"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(5, null, ["", ""])), (_l()(), i0.ɵeld(6, 0, null, null, 4, "div", [["class", "form-group"]], null, null, null, null, null)), (_l()(), i0.ɵeld(7, 0, null, null, 1, "label", [["class", "small"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["Default"])), (_l()(), i0.ɵeld(9, 0, null, null, 1, "parameter", [], null, [[null, "valueChange"]], function (_v, en, $event) {
@@ -5320,29 +5320,18 @@ var RecipeComponent = /** @class */ (function () {
             if (!bodyParam)
                 return params;
             var expandForSchema = function (base, smallSchema, bigSchema, depth) {
-                if (!smallSchema.properties)
+                if (!bigSchema || !smallSchema || !smallSchema.properties)
                     return;
+                if (bigSchema.$ref)
+                    bigSchema = _this.openapi.resolveReference(bigSchema.$ref);
                 Object.keys(smallSchema.properties).forEach(function (p) {
                     var param = smallSchema.properties[p];
-                    if (bigSchema.$ref)
-                        bigSchema = _this.openapi.resolveReference(bigSchema.$ref);
                     var name = base + '.' + p;
-                    var details = bigSchema.properties[p];
-                    if (!details) {
-                        if (depth > 0) {
-                            var subs_1 = [];
-                            [bigSchema.allOf, bigSchema.oneOf, bigSchema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_1 = subs_1.concat(s); });
-                            subs_1.forEach(function (sub) {
-                                if (params.length && params[params.length - 1].name === name)
-                                    return;
-                                expandForSchema(base, smallSchema, sub, depth - 1);
-                            });
-                        }
-                    }
-                    else {
-                        details.name = name;
-                        params.push({ parameter: param, schema: param, details: details, name: name });
-                    }
+                    var details = _this.openapi.findProperty(bigSchema, p);
+                    if (!details)
+                        return;
+                    details.name = name;
+                    params.push({ parameter: param, schema: param, details: details, name: name });
                     if (depth > 0) {
                         expandForSchema(name, smallSchema.properties[p], bigSchema.properties[p], depth - 1);
                     }
@@ -5367,9 +5356,9 @@ var RecipeComponent = /** @class */ (function () {
             if (!schema.properties)
                 return;
             if (depth > 0) {
-                var subs_2 = [];
-                [schema.allOf, schema.oneOf, schema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_2 = subs_2.concat(s); });
-                subs_2.forEach(function (subschema) {
+                var subs_1 = [];
+                [schema.allOf, schema.oneOf, schema.anyOf].filter(function (s) { return s; }).forEach(function (s) { return subs_1 = subs_1.concat(s); });
+                subs_1.forEach(function (subschema) {
                     expandForSchema(base, subschema, depth - 1);
                 });
             }
@@ -5428,6 +5417,7 @@ var RecipeComponent = /** @class */ (function () {
         else {
             step.parameters = step.parameters.filter(function (s) { return s.name !== name; });
         }
+        this.setFlatParameters();
     };
     RecipeComponent.prototype.addAssetToUpload = function (evt) {
         var _this = this;
@@ -8581,6 +8571,26 @@ var OpenAPIService = /** @class */ (function () {
                 subschema = this.resolveReference(subschema.$ref);
             smaller.properties[key] = Object.assign({}, subschema, smaller.properties[key], { $ref: undefined, allOf: undefined, anyOf: undefined, oneOf: undefined });
             this.fillSchema(smaller.properties[key], subschema);
+        }
+    };
+    OpenAPIService.prototype.findProperty = function (schema, key, checked) {
+        var _this = this;
+        if (checked === void 0) { checked = []; }
+        if (schema.$ref)
+            schema = this.resolveReference(schema.$ref);
+        if (schema.properties && schema.properties[key])
+            return schema.properties[key];
+        var subs = [];
+        [schema.allOf, schema.anyOf, schema.oneOf].filter(function (s) { return s; })
+            .map(function (s) { return s.$ref ? _this.resolveReference(s.$ref) : s; })
+            .filter(function (s) { return checked.indexOf(s) === -1; })
+            .forEach(function (s) { return subs = subs.concat(s); });
+        checked = checked.concat(subs);
+        for (var _i = 0, subs_1 = subs; _i < subs_1.length; _i++) {
+            var sub = subs_1[_i];
+            var prop = this.findProperty(sub, key, checked);
+            if (prop)
+                return prop;
         }
     };
     return OpenAPIService;
