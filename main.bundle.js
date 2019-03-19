@@ -4999,8 +4999,8 @@ var RecipeComponent = /** @class */ (function () {
                     description: NEW_WORKFLOW_DESCRIPTION,
                     steps: [],
                 };
-                _this.editing = _this.edited = true;
                 _this.initializeRecipe();
+                _this.startEditing();
             }
             if (params['step'] === 'intro' || params['step'] === 'finish') {
                 _this.activeStep = params['step'];
@@ -5335,6 +5335,8 @@ var RecipeComponent = /** @class */ (function () {
                     var details = _this.openapi.findProperty(bigSchema, p);
                     if (!details)
                         return;
+                    if (details.$ref)
+                        details = _this.openapi.resolveReference(details.$ref);
                     details.name = name;
                     params.push({ parameter: param, schema: param, details: details, name: name });
                     if (depth > 0) {
@@ -5384,7 +5386,7 @@ var RecipeComponent = /** @class */ (function () {
     };
     RecipeComponent.prototype.addParameterToStep = function (name, step) {
         step.parameters = step.parameters || [];
-        if (name.indexOf('body.') === 0) {
+        if (name.indexOf('body.') === 0 || name === 'body') {
             var bodyParam = step.parameters.find(function (p) { return p.schema; });
             if (!bodyParam) {
                 bodyParam = { name: 'body', schema: { type: 'object', properties: {} } };
@@ -8559,22 +8561,52 @@ var OpenAPIService = /** @class */ (function () {
     OpenAPIService.prototype.startOAuth = function (securityDefinition, scopes) {
         return this.secrets.startOAuth(this.parsed.host, (this.currentVersion || {}).client_id, securityDefinition, scopes);
     };
-    OpenAPIService.prototype.fillSchema = function (smaller, schema) {
+    OpenAPIService.prototype.fillSchema = function (smaller, schema, checked, recursive) {
         var _this = this;
+        if (checked === void 0) { checked = []; }
+        if (recursive === void 0) { recursive = true; }
         if (schema.$ref)
             schema = this.resolveReference(schema.$ref);
         if (!smaller.properties)
             return;
-        (schema.allOf || []).forEach(function (subschema) {
-            _this.fillSchema(smaller, subschema);
-        });
+        if (checked.indexOf(schema) !== -1)
+            return;
+        checked.push(schema);
+        if (recursive) {
+            var subs_1 = [];
+            [schema.anyOf, schema.oneOf].filter(function (s) { return s; })
+                .map(function (s) { return s.$ref ? _this.resolveReference(s.$ref) : s; })
+                .filter(function (s) { return checked.indexOf(s) === -1; })
+                .forEach(function (s) { return subs_1 = subs_1.concat(s); });
+            for (var _i = 0, subs_2 = subs_1; _i < subs_2.length; _i++) {
+                var sub = subs_2[_i];
+                this.fillSchema(smaller, sub, checked, true);
+                checked.push(sub);
+            }
+        }
+        var subs = [];
+        [schema.allOf].filter(function (s) { return s; })
+            .map(function (s) { return s.$ref ? _this.resolveReference(s.$ref) : s; })
+            .filter(function (s) { return checked.indexOf(s) === -1; })
+            .forEach(function (s) { return subs = subs.concat(s); });
+        for (var _a = 0, subs_3 = subs; _a < subs_3.length; _a++) {
+            var sub = subs_3[_a];
+            this.fillSchema(smaller, sub, checked, false);
+            checked.push(sub);
+        }
         for (var key in smaller.properties) {
             var subschema = schema.properties[key];
             if (!subschema)
                 continue;
             if (subschema.$ref)
                 subschema = this.resolveReference(subschema.$ref);
-            smaller.properties[key] = Object.assign({}, subschema, smaller.properties[key], { $ref: undefined, allOf: undefined, anyOf: undefined, oneOf: undefined });
+            smaller.properties[key] = Object.assign({}, subschema, smaller.properties[key], {
+                $ref: undefined,
+                allOf: undefined,
+                anyOf: undefined,
+                oneOf: undefined,
+                'x-abstract': undefined,
+            });
             this.fillSchema(smaller.properties[key], subschema);
         }
     };
@@ -8585,14 +8617,17 @@ var OpenAPIService = /** @class */ (function () {
             schema = this.resolveReference(schema.$ref);
         if (schema.properties && schema.properties[key])
             return schema.properties[key];
+        if (checked.indexOf(schema) !== -1)
+            return;
+        checked.push(schema);
         var subs = [];
         [schema.allOf, schema.anyOf, schema.oneOf].filter(function (s) { return s; })
             .map(function (s) { return s.$ref ? _this.resolveReference(s.$ref) : s; })
             .filter(function (s) { return checked.indexOf(s) === -1; })
             .forEach(function (s) { return subs = subs.concat(s); });
         checked = checked.concat(subs);
-        for (var _i = 0, subs_1 = subs; _i < subs_1.length; _i++) {
-            var sub = subs_1[_i];
+        for (var _i = 0, subs_4 = subs; _i < subs_4.length; _i++) {
+            var sub = subs_4[_i];
             var prop = this.findProperty(sub, key, checked);
             if (prop)
                 return prop;
