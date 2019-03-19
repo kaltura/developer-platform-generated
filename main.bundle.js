@@ -10130,7 +10130,9 @@ var language_opts = {
       // e.g. name = captionAsset, id = caption_captionasset, should return caption.captionAsset
       var pieces = id.split('_');
       if (pieces.length === 1) return name;
-      return pieces[0] + '.' + name;
+      var plugin = pieces[0];
+      if (plugin.toLowerCase() === name.toLowerCase()) plugin = name;
+      return plugin + '.' + name;
     },
     rewriteVariable: function rewriteVariable(s) {
       s = camelCaseToUnderscore(s);
