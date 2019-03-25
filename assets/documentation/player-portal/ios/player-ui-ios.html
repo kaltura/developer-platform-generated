@@ -1,0 +1,493 @@
+  <title>Player UI Tutorial for iOS</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player UI Tutorial for iOS" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player UI Tutorial for iOS</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Mar 25 05:56:48 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/player-ui-ios.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Mon Mar 25 05:56:48 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura Player does not inherently include a UI, but this guide will walk you through an example of how to add play/pause buttons and a scrubber to your player. <br />
+At this point you should have a Kaltura Player embedded in your application and showing your entry, as seen in <a href="https://github.com/tzubeli/developer-portal/edit/master/sdk-portal/getting-started-ios.md">this guide</a>.</p>
+
+<p>We will start by adding button images of your choice to the Assets catalogue of your project. Then, in the storyboard, create a play/pause button, a slider (scrubber), a current position label, and a (remaining) duration label. For the play/pause button, in the Attributes Inspector, click the dropdown for Title and select Attributed. Under Image, type in the name of the play button file (it should have autocomplete for existing files). <br />
+Lastly, create the outlets for all your new objects in the Controller:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@IBOutlet weak var playPauseButton: UIButton!
+@IBOutlet weak var playheadSlider: UISlider!
+@IBOutlet weak var positionLabel: UILabel!
+@IBOutlet weak var durationLabel: UILabel!
+</code></pre>
+</div>
+
+<h3 id="player-state">Player State</h3>
+
+<p>Currently our play button is only set to show a play icon, and we’ll want it to change for different scenarios. What we’ll need is to handle the state of what’s happening in the player - whether it is idle, playing, paused, or ended. Let’s add an enum called state at the top of the class:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>enum State {
+    case idle, playing, paused, ended
+}
+</code></pre>
+</div>
+<p>And a Property Observer on that enum which switches on each state.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var state: State = .idle {
+      didSet {
+          switch state {
+          case .idle:
+              playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
+          case .playing:
+              playPauseButton.setImage(UIImage(named: "btn_pause"), for: .normal)
+          case .paused:
+              playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
+          case .ended:
+              playPauseButton.setImage(UIImage(named: "btn_refresh"), for: .normal)
+          }
+        }
+    }
+</code></pre>
+</div>
+
+<p>What this does is listen for a change to the state, and based on whether the player is currently idle, paused, or playing, the picture of the play/pause button is changed accordingly.</p>
+
+<p>At the beginning of the <code class="highlighter-rouge">viewDidLoad</code> function, set the state to idle.</p>
+
+<p><code class="highlighter-rouge">self.state = .idle</code></p>
+
+<p>On the playPauseButton, add a new IBAction for a “Touch Up Inside” event and link it to a new <code class="highlighter-rouge">playerTouched</code> function that calls play/pause on the player when the button is touched. Available Basic Player actions can be found <a href="https://kaltura.github.io/playkit/api/ios/core/Protocols/BasicPlayer.html">here</a></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@IBAction func playTouched(_ sender: Any) {
+    guard let player = self.player else {
+        print("player is not set")
+        return
+    }
+
+    switch state {
+    case .playing:
+        player.pause()
+    case .idle:
+        player.play()
+    case .paused:
+        player.play()
+    case .ended:
+        player.seek(to: 0)
+        player.play()
+    }
+}
+</code></pre>
+</div>
+
+<h3 id="player-slider">Player Slider</h3>
+
+<p>The slider is made up of a few components: the playhead, the current time stamp, and the duration of the entry. All of this configuration happens in the <code class="highlighter-rouge">setupPlayer</code> function. Firstly, a formatter for displaying the number of seconds as <code class="highlighter-rouge">HH:MM:SS</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>let formatter = DateComponentsFormatter()
+formatter.allowedUnits = [.hour, .minute, .second]
+formatter.unitsStyle = .positional
+formatter.zeroFormattingBehavior = .pad
+
+func format(_ time: TimeInterval) -&gt; String {
+    if let s = formatter.string(from: time) {
+        return s.count &gt; 7 ? s : "0" + s
+    } else {
+        return "00:00:00"
+    }
+}
+</code></pre>
+</div>
+
+<p>Then, we’ll add three observers. The first one checks on the media’s progress in the task queue every fifth of a second and then updates the player slider accordingly, as well as the text of the current position label (using the time formatter)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>self.player?.addPeriodicObserver(interval: 0.2, observeOn: DispatchQueue.main, using: { (pos) in
+    self.playheadSlider.value = Float(pos)
+    self.positionLabel.text = format(pos)
+})
+</code></pre>
+</div>
+<p>The second observer waits for Player event <code class="highlighter-rouge">durationChanged</code> which happens when the media loads and the duration of the video is known. This happens once per playback. It then sets the maximum value of the slider playhead, and the text of the duration label.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>self.player?.addObserver(self, events: [PlayerEvent.durationChanged], block: { (event) in
+    if let e = event as? PlayerEvent.DurationChanged, let d = e.duration as? TimeInterval {
+        self.playheadSlider.maximumValue = Float(d)
+        self.durationLabel.text = format(d)
+    }
+})
+</code></pre>
+</div>
+
+<p>The third observer listens for player events, and updates the State when the player begins playing, is paused, or has ended, which is what the switch case above is dependent on. Player events can be found <a href="https://kaltura.github.io/playkit/api/ios/core/Classes/PlayerEvent.html#/s:7PlayKit11PlayerEventC12StateChangedC">here</a></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>self.player?.addObserver(self, events: [PlayerEvent.play, PlayerEvent.ended, PlayerEvent.pause], block: { (event) in
+    switch event {
+    case is PlayerEvent.Play, is PlayerEvent.Playing:
+        self.state = .playing
+
+    case is PlayerEvent.Pause:
+        self.state = .paused
+
+    case is PlayerEvent.Ended:
+        self.state = .ended
+
+    default:
+        break
+    }
+})
+</code></pre>
+</div>
+
+<p>Lastly, in the Storyboard, set a new referencing action on the Playhead Slider for the “Value Changed” event. Call it <code class="highlighter-rouge">playheadValueChanged</code>. Add it after the <code class="highlighter-rouge">playTouched</code> function. It should set the current time position according to the value of the palyhead, and change the State to paused in the case of moving the slider back after the video has ended.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@IBAction func playheadValueChanged(_ sender: Any) {
+    guard let player = self.player else {
+        print("player is not set")
+        return
+    }
+
+    if state == .ended &amp;&amp; playheadSlider.value &lt; playheadSlider.maximumValue {
+        state = .paused
+    }
+    player.currentTime = TimeInterval(playheadSlider.value)
+}
+</code></pre>
+</div>
+<p>You should be able to run the code, and use the basic player functions. The complete code should look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import UIKit
+import PlayKit
+import PlayKitUtils
+import PlayKitProviders
+
+fileprivate let SERVER_BASE_URL = "https://cdnapisec.kaltura.com"
+fileprivate let PARTNER_ID = 1424501
+fileprivate let ENTRY_ID = "1_djnefl4e"
+
+class ViewController: UIViewController {
+
+    enum State {
+        case idle, playing, paused, ended
+    }
+    
+    var entryId: String?
+    var ks: String?
+    var player: Player? // Created in viewDidLoad
+    var state: State = .idle {
+          didSet {
+              switch state {
+              case .idle:
+                  playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
+              case .playing:
+                  playPauseButton.setImage(UIImage(named: "btn_pause"), for: .normal)
+              case .paused:
+                  playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
+              case .ended:
+                  playPauseButton.setImage(UIImage(named: "btn_refresh"), for: .normal)
+              }
+          }
+      }
+    
+    @IBOutlet weak var playerContainer: PlayerView!
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var playheadSlider: UISlider!
+    @IBOutlet weak var positionLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.state = .idle
+
+        self.player = try! PlayKitManager.shared.loadPlayer(pluginConfig: nil)
+        self.setupPlayer()
+        
+        entryId = ENTRY_ID
+        self.loadMedia()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+    
+/************************/
+// MARK: - Player Setup
+/***********************/
+    func setupPlayer() {
+        
+        self.player?.view = self.playerContainer
+        
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+        
+        func format(_ time: TimeInterval) -&gt; String {
+            if let s = formatter.string(from: time) {
+                return s.count &gt; 7 ? s : "0" + s
+            } else {
+                return "00:00:00"
+            }
+        }
+
+        // Observe media progress
+        self.player?.addPeriodicObserver(interval: 0.2, observeOn: DispatchQueue.main, using: { (pos) in
+            self.playheadSlider.value = Float(pos)
+            self.positionLabel.text = format(pos)
+        })
+        
+        // Observe duration
+        self.player?.addObserver(self, events: [PlayerEvent.durationChanged], block: { (event) in
+            if let e = event as? PlayerEvent.DurationChanged, let d = e.duration as? TimeInterval {
+                self.playheadSlider.maximumValue = Float(d)
+                self.durationLabel.text = format(d)
+            }
+        })
+
+        // Observe play/pause
+        self.player?.addObserver(self, events: [PlayerEvent.play, PlayerEvent.ended, PlayerEvent.pause], block: { (event) in
+            switch event {
+            case is PlayerEvent.Play, is PlayerEvent.Playing:
+                self.state = .playing
+                
+            case is PlayerEvent.Pause:
+                self.state = .paused
+                
+            case is PlayerEvent.Ended:
+                self.state = .ended
+                
+            default:
+                break
+            }
+        })
+    }
+
+    func loadMedia() {
+        let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
+        let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
+        mediaProvider.entryId = entryId
+        mediaProvider.loadMedia { (mediaEntry, error) in
+            if let me = mediaEntry, error == nil {
+                let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
+                if let player = self.player {
+                    player.prepare(mediaConfig)
+                }
+            }
+        }
+    }
+    
+/************************/
+// MARK: - Actions
+/***********************/
+    
+    @IBAction func playTouched(_ sender: Any) {
+        guard let player = self.player else {
+            print("player is not set")
+            return
+        }
+        
+        switch state {
+        case .playing:
+            player.pause()
+        case .idle:
+            player.play()
+        case .paused:
+            player.play()
+        case .ended:
+            player.seek(to: 0)
+            player.play()
+        }
+    }
+    
+    @IBAction func playheadValueChanged(_ sender: Any) {
+        guard let player = self.player else {
+            print("player is not set")
+            return
+        }
+        
+        if state == .ended &amp;&amp; playheadSlider.value &lt; playheadSlider.maximumValue {
+            state = .paused
+        }
+        player.currentTime = TimeInterval(playheadSlider.value)
+    }
+}
+
+</code></pre>
+</div>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
