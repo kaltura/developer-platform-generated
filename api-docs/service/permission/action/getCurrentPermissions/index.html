@@ -1,0 +1,374 @@
+<!DOCTYPE html><html><head>
+    <title>permission.getCurrentPermissions - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-68472312-3');
+</script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style><meta name="title" content="permission.getCurrentPermissions - Kaltura VPaaS API Documentation"><meta name="description" content="Retrieves a list of permissions that apply to the current KS."><meta name="keywords" content=""><style ng-transition="lucybot-doc-app">.try-it-button[_ngcontent-c4] {
+      margin-bottom: 30px;
+    }
+    .nav-tabs[_ngcontent-c4] {
+      margin-bottom: 15px;
+    }
+    .status-code-tabs[_ngcontent-c4] {
+      font-weight: bold;
+    }
+    .parameter[_ngcontent-c4] {
+      margin-bottom: 20px;
+    }
+    .parameter-details[_ngcontent-c4] {
+      padding-left: 15px;
+    }
+    .input-output-box[_ngcontent-c4] {
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    .input-output-box[_ngcontent-c4]   h4[_ngcontent-c4] {
+      margin-bottom: 20px;
+    }</style><style ng-transition="lucybot-doc-app">.global-parameters[_ngcontent-c7] {
+      padding-left: 15px;
+    }</style><style ng-transition="lucybot-doc-app">subschema[_ngcontent-c3] {
+      display: block;
+    }</style><style ng-transition="lucybot-doc-app">subschema[_ngcontent-c9] {
+        display: block;
+        margin-left: 10px;
+      }
+      .title-line[_ngcontent-c9], .description[_ngcontent-c9] {
+        white-space: nowrap;
+      }
+      .enum[_ngcontent-c9] {
+        word-break: break-word;
+      }
+      .sibling-group[_ngcontent-c9]    > schema[_ngcontent-c9] {
+        margin-left: 0px;
+      }
+      .sibling-group[_ngcontent-c9]   h5[_ngcontent-c9] {
+        font-weight: normal;
+        font-style: italic;
+      }
+      .enum[_ngcontent-c9], .description[_ngcontent-c9] {
+        padding-left: 10px;
+      }
+      [_nghost-c9]     subschema .description p {
+        margin-bottom: 0px;
+        display: inline-block;
+      }</style></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/homepage/assets/images/Kaltura-logo.png">
+        <span class="brand-subtitle">Developer</span>
+      </a>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+          <a href="api-docs">API Docs</a>
+        </li>
+        <li class="navbar-link">
+          <a href="console">API Console</a>
+        </li>
+        <li class="navbar-link workflows-link">
+          <a href="workflows">Workflows</a>
+        </li>
+        <!--li class="navbar-link">
+          <a href="#">Player</a>
+        </li-->
+        <li class="navbar-link">
+          <a href="api-docs/Client_Libraries">Client Libraries</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----><div _ngcontent-c1="" class="modal fade ng-star-inserted" id="AuthenticationModal" tabindex="-1"><div _ngcontent-c1="" class="modal-dialog"><form _ngcontent-c1="" class="modal-content ng-untouched ng-pristine ng-valid" novalidate=""><div _ngcontent-c1="" class="modal-header"><button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><i _ngcontent-c1="" class="fa fa-times"></i></button><div _ngcontent-c1="" class="modal-title"><h3 _ngcontent-c1="">API Authorization</h3></div></div><div _ngcontent-c1="" class="modal-body"><!----><ul _ngcontent-c1="" class="nav nav-tabs nav-justified" hidden=""><!----><li _ngcontent-c1="" class="active ng-star-inserted"><a _ngcontent-c1="" innerhtml="ks">ks</a></li></ul><!----><div _ngcontent-c1="" class="ng-star-inserted"><div _ngcontent-c1="" class="form-group"><label _ngcontent-c1="" innerhtml="ks">ks</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine ng-valid" name="apiKey" type="text" value=""></div></div><!----><!----></div><div _ngcontent-c1="" class="modal-footer"><!----><button _ngcontent-c1="" class="btn btn-success" type="submit"><!----><span _ngcontent-c1="" class="ng-star-inserted">Authorize</span><!----></button></div></form></div></div></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Overview" href="/api-docs/Overview"><span class="ng-tns-c5-0" innerhtml="Overview">Overview</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="VPaaS API Getting Started" href="/api-docs/VPaaS-API-Getting-Started"><span class="ng-tns-c5-1" innerhtml="VPaaS API Getting Started">VPaaS API Getting Started</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/api-docs/Client_Libraries"><span class="ng-tns-c5-2" innerhtml="Client Libraries">Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="XML Schemas" href="/api-docs/XML_Schemas"><span class="ng-tns-c5-3" innerhtml="XML Schemas">XML Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Generate API Sessions" href="/api-docs/Generate_API_Sessions"><span class="ng-tns-c5-4" innerhtml="Generate API Sessions">Generate API Sessions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Ingest and Upload Media" href="/api-docs/Ingest_and_Upload_Media"><span class="ng-tns-c5-5" innerhtml="Ingest and Upload Media">Ingest and Upload Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Execute Bulk Ingest and Updates" href="/api-docs/Execute_Bulk_Ingest_and_Updates"><span class="ng-tns-c5-6" innerhtml="Execute Bulk Ingest and Updates">Execute Bulk Ingest and Updates</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Convert and Transcode Media" href="/api-docs/Convert_and_Transcode_Media"><span class="ng-tns-c5-7" innerhtml="Convert and Transcode Media">Convert and Transcode Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Stream and Broadcast" href="/api-docs/Live_Stream_and_Broadcast"><span class="ng-tns-c5-8" innerhtml="Live Stream and Broadcast">Live Stream and Broadcast</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Enrich and Organize Metadata" href="/api-docs/Enrich_and_Organize_Metadata"><span class="ng-tns-c5-9" innerhtml="Enrich and Organize Metadata">Enrich and Organize Metadata</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-10 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Search, Discover and Personalize" href="/api-docs/Search_Discover_and_Personalize"><span class="ng-tns-c5-10" innerhtml="Search, Discover and Personalize">Search, Discover and Personalize</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-11 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Engage and Publish" href="/api-docs/Engage_and_Publish"><span class="ng-tns-c5-11" innerhtml="Engage and Publish">Engage and Publish</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Media Analytics" href="/api-docs/Media_Analytics"><span class="ng-tns-c5-12" innerhtml="Media Analytics">Media Analytics</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-13 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Deliver and Distribute Media" href="/api-docs/Deliver_and_Distribute_Media"><span class="ng-tns-c5-13" innerhtml="Deliver and Distribute Media">Deliver and Distribute Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-14 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Secure, Control and Govern" href="/api-docs/Secure_Control_and_Govern"><span class="ng-tns-c5-14" innerhtml="Secure, Control and Govern">Secure, Control and Govern</span></a></div><!----><div class="side-menu-children ng-tns-c5-14 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-25 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-25 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Content Categories Management" href="/api-docs/Secure_Control_and_Govern/Content-Categories-Management.html"><span class="ng-tns-c5-25" innerhtml="Content Categories Management">Content Categories Management</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-26 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Content Entitlements and Privacy Enforcement" href="/api-docs/Secure_Control_and_Govern/Content-Entitlements-Privacy-Enforcement.html"><span class="ng-tns-c5-26" innerhtml="Content Entitlements and Privacy Enforcement">Content Entitlements and Privacy Enforcement</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-27 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-27 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Access Control and Content Retrieval on Connected Devices" href="/api-docs/Secure_Control_and_Govern/Access-Control-and-Content-Retrieval-on-Connected-Devices.html"><span class="ng-tns-c5-27" innerhtml="Access Control and Content Retrieval on Connected Devices">Access Control and Content Retrieval on Connected Devices</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-28 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-28 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="The Kaltura Media Access Control Model" href="/api-docs/Secure_Control_and_Govern/kaltura-media-access-control-model.html"><span class="ng-tns-c5-28" innerhtml="The Kaltura Media Access Control Model">The Kaltura Media Access Control Model</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-29 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-29 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Kaltura Audit-Trail - Viewer Example Application" href="/api-docs/Secure_Control_and_Govern/Kaltura_Audit-Trail_Viewer_Example_Application.html"><span class="ng-tns-c5-29" innerhtml="Kaltura Audit-Trail - Viewer Example Application">Kaltura Audit-Trail - Viewer Example Application</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-30 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-30 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="partner" href="/api-docs/service/partner"><span class="ng-tns-c5-30" innerhtml="partner">partner</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-31 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-31 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="user" href="/api-docs/service/user"><span class="ng-tns-c5-31" innerhtml="user">user</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-32 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-32 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="userRole" href="/api-docs/service/userRole"><span class="ng-tns-c5-32" innerhtml="userRole">userRole</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-33 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-33 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="groupUser" href="/api-docs/service/groupUser"><span class="ng-tns-c5-33" innerhtml="groupUser">groupUser</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-34 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-34 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="accessControlProfile" href="/api-docs/service/accessControlProfile"><span class="ng-tns-c5-34" innerhtml="accessControlProfile">accessControlProfile</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-35 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-35 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="categoryEntry" href="/api-docs/service/categoryEntry"><span class="ng-tns-c5-35" innerhtml="categoryEntry">categoryEntry</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-36 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-36 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="categoryUser" href="/api-docs/service/categoryUser"><span class="ng-tns-c5-36" innerhtml="categoryUser">categoryUser</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-37 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-37 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permission" href="/api-docs/service/permission"><span class="ng-tns-c5-37" innerhtml="permission">permission</span></a></div><!----><div class="side-menu-children ng-tns-c5-37 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-42 ng-tns-c5-37 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-42 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permission.add" href="/api-docs/service/permission/action/add"><span class="ng-tns-c5-42" innerhtml="permission.add">permission.add</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-43 ng-tns-c5-37 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-43 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permission.delete" href="/api-docs/service/permission/action/delete"><span class="ng-tns-c5-43" innerhtml="permission.delete">permission.delete</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-44 ng-tns-c5-37 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-44 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permission.get" href="/api-docs/service/permission/action/get"><span class="ng-tns-c5-44" innerhtml="permission.get">permission.get</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-45 ng-tns-c5-37 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-45 active truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permission.getCurrentPermissions" href="/api-docs/service/permission/action/getCurrentPermissions"><span class="ng-tns-c5-45" innerhtml="permission.getCurrentPermissions">permission.getCurrentPermissions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-46 ng-tns-c5-37 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-46 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permission.list" href="/api-docs/service/permission/action/list"><span class="ng-tns-c5-46" innerhtml="permission.list">permission.list</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-47 ng-tns-c5-37 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-47 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permission.update" href="/api-docs/service/permission/action/update"><span class="ng-tns-c5-47" innerhtml="permission.update">permission.update</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-38 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-38 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="permissionItem" href="/api-docs/service/permissionItem"><span class="ng-tns-c5-38" innerhtml="permissionItem">permissionItem</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-39 ng-tns-c5-14 ng-star-inserted" hidden="" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-39 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="accessControl" href="/api-docs/service/accessControl"><span class="ng-tns-c5-39" innerhtml="accessControl">accessControl</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-40 ng-tns-c5-14 ng-star-inserted" hidden="" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-40 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="adminUser" href="/api-docs/service/adminUser"><span class="ng-tns-c5-40" innerhtml="adminUser">adminUser</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-41 ng-tns-c5-14 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-41 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="auditTrail" href="/api-docs/service/auditTrail"><span class="ng-tns-c5-41" innerhtml="auditTrail">auditTrail</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-15 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Optimize API Requests" href="/api-docs/Optimize_API_Requests"><span class="ng-tns-c5-15" innerhtml="Optimize API Requests">Optimize API Requests</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-16 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Integration, Scheduling and Hooks" href="/api-docs/Integration_Scheduling_and_Hooks"><span class="ng-tns-c5-16" innerhtml="Integration, Scheduling and Hooks">Integration, Scheduling and Hooks</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-17 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Encrypt and License Content" href="/api-docs/Encrypt_and_License_Content"><span class="ng-tns-c5-17" innerhtml="Encrypt and License Content">Encrypt and License Content</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-18 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Documents and Other Assets" href="/api-docs/Manage_Documents_and_Other_Assets"><span class="ng-tns-c5-18" innerhtml="Manage Documents and Other Assets">Manage Documents and Other Assets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-19 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage and Deliver Apps and Widgets" href="/api-docs/Manage_and_Deliver_Apps_and_Widgets"><span class="ng-tns-c5-19" innerhtml="Manage and Deliver Apps and Widgets">Manage and Deliver Apps and Widgets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-20 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Backend and Storage" href="/api-docs/Manage_Backend_and_Storage"><span class="ng-tns-c5-20" innerhtml="Manage Backend and Storage">Manage Backend and Storage</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-star-inserted" hidden=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-21 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Miscellaneous" href="/api-docs/Miscellaneous"><span class="ng-tns-c5-21" innerhtml="Miscellaneous">Miscellaneous</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-22 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/api-docs/Contribute"><span class="ng-tns-c5-22" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-23 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="General Objects" href="/api-docs/General_Objects"><span class="ng-tns-c5-23" innerhtml="General Objects">General Objects</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-24 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Error Codes" href="/api-docs/Error_Codes"><span class="ng-tns-c5-24" innerhtml="Error Codes">Error Codes</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">permission.getCurrentPermissions</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents" hidden=""></div><!----><div _ngcontent-c0="" class="docs-openapi ng-star-inserted"><!----><!----><div _ngcontent-c0="" class="ng-star-inserted"><!----><!----><div _ngcontent-c0="" class="docs-operation ng-star-inserted"><operation-documentation _ngcontent-c0="" _nghost-c4=""><!----><!----><div _ngcontent-c4="" class="route-description" innerhtml="<p>Retrieves a list of permissions that apply to the current KS.</p>&amp;#10;"><p>Retrieves a list of permissions that apply to the current KS.</p>
+</div><!----><a _ngcontent-c4="" class="btn btn-primary try-it-button ng-star-inserted">Try it out</a><!----><!----><h5 _ngcontent-c4=""><span _ngcontent-c4="" class="text-uppercase" data-method="post">post</span><span _ngcontent-c4="">&nbsp;</span><span _ngcontent-c4="">https://www.kaltura.com</span><span _ngcontent-c4="">/api_v3</span><span _ngcontent-c4="">/service/permission/action/getCurrentPermissions</span></h5><div _ngcontent-c4="" class="row"><div _ngcontent-c4="" class="col-xs-12 col-md-6"><div _ngcontent-c4="" class="input-output-box"><h4 _ngcontent-c4="">Request Parameters</h4><ul _ngcontent-c4="" class="nav nav-tabs location-tabs"><!----><li _ngcontent-c4="" role="presentation" class="active ng-star-inserted"><a _ngcontent-c4="" class="text-capitalize">body</a></li><li _ngcontent-c4="" role="presentation" class="ng-star-inserted"><a _ngcontent-c4="" class="text-capitalize">query</a></li></ul><!----><parameter-set _ngcontent-c4="" _nghost-c7=""><!----><!----><div _ngcontent-c7="" class="ng-star-inserted"><label _ngcontent-c7="">Global Parameters</label><a _ngcontent-c7=""><i _ngcontent-c7="" class="fa fa-right fa-plus-square-o"></i></a><div _ngcontent-c7="" class="help-block" hidden="">These parameters are valid for multiple operations</div><div _ngcontent-c7="" class="global-parameters" hidden=""><!----><!----><parameter _ngcontent-c7="" class="global-parameter ng-star-inserted"><!----><!----><div class="parameter ng-star-inserted"><div class="parameter-title" style="margin-bottom:10.5px;"><span class="parameter-name token attr-name">responseProfile:</span><span class="parameter-type token keyword">object</span><i hidden="">&nbsp;&nbsp;required</i></div><div class="parameter-details"><!----><!----><div class="request-schema hide-code ng-star-inserted"><schema _nghost-c3=""><div _ngcontent-c3="" class="form-group"><div _ngcontent-c3="" class="btn-group"><a _ngcontent-c3="" class="btn btn-default active">Schema</a><a _ngcontent-c3="" class="btn btn-default">Example</a></div></div><pre _ngcontent-c3=""><code _ngcontent-c3="" hidden="">null</code><subschema _ngcontent-c3="" _nghost-c9=""><span _ngcontent-c9="" class="title-line"><!----><span _ngcontent-c9="" class="schema-type token keyword"><span _ngcontent-c9="">object</span><!----></span><!----><a _ngcontent-c9=""><i _ngcontent-c9="" class="fa fa-right fa-caret-down"></i></a></span><!----><div _ngcontent-c9="" class="schema-details ng-star-inserted"><!----><div _ngcontent-c9="" class="description" hidden="" innerhtml=""></div><!----><subschema _ngcontent-c9="" _nghost-c9="" class="ng-star-inserted"><span _ngcontent-c9="" class="title-line"><!----><span _ngcontent-c9="" class="ng-star-inserted"><span _ngcontent-c9="" class="schema-name token attr-name">responseProfile</span><!----><span _ngcontent-c9="">:</span></span><span _ngcontent-c9="" class="schema-type token keyword"><span _ngcontent-c9="">object</span><!----></span><!----><span _ngcontent-c9="" class="ng-star-inserted"><span _ngcontent-c9="">:</span><a _ngcontent-c9="" class="schema-title token variable" href="/api-docs/service/permission/action/getCurrentPermissions;definition=KalturaBaseResponseProfile">KalturaBaseResponseProfile</a></span><a _ngcontent-c9=""><i _ngcontent-c9="" class="fa fa-right fa-caret-down"></i></a></span><!----><div _ngcontent-c9="" class="schema-details ng-star-inserted"><!----><div _ngcontent-c9="" class="description" innerhtml="<p><code>abstract</code></p>&amp;#10;"><p><code>abstract</code></p>
+</div><!----><subschema _ngcontent-c9="" _nghost-c9="" class="ng-star-inserted"><span _ngcontent-c9="" class="title-line"><!----><span _ngcontent-c9="" class="ng-star-inserted"><span _ngcontent-c9="" class="schema-name token attr-name">objectType</span><!----><span _ngcontent-c9="">:</span></span><span _ngcontent-c9="" class="schema-type token keyword"><span _ngcontent-c9="">string</span><!----></span><!----><a _ngcontent-c9="" hidden=""><i _ngcontent-c9="" class="fa fa-right fa-caret-down"></i></a></span><!----><div _ngcontent-c9="" class="schema-details ng-star-inserted"><!----><div _ngcontent-c9="" class="enum ng-star-inserted"><span _ngcontent-c9="">Enum: <!----><span _ngcontent-c9="" class="ng-star-inserted"><!----><!----><!----><span _ngcontent-c9="" class="token number">KalturaDetachedResponseProfile</span><!----></span><span _ngcontent-c9="" class="ng-star-inserted"><!----><span _ngcontent-c9="" class="ng-star-inserted">, </span><!----><!----><span _ngcontent-c9="" class="token number">KalturaResponseProfileHolder</span><!----></span><span _ngcontent-c9="" class="ng-star-inserted"><!----><span _ngcontent-c9="" class="ng-star-inserted">, </span><!----><!----><span _ngcontent-c9="" class="token number">KalturaResponseProfile</span><!----></span></span></div><div _ngcontent-c9="" class="description" hidden="" innerhtml=""></div><!----><!----><!----><!----><!----><!----></div></subschema><!----><!----><div _ngcontent-c9="" class="sibling-group ng-star-inserted"><h5 _ngcontent-c9=""><span _ngcontent-c9="" class="token variable">KalturaBaseResponseProfile</span><span _ngcontent-c9=""> must also match any of:</span></h5><!----><subschema _ngcontent-c9="" _nghost-c9="" class="ng-star-inserted"><span _ngcontent-c9="" class="title-line"><!----><span _ngcontent-c9="" class="schema-type token keyword"><span _ngcontent-c9="">object</span><!----></span><!----><span _ngcontent-c9="" class="ng-star-inserted"><span _ngcontent-c9="">:</span><a _ngcontent-c9="" class="schema-title token variable" href="/api-docs/service/permission/action/getCurrentPermissions;definition=KalturaDetachedResponseProfile">KalturaDetachedResponseProfile</a></span><a _ngcontent-c9=""><i _ngcontent-c9="" class="fa fa-right fa-caret-left"></i></a></span><!----></subschema><subschema _ngcontent-c9="" _nghost-c9="" class="ng-star-inserted"><span _ngcontent-c9="" class="title-line"><!----><span _ngcontent-c9="" class="schema-type token keyword"><span _ngcontent-c9="">object</span><!----></span><!----><span _ngcontent-c9="" class="ng-star-inserted"><span _ngcontent-c9="">:</span><a _ngcontent-c9="" class="schema-title token variable" href="/api-docs/service/permission/action/getCurrentPermissions;definition=KalturaResponseProfileHolder">KalturaResponseProfileHolder</a></span><a _ngcontent-c9=""><i _ngcontent-c9="" class="fa fa-right fa-caret-left"></i></a></span><!----></subschema><subschema _ngcontent-c9="" _nghost-c9="" class="ng-star-inserted"><span _ngcontent-c9="" class="title-line"><!----><span _ngcontent-c9="" class="schema-type token keyword"><span _ngcontent-c9="">object</span><!----></span><!----><span _ngcontent-c9="" class="ng-star-inserted"><span _ngcontent-c9="">:</span><a _ngcontent-c9="" class="schema-title token variable" href="/api-docs/service/permission/action/getCurrentPermissions;definition=KalturaResponseProfile">KalturaResponseProfile</a></span><a _ngcontent-c9=""><i _ngcontent-c9="" class="fa fa-right fa-caret-left"></i></a></span><!----></subschema></div><!----><!----><!----></div></subschema><!----><!----><!----><!----><!----></div></subschema></pre></schema></div><!----><!----></div></div></parameter></div></div><!----><!----></parameter-set></div></div><div _ngcontent-c4="" class="col-xs-12 col-md-6"><div _ngcontent-c4="" class="input-output-box"><h4 _ngcontent-c4="">Response</h4><ul _ngcontent-c4="" class="nav nav-tabs status-code-tabs"><!----><li _ngcontent-c4="" role="presentation" class="active ng-star-inserted"><a _ngcontent-c4=""><span _ngcontent-c4="" class="text-success"><span _ngcontent-c4="">200</span></span></a></li></ul><div _ngcontent-c4="" innerhtml="<p>Success</p>&amp;#10;"><p>Success</p>
+</div><!----><div _ngcontent-c4="" class="response-schema hide-code ng-star-inserted"><schema _ngcontent-c4="" _nghost-c3=""><div _ngcontent-c3="" class="form-group"><div _ngcontent-c3="" class="btn-group"><a _ngcontent-c3="" class="btn btn-default active">Schema</a><a _ngcontent-c3="" class="btn btn-default">Example</a></div></div><pre _ngcontent-c3=""><code _ngcontent-c3="" hidden="">null</code><subschema _ngcontent-c3="" _nghost-c9=""><span _ngcontent-c9="" class="title-line"><!----><span _ngcontent-c9="" class="schema-type token keyword"><span _ngcontent-c9="">string</span><!----></span><!----><a _ngcontent-c9="" hidden=""><i _ngcontent-c9="" class="fa fa-right fa-caret-down"></i></a></span><!----><div _ngcontent-c9="" class="schema-details ng-star-inserted"><!----><div _ngcontent-c9="" class="description" hidden="" innerhtml=""></div><!----><!----><!----><!----><!----><!----></div></subschema></pre></schema></div></div></div></div></operation-documentation></div></div></div><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+<div id="KalturaFooter" class="w-section footer-section">
+  <div class="w-container container footer-container">
+    <div class="row">
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#vpaasLinks">VPaaS<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="vpaasLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a Free Trial</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#toolsLinks">Tools<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="toolsLinks" class="collapse">
+          <a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/api-docs/Client_Libraries">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#resourcesLinks">Resources<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="resourcesLinks" class="collapse">
+          <a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#communityLinks">Community<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="communityLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a>
+        </div>
+        <div class="secondary-links">
+          <h5 class="footer-headings footer-heading-margin"><a data-toggle="collapse" data-target="#openSourceLinks">Open Source<i class="fa fa-chevron-up"></i></a></h5>
+          <div id="openSourceLinks" class="collapse">
+            <a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kaltura-links">
+    <div class="container">
+      <div class="row">
+        <div class="col col-xs-12 col-sm-4">
+          <img src="/homepage/assets/images/Kaltura-Logo-white.png">
+        </div>
+        <div class="col col-xs-12 col-sm-4 footer-last-links-column">
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a>
+          <a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a>
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a>
+        </div>
+        <div class="social-icon-container col col-xs-12 col-sm-4">
+          <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a>
+          <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a>
+          <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a>
+          <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-container container copyright-container">
+    <div class="row">
+      <div class="col col-xs-12 copyright-column">
+        <div class="footer-copyright">Copyright © <span id="KalturaYear"></span> Kaltura Inc.</div>
+        <script>
+          document.getElementById('KalturaYear').innerHTML = (new Date()).getFullYear();
+        </script>
+        <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners.
+          <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{}</script></body></html>
