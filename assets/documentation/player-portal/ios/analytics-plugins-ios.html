@@ -1,0 +1,259 @@
+  <title>Analytics Plugins for iOS</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Analytics Plugins for iOS" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Analytics Plugins for iOS</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Mar 19 11:23:35 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/analytics-plugins-ios.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Tue Mar 19 11:23:35 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The Kaltura playkit offers various analytics modules for iOS that can be added to the player. Adding these plugins is easy and requires little configuration. You can find a full list of available plugins <a href="https://kaltura.github.io/playkit/">here</a>. This guide will cover a thorough implementation of the Kava Plugin, as well as a sample config for the Youbora plugin.</p>
+
+<h2 id="kava-plugin">Kava Plugin</h2>
+
+<p>Probably the most important plugin is the KAVA plugin - Kaltura Video Analytics. It provides real time analytics for live and on-demand video. With historical, raw, or summarized data, it is easy to determine how, when, and where content was seen and shared by viewers.</p>
+
+<p>The <a href="https://github.com/kaltura/playkit-ios-kava">KAVA plugin</a> is available through CocoaPods as “PlayKitKava”. It was included in the Podfile at the beginning of the guide. To use the plugin, we’ll need to import it, then register and configure it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import PlayKitKava
+</code></pre>
+</div>
+
+<p>Begin with a function that creates the KAVA plugin. It requires the Partner ID, the entry ID, and the KS, which is what identifies the user. The rest of the arguments are optional. Full documentation can be found here.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>func createKavaConfig() -&gt; KavaPluginConfig {
+    return KavaPluginConfig(partnerId: PARTNER_ID, entryId: entryId, ks: ks, playbackContext: nil, referrer: nil, applicationVersion: nil, playlistId: nil, customVar1: nil, customVar2: nil, customVar3: nil)
+}
+</code></pre>
+</div>
+
+<p>Add that plugin to the player in the <code class="highlighter-rouge">loadMedia</code> function by calling <code class="highlighter-rouge">player.updatePluginConfig</code>. This should be included before the <code class="highlighter-rouge">player.prepare</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>player.updatePluginConfig(pluginName: KavaPlugin.pluginName, config: self.createKavaConfig())
+</code></pre>
+</div>
+
+<p>Next, you need a function that manages all the plugins you might want to add to the player. In our case, it will return the function we just created.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>func createPluginConfig() -&gt; PluginConfig? {
+    return PluginConfig(config: [KavaPlugin.pluginName: createKavaConfig()])
+}
+</code></pre>
+</div>
+
+<p>Lastly, we’ll pass that function instead of <code class="highlighter-rouge">nil</code> to the loadPlayer call in <code class="highlighter-rouge">viewDidLoad</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>self.player = try! PlayKitManager.shared.loadPlayer(pluginConfig: createPluginConfig())
+</code></pre>
+</div>
+
+<p>The KAVA plugin is now included in the player, and all data about plays and shares can be viewed in the KMC or retrieved using the Kaltura Reporting API.</p>
+
+<h2 id="youbora-plugin">Youbora Plugin</h2>
+
+<p>Youbora is an intelligence analytics and optimization platform used in Kaltura’s solution to track media analytics events.</p>
+
+<p>You’ll need to set up an account in http://www.youbora.com and then set the account details in the plugin configuration to use this plugin. After these steps, you’ll be able to use the Youbora dashboard and watch statistical events and analytics sent by the Kaltura Video Payer.</p>
+
+<p>For additional information on the YouboraPlugin options dictionary refer to their <a href="http://developer.nicepeopleatwork.com/plugins/general/setting-youbora-options/">developer portal</a>.</p>
+
+<h3 id="getting-started-with-the-youbora-plugin">Getting Started with the Youbora Plugin</h3>
+
+<p>Import and enable:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pod 'PlayKit/YouboraPlugin'
+</code></pre>
+</div>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">registerPlugin</span><span class="p">(</span><span class="kt">YouboraPlugin</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>A sample Youbora config looks something like this:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="c1">// config options</span>
+<span class="k">let</span> <span class="nv">youboraOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">"accountCode"</span><span class="p">:</span> <span class="s">"nicetest"</span> <span class="c1">// mandatory</span>
+    <span class="c1">// YouboraPlugin.enableSmartAdsKey: true - use this if you want to enable smart ads</span>
+<span class="p">]</span>
+<span class="c1">// create analytics config with the created params</span>
+<span class="k">let</span> <span class="nv">youboraConfig</span> <span class="o">=</span> <span class="kt">AnalyticsConfig</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">youboraOptions</span><span class="p">)</span>
+<span class="c1">// create config dictionary</span>
+<span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="p">[</span><span class="kt">YouboraPlugin</span><span class="o">.</span><span class="nv">pluginName</span><span class="p">:</span> <span class="n">youboraConfig</span><span class="p">]</span>
+<span class="c1">// create plugin config object</span>
+<span class="k">let</span> <span class="nv">pluginConfig</span> <span class="o">=</span> <span class="kt">PluginConfig</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+<span class="c1">// load the player with the created plugin config</span>
+<span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="n">pluginConfig</span><span class="p">)</span>
+</code></pre>
+</div>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

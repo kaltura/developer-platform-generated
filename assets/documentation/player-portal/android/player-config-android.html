@@ -1,0 +1,296 @@
+  <title>Player Configuration for Android</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player Configuration for Android" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player Configuration for Android</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Mar 25 09:52:33 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-config-android.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Mon Mar 25 09:52:33 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The player configuration is the main data object of the SDK; this object is used for configuring all plugins and for creating and obtaining the media provider media entries that will play on the device.</p>
+
+<h2 id="media-entry---pkmediaentry">Media Entry - PKMediaEntry</h2>
+
+<p>The PKMediaEntry contains information regarding the media that will be played. With this information, the Kaltura Mobile Video Player<br />
+prepares the source that will play the media, decides which type of player is required to play the media, and more.</p>
+
+<h3 id="methods-for-creating-the-pkmediaentry">Methods for Creating the PKMediaEntry</h3>
+
+<p>The PKMediaEntry can be created using one of the following methods:</p>
+
+<ol>
+  <li>
+    <p><strong>Manually</strong> - Instantiate a new PKMediaEntry instance and fill the fields.</p>
+  </li>
+  <li>
+    <p><strong>Using a MockMediaProvider</strong> - Create a PKMediaEntry from a JSON input file or JsonObject.</p>
+  </li>
+  <li>
+    <p><strong>Using a remote media provider</strong> - Use one of the provided MediaEntryProvider implementations:<br />
+ For OVP environments, use “KalturaOvpMediaProvider”.<br />
+ For OTT environments, use “PhoenixMediaProvider”.</p>
+
+    <p>To use this method, you’ll need to do the following:</p>
+
+    <p>a) Create an instance of one of the above mentioned providers.</p>
+
+    <p>b) Set the mandatory parameters needed for fetching data, such as media id, SessionProvider, etc.</p>
+
+    <p>c) Once your provider object is ready, activate its “load” method and pass a completion callback. If successful, the PKMediaEntry object will be provided in the response.</p>
+  </li>
+</ol>
+
+<p>Once you have a PKMediaEntry ready, you can build the player configuration and plugins, and continue to prepare the Kaltura Mobile Video Player for play.</p>
+
+<h3 id="about-the-pkmediaentry">About the PKMediaEntry</h3>
+
+<p>The PkMediaEntry holds information gathered from the media details and needed for the player, such as the URL to play, the DRM data, and duration.</p>
+
+<p>Additional information includes:</p>
+
+<ul>
+  <li>String id - correlates to the media/entry id</li>
+  <li>long duration - the media duration in seconds</li>
+  <li>MediaEntryType mediaType - indicates the type to be played (VOD, Live or Unknown)</li>
+  <li>List<PKMediaSource> sources - list of source objects</PKMediaSource></li>
+</ul>
+
+<p>The PKMediaEntry can be created with builder style instantiation, chain setters as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PKMediaEntry</span> <span class="n">mediaEntry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKMediaEntry</span><span class="o">().</span><span class="na">setId</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getId</span><span class="o">())</span>
+                                            <span class="o">.</span><span class="na">setSources</span><span class="o">(</span><span class="n">sourcesList</span><span class="o">)</span>
+                                            <span class="o">.</span><span class="na">setDuration</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getDuration</span><span class="o">())</span>
+                                            <span class="o">.</span><span class="na">setMediaType</span><span class="o">(</span><span class="n">MediaTypeConverter</span><span class="o">.</span><span class="na">toMediaEntryType</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getType</span><span class="o">()));</span>
+</code></pre>
+</div>
+
+<p>To learn more, see <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PKMediaEntry.java">PKMediaEntry</a>.</p>
+
+<h3 id="pkmediasource">PKMediaSource</h3>
+
+<p>The PKMediaEntry object contains a list of “PKMediaSources”. All sources relate to the same media, but have different formats / qualities / flavors. The player determines which of the sources will actually be played.</p>
+
+<p>To learn more, see <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PKMediaSource.java">PKMediaSource</a></p>
+
+<h4 id="manually-a-create-media-source">Manually a Create Media Source</h4>
+
+<p>PKMediaSource can be created with builder-like coding, by chaining setters:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PKMediaSource</span> <span class="n">pkMediaSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKMediaSource</span><span class="o">().</span><span class="na">setId</span><span class="o">(</span><span class="n">sourceId</span><span class="o">)</span>
+<span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="n">sourceUrl</span><span class="o">)</span>
+<span class="o">.</span><span class="na">setDrmData</span><span class="o">(</span><span class="n">dramDataList</span><span class="o">);</span>
+
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p><strong><em>In OTT environments:</em></strong><br />
+Each source represents one MediaFile (Media or AssetInfo contains list of MediaFile items. Each file represents a different format. HD, SD Download…)<br />
+Each file can point to a different video, like Trailer MediaFile and HD media file.<br />
+When playing on OTT environments, specific “format” (MediaFile), should be configured.</p>
+  </li>
+  <li>
+    <p><strong><em>In OVP environments:</em></strong><br />
+PKMediaSource items are created according to several criteria:</p>
+    <ul>
+      <li>Supported video format: url [.mp4], mpdash [.mpd], applehttp [.m3u8]</li>
+      <li>Flavors: defines the quality of the video.</li>
+      <li>Bit rate</li>
+    </ul>
+  </li>
+</ul>
+
+<p>A single “Entry” can have many media sources. The player determines which source to use according to the device’s capability, connection quality, and other parameters, such as which of the sources is best for the current play.</p>
+
+<p>If the media is DRM-restricted, such as Widevine, the DRM information will be needed for playing.</p>
+
+<h3 id="pkdrmparams">PKDrmParams</h3>
+
+<p>PKDrmParams represents a single DRM license info object. PKDrmParams contains the licenseUri that will be needed for the play. The PKMediaSource contains a list of “PKDrmParams” items. The player will select the source and the relevant DRM data according to device type, connectivity, supported formats, etc.</p>
+
+<p>To learn more, see <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PKDrmParams.java">PKDrmParams</a>.</p>
+
+<p>To learn more, read the <a href="https://github.com/kaltura/DeveloperPortalDocs/tree/playkit/documentation/PlayKit/MediaProviders.md">Media Providers</a> article.</p>
+
+<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+
+<p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

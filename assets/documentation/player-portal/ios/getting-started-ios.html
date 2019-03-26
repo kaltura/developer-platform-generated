@@ -1,0 +1,398 @@
+  <title>Getting Started With the Player SDK for iOS</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Getting Started With the Player SDK for iOS" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Getting Started With the Player SDK for iOS</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Mar 25 05:36:35 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/getting-started-ios.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Mon Mar 25 05:36:35 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>This guide will walk you through the steps for adding a Kaltura video player to your iOS mobile application. You’ll learn how to import the SDK, find the necessary credentials, and load the player with your Entry ID of choice. <strong>Because the player is focused on performance and giving you the simplest integration possible, it does not contain a UI.</strong> That being said, this guide will show you how to listen to events in order to manage the player state, as well as examples for adding play/pause buttons and a slider to the player. <br />
+Lastly, this guide will cover how to add plugins to the application, specifically the Kaltura Video Analytics plugin.</p>
+
+<p>If you’re looking for the Android guide, click here.</p>
+
+<h2 id="before-your-begin">Before Your Begin</h2>
+
+<p>You’ll need two things:</p>
+<ol>
+  <li>Your Kaltura Partner ID, which can be found in the KMC under Settings&gt;Integration Settings</li>
+  <li>Any video entry, which can be found in the KMC as well.</li>
+</ol>
+
+<h3 id="getting-started-with-the-kaltura-cocoa-pods">Getting Started with the Kaltura Cocoa Pods</h3>
+
+<p>You’ll need to install a few Kaltura pods. Consider this sample Podfile</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'OVPStarter' do
+  pod 'PlayKit'
+  pod 'PlayKitProviders'
+end
+</code></pre>
+</div>
+
+<ul>
+  <li>The <a href="https://cocoapods.org/pods/PlayKit">Playkit Pod</a> is made up of the core Player infrastructure</li>
+  <li>The <a href="https://cocoapods.org/pods/PlayKitProviders">PlatKitProviders Pod</a> adds the Media Entry Providers, which are responsible from bringing in media data from Kaltura</li>
+</ul>
+
+<p>If you don’t have a Podfile already, create a file in your Project directory called Podfile (no extension). Paste the code from above and then run <code class="highlighter-rouge">pod install</code> from the command line (in that directory). You might need to close and reopen xcode.</p>
+
+<h2 id="add-a-basic-kaltura-player">Add a Basic Kaltura Player</h2>
+
+<p>The code below will cover a few functions needed in order to get the bare bones of a kaltura player, as well as a few additional steps regarding implementing your player UI and adding plugins.</p>
+
+<h3 id="setting-up">Setting Up</h3>
+
+<p>In the Controller, import the relevant Kaltura Libraries</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import UIKit
+import PlayKit
+import PlayKitUtils
+import PlayKitKava
+import PlayKitProviders
+</code></pre>
+</div>
+
+<p>Set your partner ID and entry ID</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>let SERVER_BASE_URL = "https://cdnapisec.kaltura.com"
+let PARTNER_ID = 0000000
+let ENTRY_ID = "1_abc6st"
+</code></pre>
+</div>
+
+<h3 id="create-a-kaltura-session">Create a Kaltura Session</h3>
+
+<p>The Kaltura Session is an authorization string that identifies the user watching the video. Including a Kaltura Session (KS) in the player allows for monitoring and analytics of the video, as well as the ability to restrict content access. The KS would generally be created on the server side of the application, and passed to the controller.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var ks: String?
+</code></pre>
+</div>
+
+<p>However, if your application does not already create a Kaltura Session, follow <a href="http://developer.kaltura.com/player/ios/kaltura-session-authentication-ios.html">this guide</a> to learn how to generate a KS with the Application Token API.</p>
+
+<h3 id="create-the-player">Create the Player</h3>
+
+<p>Inside the class, below the <code class="highlighter-rouge">ks</code> declaration, add a declaration for the Player.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var player: Player?
+</code></pre>
+</div>
+
+<p>Now lets create our video player. Head over to the Storyboard and create a new PlayerView of the desired size. Add a referencing outlet to your ViewController named playerContainer. Create a new function called <code class="highlighter-rouge">playerSetup</code> and set the player variable to equal the new playerContainer</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>func setupPlayer() {
+    self.player?.view = self.playerContainer
+}
+</code></pre>
+</div>
+
+<p>Now in the <code class="highlighter-rouge">viewDidLoad</code> function, load the player. We’ll start without a pluginConfig, but we will cover adding plugins later in this guide.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>self.player = try! PlayKitManager.shared.loadPlayer(pluginConfig: nil)
+</code></pre>
+</div>
+<p>Next, call the newly created setupPlayer function.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>self.setupPlayer()
+</code></pre>
+</div>
+
+<p>Now create and call a new function called <code class="highlighter-rouge">loadMedia</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>self.loadMedia()
+</code></pre>
+</div>
+
+<p>In the loadMedia function, you’ll use the <code class="highlighter-rouge">SimpleSessionProvider</code> and <code class="highlighter-rouge">OVPMediaProvider</code> objects.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
+let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
+</code></pre>
+</div>
+
+<p>Now set your entry ID on that <code class="highlighter-rouge">mediaProvider</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mediaProvider.entryId = ENTRY_ID
+</code></pre>
+</div>
+
+<p>Load the media by creating a <code class="highlighter-rouge">MediaConfig</code> with a video start time of zero seconds, and then passing that config to <code class="highlighter-rouge">player.prepare()</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mediaProvider.loadMedia { (mediaEntry, error) in
+    if let me = mediaEntry, error == nil {
+    
+        let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
+
+        self.player.prepare(mediaConfig)
+    }
+}
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">loadMedia</code> function should now look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>func loadMedia() {
+
+    let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
+
+    let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
+
+    mediaProvider.entryId = ENTRY_ID
+
+    mediaProvider.loadMedia { (mediaEntry, error) in
+        if let me = mediaEntry, error == nil {
+
+            let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
+
+            self.player.prepare(mediaConfig)
+
+        }
+    }
+}
+</code></pre>
+</div>
+<p>At this point, you should be able to successfully run the code and see your video player in the app. Your code would look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import UIKit
+import PlayKit
+import PlayKitUtils
+import PlayKitProviders
+
+let SERVER_BASE_URL = "https://cdnapisec.kaltura.com"
+let PARTNER_ID = 1424501
+let ENTRY_ID = "1_djnefl4e"
+
+class ViewController: UIViewController {
+    
+    var ks: String?
+    var player: Player!
+    
+    @IBOutlet weak var playerContainer: PlayerView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.player = try! PlayKitManager.shared.loadPlayer(pluginConfig: createPluginConfig())
+        
+        self.setupPlayer()
+        self.loadMedia()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func setupPlayer() {
+        self.player?.view = self.playerContainer
+    }
+    
+    func loadMedia() {
+        let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
+        
+        let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
+        
+        mediaProvider.entryId = ENTRY_ID
+        
+        mediaProvider.loadMedia { (mediaEntry, error) in
+            if let me = mediaEntry, error == nil {
+                
+                let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
+                
+                if let player = self.player {
+                    player.prepare(mediaConfig)
+                }
+            }
+        }
+    }
+}
+
+</code></pre>
+</div>
+
+<p>You’ve probably noticed that there are no buttons for playing or pausing the video. To learn about adding elements to the Player’s UI, <a href="http://developer.kaltura.com/player/ios/player-ui-ios.html">click here</a></p>
+
+<p>The Kaltura Player SDK also offers various plugins for iOS that can be added to the player. Learn more <a href="http://developer.kaltura.com/player/ios/analytics-plugins-ios.html">here</a>.</p>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

@@ -1,0 +1,321 @@
+  <title>Player Events for Android</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player Events for Android" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player Events for Android</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Mar 25 09:53:03 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-events-android.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Mon Mar 25 09:53:03 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>The player and some of the plugins fire events that tell the application (and other plugins) about events that occur before/during/after playback.</p>
+
+<h2 id="listening-to-events-from-applications">Listening to events from applications</h2>
+
+<p>Call the following Player method, one or more times. <code class="highlighter-rouge">eventTypes</code> is the list of events that should be sent to the given listener:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">player</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<h2 id="removing-event-listeners-from-application-v362-and-up">Removing Event Listeners from application (v3.6.2 and up)</h2>
+
+<p>Starting with PlayKit v3.6.2, the addEventListener method returns the listener that was passed to it. This makes it easier to use it with listeners that are defined by anonymous classes, in the case the application wants to remove them later.</p>
+
+<p>There are two methods that allow removing event listeners:</p>
+
+<ul>
+  <li>Remove listener from specific events:
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="na">removeEventListener</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">events</span><span class="o">);</span> <span class="c1">// remove by event</span>
+</code></pre>
+    </div>
+  </li>
+  <li>Remove listener from all events:
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="na">removeListener</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">);</span> <span class="c1">// remove all rgeisterd events</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h2 id="listening-to-events-from-plugins">Listening to events from plugins</h2>
+
+<p><code class="highlighter-rouge">player.addEventListener()</code> is only meant to be used by applications. It does not work for plugins. Instead, plugins are given an instance of PlayKit’s MessageBus.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">messageBus</span><span class="o">.</span><span class="na">listen</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<h2 id="core-player-events">Core Player Events</h2>
+
+<p>The Player events are defined in the PlayerEvent class.</p>
+
+<h3 id="normal-flow">Normal Flow</h3>
+<ul>
+  <li>SOURCE_SELECTED: Sent when a playback source is selected</li>
+  <li>LOADED_METADATA: The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.</li>
+  <li>DURATION_CHANGE: The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.</li>
+  <li>TRACKS_AVAILABLE: Sent when track info is available.</li>
+  <li>PLAYBACK_INFO_UPDATED: Sent event that notify about changes in the playback parameters. When bitrate of the video or audio track changes or new media loaded. Holds the PlaybackInfo.java object with relevant data.</li>
+  <li>CAN_PLAY: Sent when enough data is available that the media can be played, at least for a couple of frames. This corresponds to the HAVE_ENOUGH_DATA readyState.</li>
+  <li>PLAY: Sent when playback of the media starts after having been paused; that is, when playback is resumed after a prior pause event.</li>
+  <li>PLAYING: Sent when the media begins to play (either for the first time, after having been paused, or after ending and then restarting).</li>
+  <li>PLAYHEAD_UPDATED: Send player position every 100 Milisec</li>
+  <li>ENDED: Sent when playback completes.</li>
+</ul>
+
+<h3 id="additional-user-actions">Additional User actions</h3>
+<ul>
+  <li>PAUSE: Sent when playback is paused.</li>
+  <li>SEEKED: Sent when a seek operation completes.</li>
+  <li>SEEKING: Sent when a seek operation begins.</li>
+  <li>REPLAY:Sent when replay happened.</li>
+  <li>STOPPED: sent when stop player API is called</li>
+</ul>
+
+<h3 id="track-change">Track change</h3>
+<ul>
+  <li>VIDEO_TRACK_CHANGED: A video track was selected</li>
+  <li>AUDIO_TRACK_CHANGED: An audio track was selected</li>
+  <li>TEXT_TRACK_CHANGED: A text track was selected</li>
+</ul>
+
+<h3 id="rate-and-volume-change">Rate and Volume change</h3>
+<ul>
+  <li>PLAYBACK_RATE_CHANGED</li>
+  <li>VOLUME_CHANGED: Sent when volume is changed.</li>
+</ul>
+
+<h3 id="metadata-id3-tags-and-related">Metadata (ID3 tags and related)</h3>
+<ul>
+  <li>METADATA_AVAILABLE: Sent when there is metadata available for this entry.</li>
+</ul>
+
+<h3 id="errors">Errors</h3>
+<ul>
+  <li>ERROR: Sent when an error occurs. The element’s error attribute contains more information. See Error handling for details.</li>
+</ul>
+
+<h3 id="state-change">State Change</h3>
+<p>The Player can be in one of 4 playback states:<br />
+  IDLE, LOADING, READY, BUFFERING<br />
+The STATE_CHANGED event is fired when the player transitions between states.</p>
+
+<h3 id="subtitle-style-update">Subtitle Style update</h3>
+<ul>
+  <li>SUBTITLE_STYLE_CHANGED: Sent when subtitle style is changed</li>
+</ul>
+
+<h2 id="ad-events">Ad Events</h2>
+
+<p>Defined in AdEvent class.</p>
+
+<ul>
+  <li>AD_REQUESTED</li>
+  <li>STARTED</li>
+  <li>AD_DISPLAYED_AFTER_CONTENT_PAUSE</li>
+  <li>PAUSED</li>
+  <li>RESUMED</li>
+  <li>COMPLETED</li>
+  <li>FIRST_QUARTILE</li>
+  <li>MIDPOINT</li>
+  <li>THIRD_QUARTILE</li>
+  <li>SKIPPED</li>
+  <li>CLICKED</li>
+  <li>TAPPED</li>
+  <li>ICON_TAPPED</li>
+  <li>AD_BREAK_READY</li>
+  <li>AD_PROGRESS</li>
+  <li>AD_BREAK_STARTED</li>
+  <li>AD_BREAK_ENDED</li>
+  <li>AD_BREAK_IGNORED</li>
+  <li>CUEPOINTS_CHANGED</li>
+  <li>PLAY_HEAD_CHANGED</li>
+  <li>LOADED</li>
+  <li>CONTENT_PAUSE_REQUESTED</li>
+  <li>CONTENT_RESUME_REQUESTED</li>
+  <li>ALL_ADS_COMPLETED</li>
+  <li>AD_LOAD_TIMEOUT_TIMER_STARTED</li>
+  <li>ERROR</li>
+</ul>
+
+<h2 id="code-samples">Code Samples</h2>
+<ul>
+  <li><a href="https://github.com/kaltura/playkit-android-samples/tree/master/EventsRegistration">Events Registration</a></li>
+  <li><a href="https://github.com/kaltura/playkit-android-samples/tree/master/AppAnalyticsSample">App Analytics</a></li>
+</ul>
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

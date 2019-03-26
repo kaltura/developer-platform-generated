@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="883px" preserveAspectRatio="none" style="width:783px;height:883px;" version="1.1" viewBox="0 0 783 883" width="783px" zoomAndPan="magnify"><defs><filter height="300%" id="f1aus5rtvm6xxr" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="162" x="306" y="22.9951">Download Sequence</text><rect fill="#FFFFFF" filter="url(#f1aus5rtvm6xxr)" height="90.2031" style="stroke: #000000; stroke-width: 2.0;" width="705.5" x="17" y="114.7266"/><rect fill="#FFFFFF" height="43.9375" style="stroke: none; stroke-width: 1.0;" width="705.5" x="17" y="160.9922"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49" x2="49" y1="68.5938" y2="295.1953"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 1.0,4.0;" x1="49" x2="49" y1="295.1953" y2="336"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49" x2="49" y1="336" y2="502.6641"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 1.0,4.0;" x1="49" x2="49" y1="502.6641" y2="543.4688"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49" x2="49" y1="543.4688" y2="615.7344"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 1.0,4.0;" x1="49" x2="49" y1="615.7344" y2="656.5391"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49" x2="49" y1="656.5391" y2="843.0703"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="645.5" x2="645.5" y1="68.5938" y2="295.1953"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 1.0,4.0;" x1="645.5" x2="645.5" y1="295.1953" y2="336"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="645.5" x2="645.5" y1="336" y2="502.6641"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 1.0,4.0;" x1="645.5" x2="645.5" y1="502.6641" y2="543.4688"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="645.5" x2="645.5" y1="543.4688" y2="615.7344"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 1.0,4.0;" x1="645.5" x2="645.5" y1="615.7344" y2="656.5391"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="645.5" x2="645.5" y1="656.5391" y2="843.0703"/><rect fill="#FEFECE" filter="url(#f1aus5rtvm6xxr)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="41" x="27" y="33.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="27" x="34" y="53.292">App</text><rect fill="#FEFECE" filter="url(#f1aus5rtvm6xxr)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="41" x="27" y="842.0703"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="27" x="34" y="862.0654">App</text><rect fill="#FEFECE" filter="url(#f1aus5rtvm6xxr)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="130" x="578.5" y="33.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="585.5" y="53.292">ContentManager</text><rect fill="#FEFECE" filter="url(#f1aus5rtvm6xxr)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="130" x="578.5" y="842.0703"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="585.5" y="862.0654">ContentManager</text><polygon fill="#A80036" points="633.5,95.7266,643.5,99.7266,633.5,103.7266,637.5,99.7266" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49.5" x2="639.5" y1="99.7266" y2="99.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="257" x="56.5" y="94.6606">ContentManager.shared.addItem(id, url)</text><path d="M17,114.7266 L81,114.7266 L81,121.7266 L71,131.7266 L17,131.7266 L17,114.7266 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="90.2031" style="stroke: #000000; stroke-width: 2.0;" width="705.5" x="17" y="114.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="32" y="127.7935">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="112" x="96" y="126.937">[successful case]</text><polygon fill="#A80036" points="60.5,148.9922,50.5,152.9922,60.5,156.9922,56.5,152.9922" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="54.5" x2="644.5" y1="152.9922" y2="152.9922"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="66.5" y="147.9263">DTGItem</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="17" x2="722.5" y1="161.9922" y2="161.9922"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="80" x="22" y="172.2026">[item exists]</text><polygon fill="#A80036" points="60.5,192.9297,50.5,196.9297,60.5,200.9297,56.5,196.9297" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="54.5" x2="644.5" y1="196.9297" y2="196.9297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="14" x="66.5" y="191.8638">nil</text><polygon fill="#A80036" points="60.5,229.0625,50.5,233.0625,60.5,237.0625,56.5,233.0625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="54.5" x2="644.5" y1="233.0625" y2="233.0625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="66.5" y="227.9966">state update (new)</text><polygon fill="#A80036" points="633.5,283.1953,643.5,287.1953,633.5,291.1953,637.5,287.1953" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49.5" x2="639.5" y1="287.1953" y2="287.1953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="572" x="56.5" y="282.1294">ContentManager.shared.loadItemMetadata(id, preferredVideoBitrate, completionHandler)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="193" x="251" y="319.4058">Download and parse the manifest</text><polygon fill="#A80036" points="60.5,353.1328,50.5,357.1328,60.5,361.1328,56.5,357.1328" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="54.5" x2="644.5" y1="357.1328" y2="357.1328"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="66.5" y="352.0669">completionHandler</text><polygon fill="#A80036" points="633.5,407.2656,643.5,411.2656,633.5,415.2656,637.5,411.2656" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49.5" x2="639.5" y1="411.2656" y2="411.2656"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="239" x="56.5" y="406.1997">ContentManager.shared.startItem(id)</text><path d="M524,424.2656 L524,464.2656 L762,464.2656 L762,434.2656 L752,424.2656 L524,424.2656 " fill="#FBFB77" filter="url(#f1aus5rtvm6xxr)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M752,424.2656 L752,434.2656 L762,434.2656 L752,424.2656 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="213" x="530" y="441.3325">Start the downloader for the item</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="213" x="530" y="456.4653">and begin background downloads</text><polygon fill="#A80036" points="60.5,490.6641,50.5,494.6641,60.5,498.6641,56.5,494.6641" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="54.5" x2="644.5" y1="494.6641" y2="494.6641"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="163" x="66.5" y="489.5981">state update (inProgress)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="72" x="311.5" y="526.8745">Downloading</text><rect fill="#EEEEEE" filter="url(#f1aus5rtvm6xxr)" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="768" x="3" y="564.0352"/><line style="stroke: #000000; stroke-width: 1.0;" x1="3" x2="771" y1="564.0352" y2="564.0352"/><line style="stroke: #000000; stroke-width: 1.0;" x1="3" x2="771" y1="567.0352" y2="567.0352"/><rect fill="#EEEEEE" filter="url(#f1aus5rtvm6xxr)" height="23.1328" style="stroke: #000000; stroke-width: 2.0;" width="95" x="339.5" y="553.4688"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="76" x="345.5" y="569.5356">Repetition</text><polygon fill="#A80036" points="60.5,603.7344,50.5,607.7344,60.5,611.7344,56.5,607.7344" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="54.5" x2="644.5" y1="607.7344" y2="607.7344"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="426" x="66.5" y="602.6685">progress updates (id, totalBytesDownloaded, totalBytesEstimated)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="72" x="311.5" y="639.9448">Downloading</text><polygon fill="#A80036" points="60.5,673.6719,50.5,677.6719,60.5,681.6719,56.5,677.6719" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="54.5" x2="644.5" y1="677.6719" y2="677.6719"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="164" x="66.5" y="672.606">state update (completed)</text><polygon fill="#A80036" points="633.5,727.8047,643.5,731.8047,633.5,735.8047,637.5,731.8047" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="49.5" x2="639.5" y1="731.8047" y2="731.8047"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="283" x="56.5" y="726.7388">ContentManager.shared.itemPlaybackUrl(id)</text><polygon fill="#A80036" points="60.5,756.9375,50.5,760.9375,60.5,764.9375,56.5,760.9375" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="54.5" x2="644.5" y1="760.9375" y2="760.9375"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="76" x="66.5" y="755.8716">playback url</text><path d="M8,798.9375 L8,823.9375 L688,823.9375 L688,808.9375 L678,798.9375 L8,798.9375 " fill="#FBFB77" filter="url(#f1aus5rtvm6xxr)" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M678,798.9375 L678,808.9375 L688,808.9375 L678,798.9375 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="344" x="169.75" y="816.0044">You can now use playback url to play the media offline</text><!--
+@startuml
+
+title Download Sequence
+
+App -> ContentManager : ContentManager.shared.addItem(id, url)
+
+alt successful case
+    App <- - ContentManager : DTGItem
+else item exists
+    App <- - ContentManager : nil
+end
+
+App <- ContentManager : state update (new)
+
+|||
+
+App -> ContentManager : ContentManager.shared.loadItemMetadata(id, preferredVideoBitrate, completionHandler)
+
+... Download and parse the manifest ...
+
+App <- - ContentManager : completionHandler
+
+|||
+
+App -> ContentManager : ContentManager.shared.startItem(id)
+
+note over ContentManager
+    Start the downloader for the item 
+    and begin background downloads
+end note
+
+App <- ContentManager : state update (inProgress)
+
+... Downloading ...
+
+== Repetition ==
+App <- ContentManager : progress updates (id, totalBytesDownloaded, totalBytesEstimated)
+
+... Downloading ...
+
+App <- ContentManager : state update (completed)
+
+|||
+
+App -> ContentManager : ContentManager.shared.itemPlaybackUrl(id)
+
+App <- ContentManager : playback url
+
+|||
+
+note over App, ContentManager
+    You can now use playback url to play the media offline
+end note
+
+@enduml
+
+PlantUML version 1.2019.03(Sun Mar 10 07:04:44 EDT 2019)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.7.0_131-b00
+Operating System: Linux
+OS Version: 3.13.0-76-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

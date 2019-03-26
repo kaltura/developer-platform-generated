@@ -1,0 +1,251 @@
+  <title>Offline Assets for iOS</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Offline Assets for iOS" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Offline Assets for iOS</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Mar 19 11:23:35 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/offline-assets-ios.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Tue Mar 19 11:23:35 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+    		<p>PlayKit supports download and playback of assets.</p>
+
+<h2 id="download">Download</h2>
+
+<p>The PlayKit component responsible for local/offline/downloaded assets is <code class="highlighter-rouge">LocalAssetsManager</code>.</p>
+
+<h3 id="select-a-source-to-download">Select a source to download</h3>
+
+<p>A <code class="highlighter-rouge">PKMediaEntry</code> typically has more than one PKMediaSource, so the first step is selecting the most suitable source.<br />
+Call <code class="highlighter-rouge">LocalAssetsManager.getPreferredDownloadableMediaSource(for:)</code>, passing a PKMediaEntry. It will try to find a downloadable <br />
+source.</p>
+
+<p>There are two mechanisms for downloading HLS assets: Kaltura’s DownloadToGo (DTG) library and Apple’s <code class="highlighter-rouge">AVAssetDownloadTask</code>. <br />
+In most cases, <strong>DTG</strong> should be used. The only case in which <code class="highlighter-rouge">AVAssetDownloadTask</code> must be used, is when downloading <strong>FairPlay</strong> on iOS 10.0-10.2.</p>
+
+<blockquote>
+  <p>NOTE: We recommend that apps restrict FairPlay downloads to iOS 10.3 and up and use DTG.</p>
+</blockquote>
+
+<h3 id="downloadtogo-dtg">DownloadToGo (DTG)</h3>
+
+<p>Kaltura’s DTG library can download HLS assets, with and without FairPlay protection. Please look at <a href="../dtg/index.md">DTG’s guide</a> for detailed usage instructions - the following focuses on PlayKit+DTG integration.</p>
+
+<p><img src="./offline-dtg.svg" alt="" /></p>
+
+<div hidden="">
+ <p><img src="assets/uml/be972b9fa99829d2b15c72af4c225d94.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+</div>
+
+<p>This flow works for clear and AES HLS assets on iOS 8 and up. It also works for FairPlay assets on iOS 10.3 and up.</p>
+
+<blockquote>
+  <p>NOTE: If the asset is FairPlay-protected, the master playlist MUST contain a EXT-X-SESSION-KEY tag with the asset’s <code class="highlighter-rouge">skd</code> URL. Without it, LocalAssetsManager won’t be able to install a FairPlay license. Example (replace ASSET_ID below with the actual id):</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES,URI="skd://ASSET_ID",KEYFORMAT="com.apple.streamingkeydelivery",KEYFORMATVERSIONS="1"
+</code></pre>
+</div>
+
+<blockquote>
+  <p>In <strong>Kaltura’s backend</strong>, this is done by enabling “Allow Fairplay Offline” in the <em>VOD_PACKAGER_HLS</em> delivery profile. See <a href="Offline-FairPlay-delivery-profile.png">screenshot</a>.</p>
+</blockquote>
+
+<h3 id="avassetdownloadtask">AVAssetDownloadTask</h3>
+
+<p>AVAssetDownloadTask is a facility added to iOS in version 10.0. It can download HLS assets, with and without FairPlay protection. It can also download mp4 assets.</p>
+
+<blockquote>
+  <p>NOTE: As mentioned above, the only case in which <code class="highlighter-rouge">AVAssetDownloadTask</code> must be used, is when downloading <strong>FairPlay</strong> on iOS 10.0-10.2. We recommend avoiding FairPlay downloads on those iOS versions.</p>
+</blockquote>
+
+<p><img src="offline-AVAssetDownloadTask.svg" alt="" /></p>
+
+<div hidden="">
+<p><img src="assets/uml/87eac4d93bb0110d1dda801a204075e8.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
+</div>
+
+<p>See PlayKit’s <a href="https://github.com/kaltura/playkit-ios-samples/tree/develop/OfflineSampleSwift">OfflineSample</a> and Apple’s <a href="https://developer.apple.com/library/content/samplecode/HLSCatalog/Introduction/Intro.html">HLSCatalog</a> for help with using AVAssetDownloadTask.</p>
+
+<h2 id="playback">Playback</h2>
+
+<p>Call <code class="highlighter-rouge">LocalAssetsManager.createLocalMediaEntry(for:localURL:)</code>, returns a PKMediaEntry ready to play.</p>
+
+<h3 id="dtg">DTG</h3>
+
+<p>Call <code class="highlighter-rouge">ContentManager.itemPlaybackUrl(id:)</code> to get the playback URL. This is what should be passed as the <code class="highlighter-rouge">localURL</code> above.</p>
+
+<h3 id="avassetdownloadtask-1">AVAssetDownloadTask</h3>
+
+<p>Use the download location as you saved during the download process.</p>
+
+
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
