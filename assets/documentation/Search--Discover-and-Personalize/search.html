@@ -140,23 +140,25 @@ rtp('get', 'campaign',true);
 <p>A really neat feature, highlighting, gives you insight on why a particular object was returned in the search results, meaning, what caused the object to match the query.<br />
 Let’s assume you have an account in Kaltura with over a thousand entries and you’re looking for a pasta recipe. Searching “pasta” with the unified search would search through all entry data - and this is where highlighting comes in: you’d be able to determine whether pasta was found in the captions, description, or simply just the entry name.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$unifiedItem = new KalturaESearchUnifiedItem ();
-$unifiedItem-&gt;searchTerm = 'pasta';
-$unifiedItem-&gt;itemType = KalturaESearchItemType::EXACT_MATCH;
-$unifiedItem-&gt;addHighlight = true;
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$unifiedItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchUnifiedItem</span> <span class="p">();</span>
+<span class="nv">$unifiedItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'pasta'</span><span class="p">;</span>
+<span class="nv">$unifiedItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">EXACT_MATCH</span><span class="p">;</span>
+<span class="nv">$unifiedItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-$searchOperator = new KalturaESearchEntryOperator();
-$searchOperator-&gt;searchItems = array($unifiedItem);
+<span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$unifiedItem</span><span class="p">);</span>
 
-$searchParams = new KalturaESearchEntryParams();
-$searchParams-&gt;searchOperator = $searchOperator;
-$elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client);
-$searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</code></pre></figure>
+<span class="nv">$searchParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryParams</span><span class="p">();</span>
+<span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
+<span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="results">Results</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"totalCount"</span><span class="err">:</span><span class="mi">1</span><span class="err">,</span><span class="w">
-</span><span class="s2">"objects"</span><span class="err">:</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"totalCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="nt">"objects"</span><span class="p">:[</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="nt">"object"</span><span class="p">:{</span><span class="w">
 </span><span class="err">...</span><span class="w">
 </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
@@ -174,78 +176,89 @@ $searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams,
 </span><span class="nt">"hits"</span><span class="p">:[</span><span class="w">
 </span><span class="p">{</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"delicious &lt;em&gt;pasta&lt;\/em&gt; recipe"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaString"</span><span class="w"> </span><span class="p">}],</span><span class="w">
-</span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaESearchHighlight"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span></code></pre></figure>
+</span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaESearchHighlight"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
 
 <h2 id="partial-search">Partial Search</h2>
 <p>Sometimes you can’t be sure about the exact phrase to search. Perhaps you’re not sure if the entry is listed under “cake” or “cupcake.”<br />
 Enter partial search. It is exactly what it sounds like.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$entryNameItem = new KalturaESearchEntryItem();
-$entryNameItem-&gt;searchTerm = 'cake';
-$entryNameItem-&gt;itemType = KalturaESearchItemType::PARTIAL;
-$entryNameItem-&gt;fieldName = KalturaESearchEntryFieldName::NAME;
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$entryNameItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryItem</span><span class="p">();</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'cake'</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">PARTIAL</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchEntryFieldName</span><span class="o">::</span><span class="na">NAME</span><span class="p">;</span>
 
-$entryNameItem-&gt;addHighlight = true;
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-$searchOperator = new KalturaESearchEntryOperator();
-$searchOperator-&gt;searchItems = array($entryNameItem);
+<span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$entryNameItem</span><span class="p">);</span>
 
-$searchParams = new KalturaESearchEntryParams();
-$searchParams-&gt;searchOperator = $searchOperator;
-$elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client);
-$searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</code></pre></figure>
+<span class="nv">$searchParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryParams</span><span class="p">();</span>
+<span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
+<span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="results-1">Results</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"hits"</span><span class="err">:</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"hits"</span><span class="p">:[</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="err">cup&lt;em&gt;cake&lt;/em&gt;</span><span class="s2">",
 "</span><span class="err">objectType</span><span class="s2">":"</span><span class="err">KalturaString"</span><span class="w">
-</span><span class="p">}]</span></code></pre></figure>
+</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <h2 id="synonyms">Synonyms</h2>
 
 <p>At this point you’re just hungry and you don’t care whether the recipe is for pasta or salmon. You’d like to eat something “delicious”, but you’re open to “yummy” as well. This is another case for the partial feature, which uses the WordNet English synonym dictionary by default and gets you that recipe with fewer searches!</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"> 
-$entryNameItem = new KalturaESearchEntryItem(); $entryNameItem-&gt;searchTerm = 'delicious'; 
-$entryNameItem-&gt;itemType = KalturaESearchItemType::PARTIAL; 
-$entryNameItem-&gt;fieldName = KalturaESearchEntryFieldName::NAME; $entryNameItem-&gt;addHighlight = true; 
-$searchOperator = new KalturaESearchEntryOperator(); 
+<span class="cp">&lt;?php</span>
+<span class="nv">$entryNameItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryItem</span><span class="p">();</span> <span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'delicious'</span><span class="p">;</span> 
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">PARTIAL</span><span class="p">;</span> 
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchEntryFieldName</span><span class="o">::</span><span class="na">NAME</span><span class="p">;</span> <span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> 
+<span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span> 
 
-$searchOperator-&gt;searchItems = array($entryNameItem);
-$searchParams = new KalturaESearchEntryParams();
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$entryNameItem</span><span class="p">);</span>
+<span class="nv">$searchParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryParams</span><span class="p">();</span>
 
-$searchParams-&gt;searchOperator = $searchOperator; 
-$elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client); 
-$searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</code></pre></figure>
+<span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span> 
+<span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span> 
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="results-2">Results</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"hits"</span><span class="err">:</span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;yummy&lt;\/em&gt; recipe"</span><span class="p">,</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="p">]</span><span class="err">,</span><span class="w">
-    </span><span class="s2">"objectType"</span><span class="err">:</span><span class="s2">"KalturaESearchHighlight"</span><span class="w">  </span><span class="err">}</span><span class="w"> </span><span class="err">],</span><span class="w">    </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"hits"</span><span class="p">:[</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;yummy&lt;\/em&gt; recipe"</span><span class="p">,</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaESearchHighlight"</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="err">],</span><span class="w">    
+</span><span class="err">}</span></code></pre></figure>
 
 <h2 id="multi-language">Multi-Language</h2>
 
 <p>Now imagine that you have recipes with captions in various languages, such as Chinese or German. eSearch supports searching across 22 languages (and we’ll be adding more!), including; Spanish, French, Russian, Dutch, Chinese. Let’s demonstrate searching inside captions for the Chinese phrase 食谱 which, you guessed it, means recipe.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$captionItem = new KalturaESearchCaptionItem();
-$captionItem-&gt;searchTerm = '食谱';
-$captionItem-&gt;itemType = KalturaESearchItemType::PARTIAL;
-$captionItem-&gt;fieldName = KalturaESearchCaptionFieldName::CONTENT;
-$captionItem-&gt;addHighlight = true;
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$captionItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchCaptionItem</span><span class="p">();</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'食谱'</span><span class="p">;</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">PARTIAL</span><span class="p">;</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchCaptionFieldName</span><span class="o">::</span><span class="na">CONTENT</span><span class="p">;</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-$searchOperator = new KalturaESearchEntryOperator();
-$searchOperator-&gt;searchItems = array($captionItem);
+<span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$captionItem</span><span class="p">);</span>
 
-$searchParams = new KalturaESearchEntryParams();
-$searchParams-&gt;searchOperator = $searchOperator;
-$elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client);
-$searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</code></pre></figure>
+<span class="nv">$searchParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryParams</span><span class="p">();</span>
+<span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
+<span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="results-3">Results</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"name"</span><span class="err">:</span><span class="s2">"Amazing recipes"</span><span class="err">,</span><span class="w">
-</span><span class="s2">"items"</span><span class="err">:</span><span class="p">[</span><span class="w">
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Amazing recipes"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
 </span><span class="p">{</span><span class="w"> </span><span class="nt">"line"</span><span class="p">:</span><span class="s2">"\u98df\u8c31"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"startsAt"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
 </span><span class="nt">"endsAt"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
@@ -255,17 +268,21 @@ $searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams,
 </span><span class="p">{</span><span class="w"> </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"caption_assets.content.raw"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"hits"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 </span><span class="p">{</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;\u98df\u8c31&lt;\/em&gt;"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaString"</span><span class="w"> </span><span class="p">}]</span></code></pre></figure>
+</span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaString"</span><span class="w"> </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span><span class="err">}</span></code></pre></figure>
 
 <h2 id="custom-metadata-profiles-and-fields">Custom Metadata Profiles and Fields</h2>
 
 <p>The unified option searches through all of the entry’s related objects - such as captions, metadata, and cue-points but if you know where your keyword is, with eSearch it is just as easy to search through specific objects.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$metadataItem = new KalturaESearchEntryMetadataItem();
-$metadataItem-&gt;searchTerm = 'recipe';
-$metadataItem-&gt;itemType = KalturaESearchItemType::STARTS_WITH;
-$metadataItem-&gt;metadataProfileId = 653;
-$metadataItem-&gt;addHighlight = true;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$metadataItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryMetadataItem</span><span class="p">();</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'recipe'</span><span class="p">;</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">STARTS_WITH</span><span class="p">;</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">metadataProfileId</span> <span class="o">=</span> <span class="mi">653</span><span class="p">;</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
 
 <blockquote>
   <p>By default, custom metadata search goes through all fields in the chosen profile (metadataProfileId). To define a specific field, you could set the x-path attribute like so:</p>
@@ -282,140 +299,154 @@ $searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams,
 
 <h3 id="results-4">Results</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"xpath"</span><span class="err">:</span><span class="s2">"/* local-name()='metadata' /* local-name()='Field1'"</span><span class="err">,</span><span class="w">
-</span><span class="s2">"metadataProfileId"</span><span class="err">:</span><span class="mi">653</span><span class="err">,</span><span class="w">
-</span><span class="s2">"metadataFieldId"</span><span class="err">:</span><span class="mi">668</span><span class="err">,</span><span class="w">
-</span><span class="s2">"valueText"</span><span class="err">:</span><span class="s2">"recipe"</span><span class="err">,</span><span class="w">
-</span><span class="s2">"highlight"</span><span class="err">:</span><span class="p">[</span><span class="w">
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"xpath"</span><span class="p">:</span><span class="s2">"/* local-name()='metadata' /* local-name()='Field1'"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"metadataProfileId"</span><span class="p">:</span><span class="mi">653</span><span class="p">,</span><span class="w">
+</span><span class="nt">"metadataFieldId"</span><span class="p">:</span><span class="mi">668</span><span class="p">,</span><span class="w">
+</span><span class="nt">"valueText"</span><span class="p">:</span><span class="s2">"recipe"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"highlight"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">  </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"metadata.value_text.raw"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"hits"</span><span class="p">:[</span><span class="w">
             </span><span class="p">{</span><span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;recipe&lt;\/em&gt;"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaString"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaESearchHighlight"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span></code></pre></figure>
+        </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaESearchHighlight"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <p>Searching in Cue Points<br />
 Video often includes temporal (time based) metadata such as annotations, comments, notes, overlays, in-video chapters and markers, synced powerpoint slides, or descriptive data (often generated by video analysis engines such as OCR, face detection, scene detection, etc.). Cue Points are the objects that store this temporal metadata, and it’s very often that you’ll want to search through them to create smart search driven experiences.</p>
 
 <p>For example, in our video cooking recipes library, all our videos were marked with ingredients as we were using them: sugar, flour, etc. Let’s find all the strawberry recipes where we’re not using sugar.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$cuePointItem = new KalturaESearchCuePointItem();
-$cuePointItem-&gt;itemType = KalturaESearchItemType::EXACT_MATCH;
-$cuePointItem-&gt;fieldName = KalturaESearchCuePointFieldName::TEXT;
-$cuePointItem-&gt;searchTerm = 'adding sugar';
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$cuePointItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchCuePointItem</span><span class="p">();</span>
+<span class="nv">$cuePointItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">EXACT_MATCH</span><span class="p">;</span>
+<span class="nv">$cuePointItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchCuePointFieldName</span><span class="o">::</span><span class="na">TEXT</span><span class="p">;</span>
+<span class="nv">$cuePointItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'adding sugar'</span><span class="p">;</span>
 
-$notOperator = new KalturaESearchEntryOperator();
-$notOperator-&gt;operator = KalturaESearchOperatorType::NOT_OP;
-$notOperator-&gt;searchItems = array($cuePointItem);
-We defined a cue point item with ‘adding sugar’ as its search term. Then we added it to the NOT operator.
+<span class="nv">$notOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$notOperator</span><span class="o">-&gt;</span><span class="na">operator</span> <span class="o">=</span> <span class="nx">KalturaESearchOperatorType</span><span class="o">::</span><span class="na">NOT_OP</span><span class="p">;</span>
+<span class="nv">$notOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$cuePointItem</span><span class="p">);</span>
+<span class="nx">We</span> <span class="nb">defined</span> <span class="nx">a</span> <span class="nx">cue</span> <span class="nx">point</span> <span class="nx">item</span> <span class="nx">with</span> <span class="err">‘</span><span class="nx">adding</span> <span class="nx">sugar</span><span class="err">’</span> <span class="k">as</span> <span class="nx">its</span> <span class="nx">search</span> <span class="nx">term</span><span class="o">.</span> <span class="nx">Then</span> <span class="nx">we</span> <span class="nx">added</span> <span class="nx">it</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">NOT</span> <span class="nx">operator</span><span class="o">.</span>
 
-$entryNameItem = new KalturaESearchEntryItem();
-$entryNameItem-&gt;searchTerm = 'strawberry';
-$entryNameItem-&gt;itemType = KalturaESearchItemType::PARTIAL;
-$entryNameItem-&gt;fieldName = KalturaESearchEntryFieldName::NAME;
+<span class="nv">$entryNameItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryItem</span><span class="p">();</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'strawberry'</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">PARTIAL</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchEntryFieldName</span><span class="o">::</span><span class="na">NAME</span><span class="p">;</span>
 
-$searchOperator = new KalturaESearchEntryOperator();
-$searchOperator-&gt;operator = KalturaESearchOperatorType::AND_OP;
-$searchOperator-&gt;searchItems = array($entryNameItem, $notOperator);
+<span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">operator</span> <span class="o">=</span> <span class="nx">KalturaESearchOperatorType</span><span class="o">::</span><span class="na">AND_OP</span><span class="p">;</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$entryNameItem</span><span class="p">,</span> <span class="nv">$notOperator</span><span class="p">);</span>
 
-$searchParams = new KalturaESearchEntryParams();
-$searchParams-&gt;searchOperator = $searchOperator;
+<span class="nv">$searchParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryParams</span><span class="p">();</span>
+<span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
 
-$elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client);
-$searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</code></pre></figure>
+<span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <p>Then we searched for recipes containing strawberry with an AND condition on our previous NOT.</p>
 
 <h3 id="results-5">Results</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"object"</span><span class="err">:</span><span class="p">{</span><span class="w">
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"object"</span><span class="p">:{</span><span class="w">
 </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"strawberry shortcake recipe"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaMediaEntry"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
 <h2 id="ranges-and-dates">Ranges and Dates</h2>
 
 <p>Perhaps one of the most common searches includes searching between specific date ranges. We’ll search for all recipes created this past January, using their epoch timestamps.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$entryNameItem = new KalturaESearchEntryItem();
-$entryNameItem-&gt;searchTerm = 'recipe';
-$entryNameItem-&gt;itemType = KalturaESearchItemType::EXACT_MATCH;
-$entryNameItem-&gt;fieldName = KalturaESearchEntryFieldName::NAME;
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$entryNameItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryItem</span><span class="p">();</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'recipe'</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">EXACT_MATCH</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchEntryFieldName</span><span class="o">::</span><span class="na">NAME</span><span class="p">;</span>
 
-$rangeItem = new KalturaESearchRange();
-$rangeItem-&gt;greaterThanOrEqual = 1514764800;
-$rangeItem-&gt;lessThanOrEqual = 1517443199;
+<span class="nv">$rangeItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchRange</span><span class="p">();</span>
+<span class="nv">$rangeItem</span><span class="o">-&gt;</span><span class="na">greaterThanOrEqual</span> <span class="o">=</span> <span class="mi">1514764800</span><span class="p">;</span>
+<span class="nv">$rangeItem</span><span class="o">-&gt;</span><span class="na">lessThanOrEqual</span> <span class="o">=</span> <span class="mi">1517443199</span><span class="p">;</span>
 
-$entryCreatedAtItem = new KalturaESearchEntryItem();
-$entryCreatedAtItem-&gt;itemType = KalturaESearchItemType::RANGE;
-$entryCreatedAtItem-&gt;fieldName = KalturaESearchEntryFieldName::CREATED_AT;
-$entryCreatedAtItem-&gt;range = $rangeItem;
+<span class="nv">$entryCreatedAtItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryItem</span><span class="p">();</span>
+<span class="nv">$entryCreatedAtItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">RANGE</span><span class="p">;</span>
+<span class="nv">$entryCreatedAtItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchEntryFieldName</span><span class="o">::</span><span class="na">CREATED_AT</span><span class="p">;</span>
+<span class="nv">$entryCreatedAtItem</span><span class="o">-&gt;</span><span class="na">range</span> <span class="o">=</span> <span class="nv">$rangeItem</span><span class="p">;</span>
 
-$searchOperator = new KalturaESearchEntryOperator();
-$searchOperator-&gt;operator = KalturaESearchOperatorType::AND_OP;
-$searchOperator-&gt;searchItems = array($entryNameItem, $entryCreatedAtItem);
+<span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">operator</span> <span class="o">=</span> <span class="nx">KalturaESearchOperatorType</span><span class="o">::</span><span class="na">AND_OP</span><span class="p">;</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$entryNameItem</span><span class="p">,</span> <span class="nv">$entryCreatedAtItem</span><span class="p">);</span>
 
-$searchParams = new KalturaESearchEntryParams();
-$searchParams-&gt;searchOperator = $searchOperator;
+<span class="nv">$searchParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryParams</span><span class="p">();</span>
+<span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
 
-$elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client);
-$searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</code></pre></figure>
+<span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="results-6">Results</h3>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"object"</span><span class="err">:</span><span class="p">{</span><span class="w">
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+</span><span class="nt">"object"</span><span class="p">:{</span><span class="w">
 </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"pasta recipe"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"createdAt"</span><span class="p">:</span><span class="mi">1516097789</span><span class="p">,</span><span class="w">
 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaMediaEntry"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
 <h2 id="complex-search">Complex Search</h2>
 
 <p>Now to make things interesting: what if you were looking for an entry with “pasta” in the name and 食谱 (recipe in Chinese) within the captions? Or if you were looking for “recipe” in custom metadata and wanted to highlight the results? eSearch has your back.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$entryNameItem = new KalturaESearchEntryItem();
-$entryNameItem-&gt;searchTerm = 'pasta';
-$entryNameItem-&gt;itemType = KalturaESearchItemType::EXACT_MATCH;
-$entryNameItem-&gt;fieldName = KalturaESearchEntryFieldName::NAME;
-$entryNameItem-&gt;addHighlight = true;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$entryNameItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryItem</span><span class="p">();</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'pasta'</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">EXACT_MATCH</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchEntryFieldName</span><span class="o">::</span><span class="na">NAME</span><span class="p">;</span>
+<span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
 
 <p>We defined an entry item with pasta in its name.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$captionItem = new KalturaESearchCaptionItem();
-$captionItem-&gt;searchTerm = '食谱';
-$captionItem-&gt;itemType = KalturaESearchItemType::PARTIAL;
-$captionItem-&gt;fieldName = KalturaESearchCaptionFieldName::CONTENT;
-$captionItem-&gt;addHighlight = true;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$captionItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchCaptionItem</span><span class="p">();</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'食谱'</span><span class="p">;</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">PARTIAL</span><span class="p">;</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">fieldName</span> <span class="o">=</span> <span class="nx">KalturaESearchCaptionFieldName</span><span class="o">::</span><span class="na">CONTENT</span><span class="p">;</span>
+<span class="nv">$captionItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
 
 <p>Then we defined a new caption item which contains recipe (Chinese) in its captions</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$metadataItem = new KalturaESearchEntryMetadataItem();
-$metadataItem-&gt;searchTerm = 'recipe';
-$metadataItem-&gt;itemType = KalturaESearchItemType::STARTS_WITH;
-$metadataItem-&gt;metadataProfileId = 653;
-$metadataItem-&gt;addHighlight = true;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$metadataItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryMetadataItem</span><span class="p">();</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'recipe'</span><span class="p">;</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">STARTS_WITH</span><span class="p">;</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">metadataProfileId</span> <span class="o">=</span> <span class="mi">653</span><span class="p">;</span>
+<span class="nv">$metadataItem</span><span class="o">-&gt;</span><span class="na">addHighlight</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
 
 <p>We also created a metadata item of <strong>profile id</strong> 653 that starts with recipe. Notice that these three objects have no relation to one another.</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"> 
-$captionsOrMetadataOperator = new KalturaESearchEntryOperator();
-$captionsOrMetadataOperator-&gt;operator = KalturaESearchOperatorType::OR_OP;
-$captionsOrMetadataOperator-&gt;searchItems = array($captionItem, $metadataItem);</code></pre></figure>
+<span class="cp">&lt;?php</span>
+<span class="nv">$captionsOrMetadataOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$captionsOrMetadataOperator</span><span class="o">-&gt;</span><span class="na">operator</span> <span class="o">=</span> <span class="nx">KalturaESearchOperatorType</span><span class="o">::</span><span class="na">OR_OP</span><span class="p">;</span>
+<span class="nv">$captionsOrMetadataOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$captionItem</span><span class="p">,</span> <span class="nv">$metadataItem</span><span class="p">);</span></code></pre></figure>
 
 <p>Now we’ve defined an OR condition between the caption item and the metadata item.</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">$searchOperator = new KalturaESearchEntryOperator();
-$searchOperator-&gt;operator = KalturaESearchOperatorType::AND_OP;
-$searchOperator-&gt;searchItems = array($entryNameItem, $captionsOrMetadataOperator);
-And then we defined an AND condition between our group and that first entry item.</code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">operator</span> <span class="o">=</span> <span class="nx">KalturaESearchOperatorType</span><span class="o">::</span><span class="na">AND_OP</span><span class="p">;</span>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$entryNameItem</span><span class="p">,</span> <span class="nv">$captionsOrMetadataOperator</span><span class="p">);</span>
+<span class="nx">And</span> <span class="nx">then</span> <span class="nx">we</span> <span class="nb">defined</span> <span class="nx">an</span> <span class="nx">AND</span> <span class="nx">condition</span> <span class="nx">between</span> <span class="nx">our</span> <span class="nx">group</span> <span class="k">and</span> <span class="nx">that</span> <span class="nx">first</span> <span class="nx">entry</span> <span class="nx">item</span><span class="o">.</span></code></pre></figure>
 
 <p>Lastly, we search.</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"> 
-$searchParams = new KalturaESearchEntryParams();
-$searchParams-&gt;searchOperator = $searchOperator;
-$elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client);
-$searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</code></pre></figure>
+<span class="cp">&lt;?php</span>
+<span class="nv">$searchParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryParams</span><span class="p">();</span>
+<span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
+<span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
+<span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="results-7">Results</h3>
 
