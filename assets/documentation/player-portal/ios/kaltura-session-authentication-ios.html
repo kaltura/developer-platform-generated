@@ -135,11 +135,23 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="kaltura-session-authentication">Kaltura Session Authentication</h1>
+		<h1 id="kaltura-session-authentication">
+        
+        
+          Kaltura Session Authentication <a href="#kaltura-session-authentication"></a>
+        
+        
+      </h1>
 
 <p>The Kaltura Session is an authorization string that identifies the user watching the video. This guide will demonstrate how to create a Kaltura Session on the client side using the Application Token API. An Application Token is used in cases where different applications with varying permissions need access to your Kaltura account, without using your Admin Secret. The appToken is created and customized by the account administrator, and then used by the developers to generate Kaltura Sessions for their respective applications.</p>
-
-<h3 id="create-the-application-token">Create the Application Token</h3>
+    
+      <h3 id="create-the-application-token">
+        
+        
+          Create the Application Token <a href="#create-the-application-token"></a>
+        
+        
+      </h3>
 
 <p>You can create an appToken with the <a href="https://developer.kaltura.com/console/service/appToken/action/add">appToken.add</a> action. Once you’ve created it, hold on to its token and ID as you’ll need those to create the session. You can also see a list of all available appTokens by using <a href="https://developer.kaltura.com/console/service/appToken/action/list">appToken.list</a>.</p>
 
@@ -234,7 +246,6 @@ let ksDict = try! JSONSerialization.jsonObject(with: ksData, options: []) as! [S
 <blockquote>
   <p>Note that if an appToken is deleted, it can no longer be used for session creation.</p>
 </blockquote>
-
 		
 </article>
 

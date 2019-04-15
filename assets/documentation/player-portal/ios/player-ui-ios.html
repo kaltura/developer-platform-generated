@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura Player does not inherently include a UI, but this guide will walk you through an example of how to add play/pause buttons and a scrubber to your player. <br />
+		<p>The Kaltura Player does not inherently include a UI, but this guide will walk you through an example of how to add play/pause buttons and a scrubber to your player. <br />
 At this point you should have a Kaltura Player embedded in your application and showing your entry, as seen in <a href="https://github.com/tzubeli/developer-portal/edit/master/sdk-portal/getting-started-ios.md">this guide</a>.</p>
 
 <p>We will start by adding button images of your choice to the Assets catalogue of your project. Then, in the storyboard, create a play/pause button, a slider (scrubber), a current position label, and a (remaining) duration label. For the play/pause button, in the Attributes Inspector, click the dropdown for Title and select Attributed. Under Image, type in the name of the play button file (it should have autocomplete for existing files). <br />
@@ -147,8 +147,13 @@ Lastly, create the outlets for all your new objects in the Controller:</p>
 @IBOutlet weak var durationLabel: UILabel!
 </code></pre>
 </div>
-
-<h3 id="player-state">Player State</h3>
+      <h3 id="player-state">
+        
+        
+          Player State <a href="#player-state"></a>
+        
+        
+      </h3>
 
 <p>Currently our play button is only set to show a play icon, and we’ll want it to change for different scenarios. What we’ll need is to handle the state of what’s happening in the player - whether it is idle, playing, paused, or ended. Let’s add an enum called state at the top of the class:</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>enum State {
@@ -203,8 +208,14 @@ Lastly, create the outlets for all your new objects in the Controller:</p>
 }
 </code></pre>
 </div>
-
-<h3 id="player-slider">Player Slider</h3>
+    
+      <h3 id="player-slider">
+        
+        
+          Player Slider <a href="#player-slider"></a>
+        
+        
+      </h3>
 
 <p>The slider is made up of a few components: the playhead, the current time stamp, and the duration of the entry. All of this configuration happens in the <code class="highlighter-rouge">setupPlayer</code> function. Firstly, a formatter for displaying the number of seconds as <code class="highlighter-rouge">HH:MM:SS</code></p>
 
@@ -442,7 +453,6 @@ class ViewController: UIViewController {
 
 </code></pre>
 </div>
-
 		
 </article>
 

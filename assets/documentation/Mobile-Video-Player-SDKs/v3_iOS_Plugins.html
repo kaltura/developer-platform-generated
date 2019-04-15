@@ -153,21 +153,38 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to create plugins, which enable you to add certain functionalities to your player.</p>
-
-<h2 id="when-should-you-use-plugins">When Should You Use Plugins?</h2>
+		<p>This article describes how to create plugins, which enable you to add certain functionalities to your player.</p>
+      <h2 id="when-should-you-use-plugins">
+        
+        
+          When Should You Use Plugins? <a href="#when-should-you-use-plugins"></a>
+        
+        
+      </h2>
 
 <p>You’ll want to create and use plugins to add core feature to Kaltura’s Video Player SDK for iOS.</p>
 
 <blockquote>
   <p>Note: Plugins creation is supported for swift only (can only create plugin classes in Swift and not in Objective-C).</p>
 </blockquote>
-
-<h2 id="creating-a-plugin-configuration-class">Creating a Plugin Configuration Class</h2>
+    
+      <h2 id="creating-a-plugin-configuration-class">
+        
+        
+          Creating a Plugin Configuration Class <a href="#creating-a-plugin-configuration-class"></a>
+        
+        
+      </h2>
 
 <p><strong>What is a plugin configuration?</strong> A plugin configuration is <em>any</em> object that can contain any data required by your plugin. This section will show you how to create a plugin configuration class and provide you with some examples.</p>
-
-<h3 id="plugin-configuration-sample">Plugin Configuration Sample</h3>
+    
+      <h3 id="plugin-configuration-sample">
+        
+        
+          Plugin Configuration Sample <a href="#plugin-configuration-sample"></a>
+        
+        
+      </h3>
 <blockquote>
   <p>swift</p>
 </blockquote>
@@ -187,12 +204,24 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h3 id="when-to-pass-the-plugin-configuration">When to Pass the Plugin Configuration</h3>
+    
+      <h3 id="when-to-pass-the-plugin-configuration">
+        
+        
+          When to Pass the Plugin Configuration <a href="#when-to-pass-the-plugin-configuration"></a>
+        
+        
+      </h3>
 
 <p>The plugin configuration is passed via the <code class="highlighter-rouge">load</code> function, will be explained later.</p>
-
-<h2 id="building-plugins">Building Plugins</h2>
+    
+      <h2 id="building-plugins">
+        
+        
+          Building Plugins <a href="#building-plugins"></a>
+        
+        
+      </h2>
 
 <p>To build plugins, create a class that implements the <a href="https://kaltura.github.io/playkit/api/ios/Protocols/PKPlugin.html">PKPlugin Protocol</a>:</p>
 
@@ -224,8 +253,14 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: Remember to use the <code class="highlighter-rouge">import PlayKit</code>function.</p>
 </blockquote>
-
-<h2 id="register-the-plugin">Register the Plugin</h2>
+    
+      <h2 id="register-the-plugin">
+        
+        
+          Register the Plugin <a href="#register-the-plugin"></a>
+        
+        
+      </h2>
 
 <p>You should register the plugin once on your <code class="highlighter-rouge">AppDelegate</code> or see below:</p>
 
@@ -268,8 +303,14 @@ rtp('get', 'campaign',true);
 <span class="k">@end</span>
 </code></pre>
 </div>
-
-<h2 id="add-the-plugin-configuration">Add the Plugin Configuration</h2>
+    
+      <h2 id="add-the-plugin-configuration">
+        
+        
+          Add the Plugin Configuration <a href="#add-the-plugin-configuration"></a>
+        
+        
+      </h2>
 
 <blockquote>
   <p><a href="">Read About PluginConfig</a></p>
@@ -313,11 +354,16 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

@@ -141,11 +141,16 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/iOS-Supported-green.svg" alt="iOS" /></a></p>
+		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/iOS-Supported-green.svg" alt="iOS" /></a></p>
 
 <p>This article describes how to use the iOS Player API base methods to manage properties, events, and notifications.</p>
-
-<h2 id="accessing-the-kaltura-ios-player-api">Accessing the Kaltura iOS Player API</h2>
+      <h2 id="accessing-the-kaltura-ios-player-api">
+        
+        
+          Accessing the Kaltura iOS Player API <a href="#accessing-the-kaltura-ios-player-api"></a>
+        
+        
+      </h2>
 
 <p>You can access the entire Player API through methods that enable the following functions.</p>
 
@@ -241,8 +246,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h2 id="receiving-a-notification-when-the-player-api-is-ready">Receiving a Notification when the Player API is Ready</h2>
+    
+      <h2 id="receiving-a-notification-when-the-player-api-is-ready">
+        
+        
+          Receiving a Notification when the Player API is Ready <a href="#receiving-a-notification-when-the-player-api-is-ready"></a>
+        
+        
+      </h2>
 
 <p>To receive a notification when the Player API is ready, use the following objective:</p>
 
@@ -268,8 +279,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h2 id="implementing-player-api-base-methods">Implementing Player API Base Methods</h2>
+    
+      <h2 id="implementing-player-api-base-methods">
+        
+        
+          Implementing Player API Base Methods <a href="#implementing-player-api-base-methods"></a>
+        
+        
+      </h2>
 
 <p>To implement the Player API base methods, use the following objective:</p>
 
@@ -320,12 +337,24 @@ rtp('get', 'campaign',true);
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">seek</span><span class="p">:(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">playbackTime</span> <span class="nf">completionHandler</span><span class="p">:(</span><span class="kt">void</span><span class="p">(</span><span class="o">^</span><span class="p">)())</span><span class="nv">handler</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="player-states">Player States</h2>
+    
+      <h2 id="player-states">
+        
+        
+          Player States <a href="#player-states"></a>
+        
+        
+      </h2>
 
 <p>The following are the available Player states.</p>
-
-<h3 id="kpmediaplaybackstate">KPMediaPlaybackState</h3>
+    
+      <h3 id="kpmediaplaybackstate">
+        
+        
+          KPMediaPlaybackState <a href="#kpmediaplaybackstate"></a>
+        
+        
+      </h3>
 
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">,</span> <span class="n">KPMediaPlaybackState</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">KPMediaPlaybackStateUnknown</span><span class="p">,</span>
@@ -348,8 +377,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h3 id="kpmedialoadstate">KPMediaLoadState</h3>
+    
+      <h3 id="kpmedialoadstate">
+        
+        
+          KPMediaLoadState <a href="#kpmedialoadstate"></a>
+        
+        
+      </h3>
 
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">NS_OPTIONS</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n">KPMediaLoadState</span><span class="p">)</span> <span class="p">{</span>
     <span class="cm">/* The load state is not known. */</span>
@@ -363,8 +398,6 @@ rtp('get', 'campaign',true);
 </span><span class="p">};</span>
 </code></pre>
 </div>
-
-
 		
 </article>
 

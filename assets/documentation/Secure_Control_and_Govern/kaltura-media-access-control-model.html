@@ -135,11 +135,16 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>An Access Control Profile defines authorized and restricted domains where your content can or cannot be displayed, countries from which it can or cannot be viewed, white and black lists of IP addresses and authorized and unauthorized domains and devices in which your media can be embedded.</p>
+		<p>An Access Control Profile defines authorized and restricted domains where your content can or cannot be displayed, countries from which it can or cannot be viewed, white and black lists of IP addresses and authorized and unauthorized domains and devices in which your media can be embedded.</p>
 
 <p>For information on Kaltura session-based restrictions, refer to <a href="http://knowledge.kaltura.com/node/229">Kaltura’s API Authentication and Security</a>. </p>
-
-<h3 id="access-control-api"><span></span>Access Control API</h3>
+      <h3 id="access-control-api">
+        
+        
+          <span></span>Access Control API <a href="#access-control-api"></a>
+        
+        
+      </h3>
 
 <p>The access control API service <a href="https://developer.kaltura.com/api-docs/#/accessControlProfile" target="_blank">accessControlProfile</a>  provides the following actions:</p>
 
@@ -434,8 +439,14 @@ For example: myElementName will be searched as //myElementName</li>
     </tr>
   </tbody>
 </table>
-
-<h2 id="examples">Examples</h2>
+    
+      <h2 id="examples">
+        
+        
+          Examples <a href="#examples"></a>
+        
+        
+      </h2>
 
 <p>The following examples are in PHP and effectively will be the same across all client libraries. </p>
 
@@ -447,8 +458,14 @@ For example: myElementName will be searched as //myElementName</li>
     <li>Using only the field name, e.g. myElementName, it will be searched as //myElementName</li>
   </ul>
 </blockquote>
-
-<h3 id="device-specific-scheduling-window">Device-specific Scheduling Window</h3>
+    
+      <h3 id="device-specific-scheduling-window">
+        
+        
+          Device-specific Scheduling Window <a href="#device-specific-scheduling-window"></a>
+        
+        
+      </h3>
 
 <p>Condition #1: User agent MATCH ‘ipad’ (regular expression)</p>
 
@@ -484,8 +501,14 @@ For example: myElementName will be searched as //myElementName</li>
 <span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">stopProcessing</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></code></pre></figure>
 
 <p><strong>The next rule should be defined with no conditions and one block action in order to block all requests that didn’t stop processing on the first rule.</strong></p>
-
-<h3 id="block-long-form-content-on-mobile-devices">Block long-form content on mobile devices</h3>
+    
+      <h3 id="block-long-form-content-on-mobile-devices">
+        
+        
+          Block long-form content on mobile devices <a href="#block-long-form-content-on-mobile-devices"></a>
+        
+        
+      </h3>
 
 <p>Condition #1: User agent MATCH ‘Mobile devices of brands X, Y, Z’ (regular expression)</p>
 
@@ -514,8 +537,14 @@ For example: myElementName will be searched as //myElementName</li>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 <span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">actions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">KalturaAccessControlBlockAction</span><span class="p">());</span></code></pre></figure>
-
-<h3 id="block-language-specific-content-for-consumers-in-a-specific-geography">Block language-specific content for consumers in a specific geography</h3>
+    
+      <h3 id="block-language-specific-content-for-consumers-in-a-specific-geography">
+        
+        
+          Block language-specific content for consumers in a specific geography <a href="#block-language-specific-content-for-consumers-in-a-specific-geography"></a>
+        
+        
+      </h3>
 
 <p>Condition #1: Region Equals Quebec (First phase will be limited to countries)</p>
 
@@ -540,8 +569,14 @@ For example: myElementName will be searched as //myElementName</li>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 <span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">actions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">KalturaAccessControlBlockAction</span><span class="p">());</span></code></pre></figure>
-
-<h3 id="block-content-for-unidentified-devices">Block content for unidentified devices</h3>
+    
+      <h3 id="block-content-for-unidentified-devices">
+        
+        
+          Block content for unidentified devices <a href="#block-content-for-unidentified-devices"></a>
+        
+        
+      </h3>
 
 <p>Condition #1: User agent NOT MATCH ‘Mobile devices of brands X, Y, Z’ (regular expression)</p>
 
@@ -561,8 +596,6 @@ For example: myElementName will be searched as //myElementName</li>
 <figure class="highlight"><pre><code class="language-php" data-lang="php">   
 <span class="cp">&lt;?php</span>
 <span class="nv">$rule</span><span class="o">-&gt;</span><span class="na">actions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">new</span> <span class="nx">KalturaAccessControlBlockAction</span><span class="p">());</span></code></pre></figure>
-
-
 		
 </article>
 

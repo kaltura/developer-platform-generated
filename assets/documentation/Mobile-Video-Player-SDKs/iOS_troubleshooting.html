@@ -135,9 +135,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article provides troubleshooting solutions for common iOS Player issues.</p>
-
-<h2 id="ios-app-transport-security-ats">iOS: App Transport Security (ATS)</h2>
+		<p>This article provides troubleshooting solutions for common iOS Player issues.</p>
+      <h2 id="ios-app-transport-security-ats">
+        
+        
+          iOS: App Transport Security (ATS) <a href="#ios-app-transport-security-ats"></a>
+        
+        
+      </h2>
 
 <p>iOS 9 and above include a security feature that, by default, blocks all non-TLS connections. However, since many servers still do not support TLS, there are exclusion keys that can be set in the app’s <code class="highlighter-rouge">Info.plist</code> file.</p>
 
@@ -165,13 +170,18 @@ For more information about fine-grained control of ATS see:</p>
     <li><a href="http://www.neglectedpotential.com/2015/06/working-with-apples-application-transport-security/">Working with Apple’s App Transport Security</a></li>
   </ul>
 </blockquote>
-
-<h2 id="ios-bitcode">iOS: Bitcode</h2>
+    
+      <h2 id="ios-bitcode">
+        
+        
+          iOS: Bitcode <a href="#ios-bitcode"></a>
+        
+        
+      </h2>
 
 <p>Starting with <a href="https://developer.apple.com/library/ios/releasenotes/DeveloperTools/RN-Xcode/Chapters/xc7_release_notes.html">Xcode 7</a>, bitcode is enabled by default. However, building an application with bitcode requires that all of the static libraries that are being used are also built with bitcode.</p>
 
 <p>The Widevine Classic library (<code class="highlighter-rouge">libWViPhoneAPI.a</code>) included with the Kaltura SDK is not built with bitcode; as a result, your application will need to disable bitcode in its own linker settings.</p>
-
 		
 </article>
 

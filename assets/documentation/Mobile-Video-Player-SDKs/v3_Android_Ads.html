@@ -153,17 +153,28 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes the steps required for adding support for the IMA Plugin functionality on Android devices. IMA (or Interactive Media Ads) was developed by Google to enable you to display ads in your application’s video, audio, and game content.</p>
-
-<h3 id="register-the-ima-plugin">Register the IMA Plugin</h3>
+		<p>This article describes the steps required for adding support for the IMA Plugin functionality on Android devices. IMA (or Interactive Media Ads) was developed by Google to enable you to display ads in your application’s video, audio, and game content.</p>
+      <h3 id="register-the-ima-plugin">
+        
+        
+          Register the IMA Plugin <a href="#register-the-ima-plugin"></a>
+        
+        
+      </h3>
 
 <p>Register the IMA Plugin as inside your application as follows:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">IMAPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="configure-the-plugin-configuration-object">Configure the Plugin Configuration Object</h3>
+    
+      <h3 id="configure-the-plugin-configuration-object">
+        
+        
+          Configure the Plugin Configuration Object <a href="#configure-the-plugin-configuration-object"></a>
+        
+        
+      </h3>
 
 <p>To configure the plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
 
@@ -173,13 +184,26 @@ rtp('get', 'campaign',true);
     <span class="n">IMAConfig</span> <span class="n">adsConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IMAConfig</span><span class="o">(</span><span class="s">"en"</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">videoMimeTypes</span><span class="o">,</span> <span class="n">adTagUrl</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
 </code></pre>
 </div>
-<h3 id="imconfig-constructor">IMConfig Constructor</h3>
+    
+      <h3 id="imconfig-constructor">
+        
+        
+          IMConfig Constructor <a href="#imconfig-constructor"></a>
+        
+        
+      </h3>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">IMAConfig</span><span class="o">(</span><span class="n">String</span> <span class="n">language</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">enableBackgroundPlayback</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">autoPlayAdBreaks</span><span class="o">,</span> <span class="kt">int</span> <span class="n">videoBitrate</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">videoMimeTypes</span><span class="o">,</span> <span class="n">String</span> <span class="n">adTagUrl</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">adAttribution</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">adCountDown</span><span class="o">)</span>
 </code></pre>
 </div>
-
-<h2 id="set-the-plugin-configuration-to-the-ima-plugin">Set the Plugin Configuration to the IMA Plugin</h2>
+    
+      <h2 id="set-the-plugin-configuration-to-the-ima-plugin">
+        
+        
+          Set the Plugin Configuration to the IMA Plugin <a href="#set-the-plugin-configuration-to-the-ima-plugin"></a>
+        
+        
+      </h2>
 
 <p>For the IMA Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
@@ -188,8 +212,14 @@ rtp('get', 'campaign',true);
 <span class="n">pluginConfig</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="n">IMAPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">adsConfig</span><span class="o">.</span><span class="na">toJSONObject</span><span class="o">());</span>
 </code></pre>
 </div>
-
-<h2 id="register-to-the-ad-started-event">Register to the Ad Started Event</h2>
+    
+      <h2 id="register-to-the-ad-started-event">
+        
+        
+          Register to the Ad Started Event <a href="#register-to-the-ad-started-event"></a>
+        
+        
+      </h2>
 
 <p>The Ad Started event includes the <code class="highlighter-rouge">AdInfo</code> playload. You can fetch this data in the following way:</p>
 
@@ -204,8 +234,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h3 id="adinfo-api">AdInfo API</h3>
+    
+      <h3 id="adinfo-api">
+        
+        
+          AdInfo API <a href="#adinfo-api"></a>
+        
+        
+      </h3>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>    <span class="n">String</span>   <span class="nf">getAdDescription</span><span class="o">();</span>
     <span class="n">String</span>   <span class="nf">getAdId</span><span class="o">();</span>
@@ -221,8 +257,14 @@ rtp('get', 'campaign',true);
     <span class="kt">long</span>     <span class="nf">getAdDuration</span><span class="o">();</span>
 </code></pre>
 </div>
-
-<h2 id="ad-eventserror-registration-example">Ad Events/Error Registration Example</h2>
+    
+      <h2 id="ad-eventserror-registration-example">
+        
+        
+          Ad Events/Error Registration Example <a href="#ad-eventserror-registration-example"></a>
+        
+        
+      </h2>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onEvent</span><span class="o">(</span><span class="n">PKEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"AD_CONTENT_PAUSE_REQUESTED"</span><span class="o">);</span>
@@ -254,7 +296,14 @@ rtp('get', 'campaign',true);
         <span class="o">},</span> <span class="n">AdError</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">VAST_LOAD_TIMEOUT</span><span class="o">);</span>
 </code></pre>
 </div>
-<h2 id="ad-events">Ad Events</h2>
+    
+      <h2 id="ad-events">
+        
+        
+          Ad Events <a href="#ad-events"></a>
+        
+        
+      </h2>
 
 <p>The IMA Plugin supports the following ad events:</p>
 
@@ -280,8 +329,14 @@ rtp('get', 'campaign',true);
         <span class="n">ALL_ADS_COMPLETED</span>
 </code></pre>
 </div>
-
-<h2 id="ad-error-events">Ad Error Events</h2>
+    
+      <h2 id="ad-error-events">
+        
+        
+          Ad Error Events <a href="#ad-error-events"></a>
+        
+        
+      </h2>
 
 <p>The IMA Plugin supports the following ad error events:</p>
 
@@ -306,11 +361,16 @@ rtp('get', 'campaign',true);
         <span class="n">PLAYLIST_NO_CONTENT_TRACKING</span><span class="o">(</span><span class="mi">2018</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

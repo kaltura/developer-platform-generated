@@ -159,36 +159,77 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to set up the Google Cast V3 feature in iOS devices.</p>
-
-<h2 id="introduction">Introduction</h2>
+		<p>This article describes how to set up the Google Cast V3 feature in iOS devices.</p>
+      <h2 id="introduction">
+        
+        
+          Introduction <a href="#introduction"></a>
+        
+        
+      </h2>
 
 <p>The Cast functionality allows your videos to be cast from an iOS mobile device, via the Chromecast plugin, directly to a Kaltura Player Receiver App on a Chromecast-connected TV.</p>
-
-<h3 id="before-you-begin">Before You Begin</h3>
+    
+      <h3 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h3>
 
 <p>Before you begin setting up the Cast feature, make sure you’ve read the article <a href="/api-docs/05_Mobile-Video-Player-SDKs/iOS-Getting-Started.html">iOS Player SDK and Environment Setup - Getting Started</a>.</p>
-
-<h2 id="basic-definitions">Basic Definitions</h2>
+    
+      <h2 id="basic-definitions">
+        
+        
+          Basic Definitions <a href="#basic-definitions"></a>
+        
+        
+      </h2>
 
 <ul>
   <li><code class="highlighter-rouge">Sender</code> - A Cast enabled Kaltura Player running inside of a iOS Application; the Kaltura Player requires a Sender App ID.</li>
   <li><code class="highlighter-rouge">Receiver</code> - A Kaltura Player Receiver App that runs on the Chromecast device.</li>
 </ul>
-
-<h2 id="google-cast-setup">Google Cast Setup</h2>
+    
+      <h2 id="google-cast-setup">
+        
+        
+          Google Cast Setup <a href="#google-cast-setup"></a>
+        
+        
+      </h2>
 
 <p>To enable casting to Chromecast with the Kaltura Player iOS SDK, you will first need to import the Google Cast Framework and its dependent frameworks.</p>
-
-<h4 id="limitation">Limitation</h4>
+    
+      <h4 id="limitation">
+        
+        
+          Limitation <a href="#limitation"></a>
+        
+        
+      </h4>
 
 <p>The supported version for Google Cast V3 iOS SDK is version <code class="highlighter-rouge">3.2.0</code>.</p>
-
-<h3 id="getting-started">Getting Started</h3>
+    
+      <h3 id="getting-started">
+        
+        
+          Getting Started <a href="#getting-started"></a>
+        
+        
+      </h3>
 
 <p>To begin casting, follow these steps:</p>
-
-<h4 id="connecting-to-device">Connecting to Device</h4>
+    
+      <h4 id="connecting-to-device">
+        
+        
+          Connecting to Device <a href="#connecting-to-device"></a>
+        
+        
+      </h4>
 
 <p>Follow the url below to initialize cast context:</p>
 
@@ -200,8 +241,14 @@ rtp('get', 'campaign',true);
   <li>You will see a Chromecast icon on your application.</li>
   <li>You can choose and connect/ disconnect to the Chromecast device.</li>
 </ul>
-
-<h4 id="set-up-the-kaltura-environment">Set up the Kaltura Environment</h4>
+    
+      <h4 id="set-up-the-kaltura-environment">
+        
+        
+          Set up the Kaltura Environment <a href="#set-up-the-kaltura-environment"></a>
+        
+        
+      </h4>
 
 <ol>
   <li>Import the GoogleCastprovider module: <br />
@@ -253,8 +300,14 @@ rtp('get', 'campaign',true);
 <div class="highlighter-rouge"><pre class="highlight"><code>    self.castProvider = [GoogleCastProvider sharedInstance]; 
 </code></pre>
 </div>
-
-<h4 id="casting-media">Casting Media</h4>
+    
+      <h4 id="casting-media">
+        
+        
+          Casting Media <a href="#casting-media"></a>
+        
+        
+      </h4>
 
 <p>To cast, set the <code class="highlighter-rouge">castProvider</code> property under <code class="highlighter-rouge">KPViewController</code> with <code class="highlighter-rouge">GoogleCastProvider</code> as the object you created:</p>
 
@@ -263,12 +316,24 @@ rtp('get', 'campaign',true);
 </div>
 
 <p>The result for this step will cast your media via the Chromecast device.</p>
-
-<h4 id="disconnecting-from-a-device">Disconnecting from a Device</h4>
+    
+      <h4 id="disconnecting-from-a-device">
+        
+        
+          Disconnecting from a Device <a href="#disconnecting-from-a-device"></a>
+        
+        
+      </h4>
 
 <p>This process works out-of-the-box and doesn’t require configuration.</p>
-
-<h3 id="reconnect-to-the-active-session">Reconnect to the Active Session</h3>
+    
+      <h3 id="reconnect-to-the-active-session">
+        
+        
+          Reconnect to the Active Session <a href="#reconnect-to-the-active-session"></a>
+        
+        
+      </h3>
 
 <p>Attach the code below to your Start Casting implimentation:</p>
 
@@ -279,39 +344,68 @@ rtp('get', 'campaign',true);
 }
 </code></pre>
 </div>
-
-<h3 id="change-media">Change Media</h3>
+    
+      <h3 id="change-media">
+        
+        
+          Change Media <a href="#change-media"></a>
+        
+        
+      </h3>
 
 <p>To change media, use the <code class="highlighter-rouge">changeMedia:</code> method under <code class="highlighter-rouge">KPViewController</code>:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>  [_playerViewController changeMedia:{your_value}];
 </code></pre>
 </div>
-
-<h3 id="set-custom-logo">Set Custom Logo</h3>
+    
+      <h3 id="set-custom-logo">
+        
+        
+          Set Custom Logo <a href="#set-custom-logo"></a>
+        
+        
+      </h3>
 
 <p>To set a logo use the following:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>  [self.castProvider setLogo:{custom_logo_image_url}];
 </code></pre>
 </div>
-
-<h3 id="mini-controllers">Mini Controllers</h3>
+    
+      <h3 id="mini-controllers">
+        
+        
+          Mini Controllers <a href="#mini-controllers"></a>
+        
+        
+      </h3>
 
 <p>If you wish to use mini controllers, see this url for details:</p>
 
 <p>https://developers.google.com/cast/docs/ios_sender_integrate#add_mini_controllers</p>
-
-<h3 id="recommendations">Recommendations</h3>
+    
+      <h3 id="recommendations">
+        
+        
+          Recommendations <a href="#recommendations"></a>
+        
+        
+      </h3>
 
 <p>During casting, we advise using <code class="highlighter-rouge">mini/extended controls</code> over the player UI; see the sample below.</p>
-
-<h3 id="sample">Sample</h3>
+    
+      <h3 id="sample">
+        
+        
+          Sample <a href="#sample"></a>
+        
+        
+      </h3>
 
 <p>The following is a sample of using the mini/extended control:</p>
 
 <p>https://github.com/kaltura/player-sdk-demo-ios/tree/master/ovp/CCV3Demo</p>
-
 		
 </article>
 

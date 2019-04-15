@@ -109,10 +109,16 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Apr 2 09:27:24 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Search--Discover-and-Personalize/search.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Apr 2 12:38:07 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Search--Discover-and-Personalize/search.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Apr 2 09:12:56 2019, By: tzubeli</td></tr-->
-				<!--tr><td>Last commit: Tue Apr 2 09:27:24 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Tue Apr 2 12:38:07 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
 			
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
 				<!-- 
 				
 				<tr>
@@ -129,13 +135,18 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>If you’ve had experience building search capabilities into your video applications, you know that indexing and searching video content is complex - not only due to the time dimension, but because it also requires searching through many objects and related metadata. You’ve had to write multiple queries that are time consuming, fragile at scale and hard to optimize for performance.</p>
+		<p>If you’ve had experience building search capabilities into your video applications, you know that indexing and searching video content is complex - not only due to the time dimension, but because it also requires searching through many objects and related metadata. You’ve had to write multiple queries that are time consuming, fragile at scale and hard to optimize for performance.</p>
 
 <p>We’re excited to introduce a new Kaltura search API that will revolutionize how video search is done. Leveraging the Elastic Search engine, eSearch exposes a set of API actions that unlock a variety of search capabilities and simplify how video search is done.</p>
 
 <p>You can try it out yourself in the <a href="https://developer.kaltura.com/console/service/eSearch/action/searchEntry">console</a>, and we’ll demonstrate a few of the cool features below:</p>
-
-<h2 id="search-term-highlighting">Search Term Highlighting</h2>
+      <h2 id="search-term-highlighting">
+        
+        
+          Search Term Highlighting <a href="#search-term-highlighting"></a>
+        
+        
+      </h2>
 
 <p>A really neat feature, highlighting, gives you insight on why a particular object was returned in the search results, meaning, what caused the object to match the query.<br />
 Let’s assume you have an account in Kaltura with over a thousand entries and you’re looking for a pasta recipe. Searching “pasta” with the unified search would search through all entry data - and this is where highlighting comes in: you’d be able to determine whether pasta was found in the captions, description, or simply just the entry name.</p>
@@ -153,8 +164,14 @@ Let’s assume you have an account in Kaltura with over a thousand entries and y
 <span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
 <span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
 <span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
-
-<h3 id="results">Results</h3>
+    
+      <h3 id="results">
+        
+        
+          Results <a href="#results"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
 </span><span class="nt">"totalCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -180,8 +197,14 @@ Let’s assume you have an account in Kaltura with over a thousand entries and y
 </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">}</span></code></pre></figure>
-
-<h2 id="partial-search">Partial Search</h2>
+    
+      <h2 id="partial-search">
+        
+        
+          Partial Search <a href="#partial-search"></a>
+        
+        
+      </h2>
 <p>Sometimes you can’t be sure about the exact phrase to search. Perhaps you’re not sure if the entry is listed under “cake” or “cupcake.”<br />
 Enter partial search. It is exactly what it sounds like.</p>
 
@@ -200,8 +223,14 @@ Enter partial search. It is exactly what it sounds like.</p>
 <span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
 <span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
 <span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
-
-<h3 id="results-1">Results</h3>
+    
+      <h3 id="results-1">
+        
+        
+          Results <a href="#results-1"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
 </span><span class="nt">"hits"</span><span class="p">:[</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -209,8 +238,14 @@ Enter partial search. It is exactly what it sounds like.</p>
 "</span><span class="err">objectType</span><span class="s2">":"</span><span class="err">KalturaString"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
-
-<h2 id="synonyms">Synonyms</h2>
+    
+      <h2 id="synonyms">
+        
+        
+          Synonyms <a href="#synonyms"></a>
+        
+        
+      </h2>
 
 <p>At this point you’re just hungry and you don’t care whether the recipe is for pasta or salmon. You’d like to eat something “delicious”, but you’re open to “yummy” as well. This is another case for the partial feature, which uses the WordNet English synonym dictionary by default and gets you that recipe with fewer searches!</p>
 
@@ -227,15 +262,27 @@ Enter partial search. It is exactly what it sounds like.</p>
 <span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span> 
 <span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span> 
 <span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
-
-<h3 id="results-2">Results</h3>
+    
+      <h3 id="results-2">
+        
+        
+          Results <a href="#results-2"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
 </span><span class="nt">"hits"</span><span class="p">:[</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;yummy&lt;\/em&gt; recipe"</span><span class="p">,</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaESearchHighlight"</span><span class="w">       
 </span><span class="p">}</span></code></pre></figure>
-
-<h2 id="multi-language">Multi-Language</h2>
+    
+      <h2 id="multi-language">
+        
+        
+          Multi-Language <a href="#multi-language"></a>
+        
+        
+      </h2>
 
 <p>Now imagine that you have recipes with captions in various languages, such as Chinese or German. eSearch supports searching across 22 languages (and we’ll be adding more!), including; Spanish, French, Russian, Dutch, Chinese. Let’s demonstrate searching inside captions for the Chinese phrase 食谱 which, you guessed it, means recipe.</p>
 
@@ -253,8 +300,14 @@ Enter partial search. It is exactly what it sounds like.</p>
 <span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
 <span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
 <span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
-
-<h3 id="results-3">Results</h3>
+    
+      <h3 id="results-3">
+        
+        
+          Results <a href="#results-3"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
 </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Amazing recipes"</span><span class="p">,</span><span class="w">
@@ -270,8 +323,14 @@ Enter partial search. It is exactly what it sounds like.</p>
 </span><span class="p">{</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;\u98df\u8c31&lt;\/em&gt;"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaString"</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
-
-<h2 id="custom-metadata-profiles-and-fields">Custom Metadata Profiles and Fields</h2>
+    
+      <h2 id="custom-metadata-profiles-and-fields">
+        
+        
+          Custom Metadata Profiles and Fields <a href="#custom-metadata-profiles-and-fields"></a>
+        
+        
+      </h2>
 
 <p>The unified option searches through all of the entry’s related objects - such as captions, metadata, and cue-points but if you know where your keyword is, with eSearch it is just as easy to search through specific objects.</p>
 
@@ -294,8 +353,14 @@ $searchOperator-&gt;searchItems = array($metadataItem);</p>
 $searchParams-&gt;searchOperator = $searchOperator;<br />
 $elasticsearchPlugin = KalturaElasticSearchClientPlugin::get($client);<br />
 $searchResults = $elasticsearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams, null);</p>
-
-<h3 id="results-4">Results</h3>
+    
+      <h3 id="results-4">
+        
+        
+          Results <a href="#results-4"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
 </span><span class="nt">"xpath"</span><span class="p">:</span><span class="s2">"/* local-name()='metadata' /* local-name()='Field1'"</span><span class="p">,</span><span class="w">
@@ -324,8 +389,8 @@ Video often includes temporal (time based) metadata such as annotations, comment
 <span class="nv">$notOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
 <span class="nv">$notOperator</span><span class="o">-&gt;</span><span class="na">operator</span> <span class="o">=</span> <span class="nx">KalturaESearchOperatorType</span><span class="o">::</span><span class="na">NOT_OP</span><span class="p">;</span>
 <span class="nv">$notOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$cuePointItem</span><span class="p">);</span>
-<span class="nx">We</span> <span class="nb">defined</span> <span class="nx">a</span> <span class="nx">cue</span> <span class="nx">point</span> <span class="nx">item</span> <span class="nx">with</span> <span class="err">‘</span><span class="nx">adding</span> <span class="nx">sugar</span><span class="err">’</span> <span class="k">as</span> <span class="nx">its</span> <span class="nx">search</span> <span class="nx">term</span><span class="o">.</span> <span class="nx">Then</span> <span class="nx">we</span> <span class="nx">added</span> <span class="nx">it</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">NOT</span> <span class="nx">operator</span><span class="o">.</span>
-
+<span class="c1">// We defined a cue point item with 'adding sugar' as its search term. Then we added it to the NOT operator.
+</span>
 <span class="nv">$entryNameItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryItem</span><span class="p">();</span>
 <span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">searchTerm</span> <span class="o">=</span> <span class="s1">'strawberry'</span><span class="p">;</span>
 <span class="nv">$entryNameItem</span><span class="o">-&gt;</span><span class="na">itemType</span> <span class="o">=</span> <span class="nx">KalturaESearchItemType</span><span class="o">::</span><span class="na">PARTIAL</span><span class="p">;</span>
@@ -342,8 +407,14 @@ Video often includes temporal (time based) metadata such as annotations, comment
 <span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
 
 <p>Then we searched for recipes containing strawberry with an AND condition on our previous NOT.</p>
-
-<h3 id="results-5">Results</h3>
+    
+      <h3 id="results-5">
+        
+        
+          Results <a href="#results-5"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
 </span><span class="nt">"object"</span><span class="p">:{</span><span class="w">
@@ -352,8 +423,14 @@ Video often includes temporal (time based) metadata such as annotations, comment
 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaMediaEntry"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
-
-<h2 id="ranges-and-dates">Ranges and Dates</h2>
+    
+      <h2 id="ranges-and-dates">
+        
+        
+          Ranges and Dates <a href="#ranges-and-dates"></a>
+        
+        
+      </h2>
 
 <p>Perhaps one of the most common searches includes searching between specific date ranges. We’ll search for all recipes created this past January, using their epoch timestamps.</p>
 
@@ -381,8 +458,14 @@ Video often includes temporal (time based) metadata such as annotations, comment
 
 <span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
 <span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
-
-<h3 id="results-6">Results</h3>
+    
+      <h3 id="results-6">
+        
+        
+          Results <a href="#results-6"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
 </span><span class="nt">"object"</span><span class="p">:{</span><span class="w">
@@ -391,8 +474,14 @@ Video often includes temporal (time based) metadata such as annotations, comment
 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaMediaEntry"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
-
-<h2 id="complex-search">Complex Search</h2>
+    
+      <h2 id="complex-search">
+        
+        
+          Complex Search <a href="#complex-search"></a>
+        
+        
+      </h2>
 
 <p>Now to make things interesting: what if you were looking for an entry with “pasta” in the name and 食谱 (recipe in Chinese) within the captions? Or if you were looking for “recipe” in custom metadata and wanted to highlight the results? eSearch has your back.</p>
 
@@ -434,10 +523,10 @@ Video often includes temporal (time based) metadata such as annotations, comment
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 <span class="nv">$searchOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaESearchEntryOperator</span><span class="p">();</span>
 <span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">operator</span> <span class="o">=</span> <span class="nx">KalturaESearchOperatorType</span><span class="o">::</span><span class="na">AND_OP</span><span class="p">;</span>
-<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$entryNameItem</span><span class="p">,</span> <span class="nv">$captionsOrMetadataOperator</span><span class="p">);</span>
-<span class="nx">And</span> <span class="nx">then</span> <span class="nx">we</span> <span class="nb">defined</span> <span class="nx">an</span> <span class="nx">AND</span> <span class="nx">condition</span> <span class="nx">between</span> <span class="nx">our</span> <span class="nx">group</span> <span class="k">and</span> <span class="nx">that</span> <span class="nx">first</span> <span class="nx">entry</span> <span class="nx">item</span><span class="o">.</span></code></pre></figure>
+<span class="nv">$searchOperator</span><span class="o">-&gt;</span><span class="na">searchItems</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="nv">$entryNameItem</span><span class="p">,</span> <span class="nv">$captionsOrMetadataOperator</span><span class="p">);</span></code></pre></figure>
 
-<p>Lastly, we search.</p>
+<p>And then we defined an AND condition between our group and that first entry item.<br />
+Lastly, we search.</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"> 
 <span class="cp">&lt;?php</span>
@@ -445,8 +534,14 @@ Video often includes temporal (time based) metadata such as annotations, comment
 <span class="nv">$searchParams</span><span class="o">-&gt;</span><span class="na">searchOperator</span> <span class="o">=</span> <span class="nv">$searchOperator</span><span class="p">;</span>
 <span class="nv">$elasticsearchPlugin</span> <span class="o">=</span> <span class="nx">KalturaElasticSearchClientPlugin</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$client</span><span class="p">);</span>
 <span class="nv">$searchResults</span> <span class="o">=</span> <span class="nv">$elasticsearchPlugin</span><span class="o">-&gt;</span><span class="na">eSearch</span><span class="o">-&gt;</span><span class="na">searchEntry</span><span class="p">(</span><span class="nv">$searchParams</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span></code></pre></figure>
-
-<h3 id="results-7">Results</h3>
+    
+      <h3 id="results-7">
+        
+        
+          Results <a href="#results-7"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nt">"totalCount"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -474,7 +569,6 @@ Video often includes temporal (time based) metadata such as annotations, comment
                                 </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;\u98df\u8c31&lt;\/em&gt;"</span><span class="p">,</span><span class="w">
                                 </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaString"</span><span class="w">
                             </span><span class="p">}</span><span class="w">
-            </span><span class="err">...</span><span class="w">
     </span><span class="err">}</span><span class="p">,</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"object"</span><span class="p">:{</span><span class="w">
@@ -509,11 +603,9 @@ Video often includes temporal (time based) metadata such as annotations, comment
                             </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"&lt;em&gt;recipe&lt;\/em&gt;"</span><span class="p">,</span><span class="w">
                             </span><span class="nt">"objectType"</span><span class="p">:</span><span class="s2">"KalturaString"</span><span class="w">
                         </span><span class="p">}</span><span class="w">
-            </span><span class="err">...</span><span class="w">                  
 </span><span class="err">}</span></code></pre></figure>
 
 <p>If you’re interested in building search into your video experiences, the easy way to learn more about the eSearch API is by trying it out in the <a href="https://developer.kaltura.com/console/service/eSearch">console</a>.</p>
-
 		
 </article>
 

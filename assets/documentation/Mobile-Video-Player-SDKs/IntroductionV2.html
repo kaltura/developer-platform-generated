@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>Kaltura’s Mobile Video SDKs for iOS and Android provide the framework and tools to help you easily embed the <a href="http://player.kaltura.com/">Kaltura Video Player</a> into native environments in your iOS or Android applications, without having to build a Player UI, plugins, or capabilities from scratch.</p>
+		<p>Kaltura’s Mobile Video SDKs for iOS and Android provide the framework and tools to help you easily embed the <a href="http://player.kaltura.com/">Kaltura Video Player</a> into native environments in your iOS or Android applications, without having to build a Player UI, plugins, or capabilities from scratch.</p>
 
 <p>The SDK is essentially a native (i.e., Java or ObjectiveC-based code) wrapper that loads the same Kaltura Video Player inside a WebView. The Kaltura Video Player that is loaded into your native mobile application is essentially the <strong>same</strong> player that includes all of the customizations, themes, and plugins that are used on your website or web application. When the Kaltura Video Player loads into your native application, it seamlessly decides which is the best playback engine to leverage for playback (e.g., the native Media API of the device, a DRM provider’s API, etc.). This seamless behavior simplifies how you, the developer, build mobile video applications, by saving you the need to address video playback optimization, security, or (dz -ensuring the UI consistency) worry about maintaining the same UI across devices and platforms.</p>
 
@@ -151,8 +151,13 @@ rtp('get', 'campaign',true);
 </ul>
 
 <p>and more…</p>
-
-<h2 id="mobile-video-player-sdk-architecture-overview">Mobile Video Player SDK Architecture Overview</h2>
+      <h2 id="mobile-video-player-sdk-architecture-overview">
+        
+        
+          Mobile Video Player SDK Architecture Overview <a href="#mobile-video-player-sdk-architecture-overview"></a>
+        
+        
+      </h2>
 
 <p>The Kaltura Video Player’s architecture is designed to allow for a seamless integration experience, enabling you to connect multiple playback engines and platforms. The Kaltura Video Player wraps the playback engine with the same interface and events, thereby allowing the same plugin code to work across multiple platforms, including iOS, Android, and web.</p>
 
@@ -163,16 +168,28 @@ rtp('get', 'campaign',true);
 <p>The Player API supports sending notifications to the Kaltura Video Player, listening to events, and evaluating properties.</p>
 
 <p>Each Kaltura Video Video Player configuration includes the UICONF object, which includes the player configuration and indicates which plugins should be loaded. Every component of the layer is designed as a plugin.</p>
-
-<h2 id="the-kaltura-video-player-architecture">The Kaltura Video Player Architecture</h2>
+    
+      <h2 id="the-kaltura-video-player-architecture">
+        
+        
+          The Kaltura Video Player Architecture <a href="#the-kaltura-video-player-architecture"></a>
+        
+        
+      </h2>
 
 <p>The following diagram visualizes the Kaltura Video Player architecture, and highlights its flexibility and robust capabilities across platforms and devices:</p>
 
 <p><img src="https://knowledge.kaltura.com/sites/default/files/styles/large/public/kaltura-player-toolkit.png" alt="Kaltura Video Player Architecture Diagram" /></p>
 
 <p>As the diagram above illustrates, you can leverage native components for <a href="https://github.com/kaltura/player-sdk-native-ios/">iOS</a> and <a href="https://github.com/kaltura/player-sdk-native-android">Android</a> in conjunction with HTML5 runtime and Adobe Flash or Microsoft Silverlight plugins, to transcend platform limitations across devices and browsers, while delivering the full Kaltura Video Player v2 Toolkit experience.</p>
-
-<h2 id="when-should-you-use-native-mobile-sdks">When Should You Use Native Mobile SDKs?</h2>
+    
+      <h2 id="when-should-you-use-native-mobile-sdks">
+        
+        
+          When Should You Use Native Mobile SDKs? <a href="#when-should-you-use-native-mobile-sdks"></a>
+        
+        
+      </h2>
 
 <p>What are the advantages of using native mobile SDKs? Here is a feature list that explains the advantages of using the Kaltura Video Player Toolkit in native environments:</p>
 
@@ -245,8 +262,14 @@ rtp('get', 'campaign',true);
     </tr>
   </tbody>
 </table>
-
-<h3 id="using-and-configuring-player-objects---native-vs-html5-controls">Using and Configuring Player Objects - Native vs HTML5 controls</h3>
+    
+      <h3 id="using-and-configuring-player-objects---native-vs-html5-controls">
+        
+        
+          Using and Configuring Player Objects - Native vs HTML5 controls <a href="#using-and-configuring-player-objects---native-vs-html5-controls"></a>
+        
+        
+      </h3>
 
 <p>One of the key features of the Player-SDK is the ability to use the HTML/CSS UI, which can be used on all platforms - iOS, Android and Web. As a developer you can choose if you want to:</p>
 
@@ -255,14 +278,26 @@ rtp('get', 'campaign',true);
   <li>Develop your own skin</li>
   <li>Develop native controls</li>
 </ul>
-
-<h4 id="before-you-begin">Before You Begin</h4>
+    
+      <h4 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h4>
 
 <p>Before getting started, we recommend you read the following article on <a href="/api-docs/04_Web-Video-Player/Player-Configuration.html">configuring the Kaltura Media Player</a>. You should also verify that you have your Player configured via KMC.</p>
 
 <p>Additionally, the following article provides a detailed explanation on <a href="/api-docs/05_Mobile-Video-Player-SDKs/Kaltura-iOS-player-API-Base-Methods.html">accessing the iOS Player API base methods</a>.</p>
-
-<h4 id="removing-html5-ui-controls">Removing html5 UI Controls</h4>
+    
+      <h4 id="removing-html5-ui-controls">
+        
+        
+          Removing html5 UI Controls <a href="#removing-html5-ui-controls"></a>
+        
+        
+      </h4>
 
 <p>Use these commands to remove the html5 UI controls:</p>
 
@@ -271,8 +306,14 @@ rtp('get', 'campaign',true);
 [config addConfigKey:@"largePlayBtn.plugin" withValue:@"false"];
 </code></pre>
 </div>
-
-<h4 id="disabling-the-html-spinner-and-controlling-it-with-a-custom-spinner">Disabling the HTML Spinner and Controlling it with a Custom Spinner</h4>
+    
+      <h4 id="disabling-the-html-spinner-and-controlling-it-with-a-custom-spinner">
+        
+        
+          Disabling the HTML Spinner and Controlling it with a Custom Spinner <a href="#disabling-the-html-spinner-and-controlling-it-with-a-custom-spinner"></a>
+        
+        
+      </h4>
 
 <p>To disable the HTML Spinner and control it with a customer spinner, you will need to follow these configuration steps:</p>
 
@@ -304,8 +345,14 @@ rtp('get', 'campaign',true);
     }];
 </code></pre>
 </div>
-
-<h4 id="disabling-thumbnails">Disabling Thumbnails</h4>
+    
+      <h4 id="disabling-thumbnails">
+        
+        
+          Disabling Thumbnails <a href="#disabling-thumbnails"></a>
+        
+        
+      </h4>
 
 <p>We can disable the loading of assets by setting uiconf:</p>
 
@@ -316,8 +363,14 @@ rtp('get', 'campaign',true);
 
 <p>These settings will prevent loading the thumbnails assets.<br />
 Set this on your own discretion, as it is dependent of application usage (weather it uses web component scrubber or not, or if it needs poster on start or not).</p>
-
-<h2 id="player-version-management">Player Version Management</h2>
+    
+      <h2 id="player-version-management">
+        
+        
+          Player Version Management <a href="#player-version-management"></a>
+        
+        
+      </h2>
 
 <p>The Mobile Video Player SDKs are native iOS and Android wrapper libraries for the <a href="/api-docs/04_Web-Video-Player/Player-Configuration.html">Kaltura Web Video Player Library</a>.  <br />
 We recommend using the latest version of both the Kaltura Web Video Player and the native Mobile Player SDKs.</p>
@@ -326,8 +379,14 @@ We recommend using the latest version of both the Kaltura Web Video Player and t
   <li>You can upgrade the version of your Kaltura Web Video Player by using the <a href="https://knowledge.kaltura.com/node/1148#Updating the Player">Player Studio</a> and clicking <strong>Upgrade</strong>.</li>
   <li>To get the latest version of the Mobile Player SDK, always refer to the latest SDK tag on the github repository (<a href="https://github.com/kaltura/player-sdk-native-ios">iOS SDK</a>, <a href="https://github.com/kaltura/player-sdk-native-android">Android SDK</a>).</li>
 </ul>
-
-<h2 id="kaltura-player-plugins">Kaltura Player Plugins</h2>
+    
+      <h2 id="kaltura-player-plugins">
+        
+        
+          Kaltura Player Plugins <a href="#kaltura-player-plugins"></a>
+        
+        
+      </h2>
 
 <p>Kaltura Player plugins use a combination of HTML, JavaScript and/or CSS to customize the Player, enabling you to use a plugin to add any feature that can be added to a web page. Plugins integrate with the Player by listening to and emitting events.</p>
 
@@ -450,11 +509,23 @@ We recommend using the latest version of both the Kaltura Web Video Player and t
     </tr>
   </tbody>
 </table>
-
-<h3 id="how-to-enablecreate-a-plugin">How to Enable/Create a Plugin</h3>
+    
+      <h3 id="how-to-enablecreate-a-plugin">
+        
+        
+          How to Enable/Create a Plugin <a href="#how-to-enablecreate-a-plugin"></a>
+        
+        
+      </h3>
 <p>This section describes how to enable existing Kaltura plugins and how to create your own plugins.</p>
-
-<h5 id="using-an-existing-plugin">Using an Existing Plugin</h5>
+    
+      <h5 id="using-an-existing-plugin">
+        
+        
+          Using an Existing Plugin <a href="#using-an-existing-plugin"></a>
+        
+        
+      </h5>
 
 <ol>
   <li>If you want to change or add a plugin, the key should begin with the plugin name, dot and the plugin attribute. Every plugin includes the plugin attributes required for enabling or disabling the plugin.</li>
@@ -471,26 +542,50 @@ We recommend using the latest version of both the Kaltura Web Video Player and t
 config.addConfig("loadingSpinner.plugin", "false");
 </code></pre>
 </div>
-
-<h5 id="creating-custom-plugins">Creating Custom Plugins</h5>
+    
+      <h5 id="creating-custom-plugins">
+        
+        
+          Creating Custom Plugins <a href="#creating-custom-plugins"></a>
+        
+        
+      </h5>
 
 <p>To create custom plugins, follow the steps in the article <a href="/api-docs/Web-Video-Player/Player-Plugins.html">Extending the Kaltura Web Video Player Functionality Using Plugins</a>.</p>
-
-<h4 id="how-to-detect-if-configured-plugins-are-loaded">How to Detect if Configured Plugins are Loaded</h4>
+    
+      <h4 id="how-to-detect-if-configured-plugins-are-loaded">
+        
+        
+          How to Detect if Configured Plugins are Loaded <a href="#how-to-detect-if-configured-plugins-are-loaded"></a>
+        
+        
+      </h4>
 
 <ol>
   <li>Open the iOS Player API base by following the steps in the article <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/master/documentation/05_Mobile-Video-Player-SDKs/Kaltura-iOS-player-API-Base-Methods.md">Accessing the iOS Player API Base Methods</a>.</li>
   <li>Follow the instructions in * “Receiving  a Notification when the Player API is Ready” to detect if configured plugins are loaded.</li>
 </ol>
-
-<h4 id="how-to-get-notified-about-player-plugin-related-callbacks">How to Get Notified about Player Plugin-Related Callbacks</h4>
+    
+      <h4 id="how-to-get-notified-about-player-plugin-related-callbacks">
+        
+        
+          How to Get Notified about Player Plugin-Related Callbacks <a href="#how-to-get-notified-about-player-plugin-related-callbacks"></a>
+        
+        
+      </h4>
 
 <ol>
   <li>Open the iOS Player API base by following the steps in the article <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/master/documentation/05_Mobile-Video-Player-SDKs/Kaltura-iOS-player-API-Base-Methods.md">Accessing the iOS Player API Base Methods</a>.</li>
   <li>Follow the instructions in * addKPlayerEventListener * to receive notifications about Player plugin-related callbacks.</li>
 </ol>
-
-<h2 id="drm-support">DRM Support</h2>
+    
+      <h2 id="drm-support">
+        
+        
+          DRM Support <a href="#drm-support"></a>
+        
+        
+      </h2>
 
 <p>The Player-SDK supports seamless playback of DRM content. Each platform supports a slightly different set of DRM schemes and features, which are detailed as follows.</p>
 
@@ -507,32 +602,62 @@ config.addConfig("loadingSpinner.plugin", "false");
     </ul>
   </li>
 </ul>
-
-<h3 id="drm-server">DRM Server</h3>
+    
+      <h3 id="drm-server">
+        
+        
+          DRM Server <a href="#drm-server"></a>
+        
+        
+      </h3>
 
 <p>The Player-SDK must communicate with a license server in order to get the license, for both online and offline playback. The API between the SDK and the server is a simple http POST, where all required identify/authorization parameters are provided in the query string.</p>
 
 <p>The license URL is provided to the DRM client by <code class="highlighter-rouge">PlayerViewController</code>/<code class="highlighter-rouge">KPViewController</code> in online mode (when playback is started), or by <code class="highlighter-rouge">LocalAssetManager</code>/<code class="highlighter-rouge">KPLocalAssetsManager</code> in offline mode (during asset registration/refresh).</p>
 
 <p>The following are the high level sequence diagrams. Please note that they are internal to the Player-SDK, and are provided here for informational purposes only.</p>
-
-<h4 id="online">Online</h4>
+    
+      <h4 id="online">
+        
+        
+          Online <a href="#online"></a>
+        
+        
+      </h4>
 
 <p><img src="assets/uml/bcface72e4179d69d514acff022dfa68.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
-
-<h4 id="offline">Offline</h4>
+    
+      <h4 id="offline">
+        
+        
+          Offline <a href="#offline"></a>
+        
+        
+      </h4>
 
 <p><img src="assets/uml/b7679828caeadd55b96e9f86411db616.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
-
-<h3 id="offline-playback-integration">Offline Playback Integration</h3>
+    
+      <h3 id="offline-playback-integration">
+        
+        
+          Offline Playback Integration <a href="#offline-playback-integration"></a>
+        
+        
+      </h3>
 
 <p>The native mobile SDKs (Android and iOS) allow applications to play downloaded content when the device is offline. Read this section to learn how to configure offline playback and to use downloaded files with the Player.</p>
 
 <blockquote>
   <p>Note: The SDK <strong>does not</strong> provide the download function or the download URL. This should be provided by the application.</p>
 </blockquote>
-
-<h4 id="supported-use-case">Supported Use Case</h4>
+    
+      <h4 id="supported-use-case">
+        
+        
+          Supported Use Case <a href="#supported-use-case"></a>
+        
+        
+      </h4>
 
 <p>This is the general supported use case for offline playback. Starting with a just-installed app, the following should work:</p>
 
@@ -546,8 +671,14 @@ config.addConfig("loadingSpinner.plugin", "false");
 <blockquote>
   <p>The requirement to play any video while online (step 1) is a limitation that will be fixed in a future version of the Player SDK.</p>
 </blockquote>
-
-<h4 id="implementing-offline-playback">Implementing Offline Playback</h4>
+    
+      <h4 id="implementing-offline-playback">
+        
+        
+          Implementing Offline Playback <a href="#implementing-offline-playback"></a>
+        
+        
+      </h4>
 
 <p>From the application’s point-of-view, there are three parts to implementing offline playback:</p>
 
@@ -556,16 +687,34 @@ config.addConfig("loadingSpinner.plugin", "false");
   <li>Registering the downloaded files with the Player SDK (when the device is still online).</li>
   <li>Overriding the streaming playback URL with the downloaded file.</li>
 </ol>
-
-<h4 id="integration-points">Integration Points</h4>
+    
+      <h4 id="integration-points">
+        
+        
+          Integration Points <a href="#integration-points"></a>
+        
+        
+      </h4>
 
 <p>Playing back downloaded assets requires two integration points between the application and the SDK - <strong>management</strong> and <strong>playback</strong>.</p>
-
-<h5 id="asset-management">Asset Management</h5>
+    
+      <h5 id="asset-management">
+        
+        
+          Asset Management <a href="#asset-management"></a>
+        
+        
+      </h5>
 
 <p>Local assets are managed in <code class="highlighter-rouge">LocalAssetsManager</code>/<code class="highlighter-rouge">KPLocalAssetsManager</code>. The following Asset Management operations are available:</p>
-
-<h6 id="register">Register</h6>
+    
+      <h6 id="register">
+        
+        
+          Register <a href="#register"></a>
+        
+        
+      </h6>
 
 <p>The application notifies the SDK about a new downloaded asset. The SDK fetches important metadata and a DRM license, if required.</p>
 
@@ -577,20 +726,44 @@ config.addConfig("loadingSpinner.plugin", "false");
 <blockquote>
   <p>Note: localContentId must <strong>not</strong> be set for online playback.</p>
 </blockquote>
-
-<h6 id="check-status">Check Status</h6>
+    
+      <h6 id="check-status">
+        
+        
+          Check Status <a href="#check-status"></a>
+        
+        
+      </h6>
 
 <p>This allows the application to verify that a downloaded asset is still playable. This applies mostly to DRM-protected assets.</p>
-
-<h6 id="refresh">Refresh</h6>
+    
+      <h6 id="refresh">
+        
+        
+          Refresh <a href="#refresh"></a>
+        
+        
+      </h6>
 
 <p>If possible, refresh the metadata obtained in <code class="highlighter-rouge">Register</code>, including the DRM license.</p>
-
-<h6 id="unregister">Unregister</h6>
+    
+      <h6 id="unregister">
+        
+        
+          Unregister <a href="#unregister"></a>
+        
+        
+      </h6>
 
 <p>The application notifies the SDK that it has deleted the asset. The SDK cleans up related resources.</p>
-
-<h6 id="arguments">Arguments</h6>
+    
+      <h6 id="arguments">
+        
+        
+          Arguments <a href="#arguments"></a>
+        
+        
+      </h6>
 
 <p>All methods share the same set of arguments:</p>
 
@@ -606,8 +779,14 @@ config.addConfig("loadingSpinner.plugin", "false");
   <li>Android: <code class="highlighter-rouge">Context</code>, listener</li>
   <li>iOS: callback block</li>
 </ul>
-
-<h5 id="asset-playback">Asset Playback</h5>
+    
+      <h5 id="asset-playback">
+        
+        
+          Asset Playback <a href="#asset-playback"></a>
+        
+        
+      </h5>
 
 <p>To override the default (streaming) playback URL with a downloaded file, the application provides a delegate to the Player.</p>
 
@@ -628,16 +807,34 @@ config.addConfig("loadingSpinner.plugin", "false");
 <p><img src="assets/uml/c5c908266ca5de456b2b9957ed3af1d1.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
 
 <p>As mentioned above, the <code class="highlighter-rouge">entryConfig</code> object must include the <code class="highlighter-rouge">localContentId</code> that was used during the registration of the same asset.</p>
-
-<h4 id="download-location-guidelines">Download Location Guidelines</h4>
+    
+      <h4 id="download-location-guidelines">
+        
+        
+          Download Location Guidelines <a href="#download-location-guidelines"></a>
+        
+        
+      </h4>
 
 <p>Application developers are free to choose download locations, as allowed by the platform; however, Kaltura recommends the following locations:</p>
-
-<h5 id="android">Android</h5>
+    
+      <h5 id="android">
+        
+        
+          Android <a href="#android"></a>
+        
+        
+      </h5>
 
 <p>Store the downloaded files in a directory returned by <code class="highlighter-rouge">context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)</code> (or in a subdirectory of the directory). This directory is owned by the application, is deleted on uninstall, and typically resides on a relatively large partition. In addition, starting with <code class="highlighter-rouge">KITKAT</code>, this directory does not require read/write permissions to the shared storage (<code class="highlighter-rouge">WRITE_EXTERNAL_STORAGE</code>).</p>
-
-<h5 id="ios">iOS</h5>
+    
+      <h5 id="ios">
+        
+        
+          iOS <a href="#ios"></a>
+        
+        
+      </h5>
 
 <p>As per Apple’s current recommendation, downloaded video files should be stored in a subdirectory of the application’s <em>Documents</em> directory – <code class="highlighter-rouge">[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]</code>:</p>
 
@@ -648,7 +845,6 @@ config.addConfig("loadingSpinner.plugin", "false");
 <p>The selected subdirectory <a href="https://developer.apple.com/library/ios/qa/qa1719/_index.html">must be excluded from iCloud backup</a>.</p>
 
 <p>For more information, see the Apple guide: <a href="https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW28">File System Programming Guide &gt; File System Basics &gt; Where You Should Put Your App’s Files</a>.</p>
-
 		
 </article>
 

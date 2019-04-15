@@ -147,9 +147,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>In this section, you’ll learn how to build a simple video application.</p>
-
-<h2 id="integrate-the-playkit-sdk-into-your-application-settings">Integrate the Playkit SDK into your Application Settings</h2>
+		<p>In this section, you’ll learn how to build a simple video application.</p>
+      <h2 id="integrate-the-playkit-sdk-into-your-application-settings">
+        
+        
+          Integrate the Playkit SDK into your Application Settings <a href="#integrate-the-playkit-sdk-into-your-application-settings"></a>
+        
+        
+      </h2>
 
 <p>1 . Clone the SDK  from https://github.com/kaltura/playkit-android and locate it next to your application code. If you want to be able to review the code as standalone, open the playkit-android folder in the Android Studio. <br />
 2 . In the setting.gradle, add the SDK project settings as follows:</p>
@@ -162,8 +167,14 @@ rtp('get', 'campaign',true);
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="nl">path:</span> <span class="err">'</span><span class="o">:</span><span class="n">playkit</span><span class="err">'</span><span class="o">)</span>
 </code></pre>
 </div>
-
-<h2 id="create-the-player-instance-and-start-playback">Create the Player Instance and Start Playback</h2>
+    
+      <h2 id="create-the-player-instance-and-start-playback">
+        
+        
+          Create the Player Instance and Start Playback <a href="#create-the-player-instance-and-start-playback"></a>
+        
+        
+      </h2>
 
 <p>1 . To create the instance of the player, add the following line to your Activity/Fragment to pass the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PlayerConfig.java">PlayerConfig</a> object and Android Context:</p>
 
@@ -188,18 +199,36 @@ rtp('get', 'campaign',true);
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="na">pause</span><span class="o">();</span>
 </code></pre>
 </div>
-
-<h2 id="more-about-playerconfig">More About PlayerConfig</h2>
+    
+      <h2 id="more-about-playerconfig">
+        
+        
+          More About PlayerConfig <a href="#more-about-playerconfig"></a>
+        
+        
+      </h2>
 
 <p>The PlayerConfig object is a simple data object that holds the initial configurations for the player, similar to the media entry you wish to play and the plugins you want to configure. You can find additional documentation on PlayerConfig in this <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/playkit/documentation/PlayKit/Android/PlayerConfig-Android.md">PlayerConfig article</a>.</p>
 
 <p>The <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PlayerConfig.java">PlayerConfig</a> consists of two main objects: media and plugins. For now, we’ll focus on creating the <strong>media</strong> object. Additional information about plugins is available in this <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/playkit/documentation/PlayKit/Plugins-Android.md">plugins </a> article.</p>
-
-<h2 id="kalturas-mediaprovider-classes">Kaltura’s MediaProvider Classes</h2>
+    
+      <h2 id="kalturas-mediaprovider-classes">
+        
+        
+          Kaltura’s MediaProvider Classes <a href="#kalturas-mediaprovider-classes"></a>
+        
+        
+      </h2>
 
 <p>Playkit has a large number of built-in <a href="https://github.com/kaltura/DeveloperPortalDocs/blob/playkit/documentation/PlayKit/Android/MediaProviders-Android.md">MediaProvider classes</a>. In this example we’ll focus on the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/backend/mock/MockMediaProvider.java">MockMediaProvider</a> class, which is a class that knows how to create a Media object from JSON.</p>
-
-<h3 id="using-the-mockmediaprovider">Using the MockMediaProvider</h3>
+    
+      <h3 id="using-the-mockmediaprovider">
+        
+        
+          Using the MockMediaProvider <a href="#using-the-mockmediaprovider"></a>
+        
+        
+      </h3>
 
 <p>1 . Take take the JsonObject and parse it with your provider. <br />
 2 . Next, let’s assume that you have this JsonObject saved locally in your project assets directory, with the name entries.playkit.json:</p>
@@ -310,11 +339,16 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p><a href="">Download Full Sample</a></p>
 </blockquote>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

@@ -141,15 +141,20 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Web Video Player JavaScript API is a two-way communication channel that enables you to manage properties, event and notifications, including:</p>
+		<p>The Web Video Player JavaScript API is a two-way communication channel that enables you to manage properties, event and notifications, including:</p>
 <ul>
   <li>Enabling the player to communicate its current states and parameters</li>
   <li>Enabling the embedding page/application to invoke actions, change and read properties, and to customize its behavior, design and layout</li>
   <li>Maintaining a continuous, interactive data connection with the Kaltura Platform API</li>
   <li>Providing a seamless end user experience across devices, browsers and platforms</li>
 </ul>
-
-<h2 id="embed-and-reference-player-instances">Embed and Reference Player Instances</h2>
+      <h2 id="embed-and-reference-player-instances">
+        
+        
+          Embed and Reference Player Instances <a href="#embed-and-reference-player-instances"></a>
+        
+        
+      </h2>
 
 <p>The Player API is exposed via the Player JavaScript library and is only available when using the JavaScript embed methods (dynamic, thumbnail or auto).</p>
 
@@ -164,8 +169,14 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>The Kaltura Web Video Player library can also be used inside Native Android and Native iOS applications using the respective player SDK. See the <a href="/api-docs/05_Mobile-Video-Player-SDKs/Introduction.html">Kaltura Player Mobile SDK</a> documents for more information about using the Kaltura Video Player in native mobile applications.</p>
 </blockquote>
-
-<h3 id="kaltura-web-video-player-embed-api-methods">Kaltura Web Video Player Embed API Methods</h3>
+    
+      <h3 id="kaltura-web-video-player-embed-api-methods">
+        
+        
+          Kaltura Web Video Player Embed API Methods <a href="#kaltura-web-video-player-embed-api-methods"></a>
+        
+        
+      </h3>
 
 <p>To get started:</p>
 
@@ -188,15 +199,27 @@ rtp('get', 'campaign',true);
   <li><code class="highlighter-rouge">kWidget.embed(targetId, settings)</code>: The most commonly used JavaScript embed method, after loading the DOM, the Kaltura Player will be rendered against the div whose ID was provided in <code class="highlighter-rouge">targetId</code>.</li>
   <li><code class="highlighter-rouge">kWidget.thumbEmbed(targetId, settings)</code>: This method will render a thumbnail and play button to the <code class="highlighter-rouge">targetId</code> DOM element, and will only render the full player when the end user clicks the Play button. The thumbnail embed will pass all of the configurations to the kWidget.embed when the Play button is clicked. The player context menu can be disabled by setting the <code class="highlighter-rouge">EmbedPlayer.DisableContextMenu</code> UIVar to <em>true</em> using the flashvars or the Player Studio UIVars.</li>
 </ul>
-
-<h4 id="embed-api-method-parameters">Embed API Method Parameters</h4>
+    
+      <h4 id="embed-api-method-parameters">
+        
+        
+          Embed API Method Parameters <a href="#embed-api-method-parameters"></a>
+        
+        
+      </h4>
 
 <ul>
   <li><code class="highlighter-rouge">targetId</code>: This string is the ID of the DOM element where the Player will be rendered (any contents of the element will be removed when the Player is rendered instead of this given element).</li>
   <li><a href="#the-kwidget-settings-object"><code class="highlighter-rouge">settings</code></a>: This object is the object of the settings properties to be used when building and rendering the Player.</li>
 </ul>
-
-<h4 id="kwidget-settings-object">kWidget Settings Object</h4>
+    
+      <h4 id="kwidget-settings-object">
+        
+        
+          kWidget Settings Object <a href="#kwidget-settings-object"></a>
+        
+        
+      </h4>
 
 <table>
   <thead>
@@ -258,14 +281,26 @@ rtp('get', 'campaign',true);
     </tr>
   </tbody>
 </table>
-
-<h3 id="obtaining-a-reference-to-the-embedded-player">Obtaining a Reference to the Embedded Player</h3>
+    
+      <h3 id="obtaining-a-reference-to-the-embedded-player">
+        
+        
+          Obtaining a Reference to the Embedded Player <a href="#obtaining-a-reference-to-the-embedded-player"></a>
+        
+        
+      </h3>
 
 <p>To communicate with embedded player instances via the JavaScript API, you will need to retrieve a reference to the player instance. To obtain a reference to the player,  you will need to implement the <code class="highlighter-rouge">readyCallback</code> function. <code class="highlighter-rouge">readyCallback</code> is called when the player was rendered successfully to the DOM and is ready to accept API calls.</p>
 
 <p>There are two ways to implement the <code class="highlighter-rouge">readyCallback</code> function, which are described below.</p>
-
-<h4 id="registering-via-the-global-library-facade">Registering via the Global Library Facade</h4>
+    
+      <h4 id="registering-via-the-global-library-facade">
+        
+        
+          Registering via the Global Library Facade <a href="#registering-via-the-global-library-facade"></a>
+        
+        
+      </h4>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">addReadyCallback</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">){</span>
     <span class="kd">var</span> <span class="nx">kdp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span> <span class="nx">playerId</span> <span class="p">);</span> 
@@ -274,8 +309,14 @@ rtp('get', 'campaign',true);
 </code></pre>
 </div>
 <p>This will register a global function that will be called once for every player instance that will be rendered on the page.</p>
-
-<h4 id="passing-the-handler-function-to-each-individual-embed-call">Passing the Handler Function to Each Individual Embed Call</h4>
+    
+      <h4 id="passing-the-handler-function-to-each-individual-embed-call">
+        
+        
+          Passing the Handler Function to Each Individual Embed Call <a href="#passing-the-handler-function-to-each-individual-embed-call"></a>
+        
+        
+      </h4>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kWidget</span><span class="p">.</span><span class="nx">embed</span><span class="p">({</span>
     <span class="s1">'targetId'</span><span class="p">:</span> <span class="s1">'kaltura_player'</span><span class="p">,</span>
@@ -289,8 +330,14 @@ rtp('get', 'campaign',true);
 <span class="p">});</span>
 </code></pre>
 </div>
-
-<h2 id="registering-to-player-events-hooks">Registering to Player Events (Hooks)</h2>
+    
+      <h2 id="registering-to-player-events-hooks">
+        
+        
+          Registering to Player Events (Hooks) <a href="#registering-to-player-events-hooks"></a>
+        
+        
+      </h2>
 
 <p>You can register to Player events using the “kBind” method and un-register using the “kUnbind” method.</p>
 
@@ -307,8 +354,14 @@ rtp('get', 'campaign',true);
 <span class="p">});</span>
 </code></pre>
 </div>
-
-<h3 id="using-event-namespaces">Using Event Namespaces</h3>
+    
+      <h3 id="using-event-namespaces">
+        
+        
+          Using Event Namespaces <a href="#using-event-namespaces"></a>
+        
+        
+      </h3>
 
 <p>It is highly recommended to define your own event namespaces when registering to player events. This will prevent overriding event handlers when registering and unregistering events with multiple player embeds on the same page.</p>
 
@@ -328,8 +381,14 @@ For example:</p>
 <blockquote>
   <p>Read more about event namespaces in the <a href="https://api.jquery.com/event.namespace/">jQuery documentation</a>.</p>
 </blockquote>
-
-<h3 id="registering-to-the-playerready-event">Registering to the <code class="highlighter-rouge">playerReady</code> Event</h3>
+    
+      <h3 id="registering-to-the-playerready-event">
+        
+        
+          Registering to the <code class="highlighter-rouge">playerReady</code> Event <a href="#registering-to-the-playerready-event"></a>
+        
+        
+      </h3>
 
 <p>To ensure that the Player has been rendered and initialized properly before invoking Player methods or modifying Player properties, you will need to register to the player <code class="highlighter-rouge">playerReady</code> event.  This event is dispatched once all of the Player UI and plugins have been added and playback is ready to begin.</p>
 
@@ -343,8 +402,14 @@ For example:</p>
 <span class="p">});</span>
 </code></pre>
 </div>
-
-<h3 id="commonly-used-player-events">Commonly Used Player Events</h3>
+    
+      <h3 id="commonly-used-player-events">
+        
+        
+          Commonly Used Player Events <a href="#commonly-used-player-events"></a>
+        
+        
+      </h3>
 
 <p>The following is a list of the most commonly used Player events triggered during typical Player embed and playback. Registering to these events enables the application to respond to the different states in the Player setup, Player lifecycle and end user interactions.</p>
 
@@ -504,8 +569,14 @@ For example:</p>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre>
 </div>
-
-<h3 id="commonly-used-player-ad-events-ad-sequence-events">Commonly Used Player Ad Events (Ad Sequence Events)</h3>
+    
+      <h3 id="commonly-used-player-ad-events-ad-sequence-events">
+        
+        
+          Commonly Used Player Ad Events (Ad Sequence Events) <a href="#commonly-used-player-ad-events-ad-sequence-events"></a>
+        
+        
+      </h3>
 
 <p>The Kaltura Player supports all of the major <a href="http://www.iab.com/">IAB</a> ad standards. The most commonly used Player plugins for playing ads are VAST and Doubleclick.</p>
 
@@ -587,8 +658,14 @@ For example:</p>
     </tr>
   </tbody>
 </table>
-
-<h2 id="invoking-player-actions">Invoking Player Actions</h2>
+    
+      <h2 id="invoking-player-actions">
+        
+        
+          Invoking Player Actions <a href="#invoking-player-actions"></a>
+        
+        
+      </h2>
 
 <p>Invoking Player actions is done by calling the <code class="highlighter-rouge">sendNotification</code> method and passing the desired action name and respective parameters. The notifications sent to the Player instruct the Player and any loaded plugins to perform an action, such as play, seek, or pause.</p>
 
@@ -601,8 +678,14 @@ For example:</p>
 <span class="p">});</span>
 </code></pre>
 </div>
-
-<h3 id="commonly-called-player-notifications-actions">Commonly Called Player Notifications (Actions)</h3>
+    
+      <h3 id="commonly-called-player-notifications-actions">
+        
+        
+          Commonly Called Player Notifications (Actions) <a href="#commonly-called-player-notifications-actions"></a>
+        
+        
+      </h3>
 
 <p>The following are commonly-called Player notifications:</p>
 <ul>
@@ -612,8 +695,14 @@ For example:</p>
   <li>To load a different media item (entry):  <code class="highlighter-rouge">kdp.sendNotification("changeMedia", { "entryId" : "0_wm82kqmm" });</code></li>
   <li>To set the volume: <code class="highlighter-rouge">kdp.sendNotification("changeVolume", 0.5);</code></li>
 </ul>
-
-<h2 id="reading-player-properties-and-expressions">Reading Player Properties and Expressions</h2>
+    
+      <h2 id="reading-player-properties-and-expressions">
+        
+        
+          Reading Player Properties and Expressions <a href="#reading-player-properties-and-expressions"></a>
+        
+        
+      </h2>
 
 <p>The Kaltura Player allows evaluating Player properties using a curly brackets expressions syntax by using the <code class="highlighter-rouge">evaluate</code> command.<br />
 This feature allows you to get Player properties in real-time during playback, which provides information about the Player, media state and metadata.</p>
@@ -628,8 +717,14 @@ This feature allows you to get Player properties in real-time during playback, w
 </div>
 
 <p>Beyond basic Player properties such as “playerVersion” or “duration”, the Kaltura Player exposes access to nested Player objects with many additional properties. The objects are nested JSON objects, and are read from the evaluate method using a dot syntax (e.g., <code class="highlighter-rouge">myObj.nestedObj.property</code>).</p>
-
-<h3 id="commonly-used-data-objects">Commonly Used Data Objects</h3>
+    
+      <h3 id="commonly-used-data-objects">
+        
+        
+          Commonly Used Data Objects <a href="#commonly-used-data-objects"></a>
+        
+        
+      </h3>
 
 <p>The following are commonly used data objects:</p>
 
@@ -667,8 +762,14 @@ This feature allows you to get Player properties in real-time during playback, w
     </tr>
   </tbody>
 </table>
-
-<h4 id="evaluating-common-player-properties">Evaluating Common Player Properties</h4>
+    
+      <h4 id="evaluating-common-player-properties">
+        
+        
+          Evaluating Common Player Properties <a href="#evaluating-common-player-properties"></a>
+        
+        
+      </h4>
 
 <p>To evaluate common Player properties, using the following:</p>
 <ul>
@@ -683,8 +784,14 @@ This feature allows you to get Player properties in real-time during playback, w
   <li>Get current ad duration: <code class="highlighter-rouge">kdp.evaluate('{sequenceProxy.duration}');</code></li>
   <li>Get time remaining until ad finish playback: <code class="highlighter-rouge">kdp.evaluate('{sequenceProxy.timeRemaining}');</code></li>
 </ul>
-
-<h3 id="applying-formatters-to-evaluated-player-properties">Applying Formatters to Evaluated Player Properties</h3>
+    
+      <h3 id="applying-formatters-to-evaluated-player-properties">
+        
+        
+          Applying Formatters to Evaluated Player Properties <a href="#applying-formatters-to-evaluated-player-properties"></a>
+        
+        
+      </h3>
 
 <p>When evaluating expressions, you can apply formatters to format the returned value using any of the available formatting functions or by adding custom formatters. <br />
 Formatters are applied to evaluated properties by adding pipe (<code class="highlighter-rouge">|</code>) and the name of the formatters after the property.</p>
@@ -709,8 +816,14 @@ For example, to set the title bar to show the entry name and number of times it 
 </code></pre>
   </div>
 </blockquote>
-
-<h4 id="available-core-formatters">Available Core Formatters</h4>
+    
+      <h4 id="available-core-formatters">
+        
+        
+          Available Core Formatters <a href="#available-core-formatters"></a>
+        
+        
+      </h4>
 
 <ul>
   <li><code class="highlighter-rouge">timeFormat</code>: Takes time in seconds and returns hh:mm:ss format</li>
@@ -721,8 +834,14 @@ For example, to set the title bar to show the entry name and number of times it 
 <blockquote>
   <p>Custom formatters can be added by creating JavaScript player plugins. Read more about custom Player plugins and custom formatters.</p>
 </blockquote>
-
-<h2 id="setting-player-properties-at-runtime">Setting Player Properties at Runtime</h2>
+    
+      <h2 id="setting-player-properties-at-runtime">
+        
+        
+          Setting Player Properties at Runtime <a href="#setting-player-properties-at-runtime"></a>
+        
+        
+      </h2>
 
 <p>To modify Player properties during runtime, use the <code class="highlighter-rouge">setKDPAttribute</code> command.  All Player and plugin properties can be set using a dot syntax. <br />
 <code class="highlighter-rouge">setKDPAttribute (object, property, value);</code></p>
@@ -754,7 +873,6 @@ For example, to set the title bar to show the entry name and number of times it 
 <blockquote>
   <p>Note: Some properties are read-only or allow setting values only once during Player initialization.</p>
 </blockquote>
-
 		
 </article>
 

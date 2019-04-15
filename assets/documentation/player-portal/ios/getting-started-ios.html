@@ -135,18 +135,29 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This guide will walk you through the steps for adding a Kaltura video player to your iOS mobile application. You’ll learn how to import the SDK, find the necessary credentials, and load the player with your Entry ID of choice. <strong>Because the player is focused on performance and giving you the simplest integration possible, it does not contain a UI.</strong> That being said, this guide will show you how to listen to events in order to manage the player state, as well as examples for adding play/pause buttons and a slider to the player. <br />
+		<p>This guide will walk you through the steps for adding a Kaltura video player to your iOS mobile application. You’ll learn how to import the SDK, find the necessary credentials, and load the player with your Entry ID of choice. <strong>Because the player is focused on performance and giving you the simplest integration possible, it does not contain a UI.</strong> That being said, this guide will show you how to listen to events in order to manage the player state, as well as examples for adding play/pause buttons and a slider to the player. <br />
 Lastly, this guide will cover how to add plugins to the application, specifically the Kaltura Video Analytics plugin.</p>
-
-<h2 id="before-you-begin">Before You Begin</h2>
+      <h2 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h2>
 
 <p>You’ll need two things:</p>
 <ol>
   <li>Your Kaltura Partner ID, which can be found in the KMC under Settings&gt;Integration Settings</li>
   <li>Any video entry, which can be found in the KMC as well.</li>
 </ol>
-
-<h3 id="getting-started-with-the-kaltura-cocoa-pods">Getting Started with the Kaltura Cocoa Pods</h3>
+    
+      <h3 id="getting-started-with-the-kaltura-cocoa-pods">
+        
+        
+          Getting Started with the Kaltura Cocoa Pods <a href="#getting-started-with-the-kaltura-cocoa-pods"></a>
+        
+        
+      </h3>
 
 <p>You’ll need to install a few Kaltura pods. Consider this sample Podfile</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>source 'https://github.com/CocoaPods/Specs.git'
@@ -168,12 +179,24 @@ end
 </ul>
 
 <p>If you don’t already have a Podfile, go to your project directory and run <code class="highlighter-rouge">pod init</code>. This will create a new Podfile for you, where you should add the desired pods (see example above) and then run <code class="highlighter-rouge">pod install</code> from the command line. You might need to close and reopen Xcode.</p>
-
-<h2 id="add-a-basic-kaltura-player">Add a Basic Kaltura Player</h2>
+    
+      <h2 id="add-a-basic-kaltura-player">
+        
+        
+          Add a Basic Kaltura Player <a href="#add-a-basic-kaltura-player"></a>
+        
+        
+      </h2>
 
 <p>The code below will cover a few functions needed in order to get the bare bones of a kaltura player, as well as a few additional steps regarding implementing your player UI and adding plugins.</p>
-
-<h3 id="setting-up">Setting Up</h3>
+    
+      <h3 id="setting-up">
+        
+        
+          Setting Up <a href="#setting-up"></a>
+        
+        
+      </h3>
 
 <p>In the Controller, import the relevant Kaltura Libraries</p>
 
@@ -192,8 +215,14 @@ let PARTNER_ID = 0000000
 let ENTRY_ID = "1_abc6st"
 </code></pre>
 </div>
-
-<h3 id="create-a-kaltura-session">Create a Kaltura Session</h3>
+    
+      <h3 id="create-a-kaltura-session">
+        
+        
+          Create a Kaltura Session <a href="#create-a-kaltura-session"></a>
+        
+        
+      </h3>
 
 <p>The Kaltura Session is an authorization string that identifies the user watching the video. Including a Kaltura Session (KS) in the player allows for monitoring and analytics of the video, as well as the ability to restrict content access. The KS would generally be created on the server side of the application, and passed to the controller.</p>
 
@@ -202,8 +231,14 @@ let ENTRY_ID = "1_abc6st"
 </div>
 
 <p>However, if your application does not already create a Kaltura Session, follow <a href="https://developer.kaltura.com/player/ios/kaltura-session-authentication-ios">this guide</a> to learn how to generate a KS with the Application Token API.</p>
-
-<h3 id="create-the-player">Create the Player</h3>
+    
+      <h3 id="create-the-player">
+        
+        
+          Create the Player <a href="#create-the-player"></a>
+        
+        
+      </h3>
 
 <p>Inside the class, below the <code class="highlighter-rouge">ks</code> declaration, add a declaration for the Player.</p>
 
@@ -344,8 +379,6 @@ class ViewController: UIViewController {
 <p>You’ve probably noticed that there are no buttons for playing or pausing the video. To learn about adding elements to the Player’s UI, <a href="https://developer.kaltura.com/player/ios/player-ui-ios">click here</a></p>
 
 <p>The Kaltura Player SDK also offers various plugins for iOS that can be added to the player. Learn more <a href="https://developer.kaltura.com/player/ios/analytics-plugins-ios">here</a>.</p>
-
-
 		
 </article>
 

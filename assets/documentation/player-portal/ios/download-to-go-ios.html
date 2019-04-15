@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 10:26:20 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/download-to-go-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon Mar 25 12:44:17 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/download-to-go-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 10:26:20 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon Mar 25 12:44:17 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -135,34 +141,69 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>Download to Go (DTG) is an iOS library that facilitates the download of HLS video assets.</p>
-
-<h2 id="supported-features">Supported Features</h2>
+		<p>Download to Go (DTG) is an iOS library that facilitates the download of HLS video assets.</p>
+      <h2 id="supported-features">
+        
+        
+          Supported Features <a href="#supported-features"></a>
+        
+        
+      </h2>
 <ul>
   <li>Downloading Kaltura HLS assets (Clear only)</li>
   <li>Background downloading.</li>
   <li>Resuming interrupted/paused downloads.</li>
 </ul>
-
-<h2 id="known-limitations">Known Limitations</h2>
+    
+      <h2 id="known-limitations">
+        
+        
+          Known Limitations <a href="#known-limitations"></a>
+        
+        
+      </h2>
 <ul>
   <li>No track selection (downloads all tracks)</li>
   <li>Can’t play downloaded assets in background</li>
 </ul>
-
-<h2 id="installation">Installation</h2>
-
-<h3 id="cocoapods"><a href="https://cocoapods.org/">CocoaPods</a></h3>
+    
+      <h2 id="installation">
+        
+        
+          Installation <a href="#installation"></a>
+        
+        
+      </h2>
+    
+      <h3 id="cocoapods">
+        
+        
+          <a href="https://cocoapods.org/">CocoaPods</a> <a href="#cocoapods"></a>
+        
+        
+      </h3>
 
 <p>Add this to your podfile:</p>
 
 <div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">pod</span> <span class="s1">'DownloadToGo'</span>
 </code></pre>
 </div>
-
-<h2 id="overview">Overview</h2>
-
-<h3 id="simple-flow">Simple Flow</h3>
+    
+      <h2 id="overview">
+        
+        
+          Overview <a href="#overview"></a>
+        
+        
+      </h2>
+    
+      <h3 id="simple-flow">
+        
+        
+          Simple Flow <a href="#simple-flow"></a>
+        
+        
+      </h3>
 
 <p><img src="simple-flow.svg" alt="" /></p>
 
@@ -177,24 +218,42 @@ rtp('get', 'campaign',true);
     <li>There is also <code class="highlighter-rouge">Removed</code> state which is not displayed here. <code class="highlighter-rouge">Removed</code> is a temporary state indicated an item was removed (can be considered as an event). You can remove an item from all states.</li>
   </ul>
 </blockquote>
-
-<h3 id="download-sequence">Download Sequence</h3>
+    
+      <h3 id="download-sequence">
+        
+        
+          Download Sequence <a href="#download-sequence"></a>
+        
+        
+      </h3>
 
 <p><img src="download-sequence.svg" alt="" /></p>
 
 <div hidden="">
 <p><img src="assets/uml/87a7967a6090e77a1ac1715f9a4fdb85.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
 </div>
-
-<h3 id="simple-playing-sequence-using-playkit-player">Simple Playing Sequence (Using PlayKit Player)</h3>
+    
+      <h3 id="simple-playing-sequence-using-playkit-player">
+        
+        
+          Simple Playing Sequence (Using PlayKit Player) <a href="#simple-playing-sequence-using-playkit-player"></a>
+        
+        
+      </h3>
 
 <p><img src="playing-sequence.svg" alt="" /></p>
 
 <div hidden="">
 <p><img src="assets/uml/4fe4e1d6d6b95b7e4ca58e967d82cfad.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
 </div>
-
-<h2 id="usage">Usage</h2>
+    
+      <h2 id="usage">
+        
+        
+          Usage <a href="#usage"></a>
+        
+        
+      </h2>
 
 <p>To use the DTG make sure to import in each source file:</p>
 <div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">DownloadToGo</span>
@@ -309,8 +368,6 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: Make sure to call <code class="highlighter-rouge">ContentManager.shared.stop()</code> when finished with playback.</p>
 </blockquote>
-
-
 		
 </article>
 

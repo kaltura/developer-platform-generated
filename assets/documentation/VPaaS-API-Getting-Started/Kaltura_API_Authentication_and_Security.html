@@ -141,13 +141,18 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>Kaltura’s API is a REST-based web service accessed over HTTP. REST APIs provide a simple and easy interface for communication between applications and the Kaltura server. However, this approach can undermine your application’s security, if you overlook proper security and authentication when designing your applications.</p>
+		<p>Kaltura’s API is a REST-based web service accessed over HTTP. REST APIs provide a simple and easy interface for communication between applications and the Kaltura server. However, this approach can undermine your application’s security, if you overlook proper security and authentication when designing your applications.</p>
 
 <p>Kaltura was designed with privacy and security standards in mind, while at the same time providing the openness of Kaltura’s technology as an open source platform and providing flexible integration models for open and free applications as well as highly secured and limited applications.</p>
 
 <p>The following overview describes the authentication and security model of Kaltura’s API, and how to put it to practice when implementing Kaltura’s applications.</p>
-
-<h2 id="authentication-and-security">Authentication and Security</h2>
+      <h2 id="authentication-and-security">
+        
+        
+          Authentication and Security <a href="#authentication-and-security"></a>
+        
+        
+      </h2>
 
 <p>To establish communication with the Kaltura servers, the client application must have a secret (one of 2 types) coupled with a unique account ID and a set of permissions.</p>
 
@@ -171,8 +176,14 @@ rtp('get', 'campaign',true);
     </ul>
   </li>
 </ul>
-
-<h2 id="media-access-control">Media Access Control</h2>
+    
+      <h2 id="media-access-control">
+        
+        
+          Media Access Control <a href="#media-access-control"></a>
+        
+        
+      </h2>
 
 <p>There are many possible layers of security that can be deployed within Kaltura’s system.</p>
 
@@ -187,8 +198,14 @@ rtp('get', 'campaign',true);
 </ul>
 
 <p>To learn more about the different layers of security, see <a href="http://knowledge.kaltura.com/node/447">The Kaltura Media Access Control Model</a>.</p>
-
-<h2 id="the-kaltura-session">The Kaltura Session</h2>
+    
+      <h2 id="the-kaltura-session">
+        
+        
+          The Kaltura Session <a href="#the-kaltura-session"></a>
+        
+        
+      </h2>
 
 <p>Every KS is limited by one or more of the following components:</p>
 
@@ -212,8 +229,14 @@ rtp('get', 'campaign',true);
   <li>Specific entry playback - When limited by an Access Control Profile, approved entries must be specifically stated by passing the privilege sview:entryId.</li>
   <li>Specific IP address - Limit access to the API from a specific IP or range of IPs by passing privilege <strong>iprestrict:IPADDRESS</strong>.</li>
 </ul>
-
-<h3 id="ks-components">KS Components</h3>
+    
+      <h3 id="ks-components">
+        
+        
+          KS Components <a href="#ks-components"></a>
+        
+        
+      </h3>
 
 <p>The KS is a string composed of the following details:</p>
 
@@ -229,8 +252,14 @@ rtp('get', 'campaign',true);
 </ul>
 
 <p>The information above is then combined with either an Admin or User Secret (depending on the KS type desired), and then compiled using SHA1 algorithm. To generate the KS that is sent through the API: combine the SHA1 hash (in lowercase) and the above parameters in plain-text separated by semi-colons (i.e. ‘;’), in Base64.</p>
-
-<h3 id="field-encryption-to-protect-user-privacy">Field Encryption to Protect User Privacy</h3>
+    
+      <h3 id="field-encryption-to-protect-user-privacy">
+        
+        
+          Field Encryption to Protect User Privacy <a href="#field-encryption-to-protect-user-privacy"></a>
+        
+        
+      </h3>
 
 <p>Kaltura Session Version 2 (introduced in October 2012) includes field encryption to protect user privacy.</p>
 
@@ -239,8 +268,14 @@ rtp('get', 'campaign',true);
 <p>Because the new KS format requires encryption of the fields, performing a base64 decode on the KS will not reveal its fields (as was the case with KS version 1).</p>
 
 <p>To decode a KS v2, IT admins and developers who operate self hosted Kaltura servers can use the admin console developer tools page.</p>
-
-<h3 id="generating-a-ks">Generating a KS</h3>
+    
+      <h3 id="generating-a-ks">
+        
+        
+          Generating a KS <a href="#generating-a-ks"></a>
+        
+        
+      </h3>
 
 <ol>
   <li>Gather all the different KS fields and their values
@@ -261,8 +296,14 @@ rtp('get', 'campaign',true);
 </ol>
 
 <p>To see an implementation of the KS generation algorithm, refer to the <strong>GenerateSession</strong> function below.</p>
-
-<h2 id="methods-for-generating-a-valid-ks">Methods for Generating a Valid KS</h2>
+    
+      <h2 id="methods-for-generating-a-valid-ks">
+        
+        
+          Methods for Generating a Valid KS <a href="#methods-for-generating-a-valid-ks"></a>
+        
+        
+      </h2>
 
 <ul>
   <li><strong>Generate Session Locally</strong> - Combine all the above details, and sign them using the shared secret key. This method is great for reducing callbacks to the server and enhanced security, since the session is generated locally and the secret key is kept private.</li>
@@ -283,8 +324,14 @@ rtp('get', 'campaign',true);
     <li><strong>Using an Application Token - </strong>This method is described in full in <a href="/api-docs/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html">this article</a>. </li>
   </ul>
 </blockquote>
-
-<h3 id="ks-types">KS Types</h3>
+    
+      <h3 id="ks-types">
+        
+        
+          KS Types <a href="#ks-types"></a>
+        
+        
+      </h3>
 
 <p><strong>User KS (Non-Authenticated User Session)</strong></p>
 
@@ -314,8 +361,14 @@ rtp('get', 'campaign',true);
 <ul>
   <li>Allow more advanced configuration of the access and permissions based on the defined Kaltura User permissions.</li>
 </ul>
-
-<h4 id="how-may-the-session-type-affect-api-behavior">How May the Session Type Affect API Behavior?</h4>
+    
+      <h4 id="how-may-the-session-type-affect-api-behavior">
+        
+        
+          How May the Session Type Affect API Behavior? <a href="#how-may-the-session-type-affect-api-behavior"></a>
+        
+        
+      </h4>
 
 <p>The session type may affect the way that some API calls behave.</p>
 
@@ -327,8 +380,14 @@ rtp('get', 'campaign',true);
   <li>With an <em>admin</em> session – lists all entries in the account that match your filter criteria. The list is not filtered for a specific user (unless you specifically filter by <em>userId</em>).</li>
   <li>An <em>update</em> call: If the user specified in a user session is not the owner of content item, the user does not have permission to update the item. You can override this restriction by specifying special session privileges.</li>
 </ul>
-
-<h3 id="ks-validation-on-the-server">KS Validation on the Server</h3>
+    
+      <h3 id="ks-validation-on-the-server">
+        
+        
+          KS Validation on the Server <a href="#ks-validation-on-the-server"></a>
+        
+        
+      </h3>
 
 <p>The Kaltura API servers will validate the KS in the following ways:</p>
 
@@ -346,8 +405,14 @@ rtp('get', 'campaign',true);
   <li>Choosing the content entities visible to the specific user.</li>
   <li>Setting the owning user for the API actions, e.g. any uploaded content will have the user specified in the KS as its owner.</li>
 </ul>
-
-<h3 id="ks-privileges">KS Privileges</h3>
+    
+      <h3 id="ks-privileges">
+        
+        
+          KS Privileges <a href="#ks-privileges"></a>
+        
+        
+      </h3>
 
 <p>Session privileges allows applications to limit the user to perform only specific actions. The privileges in the KS, in general, do not block actions but instead limit some actions to a smaller scope.</p>
 
@@ -521,8 +586,14 @@ Multiple parameters in a single value are separated by a slash: <em>key:1_value/
     </tr>
   </tbody>
 </table>
-
-<h4 id="php-examples-using-the-phps-kaltura-client-library">PHP Examples Using the PHPS Kaltura Client Library</h4>
+    
+      <h4 id="php-examples-using-the-phps-kaltura-client-library">
+        
+        
+          PHP Examples Using the PHPS Kaltura Client Library <a href="#php-examples-using-the-phps-kaltura-client-library"></a>
+        
+        
+      </h4>
 
 <blockquote>
   <p>Important! Never use a KalturaSessionType ADMIN in a KS generated for end users.</p>
@@ -548,8 +619,14 @@ Example: Set the role id 2345 on a KS:</p>
 <div class="highlighter-rouge"><pre class="highlight"><code> $ks = $client-&gt;session-&gt;start ( $userSecret, "myUser", KalturaSessionType::USER, $partnerID , null, "setrole:2345")
 </code></pre>
 </div>
-
-<h2 id="secured-delivery">Secured Delivery</h2>
+    
+      <h2 id="secured-delivery">
+        
+        
+          Secured Delivery <a href="#secured-delivery"></a>
+        
+        
+      </h2>
 
 <p>Kaltura supports various methods of securing delivery of video streams, as follows:</p>
 
@@ -606,8 +683,14 @@ Example: Set the role id 2345 on a KS:</p>
 </table>
 
 <p>Kaltura’s integrated DRM solutions seamlessly plug in to its existing infrastructure and workflows, protecting customers from vendor lock-in.</p>
-
-<h3 id="drm-support">DRM Support</h3>
+    
+      <h3 id="drm-support">
+        
+        
+          DRM Support <a href="#drm-support"></a>
+        
+        
+      </h3>
 
 <p>Encrypted video files are generated as additional “flavors” of original asset using Kaltura’s transcoding farm and based on selected vendor and license policy. </p>
 
@@ -616,8 +699,14 @@ Example: Set the role id 2345 on a KS:</p>
 <blockquote>
   <p>Note: Due to licensing requirements, DRM solutions are only available for commercial Kaltura editions (SaaS and On Prem) and are at additional cost. For more information about DRM and the available DRM solutions, please <a href="http://corp.kaltura.com/company/contact-u">contact use</a> or contact your Kaltura Account Manager.</p>
 </blockquote>
-
-<h3 id="important-considerations-for-application-developers">Important Considerations For Application Developers</h3>
+    
+      <h3 id="important-considerations-for-application-developers">
+        
+        
+          Important Considerations For Application Developers <a href="#important-considerations-for-application-developers"></a>
+        
+        
+      </h3>
 
 <p>When applications are not developed with security in mind, a malicious user can use:</p>
 
@@ -627,12 +716,24 @@ Example: Set the role id 2345 on a KS:</p>
 </ul>
 
 <p>In this section, we highlight a number of common and important practices to consider when creating applications that interact with the Kaltura API.</p>
-
-<h3 id="authenticated-user-privileges-override-the-user-type-ks">Authenticated User Privileges Override the User Type KS</h3>
+    
+      <h3 id="authenticated-user-privileges-override-the-user-type-ks">
+        
+        
+          Authenticated User Privileges Override the User Type KS <a href="#authenticated-user-privileges-override-the-user-type-ks"></a>
+        
+        
+      </h3>
 
 <p>When you generate a user session KS and specify an ID of a Kaltura Admin User, the KS will allow all the actions included in the user’s role.</p>
-
-<h3 id="always-protect-your-api-secret-keys">Always Protect your API Secret Keys</h3>
+    
+      <h3 id="always-protect-your-api-secret-keys">
+        
+        
+          Always Protect your API Secret Keys <a href="#always-protect-your-api-secret-keys"></a>
+        
+        
+      </h3>
 
 <p>Your API Secret Keys (ADMIN and USER) are generated when you create am account. These keys hold global access permissions to your account and thus should always be kept in secret.</p>
 
@@ -643,26 +744,42 @@ Example: Set the role id 2345 on a KS:</p>
   <li>NEVER keep your secret keys in a front-end application (such as Flash or JavaScript). A KS should always be generated on the server side and then passed to the front-end.</li>
   <li>Keep the secret keys in a separated file with strict file permissions.</li>
 </ul>
-
-<h3 id="use-admin-ks-with-care">Use Admin KS with Care</h3>
+    
+      <h3 id="use-admin-ks-with-care">
+        
+        
+          Use Admin KS with Care <a href="#use-admin-ks-with-care"></a>
+        
+        
+      </h3>
 
 <p>A compromised Admin KS will allow a malicious user to gain full access to the publisher account, leading way to harm.</p>
 
 <p>Use Admin KS in between servers and with secured communication channel.</p>
-
-<h3 id="prefer-login-of-users-with-defined-roles-and-permissions-over-generic-admin-ks">Prefer Login of Users with Defined Roles and Permissions over Generic Admin KS</h3>
+    
+      <h3 id="prefer-login-of-users-with-defined-roles-and-permissions-over-generic-admin-ks">
+        
+        
+          Prefer Login of Users with Defined Roles and Permissions over Generic Admin KS <a href="#prefer-login-of-users-with-defined-roles-and-permissions-over-generic-admin-ks"></a>
+        
+        
+      </h3>
 
 <p>Kaltura Users can be assigned a fine-grained level of permissions. This allows applications developers to provide a stronger login and authentication mechanism while not exposing the account secret keys.</p>
 
 <p>Use user.loginByLoginId providing user credentials and your account ID. </p>
-
-<h3 id="use-widget-ks-for-anonymous-public-content-playback">Use Widget KS for Anonymous Public Content Playback</h3>
+    
+      <h3 id="use-widget-ks-for-anonymous-public-content-playback">
+        
+        
+          Use Widget KS for Anonymous Public Content Playback <a href="#use-widget-ks-for-anonymous-public-content-playback"></a>
+        
+        
+      </h3>
 
 <p>The <code class="highlighter-rouge">session.startWidgetSession</code> provides an anonymous simple and light KS generation mechanism that does not require a secret. This type of session can be used to perform READ operations only and only on content that is defined as publicly available with no Access Control or special permissions.</p>
 
 <p>The Widget KS is perfect for cases where public content needs to be accessed freely and without secured authentication. </p>
-
-
 		
 </article>
 

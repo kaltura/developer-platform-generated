@@ -141,13 +141,25 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h2 id="offline-playback">Offline Playback</h2>
+		<h2 id="offline-playback">
+        
+        
+          Offline Playback <a href="#offline-playback"></a>
+        
+        
+      </h2>
 
 <p>This article describes how to implement offline playback in Playkit SDK on Android devices.</p>
 
 <p>First, download the media you wish to play. If you are looking for a good download manager you can use <a href="https://github.com/kaltura/playkit-dtg-android">this</a> one. In general the most complex part of the playback in offline is managing the DRM content license, but we’ve already covered that issue for you.</p>
-
-<h2 id="registering-the-asset">Registering the Asset</h2>
+    
+      <h2 id="registering-the-asset">
+        
+        
+          Registering the Asset <a href="#registering-the-asset"></a>
+        
+        
+      </h2>
 
 <p>First, you’ll need to create an instance of the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/LocalAssetsManager.java">LocalAssetManager</a>.</p>
 
@@ -209,12 +221,24 @@ rtp('get', 'campaign',true);
 </div>
 
 <p>Next, set the mediaSource to your PKMediaEntry and pass the PlayerConfig to the player.preapre(PlayerConfig config) method.</p>
-
-<h2 id="additional-functionality">Additional Functionality</h2>
+    
+      <h2 id="additional-functionality">
+        
+        
+          Additional Functionality <a href="#additional-functionality"></a>
+        
+        
+      </h2>
 
 <p>The LocalAssetsManager can provide you with some additional functionality. For example you can unregister the asset and check the asset status.</p>
-
-<h3 id="unregistering-an-asset">Unregistering an Asset</h3>
+    
+      <h3 id="unregistering-an-asset">
+        
+        
+          Unregistering an Asset <a href="#unregistering-an-asset"></a>
+        
+        
+      </h3>
 
 <p>To unregister the asset:</p>
 
@@ -231,7 +255,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-<h3 id="checking-the-assets-drm-status">Checking the Asset’s DRM Status</h3>
+    
+      <h3 id="checking-the-assets-drm-status">
+        
+        
+          Checking the Asset’s DRM Status <a href="#checking-the-assets-drm-status"></a>
+        
+        
+      </h3>
 
 <p>To check the asset’s DRM:</p>
 
@@ -247,8 +278,14 @@ rtp('get', 'campaign',true);
   <span class="n">localAssetsManager</span><span class="o">.</span><span class="na">checkAssetStatus</span><span class="o">(</span><span class="n">yourAssetLocalPath</span><span class="o">,</span> <span class="n">yourAssetID</span><span class="o">,</span> <span class="n">assetStatusListener</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h2 id="localdatastore">LocalDataStore</h2>
+    
+      <h2 id="localdatastore">
+        
+        
+          LocalDataStore <a href="#localdatastore"></a>
+        
+        
+      </h2>
 
 <p>The LocalDataStore is an interface that has three methods:</p>
 
@@ -261,11 +298,16 @@ rtp('get', 'campaign',true);
 <p>Kaltura uses a default implementation of the LocalDataStore that uses Android SharedPreferences to save/load/remove the data. This implementation is responsible for storing the DRM keySetId to play DRM videos in offline. If your content doesn’t have DRM protection, you can use this implementation freely. Howevever, you’ll likely want to implement your own way of storing this data. To do so, you’ll need to implement LocalDataStore and verify that you are actually saving/loading/removing the data that you receive.</p>
 
 <p>&lt;/br&gt;</p>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>To add a conversion profile, call the <a href="https://developer.kaltura.com/api-docs/#/conversionProfile.add">conversionProfile.add</a> API action:</p>
+		<p>To add a conversion profile, call the <a href="https://developer.kaltura.com/api-docs/#/conversionProfile.add">conversionProfile.add</a> API action:</p>
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'lib/KalturaClient.php'</span><span class="p">);</span> 
@@ -148,8 +148,6 @@ rtp('get', 'campaign',true);
 <span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'YourConversionProfileName'</span><span class="p">;</span> 
 <span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">isDefault</span> <span class="o">=</span> <span class="nx">KalturaNullableBoolean</span><span class="o">::</span><span class="na">TRUE_VALUE</span><span class="p">;</span> 
 <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span> <span class="na">conversionProfile</span> <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$conversionProfile</span><span class="p">);</span></code></pre></figure>
-
-
 		
 </article>
 

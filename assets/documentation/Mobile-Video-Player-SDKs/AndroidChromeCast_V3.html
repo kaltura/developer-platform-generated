@@ -147,22 +147,46 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h2 id="introduction">Introduction</h2>
+		<h2 id="introduction">
+        
+        
+          Introduction <a href="#introduction"></a>
+        
+        
+      </h2>
 
 <p>The Cast functionality allows your videos to be cast from a Android mobile device, via the Chromecast plugin, directly to a Kaltura Player receiver app on a Chromecast-connected TV.</p>
-
-<h3 id="before-you-begin">Before You Begin</h3>
+    
+      <h3 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h3>
 
 <p>Before you begin setting up the Cast feature, make sure you’ve read the article <a href="/api-docs/Mobile-Video-Player-SDKs/Android-Getting-Started.html">Android Player SDK and Environment Setup - Getting Started</a>.</p>
-
-<h2 id="basic-definitions">Basic Definitions</h2>
+    
+      <h2 id="basic-definitions">
+        
+        
+          Basic Definitions <a href="#basic-definitions"></a>
+        
+        
+      </h2>
 
 <ul>
   <li><code class="highlighter-rouge">Sender</code> - A Cast enabled Kaltura Player running inside of a iOS Application; the Kaltura Player requires a Sender App ID.</li>
   <li><code class="highlighter-rouge">Receiver</code> - A Kaltura Player Receiver App that runs on the Chromecast device.</li>
 </ul>
-
-<h3 id="getting-started">Getting Started</h3>
+    
+      <h3 id="getting-started">
+        
+        
+          Getting Started <a href="#getting-started"></a>
+        
+        
+      </h3>
 
 <p>To begin casting, follow these steps:</p>
 
@@ -186,8 +210,14 @@ config.addConfig("chromecast.logoUrl", "Your Logo")
             
 </code></pre>
 </div>
-
-<h4 id="scanningconnecting-chromecast-devices">Scanning/Connecting Chromecast Devices</h4>
+    
+      <h4 id="scanningconnecting-chromecast-devices">
+        
+        
+          Scanning/Connecting Chromecast Devices <a href="#scanningconnecting-chromecast-devices"></a>
+        
+        
+      </h4>
 
 <p>This version does not require device scannig and connection methods this is achived now by Cast V3 MediaRouteButton that should be attached to the Activity</p>
 
@@ -195,8 +225,14 @@ config.addConfig("chromecast.logoUrl", "Your Logo")
  CastButtonFactory.setUpMediaRouteButton(getApplicationContext(), mMediaRouteButton);
 </code></pre>
 </div>
-
-<h4 id="casting-media">Casting Media</h4>
+    
+      <h4 id="casting-media">
+        
+        
+          Casting Media <a href="#casting-media"></a>
+        
+        
+      </h4>
 
 <p>To cast media, set the <code class="highlighter-rouge">mCastProvider</code> property under <code class="highlighter-rouge">PlayerViewController</code> with the <code class="highlighter-rouge">KCastProvider</code> object you created as follows:</p>
 
@@ -205,8 +241,14 @@ config.addConfig("chromecast.logoUrl", "Your Logo")
 
 </code></pre>
 </div>
-
-<h4 id="setting-cast-provider">Setting Cast Provider</h4>
+    
+      <h4 id="setting-cast-provider">
+        
+        
+          Setting Cast Provider <a href="#setting-cast-provider"></a>
+        
+        
+      </h4>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>   mPlayer.setCastProvider(mCastProvider);
    mCastProvider.setKCastProviderListener(new KCastProvider.KCastProviderListener() {
@@ -222,8 +264,14 @@ config.addConfig("chromecast.logoUrl", "Your Logo")
     });
 </code></pre>
 </div>
-
-<h4 id="disconnecting-from-a-device">Disconnecting from a Device</h4>
+    
+      <h4 id="disconnecting-from-a-device">
+        
+        
+          Disconnecting from a Device <a href="#disconnecting-from-a-device"></a>
+        
+        
+      </h4>
 
 <p>To disconnect from a device use the following:</p>
 
@@ -232,8 +280,14 @@ config.addConfig("chromecast.logoUrl", "Your Logo")
 <div class="highlighter-rouge"><pre class="highlight"><code>mCastProvider.disconnectFromDevcie();
 </code></pre>
 </div>
-
-<h3 id="using-the-media-remote-control">Using the Media Remote Control</h3>
+    
+      <h3 id="using-the-media-remote-control">
+        
+        
+          Using the Media Remote Control <a href="#using-the-media-remote-control"></a>
+        
+        
+      </h3>
 
 <p>The <code class="highlighter-rouge">KCastProvider</code> includes a <code class="highlighter-rouge">mCastProvider.getCastMediaRemoteControl()</code> instance that controls the playback of the video being cast.</p>
 
@@ -260,17 +314,35 @@ and the <code class="highlighter-rouge">onCastReceiverError</code> Events.</p>
 
 </code></pre>
 </div>
-
-<h3 id="change-media">Change Media</h3>
+    
+      <h3 id="change-media">
+        
+        
+          Change Media <a href="#change-media"></a>
+        
+        
+      </h3>
 
 <p>In order to switch between videos during cast playback you should use</p>
-
-<h5 id="ovp">OVP</h5>
+    
+      <h5 id="ovp">
+        
+        
+          OVP <a href="#ovp"></a>
+        
+        
+      </h5>
 <div class="highlighter-rouge"><pre class="highlight"><code>mPlayer.changeMedia("Entry ID");
 </code></pre>
 </div>
-
-<h5 id="ott">OTT</h5>
+    
+      <h5 id="ott">
+        
+        
+          OTT <a href="#ott"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>String URL = "Your thumbnail url";
 //if proxy data for CC has to be different than the player
@@ -282,13 +354,25 @@ mPlayer.getConfig().addConfig("chromecast.defaultThumbnail", URL);
 mPlayer.changeMedia(proxyData JSON Object);
 </code></pre>
 </div>
-
-<h3 id="it-is-required-to-set-castprovider-again-in-case-that-player-activity-or-fragment-was-destroyed">it is required to set castProvider again in case that player activity or fragment was destroyed.</h3>
-<h3 id="demo-application">Demo Application</h3>
+    
+      <h3 id="it-is-required-to-set-castprovider-again-in-case-that-player-activity-or-fragment-was-destroyed">
+        
+        
+          it is required to set castProvider again in case that player activity or fragment was destroyed. <a href="#it-is-required-to-set-castprovider-again-in-case-that-player-activity-or-fragment-was-destroyed"></a>
+        
+        
+      </h3>
+    
+      <h3 id="demo-application">
+        
+        
+          Demo Application <a href="#demo-application"></a>
+        
+        
+      </h3>
 
 <p>A best practice sample application, which demonstrates the code that is required for a proper casting experience, can be found in this <br />
 <a href="https://github.com/kaltura/player-sdk-native-android/tree/develop/KalturaDemos/CCPlayerDemo">demo Android</a>.</p>
-
 		
 </article>
 

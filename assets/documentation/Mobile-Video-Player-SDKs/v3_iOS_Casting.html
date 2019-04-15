@@ -153,7 +153,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The following casting schemes are supported on iOS devices:</p>
+		<p>The following casting schemes are supported on iOS devices:</p>
 
 <table>
   <thead>
@@ -179,12 +179,23 @@ rtp('get', 'campaign',true);
     </tr>
   </tbody>
 </table>
-
-<h2 id="airplay">Airplay</h2>
+      <h2 id="airplay">
+        
+        
+          Airplay <a href="#airplay"></a>
+        
+        
+      </h2>
 
 <p>This article describes the steps required for adding support for the AirPlay functionality on iOS devices. AirPlay (developed by Apple Inc.) enables wireless streaming of audio, video, photos and more between devices.</p>
-
-<h3 id="add-the-airplay-functionality">Add the AirPlay Functionality</h3>
+    
+      <h3 id="add-the-airplay-functionality">
+        
+        
+          Add the AirPlay Functionality <a href="#add-the-airplay-functionality"></a>
+        
+        
+      </h3>
 
 <ol>
   <li>Enable the Audio, Airplay, and Picture in the Picture background mode.</li>
@@ -234,12 +245,24 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h2 id="adding-support-for-google-cast-on-ios-devices">Adding Support for Google Cast on iOS devices.</h2>
+    
+      <h2 id="adding-support-for-google-cast-on-ios-devices">
+        
+        
+          Adding Support for Google Cast on iOS devices. <a href="#adding-support-for-google-cast-on-ios-devices"></a>
+        
+        
+      </h2>
 
 <p>This article describes how to add support for Google Cast on iOS devices.</p>
-
-<h3 id="install-google-cast">Install Google Cast</h3>
+    
+      <h3 id="install-google-cast">
+        
+        
+          Install Google Cast <a href="#install-google-cast"></a>
+        
+        
+      </h3>
 
 <p>Add the following to your pod file:</p>
 
@@ -247,8 +270,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h3 id="import-the-required-files">Import the Required Files</h3>
+    
+      <h3 id="import-the-required-files">
+        
+        
+          Import the Required Files <a href="#import-the-required-files"></a>
+        
+        
+      </h3>
 
 <p>Next, import the following:</p>
 
@@ -273,12 +302,24 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: For example, to reach the GCKGoogleCastContext you’ll need the - import <code class="highlighter-rouge">GoogleCast</code>. To reach OVP/OTT-CastBuilder you’ll need the - import <code class="highlighter-rouge">PlayKit</code>.</p>
 </blockquote>
-
-<h3 id="casting">Casting</h3>
+    
+      <h3 id="casting">
+        
+        
+          Casting <a href="#casting"></a>
+        
+        
+      </h3>
 
 <p>To begin casting, you’ll need to create a <code class="highlighter-rouge">GCKMediaInformation</code> by using a CastBuilder - either <code class="highlighter-rouge">OVPCastBuilder</code> or <code class="highlighter-rouge">TVPAPICastBuilder</code>.</p>
-
-<h4 id="example-of-casting-using-ovpcastbuilder">Example of Casting Using OVPCastBuilder</h4>
+    
+      <h4 id="example-of-casting-using-ovpcastbuilder">
+        
+        
+          Example of Casting Using OVPCastBuilder <a href="#example-of-casting-using-ovpcastbuilder"></a>
+        
+        
+      </h4>
 
 <blockquote>
   <p>swift</p>
@@ -312,8 +353,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h4 id="example-of-casting-using-tvpapicastbuilder">Example of Casting Using TVPAPICastBuilder</h4>
+    
+      <h4 id="example-of-casting-using-tvpapicastbuilder">
+        
+        
+          Example of Casting Using TVPAPICastBuilder <a href="#example-of-casting-using-tvpapicastbuilder"></a>
+        
+        
+      </h4>
 
 <blockquote>
   <p>swift</p>
@@ -346,8 +393,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h3 id="loading-media">Loading Media</h3>
+    
+      <h3 id="loading-media">
+        
+        
+          Loading Media <a href="#loading-media"></a>
+        
+        
+      </h3>
 
 <p>Next, use the loadmedia to load the required media:</p>
 
@@ -373,8 +426,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h3 id="custom-data">Custom Data</h3>
+    
+      <h3 id="custom-data">
+        
+        
+          Custom Data <a href="#custom-data"></a>
+        
+        
+      </h3>
 
 <p>To add custom data:</p>
 
@@ -425,8 +484,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h2 id="adding-support-for-advertisements-on-casted-media">Adding Support for Advertisements on Casted Media</h2>
+    
+      <h2 id="adding-support-for-advertisements-on-casted-media">
+        
+        
+          Adding Support for Advertisements on Casted Media <a href="#adding-support-for-advertisements-on-casted-media"></a>
+        
+        
+      </h2>
 
 <p>To add support for advertisments:</p>
 
@@ -482,12 +547,16 @@ rtp('get', 'campaign',true);
     </div>
   </li>
 </ol>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
-
 		
 </article>
 

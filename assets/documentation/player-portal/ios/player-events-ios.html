@@ -135,9 +135,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The player and some of the plugins fire events that tell the application (and other plugins) about events that occur before/during/after playback.</p>
-
-<h3 id="listening-to-events-from-application-code">Listening to events from application code</h3>
+		<p>The player and some of the plugins fire events that tell the application (and other plugins) about events that occur before/during/after playback.</p>
+      <h3 id="listening-to-events-from-application-code">
+        
+        
+          Listening to events from application code <a href="#listening-to-events-from-application-code"></a>
+        
+        
+      </h3>
 
 <p>The code below will add an observer to a list of various events.</p>
 
@@ -157,16 +162,34 @@ rtp('get', 'campaign',true);
 <span class="p">}</span>
 </code></pre>
 </div>
-
-<h3 id="listening-to-events-from-plugin-code">Listening to events from plugin code</h3>
+    
+      <h3 id="listening-to-events-from-plugin-code">
+        
+        
+          Listening to events from plugin code <a href="#listening-to-events-from-plugin-code"></a>
+        
+        
+      </h3>
 
 <p>Plugins can’t call <code class="highlighter-rouge">addObserver</code> on the player; instead, an identical function exists on the <code class="highlighter-rouge">MessageBus</code> object that is passed to the plugin.</p>
-
-<h2 id="core-player-events">Core Player Events</h2>
+    
+      <h2 id="core-player-events">
+        
+        
+          Core Player Events <a href="#core-player-events"></a>
+        
+        
+      </h2>
 
 <p>The Player events are defined in the PlayerEvent class.</p>
-
-<h3 id="normal-flow">Normal Flow</h3>
+    
+      <h3 id="normal-flow">
+        
+        
+          Normal Flow <a href="#normal-flow"></a>
+        
+        
+      </h3>
 <ul>
   <li><strong>sourceSelected:</strong> Sent when a playback source is selected</li>
   <li><strong>loadedMetadata:</strong> The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.</li>
@@ -178,40 +201,76 @@ rtp('get', 'campaign',true);
   <li><strong>playing:</strong> Sent when the media begins to play (either for the first time, after having been paused, or after ending and then restarting).</li>
   <li><strong>ended:</strong> Sent when playback completes.</li>
 </ul>
-
-<h3 id="additional-user-actions">Additional User actions</h3>
+    
+      <h3 id="additional-user-actions">
+        
+        
+          Additional User actions <a href="#additional-user-actions"></a>
+        
+        
+      </h3>
 <ul>
   <li><strong>pause:</strong> Sent when playback is paused.</li>
   <li><strong>seeked:</strong> Sent when a seek operation completes.</li>
   <li><strong>seeking:</strong> Sent when a seek operation begins.</li>
   <li><strong>stopped:</strong> sent when stop player API is called</li>
 </ul>
-
-<h3 id="track-change">Track change</h3>
+    
+      <h3 id="track-change">
+        
+        
+          Track change <a href="#track-change"></a>
+        
+        
+      </h3>
 <ul>
   <li><strong>videoTrackChanged:</strong> A video track was selected</li>
   <li><strong>audioTrackChanged:</strong> An audio track was selected</li>
   <li><strong>textTrackChanged:</strong> A text track was selected</li>
 </ul>
-
-<h3 id="metadata-id3-tags-and-related">Metadata (ID3 tags and related)</h3>
+    
+      <h3 id="metadata-id3-tags-and-related">
+        
+        
+          Metadata (ID3 tags and related) <a href="#metadata-id3-tags-and-related"></a>
+        
+        
+      </h3>
 <ul>
   <li><strong>timedMetadata:</strong> Sent when there is metadata available for this entry.</li>
 </ul>
-
-<h3 id="errors">Errors</h3>
+    
+      <h3 id="errors">
+        
+        
+          Errors <a href="#errors"></a>
+        
+        
+      </h3>
 <ul>
   <li><strong>error:</strong> Sent when an error occurs. The element’s error attribute contains more information. See Error handling for details.</li>
 </ul>
-
-<h3 id="state-change">State Change</h3>
+    
+      <h3 id="state-change">
+        
+        
+          State Change <a href="#state-change"></a>
+        
+        
+      </h3>
 <p>The Player can be in one of 4 playback states:</p>
 
 <p><code class="highlighter-rouge">idle</code>, <code class="highlighter-rouge">buffering</code>, <code class="highlighter-rouge">ready</code>, <code class="highlighter-rouge">ended</code></p>
 
 <p>The <code class="highlighter-rouge">stateChanged</code> event is fired when the player transitions between states.</p>
-
-<h2 id="ad-events">Ad Events</h2>
+    
+      <h2 id="ad-events">
+        
+        
+          Ad Events <a href="#ad-events"></a>
+        
+        
+      </h2>
 
 <p>Defined in AdEvent class.</p>
 
@@ -239,13 +298,18 @@ rtp('get', 'campaign',true);
   <li>requestTimedOut</li>
   <li>adsRequested</li>
 </ul>
-
-<h2 id="code-samples">Code Samples</h2>
+    
+      <h2 id="code-samples">
+        
+        
+          Code Samples <a href="#code-samples"></a>
+        
+        
+      </h2>
 <ul>
   <li><a href="https://github.com/kaltura/playkit-ios-samples/tree/master/EventsRegistration">Events Registration</a></li>
   <li><a href="https://github.com/kaltura/playkit-ios-samples/tree/master/AppAnalyticsSample">App Analytics</a></li>
 </ul>
-
 		
 </article>
 

@@ -141,22 +141,40 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="using-the-kaltura-video-thumbnails-animator">Using the Kaltura Video Thumbnails Animator</h1>
+		<h1 id="using-the-kaltura-video-thumbnails-animator">
+        
+        
+          Using the Kaltura Video Thumbnails Animator <a href="#using-the-kaltura-video-thumbnails-animator"></a>
+        
+        
+      </h1>
 
 <p>Get the JS script and documentation from the <a href="https://github.com/kaltura/VideoThumbnailAnimator"><strong>Kaltura Video Thumbnails Animator github repo</strong></a>.</p>
 
 <p>This script provides a simple way to dynamically create video thumbnails using Kaltura’s Image Transformation API with a tiny, single JS file. The script also including a low-rest blurred loading while the animation stripe loads in the background.</p>
 
 <p>To achieve responsive behavior and adapt to any dimensions, the script uses percentages based CSS logic to create the animated video thumbnails while using CSS stripes of the video animation frames created by the <a href="https://developer.kaltura.com/api-docs/Engage_and_Publish/kaltura-thumbnail-api.html/">Kaltura Thumbnail API</a>.</p>
-
-<h3 id="the-percentages-based-background-image-sizeposition-logic">The percentages based background image size/position logic</h3>
+    
+      <h3 id="the-percentages-based-background-image-sizeposition-logic">
+        
+        
+          The percentages based background image size/position logic <a href="#the-percentages-based-background-image-sizeposition-logic"></a>
+        
+        
+      </h3>
 
 <ul>
   <li>Thumbnail Stripe Width in Percentage: total slices multiplied by 100.</li>
   <li>Thumbnail Stripe X Position in Percentage: the total slices minus 1 (0-index) described as percent (100 divided by total slices minus 1), multiplied by the current slice number (0-index).</li>
 </ul>
-
-<h1 id="setting-up">Setting up</h1>
+    
+      <h1 id="setting-up">
+        
+        
+          Setting up <a href="#setting-up"></a>
+        
+        
+      </h1>
 <p>View-source on <a href="https://kaltura.github.io/VideoThumbnailAnimator/"><code class="highlighter-rouge">index.html</code></a> for a quick reference example.<br />
 Include the ThumbAnimator script:</p>
 <div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
@@ -172,7 +190,6 @@ Include the ThumbAnimator script:</p>
 <span class="nt">&lt;/body&gt;</span>
 </code></pre>
 </div>
-
 		
 </article>
 

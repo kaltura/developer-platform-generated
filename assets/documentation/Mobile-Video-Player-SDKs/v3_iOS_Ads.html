@@ -159,21 +159,32 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This document describes the steps required for adding support for the IMA Plugin functionality on iOS devices. IMA (or Interactive Media Ads) was developed by Google to enable you to display ads in your application’s video, audio, and game content. To learn more about Google’s IMA, see <a href="https://developers.google.com/interactive-media-ads/">Google’s IMA developer’s site</a>.</p>
+		<p>This document describes the steps required for adding support for the IMA Plugin functionality on iOS devices. IMA (or Interactive Media Ads) was developed by Google to enable you to display ads in your application’s video, audio, and game content. To learn more about Google’s IMA, see <a href="https://developers.google.com/interactive-media-ads/">Google’s IMA developer’s site</a>.</p>
 
 <blockquote>
   <p>Supported IMA SDK Version is: 3.4.1</p>
 </blockquote>
-
-<h2 id="enable-ima-plugins-for-the-kaltura-video-player">Enable IMA Plugins for the Kaltura Video Player</h2>
+      <h2 id="enable-ima-plugins-for-the-kaltura-video-player">
+        
+        
+          Enable IMA Plugins for the Kaltura Video Player <a href="#enable-ima-plugins-for-the-kaltura-video-player"></a>
+        
+        
+      </h2>
 
 <p>To enable the IMA Plugin on iOS devices for the Kaltura Video Player, add the following line to your Podfile:</p>
 
 <div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">pod</span> <span class="s1">'PlayKit/IMAPlugin'</span>
 </code></pre>
 </div>
-
-<h2 id="control-ad-play">Control Ad Play</h2>
+    
+      <h2 id="control-ad-play">
+        
+        
+          Control Ad Play <a href="#control-ad-play"></a>
+        
+        
+      </h2>
 
 <p>To control ad play during runtime, implement the following Video Player delegate method:</p>
 
@@ -197,8 +208,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h2 id="register-the-ima-plugin">Register the IMA Plugin</h2>
+    
+      <h2 id="register-the-ima-plugin">
+        
+        
+          Register the IMA Plugin <a href="#register-the-ima-plugin"></a>
+        
+        
+      </h2>
 
 <p>Next, register the IMA Plugin inside your application as follows:</p>
 
@@ -217,8 +234,14 @@ rtp('get', 'campaign',true);
 <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="n">PlayKitManager</span><span class="p">.</span><span class="n">sharedInstance</span> <span class="nf">registerPlugin</span><span class="p">:</span> <span class="n">IMAPlugin</span><span class="p">.</span><span class="n">self</span><span class="p">];</span>
 </code></pre>
 </div>
-
-<h2 id="configure-the-kaltura-video-player-to-use-the-ima-plugin">Configure the Kaltura Video Player to Use the IMA Plugin</h2>
+    
+      <h2 id="configure-the-kaltura-video-player-to-use-the-ima-plugin">
+        
+        
+          Configure the Kaltura Video Player to Use the IMA Plugin <a href="#configure-the-kaltura-video-player-to-use-the-ima-plugin"></a>
+        
+        
+      </h2>
 
 <p>To configure the player to use IMA Plugin, add the following configuration to your <code class="highlighter-rouge">PlayerConfig</code> file as follows:</p>
 
@@ -241,8 +264,14 @@ rtp('get', 'campaign',true);
 <span class="p">[</span><span class="n">config</span> <span class="nf">setPlugins</span><span class="p">:</span> <span class="p">@{</span><span class="n">IMAPlugin</span><span class="p">.</span><span class="n">pluginName</span><span class="o">:</span> <span class="n">adsConfig</span><span class="p">}];</span>
 </code></pre>
 </div>
-
-<h2 id="configure-clickthroughs">Configure Clickthroughs</h2>
+    
+      <h2 id="configure-clickthroughs">
+        
+        
+          Configure Clickthroughs <a href="#configure-clickthroughs"></a>
+        
+        
+      </h2>
 
 <p>The IMA Plugin offers two options for opening ad landing pages:</p>
 
@@ -268,8 +297,14 @@ rtp('get', 'campaign',true);
 <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="p">.</span><span class="n">webOpenerPresentingController</span> <span class="o">=</span> <span class="n">webOpenerPresentingController</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="add-companion-ads">Add Companion Ads</h2>
+    
+      <h2 id="add-companion-ads">
+        
+        
+          Add Companion Ads <a href="#add-companion-ads"></a>
+        
+        
+      </h2>
 
 <p>To see companion ads in the device, you’ll need to implement the following steps:</p>
 
@@ -293,8 +328,14 @@ rtp('get', 'campaign',true);
 <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="p">.</span><span class="n">companionView</span> <span class="o">=</span> <span class="n">companionView</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="specify-the-desired-bitrate-and-video-formats">Specify the Desired Bitrate and Video Formats</h2>
+    
+      <h2 id="specify-the-desired-bitrate-and-video-formats">
+        
+        
+          Specify the Desired Bitrate and Video Formats <a href="#specify-the-desired-bitrate-and-video-formats"></a>
+        
+        
+      </h2>
 
 <p>The IMA Plugin enables you to specify the video formats and bitrate using the following configuration:</p>
 
@@ -315,8 +356,14 @@ rtp('get', 'campaign',true);
 <span class="n">adsConfig</span><span class="p">.</span><span class="n">videoBitrate</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="specify-the-localized-ad-language">Specify the Localized Ad Language</h2>
+    
+      <h2 id="specify-the-localized-ad-language">
+        
+        
+          Specify the Localized Ad Language <a href="#specify-the-localized-ad-language"></a>
+        
+        
+      </h2>
 
 <p>The IMA Plugin enables you to specify the language to be used to localize ads and the Video Player UI controls.</p>
 
@@ -337,8 +384,14 @@ rtp('get', 'campaign',true);
 <div class="language-objc highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="p">.</span><span class="n">language</span> <span class="o">=</span> <span class="s">@"en"</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="listen-to-ad-events">Listen to Ad Events</h2>
+    
+      <h2 id="listen-to-ad-events">
+        
+        
+          Listen to Ad Events <a href="#listen-to-ad-events"></a>
+        
+        
+      </h2>
 
 <p>Use the following code to listen to ad events:</p>
 
@@ -373,8 +426,14 @@ rtp('get', 'campaign',true);
 <span class="p">}];</span>
 </code></pre>
 </div>
-
-<h3 id="ad-info-event">Ad Info Event</h3>
+    
+      <h3 id="ad-info-event">
+        
+        
+          Ad Info Event <a href="#ad-info-event"></a>
+        
+        
+      </h3>
 
 <p>To observe ad info when an ad is starting use the following:</p>
 
@@ -418,8 +477,14 @@ rtp('get', 'campaign',true);
 <span class="p">}];</span>
 </code></pre>
 </div>
-
-<h3 id="ad-cue-points-event">Ad Cue Points Event</h3>
+    
+      <h3 id="ad-cue-points-event">
+        
+        
+          Ad Cue Points Event <a href="#ad-cue-points-event"></a>
+        
+        
+      </h3>
 
 <p>To observe ad cue points update use the following:</p>
 
@@ -452,8 +517,14 @@ rtp('get', 'campaign',true);
 <span class="p">}];</span>
 </code></pre>
 </div>
-
-<h2 id="common-issues">Common Issues</h2>
+    
+      <h2 id="common-issues">
+        
+        
+          Common Issues <a href="#common-issues"></a>
+        
+        
+      </h2>
 
 <p>If you get below error:</p>
 
@@ -469,11 +540,16 @@ rtp('get', 'campaign',true);
 </span><span class="p">[</span><span class="n">_kPlayer</span><span class="p">.</span><span class="n">view</span> <span class="nf">removeFromSuperview</span><span class="p">];</span>
 </code></pre>
 </div>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

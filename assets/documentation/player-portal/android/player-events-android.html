@@ -135,17 +135,28 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The player and some of the plugins fire events that tell the application (and other plugins) about events that occur before/during/after playback.</p>
-
-<h2 id="listening-to-events-from-applications">Listening to events from applications</h2>
+		<p>The player and some of the plugins fire events that tell the application (and other plugins) about events that occur before/during/after playback.</p>
+      <h2 id="listening-to-events-from-applications">
+        
+        
+          Listening to events from applications <a href="#listening-to-events-from-applications"></a>
+        
+        
+      </h2>
 
 <p>Call the following Player method, one or more times. <code class="highlighter-rouge">eventTypes</code> is the list of events that should be sent to the given listener:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">player</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span>
 </code></pre>
 </div>
-
-<h2 id="removing-event-listeners-from-application-v362-and-up">Removing Event Listeners from application (v3.6.2 and up)</h2>
+    
+      <h2 id="removing-event-listeners-from-application-v362-and-up">
+        
+        
+          Removing Event Listeners from application (v3.6.2 and up) <a href="#removing-event-listeners-from-application-v362-and-up"></a>
+        
+        
+      </h2>
 
 <p>Starting with PlayKit v3.6.2, the addEventListener method returns the listener that was passed to it. This makes it easier to use it with listeners that are defined by anonymous classes, in the case the application wants to remove them later.</p>
 
@@ -163,20 +174,38 @@ rtp('get', 'campaign',true);
     </div>
   </li>
 </ul>
-
-<h2 id="listening-to-events-from-plugins">Listening to events from plugins</h2>
+    
+      <h2 id="listening-to-events-from-plugins">
+        
+        
+          Listening to events from plugins <a href="#listening-to-events-from-plugins"></a>
+        
+        
+      </h2>
 
 <p><code class="highlighter-rouge">player.addEventListener()</code> is only meant to be used by applications. It does not work for plugins. Instead, plugins are given an instance of PlayKit’s MessageBus.</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">messageBus</span><span class="o">.</span><span class="na">listen</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span>
 </code></pre>
 </div>
-
-<h2 id="core-player-events">Core Player Events</h2>
+    
+      <h2 id="core-player-events">
+        
+        
+          Core Player Events <a href="#core-player-events"></a>
+        
+        
+      </h2>
 
 <p>The Player events are defined in the PlayerEvent class.</p>
-
-<h3 id="normal-flow">Normal Flow</h3>
+    
+      <h3 id="normal-flow">
+        
+        
+          Normal Flow <a href="#normal-flow"></a>
+        
+        
+      </h3>
 <ul>
   <li>SOURCE_SELECTED: Sent when a playback source is selected</li>
   <li>LOADED_METADATA: The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.</li>
@@ -189,8 +218,14 @@ rtp('get', 'campaign',true);
   <li>PLAYHEAD_UPDATED: Send player position every 100 Milisec</li>
   <li>ENDED: Sent when playback completes.</li>
 </ul>
-
-<h3 id="additional-user-actions">Additional User actions</h3>
+    
+      <h3 id="additional-user-actions">
+        
+        
+          Additional User actions <a href="#additional-user-actions"></a>
+        
+        
+      </h3>
 <ul>
   <li>PAUSE: Sent when playback is paused.</li>
   <li>SEEKED: Sent when a seek operation completes.</li>
@@ -198,41 +233,83 @@ rtp('get', 'campaign',true);
   <li>REPLAY:Sent when replay happened.</li>
   <li>STOPPED: sent when stop player API is called</li>
 </ul>
-
-<h3 id="track-change">Track change</h3>
+    
+      <h3 id="track-change">
+        
+        
+          Track change <a href="#track-change"></a>
+        
+        
+      </h3>
 <ul>
   <li>VIDEO_TRACK_CHANGED: A video track was selected</li>
   <li>AUDIO_TRACK_CHANGED: An audio track was selected</li>
   <li>TEXT_TRACK_CHANGED: A text track was selected</li>
 </ul>
-
-<h3 id="rate-and-volume-change">Rate and Volume change</h3>
+    
+      <h3 id="rate-and-volume-change">
+        
+        
+          Rate and Volume change <a href="#rate-and-volume-change"></a>
+        
+        
+      </h3>
 <ul>
   <li>PLAYBACK_RATE_CHANGED</li>
   <li>VOLUME_CHANGED: Sent when volume is changed.</li>
 </ul>
-
-<h3 id="metadata-id3-tags-and-related">Metadata (ID3 tags and related)</h3>
+    
+      <h3 id="metadata-id3-tags-and-related">
+        
+        
+          Metadata (ID3 tags and related) <a href="#metadata-id3-tags-and-related"></a>
+        
+        
+      </h3>
 <ul>
   <li>METADATA_AVAILABLE: Sent when there is metadata available for this entry.</li>
 </ul>
-
-<h3 id="errors">Errors</h3>
+    
+      <h3 id="errors">
+        
+        
+          Errors <a href="#errors"></a>
+        
+        
+      </h3>
 <ul>
   <li>ERROR: Sent when an error occurs. The element’s error attribute contains more information. See Error handling for details.</li>
 </ul>
-
-<h3 id="state-change">State Change</h3>
+    
+      <h3 id="state-change">
+        
+        
+          State Change <a href="#state-change"></a>
+        
+        
+      </h3>
 <p>The Player can be in one of 4 playback states:<br />
   IDLE, LOADING, READY, BUFFERING<br />
 The STATE_CHANGED event is fired when the player transitions between states.</p>
-
-<h3 id="subtitle-style-update">Subtitle Style update</h3>
+    
+      <h3 id="subtitle-style-update">
+        
+        
+          Subtitle Style update <a href="#subtitle-style-update"></a>
+        
+        
+      </h3>
 <ul>
   <li>SUBTITLE_STYLE_CHANGED: Sent when subtitle style is changed</li>
 </ul>
-
-<h2 id="ad-events">Ad Events</h2>
+    
+      <h2 id="ad-events">
+        
+        
+          Ad Events <a href="#ad-events"></a>
+        
+        
+      </h2>
 
 <p>Defined in AdEvent class.</p>
 
@@ -264,13 +341,18 @@ The STATE_CHANGED event is fired when the player transitions between states.</p>
   <li>AD_LOAD_TIMEOUT_TIMER_STARTED</li>
   <li>ERROR</li>
 </ul>
-
-<h2 id="code-samples">Code Samples</h2>
+    
+      <h2 id="code-samples">
+        
+        
+          Code Samples <a href="#code-samples"></a>
+        
+        
+      </h2>
 <ul>
   <li><a href="https://github.com/kaltura/playkit-android-samples/tree/master/EventsRegistration">Events Registration</a></li>
   <li><a href="https://github.com/kaltura/playkit-android-samples/tree/master/AppAnalyticsSample">App Analytics</a></li>
 </ul>
-
 		
 </article>
 

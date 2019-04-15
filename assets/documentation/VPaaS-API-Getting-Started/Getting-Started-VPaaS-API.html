@@ -147,11 +147,23 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="getting-started">Getting Started</h1>
+		<h1 id="getting-started">
+        
+        
+          Getting Started <a href="#getting-started"></a>
+        
+        
+      </h1>
 
 <p>This guide will enable you to quickly and easily get started with building your own video experiences and exploring the platform’s basic capabilities.</p>
-
-<h2 id="before-you-begin">Before You Begin</h2>
+    
+      <h2 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h2>
 
 <p>You will need your Kaltura account credentials. If you don’t have them yet, start a <a href="https://vpaas.kaltura.com/register">free trial</a>.<br />
 If you’ve signed in, you can click on your account info at the top right of this page to view your credentials.<br />
@@ -164,7 +176,7 @@ Setup looks like this:</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -179,8 +191,8 @@ client = KalturaClient(config)</code></pre>
 $config = new KalturaConfiguration();
 $client = new KalturaClient($config);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">const kaltura = require(&apos;kaltura-client&apos;);
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">const kaltura = require(&apos;kaltura-client&apos;);
 const config = new kaltura.Configuration();
 const client = new kaltura.Client(config);</code></pre>
           </div>
@@ -195,14 +207,20 @@ const client = new kaltura.Client(config);</code></pre>
 <p> </p>
 
 <p>The steps below will walk you through a few basic Kaltura APIs. If you’re looking for languages that are not available here, you can click on any of the actions mentioned to see them in our <a href="https://developer.kaltura.com/console">interactive console</a>.</p>
-
-<h2 id="kaltura-session">Kaltura Session</h2>
+    
+      <h2 id="kaltura-session">
+        
+        
+          Kaltura Session <a href="#kaltura-session"></a>
+        
+        
+      </h2>
 
 <p>Because the Kaltura API is stateless, every request made to the API requires an authentication session to be passed along with the request. With the client library, it’s easy to set it once using the <a href="https://developer.kaltura.com/console/service/session/action/start"><code class="highlighter-rouge">session.start</code></a> API action, like this:</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -226,8 +244,8 @@ client.setKs(ks)</code></pre>
 $client-&gt;setKS($ks);
 </code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">kaltura.services.session.start(
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">kaltura.services.session.start(
 	&lt;&quot;ADMIN SECRET&quot;&gt;,
 	&lt;&quot;UNIQUE USER ID&quot;&gt;,
 	kaltura.enums.SessionType.ADMIN,
@@ -259,8 +277,14 @@ client.setSessionId(session);</code></pre>
 <p>Generating a KS with <a href="https://developer.kaltura.com/console/service/session/action/start"><code class="highlighter-rouge">session.start</code></a> is simple, and great for applications which you alone have access to. <br />
 Other methods include the <a href="https://developer.kaltura.com/api-docs/service/user/action/loginByLoginId"><code class="highlighter-rouge">user.loginByLoginId</code></a> action, which allows users to log in using their own KMC credentials, and the <code class="highlighter-rouge">appToken</code> service, which is recommended when providing access to applications in production that are managed by others. <br />
 Learn more <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html/">here</a> about various ways to create a Kaltura Session.</p>
-
-<h2 id="uploading-media-files">Uploading Media Files</h2>
+    
+      <h2 id="uploading-media-files">
+        
+        
+          Uploading Media Files <a href="#uploading-media-files"></a>
+        
+        
+      </h2>
 <p>Kaltura is built to handle files of all types and size. To best handle the upload of large files, Kaltura’s upload API provides the ability to upload files in smaller chunks, in parallel (multiple chunks can be uploaded simultaneously to improve network utilization), as well as pause-and-resume and chunk upload retries in case of temporary network failures.</p>
 
 <p><strong>Step 1: Create an Upload Token</strong></p>
@@ -269,7 +293,7 @@ Learn more <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Sta
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -281,8 +305,8 @@ token = client.uploadToken.add(upload_token);</code></pre>
 $token = $client-&gt;uploadToken-&gt;add($uploadToken);
 </code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let uploadToken = new kaltura.objects.UploadToken();
 
 kaltura.services.uploadToken.add(uploadToken)
 .execute(client)
@@ -305,8 +329,14 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 <p> </p>
 
 <p>An UploadToken is essentially a container that holds any file that will be uploaded to Kaltura. The token has an ID that is attached to the location of the file.  This process allows the upload to happen independently of the entry creation. In the case of large files, for example, the same uploadToken ID is used for each chunk of the same file.</p>
-
-<h3 id="about-chunked-file-uploading">About Chunked File Uploading</h3>
+    
+      <h3 id="about-chunked-file-uploading">
+        
+        
+          About Chunked File Uploading <a href="#about-chunked-file-uploading"></a>
+        
+        
+      </h3>
 
 <p>How it works:</p>
 <ul>
@@ -330,7 +360,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -350,8 +380,8 @@ $resumeAt = -1;
 
 $result = $client-&gt;uploadToken-&gt;upload($uploadTokenId, $fileData, $resume, $finalChunk, $resumeAt);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let uploadToken = new kaltura.objects.UploadToken();
 
 kaltura.services.uploadToken.add(uploadToken)
 .execute(client)
@@ -401,7 +431,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -419,8 +449,8 @@ $mediaEntry-&gt;mediaType = KalturaMediaType::VIDEO;
 
 $entry = $client-&gt;media-&gt;add($mediaEntry);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let uploadToken = new kaltura.objects.UploadToken();
 
 kaltura.services.uploadToken.add(uploadToken)
 .execute(client)
@@ -487,7 +517,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -504,8 +534,8 @@ $resource-&gt;token = $uploadTokenId;
 
 $result = $client-&gt;media-&gt;addContent($entryId, $resource);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let uploadToken = new kaltura.objects.UploadToken();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let uploadToken = new kaltura.objects.UploadToken();
 
 kaltura.services.uploadToken.add(uploadToken)
 .execute(client)
@@ -583,8 +613,14 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 <p> </p>
 
 <p>At this point, Kaltura will start analyzing the uploaded file, prepare for the transcoding and distribution flows and any other predefined workflows or notifications.</p>
-
-<h2 id="searching-entries">Searching Entries</h2>
+    
+      <h2 id="searching-entries">
+        
+        
+          Searching Entries <a href="#searching-entries"></a>
+        
+        
+      </h2>
 <p>To retrieve that newly uploaded entry, we’ll use the <a href="https://developer.kaltura.com/console/service/eSearch/action/searchEntry">Kaltura Search API</a>.</p>
 
 <p><strong>Step 1: Params and Operator</strong><br />
@@ -592,7 +628,7 @@ If you have multiple search conditions, you would set an <code class="highlighte
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -606,8 +642,8 @@ $searchParams = new KalturaESearchEntryParams();
 $searchParams-&gt;searchOperator = new KalturaESearchEntryOperator();
 $searchParams-&gt;searchOperator-&gt;searchItems = [];</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let searchParams = new kaltura.objects.ESearchEntryParams();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let searchParams = new kaltura.objects.ESearchEntryParams();
 searchParams.searchOperator = new kaltura.objects.ESearchEntryOperator();
 searchParams.searchOperator.searchItems = [];
 </code></pre>
@@ -626,7 +662,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -635,8 +671,8 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
           <div class="highlight example php">
             <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0] = new KalturaESearchUnifiedItem();</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0] = new kaltura.objects.ESearchUnifiedItem();</code></pre>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0] = new kaltura.objects.ESearchUnifiedItem();</code></pre>
           </div>
           <div class="highlight example java">
             <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().set(0, new ESearchUnifiedItem());</code></pre>
@@ -650,7 +686,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -659,8 +695,8 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
           <div class="highlight example php">
             <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;searchTerm = &quot;kaltura logo&quot;;</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0].searchTerm = &quot;kaltura logo&quot;;</code></pre>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0].searchTerm = &quot;kaltura logo&quot;;</code></pre>
           </div>
           <div class="highlight example java">
             <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setSearchTerm(&quot;kaltura logo&quot;);</code></pre>
@@ -674,7 +710,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -683,8 +719,8 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
           <div class="highlight example php">
             <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;itemType = KalturaESearchItemType::EXACT_MATCH;</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0].itemType = kaltura.enums.ESearchItemType.EXACT_MATCH;</code></pre>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0].itemType = kaltura.enums.ESearchItemType.EXACT_MATCH;</code></pre>
           </div>
           <div class="highlight example java">
             <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setItemType(ESearchItemType.EXACT_MATCH.getValue());
@@ -699,7 +735,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -708,8 +744,8 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
           <div class="highlight example php">
             <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;addHighlight = true;</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">searchParams.searchOperator.searchItems[0].addHighlight = true;</code></pre>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0].addHighlight = true;</code></pre>
           </div>
           <div class="highlight example java">
             <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setAddHighlight(true);</code></pre>
@@ -721,7 +757,7 @@ searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBas
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -731,8 +767,8 @@ print(result);</code></pre>
           <div class="highlight example php">
             <pre><code class="php" data-lang="php">$result = $elasticSearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">kaltura.services.eSearch.searchEntry(searchParams)
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">kaltura.services.eSearch.searchEntry(searchParams)
 .execute(client)
 .then(result =&gt; {
     console.log(result);
@@ -751,8 +787,14 @@ print(result);</code></pre>
 <p> </p>
 
 <p>Success! The result will return as a list of  <code class="highlighter-rouge">KalturaMediaEntry</code> objects.</p>
-
-<h2 id="embedding-your-video-player">Embedding Your Video Player</h2>
+    
+      <h2 id="embedding-your-video-player">
+        
+        
+          Embedding Your Video Player <a href="#embedding-your-video-player"></a>
+        
+        
+      </h2>
 <p>You have your entry ID, so you’re just about ready to embed the kaltura player, but first you’ll need a <code class="highlighter-rouge">UI Conf ID</code>, which is basically the ID of the player in which the video is shown. <br />
 For this you’ll need to log into the KMC and click on the <a href="https://kmc.kaltura.com/index.php/kmcng/studio/v2">Studio</a> tab.</p>
 
@@ -789,8 +831,14 @@ Now you can use it for embedding your player:</li>
 	<span class="o">&lt;</span><span class="sr">/script&gt;</span></code></pre></figure>
 
 <p>Learn about other embed types <a href="https://github.com/kaltura/kaltura-player-js/blob/master/docs/embed-types.md">here.</a></p>
-
-<h2 id="wrapping-up">Wrapping Up</h2>
+    
+      <h2 id="wrapping-up">
+        
+        
+          Wrapping Up <a href="#wrapping-up"></a>
+        
+        
+      </h2>
 
 <p>Including a kaltura session allows you to keep track of user analytics for each entry and set permissions and privileges. Notice that in this case, the KS is created on the server side of the app.</p>
 
@@ -812,8 +860,6 @@ Now you can use it for embedding your player:</li>
 <p>You can learn more about these steps in our <a href="https://developer.kaltura.com/api-docs/">docs</a>, play around in the <a href="https://developer.kaltura.com/console">console</a>, or enjoy full interactive experiences with our <a href="https://developer.kaltura.com/workflows">workflows</a>.</p>
 
 <p>And of course, feel free to reach out at vpaas@kaltura.com if you have any questions.</p>
-
-
 		
 </article>
 
@@ -861,6 +907,4 @@ Now you can use it for embedding your player:</li>
 })();
 </script>
 
-<script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script>
-  <script src="assets/js/highlight.pack.js"></script>
-  <script>hljs.initHighlighting();</script>
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

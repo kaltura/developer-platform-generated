@@ -63,6 +63,15 @@ function verify_recapcha()
 
 }
 </script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
 
   <!-- RTP tag -->
 <script type='text/javascript'>
@@ -80,11 +89,13 @@ rtp('get', 'campaign',true);
 
     <div class="page-content">
       <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
 <article>
 
 
 <div class="w-section side-nav-section">
     <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
       <div class="w-row body-columns">
         <div class="docs-contents">
           <div class="post-header">
@@ -118,12 +129,24 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="application-token-session-management">Application Token Session Management</h1>
+		<h1 id="application-token-session-management">
+        
+        
+          Application Token Session Management <a href="#application-token-session-management"></a>
+        
+        
+      </h1>
 
 <p>An Application Token is useful in cases where different applications with varying permissions need access to your Kaltura account, without using your Admin Secret. <br />
 The appToken is created and customized by the account administrator, and then used by the developers to generate Kaltura Sessions for their respective applications. This allows access to the API to be revoked at any time with the deletion of the appToken.</p>
-
-<h2 id="before-you-start">Before You Start</h2>
+    
+      <h2 id="before-you-start">
+        
+        
+          Before You Start <a href="#before-you-start"></a>
+        
+        
+      </h2>
 
 <p>Before you create an appToken, you need to decide whether to create a “blank” appToken, or one preconfigured with permissions. If your only concern is giving access without sharing your Admin secret, a basic appToken is sufficient. But if you want to always limit the permissions of a specific application, you’ll need to create the appToken with pre-configured <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">privileges</a>. Similarly, it is also possible to limit the appToken to a particular user ID should your implementation call for it.</p>
 
@@ -141,18 +164,30 @@ The appToken is created and customized by the account administrator, and then us
 <blockquote>
   <p>Note: While a user ID <em>can</em> be added to an App Token during session generation (if no user ID was specified in the App Token creation), privileges can NOT be added during session generation.</p>
 </blockquote>
-
-<h2 id="creating-the-app-token">Creating the App Token</h2>
+    
+      <h2 id="creating-the-app-token">
+        
+        
+          Creating the App Token <a href="#creating-the-app-token"></a>
+        
+        
+      </h2>
 
 <p>We will cover App Token creation with and without pre-configured privileges. Notice that the App Token has a sessionType. If set to type ADMIN (2), any session created with it will be a ADMIN session. If set to USER (0), however, various actions including <code class="highlighter-rouge">baseEntry.list</code>, will not be available. A USER App Token would be useful in cases where the application is only uploading media but not viewing it afterwards. Furthermore, we recommend using hash of type <a href="https://en.wikipedia.org/wiki/SHA-2"><code class="highlighter-rouge">SHA256</code></a>, but whichever you use, make sure to be consistent in the session creation.</p>
-
-<h3 id="basic-app-token">Basic App Token</h3>
+    
+      <h3 id="basic-app-token">
+        
+        
+          Basic App Token <a href="#basic-app-token"></a>
+        
+        
+      </h3>
 
 <p>We’ll start with an App Token without privileges, without a user, and without an expiry date, using <a href="https://developer.kaltura.com/console/service/appToken/action/add"><code class="highlighter-rouge">appToken.add</code></a>:</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -173,8 +208,8 @@ $appToken-&gt;sessionType = KalturaSessionType::ADMIN;
 $result = $client-&gt;appToken-&gt;add($appToken);
 var_dump($result);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let appToken = new kaltura.objects.AppToken();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let appToken = new kaltura.objects.AppToken();
 appToken.description = &quot;Basic App Token&quot;;
 appToken.hashType = kaltura.enums.AppTokenHashType.SHA256;
 appToken.sessionType = kaltura.enums.SessionType.ADMIN;
@@ -204,8 +239,14 @@ AddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)
 <p> </p>
 
 <p>In the result you’ll see an <code class="highlighter-rouge">id</code> as well as a <code class="highlighter-rouge">token</code>. Hold on to those as you’ll need them for session creation. You can also view all your App Tokens with the <a href="https://developer.kaltura.com/console/service/appToken/action/list"><code class="highlighter-rouge">appToken.list</code></a> action.</p>
-
-<h3 id="set-a-user-role">Set a User Role</h3>
+    
+      <h3 id="set-a-user-role">
+        
+        
+          Set a User Role <a href="#set-a-user-role"></a>
+        
+        
+      </h3>
 
 <p>The easy way to create a User Role is <a href="https://kmc.kaltura.com/index.php/kmcng/administration/roles/list">in the KMC</a>. You’ll have options to name and describe the new role (make it specific) and then select permitted actions. You’ll see that for each category, there is the option to allow all permissions, or to select specific permissions. For example, under Content Moderation, you may allow this User Role to perform all actions except for deleting. You can also switch off a specific category altogether. Hit save and you should now see your new User Role in the list.</p>
 
@@ -219,7 +260,7 @@ AddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -230,23 +271,29 @@ AddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)
             <pre><code class="php" data-lang="php">$appToken-&gt;sessionPrivileges = &quot;setrole:1234567&quot;;
 </code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">appToken.sessionPrivileges = &quot;setrole:1234567&quot;;</code></pre>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">appToken.sessionPrivileges = &quot;setrole:1234567&quot;;</code></pre>
           </div>
           <div class="highlight example java">
             <pre><code class="java" data-lang="java">appToken.setSessionPrivileges(&quot;setrole:1234567&quot;);</code></pre>
           </div>
 </div>
 <p> </p>
-
-<h3 id="add-a-privacy-context">Add a Privacy Context</h3>
+    
+      <h3 id="add-a-privacy-context">
+        
+        
+          Add a Privacy Context <a href="#add-a-privacy-context"></a>
+        
+        
+      </h3>
 
 <p>Adding a privacy context will limit the session to the contents of a particular category.  <br />
 To enable entitlements on the category, select Add Entitlements in the Integration Settings in <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">KMC</a>. Then select a category and give it a Privacy Context Label. That is the name that should be used in the Privileges String when adding the <code class="highlighter-rouge">privacycontext</code> key.</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -255,22 +302,28 @@ To enable entitlements on the category, select Add Entitlements in the Integrati
           <div class="highlight example php">
             <pre><code class="php" data-lang="php">$appToken-&gt;sessionPrivileges = &quot;setrole:1234567,privacycontext:application&quot;;</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">appToken.sessionPrivileges = &quot;setrole:1234567,privacycontext:application&quot;;</code></pre>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">appToken.sessionPrivileges = &quot;setrole:1234567,privacycontext:application&quot;;</code></pre>
           </div>
           <div class="highlight example java">
             <pre><code class="java" data-lang="java">appToken.setSessionPrivileges(&quot;setrole:1234567,privacycontext:application&quot;);</code></pre>
           </div>
 </div>
 <p> </p>
-
-<h3 id="add-a-user-to-the-category">Add a User to the Category</h3>
+    
+      <h3 id="add-a-user-to-the-category">
+        
+        
+          Add a User to the Category <a href="#add-a-user-to-the-category"></a>
+        
+        
+      </h3>
 
 <p>If you set the Content Privacy setting of that category to Private, for users to access this category, they will also need to be members of the category, which can be done in the Entitlements tab in the Category Settings. You can also use the <a href="https://developer.kaltura.com/console/service/categoryUser/action/add"><code class="highlighter-rouge">categoryUser.add</code></a> action, where you’ll need the category ID and the user ID, which can be any string identifying that user.</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -291,8 +344,8 @@ $categoryUser-&gt;userId = &quot;JaneDoe&quot;;
 $result = $client-&gt;categoryUser-&gt;add($categoryUser);
 var_dump($result);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let categoryUser = new kaltura.objects.CategoryUser();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let categoryUser = new kaltura.objects.CategoryUser();
 categoryUser.categoryId = 123456789;
 categoryUser.permissionLevel = kaltura.enums.CategoryUserPermissionLevel.MEMBER;
 categoryUser.userId = &quot;JaneDoe&quot;;
@@ -319,8 +372,14 @@ AddCategoryUserBuilder requestBuilder = CategoryUserService.add(categoryUser)
           </div>
 </div>
 <p> </p>
-
-<h3 id="add-a-user-to-the-app-token">Add a User to the App Token</h3>
+    
+      <h3 id="add-a-user-to-the-app-token">
+        
+        
+          Add a User to the App Token <a href="#add-a-user-to-the-app-token"></a>
+        
+        
+      </h3>
 
 <p>In cases where you’d like to use App Tokens to grant access to particular users, you can include the user ID during the creation of the App Token (<code class="highlighter-rouge">appToken.add</code>). When including a user ID in the App Token object, that user ID can not be overridden when calling <code class="highlighter-rouge">appToken.startSession</code>. This can be useful when wanting to grant particular users with API access and ensure they can not mask their ID as someone else while carrying API actions.</p>
 
@@ -328,7 +387,7 @@ AddCategoryUserBuilder requestBuilder = CategoryUserService.add(categoryUser)
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -355,8 +414,8 @@ $appToken-&gt;sessionUserId = &quot;dummyuser@kaltura.com&quot;;
 $result = $client-&gt;appToken-&gt;add($appToken);
 var_dump($result);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let appToken = new kaltura.objects.AppToken();
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let appToken = new kaltura.objects.AppToken();
 appToken.description = &quot;App Token with User and Privileges&quot;;
 appToken.hashType = kaltura.enums.AppTokenHashType.SHA256;
 appToken.sessionDuration = 86400;
@@ -393,18 +452,30 @@ AddAppTokenBuilder requestBuilder = AppTokenService.add(appToken)
 <blockquote>
   <p>Reminder: You can get a list of all your App Tokens with the <a href="https://developer.kaltura.com/console/service/appToken/action/list"><code class="highlighter-rouge">appToken.list</code></a> action.</p>
 </blockquote>
-
-<h2 id="generate-kaltura-sessions-with-the-app-token">Generate Kaltura Sessions with the App Token</h2>
+    
+      <h2 id="generate-kaltura-sessions-with-the-app-token">
+        
+        
+          Generate Kaltura Sessions with the App Token <a href="#generate-kaltura-sessions-with-the-app-token"></a>
+        
+        
+      </h2>
 
 <p>The Kaltura Session generated with the App Token will have the content and action permissions that were configured in the App Token.</p>
-
-<h3 id="step-1-create-a-kaltura-session">Step 1: Create a Kaltura Session</h3>
+    
+      <h3 id="step-1-create-a-kaltura-session">
+        
+        
+          Step 1: Create a Kaltura Session <a href="#step-1-create-a-kaltura-session"></a>
+        
+        
+      </h3>
 
 <p>Because a Kaltura Session is required for every call to the API, we’ll need to create an unprivileged session before being able to create the App Token session. We use the <a href="https://developer.kaltura.com/console/service/appToken/action/startSession"><code class="highlighter-rouge">session.startWidgetSession</code></a> action with the widget ID, which is your partner ID with an underscore prefix.</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -421,8 +492,8 @@ $expiry = 86400;
 $result = $client-&gt;session-&gt;startWidgetSession($widgetId, $expiry);
 var_dump($result);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let widgetId = &quot;_1234567&quot;;
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let widgetId = &quot;_1234567&quot;;
 let expiry = 86400;
 
 kaltura.services.session.startWidgetSession(widgetId, expiry)
@@ -448,8 +519,14 @@ StartWidgetSessionSessionBuilder requestBuilder = SessionService.startWidgetSess
 <p> </p>
 
 <p>The result will contain that unprivileged KS which you need for the next step.</p>
-
-<h3 id="step-2-compute-the-token-hash">Step 2: Compute the Token Hash</h3>
+    
+      <h3 id="step-2-compute-the-token-hash">
+        
+        
+          Step 2: Compute the Token Hash <a href="#step-2-compute-the-token-hash"></a>
+        
+        
+      </h3>
 
 <p>We’ll create a hash of the App Token <code class="highlighter-rouge">token</code> value together with the unprivileged KS, using a hash function in the language of your choice.</p>
 
@@ -459,7 +536,7 @@ StartWidgetSessionSessionBuilder requestBuilder = SessionService.startWidgetSess
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -469,8 +546,8 @@ StartWidgetSessionSessionBuilder requestBuilder = SessionService.startWidgetSess
             <pre><code class="php" data-lang="php">$client-&gt;setKS($result-&gt;ks);
 $hashString = hash(&apos;sha256&apos;, $client-&gt;ks . &quot;123456512341234&quot;);</code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">var crypto = require(&apos;crypto&apos;);
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">var crypto = require(&apos;crypto&apos;);
 var shasum = crypto.createHash(&apos;sha256&apos;);
 
 client.ks = result.ks;
@@ -488,8 +565,14 @@ String hashString = toHexString(res);</code></pre>
 <p> </p>
 
 <p>The resulting string is the <code class="highlighter-rouge">tokenHash</code> which you’ll use in the next step.</p>
-
-<h3 id="step-3-generate-the-session">Step 3: Generate the Session</h3>
+    
+      <h3 id="step-3-generate-the-session">
+        
+        
+          Step 3: Generate the Session <a href="#step-3-generate-the-session"></a>
+        
+        
+      </h3>
 
 <p>We’ll use the <a href="https://developer.kaltura.com/console/service/appToken/action/startSession"><code class="highlighter-rouge">App Token.startSession</code></a> action with the unprivileged KS, the hashToken, and the token <code class="highlighter-rouge">ID</code>:</p>
 
@@ -499,7 +582,7 @@ String hashString = toHexString(res);</code></pre>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">PHP</a></li><li class="code-tab"><a href="#" class="a_button" target="javascript">NodeJS</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
               </ul>
             </div>
           <div class="highlight example python">
@@ -525,8 +608,8 @@ $result = $client-&gt;appToken-&gt;startSession($id, $tokenHash, $userId, $type,
 var_dump($result);
 </code></pre>
           </div>
-          <div class="highlight example javascript">
-            <pre><code class="javascript" data-lang="javascript">let id = &quot;&lt;tokenID&gt;&quot;;
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let id = &quot;&lt;tokenID&gt;&quot;;
 let tokenHash = &quot;&lt;tokenHash&gt;&quot;;
 let userId = &quot;enduser&quot;;
 let type = kaltura.enums.SessionType.ADMIN;
@@ -561,8 +644,6 @@ StartSessionAppTokenBuilder requestBuilder = AppTokenService.startSession(id, to
 <p>You’ll notice that the response contains any existing configurations from the App Token creation, regardless of what was passed in during the startSession. The expiry is set to an hour (although you can change this), meaning that after that time has passed, a new session will need to be generated. So if you wish to change permissions on this App Token, you can make those changes to the Role, User, or Privacy Context associated with the App Token.</p>
 
 <p>Congrats - now let’s build an app! Get started <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html/">here</a>.</p>
-
-
 		
 </article>
 
@@ -570,6 +651,22 @@ StartSessionAppTokenBuilder requestBuilder = AppTokenService.startSession(id, to
       </div>
     </div>
 
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
   <!-- marketo -->
   <script type="text/javascript">
 (function() {
@@ -594,4 +691,4 @@ StartSessionAppTokenBuilder requestBuilder = AppTokenService.startSession(id, to
 })();
 </script>
 
-<script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script>
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

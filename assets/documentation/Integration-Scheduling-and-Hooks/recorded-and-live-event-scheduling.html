@@ -109,20 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Sun Feb 17 10:13:34 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Integration-Scheduling-and-Hooks/recorded-and-live-event-scheduling.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Sun Feb 17 14:35:12 2019</span>, By <span class="commit-author">Zohar Babin</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Integration-Scheduling-and-Hooks/recorded-and-live-event-scheduling.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Feb 17 05:52:58 2019, By: Zohar Babin</td></tr-->
-				<!--tr><td>Last commit: Sun Feb 17 10:13:34 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Sun Feb 17 14:35:12 2019, By <span class="commit-author">Zohar Babin</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+					<td>Jess Portnoy (3 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
 				
 				<tr>
-					<td>Zohar Babin (1 commits) (<a href="mailto:zohar.babin@kaltura.com">zohar.babin@kaltura.com</a>)</td>
+					<td>Zohar Babin (2 commits) (<a href="mailto:zohar.babin@kaltura.com">zohar.babin@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura’s Video Scheduling API enables Encoding and Capture devices to leverage the Kaltura platform to schedule events for devices, and to use information from those events to trigger live events, and ingest recorded content back to Kaltura with related metadata. Scheduling of events and retrieving the scheduled events calendar via the API is discussed in this article.</p>
+		<p>The Kaltura’s Video Scheduling API enables Encoding and Capture devices to leverage the Kaltura platform to schedule events for devices, and to use information from those events to trigger live events, and ingest recorded content back to Kaltura with related metadata. Scheduling of events and retrieving the scheduled events calendar via the API is discussed in this article.</p>
 
 <blockquote>
   <p>The Kaltura Scheduled Events API allows for scheduling conflicting resources and blackout dates. To get and resolve conflicting events and resources, use the <a href="https://developer.kaltura.com/api-docs/service/scheduleEvent/action/getConflicts"><code class="highlighter-rouge">scheduleEvent.getConflicts</code></a> action.</p>
@@ -152,29 +152,58 @@ rtp('get', 'campaign',true);
   <li>Live Events (<a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveStreamScheduleEvent"><code class="highlighter-rouge">KalturaLiveStreamScheduleEvent</code></a>) - Schedule a Live Event that will be live streamed to Kaltura as it occurs.</li>
   <li>Blackout Events (<a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBlackoutScheduleEvent"><code class="highlighter-rouge">KalturaBlackoutScheduleEvent</code></a>) - Provides the ability to assign dates as “blackouts” and prevent other events from being scheduled in these dates.</li>
 </ol>
-
-<h2 id="using-the-kaltura-video-scheduling-api">Using the Kaltura Video Scheduling API</h2>
-
-<h3 id="on-the-kaltura-platform">On the Kaltura Platform:</h3>
+      <h2 id="using-the-kaltura-video-scheduling-api">
+        
+        
+          Using the Kaltura Video Scheduling API <a href="#using-the-kaltura-video-scheduling-api"></a>
+        
+        
+      </h2>
+    
+      <h3 id="on-the-kaltura-platform">
+        
+        
+          On the Kaltura Platform <a href="#on-the-kaltura-platform"></a>
+        
+        
+      </h3>
 
 <ol>
   <li>Create an event for a future date (<code class="highlighter-rouge">scheduleEvent.add</code> API action or via BulkUpload/DropFolder sync).</li>
   <li>Set recording / encoding device as a resource for the scheduled event (<code class="highlighter-rouge">scheduleResource.add</code> and <code class="highlighter-rouge">scheduleEventResource.add</code>).</li>
   <li>Define a Kaltura Entry as template entry for the event that includes the desired metadata for the recorded or live entry resulting from the scheduled event (including any information on how to publish the entry; co-editors, description/title, etc.).</li>
 </ol>
-
-<h3 id="on-the-device">On the device</h3>
+    
+      <h3 id="on-the-device">
+        
+        
+          On the device <a href="#on-the-device"></a>
+        
+        
+      </h3>
 
 <p>Configure the device to sync its internal calendar with the Kaltura scheduled Events calendar periodically (JSON, XML and iCal formats over REST API or FTP are available).</p>
-
-<h4 id="for-live-entries">For Live Entries</h4>
+    
+      <h4 id="for-live-entries">
+        
+        
+          For Live Entries <a href="#for-live-entries"></a>
+        
+        
+      </h4>
 
 <ol>
   <li>The device will start live streaming at the pre-set time to the RTMP/RTSP/WebRTC endpoint provided in the Scheduled Event details (<code class="highlighter-rouge">x-kaltura-primary-rtmp-endpoint, x-kaltura-secondary-rtmp-endpoint, x-kaltura-primary-rtsp-endpoint, x-kaltura-secondary-rtsp-endpoint, x-kaltura-live-stream-name, x-kaltura-live-stream-username, x-kaltura-live-stream-password</code>).</li>
   <li>Viewers should now be able to watch the live stream in Kaltura.</li>
 </ol>
-
-<h4 id="for-recorded-entries">For Recorded Entries</h4>
+    
+      <h4 id="for-recorded-entries">
+        
+        
+          For Recorded Entries <a href="#for-recorded-entries"></a>
+        
+        
+      </h4>
 
 <ol>
   <li>The device will start recording at the pre-set time. The recording should be stored locally.</li>
@@ -185,8 +214,14 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>If you have access to Kaltura MediaSpace or KAF Applications: The Scheduling Module in KMS or KAF can be used to view and create events. If the recording was published to a course or category, it will appear there for all users with permissions to access it.</p>
 </blockquote>
-
-<h2 id="sync-events-schedule-to-kaltura">Sync Events Schedule to Kaltura</h2>
+    
+      <h2 id="sync-events-schedule-to-kaltura">
+        
+        
+          Sync Events Schedule to Kaltura <a href="#sync-events-schedule-to-kaltura"></a>
+        
+        
+      </h2>
 
 <p>The schedule can be updated using different methods:</p>
 
@@ -196,8 +231,14 @@ rtp('get', 'campaign',true);
   <li>As an iCal file synced form a third-party hosted Drop-Folders over FTP, SFTP or S3.</li>
   <li>The iCal file format may also be ingested using the <a href="https://developer.kaltura.com/api-docs/service/scheduleEvent/action/addFromBulkUpload"><code class="highlighter-rouge">scheduleEvent.addFromBulkUpload</code></a> API action.</li>
 </ol>
-
-<h2 id="using-the-event-scheduling-api">Using the Event Scheduling API</h2>
+    
+      <h2 id="using-the-event-scheduling-api">
+        
+        
+          Using the Event Scheduling API <a href="#using-the-event-scheduling-api"></a>
+        
+        
+      </h2>
 
 <p>Kaltura Event Scheduling is implemented as 3 API services:</p>
 
@@ -274,8 +315,14 @@ rtp('get', 'campaign',true);
     <span class="c1">// Conflicts detected, this resource is already scheduled at this time. 
 </span>    <span class="c1">//Please resolve conflicts before assigning it to another event at the same time.
 </span><span class="p">}</span></code></pre></figure>
-
-<h2 id="the-kaltura-ical-format">The Kaltura iCal Format</h2>
+    
+      <h2 id="the-kaltura-ical-format">
+        
+        
+          The Kaltura iCal Format <a href="#the-kaltura-ical-format"></a>
+        
+        
+      </h2>
 
 <p>The Kaltura iCal Format follows the standard iCal format definitions, and adds Kaltura specific parameters. The additional parameters are described in the table below:</p>
 
@@ -375,8 +422,14 @@ rtp('get', 'campaign',true);
     </tr>
   </tbody>
 </table>
-
-<h2 id="uploading-a-recording-to-kaltura">Uploading a Recording to Kaltura</h2>
+    
+      <h2 id="uploading-a-recording-to-kaltura">
+        
+        
+          Uploading a Recording to Kaltura <a href="#uploading-a-recording-to-kaltura"></a>
+        
+        
+      </h2>
 
 <p>To upload the recording file, you can either submit a bulk upload or upload the file via the REST API:</p>
 
@@ -388,8 +441,14 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Remember to submit the <code class="highlighter-rouge">templateEntryId</code> accordingly and to set any other important metadata on the newly created Entry.</p>
 </blockquote>
-
-<h3 id="publishing-permissions">Publishing Permissions</h3>
+    
+      <h3 id="publishing-permissions">
+        
+        
+          Publishing Permissions <a href="#publishing-permissions"></a>
+        
+        
+      </h3>
 
 <p>To enable the device to use an entry template that includes publishing to specific categories or channels, the device must use the correct entitlements when uploading the recording file.  The recommended way to securely provide each device the appropriate permissions is to use App Tokens. This requires that the account admin will prepare an App Token, and then share the app token with the device to be used when calling the upload API.</p>
 
@@ -409,13 +468,25 @@ rtp('get', 'campaign',true);
   <li>Generate a session using the appToken (<a href="https://developer.kaltura.com/workflows/Generate_API_Sessions/App_Token_Authentication">follow this API workflow</a> as reference).</li>
   <li>Create a new Video Entry, and upload your video recording (<a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/create-new-kaltura-entry-and-upload-video-file-using-kaltura-api.html">follow this guide</a> as reference).</li>
 </ol>
-
-<h2 id="download--sync-the-ical-schedule-from-kaltura">Download / Sync the iCal Schedule from Kaltura</h2>
+    
+      <h2 id="download--sync-the-ical-schedule-from-kaltura">
+        
+        
+          Download / Sync the iCal Schedule from Kaltura <a href="#download--sync-the-ical-schedule-from-kaltura"></a>
+        
+        
+      </h2>
 
 <p>iCal provides a standardized method for syncing calendar events from Kaltura. <br />
 To retrieving an iCal file format, add <code class="highlighter-rouge">format/ical</code> to the <code class="highlighter-rouge">scheduleEvent.list</code> API action.</p>
-
-<h3 id="filtering-and-pagination-of-results">Filtering and Pagination of Results</h3>
+    
+      <h3 id="filtering-and-pagination-of-results">
+        
+        
+          Filtering and Pagination of Results <a href="#filtering-and-pagination-of-results"></a>
+        
+        
+      </h3>
 
 <p>All Kaltura list actions, including <a href="https://developer.kaltura.com/api-docs/Integration_Scheduling_and_Hooks/Scheduling_Triggers_using_iCal/scheduleEvent/scheduleEvent_list">scheduleEvent.list</a>, accept the <a href="https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaFilterPager">KalturaFilterPager</a>.</p>
 
@@ -446,8 +517,14 @@ To retrieving an iCal file format, add <code class="highlighter-rouge">format/ic
     </div>
   </li>
 </ul>
-
-<h4 id="relative-time-filters">Relative Time Filters</h4>
+    
+      <h4 id="relative-time-filters">
+        
+        
+          Relative Time Filters <a href="#relative-time-filters"></a>
+        
+        
+      </h4>
 <p>Time attributes support both absolute and relative times. <br />
 The time is measured in seconds since 1970, also known as a UNIX timestamp; however, if you specify a time that is smaller than 1980 (in seconds since 1970), e.g., 0, 60, or -60, Kaltura will calculate the past value as a relative time, for example:</p>
 
@@ -458,15 +535,27 @@ The time is measured in seconds since 1970, also known as a UNIX timestamp; howe
 </ul>
 
 <p>For example, passing <code class="highlighter-rouge">filter[startDateGreaterThanOrEqual]=0</code> will return all the events that start now or in the future.</p>
-
-<h2 id="configuring-resources-in-kaltura">Configuring Resources in Kaltura</h2>
+    
+      <h2 id="configuring-resources-in-kaltura">
+        
+        
+          Configuring Resources in Kaltura <a href="#configuring-resources-in-kaltura"></a>
+        
+        
+      </h2>
 
 <p>Capture devices as well as rooms and Live Stream entries can be mapped to resource objects in Kaltura. This is similar to booking a conference room using a calendar application. <br />
 Multiple resources can be defined for an event. Resources can be added using the API (e.g. automatic creation of a matching resource by the device itself) or bulk uploaded in advance using the CSV format (see <a href="https://developer.kaltura.com/api-docs/service/scheduleResource/action/addFromBulkUpload">scheduleResource.addFromBulkUpload</a>).</p>
 
 <p>Kaltura’s Bulk Upload CSV format supports mixed orders, and not all fields are required; the fields are defined by the user using an asterisk at the beginning of the line.</p>
-
-<h3 id="the-scheduled-resources-bulk-upload-csv">The Scheduled Resources bulk upload CSV</h3>
+    
+      <h3 id="the-scheduled-resources-bulk-upload-csv">
+        
+        
+          The Scheduled Resources bulk upload CSV <a href="#the-scheduled-resources-bulk-upload-csv"></a>
+        
+        
+      </h3>
 
 <table>
   <thead>
@@ -535,8 +624,14 @@ Multiple resources can be defined for an event. Resources can be added using the
 2,34,new awesome resource name,live_entry,my-live-stream,my example live stream entry resource,"tag1,tag2"
 </code></pre>
 </div>
-
-<h2 id="notable-considerations-when-scheduling-events">Notable considerations when scheduling events</h2>
+    
+      <h2 id="notable-considerations-when-scheduling-events">
+        
+        
+          Notable considerations when scheduling events <a href="#notable-considerations-when-scheduling-events"></a>
+        
+        
+      </h2>
 
 <ul>
   <li>Conflicting events: At present, Kaltura does not prevent conflicting events. The user will need to ensure that there is no resource conflict when scheduling the event. Devices should be able to handle resource conflicts and ensure operations in such case. To retrieve and handle conflicting events call the <a href="https://developer.kaltura.com/api-docs/service/scheduleEvent/action/getConflicts"><code class="highlighter-rouge">scheduleEvent.getConflicts</code></a> action.</li>
@@ -544,7 +639,6 @@ Multiple resources can be defined for an event. Resources can be added using the
   <li>To avoid returning multiple live stream endpoints in the iCal - For Live Stream Events, the iCal format will return the RTMP/RTSP endpoints and credentials as defined in the <code class="highlighter-rouge">templateEntryId</code>. To avoid confusion, always set the template entry id to be the same as the Live Stream Entry resource assigned to the event.</li>
   <li>There’s only one schedule per Kaltura account managed. Multiple scheduling systems will need to be merged into one Kaltura schedule.</li>
 </ul>
-
 		
 </article>
 

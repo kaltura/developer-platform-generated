@@ -129,9 +129,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura playkit offers various analytics modules for iOS that can be added to the player. Adding these plugins is easy and requires little configuration. You can find a full list of available plugins <a href="https://kaltura.github.io/playkit/">here</a>. This guide will cover a thorough implementation of the Kava Plugin, as well as a sample config for the Youbora plugin.</p>
-
-<h2 id="kava-plugin">Kava Plugin</h2>
+		<p>The Kaltura playkit offers various analytics modules for iOS that can be added to the player. Adding these plugins is easy and requires little configuration. You can find a full list of available plugins <a href="https://kaltura.github.io/playkit/">here</a>. This guide will cover a thorough implementation of the Kava Plugin, as well as a sample config for the Youbora plugin.</p>
+      <h2 id="kava-plugin">
+        
+        
+          Kava Plugin <a href="#kava-plugin"></a>
+        
+        
+      </h2>
 
 <p>Probably the most important plugin is the KAVA plugin - Kaltura Video Analytics. It provides real time analytics for live and on-demand video. With historical, raw, or summarized data, it is easy to determine how, when, and where content was seen and shared by viewers.</p>
 
@@ -170,16 +175,28 @@ rtp('get', 'campaign',true);
 </div>
 
 <p>The KAVA plugin is now included in the player, and all data about plays and shares can be viewed in the KMC or retrieved using the Kaltura Reporting API.</p>
-
-<h2 id="youbora-plugin">Youbora Plugin</h2>
+    
+      <h2 id="youbora-plugin">
+        
+        
+          Youbora Plugin <a href="#youbora-plugin"></a>
+        
+        
+      </h2>
 
 <p>Youbora is an intelligence analytics and optimization platform used in Kaltura’s solution to track media analytics events.</p>
 
 <p>You’ll need to set up an account in http://www.youbora.com and then set the account details in the plugin configuration to use this plugin. After these steps, you’ll be able to use the Youbora dashboard and watch statistical events and analytics sent by the Kaltura Video Payer.</p>
 
 <p>For additional information on the YouboraPlugin options dictionary refer to their <a href="http://developer.nicepeopleatwork.com/plugins/general/setting-youbora-options/">developer portal</a>.</p>
-
-<h3 id="getting-started-with-the-youbora-plugin">Getting Started with the Youbora Plugin</h3>
+    
+      <h3 id="getting-started-with-the-youbora-plugin">
+        
+        
+          Getting Started with the Youbora Plugin <a href="#getting-started-with-the-youbora-plugin"></a>
+        
+        
+      </h3>
 
 <p>Import and enable:</p>
 
@@ -208,7 +225,6 @@ rtp('get', 'campaign',true);
 <span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="n">pluginConfig</span><span class="p">)</span>
 </code></pre>
 </div>
-
 		
 </article>
 

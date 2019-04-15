@@ -147,9 +147,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>Kaltura’s Mobile Video Player SDKs for Android make it easy for you to integrate analytics data collection, by providing you with several analytics solutions.</p>
-
-<h2 id="supported-analytics">Supported Analytics</h2>
+		<p>Kaltura’s Mobile Video Player SDKs for Android make it easy for you to integrate analytics data collection, by providing you with several analytics solutions.</p>
+      <h2 id="supported-analytics">
+        
+        
+          Supported Analytics <a href="#supported-analytics"></a>
+        
+        
+      </h2>
 
 <table>
   <thead>
@@ -181,20 +186,38 @@ rtp('get', 'campaign',true);
     </tr>
   </tbody>
 </table>
-
-<h2 id="kaltura-analytics-plugin">Kaltura Analytics Plugin</h2>
+    
+      <h2 id="kaltura-analytics-plugin">
+        
+        
+          Kaltura Analytics Plugin <a href="#kaltura-analytics-plugin"></a>
+        
+        
+      </h2>
 
 <p>This section describes the steps required for using the Kaltura Analytics Plugin on Android devices as well as the events supported by the plugin. Adding the Kaltura Analytics Plugin will enable you get detailed analytics.</p>
-
-<h3 id="enable-the-kaltura-analytics-plugin-for-the-kaltura-player">Enable the Kaltura Analytics Plugin for the Kaltura Player</h3>
+    
+      <h3 id="enable-the-kaltura-analytics-plugin-for-the-kaltura-player">
+        
+        
+          Enable the Kaltura Analytics Plugin for the Kaltura Player <a href="#enable-the-kaltura-analytics-plugin-for-the-kaltura-player"></a>
+        
+        
+      </h3>
 
 <p>To enable the Kaltura Analytics Plugin in Android devices, register the plugin inside your application as follows:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">KalturaAnalyticsPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="configure-the-plugin-configuration-object-for-the-kaltura-analytics-plugin">Configure the Plugin Configuration Object for the Kaltura Analytics Plugin</h3>
+    
+      <h3 id="configure-the-plugin-configuration-object-for-the-kaltura-analytics-plugin">
+        
+        
+          Configure the Plugin Configuration Object for the Kaltura Analytics Plugin <a href="#configure-the-plugin-configuration-object-for-the-kaltura-analytics-plugin"></a>
+        
+        
+      </h3>
 
 <p>To configure the plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
 
@@ -207,8 +230,14 @@ rtp('get', 'campaign',true);
         <span class="n">kalturaAnalyticsConfig</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="s">"timerInterval"</span><span class="o">,</span> <span class="n">timerInterval</span><span class="o">);</span> <span class="c1">//Timer interval to check progress of the media in milliseconds- recommended value - short media - 10000, long media - 30000</span>
 </code></pre>
 </div>
-
-<h3 id="set-the-plugin-configuration-to-initiate-onload-of-the-kaltura-analytics-plugin">Set the Plugin Configuration to Initiate onLoad of the Kaltura Analytics Plugin</h3>
+    
+      <h3 id="set-the-plugin-configuration-to-initiate-onload-of-the-kaltura-analytics-plugin">
+        
+        
+          Set the Plugin Configuration to Initiate onLoad of the Kaltura Analytics Plugin <a href="#set-the-plugin-configuration-to-initiate-onload-of-the-kaltura-analytics-plugin"></a>
+        
+        
+      </h3>
 
 <p>To enable the Kaltura Analytics Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
@@ -217,8 +246,14 @@ rtp('get', 'campaign',true);
 <span class="n">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="s">"KalturaAnalytics"</span><span class="o">,</span> <span class="n">kalturaAnalyticsConfig</span><span class="o">);</span> 
 </code></pre>
 </div>
-
-<h3 id="kaltura-analytics-plugin-supported-events">Kaltura Analytics Plugin Supported Events</h3>
+    
+      <h3 id="kaltura-analytics-plugin-supported-events">
+        
+        
+          Kaltura Analytics Plugin Supported Events <a href="#kaltura-analytics-plugin-supported-events"></a>
+        
+        
+      </h3>
 
 <p>The Kaltura Analytics Plugin supports the following events:</p>
 
@@ -253,20 +288,38 @@ rtp('get', 'campaign',true);
        <span class="n">VIEW</span><span class="o">(</span><span class="mi">99</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h2 id="kaltura-stats-plugin">Kaltura Stats Plugin</h2>
+    
+      <h2 id="kaltura-stats-plugin">
+        
+        
+          Kaltura Stats Plugin <a href="#kaltura-stats-plugin"></a>
+        
+        
+      </h2>
 
 <p>This section describes the steps required for configuring the Kaltura Video Player to use the Kaltura Stats Plugin on Android devices. This will enable you to obtain important statistical information about usage.</p>
-
-<h3 id="register-the-kaltura-stats-plugin-for-the-kaltura-video-player">Register the Kaltura Stats Plugin for the Kaltura Video Player</h3>
+    
+      <h3 id="register-the-kaltura-stats-plugin-for-the-kaltura-video-player">
+        
+        
+          Register the Kaltura Stats Plugin for the Kaltura Video Player <a href="#register-the-kaltura-stats-plugin-for-the-kaltura-video-player"></a>
+        
+        
+      </h3>
 
 <p>To enable the Kaltura Stats Plugin, register the plugin inside your application as follows:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">KalturaStatsPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="configure-the-plugin-configuration-object-for-the-kaltura-stats-plugin">Configure the Plugin Configuration Object for the Kaltura Stats Plugin</h3>
+    
+      <h3 id="configure-the-plugin-configuration-object-for-the-kaltura-stats-plugin">
+        
+        
+          Configure the Plugin Configuration Object for the Kaltura Stats Plugin <a href="#configure-the-plugin-configuration-object-for-the-kaltura-stats-plugin"></a>
+        
+        
+      </h3>
 
 <p>To configure the Kaltura Stats Plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
 
@@ -279,8 +332,14 @@ rtp('get', 'campaign',true);
         <span class="n">kalturaStatsConfig</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="s">"timerInterval"</span><span class="o">,</span> <span class="n">timerInterval</span><span class="o">);</span> <span class="c1">//Timer interval to check progress of the media in milliseconds- recommended value - short media - 10000, long media - 30000</span>
 </code></pre>
 </div>
-
-<h3 id="set-the-plugin-configuration-to-initiate-onload-of-the-kaltura-stats-plugin">Set the Plugin Configuration to Initiate onLoad of the Kaltura Stats Plugin</h3>
+    
+      <h3 id="set-the-plugin-configuration-to-initiate-onload-of-the-kaltura-stats-plugin">
+        
+        
+          Set the Plugin Configuration to Initiate onLoad of the Kaltura Stats Plugin <a href="#set-the-plugin-configuration-to-initiate-onload-of-the-kaltura-stats-plugin"></a>
+        
+        
+      </h3>
 
 <p>To enable the Kaltura Stats Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
@@ -289,8 +348,14 @@ rtp('get', 'campaign',true);
 <span class="n">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="s">"KalturaStats"</span><span class="o">,</span> <span class="n">kalturaStatsConfig</span><span class="o">);</span> 
 </code></pre>
 </div>
-
-<h3 id="kaltura-stats-plugin-supported-events">Kaltura Stats Plugin Supported Events</h3>
+    
+      <h3 id="kaltura-stats-plugin-supported-events">
+        
+        
+          Kaltura Stats Plugin Supported Events <a href="#kaltura-stats-plugin-supported-events"></a>
+        
+        
+      </h3>
 
 <p>The Kaltura Stats Plugin supports the following events:</p>
 
@@ -349,20 +414,38 @@ rtp('get', 'campaign',true);
  <span class="n">ERROR</span><span class="o">(</span><span class="mi">99</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h2 id="tvpapi-stats-plugin">TVPAPI Stats Plugin</h2>
+    
+      <h2 id="tvpapi-stats-plugin">
+        
+        
+          TVPAPI Stats Plugin <a href="#tvpapi-stats-plugin"></a>
+        
+        
+      </h2>
 
 <p>This section describes the steps required for using the TVPAPI Stats Plugin on Android devices to get statistical information on the device, as well as the events supported by the plugin.</p>
-
-<h3 id="register-the-tvpapi-stats-plugin">Register the TVPAPI Stats Plugin</h3>
+    
+      <h3 id="register-the-tvpapi-stats-plugin">
+        
+        
+          Register the TVPAPI Stats Plugin <a href="#register-the-tvpapi-stats-plugin"></a>
+        
+        
+      </h3>
 
 <p>Register the TVPAPI Stats Plugin in your application as follows:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">TVPAPIAnalyticsPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span>               
 </code></pre>
 </div>
-
-<h3 id="configure-the-plugin-configuration-object-for-the-tvpapi-stats-plugin">Configure the Plugin Configuration Object for the TVPAPI Stats Plugin</h3>
+    
+      <h3 id="configure-the-plugin-configuration-object-for-the-tvpapi-stats-plugin">
+        
+        
+          Configure the Plugin Configuration Object for the TVPAPI Stats Plugin <a href="#configure-the-plugin-configuration-object-for-the-tvpapi-stats-plugin"></a>
+        
+        
+      </h3>
 
 <p>To configure the TVPAPI Stats Plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
 
@@ -374,8 +457,14 @@ rtp('get', 'campaign',true);
 <span class="n">TVPAPIConfigEntry</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"initObj"</span><span class="o">,</span> <span class="n">initObj</span><span class="o">);</span> <span class="c1">// must be a valid initObj of TVPAPI</span>
 </code></pre>
 </div>
-
-<h3 id="set-the-plugin-configuration-to-the-tvpapi-stats-plugin">Set the Plugin Configuration to the TVPAPI Stats Plugin</h3>
+    
+      <h3 id="set-the-plugin-configuration-to-the-tvpapi-stats-plugin">
+        
+        
+          Set the Plugin Configuration to the TVPAPI Stats Plugin <a href="#set-the-plugin-configuration-to-the-tvpapi-stats-plugin"></a>
+        
+        
+      </h3>
 
 <p>To ensure that the TVPAPI Stats Plugin starts loading, you’ll need to set the plugin configuration you created as follows:</p>
 
@@ -384,8 +473,14 @@ rtp('get', 'campaign',true);
 <span class="n">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="s">"TVPAPIAnalytics"</span> <span class="o">,</span> <span class="n">TVPAPIConfigEntry</span><span class="o">.</span><span class="na">toJson</span><span class="o">());</span> 
 </code></pre>
 </div>
-
-<h3 id="tvpapi-stats-plugin-supported-events">TVPAPI Stats Plugin Supported Events</h3>
+    
+      <h3 id="tvpapi-stats-plugin-supported-events">
+        
+        
+          TVPAPI Stats Plugin Supported Events <a href="#tvpapi-stats-plugin-supported-events"></a>
+        
+        
+      </h3>
 
 <p>The TVPAPI Stats Plugin supports the following events:</p>
 
@@ -395,8 +490,14 @@ rtp('get', 'campaign',true);
 <span class="o">}</span>
 </code></pre>
 </div>
-
-<h3 id="concurrency-handler">Concurrency Handler</h3>
+    
+      <h3 id="concurrency-handler">
+        
+        
+          Concurrency Handler <a href="#concurrency-handler"></a>
+        
+        
+      </h3>
 
 <p>To receive concurrency events from the TVPAPI Stats Plugin, you’ll need to add a listener to the following event:</p>
 
@@ -410,20 +511,38 @@ rtp('get', 'campaign',true);
 <span class="o">},</span> <span class="n">OttEvent</span><span class="o">.</span><span class="na">OttEventType</span><span class="o">.</span><span class="na">Concurrency</span><span class="o">);</span>                    
 </code></pre>
 </div>
-
-<h2 id="phoenix-stats-plugin">Phoenix Stats Plugin</h2>
+    
+      <h2 id="phoenix-stats-plugin">
+        
+        
+          Phoenix Stats Plugin <a href="#phoenix-stats-plugin"></a>
+        
+        
+      </h2>
 
 <p>This article describes the steps required for configuring the Kaltura Video Player to use the Phoenix Stats Plugin on Android devices as well as the supported plugin events. This will enable you to obtain important statistical information about usage.</p>
-
-<h3 id="register-the-phoenix-stats-plugin-inside-your-application">Register the Phoenix Stats Plugin inside your Application</h3>
+    
+      <h3 id="register-the-phoenix-stats-plugin-inside-your-application">
+        
+        
+          Register the Phoenix Stats Plugin inside your Application <a href="#register-the-phoenix-stats-plugin-inside-your-application"></a>
+        
+        
+      </h3>
 
 <p>Register the Phoenix Stats Plugin inside your application as follows:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">PhoenixAnalyticsPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="configure-the-plugin-configuration-object-for-the-phoenix-stats-plugin">Configure the Plugin Configuration Object for the Phoenix Stats Plugin</h3>
+    
+      <h3 id="configure-the-plugin-configuration-object-for-the-phoenix-stats-plugin">
+        
+        
+          Configure the Plugin Configuration Object for the Phoenix Stats Plugin <a href="#configure-the-plugin-configuration-object-for-the-phoenix-stats-plugin"></a>
+        
+        
+      </h3>
 
 <p>To configure the Phoenix Stats Plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
 
@@ -436,8 +555,14 @@ rtp('get', 'campaign',true);
         <span class="n">phoenixConfigEntry</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="s">"timerInterval"</span><span class="o">,</span> <span class="n">timer</span> <span class="n">value</span> <span class="k">for</span> <span class="n">HIT</span> <span class="n">events</span> <span class="o">-</span> <span class="n">in</span> <span class="n">milliseconds</span><span class="o">);</span><span class="c1">//Default value - 30000</span>
 </code></pre>
 </div>
-
-<h3 id="set-the-plugin-configuration-to-the-phoenix-stats-plugin">Set the Plugin Configuration to the Phoenix Stats Plugin</h3>
+    
+      <h3 id="set-the-plugin-configuration-to-the-phoenix-stats-plugin">
+        
+        
+          Set the Plugin Configuration to the Phoenix Stats Plugin <a href="#set-the-plugin-configuration-to-the-phoenix-stats-plugin"></a>
+        
+        
+      </h3>
 
 <p>For the  Phoenix Stats Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
@@ -446,8 +571,14 @@ rtp('get', 'campaign',true);
 <span class="n">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="s">"PhoenixAnalytics"</span> <span class="o">,</span> <span class="n">phoenixConfigEntry</span><span class="o">.</span><span class="na">toJson</span><span class="o">());</span> 
 </code></pre>
 </div>
-
-<h3 id="phoenix-stats-plugin-supported-events">Phoenix Stats Plugin Supported Events</h3>
+    
+      <h3 id="phoenix-stats-plugin-supported-events">
+        
+        
+          Phoenix Stats Plugin Supported Events <a href="#phoenix-stats-plugin-supported-events"></a>
+        
+        
+      </h3>
 
 <p>The following events are supported by the Phoenix Stats Plugin:</p>
 
@@ -470,8 +601,14 @@ rtp('get', 'campaign',true);
  <span class="n">ERROR</span>
 </code></pre>
 </div>
-
-<h3 id="concurrency-handler-1">Concurrency Handler</h3>
+    
+      <h3 id="concurrency-handler-1">
+        
+        
+          Concurrency Handler <a href="#concurrency-handler-1"></a>
+        
+        
+      </h3>
 
 <p>To receive concurrency events from the Phoenix Stats Plugin, you’ll need to add a listener to the following event:</p>
 
@@ -486,22 +623,40 @@ rtp('get', 'campaign',true);
                     
 </code></pre>
 </div>
-
-<h2 id="youbora-plugin">Youbora Plugin</h2>
+    
+      <h2 id="youbora-plugin">
+        
+        
+          Youbora Plugin <a href="#youbora-plugin"></a>
+        
+        
+      </h2>
 
 <p>This article describes the steps required for implementing the Youbora Plugin on Android devices. Youbora is an intelligence analytics and optimization platform used in Kaltura’s solution to track media analytics events.</p>
 
 <p>You’ll need to set up an account in http://www.youbora.com and then set the account details in the plugin configuration to use this plugin. After these steps, you’ll be able to use the Youbora dashboard and watch statistical events and analytics sent by the Kaltura Video Payer.</p>
-
-<h3 id="enabling-the-youbora-plugin">Enabling the Youbora Plugin</h3>
+    
+      <h3 id="enabling-the-youbora-plugin">
+        
+        
+          Enabling the Youbora Plugin <a href="#enabling-the-youbora-plugin"></a>
+        
+        
+      </h3>
 
 <p>To enable the Youbora Plugin in Android devices, register the plugin inside your application as follows</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">YouboraPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="configure-the-plugin-configuration-object-for-the-youbora-plugin">Configure the Plugin Configuration Object for the Youbora Plugin</h3>
+    
+      <h3 id="configure-the-plugin-configuration-object-for-the-youbora-plugin">
+        
+        
+          Configure the Plugin Configuration Object for the Youbora Plugin <a href="#configure-the-plugin-configuration-object-for-the-youbora-plugin"></a>
+        
+        
+      </h3>
 
 <p>To configure the Youbora Plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
 
@@ -546,8 +701,14 @@ rtp('get', 'campaign',true);
                 <span class="o">}</span>
 </code></pre>
 </div>
-
-<h3 id="set-the-plugin-configuration-to-the-youbora-plugin">Set the Plugin Configuration to the Youbora Plugin</h3>
+    
+      <h3 id="set-the-plugin-configuration-to-the-youbora-plugin">
+        
+        
+          Set the Plugin Configuration to the Youbora Plugin <a href="#set-the-plugin-configuration-to-the-youbora-plugin"></a>
+        
+        
+      </h3>
 
 <p>For the Youbora Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
@@ -556,8 +717,14 @@ rtp('get', 'campaign',true);
         <span class="n">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="s">"Youbora"</span><span class="o">,</span> <span class="n">converterYoubora</span><span class="o">.</span><span class="na">toJson</span><span class="o">());</span> 
 </code></pre>
 </div>
-
-<h3 id="analyze-the-youbora-plugin-requests">Analyze the Youbora Plugin Requests</h3>
+    
+      <h3 id="analyze-the-youbora-plugin-requests">
+        
+        
+          Analyze the Youbora Plugin Requests <a href="#analyze-the-youbora-plugin-requests"></a>
+        
+        
+      </h3>
 
 <p>The following is the correct flow of events when the Youbora Plugin is activated and you use the Kaltura Video Player to play media.</p>
 
@@ -582,11 +749,16 @@ rtp('get', 'campaign',true);
 <p>4 . Ping event /ping: This will ping the event every five seconds.</p>
 
 <p>5 . Stop event /stop: Use this funciton after the media finishes playing.</p>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

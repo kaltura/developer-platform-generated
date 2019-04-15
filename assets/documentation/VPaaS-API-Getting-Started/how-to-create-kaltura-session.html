@@ -147,9 +147,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura API is representational state transfer <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>, which is a style of software architecture for distributed systems such as the World Wide Web. REST has emerged over the past few years as a predominant Web service design model. REST has increasingly displaced other design models such as SOAP and WSDL due to its simpler style and <a href="http://en.wikipedia.org/wiki/Stateless_protocol">statelessness</a>. Every call (request) made to the Kaltura API requires an authentication key, the Kaltura Session (aka KS), identifying the account on which the action to be carried, the authenticated user and its role.</p>
-
-<h3 id="methods-for-generating-a-kaltura-session">Methods for Generating a Kaltura Session</h3>
+		<p>The Kaltura API is representational state transfer <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>, which is a style of software architecture for distributed systems such as the World Wide Web. REST has emerged over the past few years as a predominant Web service design model. REST has increasingly displaced other design models such as SOAP and WSDL due to its simpler style and <a href="http://en.wikipedia.org/wiki/Stateless_protocol">statelessness</a>. Every call (request) made to the Kaltura API requires an authentication key, the Kaltura Session (aka KS), identifying the account on which the action to be carried, the authenticated user and its role.</p>
+      <h3 id="methods-for-generating-a-kaltura-session">
+        
+        
+          Methods for Generating a Kaltura Session <a href="#methods-for-generating-a-kaltura-session"></a>
+        
+        
+      </h3>
 
 <p>There are three methods for generating a Kaltura Session:</p>
 
@@ -158,8 +163,14 @@ rtp('get', 'campaign',true);
   <li>Using the <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/application-token-session-management.html">appToken service</a>: This method is recommended when providing access to scripts or applications that are managed by others; this method provides tools to manage API tokens per application provider, revoke access to specific applications, and more.</li>
   <li>Calling the <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/user_loginByLoginId">user.loginByLoginId action</a>: This method is recommended for managing registered users in Kaltura, and allowing users to log in using email and password. When you log in to the KMC, the KMC application calls the user.loginByLoginId action to authenticate you using your registered email and password. </li>
 </ul>
-
-<h2 id="important-notes-when-generating-kaltura-sessions">Important Notes When Generating Kaltura Sessions</h2>
+    
+      <h2 id="important-notes-when-generating-kaltura-sessions">
+        
+        
+          Important Notes When Generating Kaltura Sessions <a href="#important-notes-when-generating-kaltura-sessions"></a>
+        
+        
+      </h2>
 
 <ol>
   <li>Familiarize yourself with the concepts of user roles, privileges, access control and entitlements by reading the <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura API Authentication and Security guide</a> to ensure that your application is secured.</li>
@@ -172,7 +183,6 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: To use the Kaltura API, you will need a Publisher Account with API access. <a href="https://vpaas.kaltura.com/register.html">Get a free Kaltura VPaaS trial</a>.</p>
 </blockquote>
-
 		
 </article>
 

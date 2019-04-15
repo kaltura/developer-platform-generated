@@ -141,13 +141,25 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h2 id="tracks-selection">Tracks Selection</h2>
+		<h2 id="tracks-selection">
+        
+        
+          Tracks Selection <a href="#tracks-selection"></a>
+        
+        
+      </h2>
 
 <p>This document describes the steps required for adding support for the multi-audio and captions functionality in your application on iOS devices.</p>
 
 <p>If you want to change the video/audio quality or captions language, you’ll need to use tracks, which are easy to implement using the Kaltura Mobile Video Player SDK. To implement tracks, all you need to do is to listen to the event, receive the tracks data object, and populate your views with the object. When the desired track is selected, simply send us the selected track ID and we’ll implement the track selection for us.</p>
-
-<h2 id="listening-to-the-player-event">Listening to the Player Event</h2>
+    
+      <h2 id="listening-to-the-player-event">
+        
+        
+          Listening to the Player Event <a href="#listening-to-the-player-event"></a>
+        
+        
+      </h2>
 
 <p>To learn how to listen to player events, simply follow the instructions in the <a href="/api-docs/Mobile-Video-Player-SDKs/v3_Android_EventsAndStates.html">Player States and Events</a> article.</p>
 
@@ -170,8 +182,14 @@ rtp('get', 'campaign',true);
         <span class="o">},</span> <span class="n">PlayerEvent</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">TRACKS_AVAILABLE</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h2 id="pktracks-structure">PKTracks Structure</h2>
+    
+      <h2 id="pktracks-structure">
+        
+        
+          PKTracks Structure <a href="#pktracks-structure"></a>
+        
+        
+      </h2>
 
 <p>The <a href="https://github.com/kaltura/playkit-android/blob/fa5144871597d6fcd03ccc541c85a94c485284b5/playkit/src/main/java/com/kaltura/playkit/PKTracks.java">PKTracks</a> object consists of three lists:</p>
 
@@ -180,16 +198,28 @@ rtp('get', 'campaign',true);
   <li>audioTracks</li>
   <li>textTracks</li>
 </ul>
-
-<h3 id="basetrack">BaseTrack</h3>
+    
+      <h3 id="basetrack">
+        
+        
+          BaseTrack <a href="#basetrack"></a>
+        
+        
+      </h3>
 
 <p>The base class is extended by the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/VideoTrack.java">VideoTrack</a>, the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/AudioTrack.java">AudioTrack</a>, and the <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/TextTrack.java">TextTrack</a>.</p>
 
 <p>The base class holds the uniqueId of the track and boolean isAdaptive, which should specify whether this track can support adaptive playback (also known as “Auto”).</p>
 
 <p>The uniqueId is the ID that should be sent when you want to switch tracks; you’ll be able to see this ID in the example below.</p>
-
-<h3 id="videotrack">VideoTrack</h3>
+    
+      <h3 id="videotrack">
+        
+        
+          VideoTrack <a href="#videotrack"></a>
+        
+        
+      </h3>
 
 <p>The VideoTrack object holds data about single video tracks, including the:</p>
 
@@ -198,8 +228,14 @@ rtp('get', 'campaign',true);
   <li>width</li>
   <li>height</li>
 </ul>
-
-<h3 id="audiotrack">AudioTrack</h3>
+    
+      <h3 id="audiotrack">
+        
+        
+          AudioTrack <a href="#audiotrack"></a>
+        
+        
+      </h3>
 
 <p>The AudioTrack object holds data about single audio tracks, including the:</p>
 
@@ -208,8 +244,14 @@ rtp('get', 'campaign',true);
   <li>language</li>
   <li>label</li>
 </ul>
-
-<h3 id="texttrack">TextTrack</h3>
+    
+      <h3 id="texttrack">
+        
+        
+          TextTrack <a href="#texttrack"></a>
+        
+        
+      </h3>
 
 <p>The TextTrack object is the captions/subtitle representation, which holds the folowing fields:</p>
 
@@ -217,8 +259,14 @@ rtp('get', 'campaign',true);
   <li>language</li>
   <li>label</li>
 </ul>
-
-<h2 id="example-of-populating-views-with-tracks">Example of Populating Views with Tracks</h2>
+    
+      <h2 id="example-of-populating-views-with-tracks">
+        
+        
+          Example of Populating Views with Tracks <a href="#example-of-populating-views-with-tracks"></a>
+        
+        
+      </h2>
 
 <p>Lets look at an example of how to populate a view with tracks in the application.</p>
 
@@ -300,7 +348,14 @@ rtp('get', 'campaign',true);
 	<span class="o">}</span>
 </code></pre>
 </div>
-<h2 id="use-case-example">Use Case Example</h2>
+    
+      <h2 id="use-case-example">
+        
+        
+          Use Case Example <a href="#use-case-example"></a>
+        
+        
+      </h2>
 
 <p>After creating the preparation code, you’re ready to dig into a track use case example. We’ll use the <a href="#populateViews"><strong>populateViews(tracks);</strong></a> created previously.</p>
 
@@ -382,11 +437,16 @@ rtp('get', 'campaign',true);
 </div>
 
 <p>&lt;/br&gt;</p>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

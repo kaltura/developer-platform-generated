@@ -141,22 +141,39 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to use the iOS Player Life cycle API when creating a KPViewController instance to manage the life cycle of this instance.</p>
-
-<h2 id="creating-a-kpviewcontroller-instance">Creating a KPViewController Instance</h2>
+		<p>This article describes how to use the iOS Player Life cycle API when creating a KPViewController instance to manage the life cycle of this instance.</p>
+      <h2 id="creating-a-kpviewcontroller-instance">
+        
+        
+          Creating a KPViewController Instance <a href="#creating-a-kpviewcontroller-instance"></a>
+        
+        
+      </h2>
 <p>After creating the Player, implement the following objective:</p>
 
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithConfiguration</span><span class="p">:(</span><span class="n">KPPlayerConfig</span> <span class="o">*</span><span class="p">)</span><span class="nv">configuration</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="removing-a-player-instance">Removing a Player Instance</h2>
+    
+      <h2 id="removing-a-player-instance">
+        
+        
+          Removing a Player Instance <a href="#removing-a-player-instance"></a>
+        
+        
+      </h2>
 <p>To remove an instance, implement the following objective:</p>
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">removePlayer</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="resetting-a-player-instance">Resetting a Player Instance</h2>
+    
+      <h2 id="resetting-a-player-instance">
+        
+        
+          Resetting a Player Instance <a href="#resetting-a-player-instance"></a>
+        
+        
+      </h2>
 <p>Resetting a Player instance means that the Player is live and ready for a changeConfiguration.</p>
 
 <p>Use the following objective to reset the Player instance:</p>
@@ -164,29 +181,46 @@ rtp('get', 'campaign',true);
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">resetPlayer</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="changing-the-configuration">Changing the Configuration</h2>
+    
+      <h2 id="changing-the-configuration">
+        
+        
+          Changing the Configuration <a href="#changing-the-configuration"></a>
+        
+        
+      </h2>
 <p>To change the configuration, load a new configuration object to the old Player instance as following:   <br />
 Remember to use this <strong>ONLY if you used resetPlayer previously</strong>.</p>
 
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">changeConfiguration</span><span class="p">:(</span><span class="n">KPPlayerConfig</span> <span class="o">*</span><span class="p">)</span><span class="nv">config</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="releasing-and-saving-a-position">Releasing and Saving a Position</h2>
+    
+      <h2 id="releasing-and-saving-a-position">
+        
+        
+          Releasing and Saving a Position <a href="#releasing-and-saving-a-position"></a>
+        
+        
+      </h2>
 <p>This option enables you to save the position of the Player when switching between views, since the Player will be opened again (you will need to call Resume Player when opening again - see below for details):</p>
 
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">releaseAndSavePosition</span><span class="p">;</span>
 </code></pre>
 </div>
-
-<h2 id="resuming-a-player">Resuming a Player</h2>
+    
+      <h2 id="resuming-a-player">
+        
+        
+          Resuming a Player <a href="#resuming-a-player"></a>
+        
+        
+      </h2>
 <p>When a Player is released and its position saved, the following option resumes the Player:</p>
 
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">resumePlayer</span><span class="p">;</span>
 </code></pre>
 </div>
-
 		
 </article>
 

@@ -147,13 +147,25 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="download-to-go---android">Download to Go - Android</h1>
+		<h1 id="download-to-go---android">
+        
+        
+          Download to Go - Android <a href="#download-to-go---android"></a>
+        
+        
+      </h1>
 
 <p>Download to Go (DTG) is an Android library that facilitates the download of video assets, with an emphasis on DASH and HLS.</p>
 
 <p>The library is external to the Player SDK, and is added separately by the application.</p>
-
-<h2 id="supported-video-formats">Supported Video Formats</h2>
+    
+      <h2 id="supported-video-formats">
+        
+        
+          Supported Video Formats <a href="#supported-video-formats"></a>
+        
+        
+      </h2>
 
 <ul>
   <li>MPEG-DASH
@@ -176,8 +188,14 @@ rtp('get', 'campaign',true);
   </li>
   <li>MP4</li>
 </ul>
-
-<h2 id="project-setup">Project Setup</h2>
+    
+      <h2 id="project-setup">
+        
+        
+          Project Setup <a href="#project-setup"></a>
+        
+        
+      </h2>
 
 <p>The simplest way to get up and running is by using JitPack’s Maven repository.</p>
 
@@ -203,8 +221,14 @@ rtp('get', 'campaign',true);
 <p>Replace <code class="highlighter-rouge">v2.0.0</code> with the <a href="https://github.com/kaltura/playkit-dtg-android/releases">latest release</a>.</p>
 
 <p>JitPack provides more <a href="https://jitpack.io/#com.kaltura/playkit-dtg-android">options and information</a>.</p>
-
-<h3 id="alternative-setup">Alternative Setup</h3>
+    
+      <h3 id="alternative-setup">
+        
+        
+          Alternative Setup <a href="#alternative-setup"></a>
+        
+        
+      </h3>
 
 <p>As with any Open Source library, you can also <a href="https://github.com/kaltura/playkit-dtg-android/">clone the repository from GitHub</a> and add it to your project:</p>
 
@@ -224,8 +248,14 @@ rtp('get', 'campaign',true);
 </div>
 
 <p>Now when you build your own project, DTGLib gets built as well. However, this setup should only be used when you want to contribute to DTGLib development.</p>
-
-<h2 id="usage">Usage</h2>
+    
+      <h2 id="usage">
+        
+        
+          Usage <a href="#usage"></a>
+        
+        
+      </h2>
 
 <p>The following classes/interfaces are the public API of the library:</p>
 
@@ -240,16 +270,34 @@ rtp('get', 'campaign',true);
 <p>Please see their Javadoc comments.</p>
 
 <p>Following are some basic sequence diagrams.</p>
-
-<h3 id="start-and-stop-the-service">Start and Stop the Service</h3>
+    
+      <h3 id="start-and-stop-the-service">
+        
+        
+          Start and Stop the Service <a href="#start-and-stop-the-service"></a>
+        
+        
+      </h3>
 
 <p><img src="assets/uml/a513c69baa155217d317fda5d8a81255.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
-
-<h3 id="new-download-sequence">New Download Sequence</h3>
+    
+      <h3 id="new-download-sequence">
+        
+        
+          New Download Sequence <a href="#new-download-sequence"></a>
+        
+        
+      </h3>
 
 <p><img src="assets/uml/1ca5340d9538ee9b39726f6686b35564.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
-
-<h2 id="track-selection">Track Selection</h2>
+    
+      <h2 id="track-selection">
+        
+        
+          Track Selection <a href="#track-selection"></a>
+        
+        
+      </h2>
 
 <p>Tracks are selected, by type, using a TrackSelector object. A TrackSelector is obtained by calling <code class="highlighter-rouge">getTrackSelector()</code> on a DownloadItem.<br />
 Given a TrackSelector, the application performs selection:</p>
@@ -262,22 +310,46 @@ Given a TrackSelector, the application performs selection:</p>
 <span class="n">trackSelector</span><span class="o">.</span><span class="na">apply</span><span class="o">();</span>
 </code></pre>
 </div>
-
-<h3 id="sequence-diagram">Sequence Diagram</h3>
+    
+      <h3 id="sequence-diagram">
+        
+        
+          Sequence Diagram <a href="#sequence-diagram"></a>
+        
+        
+      </h3>
 
 <p><img src="assets/uml/9432c72479fec283443d28761ef950f1.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
-
-<h3 id="interactive-selection-before-download-is-started">Interactive Selection Before Download is Started</h3>
+    
+      <h3 id="interactive-selection-before-download-is-started">
+        
+        
+          Interactive Selection Before Download is Started <a href="#interactive-selection-before-download-is-started"></a>
+        
+        
+      </h3>
 
 <p>In this scenario, the metadata for an item was downloaded, the default tracks were selected, but the download wasn’t yet started. <br />
 The application calls item.getTrackSelector(), makes a selection and applies it. The selected tracks are downloaded as part of the normal download.</p>
-
-<h3 id="interactive-selection-after-download-is-finished">Interactive Selection After Download is Finished</h3>
+    
+      <h3 id="interactive-selection-after-download-is-finished">
+        
+        
+          Interactive Selection After Download is Finished <a href="#interactive-selection-after-download-is-finished"></a>
+        
+        
+      </h3>
 
 <p>The entire item has downloaded. The user now decides to download additional tracks - such as another audio language. <br />
 The application calls item.getTrackSelector(), makes a selection and applies it. Then, item.startDownload() is called again, to start downloading the extra tracks.</p>
-
-<h3 id="preference-based-selection">Preference-based Selection</h3>
+    
+      <h3 id="preference-based-selection">
+        
+        
+          Preference-based Selection <a href="#preference-based-selection"></a>
+        
+        
+      </h3>
 
 <p>The application may have a policy on track selection, for example:</p>
 <ul>
@@ -290,8 +362,14 @@ The application calls item.getTrackSelector(), makes a selection and applies it.
 <p>If no selection was made, some defaults are applied instead. However, it’s recommended that the application adopts its own defaults.</p>
 
 <p>If the application can select tracks without user interaction, it is best to do so inside the onTracksAvailable() handler. It avoids writing data to the database that will be discarded immediately after.</p>
-
-<h3 id="track-selection-samples">Track Selection Samples</h3>
+    
+      <h3 id="track-selection-samples">
+        
+        
+          Track Selection Samples <a href="#track-selection-samples"></a>
+        
+        
+      </h3>
 
 <p>Select the video track with the <strong>lowest</strong> bitrate:</p>
 
@@ -316,16 +394,20 @@ The application calls item.getTrackSelector(), makes a selection and applies it.
     <span class="n">selectAllAvailableTracksByType</span><span class="o">(</span><span class="n">trackSelector</span><span class="o">,</span> <span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackType</span><span class="o">.</span><span class="na">TEXT</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="default-selection">Default Selection</h3>
+    
+      <h3 id="default-selection">
+        
+        
+          Default Selection <a href="#default-selection"></a>
+        
+        
+      </h3>
 
 <ul>
   <li>Video: highest bitrate track</li>
   <li>Audio: highest bitrate version of the first language</li>
   <li>Text: first track.</li>
 </ul>
-
-
 		
 </article>
 

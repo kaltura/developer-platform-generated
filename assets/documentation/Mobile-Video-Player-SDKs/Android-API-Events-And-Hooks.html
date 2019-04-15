@@ -147,15 +147,26 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/Android-Supported-green.svg" alt="Android" /></a></p>
+		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/Android-Supported-green.svg" alt="Android" /></a></p>
 
 <p>This article describes how to use the Android Player API methods to manage properties, events, and notifications.</p>
-
-<h3 id="api-events-and-hooks">API Events and Hooks</h3>
+      <h3 id="api-events-and-hooks">
+        
+        
+          API Events and Hooks <a href="#api-events-and-hooks"></a>
+        
+        
+      </h3>
 
 <p>The Android API supports the following events and hooks.</p>
-
-<h4 id="kmediacontrol">KMediaControl</h4>
+    
+      <h4 id="kmediacontrol">
+        
+        
+          KMediaControl <a href="#kmediacontrol"></a>
+        
+        
+      </h4>
 
 <p>The SDK offers the ability to perform Player operations using the KMediaControl API.<br />
 This API enables you to send the following operations:</p>
@@ -270,10 +281,22 @@ This API enables you to send the following operations:</p>
     
 </code></pre>
 </div>
-
-<h3 id="player-states-event-listeners">Player States Event Listeners</h3>
-
-<h4 id="the-sdk-support-implementation-of-the-following-listeners">The SDK Support implementation of the following Listeners:</h4>
+    
+      <h3 id="player-states-event-listeners">
+        
+        
+          Player States Event Listeners <a href="#player-states-event-listeners"></a>
+        
+        
+      </h3>
+    
+      <h4 id="the-sdk-support-implementation-of-the-following-listeners">
+        
+        
+          The SDK Support implementation of the following Listeners: <a href="#the-sdk-support-implementation-of-the-following-listeners"></a>
+        
+        
+      </h4>
 <ul>
   <li>Example:</li>
   <li>KTrackActions.VideoTrackEventListener - getting informed on VideoTrack selected</li>
@@ -285,8 +308,14 @@ This API enables you to send the following operations:</p>
   <li>KPStateChangedEventListener - getting informed about player state changes</li>
   <li>KPFullScreenToggledEventListener - getting informed about user selected full screen icon for implementing your full screen logic.</li>
 </ul>
-
-<h4 id="adding-listeners-in-the-app">Adding Listeners in the app:</h4>
+    
+      <h4 id="adding-listeners-in-the-app">
+        
+        
+          Adding Listeners in the app: <a href="#adding-listeners-in-the-app"></a>
+        
+        
+      </h4>
 <ul>
   <li>Example:
     <ul>
@@ -301,8 +330,14 @@ This API enables you to send the following operations:</p>
     </ul>
   </li>
 </ul>
-
-<h4 id="removing-listeners-from-the-app">Removing Listeners from the app:</h4>
+    
+      <h4 id="removing-listeners-from-the-app">
+        
+        
+          Removing Listeners from the app: <a href="#removing-listeners-from-the-app"></a>
+        
+        
+      </h4>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>    Need to call to the same API with null as parameter
 </code></pre>
@@ -374,8 +409,14 @@ This API enables you to send the following operations:</p>
     <span class="o">}</span>
 </code></pre>
 </div>
-
-<h3 id="waiting-for-a-ready-event">Waiting for a READY Event</h3>
+    
+      <h3 id="waiting-for-a-ready-event">
+        
+        
+          Waiting for a READY Event <a href="#waiting-for-a-ready-event"></a>
+        
+        
+      </h3>
 
 <p>In some cases, the end user will want to wait until the ready event is received and only then to continue.</p>
 
@@ -394,8 +435,14 @@ This API enables you to send the following operations:</p>
        
 </code></pre>
 </div>
-
-<h3 id="enabledisable-configuration-on-runtime">Enable/Disable Configuration on Runtime</h3>
+    
+      <h3 id="enabledisable-configuration-on-runtime">
+        
+        
+          Enable/Disable Configuration on Runtime <a href="#enabledisable-configuration-on-runtime"></a>
+        
+        
+      </h3>
 
 <p>In some cases, the application will want to add or remove configuration attributes according to states or events that are received.<br />
 The Player provides an API for enabling and disabling these settings, the setKDPAttribute, which receives three parameters:</p>
@@ -423,8 +470,14 @@ The Player provides an API for enabling and disabling these settings, the setKDP
 
 </code></pre>
 </div>
-
-<h3 id="player-event-listeners">Player Event Listeners</h3>
+    
+      <h3 id="player-event-listeners">
+        
+        
+          Player Event Listeners <a href="#player-event-listeners"></a>
+        
+        
+      </h3>
 
 <p>If you want the application to react to web events, add the function “mPlayerView.addKPlayerEventListener”.</p>
 
@@ -443,16 +496,28 @@ The Player provides an API for enabling and disabling these settings, the setKDP
 
 </code></pre>
 </div>
-
-<h3 id="sending-event-notifications">Sending Event Notifications</h3>
+    
+      <h3 id="sending-event-notifications">
+        
+        
+          Sending Event Notifications <a href="#sending-event-notifications"></a>
+        
+        
+      </h3>
 
 <p>To change the current player behavior, use the sendNotification API. This method receives two parameters:</p>
 <ul>
   <li>action name</li>
   <li>parameter (string/json)</li>
 </ul>
-
-<h4 id="examples">Examples:</h4>
+    
+      <h4 id="examples">
+        
+        
+          Examples: <a href="#examples"></a>
+        
+        
+      </h4>
 
 <p><strong>Notification without parameters:</strong></p>
 
@@ -472,8 +537,6 @@ The Player provides an API for enabling and disabling these settings, the setKDP
 <span class="n">getPlayer</span><span class="o">().</span><span class="na">sendNotification</span><span class="o">(</span><span class="s">"changeMedia"</span><span class="o">,</span> <span class="n">entry</span><span class="o">);</span> 
 </code></pre>
 </div>
-
-
 		
 </article>
 

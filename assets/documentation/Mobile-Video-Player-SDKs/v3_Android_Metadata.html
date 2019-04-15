@@ -141,9 +141,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Playkit SDK provides a convenient method for retrieving metadata from HLS and DASH sources. The following article explains how to retrieve the metadata and provides a list of all available metadata types. You can also find a working code sample <a href="https://github.com/kaltura/playkit-android-samples/tree/master/MetadataSample">here</a>.</p>
-
-<h2 id="retrieving-metadata">Retrieving Metadata</h2>
+		<p>The Playkit SDK provides a convenient method for retrieving metadata from HLS and DASH sources. The following article explains how to retrieve the metadata and provides a list of all available metadata types. You can also find a working code sample <a href="https://github.com/kaltura/playkit-android-samples/tree/master/MetadataSample">here</a>.</p>
+      <h2 id="retrieving-metadata">
+        
+        
+          Retrieving Metadata <a href="#retrieving-metadata"></a>
+        
+        
+      </h2>
 
 <p>There are three steps required for retrieving the metadata:</p>
 
@@ -152,8 +157,14 @@ rtp('get', 'campaign',true);
   <li>Obtain the Metadata object.</li>
   <li>Get the metadata.</li>
 </ol>
-
-<h3 id="subscribing-to-the-metadate_available-event">Subscribing to the METADATE_AVAILABLE Event</h3>
+    
+      <h3 id="subscribing-to-the-metadate_available-event">
+        
+        
+          Subscribing to the METADATE_AVAILABLE Event <a href="#subscribing-to-the-metadate_available-event"></a>
+        
+        
+      </h3>
 
 <p>You will need to subscribe to the corresponding event called METADATA_AVAILABLE. We recommend reading this article on <a href="/api-docs/Mobile-Video-Player-SDKs/v3_Android_EventsAndStates.html">event subscriptions</a> for more information.</p>
 
@@ -167,8 +178,14 @@ rtp('get', 'campaign',true);
 
 </code></pre>
 </div>
-
-<h3 id="obtaining-the-metadata-object">Obtaining the Metadata Object</h3>
+    
+      <h3 id="obtaining-the-metadata-object">
+        
+        
+          Obtaining the Metadata Object <a href="#obtaining-the-metadata-object"></a>
+        
+        
+      </h3>
 
 <p>The METADATA_AVAILABLE event holds data objects with Metadata. To get this object, you’ll first need to cast the event to PlayerEvent.MetadataAvailable, and then apply a getter to it.</p>
 
@@ -180,8 +197,14 @@ Metadata metadata = metadataAvailableEvent.getMetadata();
 
 </code></pre>
 </div>
-
-<h3 id="getting-the-metadata">Getting the Metadata</h3>
+    
+      <h3 id="getting-the-metadata">
+        
+        
+          Getting the Metadata <a href="#getting-the-metadata"></a>
+        
+        
+      </h3>
 
 <p>Each media entry can have more than one type of metadata object, which are called frames. To receive the frame you are interested in, you’ll need to review all the entries in the Metadata object to locate the relevant instance. In the next section, you’ll find a list of all available types of metadata. Use the following code to get the metadata you need.</p>
 
@@ -201,10 +224,22 @@ for (int i = 0; i &lt; metadata.length(); i++) {
 }
 </code></pre>
 </div>
-
-<h3 id="available-metadata-types">Available Metadata Types</h3>
-
-<h4 id="hls">HLS</h4>
+    
+      <h3 id="available-metadata-types">
+        
+        
+          Available Metadata Types <a href="#available-metadata-types"></a>
+        
+        
+      </h3>
+    
+      <h4 id="hls">
+        
+        
+          HLS <a href="#hls"></a>
+        
+        
+      </h4>
 
 <ul>
   <li><a href="https://google.github.io/ExoPlayer/doc/reference/com/google/android/exoplayer2/metadata/id3/ApicFrame.html">ApicFram</a></li>
@@ -218,18 +253,28 @@ for (int i = 0; i &lt; metadata.length(); i++) {
   <li><a href="https://google.github.io/ExoPlayer/doc/reference/com/google/android/exoplayer2/metadata/id3/TextInformationFrame.html">TextInformationFrame</a></li>
   <li><a href="https://google.github.io/ExoPlayer/doc/reference/com/google/android/exoplayer2/metadata/id3/UrlLinkFrame.html">UrlLinkFrame</a></li>
 </ul>
-
-<h4 id="dash">DASH</h4>
+    
+      <h4 id="dash">
+        
+        
+          DASH <a href="#dash"></a>
+        
+        
+      </h4>
 
 <ul>
   <li><a href="https://google.github.io/ExoPlayer/doc/reference/com/google/android/exoplayer2/metadata/emsg/EventMessage.html">EventMessage</a></li>
 </ul>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
-
 		
 </article>
 

@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 09:02:34 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon Mar 25 12:44:17 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 09:02:34 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon Mar 25 12:44:17 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -135,7 +141,13 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="download-to-go-for-android">Download-to-Go for Android</h1>
+		<h1 id="download-to-go-for-android">
+        
+        
+          Download-to-Go for Android <a href="#download-to-go-for-android"></a>
+        
+        
+      </h1>
 
 <p>Download to Go (DTG) is an Android library that facilitates the download of video assets, with an emphasis on DASH and HLS.</p>
 
@@ -164,8 +176,14 @@ rtp('get', 'campaign',true);
     </ul>
   </li>
 </ul>
-
-<h2 id="supported-video-formats">Supported Video Formats</h2>
+    
+      <h2 id="supported-video-formats">
+        
+        
+          Supported Video Formats <a href="#supported-video-formats"></a>
+        
+        
+      </h2>
 
 <ul>
   <li>MPEG-DASH
@@ -187,8 +205,14 @@ rtp('get', 'campaign',true);
   </li>
   <li>MP4</li>
 </ul>
-
-<h2 id="project-setup">Project Setup</h2>
+    
+      <h2 id="project-setup">
+        
+        
+          Project Setup <a href="#project-setup"></a>
+        
+        
+      </h2>
 
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
 	<span class="n">compile</span> <span class="s1">'com.kaltura.dtg:dtglib:2.4.0'</span>
@@ -197,8 +221,14 @@ rtp('get', 'campaign',true);
 </div>
 
 <p>Replace <code class="highlighter-rouge">2.4.0</code> with the <a href="https://bintray.com/kaltura/android/dtglib">latest release</a>.</p>
-
-<h2 id="download-states">Download States</h2>
+    
+      <h2 id="download-states">
+        
+        
+          Download States <a href="#download-states"></a>
+        
+        
+      </h2>
 
 <p><img src="states.svg" alt="" /></p>
 
@@ -216,8 +246,14 @@ rtp('get', 'campaign',true);
 	
 	@enduml
 </div>
-
-<h2 id="usage">Usage</h2>
+    
+      <h2 id="usage">
+        
+        
+          Usage <a href="#usage"></a>
+        
+        
+      </h2>
 
 <p>The following classes/interfaces are the public API of the library:</p>
 
@@ -232,8 +268,14 @@ rtp('get', 'campaign',true);
 <p>Please see their Javadoc comments.</p>
 
 <p>Following are some basic sequence diagrams.</p>
-
-<h3 id="start-and-stop-the-service">Start and Stop the Service</h3>
+    
+      <h3 id="start-and-stop-the-service">
+        
+        
+          Start and Stop the Service <a href="#start-and-stop-the-service"></a>
+        
+        
+      </h3>
 
 <p><img src="start-stop.svg" alt="" /></p>
 
@@ -255,8 +297,14 @@ rtp('get', 'campaign',true);
 
   @enduml
 </div>
-
-<h3 id="new-download-sequence">New Download Sequence</h3>
+    
+      <h3 id="new-download-sequence">
+        
+        
+          New Download Sequence <a href="#new-download-sequence"></a>
+        
+        
+      </h3>
 
 <p><img src="new-download.svg" alt="" /></p>
 
@@ -300,8 +348,14 @@ rtp('get', 'campaign',true);
     
     @enduml
 </div>
-
-<h2 id="track-selection">Track Selection</h2>
+    
+      <h2 id="track-selection">
+        
+        
+          Track Selection <a href="#track-selection"></a>
+        
+        
+      </h2>
 
 <p>Tracks are selected, by type, using a TrackSelector object. A TrackSelector is obtained by calling <code class="highlighter-rouge">getTrackSelector()</code> on a DownloadItem.<br />
 Given a TrackSelector, the application performs selection:</p>
@@ -314,8 +368,14 @@ Given a TrackSelector, the application performs selection:</p>
 <span class="n">trackSelector</span><span class="o">.</span><span class="na">apply</span><span class="o">();</span>
 </code></pre>
 </div>
-
-<h3 id="sequence-diagram">Sequence Diagram</h3>
+    
+      <h3 id="sequence-diagram">
+        
+        
+          Sequence Diagram <a href="#sequence-diagram"></a>
+        
+        
+      </h3>
 
 <p><img src="track-selection.svg" alt="" /></p>
 
@@ -335,18 +395,36 @@ Given a TrackSelector, the application performs selection:</p>
     
     @enduml
 </div>
-
-<h3 id="interactive-selection-before-download-is-started">Interactive Selection Before Download is Started</h3>
+    
+      <h3 id="interactive-selection-before-download-is-started">
+        
+        
+          Interactive Selection Before Download is Started <a href="#interactive-selection-before-download-is-started"></a>
+        
+        
+      </h3>
 
 <p>In this scenario, the metadata for an item was downloaded, the default tracks were selected, but the download wasn’t yet started. <br />
 The application calls item.getTrackSelector(), makes a selection and applies it. The selected tracks are downloaded as part of the normal download.</p>
-
-<h3 id="interactive-selection-after-download-is-finished">Interactive Selection After Download is Finished</h3>
+    
+      <h3 id="interactive-selection-after-download-is-finished">
+        
+        
+          Interactive Selection After Download is Finished <a href="#interactive-selection-after-download-is-finished"></a>
+        
+        
+      </h3>
 
 <p>The entire item has downloaded. The user now decides to download additional tracks - such as another audio language. <br />
 The application calls item.getTrackSelector(), makes a selection and applies it. Then, item.startDownload() is called again, to start downloading the extra tracks.</p>
-
-<h3 id="preference-based-selection">Preference-based Selection</h3>
+    
+      <h3 id="preference-based-selection">
+        
+        
+          Preference-based Selection <a href="#preference-based-selection"></a>
+        
+        
+      </h3>
 
 <p>The application may have a policy on track selection, for example:</p>
 <ul>
@@ -359,8 +437,14 @@ The application calls item.getTrackSelector(), makes a selection and applies it.
 <p>If no selection was made, some defaults are applied instead. However, it’s recommended that the application adopts its own defaults.</p>
 
 <p>If the application can select tracks without user interaction, it is best to do so inside the onTracksAvailable() handler. It avoids writing data to the database that will be discarded immediately after.</p>
-
-<h3 id="track-selection-samples">Track Selection Samples</h3>
+    
+      <h3 id="track-selection-samples">
+        
+        
+          Track Selection Samples <a href="#track-selection-samples"></a>
+        
+        
+      </h3>
 
 <p>Select the video track with the <strong>lowest</strong> bitrate:</p>
 
@@ -385,16 +469,28 @@ The application calls item.getTrackSelector(), makes a selection and applies it.
     <span class="n">selectAllAvailableTracksByType</span><span class="o">(</span><span class="n">trackSelector</span><span class="o">,</span> <span class="n">DownloadItem</span><span class="o">.</span><span class="na">TrackType</span><span class="o">.</span><span class="na">TEXT</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="default-selection">Default Selection</h3>
+    
+      <h3 id="default-selection">
+        
+        
+          Default Selection <a href="#default-selection"></a>
+        
+        
+      </h3>
 
 <ul>
   <li>Video: highest bitrate track</li>
   <li>Audio: highest bitrate version of the first language</li>
   <li>Text: first track.</li>
 </ul>
-
-<h3 id="alternate-audio-size-with-hls">Alternate audio size with HLS</h3>
+    
+      <h3 id="alternate-audio-size-with-hls">
+        
+        
+          Alternate audio size with HLS <a href="#alternate-audio-size-with-hls"></a>
+        
+        
+      </h3>
 
 <p>The <a href="https://tools.ietf.org/html/rfc8216">HLS spec</a> does not include bitrate (BANDWIDTH) estimation for alternate audio tracks. As a result, DTG can’t reliably add the size of audio tracks to the estimated download size. <br />
 To mitigate, <code class="highlighter-rouge">ContentManager.Settings</code> includes a <code class="highlighter-rouge">defaultHlsAudioBitrate</code> field. If you know the bitrate of your audio tracks, you should specify it there before initializing <code class="highlighter-rouge">ContentManager</code>.</p>
@@ -405,10 +501,15 @@ To mitigate, <code class="highlighter-rouge">ContentManager.Settings</code> incl
 </div>
 
 <p>The default is 64000 bps.</p>
-
-<h2 id="frequently-asked-questions">Frequently asked Questions</h2>
+    
+      <h2 id="frequently-asked-questions">
+        
+        
+          Frequently asked Questions <a href="#frequently-asked-questions"></a>
+        
+        
+      </h2>
 <p>See the <a href="faq.md">FAQ</a>.</p>
-
 		
 </article>
 

@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p> </p>
+		<p> </p>
 
 <p>This article takes the user through the basic flow of uploading media using Kaltura’s upload API.</p>
 
@@ -166,8 +166,13 @@ rtp('get', 'campaign',true);
 <figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">KalturaUploadedFileTokenResource</span> <span class="n">mediaResource</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">KalturaUploadedFileTokenResource</span><span class="p">();</span>
 <span class="n">mediaResource</span><span class="p">.</span><span class="n">Token</span> <span class="p">=</span> <span class="n">uploadToken</span><span class="p">.</span><span class="n">Id</span><span class="p">;</span>
 <span class="n">mediaEntry</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">MediaService</span><span class="p">.</span><span class="nf">AddContent</span><span class="p">(</span><span class="n">mediaEntry</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">mediaResource</span><span class="p">);</span><span class="err"> </span></code></pre></figure>
-
-<h2 id="chunked-video-upload-or-upload-pause-and-resume-flow">Chunked Video Upload or Upload Pause and Resume Flow</h2>
+      <h2 id="chunked-video-upload-or-upload-pause-and-resume-flow">
+        
+        
+          Chunked Video Upload or Upload Pause and Resume Flow <a href="#chunked-video-upload-or-upload-pause-and-resume-flow"></a>
+        
+        
+      </h2>
 
 <p>The Kaltura API supports an upload pause and resume via chunked upload workflow. Additionally, Kaltura also provide a <a href="https://github.com/kaltura/jQuery-File-Upload">jQuery plugin</a> that simplifies the process.</p>
 
@@ -184,7 +189,6 @@ rtp('get', 'campaign',true);
 </ul>
 
 <p>As a reference, see <a href="https://github.com/kaltura/kaltura-chunked-upload-test/blob/master/chunkedupload/ChunkedUpload.java#L114">this implementation of a chunked upload operation with the Kaltura Java client</a>.</p>
-
 		
 </article>
 

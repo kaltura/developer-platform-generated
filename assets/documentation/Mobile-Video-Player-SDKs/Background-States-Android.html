@@ -141,29 +141,39 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to save the Player state when the application moves to the background, which can occur in a number of situations. The application is designed to handle a number of background states, including:</p>
+		<p>This article describes how to save the Player state when the application moves to the background, which can occur in a number of situations. The application is designed to handle a number of background states, including:</p>
 
 <ul>
   <li>The end user tapped the Home button.</li>
   <li>The end user pressed the power button.</li>
   <li>Viewing was interrupted by a telephone call or similar interruption.</li>
 </ul>
-
-<h2 id="background-state-home-button-and-phone-call-interruption">Background State: Home Button and Phone Call Interruption</h2>
+      <h2 id="background-state-home-button-and-phone-call-interruption">
+        
+        
+          Background State: Home Button and Phone Call Interruption <a href="#background-state-home-button-and-phone-call-interruption"></a>
+        
+        
+      </h2>
 
 <ol>
   <li>In the onPause() method, call: <code class="highlighter-rouge">mPlayer.releaseAndSavePosition(boolean shouldRestoreState)</code>. <br />
 Use <code class="highlighter-rouge">true</code> if you want to save the state and  <code class="highlighter-rouge">false</code> if you want to go back to the pause state.</li>
   <li>In the onResume() method, call : <code class="highlighter-rouge">mPlayer.resumePlayer()</code>.</li>
 </ol>
-
-<h2 id="background-state-power-button">Background State: Power Button</h2>
+    
+      <h2 id="background-state-power-button">
+        
+        
+          Background State: Power Button <a href="#background-state-power-button"></a>
+        
+        
+      </h2>
 
 <ol>
   <li>In the onPause() method, call : <code class="highlighter-rouge">mPlayer.pause()</code>.</li>
   <li>In the onResume() method, call: <code class="highlighter-rouge">play()</code> or <code class="highlighter-rouge">pause()</code>, depending on the application’s behavior.</li>
 </ol>
-
 		
 </article>
 

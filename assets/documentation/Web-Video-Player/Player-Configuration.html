@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura Web Video Player configuration is determined by a JSON structured configuration object, which is also called <strong>Flashvars</strong>. The Flashvars configuration parameters object defines key / value pairs for Player properties as well as a plugins configuration list.</p>
+		<p>The Kaltura Web Video Player configuration is determined by a JSON structured configuration object, which is also called <strong>Flashvars</strong>. The Flashvars configuration parameters object defines key / value pairs for Player properties as well as a plugins configuration list.</p>
 
 <p>You can customize the Web Video Player using one of two options:</p>
 
@@ -149,8 +149,13 @@ The Universal Studio saves the Flashvars object for you as part of the player’
 <blockquote>
   <p>Note: The values defined in the embed code Flashvars objects override any values that were saved previously using the Studio for the same keys.</p>
 </blockquote>
-
-<h2 id="considerations-for-configuring-players">Considerations for Configuring Players</h2>
+      <h2 id="considerations-for-configuring-players">
+        
+        
+          Considerations for Configuring Players <a href="#considerations-for-configuring-players"></a>
+        
+        
+      </h2>
 
 <p>How should you configure the player, and what to consider when specifying configuration parameters? As a general rule of thumb, you should always prefer to configure Flashvars via the Studio menus and the “UI Variables” section for the following reasons:</p>
 
@@ -158,8 +163,14 @@ The Universal Studio saves the Flashvars object for you as part of the player’
   <li>The configuration defined in Studio applies to all player instances across web pages and embed codes, whereas embed code Flashvars applies only to a specific player instance.</li>
   <li>The Universal Studio’s visual and self explanatory interface makes it easy to implement the most commonly used player properties and plugins.</li>
 </ul>
-
-<h3 id="scenarios-for-using-embed-code-flashvars">Scenarios for Using Embed Code Flashvars</h3>
+    
+      <h3 id="scenarios-for-using-embed-code-flashvars">
+        
+        
+          Scenarios for Using Embed Code Flashvars <a href="#scenarios-for-using-embed-code-flashvars"></a>
+        
+        
+      </h3>
 
 <blockquote>
   <p>Note that any changes made via Flashvars on the embedding page will require editing these pages to make future changes.</p>
@@ -174,12 +185,24 @@ For example, you may need to pass metadata fields that are derived from the spec
     <p>You want to inherit all of the Player properties defined in Studio but you need to override specific properties for a specific player instance. Note that if you want to use the configuration across many pages or sites, it is better practice to create a new player and configure it via the Player Studio.</p>
   </li>
 </ol>
-
-<h3 id="passing-configuration-parameters-in-embed-methods">Passing Configuration Parameters in Embed Methods</h3>
+    
+      <h3 id="passing-configuration-parameters-in-embed-methods">
+        
+        
+          Passing Configuration Parameters in Embed Methods <a href="#passing-configuration-parameters-in-embed-methods"></a>
+        
+        
+      </h3>
 
 <p>The Kaltura Web Video Player can be embedded into webpages in a number of ways. The embed code Flashvars object is passed in a different way for different embed types. This section will help you to learn more about embed types.</p>
-
-<h4 id="configure-parameters-in-javascript-dynamic-embed">Configure Parameters in JavaScript Dynamic Embed</h4>
+    
+      <h4 id="configure-parameters-in-javascript-dynamic-embed">
+        
+        
+          Configure Parameters in JavaScript Dynamic Embed <a href="#configure-parameters-in-javascript-dynamic-embed"></a>
+        
+        
+      </h4>
 
 <p>For dynamic embeds, use a JSON object as part of your embed code:</p>
 
@@ -200,8 +223,14 @@ For example, you may need to pass metadata fields that are derived from the spec
 <span class="p">});</span>
 </code></pre>
 </div>
-
-<h4 id="configure-parameters-in-iframe-embed">Configure Parameters in iFrame Embed</h4>
+    
+      <h4 id="configure-parameters-in-iframe-embed">
+        
+        
+          Configure Parameters in iFrame Embed <a href="#configure-parameters-in-iframe-embed"></a>
+        
+        
+      </h4>
 
 <p>For auto / iFrame embeds, pass the key / value pairs on the iFrame URL query string using the Flashvars with brackets and dot syntax for nested object attributes as follows:</p>
 
@@ -213,8 +242,14 @@ For example, you may need to pass metadata fields that are derived from the spec
 <div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">"https://cdnapisec.kaltura.com/p/1645161/sp/164516100/embedIframeJs/uiconf_id/33752651/partner_id/1645161?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_1josgev8&amp;flashvars[autoPlay]=true&amp;flashvars[share.plugin]=true"</span> <span class="na">width=</span><span class="s">"560"</span> <span class="na">height=</span><span class="s">"395"</span> <span class="na">allowfullscreen</span> <span class="na">webkitallowfullscreen</span> <span class="na">mozAllowFullScreen</span> <span class="na">frameborder=</span><span class="s">"0"</span><span class="nt">&gt;&lt;/iframe&gt;</span>
 </code></pre>
 </div>
-
-<h2 id="common-player-configuration-scenarios">Common Player Configuration Scenarios</h2>
+    
+      <h2 id="common-player-configuration-scenarios">
+        
+        
+          Common Player Configuration Scenarios <a href="#common-player-configuration-scenarios"></a>
+        
+        
+      </h2>
 
 <ul>
   <li>Auto start video playback with a muted video, at a start point of 20 seconds:</li>
@@ -289,7 +324,6 @@ For example, you may need to pass metadata fields that are derived from the spec
 <span class="p">});</span>
 </code></pre>
 </div>
-
 		
 </article>
 

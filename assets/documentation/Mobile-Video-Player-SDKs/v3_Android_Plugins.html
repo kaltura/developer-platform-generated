@@ -147,9 +147,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes the steps required for building a New Analytics Plugin for the Kaltura Video Player on Android devices.</p>
-
-<h2 id="create-a-new-class-for-the-plugin">Create a New Class for the Plugin</h2>
+		<p>This article describes the steps required for building a New Analytics Plugin for the Kaltura Video Player on Android devices.</p>
+      <h2 id="create-a-new-class-for-the-plugin">
+        
+        
+          Create a New Class for the Plugin <a href="#create-a-new-class-for-the-plugin"></a>
+        
+        
+      </h2>
 
 <p>First, you’ll need to create a new class for the plugin. The class must extend the PKPlugin to integrate with the Kaltura Video Player.</p>
 
@@ -185,14 +190,26 @@ rtp('get', 'campaign',true);
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">messageBus</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="k">new</span> <span class="n">LogEvent</span><span class="o">(</span><span class="n">TAG</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="o">((</span><span class="n">PlayerEvent</span><span class="o">)</span> <span class="n">event</span><span class="o">).</span><span class="na">type</span><span class="o">.</span><span class="na">toString</span><span class="o">()));</span></code></pre></figure>
 
 <p>6 . The methods onDestroy, onUpdateConfig, onUpdateMedia, onApplicationPaused, and onApplicationResumed help you manage the life cycle of your Analytics Plugin, including initiating end events, handling background tasks, and keeping the plugin flow in accordance with the Video Player life cycle.</p>
-
-<h2 id="enable-the-analytics-plugin-for-the-kaltura-video-player-on-android-devices">Enable the Analytics Plugin for the Kaltura Video Player on Android Devices</h2>
+    
+      <h2 id="enable-the-analytics-plugin-for-the-kaltura-video-player-on-android-devices">
+        
+        
+          Enable the Analytics Plugin for the Kaltura Video Player on Android Devices <a href="#enable-the-analytics-plugin-for-the-kaltura-video-player-on-android-devices"></a>
+        
+        
+      </h2>
 
 <p>Next, you’ll need to enable the Analytics Plugin by registering it inside the application as follows:</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PlayKitManager</span><span class="o">.</span><span class="na">registerPlugins</span><span class="o">(</span><span class="n">GenericAnalyticsPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">);</span></code></pre></figure>
-
-<h2 id="configure-the-plugin-configuration-object-for-the-analytics-plugin">Configure the Plugin Configuration Object for the Analytics Plugin</h2>
+    
+      <h2 id="configure-the-plugin-configuration-object-for-the-analytics-plugin">
+        
+        
+          Configure the Plugin Configuration Object for the Analytics Plugin <a href="#configure-the-plugin-configuration-object-for-the-analytics-plugin"></a>
+        
+        
+      </h2>
 
 <p>To configure the Analytics Plugin, add the following configuration to your <code class="highlighter-rouge">pluginConfig</code> file as follows:</p>
 
@@ -201,16 +218,28 @@ rtp('get', 'campaign',true);
 	<span class="n">JsonObject</span> <span class="n">genericConfigEntry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JsonObject</span><span class="o">();</span>
 	<span class="n">genericConfigEntry</span><span class="o">.</span><span class="na">addProperty</span><span class="o">(</span><span class="s">"NameOfThe Configuration"</span><span class="o">,</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">configuration</span><span class="o">);</span>
 <span class="o">}</span></code></pre></figure>
-
-<h2 id="set-the-plugin-configuration-to-the-analytics-plugin">Set the Plugin Configuration to the Analytics Plugin</h2>
+    
+      <h2 id="set-the-plugin-configuration-to-the-analytics-plugin">
+        
+        
+          Set the Plugin Configuration to the Analytics Plugin <a href="#set-the-plugin-configuration-to-the-analytics-plugin"></a>
+        
+        
+      </h2>
 
 <p>For the Analytics Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PlayerConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlayerConfig</span><span class="o">();</span>
 <span class="n">PlayerConfig</span><span class="o">.</span><span class="na">Plugins</span> <span class="n">plugins</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="na">plugins</span><span class="o">;</span>
 <span class="n">plugins</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="s">"NameOfPlugin"</span> <span class="o">,</span> <span class="n">genericConfigEntry</span><span class="o">.</span><span class="na">toJson</span><span class="o">());</span> </code></pre></figure>
-
-<h2 id="messagebus-supported-events">MessageBus Supported Events</h2>
+    
+      <h2 id="messagebus-supported-events">
+        
+        
+          MessageBus Supported Events <a href="#messagebus-supported-events"></a>
+        
+        
+      </h2>
 
 <p>The MessageBus supports the following events:</p>
 
@@ -257,8 +286,14 @@ rtp('get', 'campaign',true);
         <span class="n">CONTENT_RESUME_REQUESTED</span><span class="o">,</span>
         <span class="n">ALL_ADS_COMPLETED</span>
 <span class="o">}</span></code></pre></figure>
-
-<h2 id="adding-new-events-using-the-messagebus">Adding New Events Using the MessageBus</h2>
+    
+      <h2 id="adding-new-events-using-the-messagebus">
+        
+        
+          Adding New Events Using the MessageBus <a href="#adding-new-events-using-the-messagebus"></a>
+        
+        
+      </h2>
 
 <p>If you have new events you need to report, you can add new events by implementing the following steps:</p>
 
@@ -287,10 +322,22 @@ rtp('get', 'campaign',true);
 <p>3 . Use the Messagebus to post your new event:</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">messageBus</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="k">new</span> <span class="n">NewAnalyticsEvent</span><span class="o">(</span><span class="n">TAG</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="o">((</span><span class="n">NewAnalyticsEvent</span><span class="o">)</span> <span class="n">event</span><span class="o">).</span><span class="na">type</span><span class="o">.</span><span class="na">toString</span><span class="o">()));</span></code></pre></figure>
-
-<h2 id="code-examples">Code Examples</h2>
-
-<h3 id="event-listener">Event Listener</h3>
+    
+      <h2 id="code-examples">
+        
+        
+          Code Examples <a href="#code-examples"></a>
+        
+        
+      </h2>
+    
+      <h3 id="event-listener">
+        
+        
+          Event Listener <a href="#event-listener"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">mEventListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span><span class="o">()</span> <span class="o">{</span>
 <span class="nd">@Override</span>
@@ -328,8 +375,14 @@ rtp('get', 'campaign',true);
     <span class="o">}</span>
 <span class="o">}</span>
 <span class="o">};</span></code></pre></figure>
-
-<h3 id="ondestroy">onDestroy</h3>
+    
+      <h3 id="ondestroy">
+        
+        
+          onDestroy <a href="#ondestroy"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> 
@@ -337,31 +390,55 @@ rtp('get', 'campaign',true);
 	<span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"onDestroy"</span><span class="o">);</span>
 	<span class="n">sendAnalyticsEvent</span><span class="o">(</span><span class="n">PhoenixActionType</span><span class="o">.</span><span class="na">STOP</span><span class="o">);</span>
 <span class="o">}</span></code></pre></figure>
-
-<h3 id="onapplicationpaused">onApplicationPaused</h3>
+    
+      <h3 id="onapplicationpaused">
+        
+        
+          onApplicationPaused <a href="#onapplicationpaused"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onApplicationPaused</span><span class="o">()</span> 
 <span class="o">{</span>
 	<span class="n">stopMonitoring</span><span class="o">();</span>
 <span class="o">}</span></code></pre></figure>
-
-<h3 id="onapplicationresumed">onApplicationResumed</h3>
+    
+      <h3 id="onapplicationresumed">
+        
+        
+          onApplicationResumed <a href="#onapplicationresumed"></a>
+        
+        
+      </h3>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onApplicationResumed</span><span class="o">()</span> 
 <span class="o">{</span>
 	<span class="n">startMonitoring</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">player</span><span class="o">);</span>
 <span class="o">}</span></code></pre></figure>
-
-<h2 id="setting-the-plugin-configuration-to-the-youbora-plugin">Setting the Plugin Configuration to the Youbora Plugin</h2>
+    
+      <h2 id="setting-the-plugin-configuration-to-the-youbora-plugin">
+        
+        
+          Setting the Plugin Configuration to the Youbora Plugin <a href="#setting-the-plugin-configuration-to-the-youbora-plugin"></a>
+        
+        
+      </h2>
 
 <p>For the Youbora Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PlayerConfig</span><span class="o">.</span><span class="na">Plugins</span> <span class="n">pluginsConfig</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="na">plugins</span><span class="o">;</span>
 <span class="n">pluginsConfig</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="n">YouboraPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">converterYoubora</span><span class="o">.</span><span class="na">toJson</span><span class="o">());</span> </code></pre></figure>
-
-<h2 id="setting-the-plugin-configuration-to-the-ima-plugin">Setting the Plugin Configuration to the IMA Plugin</h2>
+    
+      <h2 id="setting-the-plugin-configuration-to-the-ima-plugin">
+        
+        
+          Setting the Plugin Configuration to the IMA Plugin <a href="#setting-the-plugin-configuration-to-the-ima-plugin"></a>
+        
+        
+      </h2>
 
 <p>For the IMA Plugin to start loading, you’ll need to set the plugin configuration you created as follows:</p>
 
@@ -372,11 +449,16 @@ rtp('get', 'campaign',true);
 <span class="n">videoMimeTypes</span><span class="o">,</span> <span class="n">adTagUrl</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
     
 <span class="n">pluginsConfig</span><span class="o">.</span><span class="na">setPluginConfig</span><span class="o">(</span><span class="n">IMAPlugin</span><span class="o">.</span><span class="na">factory</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span><span class="n">adsConfig</span><span class="o">.</span><span class="na">toJSONObject</span><span class="o">());</span></code></pre></figure>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

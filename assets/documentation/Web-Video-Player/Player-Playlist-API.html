@@ -141,7 +141,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura Web Video Player provides a robust playlist plugin that allows rendering a playlist of entries with many configuration options, such as:</p>
+		<p>The Kaltura Web Video Player provides a robust playlist plugin that allows rendering a playlist of entries with many configuration options, such as:</p>
 
 <ul>
   <li>Render the playlist to the right, left, top or bottom of the Player</li>
@@ -156,8 +156,13 @@ rtp('get', 'campaign',true);
 </ul>
 
 <p>You can create a playlist functionality on your page by calling the Kaltura list API and using the Kaltura Web Video Player <code class="highlighter-rouge">changeMedia</code> notification; however, using the Web Video Player’s built-in playlist plugin will shorten your time to launch, simplify the management of your code, and provide better playback control.</p>
-
-<h2 id="playlist-config-parameters">Playlist Config Parameters</h2>
+      <h2 id="playlist-config-parameters">
+        
+        
+          Playlist Config Parameters <a href="#playlist-config-parameters"></a>
+        
+        
+      </h2>
 
 <p>The playlist plugin exposes the following Flashvars configuration parameters to configure the behavior of the playlist:</p>
 
@@ -170,8 +175,14 @@ rtp('get', 'campaign',true);
   <li><code class="highlighter-rouge">hideClipPoster</code>: Hides the clip poster when switching to another clip</li>
   <li><code class="highlighter-rouge">initItemEntryId</code>: Indicates that the entryId that should be played first</li>
 </ul>
-
-<h4 id="configure-playlist-via-player-studio-uivars">Configure Playlist via Player Studio UIVars</h4>
+    
+      <h4 id="configure-playlist-via-player-studio-uivars">
+        
+        
+          Configure Playlist via Player Studio UIVars <a href="#configure-playlist-via-player-studio-uivars"></a>
+        
+        
+      </h4>
 
 <p>When configuring the playlist via the Player Studio UIVars, remember that each new line is key=value pair:</p>
 
@@ -180,8 +191,14 @@ playlistAPI.layout=horizontal
 playlistAPI.autoContinue=true
 </code></pre>
 </div>
-
-<h4 id="configure-playlist-via-embeded-flashvars">Configure Playlist via Embeded Flashvars</h4>
+    
+      <h4 id="configure-playlist-via-embeded-flashvars">
+        
+        
+          Configure Playlist via Embeded Flashvars <a href="#configure-playlist-via-embeded-flashvars"></a>
+        
+        
+      </h4>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">flashvars</span><span class="err">:</span> <span class="p">{</span>
 	<span class="s2">"playlistAPI"</span><span class="err">:</span> <span class="p">{</span>
@@ -192,12 +209,24 @@ playlistAPI.autoContinue=true
 <span class="p">}</span>
 </code></pre>
 </div>
-
-<h2 id="common-player-playlist-best-practices">Common Player Playlist Best Practices</h2>
+    
+      <h2 id="common-player-playlist-best-practices">
+        
+        
+          Common Player Playlist Best Practices <a href="#common-player-playlist-best-practices"></a>
+        
+        
+      </h2>
 
 <p>This section provides common best practices for customizing and configuring your playlist Player.</p>
-
-<h3 id="size-relationship-of-the-web-video-player-and-its-playlist-ui">Size Relationship of the Web Video Player and its Playlist UI</h3>
+    
+      <h3 id="size-relationship-of-the-web-video-player-and-its-playlist-ui">
+        
+        
+          Size Relationship of the Web Video Player and its Playlist UI <a href="#size-relationship-of-the-web-video-player-and-its-playlist-ui"></a>
+        
+        
+      </h3>
 
 <p>When adding a playlist to your Player, the playlist UI will take screen space from the dimensions of your Player. As such, you should set your Player dimensions accordingly to accommodate for the added playlist UI dimensions.</p>
 
@@ -206,8 +235,14 @@ playlistAPI.autoContinue=true
   <li>For horizontal playlists on the top or bottom, add the playlist height to the player height. The default playlist height is 113px.</li>
   <li>When using onPage playlists (playlists that render outside of the Player iFrame) you don’t need to change the Player size.</li>
 </ul>
-
-<h3 id="customizing-the-playlist-item-renderer-ui">Customizing the Playlist Item Renderer UI</h3>
+    
+      <h3 id="customizing-the-playlist-item-renderer-ui">
+        
+        
+          Customizing the Playlist Item Renderer UI <a href="#customizing-the-playlist-item-renderer-ui"></a>
+        
+        
+      </h3>
 
 <p>You can use a custom CSS with your playlist to change playlist item CSS definitions, such as color and fonts.  <br />
 This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHTML5Css</code> property to your custom CSS file.</p>
@@ -215,8 +250,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
 <blockquote>
   <p>See the article on <a href="http://player.kaltura.com/modules/KalturaSupport/tests/PlaylistPagingTemplate.html">playlists with custom template and paging</a> for a well-developed example of using a custom template to customize the playlist plugin UI and behavior.</p>
 </blockquote>
-
-<h3 id="customizing-the-playlist-item-renderer-displayed-data">Customizing the Playlist Item Renderer Displayed Data</h3>
+    
+      <h3 id="customizing-the-playlist-item-renderer-displayed-data">
+        
+        
+          Customizing the Playlist Item Renderer Displayed Data <a href="#customizing-the-playlist-item-renderer-displayed-data"></a>
+        
+        
+      </h3>
 
 <p>You can change the data displayed for each clip by setting your own custom template for the playlist item renderer. The custom template overrides the base playlist template and defines which data to show, as well as the HTML markup used to render the data.</p>
 
@@ -225,8 +266,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
 </blockquote>
 
 <p>You can override this template with your own template by setting the <code class="highlighter-rouge">playlistAPI.templatePath</code> property to link to your custom template.</p>
-
-<h3 id="onpage-playlist-rendered-on-the-hosting-page">OnPage Playlist (Rendered on the Hosting Page)</h3>
+    
+      <h3 id="onpage-playlist-rendered-on-the-hosting-page">
+        
+        
+          OnPage Playlist (Rendered on the Hosting Page) <a href="#onpage-playlist-rendered-on-the-hosting-page"></a>
+        
+        
+      </h3>
 
 <p>You can decide to render the playlist UI on the web page in which the player is embeded.</p>
 
@@ -243,12 +290,24 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
   <li>You can add your own logic to the playlist div element using Javascript, for example, add an expand/collapse functionality.</li>
   <li>You may define a custom CSS for your playlist by setting the <code class="highlighter-rouge">playlsitAPI.onPageCss1</code> property and link to your CSS file.</li>
 </ul>
-
-<h2 id="playlist-api-properties-and-events">Playlist API, Properties, and Events</h2>
+    
+      <h2 id="playlist-api-properties-and-events">
+        
+        
+          Playlist API, Properties, and Events <a href="#playlist-api-properties-and-events"></a>
+        
+        
+      </h2>
 
 <p>The playlistAPI plugin exposes a Javascript API that can be used to communicate with the playlist using the Kaltura Player API.</p>
-
-<h3 id="playlist-api-properties">Playlist API Properties</h3>
+    
+      <h3 id="playlist-api-properties">
+        
+        
+          Playlist API Properties <a href="#playlist-api-properties"></a>
+        
+        
+      </h3>
 
 <table>
   <thead>
@@ -272,8 +331,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
     </tr>
   </tbody>
 </table>
-
-<h4 id="examples">Examples</h4>
+    
+      <h4 id="examples">
+        
+        
+          Examples <a href="#examples"></a>
+        
+        
+      </h4>
 
 <p>Here are some playlist API properties examples:</p>
 
@@ -296,8 +361,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
 <blockquote>
   <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/PlaylistOnPage.qunit.html">Using Playlist Properties Examples</a> for more information about the Playlist API, properties, and events.</p>
 </blockquote>
-
-<h3 id="playlist-api-methods">Playlist API Methods</h3>
+    
+      <h3 id="playlist-api-methods">
+        
+        
+          Playlist API Methods <a href="#playlist-api-methods"></a>
+        
+        
+      </h3>
 
 <table>
   <thead>
@@ -317,8 +388,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
     </tr>
   </tbody>
 </table>
-
-<h4 id="examples-1">Examples</h4>
+    
+      <h4 id="examples-1">
+        
+        
+          Examples <a href="#examples-1"></a>
+        
+        
+      </h4>
 
 <p>Here are some playlist API method examples:</p>
 
@@ -337,8 +414,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">sendNotification</span><span class="p">(</span><span class="s2">"playlistPlayPrevious"</span><span class="p">);</span>
 </code></pre>
 </div>
-
-<h3 id="playlist-api-events-hooks">Playlist API Events (Hooks)</h3>
+    
+      <h3 id="playlist-api-events-hooks">
+        
+        
+          Playlist API Events (Hooks) <a href="#playlist-api-events-hooks"></a>
+        
+        
+      </h3>
 
 <table>
   <thead>
@@ -382,8 +465,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
     </tr>
   </tbody>
 </table>
-
-<h4 id="examples-2">Examples</h4>
+    
+      <h4 id="examples-2">
+        
+        
+          Examples <a href="#examples-2"></a>
+        
+        
+      </h4>
 
 <p>Here are some playlist API events (hooks) examples:</p>
 
@@ -410,8 +499,14 @@ This is done by setting the playlistAPI <code class="highlighter-rouge">iframeHT
 <blockquote>
   <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/PlaylistEvents.qunit.html">Registering to Playlist Events</a> for details.</p>
 </blockquote>
-
-<h2 id="playing-a-stitched-video-playlist">Playing a Stitched Video Playlist</h2>
+    
+      <h2 id="playing-a-stitched-video-playlist">
+        
+        
+          Playing a Stitched Video Playlist <a href="#playing-a-stitched-video-playlist"></a>
+        
+        
+      </h2>
 
 <p>The Kaltura backend provides the capability to  stitch manual playlists dynamically, by combining video entries into a single continuos video stream.  <br />
 The Kaltura Player leverages the ability to play stitched playlists as if they were a single video entry.  <br />
@@ -430,7 +525,6 @@ To play a stitched playlist, simply pass the ID of the manual playlist you would
 <span class="p">});</span>
 </code></pre>
 </div>
-
 		
 </article>
 

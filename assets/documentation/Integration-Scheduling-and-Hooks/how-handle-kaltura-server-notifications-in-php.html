@@ -141,7 +141,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>Often applications require the ability to respond to asynchronous events that occurred on the Kaltura server. For example, when a Media Entry was uploaded, finished transcoding or any other status update. This guide will take you through the steps of listening to these events, called <a href="https://developer.kaltura.com/api-docs/#/eventNotificationTemplate">Event Notifications</a>, how to parse the data carried in these notifications, and how to respond properly in your applications.</p>
+		<p>Often applications require the ability to respond to asynchronous events that occurred on the Kaltura server. For example, when a Media Entry was uploaded, finished transcoding or any other status update. This guide will take you through the steps of listening to these events, called <a href="https://developer.kaltura.com/api-docs/#/eventNotificationTemplate">Event Notifications</a>, how to parse the data carried in these notifications, and how to respond properly in your applications.</p>
 
 <p>Kaltura Notifications are HTTP POST requests that are sent by the Kaltura server to any defined accessible web URL whenever specific Kaltura events happen (e.g., Entry added, deleted, etc.).</p>
 
@@ -153,21 +153,38 @@ rtp('get', 'campaign',true);
 </ul>
 
 <p>The full list of notifications sent by the Kaltura server are available in the <a href="https://developer.kaltura.com/workflows/Integration_Scheduling_and_Hooks/Backend_and_Email_Notifications">Kaltura Notifications API docs</a>.</p>
-
-<h2 id="configuring-the-kaltura-api-notifications-php-client">Configuring The Kaltura API Notifications PHP Client</h2>
+      <h2 id="configuring-the-kaltura-api-notifications-php-client">
+        
+        
+          Configuring The Kaltura API Notifications PHP Client <a href="#configuring-the-kaltura-api-notifications-php-client"></a>
+        
+        
+      </h2>
 
 <p>The KalturaNotificationClient was developed by Kaltura as a helper class that was created to simplify the creation of the notification handler. </p>
 
 <p>The KalturaNotificationClient constructor takes in the <a href="http://php.net/manual/en/reserved.variables.post.php">$_POST</a> params array and the Kaltura account Admin Secret. When created (instanced), the KalturaNotificationClient object verifies that the given $_POST array is a valid Kaltura Notification Object, builds a native PHP object and performs a basic <a href="http://en.wikipedia.org/wiki/Checksum&quot;">checksum</a><br />
 check to verify that the Notification signature is valid (this procedure verifies that the given $_POST array was not modified by a <a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">man in the middle</a> using the admin secret). </p>
-
-<h3 id="in-which-situations-might-the-same-notification-be-sent-twice">In which Situations Might the Same Notification be Sent Twice?</h3>
+    
+      <h3 id="in-which-situations-might-the-same-notification-be-sent-twice">
+        
+        
+          In which Situations Might the Same Notification be Sent Twice? <a href="#in-which-situations-might-the-same-notification-be-sent-twice"></a>
+        
+        
+      </h3>
 
 <p>An entry_add notification might be sent twice if it is set to be sent by both a client application (such as the Kaltura Contribution Wizard) and the Kaltura server.</p>
 
 <p>Other notifications will not be sent twice in general, however the following scenario might occur: If the HTTP response of the notification_handler would not be 200, the Kaltura server will retry to send this notification.</p>
-
-<h3 id="the-metadata-based-api-notifications-handler-client">The Metadata Based API Notifications Handler Client</h3>
+    
+      <h3 id="the-metadata-based-api-notifications-handler-client">
+        
+        
+          The Metadata Based API Notifications Handler Client <a href="#the-metadata-based-api-notifications-handler-client"></a>
+        
+        
+      </h3>
 
 <p>This package is an example of using Kaltura notifications, you may implement your own handler classes following our example.</p>
 
@@ -199,8 +216,14 @@ Access the KMC and set up notifications under Settings&gt;Integration Settings&g
 <p>7 . To test your notification handler, open an entry in the KMC and update it (if you set up notification as “Update Entry” for instance). Kaltura should trigger a notification and execute your script on the public server where it has been installed</p>
 
 <p>8 . To check if your notification handler went through, check the log in the “log” directory.</p>
-
-<h3 id="add-your-code-to-handle-the-notification">Add Your Code to Handle the Notification</h3>
+    
+      <h3 id="add-your-code-to-handle-the-notification">
+        
+        
+          Add Your Code to Handle the Notification <a href="#add-your-code-to-handle-the-notification"></a>
+        
+        
+      </h3>
 
 <ol>
   <li>Open the following file: lib/Kaltura/Notification/Handler/SyncEntry.php.</li>
@@ -208,8 +231,14 @@ Access the KMC and set up notifications under Settings&gt;Integration Settings&g
 </ol>
 
 <p><img src="assets/images/codeline.png" alt="Code inline" /></p>
-
-<h3 id="set-up-the-notifications-handler-endpoint">Set up the Notifications Handler Endpoint</h3>
+    
+      <h3 id="set-up-the-notifications-handler-endpoint">
+        
+        
+          Set up the Notifications Handler Endpoint <a href="#set-up-the-notifications-handler-endpoint"></a>
+        
+        
+      </h3>
 
 <p>The last step in this process is to indicate the endpoint URL that will listen to the Kaltura Notifications.</p>
 
@@ -222,8 +251,14 @@ Access the KMC and set up notifications under Settings&gt;Integration Settings&g
 </ol>
 
 <p><img src="assets/images/notifications.jpg" alt="Notification URL" /></p>
-
-<h2 id="multi-notifications">Multi-notifications</h2>
+    
+      <h2 id="multi-notifications">
+        
+        
+          Multi-notifications <a href="#multi-notifications"></a>
+        
+        
+      </h2>
 
 <p>Publisher accounts with high activity (many entries are being added and updated all the time), may opt to enable multi-notifications.</p>
 
@@ -232,8 +267,14 @@ Access the KMC and set up notifications under Settings&gt;Integration Settings&g
 <blockquote>
   <p>Note:  Multi-notifications is disabled by default on all publisher accounts. Kaltura SaaS edition customers - If you suspect that your account require multi-notifications, consult your Kaltura Account Manager on enabling multi-notifications.</p>
 </blockquote>
-
-<h3 id="enabling-multi-notifications-on-kaltura-community-and-on-prem-editions">Enabling Multi-notifications on Kaltura Community and On Prem Editions</h3>
+    
+      <h3 id="enabling-multi-notifications-on-kaltura-community-and-on-prem-editions">
+        
+        
+          Enabling Multi-notifications on Kaltura Community and On Prem Editions <a href="#enabling-multi-notifications-on-kaltura-community-and-on-prem-editions"></a>
+        
+        
+      </h3>
 
 <p>To enable multi-notifications for a publisher account, follow these steps:</p>
 
@@ -241,13 +282,18 @@ Access the KMC and set up notifications under Settings&gt;Integration Settings&g
   <li>Edit the Publisher Account Configuration Settings in the Admin Console (Choose Configure in the Actions menu).</li>
   <li>Check the box for “Allow multi-notifications” under the “Advanced Notification Settings”.</li>
 </ol>
-
-<h3 id="thesplitmultinotifications-method">The splitMultiNotifications Method</h3>
+    
+      <h3 id="thesplitmultinotifications-method">
+        
+        
+          The splitMultiNotifications Method <a href="#thesplitmultinotifications-method"></a>
+        
+        
+      </h3>
 
 <p>When multi-notifications is enabled on the publisher account, the KalturaNotificationClient object will parse the multi-notifications received from the Kaltura server into an array of notifications, according to the prefixed POST parameters (for example: “not1_entryId={},not1_mediaType={},not2_entryId={},…”).</p>
 
 <p>The KalturaNotificationClient calls the splitMultiNotifications function in the constructor to create an array of notifications. Each element in the array is an associative array of the notification fields and values.</p>
-
 		
 </article>
 

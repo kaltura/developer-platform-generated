@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<div class="highlighter-rouge"><pre class="highlight"><code>    interface Settings {
+		<div class="highlighter-rouge"><pre class="highlight"><code>    interface Settings {
         /**
          * Set the Player's contentRequestAdapter.
          *
@@ -275,46 +275,105 @@ rtp('get', 'campaign',true);
 </div>
 
 <p>Once you created a player instance you can set the above settings on it.</p>
-
-<h2 id="example">Example</h2>
-
-<h3 id="create-a-player">Create a player:</h3>
+      <h2 id="example">
+        
+        
+          Example <a href="#example"></a>
+        
+        
+      </h2>
+    
+      <h3 id="create-a-player">
+        
+        
+          Create a player: <a href="#create-a-player"></a>
+        
+        
+      </h3>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">Player</span> <span class="n">player</span> <span class="o">=</span> <span class="n">PlayKitManager</span><span class="o">.</span><span class="na">loadPlayer</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">pluginConfigs</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h2 id="apply-player-settings-if-required">Apply Player Settings if required:</h2>
-
-<h3 id="enable-crossprotocolredirect">Enable crossProtocolRedirect</h3>
-
-<h5 id="example-1">Example:</h5>
+    
+      <h2 id="apply-player-settings-if-required">
+        
+        
+          Apply Player Settings if required: <a href="#apply-player-settings-if-required"></a>
+        
+        
+      </h2>
+    
+      <h3 id="enable-crossprotocolredirect">
+        
+        
+          Enable crossProtocolRedirect <a href="#enable-crossprotocolredirect"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-1">
+        
+        
+          Example: <a href="#example-1"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> //Configure if to player allow http/https mix.
  player.getSettings().setAllowCrossProtocolRedirect(crossProtocolRedirectEnabled); // default is false
 </code></pre>
 </div>
-
-<h3 id="enable-drm-clear-lead-playback">Enable DRM Clear Lead Playback</h3>
-
-<h5 id="example-2">Example:</h5>
+    
+      <h3 id="enable-drm-clear-lead-playback">
+        
+        
+          Enable DRM Clear Lead Playback <a href="#enable-drm-clear-lead-playback"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-2">
+        
+        
+          Example: <a href="#example-2"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> //Configure if player will start playing clear lead in DRM content 
  player.getSettings(). allowClearLead(true/false); // default is false
 </code></pre>
 </div>
-
-<h3 id="enable-secure-surface">Enable Secure Surface</h3>
+    
+      <h3 id="enable-secure-surface">
+        
+        
+          Enable Secure Surface <a href="#enable-secure-surface"></a>
+        
+        
+      </h3>
 
 <p>In case App wants to block ability to take screen capture</p>
-
-<h5 id="example-3">Example:</h5>
+    
+      <h5 id="example-3">
+        
+        
+          Example: <a href="#example-3"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setSecureSurface(isSurfaceSecured); // default is false
 </code></pre>
 </div>
-
-<h3 id="configure-players-preferredmediaformat">Configure Player’s PreferredMediaFormat.</h3>
+    
+      <h3 id="configure-players-preferredmediaformat">
+        
+        
+          Configure Player’s PreferredMediaFormat. <a href="#configure-players-preferredmediaformat"></a>
+        
+        
+      </h3>
 
 <p>In the case where the Media Entry contains multiple sources, the player will attempt to use formats in this priority order:</p>
 <ul>
@@ -331,16 +390,28 @@ rtp('get', 'campaign',true);
 </code></pre>
 </div>
 <p>Making this call, for example, would move MP4 format to the top of the priority list.</p>
-
-<h3 id="configure-player-load-control">Configure Player Load Control</h3>
+    
+      <h3 id="configure-player-load-control">
+        
+        
+          Configure Player Load Control <a href="#configure-player-load-control"></a>
+        
+        
+      </h3>
 
 <p>Using builder API you can create LoadControl Buffers with the default ExoPlayer values<br />
 then it is possible configure any parameter from the LoadControlBuffers Object.</p>
 
 <p>Defaults can be found here:<br />
 <a href="https://github.com/google/ExoPlayer/blob/release-v2/library/core/src/main/java/com/google/android/exoplayer2/DefaultLoadControl.java">Defaults</a></p>
-
-<h5 id="example-4">Example:</h5>
+    
+      <h5 id="example-4">
+        
+        
+          Example: <a href="#example-4"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>             LoadControlBuffers loadControlBuffers = new LoadControlBuffers().
                     setMinPlayerBufferMs(2000).
@@ -353,65 +424,149 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
             player.getSettings().setPlayerBuffers(loadControlBuffers);
 </code></pre>
 </div>
-
-<h3 id="configure-if-to-use-textureview-instead-of-surface-view">Configure if to use TextureView instead of surface view</h3>
-
-<h5 id="example-5">Example:</h5>
+    
+      <h3 id="configure-if-to-use-textureview-instead-of-surface-view">
+        
+        
+          Configure if to use TextureView instead of surface view <a href="#configure-if-to-use-textureview-instead-of-surface-view"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-5">
+        
+        
+          Example: <a href="#example-5"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().useTextureView(false); // default is false
 </code></pre>
 </div>
-
-<h3 id="enable-cea608captions">Enable Cea608Captions</h3>
-
-<h5 id="example-6">Example:</h5>
+    
+      <h3 id="enable-cea608captions">
+        
+        
+          Enable Cea608Captions <a href="#enable-cea608captions"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-6">
+        
+        
+          Example: <a href="#example-6"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> //Configure if to consider Cea608Captions which exist stream for text track selection.
  player.getSettings().setCea608CaptionsEnabled(false); // default is false
 </code></pre>
 </div>
-
-<h3 id="configure-kalturaplaybackrequestadapter">Configure KalturaPlaybackRequestAdapter</h3>
-
-<h5 id="example-7">Example:</h5>
+    
+      <h3 id="configure-kalturaplaybackrequestadapter">
+        
+        
+          Configure KalturaPlaybackRequestAdapter <a href="#configure-kalturaplaybackrequestadapter"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-7">
+        
+        
+          Example: <a href="#example-7"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> //Configure different app name/domain in KalturaPlaybackRequestAdapter which allows adapting the request parameters before sending network requests
  KalturaPlaybackRequestAdapter.install(player, "yourApplicationName"); // default is app package name
 </code></pre>
 </div>
-
-<h3 id="configure-kalturaudrmlicenserequestadapter">Configure KalturaUDRMLicenseRequestAdapter</h3>
-
-<h5 id="example-8">Example:</h5>
+    
+      <h3 id="configure-kalturaudrmlicenserequestadapter">
+        
+        
+          Configure KalturaUDRMLicenseRequestAdapter <a href="#configure-kalturaudrmlicenserequestadapter"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-8">
+        
+        
+          Example: <a href="#example-8"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> //configure different app name/domain in KalturaUDRMLicenseRequestAdapter which allows adapting the request parameters before sending DRM requests
  KalturaUDRMLicenseRequestAdapter.install(player, "yourApplicationName"); // default is app package name
 </code></pre>
 </div>
-
-<h3 id="enable---ad-will-auto-play-on-resume">Enable - Ad will auto play on resume</h3>
+    
+      <h3 id="enable---ad-will-auto-play-on-resume">
+        
+        
+          Enable - Ad will auto play on resume <a href="#enable---ad-will-auto-play-on-resume"></a>
+        
+        
+      </h3>
 
 <p>In some cases where app does not expose play pause API on ads this API will do the auto play after resume from bg</p>
-
-<h5 id="example-9">Example:</h5>
+    
+      <h5 id="example-9">
+        
+        
+          Example: <a href="#example-9"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setAdAutoPlayOnResume(autoPlayOnResume);
 </code></pre>
 </div>
-
-<h3 id="setvrplayerenabledboolean-vrplayerenabled">setVRPlayerEnabled(boolean vrPlayerEnabled);</h3>
+    
+      <h3 id="setvrplayerenabledboolean-vrplayerenabled">
+        
+        
+          setVRPlayerEnabled(boolean vrPlayerEnabled); <a href="#setvrplayerenabledboolean-vrplayerenabled"></a>
+        
+        
+      </h3>
 
 <p>If case 360 media should be played on VR player or default player - default is true</p>
-
-<h5 id="example-10">Example:</h5>
+    
+      <h5 id="example-10">
+        
+        
+          Example: <a href="#example-10"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setVRPlayerEnabled(vrPlayerEnabled);
 </code></pre>
 </div>
-
-<h3 id="configure-preferred-text-tracks--default-is-no-captions-displayed">Configure preferred TEXT TRACKS – Default is no captions displayed.</h3>
-
-<h5 id="example-11">Example:</h5>
+    
+      <h3 id="configure-preferred-text-tracks--default-is-no-captions-displayed">
+        
+        
+          Configure preferred TEXT TRACKS – Default is no captions displayed. <a href="#configure-preferred-text-tracks--default-is-no-captions-displayed"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-11">
+        
+        
+          Example: <a href="#example-11"></a>
+        
+        
+      </h5>
 
 <div class="highlighter-rouge"><pre class="highlight"><code> //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF)); // no text tracks
  //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("hi")); // select specific track lang if not exist select manifest default if exist else the first from manifest
@@ -426,8 +581,14 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
  player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO));
 </code></pre>
 </div>
-
-<h2 id="set-preferred-audiotext-track">Set Preferred Audio/Text Track</h2>
+    
+      <h2 id="set-preferred-audiotext-track">
+        
+        
+          Set Preferred Audio/Text Track <a href="#set-preferred-audiotext-track"></a>
+        
+        
+      </h2>
 
 <p>The player allows you to set the preferred language audio/text by instantiating the <code class="highlighter-rouge">PKTrackConfig</code>, which is created via the builder method.</p>
 
@@ -454,10 +615,22 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 player.getSettings().setPreferredTextTrack(preferredTextTrackConfig)
 </code></pre>
 </div>
-
-<h3 id="tracks-configuration-possibilities">Tracks Configuration possibilities</h3>
-
-<h4 id="there-are-3-modes-available">There are 3 modes available:</h4>
+    
+      <h3 id="tracks-configuration-possibilities">
+        
+        
+          Tracks Configuration possibilities <a href="#tracks-configuration-possibilities"></a>
+        
+        
+      </h3>
+    
+      <h4 id="there-are-3-modes-available">
+        
+        
+          There are 3 modes available: <a href="#there-are-3-modes-available"></a>
+        
+        
+      </h4>
 
 <ul>
   <li><code class="highlighter-rouge">OFF</code> - for Text tracks it will cancel text tracks display for audio it will select the default from the manifest</li>
@@ -465,11 +638,23 @@ player.getSettings().setPreferredTextTrack(preferredTextTrackConfig)
   <li><code class="highlighter-rouge">SELECTION</code> - this mode requires to set the language explicitly (2 or 3 letters)  if this language does not exist SDK will take the streams<br />
 default Audio/Text track</li>
 </ul>
-
-<h4 id="note">NOTE!!!</h4>
+    
+      <h4 id="note">
+        
+        
+          NOTE!!! <a href="#note"></a>
+        
+        
+      </h4>
 <p>The languages that are expected by player should match the SO 639-X codes definition</p>
-
-<h2 id="subtitle-sideloading-for-player">Subtitle Sideloading for Player</h2>
+    
+      <h2 id="subtitle-sideloading-for-player">
+        
+        
+          Subtitle Sideloading for Player <a href="#subtitle-sideloading-for-player"></a>
+        
+        
+      </h2>
 
 <blockquote>
   <p>Since Playkit version 3.9.0</p>
@@ -492,8 +677,14 @@ mList.add(pkExternalSubtitle);
 </div>
 <p>Use <code class="highlighter-rouge">setDefault()</code> while creating <code class="highlighter-rouge">PKExternalSubtitle</code> to make it default subtitle.<br />
 <code class="highlighter-rouge">TEXT_VTT</code> and <code class="highlighter-rouge">APPLICATION_SUBRIP</code> mimetypes are supported for subtitles.</p>
-
-<h2 id="subtitle-styles-for-player">Subtitle Styles for Player</h2>
+    
+      <h2 id="subtitle-styles-for-player">
+        
+        
+          Subtitle Styles for Player <a href="#subtitle-styles-for-player"></a>
+        
+        
+      </h2>
 
 <p>To configure Subtitles to the player, first need to set the Subtitles using <code class="highlighter-rouge">settings</code> from <code class="highlighter-rouge">player</code>object.<br />
 While creating <code class="highlighter-rouge">SubtitleStyleSettings</code> object, need to pass <code class="highlighter-rouge">subtitleStyleName</code> param in constructor.</p>
@@ -526,8 +717,14 @@ player.getSettings().setSubtitleStyle(subtitleStyleSettings);
   </li>
   <li><code class="highlighter-rouge">setTypeface</code> - Change subtitle typeface using <code class="highlighter-rouge">enum SubtitleStyleTypeface</code> with the values <code class="highlighter-rouge">DEFAULT, DEFAULT_BOLD, MONOSPACE, SERIF, SANS_SERIF</code></li>
 </ul>
-
-<h4 id="example-12">Example</h4>
+    
+      <h4 id="example-12">
+        
+        
+          Example <a href="#example-12"></a>
+        
+        
+      </h4>
 
 <p>To set the Subtitles,</p>
 
@@ -559,7 +756,6 @@ player.updateSubtitleStyle(subtitleStyleSettings);
 
 </code></pre>
 </div>
-
 		
 </article>
 

@@ -129,15 +129,27 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h2 id="background">Background</h2>
+		<h2 id="background">
+        
+        
+          Background <a href="#background"></a>
+        
+        
+      </h2>
 
 <p>Kaltura uses the <a href="http://sphinxsearch.com">Open Source Search Server Sphinx</a> to perform its metadata indexing and search. The Kaltura Search API and Custom Metadata Search API provide an abstraction layer on top of the Sphinx’s search capabilities.</p>
 
 <blockquote>
   <p>Note: We recommend reading <a href="http://knowledge.kaltura.com/node/247">Kaltura Search Engine for Media, Metadata and Timeline: Search Behavior and Commands</a> for more details on the topic of search operators and behavior in Kaltura.</p>
 </blockquote>
-
-<h2 id="or-and-and-operators">OR and AND operators</h2>
+    
+      <h2 id="or-and-and-operators">
+        
+        
+          OR and AND operators <a href="#or-and-and-operators"></a>
+        
+        
+      </h2>
 
 <p>For the base metadata (name, tags, description, entryId, etc.), the system only provides an AND operator. To run an OR query on the base metadata, the following search filter should be used: <code class="highlighter-rouge">filter:freeText</code>.  <br />
 The freeText filter performs an OR search across the following base entry fields: name, tags, description, entry_id, reference_id, roots, puser_id.</p>
@@ -145,8 +157,14 @@ The freeText filter performs an OR search across the following base entry fields
 <p>When searching Custom Metadata fields, it is possible to control the search operator when setting the Advanced Search parameters, by setting in the <code class="highlighter-rouge">KalturaMetadataSearchItem</code> to <code class="highlighter-rouge">filter:advancedSearch</code>and setting the operator to <code class="highlighter-rouge">SEARCH_OR</code>.</p>
 
 <p>To break a query inside a single field into OR, use the comma operator between the words searched. E.g., to search for all entries that mention either Tech OR Sports, use: “tech,sports” (without the quotes) as your search query. </p>
-
-<h2 id="not-operator">NOT operator</h2>
+    
+      <h2 id="not-operator">
+        
+        
+          NOT operator <a href="#not-operator"></a>
+        
+        
+      </h2>
 
 <p>To perform a NOT operator, it is possible to use Sphinx’s ‘!’ operator – the meaning of the ! operator is AND NOT.  <br />
 Search for NOT alone is not possible, every NOT search must first begin with a positive search query.  <br />
@@ -157,13 +175,18 @@ For example, setting the <code class="highlighter-rouge">freeText&lt;/strong</co
 </blockquote>
 
 <p>This operator as well as quotes (“) for exact match, work on all filter text fields in the API.</p>
-
-<h2 id="exact-match">Exact Match</h2>
+    
+      <h2 id="exact-match">
+        
+        
+          Exact Match <a href="#exact-match"></a>
+        
+        
+      </h2>
 
 <p>To search for an exact match, wrap the search query with quotes, for example: ‘money ball’ will return all entries that contain the string ‘money ball’ but not entries where money and ball were separated by other characters.</p>
 
 <p> </p>
-
 		
 </article>
 

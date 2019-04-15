@@ -147,9 +147,14 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to select different tracks in the stream.</p>
-
-<h2 id="track-types">Track Types</h2>
+		<p>This article describes how to select different tracks in the stream.</p>
+      <h2 id="track-types">
+        
+        
+          Track Types <a href="#track-types"></a>
+        
+        
+      </h2>
 
 <p>There are three types of defined track types:</p>
 <ul>
@@ -157,8 +162,14 @@ rtp('get', 'campaign',true);
   <li>AUDIO</li>
   <li>TEXT</li>
 </ul>
-
-<h2 id="working-with-tracks-in-the-sdk">Working with Tracks in the SDK</h2>
+    
+      <h2 id="working-with-tracks-in-the-sdk">
+        
+        
+          Working with Tracks in the SDK <a href="#working-with-tracks-in-the-sdk"></a>
+        
+        
+      </h2>
 
 <p>There are two options for working with tracks in the SDK:</p>
 
@@ -173,8 +184,14 @@ rtp('get', 'campaign',true);
     </ul>
   </li>
 </ul>
-
-<h2 id="addingremoving-listeners">Adding/Removing Listeners</h2>
+    
+      <h2 id="addingremoving-listeners">
+        
+        
+          Adding/Removing Listeners <a href="#addingremoving-listeners"></a>
+        
+        
+      </h2>
 
 <ol>
   <li>At the Player creation phase, you will need to add a call to set/removed for each event listener that you wish to receive during runtime:</li>
@@ -217,26 +234,56 @@ rtp('get', 'campaign',true);
  }</p>
   </li>
 </ol>
-
-<h2 id="enabling-the-tracks-feature">Enabling the Tracks Feature</h2>
+    
+      <h2 id="enabling-the-tracks-feature">
+        
+        
+          Enabling the Tracks Feature <a href="#enabling-the-tracks-feature"></a>
+        
+        
+      </h2>
 
 <p>To enable the Tracks feature, run the Tracks plugins as follows:</p>
-
-<h3 id="video-tracks">Video Tracks</h3>
+    
+      <h3 id="video-tracks">
+        
+        
+          Video Tracks <a href="#video-tracks"></a>
+        
+        
+      </h3>
 
 <p>config.addConfig(“sourceSelector.plugin”, “true”);<br />
 config.addConfig(“sourceSelector.displayMode”, “bitrate”);</p>
-
-<h3 id="audio-tracks">Audio Tracks</h3>
+    
+      <h3 id="audio-tracks">
+        
+        
+          Audio Tracks <a href="#audio-tracks"></a>
+        
+        
+      </h3>
 
 <p>config.addConfig(“audioSelector.plugin”, “true”);</p>
-
-<h3 id="text-tracks">Text Tracks</h3>
+    
+      <h3 id="text-tracks">
+        
+        
+          Text Tracks <a href="#text-tracks"></a>
+        
+        
+      </h3>
 
 <p>config.addConfig(“closedCaptions.plugin”, “true”);<br />
 config.addConfig(“closedCaptions.showEmbeddedCaptions”, “true”);</p>
-
-<h2 id="ktracksmanager-available-operations">KTracksManager Available Operations</h2>
+    
+      <h2 id="ktracksmanager-available-operations">
+        
+        
+          KTracksManager Available Operations <a href="#ktracksmanager-available-operations"></a>
+        
+        
+      </h2>
 
 <p>The following are the available operations when using the KTracksManager:</p>
 
@@ -247,10 +294,22 @@ config.addConfig(“closedCaptions.showEmbeddedCaptions”, “true”);</p>
   <li>TrackFormat       getCurrentTrack(TrackType trackType);</li>
   <li>void              switchTrack(TrackType trackType, int newIndex);</li>
 </ul>
-
-<h4 id="attention--the-tracksmanger-is-available-only-after-playing-state-is-received-in-the-activity-if-you-register-to-the-ontracksupdate-will-be-able-to-have-it-right-after-it-is-populated">Attention! : the TracksManger is available only after PLAYING state is received in the activity. If you register to the onTracksUpdate will be able to have it right after it is populated</h4>
-
-<h3 id="getting-tracks">Getting Tracks</h3>
+    
+      <h4 id="attention--the-tracksmanger-is-available-only-after-playing-state-is-received-in-the-activity-if-you-register-to-the-ontracksupdate-will-be-able-to-have-it-right-after-it-is-populated">
+        
+        
+          Attention! : the TracksManger is available only after PLAYING state is received in the activity. If you register to the onTracksUpdate will be able to have it right after it is populated <a href="#attention--the-tracksmanger-is-available-only-after-playing-state-is-received-in-the-activity-if-you-register-to-the-ontracksupdate-will-be-able-to-have-it-right-after-it-is-populated"></a>
+        
+        
+      </h4>
+    
+      <h3 id="getting-tracks">
+        
+        
+          Getting Tracks <a href="#getting-tracks"></a>
+        
+        
+      </h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>for (TrackFormat track : mPlayer.getTrackManager().getAudioTrackList()) {
       Log.d(TAG, track.toString());
@@ -263,28 +322,52 @@ for (TrackFormat track : mPlayer.getTrackManager().getTextTrackList()) {
 }
 </code></pre>
 </div>
-
-<h3 id="switching-tracks">Switching Tracks</h3>
+    
+      <h3 id="switching-tracks">
+        
+        
+          Switching Tracks <a href="#switching-tracks"></a>
+        
+        
+      </h3>
 
   	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_VIDEO,index);<br />
   	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_AUDIO,index);<br />
   	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_TEXT,index);<br />
-
-<h3 id="disable-videoaudiotext-tracks">Disable Video/Audio/Text Tracks</h3>
+    
+      <h3 id="disable-videoaudiotext-tracks">
+        
+        
+          Disable Video/Audio/Text Tracks <a href="#disable-videoaudiotext-tracks"></a>
+        
+        
+      </h3>
 
   	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_VIDEO,-1);<br />
   	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_AUDIO,-1);<br />
   	mPlayer.getTrackManager().switchTrack(TrackType.TYPE_TEXT, -1);<br />
-
-<h3 id="getting-the-current-track-index-by-track-type">Getting the Current Track Index by Track Type</h3>
+    
+      <h3 id="getting-the-current-track-index-by-track-type">
+        
+        
+          Getting the Current Track Index by Track Type <a href="#getting-the-current-track-index-by-track-type"></a>
+        
+        
+      </h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>mPlayer.getTrackManager().getCurrentTrack(TrackType.VIDEO).index);
 mPlayer.getTrackManager().getCurrentTrack(TrackType.VIDEO).index);
 mPlayer.getTrackManager().getCurrentTrack(TrackType.VIDEO).index);
 </code></pre>
 </div>
-
-<h2 id="starting-the-player-with-a-preferred-bitrate">Starting the Player with a Preferred Bitrate</h2>
+    
+      <h2 id="starting-the-player-with-a-preferred-bitrate">
+        
+        
+          Starting the Player with a Preferred Bitrate <a href="#starting-the-player-with-a-preferred-bitrate"></a>
+        
+        
+      </h2>
 
 <p>The user may want to start the playback with a specific bitrate. This can be achieved using the following code in the player init or in the change configuration process:</p>
 
@@ -292,7 +375,6 @@ mPlayer.getTrackManager().getCurrentTrack(TrackType.VIDEO).index);
 config.addConfig("mediaProxy.preferredFlavorBR", preferredBitrateMbit);
 </code></pre>
 </div>
-
 		
 </article>
 

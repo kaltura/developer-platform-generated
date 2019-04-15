@@ -147,7 +147,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/iOS-Supported-green.svg" alt="iOS" /></a></p>
+		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/iOS-Supported-green.svg" alt="iOS" /></a></p>
 
 <p>This article details the process of disabling Widevine on iOS:</p>
 
@@ -155,27 +155,43 @@ rtp('get', 'campaign',true);
   <li><code class="highlighter-rouge">Core</code> - Contains all source files, <strong>including</strong> Widevine-related files.</li>
   <li><code class="highlighter-rouge">Widevine</code> - Contains the Widevine library and a preprocessor macro WIDEVINE_ENABLED=1.</li>
 </ul>
-
-<h2 id="how-to-use">How to Use</h2>
+      <h2 id="how-to-use">
+        
+        
+          How to Use <a href="#how-to-use"></a>
+        
+        
+      </h2>
 
 <p>By default, the entire SDK is enabled.</p>
-
-<h3 id="entire-sdk">Entire SDK</h3>
+    
+      <h3 id="entire-sdk">
+        
+        
+          Entire SDK <a href="#entire-sdk"></a>
+        
+        
+      </h3>
 
 <p>To use the entire SDK, the client app must use the following:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>pod 'KalturaPlayerSDK'
 </code></pre>
 </div>
-
-<h3 id="exclude-widevine">Exclude Widevine</h3>
+    
+      <h3 id="exclude-widevine">
+        
+        
+          Exclude Widevine <a href="#exclude-widevine"></a>
+        
+        
+      </h3>
 
 <p>To exclude Widevine, only include the subspec Core:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>pod 'KalturaPlayerSDK/Core'
 </code></pre>
 </div>
-
 		
 </article>
 

@@ -135,15 +135,26 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>An Application Token enables clients to provide their development partners or internal technical teams with restricted access to the Kaltura API. Each Application Token restricts the API methods that may be called by its users, and can allow restricted content access for clients who use entitlements (e.g., restricted access to MediaSpace content).</p>
+		<p>An Application Token enables clients to provide their development partners or internal technical teams with restricted access to the Kaltura API. Each Application Token restricts the API methods that may be called by its users, and can allow restricted content access for clients who use entitlements (e.g., restricted access to MediaSpace content).</p>
 
 <p>Developers who are provided with an Application Token use it to create temporary Kaltura Session (KS) tokens, which they will then use to access API functions. These KS tokens will have the restrictions of their originating Application Token. Additional details about how to create a KS can be found in the <a href="/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html">Get Started with Kaltura VPaaS</a> article.</p>
-
-<h2 id="application-token-design">Application Token Design</h2>
+      <h2 id="application-token-design">
+        
+        
+          Application Token Design <a href="#application-token-design"></a>
+        
+        
+      </h2>
 
 <p>The following attributes are built into the Application Token:</p>
-
-<h3 id="role-with-the-required-api-permissions">Role with the Required API Permissions</h3>
+    
+      <h3 id="role-with-the-required-api-permissions">
+        
+        
+          Role with the Required API Permissions <a href="#role-with-the-required-api-permissions"></a>
+        
+        
+      </h3>
 
 <p>The role determines the allowed API actions that this Application Token will be allowed to perform. Common role permissions are listed in the table under the <strong>Relevant Roles</strong> section below. Roles may be changed later to add or remove actions from the Application Token.</p>
 
@@ -167,8 +178,14 @@ rtp('get', 'campaign',true);
 <p>When done, save your changes.</p>
 
 <p><strong>Note:</strong> You will need the ID of the newly-created role. Retrieve it using the userRole.list API action, or contact your Kaltura representative for assistance.</p>
-
-<h3 id="creating-a-user-with-the-desired-content-permissions">Creating a User with the Desired Content Permissions</h3>
+    
+      <h3 id="creating-a-user-with-the-desired-content-permissions">
+        
+        
+          Creating a User with the Desired Content Permissions <a href="#creating-a-user-with-the-desired-content-permissions"></a>
+        
+        
+      </h3>
 
 <p>If you’re using entitlements or MediaSpace, you may use a “service user” to restrict the content access permissions of the Application Token. You may create a new user, or use an existing user entity (such as a MediaSpace user). This user entity must be correctly configured with entitlements to the Channels or categories that you want to provide your development partners.</p>
 
@@ -181,8 +198,14 @@ rtp('get', 'campaign',true);
 </ol>
 
 <p><img src="assets/images/adduser1.png" alt="Add User Window" /></p>
-
-<h3 id="privileges-line">Privileges Line</h3>
+    
+      <h3 id="privileges-line">
+        
+        
+          Privileges Line <a href="#privileges-line"></a>
+        
+        
+      </h3>
 
 <p>After creating the Role and Service User, you will construct the KS privileges of the Application Token.</p>
 
@@ -191,22 +214,46 @@ rtp('get', 'campaign',true);
 <p>For an Application Token with MediaSpace-based permissions (or other entitlement-based permissions), use a privileges line in the form: <strong>list:*,setrole:ROLE_ID,enableentitlement,privacycontext:PRIVACY_CONTEXT</strong>. Your Privacy Context is listed in MediaSpace Admin, under the Application settings.</p>
 
 <p>To learn more about KS privileges, see the <a href="/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura API Authentication and Security</a> article.</p>
-
-<h3 id="expiration-date">Expiration Date</h3>
+    
+      <h3 id="expiration-date">
+        
+        
+          Expiration Date <a href="#expiration-date"></a>
+        
+        
+      </h3>
 
 <p>Every token will have a hardcoded expiration date. For short-lived projects, this date can be set only a few months or years into the future. It’s also possible to create long-lived Application Tokens that will remain active decades into the future. Note that it’s always possible to de-activate an Application Token.</p>
 
 <p>The expiration date is set using a UNIX timestamp format (Epoch time).</p>
-
-<h3 id="session-expiration">Session Expiration</h3>
+    
+      <h3 id="session-expiration">
+        
+        
+          Session Expiration <a href="#session-expiration"></a>
+        
+        
+      </h3>
 
 <p>The KS generated from an Application Token has a default expiration of 24 hours. It’s possible to adjust this during the creation of the Application Token to create longer- or shorter-lived sessions.</p>
-
-<h3 id="hashing-function">Hashing Function</h3>
+    
+      <h3 id="hashing-function">
+        
+        
+          Hashing Function <a href="#hashing-function"></a>
+        
+        
+      </h3>
 
 <p>The default and recommended hashing function associated with an Application Token is SHA1. This type of hash function is available to all developers. Because Application Token hashes are salted, it does not pose a security risk. Clients with specific security requirements may select MD5, SHA-256, and SHA-512 functions.</p>
-
-<h2 id="application-token-creation">Application Token Creation</h2>
+    
+      <h2 id="application-token-creation">
+        
+        
+          Application Token Creation <a href="#application-token-creation"></a>
+        
+        
+      </h2>
 
 <p>Create the new Application Token by invoking the <strong>add</strong> action of the <strong>appToken</strong> API service. You must have an Administrator-level KS to successfully invoke the service. Based on the information above, the following parameters for the call should be prepared:</p>
 
@@ -296,7 +343,6 @@ rtp('get', 'campaign',true);
     </tr>
   </tbody>
 </table>
-
 		
 </article>
 

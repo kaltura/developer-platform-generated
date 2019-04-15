@@ -141,13 +141,18 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura Web Video Player look-and-feel is derived from the Player’s skin, which consists of CSS classes and graphical assets such as icons and fonts; and from its Javascript code, which is used to define user interactions and UI behaviour.</p>
+		<p>The Kaltura Web Video Player look-and-feel is derived from the Player’s skin, which consists of CSS classes and graphical assets such as icons and fonts; and from its Javascript code, which is used to define user interactions and UI behaviour.</p>
 
 <p>You can customize the Web Video Player look-and-feel in a number of ways. A lot of customization can be done using the Player plugins, properties, and templating mechanism. More advanced customization can be achieved using custom CSS loading, external assets, and skin overrides. Custom Javascript code can also be used in order to change the UI behavior.</p>
 
 <p>This article covers these customization topics - from the simplest options to the more advanced and complex ones.</p>
-
-<h2 id="player-and-plugin-properties">Player and Plugin Properties</h2>
+      <h2 id="player-and-plugin-properties">
+        
+        
+          Player and Plugin Properties <a href="#player-and-plugin-properties"></a>
+        
+        
+      </h2>
 
 <p>You can set Web Video Player properties to change the Player behavior; for example, setting the ‘EmbedPlayer.HidePosterOnStart’ property to ‘true’ will change the behavior of the Player, so that instead of showing the poster image (the default thumbnail set on the entry) on start, the video’s first frame will be shown instead.</p>
 
@@ -161,8 +166,14 @@ rtp('get', 'campaign',true);
 <span class="p">}</span>
 </code></pre>
 </div>
-
-<h2 id="predefined-skin-selection">Predefined Skin Selection</h2>
+    
+      <h2 id="predefined-skin-selection">
+        
+        
+          Predefined Skin Selection <a href="#predefined-skin-selection"></a>
+        
+        
+      </h2>
 
 <p>The Kaltura Web Video Player has two available skins:</p>
 
@@ -184,15 +195,27 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: The OTT skin is available only for basic configuration Players. It does not support all of the Kaltura Player plugins.</p>
 </blockquote>
-
-<h2 id="the-theme-plugin">The “Theme” Plugin</h2>
+    
+      <h2 id="the-theme-plugin">
+        
+        
+          The “Theme” Plugin <a href="#the-theme-plugin"></a>
+        
+        
+      </h2>
 
 <p>The “theme” plugin allows setting colors and sizes for all of the Player’s buttons and basic UI elements, such as the scrubber, icons etc.  <br />
 You can access the theme plugin properties using Studio as explained below. <br />
 You can also use the embed code Flashvars object in order to set a theme plugin properties for a specific Player instance.  <br />
 It is highly advised to use the theme plugin, instead of writing your own custom CSS file, to prevent redundant asset loading and to boost Player performances.</p>
-
-<h2 id="plugin-templates">Plugin Templates</h2>
+    
+      <h2 id="plugin-templates">
+        
+        
+          Plugin Templates <a href="#plugin-templates"></a>
+        
+        
+      </h2>
 
 <p>Some of the Player plugins use templates to render the Player’s content. You can change this template easily using the plugin properties.</p>
 
@@ -217,8 +240,14 @@ It is highly advised to use the theme plugin, instead of writing your own custom
 <blockquote>
   <p>Note: When creating and loading external resources such as template files, please review the “Managing External Assets” section below for additional information.</p>
 </blockquote>
-
-<h3 id="plugins-that-support-templates">Plugins that Support Templates</h3>
+    
+      <h3 id="plugins-that-support-templates">
+        
+        
+          Plugins that Support Templates <a href="#plugins-that-support-templates"></a>
+        
+        
+      </h3>
 
 <p>The following plugins support the Player templates:</p>
 
@@ -272,8 +301,14 @@ It is highly advised to use the theme plugin, instead of writing your own custom
 <blockquote>
   <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/PlaylistPagingTemplate.html">Playlist with custom template and paging</a> for a rich example of using custom template to customize the playlist plugin UI and behavior.</p>
 </blockquote>
-
-<h2 id="curly-brackets-data-binding">Curly-brackets Data Binding</h2>
+    
+      <h2 id="curly-brackets-data-binding">
+        
+        
+          Curly-brackets Data Binding <a href="#curly-brackets-data-binding"></a>
+        
+        
+      </h2>
 
 <p>Templates work by substituting data bindings against the current Player instance data values. Almost all of the plugin configuration options and data parameters that are displayed on the Player UI are exposed as bindable parameters.</p>
 
@@ -288,8 +323,14 @@ It is highly advised to use the theme plugin, instead of writing your own custom
 </blockquote>
 
 <p>The result is a Player where the title bar shows a message like this “My Video Name has 10,000,000 views” (instead of “My Video Name”).</p>
-
-<h3 id="formatters">Formatters</h3>
+    
+      <h3 id="formatters">
+        
+        
+          Formatters <a href="#formatters"></a>
+        
+        
+      </h3>
 
 <table>
   <tbody>
@@ -309,16 +350,28 @@ It is highly advised to use the theme plugin, instead of writing your own custom
 </ul>
 
 <p>In addition, you can also create and add your own <a href="http://player.kaltura.com/modules/KalturaSupport/tests/CustomFormaters.qunit.html">custom formatters</a>.</p>
-
-<h2 id="external-css-assets">External CSS Assets</h2>
+    
+      <h2 id="external-css-assets">
+        
+        
+          External CSS Assets <a href="#external-css-assets"></a>
+        
+        
+      </h2>
 
 <p>Many Player plugins use private CSS files that target the plugin UI and screens. These plugins include the playlist, chapters, share, and many more. These CSS files can be overridden by defining the <code class="highlighter-rouge">iframeHTML5Css</code> property in the plugin configuration and setting it to an external CSS file overriding the internal CSS class names.</p>
 
 <blockquote>
   <p>Note: When creating and loading external resources such as template file, remember to review the “Managing External Assets” section below for additional information.</p>
 </blockquote>
-
-<h3 id="common-plugins-and-their-default-css-files">Common Plugins and their Default CSS Files</h3>
+    
+      <h3 id="common-plugins-and-their-default-css-files">
+        
+        
+          Common Plugins and their Default CSS Files <a href="#common-plugins-and-their-default-css-files"></a>
+        
+        
+      </h3>
 
 <p>The following is a list of common plugins and their default css files:</p>
 
@@ -356,8 +409,14 @@ It is highly advised to use the theme plugin, instead of writing your own custom
 <blockquote>
   <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/PlaylistPagingTemplate.html">Playlist with custom template and paging</a> for a rich example of using custom template to customize the playlist plugin UI and behavior.</p>
 </blockquote>
-
-<h2 id="core-player-skin-external-css-overrides">Core Player Skin External CSS Overrides</h2>
+    
+      <h2 id="core-player-skin-external-css-overrides">
+        
+        
+          Core Player Skin External CSS Overrides <a href="#core-player-skin-external-css-overrides"></a>
+        
+        
+      </h2>
 
 <p>Another customization option is to load an external CSS file that overrides the Player core CSS classes.</p>
 
@@ -374,8 +433,14 @@ It is highly advised to use the theme plugin, instead of writing your own custom
 <blockquote>
   <p>We recommend embedding small assets (such as icons) as base64 inside the CSS file to improve loading time.</p>
 </blockquote>
-
-<h3 id="core-player-skins-css-files">Core Player Skins CSS Files</h3>
+    
+      <h3 id="core-player-skins-css-files">
+        
+        
+          Core Player Skins CSS Files <a href="#core-player-skins-css-files"></a>
+        
+        
+      </h3>
 
 <p>The following is a list of core Player skin CSS files:</p>
 
@@ -402,16 +467,28 @@ It is highly advised to use the theme plugin, instead of writing your own custom
   <p>See the Interactive Code Workflow: <a href="https://developer.kaltura.com/workflows/Engage_and_Publish/Kaltura_Player_External_Skin_Overrides">Kaltura Player External Skin Overrides</a><br />
 for a rich example of using custom CSS and external resources.</p>
 </blockquote>
-
-<h2 id="custom-interactivity-with-javascript">Custom Interactivity with Javascript</h2>
+    
+      <h2 id="custom-interactivity-with-javascript">
+        
+        
+          Custom Interactivity with Javascript <a href="#custom-interactivity-with-javascript"></a>
+        
+        
+      </h2>
 
 <p>You can add your own Javascript code, which will be loaded and run within the Player iframe, by setting the <code class="highlighter-rouge">IframeCustomPluginJs1</code> Flashvar to point to your custom JS files. This allows you to register for Player events or to add custom interactivity to the Player without creating a full Player plugin.</p>
 
 <blockquote>
   <p>See the article <a href="http://player.kaltura.com/modules/KalturaSupport/tests/ExternalResources.qunit.html">External Resources Recipe</a> for a rich example of using external Javascript resources.</p>
 </blockquote>
-
-<h2 id="player-states-css">Player States CSS</h2>
+    
+      <h2 id="player-states-css">
+        
+        
+          Player States CSS <a href="#player-states-css"></a>
+        
+        
+      </h2>
 
 <p>CSS states are CSS classes that are added to the outermost interface element in given Player state. These are very useful for  building the desired look-and-feel quickly for a given Player state, without involving a lot of complicated javascript bindings.</p>
 
@@ -432,8 +509,14 @@ for a rich example of using custom CSS and external resources.</p>
   <li><code class="highlighter-rouge">.size-medium</code> – Less than 700px</li>
   <li><code class="highlighter-rouge">.size-large</code> – More than 700px</li>
 </ul>
-
-<h3 id="examples-using-css-states">Examples using CSS States</h3>
+    
+      <h3 id="examples-using-css-states">
+        
+        
+          Examples using CSS States <a href="#examples-using-css-states"></a>
+        
+        
+      </h3>
 
 <p>Consider that the following redBox elements are on-screen:</p>
 
@@ -456,8 +539,14 @@ for a rich example of using custom CSS and external resources.</p>
 <span class="p">}</span>
 </code></pre>
 </div>
-
-<h4 id="hiding-redbox-when-the-mouse-cursor-goes-over">Hiding RedBox when the Mouse Cursor Goes Over</h4>
+    
+      <h4 id="hiding-redbox-when-the-mouse-cursor-goes-over">
+        
+        
+          Hiding RedBox when the Mouse Cursor Goes Over <a href="#hiding-redbox-when-the-mouse-cursor-goes-over"></a>
+        
+        
+      </h4>
 
 <p>Add the following to the CSS definitions:</p>
 
@@ -466,20 +555,38 @@ for a rich example of using custom CSS and external resources.</p>
 </div>
 
 <p>As a default, set your UI to be visible, and when it should be hidden, use the <code class="highlighter-rouge">.player-out</code> class to hide the redBox element.</p>
-
-<h4 id="increase-redbox-size-if-the-player-enters-fullscreen">Increase RedBox Size if the Player Enters Fullscreen</h4>
+    
+      <h4 id="increase-redbox-size-if-the-player-enters-fullscreen">
+        
+        
+          Increase RedBox Size if the Player Enters Fullscreen <a href="#increase-redbox-size-if-the-player-enters-fullscreen"></a>
+        
+        
+      </h4>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.fullscreen</span> <span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="p">}</span>
 </code></pre>
 </div>
-
-<h4 id="change-redbox-bg-color-to-green-when-video-is-paused">Change RedBox BG Color to Green when Video is Paused</h4>
+    
+      <h4 id="change-redbox-bg-color-to-green-when-video-is-paused">
+        
+        
+          Change RedBox BG Color to Green when Video is Paused <a href="#change-redbox-bg-color-to-green-when-video-is-paused"></a>
+        
+        
+      </h4>
 
 <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.pause-state</span> <span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
 </code></pre>
 </div>
-
-<h4 id="css-animations-between-player-states">CSS Animations Between Player States</h4>
+    
+      <h4 id="css-animations-between-player-states">
+        
+        
+          CSS Animations Between Player States <a href="#css-animations-between-player-states"></a>
+        
+        
+      </h4>
 
 <p>You can also make use of CSS animations to transition between Player states. For example, to transition the redBox box size transformation when entering a fullscreen state:</p>
 
@@ -487,8 +594,14 @@ for a rich example of using custom CSS and external resources.</p>
 <span class="nc">.fullscreen</span> <span class="nc">.redBox</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <span class="p">}</span>
 </code></pre>
 </div>
-
-<h2 id="managing-external-assets">Managing External Assets</h2>
+    
+      <h2 id="managing-external-assets">
+        
+        
+          Managing External Assets <a href="#managing-external-assets"></a>
+        
+        
+      </h2>
 
 <p>External assets, such as tmpl.html, CSS, JS, images, and font files, can all be used by the Player. When directing the Player to load these assets, make sure to consider the following:</p>
 
@@ -499,7 +612,6 @@ for a rich example of using custom CSS and external resources.</p>
   <li>If you need to load more than one icon, consider using an icon font.</li>
   <li>If you need to load more than one image, use <a href="https://css-tricks.com/css-sprites">CSS sprite sheets</a>.</li>
 </ol>
-
 		
 </article>
 

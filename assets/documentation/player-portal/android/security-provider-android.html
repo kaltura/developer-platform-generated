@@ -135,11 +135,16 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>Google Play Services includes an always up-to-date version of the SSL library. To use it instead of the device’s default (which may be out of date and contain security issues, especially on older devices), the application has to “install” it on startup.</p>
+		<p>Google Play Services includes an always up-to-date version of the SSL library. To use it instead of the device’s default (which may be out of date and contain security issues, especially on older devices), the application has to “install” it on startup.</p>
 
 <p>Many servers have stopped accepting clients with older versions of SSL/TLS because of known vulnerabilities. Old versions of Android may therefore fail to connect to those servers (and throw an <code class="highlighter-rouge">SSLHandshakeException</code>). The installable provider is regularly updated, so it won’t have these issues.</p>
-
-<h1 id="usage">Usage</h1>
+      <h1 id="usage">
+        
+        
+          Usage <a href="#usage"></a>
+        
+        
+      </h1>
 
 <p>The full usage is detailed in <a href="https://developer.android.com/training/articles/security-gms-provider">Google’s guide</a>. Below are the basic steps.</p>
 
@@ -156,7 +161,6 @@ rtp('get', 'campaign',true);
 <p>When using the async version, the app has to pass a <a href="https://developers.google.com/android/reference/com/google/android/gms/security/ProviderInstaller.ProviderInstallListener">ProviderInstallListener</a>.</p>
 
 <p>The provider is part of the “base” Google Play Services component; if the app already uses <em>any</em> Play Services component, it already has access to <code class="highlighter-rouge">ProviderInstaller</code>. If not, it should install it as explained in <a href="https://developers.google.com/android/guides/setup">the setup guide</a>.</p>
-
 		
 </article>
 

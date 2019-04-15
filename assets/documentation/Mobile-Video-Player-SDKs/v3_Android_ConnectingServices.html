@@ -147,15 +147,26 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to connect services using the Kaltura Backend.</p>
-
-<h2 id="media-provider">Media Provider</h2>
+		<p>This article describes how to connect services using the Kaltura Backend.</p>
+      <h2 id="media-provider">
+        
+        
+          Media Provider <a href="#media-provider"></a>
+        
+        
+      </h2>
 
 <p>This article describes the steps required for using the Kaltura Analytics Plugin on Android devices as well as the events supported by the plugin. Adding the Kaltura Analytics Plugin will enable you get detailed analytics.</p>
 
 <p>The Media Entry Provider is a component that is capable of loading media data as a PKMediaEntry representation. The provider supports the cancellation of the last executed load action.</p>
-
-<h2 id="implementation-options">Implementation Options</h2>
+    
+      <h2 id="implementation-options">
+        
+        
+          Implementation Options <a href="#implementation-options"></a>
+        
+        
+      </h2>
 
 <p>Playkit offers three implementations of media providers: <em>MockMediaProvider</em>, <em>KalturaOvpMediaProvider</em>, and <em>PhoenixMediaProvider</em>.</p>
 
@@ -164,13 +175,25 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: Only one load action can run at a time. A new load operation cancels the previous working load if one is ongoing.</p>
 </blockquote>
-
-<h2 id="mockmediaprovider">MockMediaProvider</h2>
+    
+      <h2 id="mockmediaprovider">
+        
+        
+          MockMediaProvider <a href="#mockmediaprovider"></a>
+        
+        
+      </h2>
 
 <p>The MockMediaProvider can take as an input a JSON file, or JsonObject, and entryId.<br />
 According to the entryId, a single entry can be selected, and considered as media data.</p>
-
-<h4 id="jsonobject-input"><em>JsonObject Input</em></h4>
+    
+      <h4 id="jsonobject-input">
+        
+        
+          <em>JsonObject Input</em> <a href="#jsonobject-input"></a>
+        
+        
+      </h4>
 
 <p>The JsonObject should contain the relevant properties needed to construct the PKMediaEntry. The Input JsonObject can represents multiple entries provided as a map object containing a key=EntryId value=entryJsonObject or can represent a single media entry.</p>
 
@@ -239,8 +262,14 @@ According to the entryId, a single entry can be selected, and considered as medi
 <span class="n">JsonObject</span> <span class="n">jsonObject</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">entries</span><span class="o">).</span><span class="na">getAsJsonObject</span><span class="o">();</span>
 </code></pre>
 </div>
-
-<h4 id="json-input-file"><em>Json input file</em></h4>
+    
+      <h4 id="json-input-file">
+        
+        
+          <em>Json input file</em> <a href="#json-input-file"></a>
+        
+        
+      </h4>
 
 <p>The input file content should have a valid JSON format. Content can contain a JSON object with multiple entries, or a single entry object. Context should be provided in case the input file is located under “assets” folder; otherwise, the full path is required.</p>
 
@@ -291,8 +320,14 @@ According to the entryId, a single entry can be selected, and considered as medi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
-
-<h3 id="using-mockmediaprovider">Using MockMediaProvider</h3>
+    
+      <h3 id="using-mockmediaprovider">
+        
+        
+          Using MockMediaProvider <a href="#using-mockmediaprovider"></a>
+        
+        
+      </h3>
 
 <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">input</span><span class="w"> </span><span class="err">file</span><span class="w">
 </span><span class="err">MockMediaProvider</span><span class="w"> </span><span class="err">mockMediaProvider</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">new</span><span class="w"> </span><span class="err">MockMediaProvider(InputFile,</span><span class="w"> </span><span class="err">context,</span><span class="w"> </span><span class="err">entryId);</span><span class="w">
@@ -314,8 +349,14 @@ According to the entryId, a single entry can be selected, and considered as medi
 
 </span></code></pre>
 </div>
-
-<h2 id="ovpmediaprovider">OvpMediaProvider</h2>
+    
+      <h2 id="ovpmediaprovider">
+        
+        
+          OvpMediaProvider <a href="#ovpmediaprovider"></a>
+        
+        
+      </h2>
 
 <p>The OvpMediaProvider is a remote media provider that works on OVP environments. Use this provider when your content is OVP.</p>
 
@@ -354,8 +395,14 @@ completion callback.<br />
 The executor can be a mock executor for test purposes or connect to a remote source and pass the http requests. The default provided implementation, <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/connect/APIOkRequestsExecutor.java">APIOkRequestsExecutor</a>, wraps the OKHttp3 http library for passing http requests.</li>
   <li>String uiConfId - If there is any, supply this data to provide it to the “playManifest” service over the constructed playing url.</li>
 </ul>
-
-<h2 id="phoenixmediaprovider">PhoenixMediaProvider</h2>
+    
+      <h2 id="phoenixmediaprovider">
+        
+        
+          PhoenixMediaProvider <a href="#phoenixmediaprovider"></a>
+        
+        
+      </h2>
 
 <p>This is a remote media provider that works on OTT Phoenix environments. Use this provider when your content is OTT.<br />
 This provider can be used also if your application is working with TVPAPI BE. The SessionProvider that<br />
@@ -399,10 +446,22 @@ The executor gets RequestElement items, passes them, and returns the response on
 completion callback.<br />
 The executor can be a mock executor for test purposes or connect to a remote source and pass the http requests. The default provided implementation, <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/connect/APIOkRequestsExecutor.java">APIOkRequestsExecutor</a>, wraps the OKHttp3 http library for passing http requests.</li>
 </ul>
-
-<h2 id="creating-pkmediaentry-for-ott-tvpapi">Creating PKMediaEntry for OTT TVPAPI</h2>
-
-<h3 id="create-the-media-source">Create the Media Source</h3>
+    
+      <h2 id="creating-pkmediaentry-for-ott-tvpapi">
+        
+        
+          Creating PKMediaEntry for OTT TVPAPI <a href="#creating-pkmediaentry-for-ott-tvpapi"></a>
+        
+        
+      </h2>
+    
+      <h3 id="create-the-media-source">
+        
+        
+          Create the Media Source <a href="#create-the-media-source"></a>
+        
+        
+      </h3>
 
 <p>For each source do the following:</p>
 
@@ -426,8 +485,14 @@ The executor can be a mock executor for test purposes or connect to a remote sou
   <span class="n">pkMediaSource</span><span class="o">.</span><span class="na">setDrmData</span><span class="o">(</span><span class="n">pkDrmDataList</span><span class="o">);</span>
 </code></pre>
 </div>
-
-<h3 id="create-the-media-entry">Create the Media Entry</h3>
+    
+      <h3 id="create-the-media-entry">
+        
+        
+          Create the Media Entry <a href="#create-the-media-entry"></a>
+        
+        
+      </h3>
 
 <p>For each entry, do the following:</p>
 
@@ -441,8 +506,14 @@ The executor can be a mock executor for test purposes or connect to a remote sou
 </div>
 
 <p><strong>When the PKMediaEntry is ready, you can begin configuring the player.</strong></p>
-
-<h2 id="session-provider">Session Provider</h2>
+    
+      <h2 id="session-provider">
+        
+        
+          Session Provider <a href="#session-provider"></a>
+        
+        
+      </h2>
 
 <p>The SessionProvider interface defines the base requirements for implementing an element that enables access to a remote data source by the player’s components.</p>
 
@@ -467,12 +538,24 @@ The executor can be a mock executor for test purposes or connect to a remote sou
 <blockquote>
   <p>Note: You can create your own SessionProvider implementation or use the provided SDK implementations.</p>
 </blockquote>
-
-<h2 id="creating-a-sessionprovider">Creating a SessionProvider</h2>
+    
+      <h2 id="creating-a-sessionprovider">
+        
+        
+          Creating a SessionProvider <a href="#creating-a-sessionprovider"></a>
+        
+        
+      </h2>
 
 <p>There are a number of options for creating a SessionProvider:</p>
-
-<h3 id="self-implemented">Self Implemented</h3>
+    
+      <h3 id="self-implemented">
+        
+        
+          Self Implemented <a href="#self-implemented"></a>
+        
+        
+      </h3>
 
 <p>You can create a SessionProvider using an anonymous interface instantiation or implementing a class.</p>
 
@@ -494,12 +577,24 @@ The executor can be a mock executor for test purposes or connect to a remote sou
         <span class="o">};</span>
 </code></pre>
 </div>
-
-<h3 id="provided-implementation">Provided Implementation</h3>
+    
+      <h3 id="provided-implementation">
+        
+        
+          Provided Implementation <a href="#provided-implementation"></a>
+        
+        
+      </h3>
 
 <p>You can create a SessionProvider using the existing OttSessionProvider or OvpSessionProvider providers.</p>
-
-<h4 id="ottsessionprovider">OttSessionProvider</h4>
+    
+      <h4 id="ottsessionprovider">
+        
+        
+          OttSessionProvider <a href="#ottsessionprovider"></a>
+        
+        
+      </h4>
 
 <p>The <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/backend/phoenix/OttSessionProvider.java">OttSessionProvider</a> supports anonymous and user-specific session creation, on the Kaltura Phoenix Backend.</p>
 
@@ -550,8 +645,14 @@ Once a session has ended it can’t be renewed, and a new session should be star
     <span class="o">});</span>
 </code></pre>
 </div>
-
-<h4 id="ovpsessionprovider">OvpSessionProvider</h4>
+    
+      <h4 id="ovpsessionprovider">
+        
+        
+          OvpSessionProvider <a href="#ovpsessionprovider"></a>
+        
+        
+      </h4>
 
 <p>The <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/backend/ovp/OvpSessionProvider.java">OvpSessionProvider</a> supports anonymous and user-specific session creation on Kaltura’s OVP Backend.</p>
 
@@ -601,15 +702,26 @@ Once a session has ended it can’t be renewed, and a new session should be star
       <span class="o">});</span>
 </code></pre>
 </div>
-
-<h2 id="uiconf-provider">UIConf Provider</h2>
+    
+      <h2 id="uiconf-provider">
+        
+        
+          UIConf Provider <a href="#uiconf-provider"></a>
+        
+        
+      </h2>
 
 <p>==TBD==</p>
-
-<h2 id="have-questions-or-need-help">Have Questions or Need Help?</h2>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
 
 <p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
-
 		
 </article>
 

@@ -141,17 +141,35 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<h1 id="error-handling">Error Handling</h1>
+		<h1 id="error-handling">
+        
+        
+          Error Handling <a href="#error-handling"></a>
+        
+        
+      </h1>
 
 <p>The SDK provides error handling using observation.</p>
 
 <p>Errors from the observation comes as <code class="highlighter-rouge">NSError</code> object that includes: domain, error code, description and userInfo with extra information about the error like root error for example.</p>
-
-<h2 id="error-domains-and-codes">Error Domains and Codes</h2>
+    
+      <h2 id="error-domains-and-codes">
+        
+        
+          Error Domains and Codes <a href="#error-domains-and-codes"></a>
+        
+        
+      </h2>
 
 <p>All error domains are centralized at <code class="highlighter-rouge">PKErrorDomain</code> for easy access, for example: <code class="highlighter-rouge">PKErrorDomain.Player</code> get the player error domain.</p>
-
-<h3 id="player---playererror">Player - (<code class="highlighter-rouge">PlayerError</code>)</h3>
+    
+      <h3 id="player---playererror">
+        
+        
+          Player - (<code class="highlighter-rouge">PlayerError</code>) <a href="#player---playererror"></a>
+        
+        
+      </h3>
 
 <p>Player errors:</p>
 
@@ -163,10 +181,22 @@ rtp('get', 'campaign',true);
 
 <p><code class="highlighter-rouge">PlayerErrorLog</code> - These are non-fatal errors produced by <code class="highlighter-rouge">AVPlayer</code>, could be useful for debug purposes or analytics.<br />
 code: 7100, wraps <code class="highlighter-rouge">AVPlayerItemErrorLogEvent</code> which contains all error log events.&lt;/br&gt;userInfo holds the root error code and root domain of the original error. Sent when the player received an error log event.</p>
-
-<h3 id="plugins">Plugins</h3>
-
-<h4 id="plugins-general-pkpluginerror">Plugins General (<code class="highlighter-rouge">PKPluginError</code>)</h4>
+    
+      <h3 id="plugins">
+        
+        
+          Plugins <a href="#plugins"></a>
+        
+        
+      </h3>
+    
+      <h4 id="plugins-general-pkpluginerror">
+        
+        
+          Plugins General (<code class="highlighter-rouge">PKPluginError</code>) <a href="#plugins-general-pkpluginerror"></a>
+        
+        
+      </h4>
 
 <p>For plugins we have 2 general errors:</p>
 
@@ -174,26 +204,56 @@ code: 7100, wraps <code class="highlighter-rouge">AVPlayerItemErrorLogEvent</cod
   <li><code class="highlighter-rouge">failedToCreatePlugin</code>, code: 2000.&lt;/br&gt;Sent when failed to create the plugin.</li>
   <li><code class="highlighter-rouge">missingPluginConfig</code>, code: 2001.&lt;/br&gt;userInfo holds the plugin name. Sent when the plugin is missing his config.</li>
 </ol>
-
-<h4 id="analytics-plugins---analyticserror">Analytics Plugins - (<code class="highlighter-rouge">AnalyticsError</code>)</h4>
+    
+      <h4 id="analytics-plugins---analyticserror">
+        
+        
+          Analytics Plugins - (<code class="highlighter-rouge">AnalyticsError</code>) <a href="#analytics-plugins---analyticserror"></a>
+        
+        
+      </h4>
 
 <ol>
   <li><code class="highlighter-rouge">missingMediaEntry</code>, code: 2100.&lt;/br&gt;Sent when failed to send analytics event because media entry is missing.</li>
   <li><code class="highlighter-rouge">missingInitObject</code>, code: 2101.&lt;/br&gt;userInfo holds the plugin name. Sent when failed to send analytics event because initObj is missing.</li>
 </ol>
-
-<h4 id="youbora---youborapluginerror">Youbora - (<code class="highlighter-rouge">YouboraPluginError</code>)</h4>
+    
+      <h4 id="youbora---youborapluginerror">
+        
+        
+          Youbora - (<code class="highlighter-rouge">YouboraPluginError</code>) <a href="#youbora---youborapluginerror"></a>
+        
+        
+      </h4>
 
 <p>Youbora has only one error, <code class="highlighter-rouge">failedToSetupYouboraManager</code>, code: 2200.&lt;/br&gt;Sent when failed to setup Youbora manager, can happen when config is wrong or media entry is missing.</p>
-
-<h4 id="ima---imapluginerror">IMA - (<code class="highlighter-rouge">IMAPluginError</code>)</h4>
+    
+      <h4 id="ima---imapluginerror">
+        
+        
+          IMA - (<code class="highlighter-rouge">IMAPluginError</code>) <a href="#ima---imapluginerror"></a>
+        
+        
+      </h4>
 
 <p>IMA errors codes (see <code class="highlighter-rouge">IMAErrorCode</code> for all codes) and descriptions are the same as the original error. <br />
 In addition, the userInfo holds the the error type from IMA error types.</p>
-
-<h3 id="drm">DRM</h3>
-
-<h4 id="widevine-classic-widevineclasserror">Widevine Classic (<code class="highlighter-rouge">WidevineClassError</code>)</h4>
+    
+      <h3 id="drm">
+        
+        
+          DRM <a href="#drm"></a>
+        
+        
+      </h3>
+    
+      <h4 id="widevine-classic-widevineclasserror">
+        
+        
+          Widevine Classic (<code class="highlighter-rouge">WidevineClassError</code>) <a href="#widevine-classic-widevineclasserror"></a>
+        
+        
+      </h4>
 
 <p>Widevine classic has 2 errors:</p>
 
@@ -201,8 +261,14 @@ In addition, the userInfo holds the the error type from IMA error types.</p>
   <li><code class="highlighter-rouge">invalidDRMData</code>, code: 6200.&lt;/br&gt;Sent when we could not extract the license URI from the DRM data.</li>
   <li><code class="highlighter-rouge">missingWidevineFile</code>, code: 6201.&lt;/br&gt;Sent when registering local asset fails because widevine file not found.</li>
 </ol>
-
-<h2 id="usage">Usage</h2>
+    
+      <h2 id="usage">
+        
+        
+          Usage <a href="#usage"></a>
+        
+        
+      </h2>
 
 <p>Loading a <code class="highlighter-rouge">Player</code> object can fail and we want to make sure you have the ability to handle such cases:</p>
 
@@ -276,7 +342,6 @@ In addition, the userInfo holds the the error type from IMA error types.</p>
 <span class="p">}];</span>
 </code></pre>
 </div>
-
 		
 </article>
 

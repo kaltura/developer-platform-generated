@@ -147,7 +147,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (To see the static thumbnail assets management API refer to the <a href="https://developer.kaltura.com/api-docs/#/thumbAsset">thumbAsset</a>.</p>
+		<p>The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (To see the static thumbnail assets management API refer to the <a href="https://developer.kaltura.com/api-docs/#/thumbAsset">thumbAsset</a>.</p>
 
 <p>The Thumbnail API provides simple means to dynamically transform (change size, cropping, etc.) image entries, and to generate images out of Kaltura video entries on the fly (while applying image transformations to the generated images).</p>
 
@@ -165,8 +165,13 @@ rtp('get', 'campaign',true);
   <li>An older version of the entry thumbnail.</li>
   <li>A various compression quality of the thumbnail image.</li>
 </ul>
-
-<h2 id="using-the-thumbnail-api">Using the Thumbnail API</h2>
+      <h2 id="using-the-thumbnail-api">
+        
+        
+          Using the Thumbnail API <a href="#using-the-thumbnail-api"></a>
+        
+        
+      </h2>
 
 <p>The parameters are passed in the following form:</p>
 
@@ -183,8 +188,14 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Please always ensure that a descriptive Alt text is specified when using thumbnails as image in web apps to ensure compatibility with screen readers and better search indexing.</p>
 </blockquote>
-
-<h2 id="thumbnail-api-parameters">Thumbnail API Parameters</h2>
+    
+      <h2 id="thumbnail-api-parameters">
+        
+        
+          Thumbnail API Parameters <a href="#thumbnail-api-parameters"></a>
+        
+        
+      </h2>
 
 <table>
   <thead>
@@ -308,13 +319,13 @@ rtp('get', 'campaign',true);
       <td>start_sec</td>
       <td>float</td>
       <td>No</td>
-      <td>The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition). The value defaults to 0 if not set or invalid. If start_sec will be set to a higher number than end_sec, the API will return 404 error.</td>
+      <td>The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition). This param defaults to 0 if not set or invalid. If start_sec will be set to a higher number than end_sec, the API will return 404 error.</td>
     </tr>
     <tr>
       <td>end_sec</td>
       <td>float</td>
       <td>No</td>
-      <td>The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains a few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video). The value defaults to the duration of the video if not provided or set to invalid value.</td>
+      <td>The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video). This param defaults to the duration of the video if not provided or set to invalid value.</td>
     </tr>
     <tr>
       <td>upload_token_id</td>
@@ -354,8 +365,14 @@ rtp('get', 'campaign',true);
     </tr>
   </tbody>
 </table>
-
-<h2 id="image-editing-parameters-explained">Image editing parameters explained</h2>
+    
+      <h2 id="image-editing-parameters-explained">
+        
+        
+          Image editing parameters explained <a href="#image-editing-parameters-explained"></a>
+        
+        
+      </h2>
 
 <p>To use the parameters, append each parameter name followed by the desired value in the following format: <code class="highlighter-rouge">/paramX_name/paramX_value/...</code></p>
 
@@ -370,8 +387,14 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: If neither width nor height were specified, the resulting size will be 120x90 (default thumbnail size).</p>
 </blockquote>
-
-<h3 id="image-dimensions-width-height-and-aspect-ratio">Image Dimensions (Width, Height and Aspect Ratio)</h3>
+    
+      <h3 id="image-dimensions-width-height-and-aspect-ratio">
+        
+        
+          Image Dimensions (Width, Height and Aspect Ratio) <a href="#image-dimensions-width-height-and-aspect-ratio"></a>
+        
+        
+      </h3>
 
 <ul>
   <li>If both width and height were given a zero value the original image will be returned.</li>
@@ -379,8 +402,14 @@ rtp('get', 'campaign',true);
   <li>If only width or height were specified, the given dimension combined with the type parameter will control the resulting size of the image.</li>
   <li>If vid_slices is provided without vid_slice the result will be a horizontal strip with the different slices.</li>
 </ul>
-
-<h4 id="the-type-parameter-controls-the-resizecropping-options">The ‘type’ parameter controls the resize/cropping options:</h4>
+    
+      <h4 id="the-type-parameter-controls-the-resizecropping-options">
+        
+        
+          The ‘type’ parameter controls the resize/cropping options: <a href="#the-type-parameter-controls-the-resizecropping-options"></a>
+        
+        
+      </h4>
 
 <ul>
   <li><code class="highlighter-rouge">type/1</code> - Resize maintaining the aspect ratio of the original video/image asset (overrides either width or height).</li>
@@ -389,8 +418,14 @@ rtp('get', 'campaign',true);
   <li><code class="highlighter-rouge">type/4</code> - Crop the image to the given dimensions using the <strong>top</strong> of the image as gravity point, and fill the remaining space using the given background color.</li>
   <li><code class="highlighter-rouge">type/5</code> - Stretch the image to desired dimensions.</li>
 </ul>
-
-<h4 id="nearest-aspect-ratio">Nearest Aspect Ratio</h4>
+    
+      <h4 id="nearest-aspect-ratio">
+        
+        
+          Nearest Aspect Ratio <a href="#nearest-aspect-ratio"></a>
+        
+        
+      </h4>
 
 <p>Pass <code class="highlighter-rouge">nearest_aspect_ratio/1</code> to indicate that the resizing engine should attempt resizing the image to the nearest aspect ratio of the original image (or video) before cropping the image to the specified dimensions. This will always result in an image that was scaled (resized) to maintain the aspect ratio of the original image dimensions (regardless of what was specified in the <code class="highlighter-rouge">type</code> parameter), and only then cropped to the desired dimensions.</p>
 
@@ -402,8 +437,14 @@ https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/h
 https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/height/50/nearest_aspect_ratio/1
 </code></pre>
 </div>
-
-<h3 id="resizing">Resizing</h3>
+    
+      <h3 id="resizing">
+        
+        
+          Resizing <a href="#resizing"></a>
+        
+        
+      </h3>
 
 <p>The thumbnail with dimensions of 500 x 400 (with maintain aspect-ratio from original) and defined quality: (X is JPEG quality ranging from 0 to 100)</p>
 
@@ -431,8 +472,14 @@ https://cdnapisec.kaltura.com/p/811441/thumbnail/entry_id/0_wf3km7rh/width/200/h
 <blockquote>
   <p>Note: The Quality parameter affects the compression value of the JPEG algorithm. To learn more about JPEG Compressions, visit the <a href="http://en.wikipedia.org/wiki/JPEG#Effects_of_JPEG_compression">JPEG entry on Wikipedia</a>.</p>
 </blockquote>
-
-<h3 id="using-vid_sec-parameter">Using vid_sec parameter</h3>
+    
+      <h3 id="using-vid_sec-parameter">
+        
+        
+          Using vid_sec parameter <a href="#using-vid_sec-parameter"></a>
+        
+        
+      </h3>
 
 <p>The vid_sec parameter allows us to capture a frame from a specific time in a video entry. <br />
 vid_sec is a float, you can use decimal numbers to get particular frames from the video.<br />
@@ -480,8 +527,14 @@ The following example shows capturing various frames in the video: 0 (first fram
 <blockquote>
   <p>NOTE: If the given vid_sec is out of range, meaning, larger than the duration of the video, the returned thumbnail will be the last frame.</p>
 </blockquote>
-
-<h3 id="cropping">Cropping</h3>
+    
+      <h3 id="cropping">
+        
+        
+          Cropping <a href="#cropping"></a>
+        
+        
+      </h3>
 
 <p>Using the <code class="highlighter-rouge">src_x</code>, <code class="highlighter-rouge">src_y</code>, <code class="highlighter-rouge">src_w</code> and <code class="highlighter-rouge">src_h</code> parameters, it is possible to define a cropping rectangle, indicating the X and Y to position the rectangle at and W and H to indicate the size of the rectangle. The returned thumbnail will then be the pixels of the image that are within the defined rectangle.</p>
 
@@ -503,8 +556,14 @@ The following example shows capturing various frames in the video: 0 (first fram
 <blockquote>
   <p>NOTE: To accurately calculate the dimension of the cropping rectangle, you should know the original video (source flavor) dimensions. In the above example, the dimensions were 1280 x 720. To avoid having to know the source dimensions, use the <code class="highlighter-rouge">rel_width</code> and <code class="highlighter-rouge">rel_height</code> parameters to define a “new-virtual-source-dimensions”, the Thumbnail API will use resize the frame to these dimensions and then perform the cropping.</p>
 </blockquote>
-
-<h3 id="slicing">Slicing</h3>
+    
+      <h3 id="slicing">
+        
+        
+          Slicing <a href="#slicing"></a>
+        
+        
+      </h3>
 
 <p>A more advanced use case of the Thumbnail API is to create “animated-thumbnails” where series of thumbnails from the video are shown in rotation one after another, creating the impression of a silent movie.</p>
 
@@ -534,8 +593,14 @@ The following example shows capturing various frames in the video: 0 (first fram
     </tr>
   </tbody>
 </table>
-
-<h3 id="stripe-of-thumbnail-slices-to-be-used-as-css-stripes">Stripe of thumbnail slices (to be used as <a href="https://www.w3schools.com/css/css_image_sprites.asp">CSS stripes</a>)</h3>
+    
+      <h3 id="stripe-of-thumbnail-slices-to-be-used-as-css-stripes">
+        
+        
+          Stripe of thumbnail slices (to be used as <a href="https://www.w3schools.com/css/css_image_sprites.asp">CSS stripes</a>) <a href="#stripe-of-thumbnail-slices-to-be-used-as-css-stripes"></a>
+        
+        
+      </h3>
 
 <p>To create a long stripe of thumbnail slices simply remove the <code class="highlighter-rouge">vid_slice</code> parameter:</p>
 
@@ -548,7 +613,6 @@ The following example shows capturing various frames in the video: 0 (first fram
 <blockquote>
   <p>NOTE: The slices are 0 indexed. By default, the first slice in the series will always be 0. If you wish to extract a frames stripe from a shorter segment (clip) of your video, add the <code class="highlighter-rouge">start_sec</code> and <code class="highlighter-rouge">end_sec</code> params to indicate the segment of which the thumbnail stripe should be extracted from.</p>
 </blockquote>
-
 		
 </article>
 

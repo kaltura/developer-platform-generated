@@ -147,11 +147,22 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to set/ switch subtitles on when casting to Chromecast device.</p>
-
-<h2 id="get-subtitles">Get Subtitles</h2>
-
-<h3 id="make-sure-you-implement-kcastproviderdelegate">Make sure you implement <strong>KCastProviderDelegate</strong></h3>
+		<p>This article describes how to set/ switch subtitles on when casting to Chromecast device.</p>
+      <h2 id="get-subtitles">
+        
+        
+          Get Subtitles <a href="#get-subtitles"></a>
+        
+        
+      </h2>
+    
+      <h3 id="make-sure-you-implement-kcastproviderdelegate">
+        
+        
+          Make sure you implement <strong>KCastProviderDelegate</strong> <a href="#make-sure-you-implement-kcastproviderdelegate"></a>
+        
+        
+      </h3>
 
 <p>To get subtitles dictionary you should implement the following delegate method:</p>
 
@@ -160,15 +171,20 @@ rtp('get', 'campaign',true);
 </span><span class="p">}</span>
 </code></pre>
 </div>
-
-<h2 id="set-switch-subtitle">Set/ Switch Subtitle</h2>
+    
+      <h2 id="set-switch-subtitle">
+        
+        
+          Set/ Switch Subtitle <a href="#set-switch-subtitle"></a>
+        
+        
+      </h2>
 
 <p>To set/ switch chosen subtitle from your menu on Chromecast device please use:</p>
 
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="n">_player</span><span class="p">.</span><span class="n">castProvider</span> <span class="nf">switchTextTrack</span><span class="p">:{</span><span class="n">selected_index</span><span class="p">}];</span>
 </code></pre>
 </div>
-
 		
 </article>
 

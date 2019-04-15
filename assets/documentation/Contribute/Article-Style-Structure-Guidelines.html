@@ -14,7 +14,6 @@ window.jQuery = window.jquery;
   </script>
   <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script>hljs.initHighlightingOnLoad();</script>
   <script type="text/javascript">
     var switchTo5x=true;
   </script>
@@ -142,14 +141,19 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>The Kaltura VPaaS Developer Site uses <a href="http://jekyllrb.com/">Jekyll engine</a> and markdown syntax as the basis of the articles.<br />
+		<p>The Kaltura VPaaS Developer Site uses <a href="http://jekyllrb.com/">Jekyll engine</a> and markdown syntax as the basis of the articles.<br />
 To learn about Markdown basics and how to use the format, please read: <a href="https://help.github.com/articles/markdown-basics">GitHub markdown basics</a>.</p>
 
 <blockquote>
   <p><strong>Important note</strong>: Always add new lines before and after every element (heading, table, image, lists, code, embeds, etc).</p>
 </blockquote>
-
-<h2 id="adding-kaltura-videos">Adding Kaltura Videos</h2>
+      <h2 id="adding-kaltura-videos">
+        
+        
+          Adding Kaltura Videos <a href="#adding-kaltura-videos"></a>
+        
+        
+      </h2>
 <p>{% onebox http://www.kaltura.com/tiny/nex76 %}</p>
 
 <p><strong>Will be rendered as:</strong></p>
@@ -177,11 +181,23 @@ window.kWidget.embed({
 embedVideo();
 </script>
 </div>
-
-<h2 id="adding-youtube-videos">Adding YouTube videos</h2>
+    
+      <h2 id="adding-youtube-videos">
+        
+        
+          Adding YouTube videos <a href="#adding-youtube-videos"></a>
+        
+        
+      </h2>
 <p>{% onebox https://www.youtube.com/watch?v=Owh8nBt4QSs %}</p>
-
-<h2 id="adding-syntax-highligted-code">Adding Syntax Highligted Code</h2>
+    
+      <h2 id="adding-syntax-highligted-code">
+        
+        
+          Adding Syntax Highligted Code <a href="#adding-syntax-highligted-code"></a>
+        
+        
+      </h2>
 
 <p>{% highlight c %}<br />
 int hello_world(char *world)  <br />
@@ -198,8 +214,14 @@ int hello_world(char *world)  <br />
 	<span class="n">printf</span><span class="p">(</span><span class="s">"Hello %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">world</span><span class="p">);</span>
 	<span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span></code></pre></figure>
-
-<h2 id="adding-multi-language-tabbed-divs">Adding Multi language tabbed divs</h2>
+    
+      <h2 id="adding-multi-language-tabbed-divs">
+        
+        
+          Adding Multi language tabbed divs <a href="#adding-multi-language-tabbed-divs"></a>
+        
+        
+      </h2>
 
 <p>Add your code snippet for each lang dir under https://github.com/kaltura/DeveloperPortalDocs/tree/master/code_examples and then include the following in your MD:</p>
 
@@ -230,8 +252,14 @@ int hello_world(char *world)  <br />
 </div>
 
 <p>See <a href="https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers">List of supported languages and lexers</a>.</p>
-
-<h2 id="adding-tables">Adding Tables</h2>
+    
+      <h2 id="adding-tables">
+        
+        
+          Adding Tables <a href="#adding-tables"></a>
+        
+        
+      </h2>
 
 <p>Markdown tables can become messy. Please write clean tables so it will be simple for contributors after you to edit and enhance your work.  <br />
 The clean way to add Markdown tables is as follows:</p>
@@ -274,13 +302,25 @@ Be certain to ensure that there is a an empty line above and below each table.</
 </table>
 
 <p>You can also use: <a href="http://www.tablesgenerator.com/markdown_tables">TablesGenerator.com</a>.</p>
-
-<h2 id="adding-images">Adding Images</h2>
+    
+      <h2 id="adding-images">
+        
+        
+          Adding Images <a href="#adding-images"></a>
+        
+        
+      </h2>
 
 <p>Use the standard Markdown notation for images (<code class="highlighter-rouge">![Alt Text](url)</code>).  <br />
 Please always ensure that a descriptive Alt text is specified on your image to ensure compatibility with screen readers and better search indexing.</p>
-
-<h3 id="adding-an-image-folder">Adding an Image Folder</h3>
+    
+      <h3 id="adding-an-image-folder">
+        
+        
+          Adding an Image Folder <a href="#adding-an-image-folder"></a>
+        
+        
+      </h3>
 
 <ol>
   <li>Go to the folder inside which you want to create another folder.</li>
@@ -288,8 +328,14 @@ Please always ensure that a descriptive Alt text is specified on your image to e
   <li>In the text field for the file name, first write the folder name you want to create and then type / , to create the folder.</li>
   <li>Commit the new file.</li>
 </ol>
-
-<h2 id="adding-diagrams">Adding Diagrams</h2>
+    
+      <h2 id="adding-diagrams">
+        
+        
+          Adding Diagrams <a href="#adding-diagrams"></a>
+        
+        
+      </h2>
 <p>{% plantuml %}</p>
 
 <p>participant App<br />
@@ -307,16 +353,28 @@ localURLProvider–&gt;KP: localPath</p>
 
 <p><strong>Will render as:</strong></p>
 <p><img src="assets/uml/c36124909720e7f8adfaaa48113b5bc5.svg" alt="PlantUML SVG diagram" class="plantuml" /></p>
-
-<h2 id="note-about-links-to-external-sites">Note about links to external sites</h2>
+    
+      <h2 id="note-about-links-to-external-sites">
+        
+        
+          Note about links to external sites <a href="#note-about-links-to-external-sites"></a>
+        
+        
+      </h2>
 <p>The VPaaS website will automatically detect if links are using the same domain or a different one.  <br />
 Links that are directed to external domains will automatically be appended with `target=”_blank”’ and will be opened in a new tab.</p>
 
 <p>A nifty tool to help you to see how your markdown looks as you create it: <a href="http://dillinger.io">dillinger.io</a></p>
 
 <p>For additional reading on the Markdown flavor in use, see: <a href="http://kramdown.gettalong.org/documentation.html">Kramdown</a>.</p>
-
-<h2 id="tips-for-creating-great-content">Tips for Creating Great Content</h2>
+    
+      <h2 id="tips-for-creating-great-content">
+        
+        
+          Tips for Creating Great Content <a href="#tips-for-creating-great-content"></a>
+        
+        
+      </h2>
 
 <ul>
   <li>Start with an introduction by answering the question “what will be learned in this document?”.</li>
@@ -325,8 +383,14 @@ Links that are directed to external domains will automatically be appended with 
   <li>All sections should be separated by H2 headings (##), subsections by H3 headings (###) and so on.</li>
   <li><strong>Don’t forget to spell check!</strong></li>
 </ul>
-
-<h3 id="remember-that-your-audience-is-developer-focused-therefore">Remember that your audience is developer-focused, therefore:</h3>
+    
+      <h3 id="remember-that-your-audience-is-developer-focused-therefore">
+        
+        
+          Remember that your audience is developer-focused, therefore: <a href="#remember-that-your-audience-is-developer-focused-therefore"></a>
+        
+        
+      </h3>
 
 <p>Think about steps that will take your reader through actual scenarios’ breakdown, with code reference examples that are complete and easy to follow.</p>
 
@@ -338,8 +402,14 @@ Links that are directed to external domains will automatically be appended with 
   <li>Clearly explain the required workflows, and ensure they achieve a final and complete end-result.</li>
   <li>When in doubt, assume that your reader will be a newbie and doesn’t know much about the context, so link to relevant reading material and explain information properly.</li>
 </ul>
-
-<h2 id="how-to-contribute-and-help-improve-the-documentation">How to Contribute and Help Improve the Documentation</h2>
+    
+      <h2 id="how-to-contribute-and-help-improve-the-documentation">
+        
+        
+          How to Contribute and Help Improve the Documentation <a href="#how-to-contribute-and-help-improve-the-documentation"></a>
+        
+        
+      </h2>
 
 <ul>
   <li>Every topic category (e.g. Content Ingestion &amp; Acquisition) has a respective directory under this repository.</li>
@@ -351,22 +421,33 @@ Links that are directed to external domains will automatically be appended with 
   <li>The filename should always reflect the title of the article (i.e. H1 == filename)</li>
   <li>Follow the guidelines for article header notation as per below</li>
 </ul>
-
-<h2 id="article-header-notation"><a name="header-notation"></a>Article Header Notation</h2>
+    
+      <h2 id="article-header-notation">
+        
+        
+          <a name="header-notation"></a>Article Header Notation <a href="#article-header-notation"></a>
+        
+        
+      </h2>
 <p>At the top of every markdown file, you will find the notation as follows. This designates the type of page and its location in the website menu.</p>
 
 <figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="nn">---</span>
 <span class="s">layout</span><span class="pi">:</span> <span class="s">page</span>
 <span class="s">title</span><span class="pi">:</span> <span class="s">VPaaS Website Sample Article</span>
 <span class="nn">---</span></code></pre></figure>
-
-<h3 id="the-document-metadata-fields-are">The document metadata fields are:</h3>
+    
+      <h3 id="the-document-metadata-fields-are">
+        
+        
+          The document metadata fields are: <a href="#the-document-metadata-fields-are"></a>
+        
+        
+      </h3>
 
 <ul>
   <li><code class="highlighter-rouge">layout:</code> for documents, this should always be set to <code class="highlighter-rouge">page</code></li>
   <li><code class="highlighter-rouge">title:</code> this is the title of the page (correlates to <code class="highlighter-rouge">&lt;title&gt;&lt;/title&gt;</code> tag in HTML)</li>
 </ul>
-
 		
 </article>
 
@@ -415,6 +496,3 @@ Links that are directed to external domains will automatically be appended with 
 </script>
 
 <!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
-<script type="text/javascript" src="assets/js/jekyll-code-example-buttons.js"></script>
-  <script src="assets/js/highlight.pack.js"></script>
-  <script>hljs.initHighlighting();</script>

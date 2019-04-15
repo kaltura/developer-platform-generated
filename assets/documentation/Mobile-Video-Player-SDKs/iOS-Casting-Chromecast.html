@@ -141,32 +141,67 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p>This article describes how to set up the Google Cast feature in iOS devices.</p>
-
-<h2 id="introduction">Introduction</h2>
+		<p>This article describes how to set up the Google Cast feature in iOS devices.</p>
+      <h2 id="introduction">
+        
+        
+          Introduction <a href="#introduction"></a>
+        
+        
+      </h2>
 
 <p>The Cast functionality allows your videos to be cast from a iOS mobile device, via the Chromecast plugin, directly to a Kaltura Player Receiver App on a Chromecast-connected TV.</p>
-
-<h3 id="before-you-begin">Before You Begin</h3>
+    
+      <h3 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h3>
 
 <p>Before you begin setting up the Cast feature, make sure you’ve read the article <a href="/api-docs/05_Mobile-Video-Player-SDKs/iOS-Getting-Started.html">iOS Player SDK and Environment Setup - Getting Started</a>.</p>
-
-<h2 id="basic-definitions">Basic Definitions</h2>
+    
+      <h2 id="basic-definitions">
+        
+        
+          Basic Definitions <a href="#basic-definitions"></a>
+        
+        
+      </h2>
 
 <ul>
   <li><code class="highlighter-rouge">Sender</code> - A Cast enabled Kaltura Player running inside of a iOS Application; the Kaltura Player requires a Sender App ID.</li>
   <li><code class="highlighter-rouge">Receiver</code> - A Kaltura Player Receiver App that runs on the Chromecast device.</li>
 </ul>
-
-<h2 id="google-cast-setup">Google Cast Setup</h2>
+    
+      <h2 id="google-cast-setup">
+        
+        
+          Google Cast Setup <a href="#google-cast-setup"></a>
+        
+        
+      </h2>
 
 <p>To enable casting to Chromecast with the Kaltura Player iOS SDK, you will first need to import the Google Cast Framework and its dependent frameworks.</p>
-
-<h4 id="limitation">Limitation</h4>
+    
+      <h4 id="limitation">
+        
+        
+          Limitation <a href="#limitation"></a>
+        
+        
+      </h4>
 
 <p>The supported version for Google Cast iOS SDK is version <code class="highlighter-rouge">2.10.4</code>.</p>
-
-<h3 id="getting-started">Getting Started</h3>
+    
+      <h3 id="getting-started">
+        
+        
+          Getting Started <a href="#getting-started"></a>
+        
+        
+      </h3>
 
 <p>To begin casting, follow these steps:</p>
 
@@ -199,8 +234,14 @@ rtp('get', 'campaign',true);
 }
 </code></pre>
 </div>
-
-<h4 id="scanning-for-devices">Scanning for Devices</h4>
+    
+      <h4 id="scanning-for-devices">
+        
+        
+          Scanning for Devices <a href="#scanning-for-devices"></a>
+        
+        
+      </h4>
 
 <ol>
   <li>
@@ -234,8 +275,14 @@ rtp('get', 'campaign',true);
 <div class="highlighter-rouge"><pre class="highlight"><code>castProvider.devices;
 </code></pre>
 </div>
-
-<h4 id="connecting-to-devices">Connecting to Devices</h4>
+    
+      <h4 id="connecting-to-devices">
+        
+        
+          Connecting to Devices <a href="#connecting-to-devices"></a>
+        
+        
+      </h4>
 
 <ol>
   <li>
@@ -258,16 +305,28 @@ rtp('get', 'campaign',true);
     </div>
   </li>
 </ol>
-
-<h4 id="casting-media">Casting Media</h4>
+    
+      <h4 id="casting-media">
+        
+        
+          Casting Media <a href="#casting-media"></a>
+        
+        
+      </h4>
 
 <p>To cast, set the <code class="highlighter-rouge">castProvider</code> property under <code class="highlighter-rouge">KPViewController</code> with <code class="highlighter-rouge">KCastProvider</code> as the object you created:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>_player.castProvider = _castProvider;
 </code></pre>
 </div>
-
-<h4 id="disconnecting-from-a-device">Disconnecting from a Device</h4>
+    
+      <h4 id="disconnecting-from-a-device">
+        
+        
+          Disconnecting from a Device <a href="#disconnecting-from-a-device"></a>
+        
+        
+      </h4>
 
 <p>To disconnect from a device, use one of the following methods:</p>
 
@@ -286,8 +345,14 @@ rtp('get', 'campaign',true);
 }
 </code></pre>
 </div>
-
-<h3 id="media-remote-control">Media Remote Control</h3>
+    
+      <h3 id="media-remote-control">
+        
+        
+          Media Remote Control <a href="#media-remote-control"></a>
+        
+        
+      </h3>
 
 <p>The <code class="highlighter-rouge">KCastProvider</code> includes a <code class="highlighter-rouge">KCastMediaRemoteControl</code> instance that controls the playback of the video being cast. The <code class="highlighter-rouge">KCastMediaRemoteControlDelegate</code> will provide you with playback callbacks while casting.</p>
 
@@ -299,13 +364,18 @@ rtp('get', 'campaign',true);
 - (void)readyToPlay:(NSTimeInterval)streamDuration;
 </code></pre>
 </div>
-
-<h3 id="demo-application">Demo Application</h3>
+    
+      <h3 id="demo-application">
+        
+        
+          Demo Application <a href="#demo-application"></a>
+        
+        
+      </h3>
 
 <p>A best practice sample application, which demonstrates the code that is required for a proper casting experience, can be found in this <a href="https://github.com/kaltura/player-sdk-demo-ios/tree/master/ovp/CCDemo">demo</a>.</p>
 
 <p>This repository contains several basic best practice applications that use the Kaltura iOS Player SDK.</p>
-
 		
 </article>
 

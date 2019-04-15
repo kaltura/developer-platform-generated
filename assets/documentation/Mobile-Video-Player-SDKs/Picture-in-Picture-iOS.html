@@ -141,19 +141,30 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-    		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/iOS-Supported-green.svg" alt="iOS" /></a></p>
+		<p><a href="https://github.com/kaltura/player-sdk-native-ios"><img src="https://img.shields.io/badge/iOS-Supported-green.svg" alt="iOS" /></a></p>
 
 <p>This article describes how to use the iOS plugin for the PIP feature.</p>
-
-<h2 id="enabling-background-modes">Enabling Background Modes</h2>
+      <h2 id="enabling-background-modes">
+        
+        
+          Enabling Background Modes <a href="#enabling-background-modes"></a>
+        
+        
+      </h2>
 
 <p>To enable support for Audio, AirPlay and Picture-in-Picture (PIP):</p>
 
 <p>Use the Background modes section of the Capabilities tab in your Xcode project.</p>
 
 <p><img src="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Art/4_enablebackgroundmodes_2x.png" alt="Enable Background Mode" /></p>
-
-<h2 id="attaching-the-pipbtn-plugin-to-your-config-instance">Attaching the ‘pipBtn’ Plugin to your <code class="highlighter-rouge">Config</code> Instance</h2>
+    
+      <h2 id="attaching-the-pipbtn-plugin-to-your-config-instance">
+        
+        
+          Attaching the ‘pipBtn’ Plugin to your <code class="highlighter-rouge">Config</code> Instance <a href="#attaching-the-pipbtn-plugin-to-your-config-instance"></a>
+        
+        
+      </h2>
 
 <p>To attach the ‘pipBtn’ plugin to your <code class="highlighter-rouge">Config</code> instance:</p>
 <div class="language-objective_c highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="n">config</span> <span class="nf">addConfigKey</span><span class="p">:</span><span class="s">@"pipBtn.plugin"</span> <span class="nf">withValue</span><span class="p">:</span><span class="s">@"true"</span><span class="p">];</span>
@@ -163,7 +174,6 @@ rtp('get', 'campaign',true);
 <blockquote>
   <p>Note: This feature is available from <a href="https://github.com/kaltura/mwEmbed/releases">Kaltura Player version 2.38</a> and later.</p>
 </blockquote>
-
 		
 </article>
 
