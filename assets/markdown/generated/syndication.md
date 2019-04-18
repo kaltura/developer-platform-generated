@@ -385,6 +385,32 @@ table th {
   </xs:complexType>
   <xs:element name="distribution" type="T_distribution" substitutionGroup="item-extension"></xs:element>
   <xs:element name="distribution-extension"></xs:element>
+  <xs:complexType name="T_scene_questionCuePoint">
+    <xs:complexContent>
+      <xs:extension base="T_scene">
+        <xs:sequence>
+          <xs:element name="question" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="hint" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="explanation" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="optionalAnswers" minOccurs="0" maxOccurs="1" type="KalturaOptionalAnswersArray"></xs:element>
+          <xs:element name="correctAnswerKeys" minOccurs="0" maxOccurs="1" type="KalturaStringArray"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="scene-question-cue-point" type="T_scene_questionCuePoint" substitutionGroup="scene"></xs:element>
+  <xs:complexType name="T_scene_answerCuePoint">
+    <xs:complexContent>
+      <xs:extension base="T_scene">
+        <xs:sequence>
+          <xs:element name="answerKey" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="quizUserEntryId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+          <xs:element name="parentId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="scene-answer-cue-point" type="T_scene_answerCuePoint" substitutionGroup="scene"></xs:element>
   <xs:complexType name="T_scenes">
     <xs:sequence>
       <xs:element ref="scene" minOccurs="1" maxOccurs="unbounded"></xs:element>
@@ -416,32 +442,6 @@ table th {
   <xs:element name="scenes" type="T_scenes" substitutionGroup="item-extension"></xs:element>
   <xs:element name="scene" type="T_scene"></xs:element>
   <xs:element name="scene-extension"></xs:element>
-  <xs:complexType name="T_scene_questionCuePoint">
-    <xs:complexContent>
-      <xs:extension base="T_scene">
-        <xs:sequence>
-          <xs:element name="question" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="hint" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="explanation" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="optionalAnswers" minOccurs="0" maxOccurs="1" type="KalturaOptionalAnswersArray"></xs:element>
-          <xs:element name="correctAnswerKeys" minOccurs="0" maxOccurs="1" type="KalturaStringArray"></xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="scene-question-cue-point" type="T_scene_questionCuePoint" substitutionGroup="scene"></xs:element>
-  <xs:complexType name="T_scene_answerCuePoint">
-    <xs:complexContent>
-      <xs:extension base="T_scene">
-        <xs:sequence>
-          <xs:element name="answerKey" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="quizUserEntryId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-          <xs:element name="parentId" minOccurs="1" maxOccurs="1" type="xs:string"></xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="scene-answer-cue-point" type="T_scene_answerCuePoint" substitutionGroup="scene"></xs:element>
   <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:simpleType name="KalturaEntryType">
     <xs:restriction base="xs:string">
@@ -3879,209 +3879,6 @@ table th {
 
 
 
-<span class="k-et">scenes element</span>
-
-
-
-
-
-<span class="element-description">Cue points wrapper</span>
-
-
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody><tr class="">
-<td class="first" colspan="2"><span>scene</span></td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point element</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>Unbounded</td>
-<td></td>
-<td class="last"></td>
-</tr></tbody>
-</table>
-
-
-
-##### XML Example
-
-
-
-```xml
-<scenes>
-  <scene-ad-cue-point entryId="{entry id}" systemName="MY_AD_CUE_POINT_SYSTEM_NAME">...</scene-ad-cue-point>
-  <scene-annotation entryId="{entry id}" systemName="MY_ANNOTATION_PARENT_SYSTEM_NAME">...</scene-annotation>
-  <scene-annotation entryId="{entry id}">...</scene-annotation>
-  <scene-code-cue-point entryId="{entry id}">...</scene-code-cue-point>
-  <scene-thumb-cue-point entryId="{entry id}">...</scene-thumb-cue-point>
-</scenes>
-```
-
---------
-
-
-
-
-
-<span class="k-et">scene element</span>
-
-
-
-
-
-<span class="element-description">
-				Base cue point element
-				Is abstract and cannot be used
-				Use the extended elements only
-			</span>
-
-
-
-
-
-##### Attributes
-
-
-
-<table>
-<thead><tr>
-<th>Attribute Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>sceneId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of cue point to apply update/delete action on</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>string</td>
-<td>
-					 Maximum length: 250 characters<br>
-</td>
-</tr>
-<tr>
-<td>systemName</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">System name of cue point to apply update/delete action on</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td>
-					 Maximum length: 120 characters<br>
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr class="">
-<td class="first" colspan="2">sceneStartTime</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>time</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">createdAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">updatedAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">userId</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2"><span>tags</span></td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td></td>
-<td class="last"></td>
-</tr>
-</tbody>
-</table>
-
-
-
-<span class="element-extended-title">Extended elements</span>
-
-
-
-<ol>
-<li><span>scene-ad-cue-point</span></li>
-<li><span>scene-annotation</span></li>
-<li><span>scene-code-cue-point</span></li>
-<li><span>scene-thumb-cue-point</span></li>
-<li><span>scene-question-cue-point</span></li>
-<li><span>scene-answer-cue-point</span></li>
-</ol>
-
---------
-
-
-
-
-
 <span class="k-et">scene-question-cue-point element</span>
 
 
@@ -4347,6 +4144,209 @@ table th {
   </tags>
 </scene-answer-cue-point>
 ```
+
+--------
+
+
+
+
+
+<span class="k-et">scenes element</span>
+
+
+
+
+
+<span class="element-description">Cue points wrapper</span>
+
+
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody><tr class="">
+<td class="first" colspan="2"><span>scene</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point element</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>Unbounded</td>
+<td></td>
+<td class="last"></td>
+</tr></tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<scenes>
+  <scene-ad-cue-point entryId="{entry id}" systemName="MY_AD_CUE_POINT_SYSTEM_NAME">...</scene-ad-cue-point>
+  <scene-annotation entryId="{entry id}" systemName="MY_ANNOTATION_PARENT_SYSTEM_NAME">...</scene-annotation>
+  <scene-annotation entryId="{entry id}">...</scene-annotation>
+  <scene-code-cue-point entryId="{entry id}">...</scene-code-cue-point>
+  <scene-thumb-cue-point entryId="{entry id}">...</scene-thumb-cue-point>
+</scenes>
+```
+
+--------
+
+
+
+
+
+<span class="k-et">scene element</span>
+
+
+
+
+
+<span class="element-description">
+				Base cue point element
+				Is abstract and cannot be used
+				Use the extended elements only
+			</span>
+
+
+
+
+
+##### Attributes
+
+
+
+<table>
+<thead><tr>
+<th>Attribute Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>sceneId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of cue point to apply update/delete action on</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>string</td>
+<td>
+					 Maximum length: 250 characters<br>
+</td>
+</tr>
+<tr>
+<td>systemName</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">System name of cue point to apply update/delete action on</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td>
+					 Maximum length: 120 characters<br>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr class="">
+<td class="first" colspan="2">sceneStartTime</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>time</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">createdAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">updatedAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">userId</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2"><span>tags</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td></td>
+<td class="last"></td>
+</tr>
+</tbody>
+</table>
+
+
+
+<span class="element-extended-title">Extended elements</span>
+
+
+
+<ol>
+<li><span>scene-ad-cue-point</span></li>
+<li><span>scene-annotation</span></li>
+<li><span>scene-code-cue-point</span></li>
+<li><span>scene-thumb-cue-point</span></li>
+<li><span>scene-question-cue-point</span></li>
+<li><span>scene-answer-cue-point</span></li>
+</ol>
 
 --------
 

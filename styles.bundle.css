@@ -5131,7 +5131,10 @@ h1.breadcrumbs {
 .docs-contents h4,
 .docs-contents h5,
 .docs-contents h6 {
-  margin-top: 24px;
+  /* this gives an effective 24px margin-top, but creates
+   * room so that anchor tags push the header below the navbar */
+  padding-top: 80px;
+  margin-top: -56px;
 }
 
 .docs-contents table td,
