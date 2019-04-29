@@ -141,40 +141,55 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-		<h1 id="welcome-to-the-kaltura-api-docs">
-        
-        
-          Welcome to the Kaltura API Docs <a href="#welcome-to-the-kaltura-api-docs"></a>
-        
-        
-      </h1>
+    		<h1 id="welcome-to-the-kaltura-api-docs">Welcome to the Kaltura API Docs</h1>
 
 <div>
 <div class="video-player-wrapper">
 <div id="dummy" class="video-margin"></div>
-<div id="kaltura_player_1_qusjiqc6_42923951" class="video-player"></div>
+
+<style>
+  .video-player {
+    background-color: #000;
+    width: 100%;
+    max-width: 800px;
+    height: 372px;
+  }
+</style>
+
+<div id="kaltura_player_1_8b9rjzjy_42923951" class="video-player"></div>
 </div>
-<script src="https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedIframeJs/uiconf_id/42923951/partner_id/2421271"></script>
+
+
+<script src="https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedPlaykitJs/uiconf_id/43473121/partner_id/2421271"></script>
 <script>
+window.kalturaIntroVideoLoaded = false;
 function embedVideo() {
-if (!window.kWidget) return setTimeout(embedVideo, 100);
-window.kWidget.embed({
-"targetId": "kaltura_player_1_qusjiqc6_42923951",
-"wid": "_2421271",
-"uiconf_id": 42923951,
-"flashvars": {
-"streamerType": "auto",
-},
-"cache_st": 1450868353,
-"entry_id": "1_qusjiqc6"
-});
+  if (window.kalturaIntroVideoLoaded) return;
+  if (!window.lucyBotReady) return setTimeout(embedVideo, 100);
+  window.kalturaIntroVideoLoaded = true;
+
+  var kconfig = {
+        targetId: 'kaltura_player_1_8b9rjzjy_42923951',
+        playback:{
+                autoplay:false,
+                preload:"auto"
+        },
+        provider: {
+                partnerId: 2421271,
+                uiConfId: 43473121
+        },
+       rapt:{}
+  };
+  var raptPlayer = PathKalturaPlayer.setup(kconfig);
+  raptPlayer.loadMedia({playlistId: '1_8b9rjzjy'});
 }
 embedVideo();
+
 </script>
 </div>
 
 <p>To get started, click <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.html">here</a>.</p>
-		
+
 </article>
 
 
