@@ -5176,6 +5176,11 @@ footer, footer a {
 
 .fa-right {
   margin-left: 8px; }
+
+a.anchor {
+  padding-top: 80px;
+  margin-top: -56px;
+  visibility: hidden; }
 span[class^="method-"],
 span[data-method] {
   color: #fff;

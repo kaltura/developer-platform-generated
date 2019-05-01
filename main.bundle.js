@@ -1983,10 +1983,12 @@ var DocumentationComponent = /** @class */ (function () {
                     .toPromise()
                     .then(function (md) {
                     item.contents = md;
-                    _this.setActiveItemHTML(item.contents, !item.isHTML);
                 })
                     .catch(function (e) {
                     _this.error = (e.error && e.error.message) || "Unknown error.";
+                })
+                    .then(function () {
+                    _this.setActiveItemHTML(item.contents, !item.isHTML);
                 });
             }
             else {
@@ -2010,6 +2012,7 @@ var DocumentationComponent = /** @class */ (function () {
         }
     };
     DocumentationComponent.prototype.setActiveItemHTML = function (html, renderMarkdown) {
+        var _this = this;
         if (renderMarkdown === void 0) { renderMarkdown = true; }
         if (renderMarkdown) {
             var title = this.activeItem.title.replace(/\W/g, '.');
@@ -2030,6 +2033,17 @@ var DocumentationComponent = /** @class */ (function () {
             }
             else {
                 window.jQuery(this.htmlContents.nativeElement).html(newElem.innerHTML);
+            }
+            if (this.platformService.isBrowser) {
+                var frag = window.location.href.match(/#(.*)$/);
+                var isFirefox = window.navigator.userAgent.indexOf("Firefox") !== -1;
+                if (frag && !isFirefox) {
+                    var anchor_1 = window.jquery('#' + frag[1]);
+                    if (anchor_1.length) {
+                        this.utils.scrollToSelection(anchor_1);
+                        setTimeout(function () { return _this.utils.scrollToSelection(anchor_1, true, true); }, 1500);
+                    }
+                }
             }
         }
     };
@@ -9296,16 +9310,18 @@ var UtilsService = /** @class */ (function () {
             return e;
         }
     };
-    UtilsService.prototype.scrollToSelection = function (sel) {
+    UtilsService.prototype.scrollToSelection = function (sel, ignoreNav, putElementAtTop) {
+        if (ignoreNav === void 0) { ignoreNav = false; }
+        if (putElementAtTop === void 0) { putElementAtTop = false; }
         var OFFSET = 10;
         var navHeight = window.jQuery('nav').height();
         var visibleHeight = window.innerHeight - navHeight;
-        var targetTop = sel.offset().top - navHeight; // puts elem at top of visible area
+        var targetTop = sel.offset().top - (ignoreNav ? 0 : navHeight); // puts elem at top of visible area
         var curScrollTop = window.jQuery('body').scrollTop();
         var movement = curScrollTop - targetTop;
         if (Math.abs(movement) > (window.innerHeight / 2)) {
             var diffFromWindow = visibleHeight - sel.height();
-            if (diffFromWindow > 0) {
+            if (diffFromWindow > 0 && !putElementAtTop) {
                 targetTop -= diffFromWindow - OFFSET; // Only scroll far enough to make entire elem visible
             }
             else {
