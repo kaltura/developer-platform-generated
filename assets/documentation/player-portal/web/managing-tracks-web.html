@@ -1,0 +1,475 @@
+  <title>Managing Tracks for Web Player</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Managing Tracks for Web Player" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Managing Tracks for Web Player</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Wed May 1 14:04:39 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/managing-tracks-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Wed May 1 14:04:39 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The Kaltura Player uses a comprehensive API to handle all kind of tracks, including video (bitrate), audio, and text (language) tracks. This document demonstrates how to use the API to manage those player tracks.</p>
+      <h2 id="track-availability">
+        
+        
+          Track Availability <a href="#track-availability"></a>
+        
+        
+      </h2>
+
+<p>Tracks are available only when the video source has loaded. There are two ways to verify that tracks are available:</p>
+
+<p><strong>Using the <code class="highlighter-rouge">TRACKS_CHANGED</code> event:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">TRACKS_CHANGED</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">tracks</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">tracks</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This source has '</span> <span class="o">+</span> <span class="nx">tracks</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' tracks'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p><strong>Using the <code class="highlighter-rouge">ready</code> promise:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">ready</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">tracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This source has '</span> <span class="o">+</span> <span class="nx">tracks</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' tracks'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h2 id="retrieve-tracks">
+        
+        
+          Retrieve Tracks <a href="#retrieve-tracks"></a>
+        
+        
+      </h2>
+    
+      <h4 id="getting-all-track-types">
+        
+        
+          Getting All Track Types <a href="#getting-all-track-types"></a>
+        
+        
+      </h4>
+
+<p>The code below shows how to get all of the player tracks using the <code class="highlighter-rouge">getTracks</code> method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">tracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This source has '</span> <span class="o">+</span> <span class="nx">tracks</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' tracks'</span><span class="p">);</span>
+</code></pre>
+</div>
+    
+      <h4 id="getting-specific-track-types">
+        
+        
+          Getting Specific Track Types <a href="#getting-specific-track-types"></a>
+        
+        
+      </h4>
+
+<p>It’s also possible to get a specific kind of track.<br />
+<br />The code below shows how to get a specific track by passing a parameter to the <code class="highlighter-rouge">getTracks</code> method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">videoTracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Track</span><span class="p">.</span><span class="nx">VIDEO</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">audioTracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Track</span><span class="p">.</span><span class="nx">AUDIO</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">textTracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Track</span><span class="p">.</span><span class="nx">TEXT</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This source has '</span> <span class="o">+</span> <span class="nx">videoTracks</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' video tracks'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This source has '</span> <span class="o">+</span> <span class="nx">audioTracks</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' audio tracks'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This source has '</span> <span class="o">+</span> <span class="nx">textTracks</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' text tracks'</span><span class="p">);</span>
+</code></pre>
+</div>
+    
+      <h4 id="getting-the-current-active-tracks">
+        
+        
+          Getting the Current Active Tracks <a href="#getting-the-current-active-tracks"></a>
+        
+        
+      </h4>
+
+<p>The code below shows how to get the current active player tracks using the <code class="highlighter-rouge">getActiveTracks</code> method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">activeTracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getActiveTracks</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The active video track is: '</span> <span class="o">+</span> <span class="nx">activeTracks</span><span class="p">.</span><span class="nx">video</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The active audio track is: '</span> <span class="o">+</span> <span class="nx">activeTracks</span><span class="p">.</span><span class="nx">audio</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The active text track is: '</span> <span class="o">+</span> <span class="nx">activeTracks</span><span class="p">.</span><span class="nx">text</span><span class="p">);</span>
+</code></pre>
+</div>
+    
+      <h2 id="video-tracks">
+        
+        
+          Video Tracks <a href="#video-tracks"></a>
+        
+        
+      </h2>
+
+<p>This section demonstrates how to manage video tracks</p>
+    
+      <h4 id="adaptive-bitrate-and-manual-selection">
+        
+        
+          Adaptive Bitrate and Manual Selection <a href="#adaptive-bitrate-and-manual-selection"></a>
+        
+        
+      </h4>
+
+<p>There are two ways to use video tracks (or bitrate): <em>Adaptive Bitrate</em> and <em>Manual Selection</em>.<br />
+<br />When <em>Adaptive Bitrate</em> is enabled, the player controls the video track selection according to the network conditions. This is the default mode.<br />
+<br />When selecting a specific video track manually, the player switches from <em>Adaptive Bitrate</em> mode to <em>Manual Selection</em>.</p>
+
+<blockquote>
+  <p><strong>Important:</strong> On Safari browsers, only the <em>Adaptive Bitrate</em> mode is available.</p>
+</blockquote>
+    
+      <h4 id="getting-the-current-mode">
+        
+        
+          Getting the Current Mode <a href="#getting-the-current-mode"></a>
+        
+        
+      </h4>
+
+<p>The player exposes the current mode using the <code class="highlighter-rouge">isAdaptiveBitrateEnabled</code> method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">isAdaptiveBitrateEnabled</span><span class="p">())</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The current bitrate mode is Adaptive Bitrate'</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The current bitrate mode is Manual Selection'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>You can also use the <code class="highlighter-rouge">ABR_MODE_CHANGED</code> event to expose the current mode:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">ABR_MODE_CHANGED</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">mode</span> <span class="o">===</span> <span class="s1">'auto'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The player has switched to Adaptive Bitrate'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// manual</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The player has switched to Manual Selection'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h4 id="video-track-selection">
+        
+        
+          Video Track Selection <a href="#video-track-selection"></a>
+        
+        
+      </h4>
+
+<p>To select a specific video track (bitrate), use the <code class="highlighter-rouge">selectTrack</code> method.<br />
+<br />The code below shows how to force the player to play the top bitrate track:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">videoTracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Track</span><span class="p">.</span><span class="nx">VIDEO</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">topBandwidthTrack</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">topBandwidth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">videoTracks</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">videoTracks</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">bandwidth</span> <span class="o">&gt;</span> <span class="nx">topBandwidth</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">topBandwidthTrack</span> <span class="o">=</span> <span class="nx">videoTracks</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">topBandwidth</span> <span class="o">=</span> <span class="nx">topBandwidthTrack</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">selectTrack</span><span class="p">(</span><span class="nx">topBandwidthTrack</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>By selecting a specific video track, the player switches to <em>Manual Selection</em> mode.<br />
+<br />To go back to the <em>Adaptive Bitrate</em> mode, use the <code class="highlighter-rouge">enableAdaptiveBitrate</code> method:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">ABR_MODE_CHANGED</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// event.payload.mode === "auto"</span>
+<span class="p">});</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">enableAdaptiveBitrate</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>Once the video track has changed, either automatically or manually, the player triggers a <code class="highlighter-rouge">VIDEO_TRACK_CHANGED</code> event:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">VIDEO_TRACK_CHANGED</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The new bitrate is: '</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">selectedVideoTrack</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h2 id="audio-tracks">
+        
+        
+          Audio Tracks <a href="#audio-tracks"></a>
+        
+        
+      </h2>
+
+<p>This section shows you how to manage audio tracks.</p>
+    
+      <h4 id="audio-track-selection">
+        
+        
+          Audio Track Selection <a href="#audio-track-selection"></a>
+        
+        
+      </h4>
+
+<p>To select a specific audio track, use the <code class="highlighter-rouge">selectTrack</code> method.<br />
+<br />The code below shows how to select the <em>Spanish</em> audio track:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">audioTracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Track</span><span class="p">.</span><span class="nx">AUDIO</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">audioTracks</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">audioTracks</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">language</span> <span class="o">===</span> <span class="s1">'es'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">player</span><span class="p">.</span><span class="nx">selectTrack</span><span class="p">(</span><span class="nx">audioTracks</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Once the audio track has changed, the player triggers an <code class="highlighter-rouge">AUDIO_TRACK_CHANGED</code> event:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">AUDIO_TRACK_CHANGED</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The new audio track is: '</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">selectedAudioTrack</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h2 id="text-tracks">
+        
+        
+          Text Tracks <a href="#text-tracks"></a>
+        
+        
+      </h2>
+
+<p>This section shows you how to manage text tracks.</p>
+    
+      <h4 id="text-track-selection">
+        
+        
+          Text Track Selection <a href="#text-track-selection"></a>
+        
+        
+      </h4>
+
+<p>To select a specific text track, use the <code class="highlighter-rouge">selectTrack</code> method.<br />
+<br />The code below shows how to select the <em>Spanish</em> text track:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">textTracks</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Track</span><span class="p">.</span><span class="nx">TEXT</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">textTracks</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">textTracks</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">language</span> <span class="o">===</span> <span class="s1">'es'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">player</span><span class="p">.</span><span class="nx">selectTrack</span><span class="p">(</span><span class="nx">textTracks</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Once the text track has changed, the player triggers a <code class="highlighter-rouge">TEXT_TRACK_CHANGED</code> event:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">TEXT_TRACK_CHANGED</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The new text track is: '</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">selectedTextTrack</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h4 id="disabling-the-text-track">
+        
+        
+          Disabling the Text Track <a href="#disabling-the-text-track"></a>
+        
+        
+      </h4>
+
+<p>To disable the text track, use the <code class="highlighter-rouge">hideTextTrack</code> method.<br />
+<br />In this case the player triggers a <code class="highlighter-rouge">TEXT_TRACK_CHANGED</code> event with ‘off’ track:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">TEXT_TRACK_CHANGED</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// event.payload.selectedTextTrack.label === 'Off'</span>
+<span class="p">});</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">hideTextTrack</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<blockquote>
+    
+      <h3 id="text-track-default-label">
+        
+        
+          Text Track default label <a href="#text-track-default-label"></a>
+        
+        
+      </h3>
+
+  <p>A Text Track has language and label properties. The label is set by the label property in the manifest.<br />
+However, in case the manifest does not have a label property - the language property will be set as the tracks label.<br />
+You can set a custom label to a Text Track - read about it <a href="https://developer.kaltura.com/player/web/configuration-playkit-web#configcustomlabels">here</a></p>
+</blockquote>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

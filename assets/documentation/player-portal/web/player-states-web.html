@@ -1,0 +1,323 @@
+  <title>Monitoring Player States for Web</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Monitoring Player States for Web" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Monitoring Player States for Web</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Wed May 1 14:04:39 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/player-states-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Wed May 1 14:04:39 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The player supports life cycle states (or statuses), which are based on HTML5 video events (such as <code class="highlighter-rouge">waiting</code> or <code class="highlighter-rouge">playing</code>). Whenever a state change occurs, the player will fire a related event in response.</p>
+      <h2 id="registering-to-state-changes">
+        
+        
+          Registering to State Changes <a href="#registering-to-state-changes"></a>
+        
+        
+      </h2>
+
+<p>When a player changes its state, it fires a <code class="highlighter-rouge">PlayerStateChanged</code> event. The event data contains the player’s old state as well as the new state. By registering to state changes and listening events, you can manage dependent logic accordingly (this applies mostly to UI changes).</p>
+
+<p>The state’s you register to listen to include the state class, the state type, and transitions between states. These next section provide additional details.</p>
+    
+      <h2 id="state-api">
+        
+        
+          State API <a href="#state-api"></a>
+        
+        
+      </h2>
+
+<p>In the <code class="highlighter-rouge">PlayerStateChanged</code> event, the player exposes both its old state and its new state.<br />
+To learn more about what you can do with these states, refer to the detailed <code class="highlighter-rouge">State</code> class API <del>here</del>.</p>
+    
+      <h2 id="available-state-types">
+        
+        
+          Available State Types <a href="#available-state-types"></a>
+        
+        
+      </h2>
+
+<p>The player supports a number of player state types. You’ll find a detailed list of player types <a href="https://github.com/kaltura/playkit-js/blob/master/src/state/state-type.js">here</a>.<br />
+<br />Here’s an example how you can access a player state type:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">State</span><span class="p">.</span><span class="nx">PLAYING</span><span class="p">);</span> <span class="c1">// 'playing'</span>
+</code></pre>
+</div>
+    
+      <h2 id="transitioning-between-states">
+        
+        
+          Transitioning Between States <a href="#transitioning-between-states"></a>
+        
+        
+      </h2>
+
+<p>When the player moves from one state to another, this is defined as a <strong>transition</strong>. For example, if the player’s current state is <code class="highlighter-rouge">PLAYING</code> and the video element triggers a <code class="highlighter-rouge">pause</code> event, the player will change its state to <code class="highlighter-rouge">PAUSED</code>.</p>
+    
+      <h2 id="player-state-machine">
+        
+        
+          Player State Machine <a href="#player-state-machine"></a>
+        
+        
+      </h2>
+
+<p>This figure illustrates the functionality of the player state machine:<br />
+<img src="./player-state-machine.jpg" alt="player-state-machine" /></p>
+
+<p>The code snippets below show examples of how a state change appears in the player code:</p>
+    
+      <h3 id="getting-the-new-state">
+        
+        
+          Getting the New State <a href="#getting-the-new-state"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">PLAYER_STATE_CHANGED</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">newState</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'New state type is: '</span> <span class="o">+</span> <span class="nx">newState</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h3 id="getting-the-previous-state">
+        
+        
+          Getting the Previous State <a href="#getting-the-previous-state"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">PLAYER_STATE_CHANGED</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">oldState</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">oldState</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Previous state type is: '</span> <span class="o">+</span> <span class="nx">oldState</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The player was in the previous state '</span> <span class="o">+</span> <span class="nx">oldState</span><span class="p">.</span><span class="nx">duration</span> <span class="o">+</span> <span class="s1">' millis'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h3 id="buffer-start">
+        
+        
+          Buffer Start <a href="#buffer-start"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">PLAYER_STATE_CHANGED</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">newState</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">newState</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">player</span><span class="p">.</span><span class="nx">State</span><span class="p">.</span><span class="nx">BUFFERING</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Buffer start - show spinner</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h3 id="buffer-end">
+        
+        
+          Buffer End <a href="#buffer-end"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">PLAYER_STATE_CHANGED</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">oldState</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">oldState</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">oldState</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">player</span><span class="p">.</span><span class="nx">State</span><span class="p">.</span><span class="nx">BUFFERING</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Buffer end - hide spinner</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h3 id="buffer-underflow">
+        
+        
+          Buffer Underflow <a href="#buffer-underflow"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">PLAYER_STATE_CHANGED</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">State</span> <span class="o">=</span> <span class="nx">player</span><span class="p">.</span><span class="nx">State</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">payload</span><span class="p">.</span><span class="nx">oldState</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">State</span><span class="p">.</span><span class="nx">PLAYING</span> <span class="o">&amp;&amp;</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">newState</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">State</span><span class="p">.</span><span class="nx">BUFFERING</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Buffer underflow</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

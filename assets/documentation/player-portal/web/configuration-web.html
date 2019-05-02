@@ -1,0 +1,651 @@
+  <title>Player Configuration for Web</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player Configuration for Web" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player Configuration for Web</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Thu May 2 09:13:20 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Thu May 2 09:13:20 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>Player configuration parameters are provided whenever a player instance is created.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Configuration here</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+</code></pre>
+</div>
+      <h4 id="configuration-structure">
+        
+        
+          Configuration Structure <a href="#configuration-structure"></a>
+        
+        
+      </h4>
+
+<p>The configuration uses the following structure:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">targetId</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="nx">logLevel</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="nx">disableUserCache</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
+  <span class="nx">playback</span><span class="err">:</span> <span class="nx">PKPlaybackConfigObject</span><span class="p">,</span>
+  <span class="nx">sources</span><span class="err">:</span> <span class="nx">PKSourcesConfigObject</span><span class="p">,</span>
+  <span class="nx">playlist</span><span class="err">:</span> <span class="nx">KPPlaylisyObject</span><span class="p">,</span>
+  <span class="nx">plugins</span><span class="err">:</span> <span class="nx">PKPluginsConfigObject</span><span class="p">,</span>
+  <span class="nx">session</span><span class="err">:</span> <span class="nx">PKSessionConfigObject</span><span class="p">,</span>
+  <span class="nx">provider</span><span class="err">:</span> <span class="nx">ProviderOptionsObject</span><span class="p">,</span>
+  <span class="nx">ui</span><span class="err">:</span> <span class="nx">UIOptionsObject</span><span class="p">,</span>
+  <span class="nx">cast</span><span class="err">:</span> <span class="nx">CastConfigObject</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h1>
+        
+        
+          #
+        
+        
+      </h1>
+    
+      <h3 id="configtargetid">
+        
+        
+          config.targetId <a href="#configtargetid"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default--">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default--"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-id-of-the-dom-element-to-which-the-player-will-be-added">
+        
+        
+          Description: Defines the ID of the DOM element to which the player will be added. <a href="#description-defines-the-id-of-the-dom-element-to-which-the-player-will-be-added"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-1">
+        
+        
+          # <a href="#-1"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configloglevel">
+        
+        
+          config.logLevel <a href="#configloglevel"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-1">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-error">
+        
+        
+          Default: <code class="highlighter-rouge">"ERROR"</code> <a href="#default-error"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-player-log-level">
+        
+        
+          Description: Defines the player log level. <a href="#description-defines-the-player-log-level"></a>
+        
+        
+      </h5>
+
+<p>Possible values: <code class="highlighter-rouge">"DEBUG", "INFO", "TIME", "WARN", "ERROR", "OFF"</code></p>
+    
+      <h1 id="-2">
+        
+        
+          # <a href="#-2"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configdisableusercache">
+        
+        
+          config.disableUserCache <a href="#configdisableusercache"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-boolean">
+        
+        
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-false">
+        
+        
+          Default: <code class="highlighter-rouge">false</code> <a href="#default-false"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-indicates-whether-to-stop-using-the-saved-user-preferences">
+        
+        
+          Description: Indicates whether to stop using the saved user preferences. <a href="#description-indicates-whether-to-stop-using-the-saved-user-preferences"></a>
+        
+        
+      </h5>
+
+<p>&lt;brYou can learn more about user preferences in the player <a href="./user-preferences.md">here</a>.</p>
+    
+      <h1 id="-3">
+        
+        
+          # <a href="#-3"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configplayback">
+        
+        
+          config.playback <a href="#configplayback"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pkplaybackconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configplayback">PKPlaybackConfigObject</a> <a href="#type-pkplaybackconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-playback-configuration">
+        
+        
+          Description: Defines the playback configuration. <a href="#description-defines-the-playback-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configsources">
+        
+        
+          config.sources <a href="#configsources"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pksourcesconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configsources">PKSourcesConfigObject</a> <a href="#type-pksourcesconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-sources-configuration">
+        
+        
+          Description: Defines the sources configuration. <a href="#description-defines-the-sources-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configplaylist">
+        
+        
+          config.playlist <a href="#configplaylist"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-kpplaylistobject">
+        
+        
+          Type: <a href="./api.md#kpplaylistobject">KPPlaylistObject</a> <a href="#type-kpplaylistobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-playlist-configuration">
+        
+        
+          Description: Defines the playlist configuration. <a href="#description-defines-the-playlist-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configplugins">
+        
+        
+          config.plugins <a href="#configplugins"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pkpluginsconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configplugins">PKPluginsConfigObject</a> <a href="#type-pkpluginsconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-plugins-configuration">
+        
+        
+          Description: Defines the plugins configuration. <a href="#description-defines-the-plugins-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configsession">
+        
+        
+          config.session <a href="#configsession"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pksessionconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configsession">PKSessionConfigObject</a> <a href="#type-pksessionconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-session-configuration">
+        
+        
+          Description: Defines the session configuration. <a href="#description-defines-the-session-configuration"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-4">
+        
+        
+          # <a href="#-4"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configprovider">
+        
+        
+          config.provider <a href="#configprovider"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-provideroptionsobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js-providers/blob/master/docs/configuration.md">ProviderOptionsObject</a> <a href="#type-provideroptionsobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-provider-configuration">
+        
+        
+          Description: Defines the provider configuration. <a href="#description-defines-the-provider-configuration"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-5">
+        
+        
+          # <a href="#-5"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configui">
+        
+        
+          config.ui <a href="#configui"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-uioptionsobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js-ui/blob/master/docs/configuration.md">UIOptionsObject</a> <a href="#type-uioptionsobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-user-interface-ui-configuration">
+        
+        
+          Description: Defines the user interface (UI) configuration. <a href="#description-defines-the-user-interface-ui-configuration"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-6">
+        
+        
+          # <a href="#-6"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configcast">
+        
+        
+          config.cast <a href="#configcast"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-castconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js-cast-sender/blob/master/docs/configuration-api.md#castconfigobject">CastConfigObject</a> <a href="#type-castconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-cast-configuration">
+        
+        
+          Description: Defines the cast configuration. <a href="#description-defines-the-cast-configuration"></a>
+        
+        
+      </h5>
+    
+      <h2 id="configuration-priority">
+        
+        
+          Configuration Priority <a href="#configuration-priority"></a>
+        
+        
+      </h2>
+
+<p>In the player setup flow, the configuration described above (partially or in full) can be provided by a number of different sources. Each source has a priority, which determines whether the source has a greater or lesser impact on how the player is configured.</p>
+
+<p>Available sources include:</p>
+
+<ul>
+  <li><strong>Application</strong> - This is the application that embeds the player and can be used to configures the player in-line upon instantiation.</li>
+  <li><strong>Server</strong> - This is a partner configuration that is saved on the server. The partner can use this configuration when configuring the player by suppling the <code class="highlighter-rouge">uiConfId</code> value.</li>
+  <li><strong>Local Storage (Browser)</strong> - This is the user preferences configuration, which is saved in the local storage of the browser.</li>
+  <li><strong>Default Player Configuration</strong> - The default player configuration is defined internally by the player.</li>
+</ul>
+
+<p>When the player builds its runtime configuration, it will need to know how to built the configuration correctly according to the priority of each configuration, which is as follows (#1 is highest; #4 is lowest):</p>
+
+<ol>
+  <li><strong>Local Storage</strong></li>
+  <li><strong>Application</strong></li>
+  <li><strong>Server</strong></li>
+  <li><strong>Default Player Configuration</strong></li>
+</ol>
+
+<p><img src="./images/configuration-strength.jpg" alt="configuration-strength" /></p>
+    
+      <h4 id="example">
+        
+        
+          Example <a href="#example"></a>
+        
+        
+      </h4>
+
+<p>In this example, we’ll use the following configuration from each source to see how that source affects the configuration:</p>
+
+<p>Local Storage</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">muted</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">audioLanguage</span><span class="err">:</span> <span class="s1">'spa'</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Application</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">muted</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Server</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'eng'</span><span class="p">;</span>
+  <span class="nl">autoplay</span><span class="p">:</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Default Player Configuration</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">muted</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>The resulting runtime configuration will, therefore, be as follows:</strong></p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'spa'</span><span class="p">,</span>
+	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">muted</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span><span class="p">,</span>
+	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
