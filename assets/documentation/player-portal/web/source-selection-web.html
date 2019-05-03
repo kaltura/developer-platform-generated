@@ -1,0 +1,247 @@
+  <title>Source Selection for Web Player</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Source Selection for Web Player" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Source Selection for Web Player</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Fri May 3 16:24:26 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/source-selection-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Fri May 3 16:23:35 2019, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Fri May 3 16:24:26 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>Let us assume that the following player configuration is given and we would like to apply source selection logic.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">sources</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">hls</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">mimetype</span><span class="p">:</span> <span class="s1">'application/x-mpegurl'</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="s1">'http://wowzaec2demo.streamlock.net/vod-multitrack/_definst_/smil:ElephantsDream/ElephantsDream.smil/playlist.m3u8'</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">preferNative</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">hls</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">dash</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">streamPriority</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
+        <span class="na">format</span><span class="p">:</span> <span class="s1">'dash'</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
+        <span class="na">format</span><span class="p">:</span> <span class="s1">'hls'</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<ol>
+  <li>The player looks at the <code class="highlighter-rouge">streamPriority</code> array and see that the <code class="highlighter-rouge">dash</code> stream has the highest priority.</li>
+  <li>The player will check whether it received any <code class="highlighter-rouge">dash</code> sources within the <code class="highlighter-rouge">sources</code> object.</li>
+  <li>Since there are no <code class="highlighter-rouge">dash</code> sources in it, the player will move to the next priority from the <code class="highlighter-rouge">streamPriority</code> list which is <code class="highlighter-rouge">hls</code>.</li>
+  <li>After checking the <code class="highlighter-rouge">sources</code> object again and found <code class="highlighter-rouge">hls</code> sources, the player will choose to play <code class="highlighter-rouge">hls</code>.</li>
+</ol>
+
+<p>However, will the player use the native hls or not? This depends on the <code class="highlighter-rouge">preferNative</code> value for <code class="highlighter-rouge">hls</code>. Because this value is set to <code class="highlighter-rouge">true</code>, the player knows that if the browser supports native <code class="highlighter-rouge">hls</code> playback, the source will be played natively.</p>
+
+<p>Given the configuration information above, which source will be played in each browser?</p>
+
+<p>Following summarize the results for this scenario:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Chrome</th>
+      <th>Safari</th>
+      <th>Firefox</th>
+      <th>Edge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>hls with <code class="highlighter-rouge">hls.js</code></td>
+      <td>native hls</td>
+      <td>hls with <code class="highlighter-rouge">hls.js</code></td>
+      <td>native hls</td>
+    </tr>
+  </tbody>
+</table>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Wed May 1 14:04:39 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/user-preferences-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Thu May 2 16:31:57 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/user-preferences-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Wed May 1 14:04:39 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Thu May 2 16:31:57 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -129,8 +129,9 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-		<p>When the user configures the player according to his or her preference (e.g., starting up the player in mute), these user preferences (i.e., actions that are triggered by the user) create a <em>configurable value</em>, which is saved in the browser’s local storage. The player then uses those saved values to enable the user to retain the last choices they made when playing media.<br />
-<br />For example, if the last played media was muted, the next media will begin muted also, even if the user refreshed the page.</p>
+		<p>When the user configures the player according to his or her preference (e.g., starting up the player in mute), these user preferences (i.e., actions that are triggered by the user) create a <em>configurable value</em>, which is saved in the browser’s local storage. The player then uses those saved values to enable the user to retain the last choices they made when playing media.</p>
+
+<p>For example, if the last played media was muted, the next media will begin muted also, even if the user refreshed the page.</p>
       <h2 id="saved-user-preference-values">
         
         
@@ -159,7 +160,7 @@ rtp('get', 'campaign',true);
 
 <p>When a player instantiates, a partial configuration is created internally by the <code class="highlighter-rouge">StorageManager</code> and supplied to the player using the saved values found in the local storage.</p>
 
-<p><br />The structure of this initial configuration is as follows:</p>
+<p>The structure of this initial configuration is as follows:</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
 <span class="nl">muted</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
@@ -174,9 +175,9 @@ rtp('get', 'campaign',true);
 <p>The following flow-chart diagram shows a high-level workflow of this scenario:<br />
 <img src="./setup-flow-local-storage.jpg" alt="setup-flow-local-storage" /></p>
 
-<p>After the player starts to to play, the <code class="highlighter-rouge">StorageManager</code> will track any user interaction with the UI and update the storage value accordingly, as you can see in the following sequence diagram:<br />
-<br /><br /><br />
-<img src="./save-value-flow-local-storage.png" alt="save-value-flow-local-storage" /></p>
+<p>After the player starts to to play, the <code class="highlighter-rouge">StorageManager</code> will track any user interaction with the UI and update the storage value accordingly, as you can see in the following sequence diagram:</p>
+
+<p><img src="./save-value-flow-local-storage.png" alt="save-value-flow-local-storage" /></p>
     
       <h2 id="view-and-edit-values">
         
@@ -196,9 +197,9 @@ rtp('get', 'campaign',true);
   <li>Choose your test page domain.</li>
 </ol>
 
-<p>You’ll be able to see your saved player values in the local storage:<br />
-<br /><br /><br />
-<img src="./chrome-local-storage.png" alt="chrome-local-storage" /></p>
+<p>You’ll be able to see your saved player values in the local storage:</p>
+
+<p><img src="./chrome-local-storage.png" alt="chrome-local-storage" /></p>
 
 <ul>
   <li>To clear the values, click the <strong>Clear</strong> button</li>
@@ -232,7 +233,7 @@ rtp('get', 'campaign',true);
       </h2>
 
 <p>The user preference feature works on all browsers that support the localStorage option.<br />
-<br />For a complete list of browsers that support localStorage, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">here</a>.</p>
+For a complete list of browsers that support localStorage, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">here</a>.</p>
 		
 </article>
 

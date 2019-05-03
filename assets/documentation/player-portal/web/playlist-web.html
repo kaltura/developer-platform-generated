@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Wed May 1 14:04:39 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playlist-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Thu May 2 16:31:57 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playlist-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Wed May 1 14:04:39 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Thu May 2 16:31:57 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -145,8 +145,9 @@ rtp('get', 'campaign',true);
 </code></pre>
 </div>
 
-<p>To learn how to set up a Kaltura Player, see <a href="https://developer.kaltura.com/player/web/player-setup">Player Setup</a>.<br />
-<br />Once you have a Kaltura Player instance, you can load a playlist using one of the following methods:</p>
+<p>To learn how to set up a Kaltura Player, see <a href="https://developer.kaltura.com/player/web/player-setup">Player Setup</a>.</p>
+
+<p>Once you have a Kaltura Player instance, you can load a playlist using one of the following methods:</p>
     
       <h4 id="by-playlist-id-ovp-only">
         
@@ -156,7 +157,7 @@ rtp('get', 'campaign',true);
         
       </h4>
 
-<p>To load a playlist by ID, use <a href="./api.md#loadplaylist"><code class="highlighter-rouge">loadPlaylist</code></a> method.</p>
+<p>To load a playlist by ID, use <a href="https://developer.kaltura.com/player/web/api-web#loadplaylist"><code class="highlighter-rouge">loadPlaylist</code></a> method.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylist</span><span class="p">({</span><span class="na">playlistId</span><span class="p">:</span> <span class="s1">'123456'</span><span class="p">});</span>
 </code></pre>
@@ -170,8 +171,9 @@ rtp('get', 'campaign',true);
         
       </h4>
 
-<p>To load a playlist by entry list, use the <a href="./api.md#loadplaylistbyentrylist"><code class="highlighter-rouge">loadPlaylistByEntryList</code></a> method.<br />
-<br />This method creates a playlist according to the given entries.</p>
+<p>To load a playlist by entry list, use the <a href="https://developer.kaltura.com/player/web/api-web#loadplaylistbyentrylist"><code class="highlighter-rouge">loadPlaylistByEntryList</code></a> method.</p>
+
+<p>This method creates a playlist according to the given entries.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylistByEntryList</span><span class="p">({</span><span class="na">entries</span><span class="p">:</span> <span class="p">[{</span><span class="na">entryId</span><span class="p">:</span> <span class="s1">'01234'</span><span class="p">},</span> <span class="p">{</span><span class="na">entryId</span><span class="p">:</span> <span class="s1">'56789'</span><span class="p">}]});</span>
 </code></pre>
@@ -185,7 +187,7 @@ rtp('get', 'campaign',true);
         
       </h4>
 
-<p>You can load a playlist by configuring the playlist data and items explicitly using the <a href="./api.md#configure-3"><code class="highlighter-rouge">configure</code></a> method.</p>
+<p>You can load a playlist by configuring the playlist data and items explicitly using the <a href="https://developer.kaltura.com/player/web/api-web#configure-3"><code class="highlighter-rouge">configure</code></a> method.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
   <span class="na">playlist</span><span class="p">:</span> <span class="p">{</span>
@@ -224,7 +226,7 @@ rtp('get', 'campaign',true);
 </code></pre>
 </div>
 
-<p>For all playlist options, see <a href="./api.md#kpplaylistobject"><code class="highlighter-rouge">KPPlaylistObject</code></a>.</p>
+<p>For all playlist options, see <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistobject"><code class="highlighter-rouge">KPPlaylistObject</code></a>.</p>
     
       <h2 id="configure-the-playlist">
         
@@ -242,9 +244,11 @@ rtp('get', 'campaign',true);
         
       </h3>
 
-<p>By default, once the current item is ended, the playlist continues to the next item automatically.<br />
-<br />To change this behavior, configure the <a href="./api.md#kpplaylistoptions"><code class="highlighter-rouge">options</code></a> under <a href="./api.md#kpplaylistconfigobject"><code class="highlighter-rouge">KPPlaylistConfigObject</code></a> using one of the following methods:<br />
-<br />Via the API:</p>
+<p>By default, once the current item is ended, the playlist continues to the next item automatically.</p>
+
+<p>To change this behavior, configure the <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistoptions"><code class="highlighter-rouge">options</code></a> under <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistconfigobject"><code class="highlighter-rouge">KPPlaylistConfigObject</code></a> using one of the following methods:</p>
+
+<p>Via the API:</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylist</span><span class="p">({</span><span class="na">playlistId</span><span class="p">:</span> <span class="s1">'123456'</span><span class="p">},</span> <span class="p">{</span><span class="na">options</span><span class="p">:</span> <span class="p">{</span><span class="na">autoContinue</span><span class="p">:</span> <span class="kc">false</span><span class="p">}});</span>
 </code></pre>
@@ -265,11 +269,12 @@ rtp('get', 'campaign',true);
 </div>
 
 <blockquote>
-  <p>Note: The <code class="highlighter-rouge">autoContinue</code> property is relevant only for the second item onwards.<br />
-<br />To play the first entry automatically, use the <a href="https://developer.kaltura.com/player/web/autoplay"><code class="highlighter-rouge">autoplay</code></a> configuration.</p>
+  <p>Note: The <code class="highlighter-rouge">autoContinue</code> property is relevant only for the second item onwards.</p>
+
+  <p>To play the first entry automatically, use the <a href="https://developer.kaltura.com/player/web/autoplay"><code class="highlighter-rouge">autoplay</code></a> configuration.</p>
 </blockquote>
 
-<p>For full playlist options see <a href="./api.md#kpplaylistoptions"><code class="highlighter-rouge">KPPlaylistOptions</code></a>.</p>
+<p>For full playlist options see <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistoptions"><code class="highlighter-rouge">KPPlaylistOptions</code></a>.</p>
     
       <h3 id="countdown">
         
@@ -282,10 +287,13 @@ rtp('get', 'campaign',true);
 <p>When the current item is about to end and the playlist is set to continue automatically, the user will see a countdown displayed. The user can then skip to the next item immediately or cancel the switching.<br />
 <img src="images/playlist-countdown.png" alt="playlist-countdown" /></p>
 
-<p>By default, the countdown is displayed for 10 seconds until the end.<br />
-<br />To change this behavior, configure the <a href="./api.md#kpplaylistcountdownoptions"><code class="highlighter-rouge">countdown</code></a> under <a href="./api.md#kpplaylistconfigobject"><code class="highlighter-rouge">KPPlaylistConfigObject</code></a>:<br />
-<br /> For example, to show the countdown for 20 seconds until the end, configure:<br />
-<br />Via the API:</p>
+<p>By default, the countdown is displayed for 10 seconds until the end.</p>
+
+<p>To change this behavior, configure the <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistcountdownoptions"><code class="highlighter-rouge">countdown</code></a> under <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistconfigobject"><code class="highlighter-rouge">KPPlaylistConfigObject</code></a>:</p>
+
+<p>For example, to show the countdown for 20 seconds until the end, configure:</p>
+
+<p>Via the API:</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylist</span><span class="p">({</span><span class="na">playlistId</span><span class="p">:</span> <span class="s1">'123456'</span><span class="p">},</span> <span class="p">{</span><span class="na">countdown</span><span class="p">:</span> <span class="p">{</span><span class="na">duration</span><span class="p">:</span> <span class="mi">20</span><span class="p">}});</span>
 </code></pre>
@@ -315,7 +323,7 @@ rtp('get', 'campaign',true);
 
 <p>In this case the countdown will display at the 600th second for 10 seconds, and then will skip to the next item.</p>
 
-<p>For full countdown options see <a href="./api.md#kpplaylistcountdownoptions"><code class="highlighter-rouge">KPPlaylistCountdownOptions</code></a>.</p>
+<p>For full countdown options see <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistcountdownoptions"><code class="highlighter-rouge">KPPlaylistCountdownOptions</code></a>.</p>
     
       <h2 id="switching-items">
         
@@ -325,7 +333,7 @@ rtp('get', 'campaign',true);
         
       </h2>
 
-<p>Using the <a href="./api.md#playlist"><code class="highlighter-rouge">playlist</code></a> API, you can get the playlist data and then switch between the items.</p>
+<p>Using the <a href="https://developer.kaltura.com/player/web/api-web#playlist"><code class="highlighter-rouge">playlist</code></a> API, you can get the playlist data and then switch between the items.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// switch to the next item</span>
 <span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">playlist</span><span class="p">.</span><span class="nx">playNext</span><span class="p">();</span>
@@ -339,7 +347,7 @@ rtp('get', 'campaign',true);
 </code></pre>
 </div>
 
-<p>For the complete <code class="highlighter-rouge">playlist</code> API, see <a href="./api.md#playlistmanager">PlaylistManager</a>.</p>
+<p>For the complete <code class="highlighter-rouge">playlist</code> API, see <a href="https://developer.kaltura.com/player/web/api-web#playlistmanager">PlaylistManager</a>.</p>
     
       <h2 id="change-playlist">
         
@@ -349,8 +357,9 @@ rtp('get', 'campaign',true);
         
       </h2>
 
-<p>To clean the playlist data, you’ll need to call the <a href="./api.md#reset-2"><code class="highlighter-rouge">playlist.reset</code></a> method.<br />
-<br />Here is an example how to change the playlist using the <a href="./api.md#playlisteventtype"><code class="highlighter-rouge">playlist events</code></a> and <a href="./api.md#reset-2"><code class="highlighter-rouge">playlist.reset</code></a> method.</p>
+<p>To clean the playlist data, you’ll need to call the <a href="https://developer.kaltura.com/player/web/api-web#reset-2"><code class="highlighter-rouge">playlist.reset</code></a> method.</p>
+
+<p>Here is an example how to change the playlist using the <a href="https://developer.kaltura.com/player/web/api-web#playlisteventtype"><code class="highlighter-rouge">playlist events</code></a> and <a href="https://developer.kaltura.com/player/web/api-web#reset-2"><code class="highlighter-rouge">playlist.reset</code></a> method.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylist</span><span class="p">({</span><span class="na">playlistId</span><span class="p">:</span> <span class="s1">'01234'</span><span class="p">});</span>
 <span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">playlist</span><span class="p">.</span><span class="nx">PlaylistEventType</span><span class="p">.</span><span class="nx">PLAYLIST_ENDED</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -361,7 +370,7 @@ rtp('get', 'campaign',true);
 </div>
 
 <blockquote>
-  <p>Note: The playlist <a href="./api.md#KPPlaylistConfigObject">config</a> is not removed on reset.</p>
+  <p>Note: The playlist <a href="https://developer.kaltura.com/player/web/api-web#KPPlaylistConfigObject">config</a> is not removed on reset.</p>
 </blockquote>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylist</span><span class="p">({</span><span class="na">playlistId</span><span class="p">:</span> <span class="s1">'01234'</span><span class="p">},</span> <span class="p">{</span><span class="na">options</span><span class="p">:</span> <span class="p">{</span><span class="na">autoContinue</span><span class="p">:</span> <span class="kc">false</span><span class="p">}});</span>

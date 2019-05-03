@@ -4287,10 +4287,12 @@
 <url> <loc>https://developer.kaltura.com/player/web/keyboard-shortcuts-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/player-events-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/managing-tracks-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/player/web/autoplay-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/player-states-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/api-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/errors-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/debugging-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/player/web/source-selection-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/building-plugins-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/coding-guidelines-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>

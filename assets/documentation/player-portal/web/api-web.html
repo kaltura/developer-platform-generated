@@ -1,0 +1,3179 @@
+  <title>Player API</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player API" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player API</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Fri May 3 11:20:03 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/api-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Fri May 3 11:18:47 2019, By: Jess Portnoy</td></tr-->
+				<!--tr><td>Last commit: Fri May 3 11:20:03 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h2 id="kalturaplayers">
+        
+        
+          KalturaPlayers <a href="#kalturaplayers"></a>
+        
+        
+      </h2>
+
+<p>A map of player instances by player ids</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>&lt;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, KalturaPlayer&gt;</p>
+    
+      <h2 id="kpplaylistoptions">
+        
+        
+          KPPlaylistOptions <a href="#kpplaylistoptions"></a>
+        
+        
+      </h2>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="properties">
+        
+        
+          Properties <a href="#properties"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">autoContinue</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</strong> Determine whether to continue to the next item automatically.</li>
+  <li><code class="highlighter-rouge">loop</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</strong> Determine whether to play the playlist in a loop. When is true the playlist will played automatically even autoContinue is false.</li>
+</ul>
+    
+      <h2 id="kpplaylistcountdownoptions">
+        
+        
+          KPPlaylistCountdownOptions <a href="#kpplaylistcountdownoptions"></a>
+        
+        
+      </h2>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="properties-1">
+        
+        
+          Properties <a href="#properties-1"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">timeToShow</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</strong> Shows when the countdown is scheduled to appear (by default, this is towards the end).</li>
+  <li><code class="highlighter-rouge">duration</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</strong> Shows for how long the countdown will appear.</li>
+  <li><code class="highlighter-rouge">showing</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</strong> Determines whether to show the countdown.</li>
+</ul>
+    
+      <h2 id="kpplaylistconfigobject">
+        
+        
+          KPPlaylistConfigObject <a href="#kpplaylistconfigobject"></a>
+        
+        
+      </h2>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="properties-2">
+        
+        
+          Properties <a href="#properties-2"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">options</code> <strong><a href="#kpplaylistoptions">KPPlaylistOptions</a></strong> The playlist options.</li>
+  <li><code class="highlighter-rouge">countdown</code> <strong><a href="#kpplaylistcountdownoptions">KPPlaylistCountdownOptions</a></strong> The playlist countdown configuration.</li>
+  <li><code class="highlighter-rouge">items</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="#playlistitem">PlaylistItem</a>&gt;</strong> The playlist items.</li>
+</ul>
+    
+      <h2 id="kpplaylistobject">
+        
+        
+          KPPlaylistObject <a href="#kpplaylistobject"></a>
+        
+        
+      </h2>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="properties-3">
+        
+        
+          Properties <a href="#properties-3"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">id</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> The playlist ID.</li>
+  <li><code class="highlighter-rouge">metadata</code> <strong>ProviderPlaylistMetadataObject</strong> The playlist metadata.</li>
+  <li><code class="highlighter-rouge">options</code> <strong><a href="#kpplaylistoptions">KPPlaylistOptions</a></strong> The playlist options.</li>
+  <li><code class="highlighter-rouge">countdown</code> <strong><a href="#kpplaylistcountdownoptions">KPPlaylistCountdownOptions</a></strong> The playlist countdown configuration.</li>
+  <li><code class="highlighter-rouge">items</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="#playlistitem">PlaylistItem</a>&gt;</strong> The playlist items.</li>
+</ul>
+    
+      <h2 id="kpplaylistitemconfigobject">
+        
+        
+          KPPlaylistItemConfigObject <a href="#kpplaylistitemconfigobject"></a>
+        
+        
+      </h2>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="properties-4">
+        
+        
+          Properties <a href="#properties-4"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">countdown</code> <strong><a href="#kpplaylistcountdownoptions">KPPlaylistCountdownOptions</a>?</strong> Countdown options</li>
+</ul>
+    
+      <h2 id="baseremoteplayer">
+        
+        
+          BaseRemotePlayer <a href="#baseremoteplayer"></a>
+        
+        
+      </h2>
+
+<p><strong>Extends FakeEventTarget</strong></p>
+
+<p>Basic remote player.<br />
+Implements the Kaltura Player playback, ads, tracks,vr and cast APIs.<br />
+Remote players should extend this class and implement the needed API.</p>
+    
+      <h3 id="parameters">
+        
+        
+          Parameters <a href="#parameters"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">name</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> Remote player name.</li>
+  <li><code class="highlighter-rouge">config</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> Cast configuration.</li>
+  <li><code class="highlighter-rouge">remoteControl</code> <strong><a href="#remotecontrol">RemoteControl</a></strong> Remote control.</li>
+</ul>
+    
+      <h3 id="loadmedia">
+        
+        
+          loadMedia <a href="#loadmedia"></a>
+        
+        
+      </h3>
+
+<p>Loads a media to the receiver application.</p>
+    
+      <h4 id="parameters-1">
+        
+        
+          Parameters <a href="#parameters-1"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">mediaInfo</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> The entry media info.</li>
+</ul>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&lt;void&gt;</strong> Promise to indicate load succeed or failed.</p>
+    
+      <h3 id="setmedia">
+        
+        
+          setMedia <a href="#setmedia"></a>
+        
+        
+      </h3>
+
+<p>Sets a media to the remote player..</p>
+    
+      <h4 id="parameters-2">
+        
+        
+          Parameters <a href="#parameters-2"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">mediaConfig</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> Media configuration to set.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="getmediainfo">
+        
+        
+          getMediaInfo <a href="#getmediainfo"></a>
+        
+        
+      </h3>
+
+<p>Gets the media Info.</p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</strong> The media info.</p>
+    
+      <h3 id="configure">
+        
+        
+          configure <a href="#configure"></a>
+        
+        
+      </h3>
+
+<p>Configure the remote player</p>
+    
+      <h4 id="parameters-3">
+        
+        
+          Parameters <a href="#parameters-3"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">config</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> Configuration to set. (optional, default <code class="highlighter-rouge"><span class="p">{}</span></code>)</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="ready">
+        
+        
+          ready <a href="#ready"></a>
+        
+        
+      </h3>
+
+<p>The remote player readiness.</p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&lt;any&gt;</strong> Promise which resolved when the remote player is ready.</p>
+    
+      <h3 id="load">
+        
+        
+          load <a href="#load"></a>
+        
+        
+      </h3>
+
+<p>Load the remote player.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="play">
+        
+        
+          play <a href="#play"></a>
+        
+        
+      </h3>
+
+<p>Play/resume the remote player.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="pause">
+        
+        
+          pause <a href="#pause"></a>
+        
+        
+      </h3>
+
+<p>Pause the remote player.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="reset">
+        
+        
+          reset <a href="#reset"></a>
+        
+        
+      </h3>
+
+<p>Reset the remote player.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="destroy">
+        
+        
+          destroy <a href="#destroy"></a>
+        
+        
+      </h3>
+
+<p>Destroy the remote player.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="islive">
+        
+        
+          isLive <a href="#islive"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples">
+        
+        
+          Examples <a href="#examples"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isLive</span><span class="p">()</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the current playback is a live playback.</p>
+    
+      <h3 id="isdvr">
+        
+        
+          isDvr <a href="#isdvr"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-1">
+        
+        
+          Examples <a href="#examples-1"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isDvr</span><span class="p">()</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the current live playback has DVR window. In case of non-live playback will return false.</p>
+    
+      <h3 id="seektoliveedge">
+        
+        
+          seekToLiveEdge <a href="#seektoliveedge"></a>
+        
+        
+      </h3>
+
+<p>Seeks to the live edge.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="getstarttimeofdvrwindow">
+        
+        
+          getStartTimeOfDvrWindow <a href="#getstarttimeofdvrwindow"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-2">
+        
+        
+          Examples <a href="#examples-2"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getStartTimeOfDvrWindow</span><span class="p">()</span> <span class="c1">// 0</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The start time of the DVR window.</p>
+    
+      <h3 id="gettracks">
+        
+        
+          getTracks <a href="#gettracks"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-4">
+        
+        
+          Parameters <a href="#parameters-4"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">type</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</strong> Track type.</li>
+</ul>
+    
+      <h4 id="examples-3">
+        
+        
+          Examples <a href="#examples-3"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">()</span> <span class="c1">// []</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;Track&gt;</strong> The remote player tracks.</p>
+    
+      <h3 id="getactivetracks">
+        
+        
+          getActiveTracks <a href="#getactivetracks"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-4">
+        
+        
+          Examples <a href="#examples-4"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getTracks</span><span class="p">()</span> <span class="c1">// {audio: undefined, video: undefined, text: undefined}</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> The remote player active tracks.</p>
+    
+      <h3 id="selecttrack">
+        
+        
+          selectTrack <a href="#selecttrack"></a>
+        
+        
+      </h3>
+
+<p>Select a certain track to be active.</p>
+    
+      <h4 id="parameters-5">
+        
+        
+          Parameters <a href="#parameters-5"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">track</code> <strong>Track</strong> The track to activate.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="hidetexttrack">
+        
+        
+          hideTextTrack <a href="#hidetexttrack"></a>
+        
+        
+      </h3>
+
+<p>Hides the active text track.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="enableadaptivebitrate">
+        
+        
+          enableAdaptiveBitrate <a href="#enableadaptivebitrate"></a>
+        
+        
+      </h3>
+
+<p>Enables automatic adaptive bitrate switching.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="isadaptivebitrateenabled">
+        
+        
+          isAdaptiveBitrateEnabled <a href="#isadaptivebitrateenabled"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-5">
+        
+        
+          Examples <a href="#examples-5"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isAdaptiveBitrateEnabled</span><span class="p">()</span> <span class="c1">// true</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether adaptive bitrate is enabled.</p>
+    
+      <h3 id="settextdisplaysettings">
+        
+        
+          setTextDisplaySettings <a href="#settextdisplaysettings"></a>
+        
+        
+      </h3>
+
+<p>Sets the text display settings.</p>
+    
+      <h4 id="parameters-6">
+        
+        
+          Parameters <a href="#parameters-6"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">settings</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> Text settings.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="startcasting">
+        
+        
+          startCasting <a href="#startcasting"></a>
+        
+        
+      </h3>
+
+<p>Start casting.</p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&lt;any&gt;</strong> A promise to indicate session is starting, or failed</p>
+    
+      <h3 id="stopcasting">
+        
+        
+          stopCasting <a href="#stopcasting"></a>
+        
+        
+      </h3>
+
+<p>Stops the current cast session.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="iscasting">
+        
+        
+          isCasting <a href="#iscasting"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-6">
+        
+        
+          Examples <a href="#examples-6"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isCasting</span><span class="p">()</span> <span class="c1">// true</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether casting is currently active.</p>
+    
+      <h3 id="iscastavailable">
+        
+        
+          isCastAvailable <a href="#iscastavailable"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-7">
+        
+        
+          Examples <a href="#examples-7"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isCastAvailable</span><span class="p">()</span> <span class="c1">// true</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether casting is available.</p>
+    
+      <h3 id="getcastsession">
+        
+        
+          getCastSession <a href="#getcastsession"></a>
+        
+        
+      </h3>
+
+<p>Gets the current remote session.</p>
+    
+      <h4 id="examples-8">
+        
+        
+          Examples <a href="#examples-8"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getCastSession</span><span class="p">()</span> <span class="c1">// new RemoteSession('', '')</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="#remotesession">RemoteSession</a></strong> The remote session.</p>
+    
+      <h3 id="isvr">
+        
+        
+          isVr <a href="#isvr"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-9">
+        
+        
+          Examples <a href="#examples-9"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isVr</span><span class="p">()</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the current media is of VR type (360 content).</p>
+    
+      <h3 id="togglevrstereomode">
+        
+        
+          toggleVrStereoMode <a href="#togglevrstereomode"></a>
+        
+        
+      </h3>
+
+<p>Toggles VR mode on the current content.</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="isinvrstereomode">
+        
+        
+          isInVrStereoMode <a href="#isinvrstereomode"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-10">
+        
+        
+          Examples <a href="#examples-10"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isInVrStereoMode</span><span class="p">()</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the current content displayed in VR mode.</p>
+    
+      <h3 id="ads">
+        
+        
+          ads <a href="#ads"></a>
+        
+        
+      </h3>
+
+<p>The remote player ads controller.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</p>
+    
+      <h4 id="examples-11">
+        
+        
+          Examples <a href="#examples-11"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">ads</span> <span class="c1">// null</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</strong></p>
+    
+      <h3 id="textstyle">
+        
+        
+          textStyle <a href="#textstyle"></a>
+        
+        
+      </h3>
+
+<p>Setter.</p>
+    
+      <h4 id="parameters-7">
+        
+        
+          Parameters <a href="#parameters-7"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">style</code> <strong>TextStyle</strong> The text style to set.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="textstyle-1">
+        
+        
+          textStyle <a href="#textstyle-1"></a>
+        
+        
+      </h3>
+
+<p>Getter.</p>
+    
+      <h4 id="examples-12">
+        
+        
+          Examples <a href="#examples-12"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">textStyle</span> <span class="c1">// new TextStyle()</span>
+</code></pre>
+</div>
+
+<p>Returns <strong>TextStyle</strong> The current text style.</p>
+    
+      <h3 id="buffered">
+        
+        
+          buffered <a href="#buffered"></a>
+        
+        
+      </h3>
+
+<p>Gets the first buffered range of the remote player.</p>
+    
+      <h4 id="examples-13">
+        
+        
+          Examples <a href="#examples-13"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">buffered</span> <span class="c1">// []</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;any&gt;</strong> First buffered range in seconds.</p>
+    
+      <h3 id="currenttime">
+        
+        
+          currentTime <a href="#currenttime"></a>
+        
+        
+      </h3>
+
+<p>Setter.</p>
+    
+      <h4 id="parameters-8">
+        
+        
+          Parameters <a href="#parameters-8"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">to</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The number to set in seconds.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="currenttime-1">
+        
+        
+          currentTime <a href="#currenttime-1"></a>
+        
+        
+      </h3>
+
+<p>Getter.</p>
+    
+      <h4 id="examples-14">
+        
+        
+          Examples <a href="#examples-14"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">currentTime</span> <span class="c1">// 0</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The current time in seconds.</p>
+    
+      <h3 id="duration">
+        
+        
+          duration <a href="#duration"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-15">
+        
+        
+          Examples <a href="#examples-15"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">duration</span> <span class="c1">// 0</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The duration in seconds.</p>
+    
+      <h3 id="volume">
+        
+        
+          volume <a href="#volume"></a>
+        
+        
+      </h3>
+
+<p>Setter.</p>
+    
+      <h4 id="parameters-9">
+        
+        
+          Parameters <a href="#parameters-9"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">vol</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The volume to set in the range of 0-1.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="volume-1">
+        
+        
+          volume <a href="#volume-1"></a>
+        
+        
+      </h3>
+
+<p>Getter.</p>
+    
+      <h4 id="examples-16">
+        
+        
+          Examples <a href="#examples-16"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">volume</span> <span class="c1">// 1</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The current volume in the range of 0-1.</p>
+    
+      <h3 id="paused">
+        
+        
+          paused <a href="#paused"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-17">
+        
+        
+          Examples <a href="#examples-17"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">paused</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the cast player is in paused state.</p>
+    
+      <h3 id="ended">
+        
+        
+          ended <a href="#ended"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-18">
+        
+        
+          Examples <a href="#examples-18"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">ended</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the cast player is in ended state.</p>
+    
+      <h3 id="seeking">
+        
+        
+          seeking <a href="#seeking"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-19">
+        
+        
+          Examples <a href="#examples-19"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">seeking</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the cast player is in seeking state.</p>
+    
+      <h3 id="muted">
+        
+        
+          muted <a href="#muted"></a>
+        
+        
+      </h3>
+
+<p>Setter.</p>
+    
+      <h4 id="parameters-10">
+        
+        
+          Parameters <a href="#parameters-10"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">mute</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> The mute value to set.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="muted-1">
+        
+        
+          muted <a href="#muted-1"></a>
+        
+        
+      </h3>
+
+<p>Getter.</p>
+    
+      <h4 id="examples-20">
+        
+        
+          Examples <a href="#examples-20"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">muted</span> <span class="c1">// false</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> The muted state.</p>
+    
+      <h4 id="examples-21">
+        
+        
+          Examples <a href="#examples-21"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">src</span> <span class="c1">// ''</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> The current playing source url.</p>
+    
+      <h3 id="poster">
+        
+        
+          poster <a href="#poster"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-22">
+        
+        
+          Examples <a href="#examples-22"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">poster</span> <span class="c1">// ''</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> The current poster url.</p>
+    
+      <h3 id="playbackrate">
+        
+        
+          playbackRate <a href="#playbackrate"></a>
+        
+        
+      </h3>
+
+<p>Setter.</p>
+    
+      <h4 id="parameters-11">
+        
+        
+          Parameters <a href="#parameters-11"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">rate</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The playback rate to set.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="playbackrate-1">
+        
+        
+          playbackRate <a href="#playbackrate-1"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-23">
+        
+        
+          Examples <a href="#examples-23"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">playbackRate</span> <span class="c1">// 1</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> The current playback rate.</p>
+    
+      <h3 id="enginetype">
+        
+        
+          engineType <a href="#enginetype"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-24">
+        
+        
+          Examples <a href="#examples-24"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">engineType</span> <span class="c1">// ''</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> The active engine type.</p>
+    
+      <h3 id="streamtype">
+        
+        
+          streamType <a href="#streamtype"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-25">
+        
+        
+          Examples <a href="#examples-25"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">streamType</span> <span class="c1">// ''</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> The active stream type.</p>
+    
+      <h3 id="type">
+        
+        
+          type <a href="#type"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-26">
+        
+        
+          Examples <a href="#examples-26"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">type</span> <span class="c1">// BaseRemotePlayer.Type</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> The remote player type.</p>
+    
+      <h3 id="config">
+        
+        
+          config <a href="#config"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong>KPOptionsObject</strong> The runtime remote player config.</p>
+    
+      <h3 id="defaultconfig">
+        
+        
+          defaultConfig <a href="#defaultconfig"></a>
+        
+        
+      </h3>
+
+<p>Default configuration of the remote player.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h4 id="examples-27">
+        
+        
+          Examples <a href="#examples-27"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">defaultConfig</span> <span class="c1">// {}</span>
+</code></pre>
+</div>
+    
+      <h3 id="type-1">
+        
+        
+          Type <a href="#type-1"></a>
+        
+        
+      </h3>
+
+<p>Remote player type.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+    
+      <h4 id="examples-28">
+        
+        
+          Examples <a href="#examples-28"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">Type</span> <span class="c1">// 'BaseRemotePlayer'</span>
+</code></pre>
+</div>
+    
+      <h3 id="issupported">
+        
+        
+          isSupported <a href="#issupported"></a>
+        
+        
+      </h3>
+    
+      <h4 id="examples-29">
+        
+        
+          Examples <a href="#examples-29"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">BaseRemotePlayer</span><span class="p">.</span><span class="nx">isSupported</span><span class="p">()</span> <span class="c1">// true</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Whether the remote player is supported in the current environment.</p>
+    
+      <h2 id="casteventtype">
+        
+        
+          CastEventType <a href="#casteventtype"></a>
+        
+        
+      </h2>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="examples-30">
+        
+        
+          Examples <a href="#examples-30"></a>
+        
+        
+      </h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// Events lifecycle</span>
+<span class="mi">1</span><span class="p">.</span> <span class="nx">CAST_AVAILABLE</span>
+<span class="mi">2</span><span class="p">.</span> <span class="nx">CAST_SESSION_STARTING</span>
+<span class="mi">3</span><span class="p">.</span> <span class="nx">CAST_SESSION_STARTED</span> <span class="o">||</span> <span class="nx">CAST_SESSION_START_FAILED</span> <span class="o">-&gt;</span> <span class="nx">X</span>
+<span class="mi">4</span><span class="p">.</span> <span class="nx">CAST_SESSION_ENDING</span>
+<span class="mi">5</span><span class="p">.</span> <span class="nx">CAST_SESSION_ENDED</span>
+</code></pre>
+</div>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// How to use</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">cast</span><span class="p">.</span><span class="nx">CastEventType</span><span class="p">.</span><span class="nx">CAST_SESSION_STARTED</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">session</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+    
+      <h2 id="playersnapshot">
+        
+        
+          PlayerSnapshot <a href="#playersnapshot"></a>
+        
+        
+      </h2>
+    
+      <h3 id="parameters-12">
+        
+        
+          Parameters <a href="#parameters-12"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">player</code> <strong>KalturaPlayer</strong>  The Kaltura player.</li>
+</ul>
+    
+      <h3 id="textstyle-2">
+        
+        
+          textStyle <a href="#textstyle-2"></a>
+        
+        
+      </h3>
+
+<p>Type: TextStyle</p>
+    
+      <h3 id="advertising">
+        
+        
+          advertising <a href="#advertising"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="config-1">
+        
+        
+          config <a href="#config-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h2 id="remotecontrol">
+        
+        
+          RemoteControl <a href="#remotecontrol"></a>
+        
+        
+      </h2>
+    
+      <h3 id="parameters-13">
+        
+        
+          Parameters <a href="#parameters-13"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">player</code> <strong>KalturaPlayer</strong> The Kaltura player.</li>
+</ul>
+    
+      <h3 id="getplayersnapshot">
+        
+        
+          getPlayerSnapshot <a href="#getplayersnapshot"></a>
+        
+        
+      </h3>
+
+<p>Gets the player snapshot.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+
+<p>Returns <strong><a href="#playersnapshot">PlayerSnapshot</a></strong> player snapshot.</p>
+    
+      <h3 id="getuiwrapper">
+        
+        
+          getUIWrapper <a href="#getuiwrapper"></a>
+        
+        
+      </h3>
+
+<p>Gets the UI wrapper.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+
+<p>Returns <strong>UIWrapper</strong> The UI wrapper.</p>
+    
+      <h3 id="onremotedevicedisconnected">
+        
+        
+          onRemoteDeviceDisconnected <a href="#onremotedevicedisconnected"></a>
+        
+        
+      </h3>
+
+<p>On remote device disconnected handler.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+    
+      <h4 id="parameters-14">
+        
+        
+          Parameters <a href="#parameters-14"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">payload</code> <strong><a href="#remotedisconnectedpayload">RemoteDisconnectedPayload</a></strong> disconnected payload.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="onremotedeviceconnected">
+        
+        
+          onRemoteDeviceConnected <a href="#onremotedeviceconnected"></a>
+        
+        
+      </h3>
+
+<p>On remote device connected handler.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+    
+      <h4 id="parameters-15">
+        
+        
+          Parameters <a href="#parameters-15"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">payload</code> <strong><a href="#remoteconnectedpayload">RemoteConnectedPayload</a></strong> connected payload.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="onremotedeviceavailable">
+        
+        
+          onRemoteDeviceAvailable <a href="#onremotedeviceavailable"></a>
+        
+        
+      </h3>
+
+<p>On remote device available handler.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+    
+      <h4 id="parameters-16">
+        
+        
+          Parameters <a href="#parameters-16"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">payload</code> <strong><a href="#remoteavailablepayload">RemoteAvailablePayload</a></strong> available payload.</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="onremotedeviceconnecting">
+        
+        
+          onRemoteDeviceConnecting <a href="#onremotedeviceconnecting"></a>
+        
+        
+      </h3>
+
+<p>On remote device connecting handler.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="onremotedevicedisconnecting">
+        
+        
+          onRemoteDeviceDisconnecting <a href="#onremotedevicedisconnecting"></a>
+        
+        
+      </h3>
+
+<p>On remote device disconnecting handler.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="onremotedeviceconnectfailed">
+        
+        
+          onRemoteDeviceConnectFailed <a href="#onremotedeviceconnectfailed"></a>
+        
+        
+      </h3>
+
+<p>On remote device connect failed handler.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h2 id="remotepayload">
+        
+        
+          RemotePayload <a href="#remotepayload"></a>
+        
+        
+      </h2>
+    
+      <h3 id="parameters-17">
+        
+        
+          Parameters <a href="#parameters-17"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">player</code> <strong><a href="#baseremoteplayer">BaseRemotePlayer</a></strong> The active remote player.</li>
+</ul>
+    
+      <h3 id="player">
+        
+        
+          player <a href="#player"></a>
+        
+        
+      </h3>
+
+<p>The active remote player.</p>
+
+<p>Type: <a href="#baseremoteplayer">BaseRemotePlayer</a></p>
+
+<p>Returns <strong><a href="#baseremoteplayer">BaseRemotePlayer</a></strong></p>
+    
+      <h2 id="remoteconnectedpayload">
+        
+        
+          RemoteConnectedPayload <a href="#remoteconnectedpayload"></a>
+        
+        
+      </h2>
+
+<p><strong>Extends RemotePayload</strong></p>
+    
+      <h3 id="parameters-18">
+        
+        
+          Parameters <a href="#parameters-18"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">player</code> <strong><a href="#baseremoteplayer">BaseRemotePlayer</a></strong> The active remote player.</li>
+  <li><code class="highlighter-rouge">session</code> <strong><a href="#remotesession">RemoteSession</a></strong> The remote session.</li>
+  <li><code class="highlighter-rouge">ui</code> <strong><a href="#remoteplayerui">RemotePlayerUI</a>?</strong> Optional remote player UI preset.</li>
+</ul>
+    
+      <h3 id="ui">
+        
+        
+          ui <a href="#ui"></a>
+        
+        
+      </h3>
+
+<p>Remote player UI preset.</p>
+
+<p>Type: <a href="#remoteplayerui">RemotePlayerUI</a>?</p>
+
+<p>Returns <strong><a href="#remoteplayerui">RemotePlayerUI</a>?</strong></p>
+    
+      <h3 id="session">
+        
+        
+          session <a href="#session"></a>
+        
+        
+      </h3>
+
+<p>Remote session.</p>
+
+<p>Type: <a href="#remotesession">RemoteSession</a></p>
+
+<p>Returns <strong><a href="#remotesession">RemoteSession</a>?</strong></p>
+    
+      <h2 id="remotedisconnectedpayload">
+        
+        
+          RemoteDisconnectedPayload <a href="#remotedisconnectedpayload"></a>
+        
+        
+      </h2>
+
+<p><strong>Extends RemotePayload</strong></p>
+    
+      <h3 id="parameters-19">
+        
+        
+          Parameters <a href="#parameters-19"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">player</code> <strong><a href="#baseremoteplayer">BaseRemotePlayer</a></strong> The active remote player.</li>
+  <li><code class="highlighter-rouge">snapshot</code> <strong><a href="#playersnapshot">PlayerSnapshot</a></strong> The remote player snapshot.</li>
+</ul>
+    
+      <h3 id="snapshot">
+        
+        
+          snapshot <a href="#snapshot"></a>
+        
+        
+      </h3>
+
+<p>Remote player snapshot.</p>
+
+<p>Type: <a href="#playersnapshot">PlayerSnapshot</a></p>
+
+<p>Returns <strong><a href="#playersnapshot">PlayerSnapshot</a></strong></p>
+    
+      <h2 id="remoteavailablepayload">
+        
+        
+          RemoteAvailablePayload <a href="#remoteavailablepayload"></a>
+        
+        
+      </h2>
+
+<p><strong>Extends RemotePayload</strong></p>
+    
+      <h3 id="parameters-20">
+        
+        
+          Parameters <a href="#parameters-20"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">player</code> <strong><a href="#baseremoteplayer">BaseRemotePlayer</a></strong> The active remote player.</li>
+  <li><code class="highlighter-rouge">available</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> Remote player availability.</li>
+</ul>
+    
+      <h3 id="available">
+        
+        
+          available <a href="#available"></a>
+        
+        
+      </h3>
+
+<p>Remote player availability.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h2 id="remoteplayerui">
+        
+        
+          RemotePlayerUI <a href="#remoteplayerui"></a>
+        
+        
+      </h2>
+    
+      <h3 id="playbackui">
+        
+        
+          playbackUI <a href="#playbackui"></a>
+        
+        
+      </h3>
+
+<p>Playback UI of the remote player.</p>
+    
+      <h4 id="parameters-21">
+        
+        
+          Parameters <a href="#parameters-21"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">props</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> UI creation parameters.</li>
+</ul>
+
+<p>Returns <strong>React$Element&lt;any&gt;</strong> Component.</p>
+    
+      <h3 id="idleui">
+        
+        
+          idleUI <a href="#idleui"></a>
+        
+        
+      </h3>
+
+<p>Idle UI of the remote player.</p>
+    
+      <h4 id="parameters-22">
+        
+        
+          Parameters <a href="#parameters-22"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">props</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> UI creation parameters.</li>
+</ul>
+
+<p>Returns <strong>React$Element&lt;any&gt;</strong> Component.</p>
+    
+      <h3 id="adsui">
+        
+        
+          adsUI <a href="#adsui"></a>
+        
+        
+      </h3>
+
+<p>Idle UI of the remote player.</p>
+    
+      <h4 id="parameters-23">
+        
+        
+          Parameters <a href="#parameters-23"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">props</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> UI creation parameters.</li>
+</ul>
+
+<p>Returns <strong>React$Element&lt;any&gt;</strong> Component.</p>
+    
+      <h3 id="liveui">
+        
+        
+          liveUI <a href="#liveui"></a>
+        
+        
+      </h3>
+
+<p>Live UI of the remote player.</p>
+    
+      <h4 id="parameters-24">
+        
+        
+          Parameters <a href="#parameters-24"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">props</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> UI creation parameters.</li>
+</ul>
+
+<p>Returns <strong>React$Element&lt;any&gt;</strong> Component.</p>
+    
+      <h3 id="errorui">
+        
+        
+          errorUI <a href="#errorui"></a>
+        
+        
+      </h3>
+
+<p>Error UI of the remote player.</p>
+    
+      <h4 id="parameters-25">
+        
+        
+          Parameters <a href="#parameters-25"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">props</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> UI creation parameters.</li>
+</ul>
+
+<p>Returns <strong>React$Element&lt;any&gt;</strong> Component.</p>
+    
+      <h3 id="uis">
+        
+        
+          uis <a href="#uis"></a>
+        
+        
+      </h3>
+
+<p>UI presets.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;UIPreset&gt;</p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;UIPreset&gt;</strong></p>
+    
+      <h2 id="iremoteplayer">
+        
+        
+          IRemotePlayer <a href="#iremoteplayer"></a>
+        
+        
+      </h2>
+    
+      <h3 id="textstyle-3">
+        
+        
+          textStyle <a href="#textstyle-3"></a>
+        
+        
+      </h3>
+
+<p>Type: TextStyle</p>
+    
+      <h3 id="muted-2">
+        
+        
+          muted <a href="#muted-2"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></p>
+    
+      <h3 id="playbackrate-2">
+        
+        
+          playbackRate <a href="#playbackrate-2"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></p>
+    
+      <h3 id="volume-2">
+        
+        
+          volume <a href="#volume-2"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></p>
+    
+      <h3 id="currenttime-2">
+        
+        
+          currentTime <a href="#currenttime-2"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></p>
+    
+      <h3 id="buffered-1">
+        
+        
+          buffered <a href="#buffered-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></p>
+    
+      <h3 id="duration-1">
+        
+        
+          duration <a href="#duration-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></p>
+    
+      <h3 id="paused-1">
+        
+        
+          paused <a href="#paused-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></p>
+    
+      <h3 id="ended-1">
+        
+        
+          ended <a href="#ended-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></p>
+    
+      <h3 id="seeking-1">
+        
+        
+          seeking <a href="#seeking-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></p>
+    
+      <h3 id="src">
+        
+        
+          src <a href="#src"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+    
+      <h3 id="poster-1">
+        
+        
+          poster <a href="#poster-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+    
+      <h3 id="enginetype-1">
+        
+        
+          engineType <a href="#enginetype-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+    
+      <h3 id="streamtype-1">
+        
+        
+          streamType <a href="#streamtype-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+    
+      <h3 id="type-2">
+        
+        
+          type <a href="#type-2"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+    
+      <h3 id="ads-1">
+        
+        
+          ads <a href="#ads-1"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="config-2">
+        
+        
+          config <a href="#config-2"></a>
+        
+        
+      </h3>
+
+<p>Type: KPOptionsObject</p>
+    
+      <h3 id="addeventlistener">
+        
+        
+          addEventListener <a href="#addeventlistener"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-26">
+        
+        
+          Parameters <a href="#parameters-26"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">type</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></li>
+  <li><code class="highlighter-rouge">listener</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></strong></li>
+</ul>
+    
+      <h3 id="removeeventlistener">
+        
+        
+          removeEventListener <a href="#removeeventlistener"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-27">
+        
+        
+          Parameters <a href="#parameters-27"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">type</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></li>
+  <li><code class="highlighter-rouge">listener</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></strong></li>
+</ul>
+    
+      <h3 id="dispatchevent">
+        
+        
+          dispatchEvent <a href="#dispatchevent"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-28">
+        
+        
+          Parameters <a href="#parameters-28"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">event</code> <strong>FakeEvent</strong></li>
+</ul>
+    
+      <h3 id="loadmedia-1">
+        
+        
+          loadMedia <a href="#loadmedia-1"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-29">
+        
+        
+          Parameters <a href="#parameters-29"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">mediaInfo</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong></li>
+</ul>
+    
+      <h3 id="setmedia-1">
+        
+        
+          setMedia <a href="#setmedia-1"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-30">
+        
+        
+          Parameters <a href="#parameters-30"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">mediaConfig</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong></li>
+</ul>
+    
+      <h3 id="getmediainfo-1">
+        
+        
+          getMediaInfo <a href="#getmediainfo-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong></p>
+    
+      <h3 id="configure-1">
+        
+        
+          configure <a href="#configure-1"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-31">
+        
+        
+          Parameters <a href="#parameters-31"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">config</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong></li>
+</ul>
+    
+      <h3 id="ready-1">
+        
+        
+          ready <a href="#ready-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&lt;any&gt;</strong></p>
+    
+      <h3 id="load-1">
+        
+        
+          load <a href="#load-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="play-1">
+        
+        
+          play <a href="#play-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="pause-1">
+        
+        
+          pause <a href="#pause-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="reset-1">
+        
+        
+          reset <a href="#reset-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="destroy-1">
+        
+        
+          destroy <a href="#destroy-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="islive-1">
+        
+        
+          isLive <a href="#islive-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h3 id="isdvr-1">
+        
+        
+          isDvr <a href="#isdvr-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h3 id="seektoliveedge-1">
+        
+        
+          seekToLiveEdge <a href="#seektoliveedge-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="getstarttimeofdvrwindow-1">
+        
+        
+          getStartTimeOfDvrWindow <a href="#getstarttimeofdvrwindow-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong></p>
+    
+      <h3 id="gettracks-1">
+        
+        
+          getTracks <a href="#gettracks-1"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-32">
+        
+        
+          Parameters <a href="#parameters-32"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">type</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</strong></li>
+</ul>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;Track&gt;</strong></p>
+    
+      <h3 id="getactivetracks-1">
+        
+        
+          getActiveTracks <a href="#getactivetracks-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong></p>
+    
+      <h3 id="selecttrack-1">
+        
+        
+          selectTrack <a href="#selecttrack-1"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-33">
+        
+        
+          Parameters <a href="#parameters-33"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">track</code> <strong>Track</strong></li>
+</ul>
+    
+      <h3 id="hidetexttrack-1">
+        
+        
+          hideTextTrack <a href="#hidetexttrack-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="enableadaptivebitrate-1">
+        
+        
+          enableAdaptiveBitrate <a href="#enableadaptivebitrate-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="isadaptivebitrateenabled-1">
+        
+        
+          isAdaptiveBitrateEnabled <a href="#isadaptivebitrateenabled-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h3 id="settextdisplaysettings-1">
+        
+        
+          setTextDisplaySettings <a href="#settextdisplaysettings-1"></a>
+        
+        
+      </h3>
+    
+      <h4 id="parameters-34">
+        
+        
+          Parameters <a href="#parameters-34"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">settings</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong></li>
+</ul>
+    
+      <h3 id="startcasting-1">
+        
+        
+          startCasting <a href="#startcasting-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="stopcasting-1">
+        
+        
+          stopCasting <a href="#stopcasting-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="iscasting-1">
+        
+        
+          isCasting <a href="#iscasting-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h3 id="iscastavailable-1">
+        
+        
+          isCastAvailable <a href="#iscastavailable-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h3 id="getcastsession-1">
+        
+        
+          getCastSession <a href="#getcastsession-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="#remotesession">RemoteSession</a></strong></p>
+    
+      <h3 id="isvr-1">
+        
+        
+          isVr <a href="#isvr-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h3 id="togglevrstereomode-1">
+        
+        
+          toggleVrStereoMode <a href="#togglevrstereomode-1"></a>
+        
+        
+      </h3>
+    
+      <h3 id="isinvrstereomode-1">
+        
+        
+          isInVrStereoMode <a href="#isinvrstereomode-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h3 id="type-3">
+        
+        
+          Type <a href="#type-3"></a>
+        
+        
+      </h3>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+    
+      <h3 id="issupported-1">
+        
+        
+          isSupported <a href="#issupported-1"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong></p>
+    
+      <h2 id="remotesession">
+        
+        
+          RemoteSession <a href="#remotesession"></a>
+        
+        
+      </h2>
+    
+      <h3 id="parameters-35">
+        
+        
+          Parameters <a href="#parameters-35"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">id</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> Session ID.</li>
+  <li><code class="highlighter-rouge">friendlyName</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> Receiver friendly name.</li>
+  <li><code class="highlighter-rouge">resuming</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</strong> Whether the session is resuming.</li>
+</ul>
+    
+      <h3 id="devicefriendlyname">
+        
+        
+          deviceFriendlyName <a href="#devicefriendlyname"></a>
+        
+        
+      </h3>
+
+<p>Receiver friendly name.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></p>
+    
+      <h3 id="id">
+        
+        
+          id <a href="#id"></a>
+        
+        
+      </h3>
+
+<p>Session ID.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></p>
+    
+      <h3 id="resuming">
+        
+        
+          resuming <a href="#resuming"></a>
+        
+        
+      </h3>
+
+<p>Whether the session is resuming.</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</strong></p>
+    
+      <h2 id="playlisteventtype">
+        
+        
+          PlaylistEventType <a href="#playlisteventtype"></a>
+        
+        
+      </h2>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+    
+      <h3 id="examples-31">
+        
+        
+          Examples <a href="#examples-31"></a>
+        
+        
+      </h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// Events lifecycle</span>
+<span class="mi">1</span><span class="p">.</span> <span class="nx">PLAYLIST_LOADED</span>
+<span class="mi">2</span><span class="p">.</span> <span class="nx">PLAYLIST_ITEM_CHANGED</span> <span class="p">(</span><span class="nx">multiple</span><span class="p">)</span>
+<span class="mi">3</span><span class="p">.</span> <span class="nx">PLAYLIST_ENDED</span>
+</code></pre>
+</div>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// How to use</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">playlist</span><span class="p">.</span><span class="nx">PlaylistEventType</span><span class="p">.</span><span class="nx">PLAYLIST_LOADED</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">playlist</span><span class="p">.</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+    
+      <h2 id="playlistitem">
+        
+        
+          PlaylistItem <a href="#playlistitem"></a>
+        
+        
+      </h2>
+    
+      <h3 id="parameters-36">
+        
+        
+          Parameters <a href="#parameters-36"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">sources</code> <strong>ProviderMediaConfigSourcesObject?</strong> The item sources</li>
+  <li><code class="highlighter-rouge">config</code> <strong><a href="#kpplaylistitemconfigobject">KPPlaylistItemConfigObject</a>?</strong> The item config</li>
+</ul>
+    
+      <h3 id="updatesources">
+        
+        
+          updateSources <a href="#updatesources"></a>
+        
+        
+      </h3>
+
+<p>Update the playlist item sources</p>
+    
+      <h4 id="parameters-37">
+        
+        
+          Parameters <a href="#parameters-37"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">sourcesObject</code> <strong>ProviderMediaConfigSourcesObject</strong> The sources</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="sources">
+        
+        
+          sources <a href="#sources"></a>
+        
+        
+      </h3>
+
+<p>Playlist item sources</p>
+
+<p>Type: ProviderMediaConfigSourcesObject?</p>
+
+<p>Returns <strong>ProviderMediaConfigSourcesObject?</strong></p>
+    
+      <h3 id="config-3">
+        
+        
+          config <a href="#config-3"></a>
+        
+        
+      </h3>
+
+<p>Playlist item config</p>
+
+<p>Type: <a href="#kpplaylistitemconfigobject">KPPlaylistItemConfigObject</a>?</p>
+
+<p>Returns <strong><a href="#kpplaylistitemconfigobject">KPPlaylistItemConfigObject</a>?</strong></p>
+    
+      <h3 id="isplayable">
+        
+        
+          isPlayable <a href="#isplayable"></a>
+        
+        
+      </h3>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></strong> = Whether the playlist item has sources to play</p>
+    
+      <h2 id="playlistmanager">
+        
+        
+          PlaylistManager <a href="#playlistmanager"></a>
+        
+        
+      </h2>
+    
+      <h3 id="parameters-38">
+        
+        
+          Parameters <a href="#parameters-38"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">player</code> <strong>KalturaPlayer</strong> The player instance</li>
+  <li><code class="highlighter-rouge">options</code> <strong>KPOptionsObject</strong> The player config object</li>
+</ul>
+    
+      <h3 id="configure-2">
+        
+        
+          configure <a href="#configure-2"></a>
+        
+        
+      </h3>
+
+<p>Config the playlist</p>
+    
+      <h4 id="parameters-39">
+        
+        
+          Parameters <a href="#parameters-39"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">config</code> <strong><a href="#kpplaylistobject">KPPlaylistObject</a>?</strong> The playlist config</li>
+  <li><code class="highlighter-rouge">entryList</code> <strong>ProviderEntryListObject?</strong> Entry list</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="load-2">
+        
+        
+          load <a href="#load-2"></a>
+        
+        
+      </h3>
+
+<p>Load a playlist</p>
+    
+      <h4 id="parameters-40">
+        
+        
+          Parameters <a href="#parameters-40"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">playlistData</code> <strong><a href="#kpplaylistobject">KPPlaylistObject</a></strong> The playlist data</li>
+  <li><code class="highlighter-rouge">playlistConfig</code> <strong><a href="#kpplaylistconfigobject">KPPlaylistConfigObject</a>?</strong> The playlist config</li>
+  <li><code class="highlighter-rouge">entryList</code> <strong>ProviderEntryListObject?</strong> Entry list</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="reset-2">
+        
+        
+          reset <a href="#reset-2"></a>
+        
+        
+      </h3>
+
+<p>Reset the playlist</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="playnext">
+        
+        
+          playNext <a href="#playnext"></a>
+        
+        
+      </h3>
+
+<p>Play the next item</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="playprev">
+        
+        
+          playPrev <a href="#playprev"></a>
+        
+        
+      </h3>
+
+<p>Play the previous item</p>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="playitem">
+        
+        
+          playItem <a href="#playitem"></a>
+        
+        
+      </h3>
+
+<p>Play a specific item</p>
+    
+      <h4 id="parameters-41">
+        
+        
+          Parameters <a href="#parameters-41"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">index</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></strong> The index of the item to play</li>
+</ul>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h3 id="items">
+        
+        
+          items <a href="#items"></a>
+        
+        
+      </h3>
+
+<p>Playlist items</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="#playlistitem">PlaylistItem</a>&gt;</p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&lt;<a href="#playlistitem">PlaylistItem</a>&gt;</strong></p>
+    
+      <h3 id="next">
+        
+        
+          next <a href="#next"></a>
+        
+        
+      </h3>
+
+<p>Next item</p>
+
+<p>Type: <a href="#playlistitem">PlaylistItem</a>?</p>
+
+<p>Returns <strong><a href="#playlistitem">PlaylistItem</a>?</strong></p>
+    
+      <h3 id="prev">
+        
+        
+          prev <a href="#prev"></a>
+        
+        
+      </h3>
+
+<p>Previous item</p>
+
+<p>Type: <a href="#playlistitem">PlaylistItem</a>?</p>
+
+<p>Returns <strong><a href="#playlistitem">PlaylistItem</a>?</strong></p>
+    
+      <h3 id="id-1">
+        
+        
+          id <a href="#id-1"></a>
+        
+        
+      </h3>
+
+<p>Playlist id</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></p>
+    
+      <h3 id="metadata">
+        
+        
+          metadata <a href="#metadata"></a>
+        
+        
+      </h3>
+
+<p>Playlist metadata</p>
+
+<p>Type: ProviderPlaylistMetadataObject</p>
+
+<p>Returns <strong>ProviderPlaylistMetadataObject</strong></p>
+    
+      <h3 id="poster-2">
+        
+        
+          poster <a href="#poster-2"></a>
+        
+        
+      </h3>
+
+<p>Playlist poster</p>
+
+<p>Type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</p>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</strong></p>
+    
+      <h3 id="countdown">
+        
+        
+          countdown <a href="#countdown"></a>
+        
+        
+      </h3>
+
+<p>Playlist countdown</p>
+
+<p>Type: <a href="#kpplaylistcountdownoptions">KPPlaylistCountdownOptions</a></p>
+
+<p>Returns <strong><a href="#kpplaylistcountdownoptions">KPPlaylistCountdownOptions</a></strong></p>
+    
+      <h3 id="options">
+        
+        
+          options <a href="#options"></a>
+        
+        
+      </h3>
+
+<p>Playlist options</p>
+
+<p>Type: <a href="#kpplaylistoptions">KPPlaylistOptions</a></p>
+
+<p>Returns <strong><a href="#kpplaylistoptions">KPPlaylistOptions</a></strong></p>
+    
+      <h2 id="loadplaylist">
+        
+        
+          loadPlaylist <a href="#loadplaylist"></a>
+        
+        
+      </h2>
+
+<p>Loads a playlist by id.</p>
+    
+      <h3 id="parameters-42">
+        
+        
+          Parameters <a href="#parameters-42"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">playlistInfo</code> <strong>ProviderPlaylistInfoObject</strong> The playlist info.</li>
+  <li><code class="highlighter-rouge">playlistConfig</code> <strong><a href="#kpplaylistconfigobject">KPPlaylistConfigObject</a>?</strong> The playlist config.</li>
+</ul>
+    
+      <h3 id="examples-32">
+        
+        
+          Examples <a href="#examples-32"></a>
+        
+        
+      </h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylist</span><span class="p">({</span><span class="na">playlistId</span><span class="p">:</span> <span class="s1">'123456'</span><span class="p">},</span> <span class="p">{</span><span class="na">options</span><span class="p">:</span> <span class="p">{</span><span class="na">autoContinue</span><span class="p">:</span> <span class="kc">false</span><span class="p">}});</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&lt;ProviderPlaylistObject&gt;</strong> The playlist data from the provider.</p>
+    
+      <h2 id="loadplaylistbyentrylist">
+        
+        
+          loadPlaylistByEntryList <a href="#loadplaylistbyentrylist"></a>
+        
+        
+      </h2>
+
+<p>Loads a playlist by entry list.</p>
+    
+      <h3 id="parameters-43">
+        
+        
+          Parameters <a href="#parameters-43"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">entryList</code> <strong>ProviderEntryListObject</strong> The playlist info.</li>
+  <li><code class="highlighter-rouge">playlistConfig</code> <strong><a href="#kpplaylistconfigobject">KPPlaylistConfigObject</a>?</strong> The playlist config.</li>
+</ul>
+    
+      <h3 id="examples-33">
+        
+        
+          Examples <a href="#examples-33"></a>
+        
+        
+      </h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadPlaylistByEntryList</span><span class="p">({</span><span class="na">entries</span><span class="p">:</span> <span class="p">[{</span><span class="na">entryId</span><span class="p">:</span> <span class="s1">'01234'</span><span class="p">},</span> <span class="p">{</span><span class="na">entryId</span><span class="p">:</span> <span class="s1">'56789'</span><span class="p">}]},</span> <span class="p">{</span><span class="na">options</span><span class="p">:</span> <span class="p">{</span><span class="na">autoContinue</span><span class="p">:</span> <span class="kc">false</span><span class="p">}});</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&lt;ProviderPlaylistObject&gt;</strong> The playlist data from the provider.</p>
+    
+      <h2 id="configure-3">
+        
+        
+          configure <a href="#configure-3"></a>
+        
+        
+      </h2>
+
+<p>Config the player.</p>
+    
+      <h3 id="parameters-44">
+        
+        
+          Parameters <a href="#parameters-44"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">config</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></strong> The player config. (optional, default <code class="highlighter-rouge"><span class="p">{}</span></code>)</li>
+</ul>
+    
+      <h3 id="examples-34">
+        
+        
+          Examples <a href="#examples-34"></a>
+        
+        
+      </h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span><span class="na">playback</span><span class="p">:</span> <span class="p">{</span><span class="na">autoplay</span><span class="p">:</span> <span class="kc">true</span><span class="p">}});</span>
+</code></pre>
+</div>
+
+<p>Returns <strong>void</strong></p>
+    
+      <h2 id="playlist">
+        
+        
+          playlist <a href="#playlist"></a>
+        
+        
+      </h2>
+
+<p>The playlist controller.</p>
+
+<p>Type: <a href="#playlistmanager">PlaylistManager</a></p>
+    
+      <h3 id="examples-35">
+        
+        
+          Examples <a href="#examples-35"></a>
+        
+        
+      </h3>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">playlist</span><span class="p">.</span><span class="nx">playNext</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>Returns <strong><a href="#playlistmanager">PlaylistManager</a></strong></p>
+    
+      <h2 id="getplayers">
+        
+        
+          getPlayers <a href="#getplayers"></a>
+        
+        
+      </h2>
+
+<p>get all instantiated players</p>
+
+<p>Returns <strong><a href="#kalturaplayers">KalturaPlayers</a></strong> map of player ids and their respective instantiated player</p>
+    
+      <h2 id="getplayer">
+        
+        
+          getPlayer <a href="#getplayer"></a>
+        
+        
+      </h2>
+
+<p>get a player instance by id</p>
+    
+      <h3 id="parameters-45">
+        
+        
+          Parameters <a href="#parameters-45"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li><code class="highlighter-rouge">id</code> <strong><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> the player ID</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Returns **(KalturaPlayer</td>
+      <td>null)** the player if found by the supplied ID or null if key doesn’t exist</td>
+    </tr>
+  </tbody>
+</table>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
