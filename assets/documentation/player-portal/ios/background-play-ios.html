@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/background-play-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 10:31:51 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/background-play-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 10:31:51 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -170,13 +170,13 @@ rtp('get', 'campaign',true);
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// Remove the AVPlayerLayer from its associated AVPlayer once the app is in the background.</span>
 <span class="kd">func</span> <span class="nf">applicationDidEnterBackground</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">let</span> <span class="nv">playerView</span> <span class="o">=</span> <span class="o">&lt;</span><span class="err">#</span><span class="kt">Get</span> <span class="n">your</span> <span class="n">player</span> <span class="n">view</span><span class="err">#</span><span class="o">&gt;</span>
+    <span class="k">let</span> <span class="nv">playerView</span> <span class="o">=</span> <span class="s">"&lt;Get your player view&gt;"</span>
     <span class="n">playerView</span><span class="o">.</span><span class="n">playerLayer</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="kc">nil</span>
 <span class="p">}</span>
 
 <span class="c1">// Restore the AVPlayer when the app is active again.</span>
 <span class="kd">func</span> <span class="nf">applicationDidBecomeActive</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">let</span> <span class="nv">playerView</span> <span class="o">=</span> <span class="o">&lt;</span><span class="err">#</span><span class="kt">Get</span> <span class="n">your</span> <span class="n">player</span> <span class="n">view</span><span class="err">#</span><span class="o">&gt;</span>
+    <span class="k">let</span> <span class="nv">playerView</span> <span class="o">=</span> <span class="s">"&lt;Get your player view&gt;"</span>
     <span class="n">playerView</span><span class="o">.</span><span class="n">playerLayer</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="n">player</span>
 <span class="p">}</span></code></pre></figure>
 

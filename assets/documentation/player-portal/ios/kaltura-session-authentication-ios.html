@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 10:23:04 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/kaltura-session-authentication-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 10:31:51 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/kaltura-session-authentication-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 10:23:04 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 10:31:51 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -169,80 +169,71 @@ You can see all these steps interactively with <a href="https://developer.kaltur
 To get a basic KS, we need to construct a URL request to the <a href="https://developer.kaltura.com/api-docs/service/session/action/startWidgetSession">session.startWidgetSession</a> service. It needs your widget ID, which is basically just your partnerID with an underscore prefix. <br />
 So let’s create a function called <code class="highlighter-rouge">generateWidgetSession()</code> and form that URL.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>func generateWidgetSession() -&gt; String {
-    let widgetPartnerId = "_\(PARTNER_ID)"
-    let widgetKsURL = NSString(format:"https://www.kaltura.com/api_v3/service/session/action/startWidgetSession?widgetId=%@&amp;format=1",widgetPartnerId)
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">generateWidgetSession</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">widgetPartnerId</span> <span class="o">=</span> <span class="s">"_</span><span class="se">\(</span><span class="kt">PARTNER_ID</span><span class="se">)</span><span class="s">"</span>
+    <span class="k">let</span> <span class="nv">widgetKsURL</span> <span class="o">=</span> <span class="kt">NSString</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span><span class="s">"https://www.kaltura.com/api_v3/service/session/action/startWidgetSession?widgetId=%@&amp;format=1"</span><span class="p">,</span><span class="n">widgetPartnerId</span><span class="p">)</span></code></pre></figure>
 
 <p>Call the endpoint and extract the <code class="highlighter-rouge">ks</code> string from the response. Your code should obviously include more error handling than this example. The complete function looks something like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
-func generateWidgetSession() -&gt; String {
-    let widgetPartnerId = "_\(PARTNER_ID)"
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">generateWidgetSession</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">widgetPartnerId</span> <span class="o">=</span> <span class="s">"_</span><span class="se">\(</span><span class="kt">PARTNER_ID</span><span class="se">)</span><span class="s">"</span>
 
-    let widgetKsURL = NSString(format:"https://www.kaltura.com/api_v3/service/session/action/startWidgetSession?widgetId=%@&amp;format=1",widgetPartnerId)
+    <span class="k">let</span> <span class="nv">widgetKsURL</span> <span class="o">=</span> <span class="kt">NSString</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span><span class="s">"https://www.kaltura.com/api_v3/service/session/action/startWidgetSession?widgetId=%@&amp;format=1"</span><span class="p">,</span><span class="n">widgetPartnerId</span><span class="p">)</span>
 
-    let widgetKsData = try! Data(contentsOf: URL(string: widgetKsURL as String)!)
+    <span class="k">let</span> <span class="nv">widgetKsData</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">widgetKsURL</span> <span class="k">as</span> <span class="kt">String</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
 
-    let widgetKsDict = try! JSONSerialization.jsonObject(with: widgetKsData, options: []) as! [String:Any]
+    <span class="k">let</span> <span class="nv">widgetKsDict</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">widgetKsData</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span> <span class="k">as!</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">]</span>
 
-    return (widgetKsDict["ks"] as! String)
-    }
-</code></pre>
-</div>
+    <span class="nf">return</span> <span class="p">(</span><span class="n">widgetKsDict</span><span class="p">[</span><span class="s">"ks"</span><span class="p">]</span> <span class="k">as!</span> <span class="kt">String</span><span class="p">)</span>
+    <span class="p">}</span></code></pre></figure>
 
 <p>We will call this function from another new function called <code class="highlighter-rouge">generateSession()</code> where you should call the create new variables for the widgetSession, appToken, the appToken ID, and the userId - which can be any string that identifies the user creating the session.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>func generateSession() {
-    let widgetKs: String = generateWidgetSession()
-    let appToken = "&lt;TOKEN_OF_APP_TOKEN&gt;"
-    let appTokenId = "&lt;ID_OF_APP_TOKEN&gt;"
-    let userId = "user"
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">generateSession</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">widgetKs</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nf">generateWidgetSession</span><span class="p">()</span>
+    <span class="k">let</span> <span class="nv">appToken</span> <span class="o">=</span> <span class="s">"&lt;TOKEN_OF_APP_TOKEN&gt;"</span>
+    <span class="k">let</span> <span class="nv">appTokenId</span> <span class="o">=</span> <span class="s">"&lt;ID_OF_APP_TOKEN&gt;"</span>
+    <span class="k">let</span> <span class="nv">userId</span> <span class="o">=</span> <span class="s">"user"</span></code></pre></figure>
 
 <p><strong>Step 2: Create the token hash</strong></p>
 
 <p>You’ll need to install and import a library of your choice for creating the hash string. We chose a library called <a href="https://cocoapods.org/pods/Arcane">Arcane</a> which is like the Obj-C CommonCrypto library. Concatenate the widget session with the appToken token, and create the hash string. <em>Note that you must use the same Hash Type that you used to create the appToken.</em></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>let tokenHash: String = Hash.SHA256("\(widgetKs)\(appToken)")!
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">tokenHash</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">Hash</span><span class="o">.</span><span class="kt">SHA256</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">widgetKs</span><span class="se">)\(</span><span class="n">appToken</span><span class="se">)</span><span class="s">"</span><span class="p">)</span><span class="o">!</span></code></pre></figure>
 
 <p><strong>Step 3: Get the Kaltura Session</strong></p>
 
 <p>Once you have that hash string, you can now form the URL, make the call to <a href="https://developer.kaltura.com/console/service/appToken/action/startSession">appToken.startSession</a>, and extract the KS from the response. Again, a proper application should include error handling when making calls to the API.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>let URLString = NSString(format:"https://www.kaltura.com/api_v3/service/apptoken/action/startsession?ks=%@&amp;userId=%@&amp;id=%@&amp;tokenHash=%@&amp;format=1",widgetKs,userId,appTokenId,tokenHash)
 
-let ksData = try! Data(contentsOf: URL(string: URLString as String)!)
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">URLString</span> <span class="o">=</span> <span class="kt">NSString</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span><span class="s">"https://www.kaltura.com/api_v3/service/apptoken/action/startsession?ks=%@&amp;userId=%@&amp;id=%@&amp;tokenHash=%@&amp;format=1"</span><span class="p">,</span><span class="n">widgetKs</span><span class="p">,</span><span class="n">userId</span><span class="p">,</span><span class="n">appTokenId</span><span class="p">,</span><span class="n">tokenHash</span><span class="p">)</span>
 
-let ksDict = try! JSONSerialization.jsonObject(with: ksData, options: []) as! [String:Any]
-</code></pre>
-</div>
+<span class="k">let</span> <span class="nv">ksData</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="kt">URLString</span> <span class="k">as</span> <span class="kt">String</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">ksDict</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">ksData</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span> <span class="k">as!</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">]</span></code></pre></figure>
+
 <p>Lastly, set the application’s <code class="highlighter-rouge">ks</code> to the newly generated KS:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>self.ks = (ksDict["ks"] as! String)
-</code></pre>
-</div>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="n">ks</span> <span class="o">=</span> <span class="p">(</span><span class="n">ksDict</span><span class="p">[</span><span class="s">"ks"</span><span class="p">]</span> <span class="k">as!</span> <span class="kt">String</span><span class="p">)</span></code></pre></figure>
+
 <p>The complete <code class="highlighter-rouge">generateSession()</code> function looks like this:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>func generateSession() {
-    let appToken = "c9883312395bf5ed4fd5c9a5d86c985c"
-    let userId = "avital.tzubeli@kaltura.com"
-    let appTokenId = "0_xeu31jy5"
 
-    let widgetKs: String = generateWidgetSession()
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">generateSession</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">appToken</span> <span class="o">=</span> <span class="s">"c9883312395bf5ed4fd5c9a5d86c985c"</span>
+    <span class="k">let</span> <span class="nv">userId</span> <span class="o">=</span> <span class="s">"avital.tzubeli@kaltura.com"</span>
+    <span class="k">let</span> <span class="nv">appTokenId</span> <span class="o">=</span> <span class="s">"0_xeu31jy5"</span>
 
-    let tokenHash: String = Hash.SHA256("\(widgetKs)\(appToken)")!
+    <span class="k">let</span> <span class="nv">widgetKs</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="nf">generateWidgetSession</span><span class="p">()</span>
 
-    let URLString = NSString(format:"https://www.kaltura.com/api_v3/service/apptoken/action/startsession?ks=%@&amp;userId=%@&amp;id=%@&amp;tokenHash=%@&amp;format=1",widgetKs,userId,appTokenId,tokenHash)
+    <span class="k">let</span> <span class="nv">tokenHash</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">Hash</span><span class="o">.</span><span class="kt">SHA256</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">widgetKs</span><span class="se">)\(</span><span class="n">appToken</span><span class="se">)</span><span class="s">"</span><span class="p">)</span><span class="o">!</span>
 
-    let ksData = try! Data(contentsOf: URL(string: URLString as String)!)
-    let ksDict = try! JSONSerialization.jsonObject(with: ksData, options: []) as! [String:Any]
+    <span class="k">let</span> <span class="nv">URLString</span> <span class="o">=</span> <span class="kt">NSString</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span><span class="s">"https://www.kaltura.com/api_v3/service/apptoken/action/startsession?ks=%@&amp;userId=%@&amp;id=%@&amp;tokenHash=%@&amp;format=1"</span><span class="p">,</span><span class="n">widgetKs</span><span class="p">,</span><span class="n">userId</span><span class="p">,</span><span class="n">appTokenId</span><span class="p">,</span><span class="n">tokenHash</span><span class="p">)</span>
 
-    self.ks = (ksDict["ks"] as! String)
-}
-</code></pre>
-</div>
+    <span class="k">let</span> <span class="nv">ksData</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="kt">URLString</span> <span class="k">as</span> <span class="kt">String</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">ksDict</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">ksData</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span> <span class="k">as!</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">]</span>
+
+    <span class="k">self</span><span class="o">.</span><span class="n">ks</span> <span class="o">=</span> <span class="p">(</span><span class="n">ksDict</span><span class="p">[</span><span class="s">"ks"</span><span class="p">]</span> <span class="k">as!</span> <span class="kt">String</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
 <blockquote>
   <p>Note that if an appToken is deleted, it can no longer be used for session creation.</p>
 </blockquote>

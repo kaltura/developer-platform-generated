@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 05:56:48 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/player-ui-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 10:31:51 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/player-ui-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 05:56:48 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 10:31:51 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -141,12 +141,10 @@ At this point you should have a Kaltura Player embedded in your application and 
 <p>We will start by adding button images of your choice to the Assets catalogue of your project. Then, in the storyboard, create a play/pause button, a slider (scrubber), a current position label, and a (remaining) duration label. For the play/pause button, in the Attributes Inspector, click the dropdown for Title and select Attributed. Under Image, type in the name of the play button file (it should have autocomplete for existing files). <br />
 Lastly, create the outlets for all your new objects in the Controller:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@IBOutlet weak var playPauseButton: UIButton!
-@IBOutlet weak var playheadSlider: UISlider!
-@IBOutlet weak var positionLabel: UILabel!
-@IBOutlet weak var durationLabel: UILabel!
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">playPauseButton</span><span class="p">:</span> <span class="kt">UIButton</span><span class="o">!</span>
+<span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">playheadSlider</span><span class="p">:</span> <span class="kt">UISlider</span><span class="o">!</span>
+<span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">positionLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span>
+<span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">durationLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span></code></pre></figure>
       <h3 id="player-state">
         
         
@@ -156,29 +154,27 @@ Lastly, create the outlets for all your new objects in the Controller:</p>
       </h3>
 
 <p>Currently our play button is only set to show a play icon, and we’ll want it to change for different scenarios. What we’ll need is to handle the state of what’s happening in the player - whether it is idle, playing, paused, or ended. Let’s add an enum called state at the top of the class:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>enum State {
-    case idle, playing, paused, ended
-}
-</code></pre>
-</div>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">enum</span> <span class="kt">State</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">idle</span><span class="p">,</span> <span class="n">playing</span><span class="p">,</span> <span class="n">paused</span><span class="p">,</span> <span class="n">ended</span>
+<span class="p">}</span></code></pre></figure>
+
 <p>And a Property Observer on that enum which switches on each state.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>var state: State = .idle {
-      didSet {
-          switch state {
-          case .idle:
-              playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
-          case .playing:
-              playPauseButton.setImage(UIImage(named: "btn_pause"), for: .normal)
-          case .paused:
-              playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
-          case .ended:
-              playPauseButton.setImage(UIImage(named: "btn_refresh"), for: .normal)
-          }
-        }
-    }
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">State</span> <span class="o">=</span> <span class="o">.</span><span class="n">idle</span> <span class="p">{</span>
+      <span class="k">didSet</span> <span class="p">{</span>
+          <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
+          <span class="k">case</span> <span class="o">.</span><span class="nv">idle</span><span class="p">:</span>
+              <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_play"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+          <span class="k">case</span> <span class="o">.</span><span class="nv">playing</span><span class="p">:</span>
+              <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_pause"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+          <span class="k">case</span> <span class="o">.</span><span class="nv">paused</span><span class="p">:</span>
+              <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_play"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+          <span class="k">case</span> <span class="o">.</span><span class="nv">ended</span><span class="p">:</span>
+              <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_refresh"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></figure>
 
 <p>What this does is listen for a change to the state, and based on whether the player is currently idle, paused, or playing, the picture of the play/pause button is changed accordingly.</p>
 
@@ -188,26 +184,24 @@ Lastly, create the outlets for all your new objects in the Controller:</p>
 
 <p>On the playPauseButton, add a new IBAction for a “Touch Up Inside” event and link it to a new <code class="highlighter-rouge">playerTouched</code> function that calls play/pause on the player when the button is touched. Available Basic Player actions can be found <a href="https://kaltura.github.io/playkit/api/ios/core/Protocols/BasicPlayer.html">here</a></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@IBAction func playTouched(_ sender: Any) {
-    guard let player = self.player else {
-        print("player is not set")
-        return
-    }
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">playTouched</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"player is not set"</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
 
-    switch state {
-    case .playing:
-        player.pause()
-    case .idle:
-        player.play()
-    case .paused:
-        player.play()
-    case .ended:
-        player.seek(to: 0)
-        player.play()
-    }
-}
-</code></pre>
-</div>
+    <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">playing</span><span class="p">:</span>
+        <span class="n">player</span><span class="o">.</span><span class="nf">pause</span><span class="p">()</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">idle</span><span class="p">:</span>
+        <span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">paused</span><span class="p">:</span>
+        <span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">ended</span><span class="p">:</span>
+        <span class="n">player</span><span class="o">.</span><span class="nf">seek</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
     
       <h3 id="player-slider">
         
@@ -219,240 +213,229 @@ Lastly, create the outlets for all your new objects in the Controller:</p>
 
 <p>The slider is made up of a few components: the playhead, the current time stamp, and the duration of the entry. All of this configuration happens in the <code class="highlighter-rouge">setupPlayer</code> function. Firstly, a formatter for displaying the number of seconds as <code class="highlighter-rouge">HH:MM:SS</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>let formatter = DateComponentsFormatter()
-formatter.allowedUnits = [.hour, .minute, .second]
-formatter.unitsStyle = .positional
-formatter.zeroFormattingBehavior = .pad
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="kt">DateComponentsFormatter</span><span class="p">()</span>
+<span class="n">formatter</span><span class="o">.</span><span class="n">allowedUnits</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="o">.</span><span class="n">minute</span><span class="p">,</span> <span class="o">.</span><span class="n">second</span><span class="p">]</span>
+<span class="n">formatter</span><span class="o">.</span><span class="n">unitsStyle</span> <span class="o">=</span> <span class="o">.</span><span class="n">positional</span>
+<span class="n">formatter</span><span class="o">.</span><span class="n">zeroFormattingBehavior</span> <span class="o">=</span> <span class="o">.</span><span class="n">pad</span>
 
-func format(_ time: TimeInterval) -&gt; String {
-    if let s = formatter.string(from: time) {
-        return s.count &gt; 7 ? s : "0" + s
-    } else {
-        return "00:00:00"
-    }
-}
-</code></pre>
-</div>
+<span class="kd">func</span> <span class="nf">format</span><span class="p">(</span><span class="n">_</span> <span class="nv">time</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">s</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="nf">string</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">time</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="p">?</span> <span class="nv">s</span> <span class="p">:</span> <span class="s">"0"</span> <span class="o">+</span> <span class="n">s</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"00:00:00"</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>Then, we’ll add three observers. The first one checks on the media’s progress in the task queue every fifth of a second and then updates the player slider accordingly, as well as the text of the current position label (using the time formatter)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>self.player?.addPeriodicObserver(interval: 0.2, observeOn: DispatchQueue.main, using: { (pos) in
-    self.playheadSlider.value = Float(pos)
-    self.positionLabel.text = format(pos)
-})
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="nf">addPeriodicObserver</span><span class="p">(</span><span class="nv">interval</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="nv">observeOn</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">playheadSlider</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kt">Float</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">positionLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+<span class="p">})</span></code></pre></figure>
+
 <p>The second observer waits for Player event <code class="highlighter-rouge">durationChanged</code> which happens when the media loads and the duration of the video is known. This happens once per playback. It then sets the maximum value of the slider playhead, and the text of the duration label.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>self.player?.addObserver(self, events: [PlayerEvent.durationChanged], block: { (event) in
-    if let e = event as? PlayerEvent.DurationChanged, let d = e.duration as? TimeInterval {
-        self.playheadSlider.maximumValue = Float(d)
-        self.durationLabel.text = format(d)
-    }
-})
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">durationChanged</span><span class="p">],</span> <span class="nv">block</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">e</span> <span class="o">=</span> <span class="n">event</span> <span class="k">as?</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">DurationChanged</span><span class="p">,</span> <span class="k">let</span> <span class="nv">d</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">duration</span> <span class="k">as?</span> <span class="kt">TimeInterval</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">playheadSlider</span><span class="o">.</span><span class="n">maximumValue</span> <span class="o">=</span> <span class="kt">Float</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">durationLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">})</span></code></pre></figure>
 
 <p>The third observer listens for player events, and updates the State when the player begins playing, is paused, or has ended, which is what the switch case above is dependent on. Player events can be found <a href="https://kaltura.github.io/playkit/api/ios/core/Classes/PlayerEvent.html#/s:7PlayKit11PlayerEventC12StateChangedC">here</a></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>self.player?.addObserver(self, events: [PlayerEvent.play, PlayerEvent.ended, PlayerEvent.pause], block: { (event) in
-    switch event {
-    case is PlayerEvent.Play, is PlayerEvent.Playing:
-        self.state = .playing
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">play</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">ended</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">pause</span><span class="p">],</span> <span class="nv">block</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">event</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Play</span><span class="p">,</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Playing</span><span class="p">:</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">playing</span>
 
-    case is PlayerEvent.Pause:
-        self.state = .paused
+    <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Pause</span><span class="p">:</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">paused</span>
 
-    case is PlayerEvent.Ended:
-        self.state = .ended
+    <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Ended</span><span class="p">:</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">ended</span>
 
-    default:
-        break
-    }
-})
-</code></pre>
-</div>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="p">}</span>
+<span class="p">})</span></code></pre></figure>
 
 <p>Lastly, in the Storyboard, set a new referencing action on the Playhead Slider for the “Value Changed” event. Call it <code class="highlighter-rouge">playheadValueChanged</code>. Add it after the <code class="highlighter-rouge">playTouched</code> function. It should set the current time position according to the value of the palyhead, and change the State to paused in the case of moving the slider back after the video has ended.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@IBAction func playheadValueChanged(_ sender: Any) {
-    guard let player = self.player else {
-        print("player is not set")
-        return
-    }
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">playheadValueChanged</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"player is not set"</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
 
-    if state == .ended &amp;&amp; playheadSlider.value &lt; playheadSlider.maximumValue {
-        state = .paused
-    }
-    player.currentTime = TimeInterval(playheadSlider.value)
-}
-</code></pre>
-</div>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="o">.</span><span class="n">ended</span> <span class="o">&amp;&amp;</span> <span class="n">playheadSlider</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">playheadSlider</span><span class="o">.</span><span class="n">maximumValue</span> <span class="p">{</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">paused</span>
+    <span class="p">}</span>
+    <span class="n">player</span><span class="o">.</span><span class="n">currentTime</span> <span class="o">=</span> <span class="kt">TimeInterval</span><span class="p">(</span><span class="n">playheadSlider</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
 <p>You should be able to run the code, and use the basic player functions. The complete code should look like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import UIKit
-import PlayKit
-import PlayKitUtils
-import PlayKitProviders
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">PlayKit</span>
+<span class="kd">import</span> <span class="kt">PlayKitUtils</span>
+<span class="kd">import</span> <span class="kt">PlayKitProviders</span>
 
-fileprivate let SERVER_BASE_URL = "https://cdnapisec.kaltura.com"
-fileprivate let PARTNER_ID = 1424501
-fileprivate let ENTRY_ID = "1_djnefl4e"
+<span class="n">fileprivate</span> <span class="k">let</span> <span class="nv">SERVER_BASE_URL</span> <span class="o">=</span> <span class="s">"https://cdnapisec.kaltura.com"</span>
+<span class="n">fileprivate</span> <span class="k">let</span> <span class="nv">PARTNER_ID</span> <span class="o">=</span> <span class="mi">1424501</span>
+<span class="n">fileprivate</span> <span class="k">let</span> <span class="nv">ENTRY_ID</span> <span class="o">=</span> <span class="s">"1_djnefl4e"</span>
 
-class ViewController: UIViewController {
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
 
-    enum State {
-        case idle, playing, paused, ended
-    }
+    <span class="kd">enum</span> <span class="kt">State</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="n">idle</span><span class="p">,</span> <span class="n">playing</span><span class="p">,</span> <span class="n">paused</span><span class="p">,</span> <span class="n">ended</span>
+    <span class="p">}</span>
     
-    var entryId: String?
-    var ks: String?
-    var player: Player? // Created in viewDidLoad
-    var state: State = .idle {
-          didSet {
-              switch state {
-              case .idle:
-                  playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
-              case .playing:
-                  playPauseButton.setImage(UIImage(named: "btn_pause"), for: .normal)
-              case .paused:
-                  playPauseButton.setImage(UIImage(named: "btn_play"), for: .normal)
-              case .ended:
-                  playPauseButton.setImage(UIImage(named: "btn_refresh"), for: .normal)
-              }
-          }
-      }
+    <span class="k">var</span> <span class="nv">entryId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">ks</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="p">?</span> <span class="c1">// Created in viewDidLoad</span>
+    <span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">State</span> <span class="o">=</span> <span class="o">.</span><span class="n">idle</span> <span class="p">{</span>
+          <span class="k">didSet</span> <span class="p">{</span>
+              <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
+              <span class="k">case</span> <span class="o">.</span><span class="nv">idle</span><span class="p">:</span>
+                  <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_play"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+              <span class="k">case</span> <span class="o">.</span><span class="nv">playing</span><span class="p">:</span>
+                  <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_pause"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+              <span class="k">case</span> <span class="o">.</span><span class="nv">paused</span><span class="p">:</span>
+                  <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_play"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+              <span class="k">case</span> <span class="o">.</span><span class="nv">ended</span><span class="p">:</span>
+                  <span class="n">playPauseButton</span><span class="o">.</span><span class="nf">setImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"btn_refresh"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+              <span class="p">}</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
     
-    @IBOutlet weak var playerContainer: PlayerView!
-    @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var playheadSlider: UISlider!
-    @IBOutlet weak var positionLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">playerContainer</span><span class="p">:</span> <span class="kt">PlayerView</span><span class="o">!</span>
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">playPauseButton</span><span class="p">:</span> <span class="kt">UIButton</span><span class="o">!</span>
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">playheadSlider</span><span class="p">:</span> <span class="kt">UISlider</span><span class="o">!</span>
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">positionLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span>
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">durationLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span>
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
         
-        self.state = .idle
+        <span class="k">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">idle</span>
 
-        self.player = try! PlayKitManager.shared.loadPlayer(pluginConfig: nil)
-        self.setupPlayer()
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">setupPlayer</span><span class="p">()</span>
         
-        entryId = ENTRY_ID
-        self.loadMedia()
-    }
+        <span class="n">entryId</span> <span class="o">=</span> <span class="kt">ENTRY_ID</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">loadMedia</span><span class="p">()</span>
+    <span class="p">}</span>
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">didReceiveMemoryWarning</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">didReceiveMemoryWarning</span><span class="p">()</span>
+    <span class="p">}</span>
     
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
+    <span class="k">override</span> <span class="k">var</span> <span class="nv">preferredStatusBarStyle</span> <span class="p">:</span> <span class="kt">UIStatusBarStyle</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kt">UIStatusBarStyle</span><span class="o">.</span><span class="n">lightContent</span>
+    <span class="p">}</span>
     
-/************************/
-// MARK: - Player Setup
-/***********************/
-    func setupPlayer() {
+<span class="cm">/************************/</span>
+<span class="c1">// MARK: - Player Setup</span>
+<span class="cm">/***********************/</span>
+    <span class="kd">func</span> <span class="nf">setupPlayer</span><span class="p">()</span> <span class="p">{</span>
         
-        self.player?.view = self.playerContainer
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">playerContainer</span>
         
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .positional
-        formatter.zeroFormattingBehavior = .pad
+        <span class="k">let</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="kt">DateComponentsFormatter</span><span class="p">()</span>
+        <span class="n">formatter</span><span class="o">.</span><span class="n">allowedUnits</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="o">.</span><span class="n">minute</span><span class="p">,</span> <span class="o">.</span><span class="n">second</span><span class="p">]</span>
+        <span class="n">formatter</span><span class="o">.</span><span class="n">unitsStyle</span> <span class="o">=</span> <span class="o">.</span><span class="n">positional</span>
+        <span class="n">formatter</span><span class="o">.</span><span class="n">zeroFormattingBehavior</span> <span class="o">=</span> <span class="o">.</span><span class="n">pad</span>
         
-        func format(_ time: TimeInterval) -&gt; String {
-            if let s = formatter.string(from: time) {
-                return s.count &gt; 7 ? s : "0" + s
-            } else {
-                return "00:00:00"
-            }
-        }
+        <span class="kd">func</span> <span class="nf">format</span><span class="p">(</span><span class="n">_</span> <span class="nv">time</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">s</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="nf">string</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">time</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="p">?</span> <span class="nv">s</span> <span class="p">:</span> <span class="s">"0"</span> <span class="o">+</span> <span class="n">s</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s">"00:00:00"</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
 
-        // Observe media progress
-        self.player?.addPeriodicObserver(interval: 0.2, observeOn: DispatchQueue.main, using: { (pos) in
-            self.playheadSlider.value = Float(pos)
-            self.positionLabel.text = format(pos)
-        })
+        <span class="c1">// Observe media progress</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="nf">addPeriodicObserver</span><span class="p">(</span><span class="nv">interval</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="nv">observeOn</span><span class="p">:</span> <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">playheadSlider</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kt">Float</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">positionLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="p">})</span>
         
-        // Observe duration
-        self.player?.addObserver(self, events: [PlayerEvent.durationChanged], block: { (event) in
-            if let e = event as? PlayerEvent.DurationChanged, let d = e.duration as? TimeInterval {
-                self.playheadSlider.maximumValue = Float(d)
-                self.durationLabel.text = format(d)
-            }
-        })
+        <span class="c1">// Observe duration</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">durationChanged</span><span class="p">],</span> <span class="nv">block</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">e</span> <span class="o">=</span> <span class="n">event</span> <span class="k">as?</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">DurationChanged</span><span class="p">,</span> <span class="k">let</span> <span class="nv">d</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">duration</span> <span class="k">as?</span> <span class="kt">TimeInterval</span> <span class="p">{</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">playheadSlider</span><span class="o">.</span><span class="n">maximumValue</span> <span class="o">=</span> <span class="kt">Float</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">durationLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
 
-        // Observe play/pause
-        self.player?.addObserver(self, events: [PlayerEvent.play, PlayerEvent.ended, PlayerEvent.pause], block: { (event) in
-            switch event {
-            case is PlayerEvent.Play, is PlayerEvent.Playing:
-                self.state = .playing
+        <span class="c1">// Observe play/pause</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">play</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">ended</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">pause</span><span class="p">],</span> <span class="nv">block</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">switch</span> <span class="n">event</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Play</span><span class="p">,</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Playing</span><span class="p">:</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">playing</span>
                 
-            case is PlayerEvent.Pause:
-                self.state = .paused
+            <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Pause</span><span class="p">:</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">paused</span>
                 
-            case is PlayerEvent.Ended:
-                self.state = .ended
+            <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Ended</span><span class="p">:</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">ended</span>
                 
-            default:
-                break
-            }
-        })
-    }
+            <span class="k">default</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
 
-    func loadMedia() {
-        let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
-        let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
-        mediaProvider.entryId = entryId
-        mediaProvider.loadMedia { (mediaEntry, error) in
-            if let me = mediaEntry, error == nil {
-                let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
-                if let player = self.player {
-                    player.prepare(mediaConfig)
-                }
-            }
-        }
-    }
+    <span class="kd">func</span> <span class="nf">loadMedia</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">sessionProvider</span> <span class="o">=</span> <span class="kt">SimpleSessionProvider</span><span class="p">(</span><span class="nv">serverURL</span><span class="p">:</span> <span class="kt">SERVER_BASE_URL</span><span class="p">,</span> <span class="nv">partnerId</span><span class="p">:</span> <span class="kt">Int64</span><span class="p">(</span><span class="kt">PARTNER_ID</span><span class="p">),</span> <span class="nv">ks</span><span class="p">:</span> <span class="n">ks</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">mediaProvider</span><span class="p">:</span> <span class="kt">OVPMediaProvider</span> <span class="o">=</span> <span class="kt">OVPMediaProvider</span><span class="p">(</span><span class="n">sessionProvider</span><span class="p">)</span>
+        <span class="n">mediaProvider</span><span class="o">.</span><span class="n">entryId</span> <span class="o">=</span> <span class="n">entryId</span>
+        <span class="n">mediaProvider</span><span class="o">.</span><span class="n">loadMedia</span> <span class="p">{</span> <span class="p">(</span><span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">me</span> <span class="o">=</span> <span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">mediaConfig</span> <span class="o">=</span> <span class="kt">MediaConfig</span><span class="p">(</span><span class="nv">mediaEntry</span><span class="p">:</span> <span class="n">me</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span>
+                <span class="k">if</span> <span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="p">{</span>
+                    <span class="n">player</span><span class="o">.</span><span class="nf">prepare</span><span class="p">(</span><span class="n">mediaConfig</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-/************************/
-// MARK: - Actions
-/***********************/
+<span class="cm">/************************/</span>
+<span class="c1">// MARK: - Actions</span>
+<span class="cm">/***********************/</span>
     
-    @IBAction func playTouched(_ sender: Any) {
-        guard let player = self.player else {
-            print("player is not set")
-            return
-        }
+    <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">playTouched</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">guard</span> <span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"player is not set"</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
         
-        switch state {
-        case .playing:
-            player.pause()
-        case .idle:
-            player.play()
-        case .paused:
-            player.play()
-        case .ended:
-            player.seek(to: 0)
-            player.play()
-        }
-    }
+        <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">playing</span><span class="p">:</span>
+            <span class="n">player</span><span class="o">.</span><span class="nf">pause</span><span class="p">()</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">idle</span><span class="p">:</span>
+            <span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">paused</span><span class="p">:</span>
+            <span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">ended</span><span class="p">:</span>
+            <span class="n">player</span><span class="o">.</span><span class="nf">seek</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-    @IBAction func playheadValueChanged(_ sender: Any) {
-        guard let player = self.player else {
-            print("player is not set")
-            return
-        }
+    <span class="kd">@IBAction</span> <span class="kd">func</span> <span class="nf">playheadValueChanged</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">guard</span> <span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"player is not set"</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
         
-        if state == .ended &amp;&amp; playheadSlider.value &lt; playheadSlider.maximumValue {
-            state = .paused
-        }
-        player.currentTime = TimeInterval(playheadSlider.value)
-    }
-}
-
-</code></pre>
-</div>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="o">.</span><span class="n">ended</span> <span class="o">&amp;&amp;</span> <span class="n">playheadSlider</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">playheadSlider</span><span class="o">.</span><span class="n">maximumValue</span> <span class="p">{</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="o">.</span><span class="n">paused</span>
+        <span class="p">}</span>
+        <span class="n">player</span><span class="o">.</span><span class="n">currentTime</span> <span class="o">=</span> <span class="kt">TimeInterval</span><span class="p">(</span><span class="n">playheadSlider</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 		
 </article>
 

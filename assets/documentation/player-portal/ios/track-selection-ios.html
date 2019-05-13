@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Mar 19 11:23:35 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/track-selection-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 10:31:51 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/track-selection-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Mar 19 11:23:35 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 10:31:51 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -143,7 +143,7 @@ rtp('get', 'campaign',true);
 
 <p>To get the available captions and audio tracks, register to the ‘PlayerEvents.tracksAvailable’ event on the player as follows:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">handleTracks</span><span class="p">()</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">handleTracks</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">self</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">tracksAvailable</span><span class="p">])</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
         <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">tracksAvailable</span> <span class="p">{</span>
             <span class="k">guard</span> <span class="k">let</span> <span class="nv">tracks</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">tracks</span> <span class="k">else</span> <span class="p">{</span>
@@ -160,9 +160,7 @@ rtp('get', 'campaign',true);
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
     
       <h3 id="select-track">
         
@@ -174,12 +172,10 @@ rtp('get', 'campaign',true);
 
 <p>To switch between tracks, use the following code:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="c1">// Select Track</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// Select Track</span>
 <span class="kd">func</span> <span class="nf">selectTrack</span><span class="p">(</span><span class="nv">track</span><span class="p">:</span> <span class="kt">Track</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="nf">selectTrack</span><span class="p">(</span><span class="nv">trackId</span><span class="p">:</span> <span class="n">track</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
     
       <h3 id="get-current-tracks">
         
@@ -189,11 +185,9 @@ rtp('get', 'campaign',true);
         
       </h3>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="c1">// Get Current Audio/Text Track</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// Get Current Audio/Text Track</span>
 <span class="k">let</span> <span class="nv">currentAudioTrack</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">currentAudioTrack</span>
-<span class="k">let</span> <span class="nv">currentTextTrack</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">currentTextTrack</span>
-</code></pre>
-</div>
+<span class="k">let</span> <span class="nv">currentTextTrack</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">currentTextTrack</span></code></pre></figure>
     
       <h3 id="get-current-bitrate">
         
@@ -203,7 +197,7 @@ rtp('get', 'campaign',true);
         
       </h3>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="c1">// Get Current Bitrate</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// Get Current Bitrate</span>
 <span class="kd">func</span> <span class="nf">currentBitrateHandler</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">self</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">playbackParamsUpdated</span><span class="p">])</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
         <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">tracksAvailable</span> <span class="p">{</span>
@@ -213,9 +207,7 @@ rtp('get', 'campaign',true);
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
     
       <h3 id="available-modes-and-behavior">
         
@@ -241,11 +233,9 @@ rtp('get', 'campaign',true);
         
       </h4>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">textSelectionMode</span> <span class="o">=</span> <span class="c1">// .off/.auto/.selection</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">textSelectionMode</span> <span class="o">=</span> <span class="c1">// .off/.auto/.selection</span>
 <span class="c1">// use text selection language when using '.selection' mode.</span>
-<span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">textSelectionLanguage</span> <span class="o">=</span> <span class="c1">// en/fr...</span>
-</code></pre>
-</div>
+<span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">textSelectionLanguage</span> <span class="o">=</span> <span class="c1">// en/fr...</span></code></pre></figure>
     
       <h4 id="audio-track-selection">
         
@@ -255,11 +245,9 @@ rtp('get', 'campaign',true);
         
       </h4>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">audioSelectionMode</span> <span class="o">=</span> <span class="c1">// .off/.auto/.selection</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">audioSelectionMode</span> <span class="o">=</span> <span class="c1">// .off/.auto/.selection</span>
 <span class="c1">// use text selection language when using '.selection' mode.</span>
-<span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">audioSelectionLanguage</span> <span class="o">=</span> <span class="c1">// en/fr...</span>
-</code></pre>
-</div>
+<span class="n">player</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">trackSelection</span><span class="o">.</span><span class="n">audioSelectionLanguage</span> <span class="o">=</span> <span class="c1">// en/fr...</span></code></pre></figure>
     
       <h2 id="code-samples">
         

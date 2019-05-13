@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 12:44:17 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/download-to-go-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 10:31:51 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/download-to-go-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 12:44:17 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 10:31:51 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -185,9 +185,7 @@ rtp('get', 'campaign',true);
 
 <p>Add this to your podfile:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">pod</span> <span class="s1">'DownloadToGo'</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">pod</span> <span class="s">"DownloadToGo"</span></code></pre></figure>
     
       <h2 id="overview">
         
@@ -256,9 +254,8 @@ rtp('get', 'campaign',true);
       </h2>
 
 <p>To use the DTG make sure to import in each source file:</p>
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">DownloadToGo</span>
-</code></pre>
-</div>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">DownloadToGo</span></code></pre></figure>
 
 <p>The following classes/interfaces are the public API of the library:</p>
 <ul>
@@ -270,7 +267,8 @@ rtp('get', 'campaign',true);
 </ul>
 
 <p>Basic Implementation:</p>
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">DownloadManager</span><span class="p">:</span> <span class="kt">ContentManagerDelegate</span> <span class="p">{</span>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">DownloadManager</span><span class="p">:</span> <span class="kt">ContentManagerDelegate</span> <span class="p">{</span>
 
     <span class="k">let</span> <span class="nv">cm</span><span class="p">:</span> <span class="kt">DTGContentManager</span>
 
@@ -308,12 +306,11 @@ rtp('get', 'campaign',true);
     <span class="kd">func</span> <span class="nf">item</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">didChangeToState</span> <span class="nv">newState</span><span class="p">:</span> <span class="kt">DTGItemState</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span> <span class="p">{</span>
         <span class="c1">// handle state changes (metadataLoaded, inProgress, completed etc...)</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>Basic Implementation with PlayKit:</p>
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">VideoViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="kt">VideoViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
 
     <span class="k">let</span> <span class="nv">downloadManager</span> <span class="o">=</span> <span class="kt">DownloadManager</span><span class="p">()</span>
     <span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="p">?</span>
@@ -337,9 +334,7 @@ rtp('get', 'campaign',true);
             <span class="c1">// handle errors</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>On <code class="highlighter-rouge">AppDelegate</code>:</p>
 <ul>
@@ -347,7 +342,7 @@ rtp('get', 'campaign',true);
   <li>(Optional) This is a good place to call <code class="highlighter-rouge">ContentManager.shared.startItems(inStates: _)</code> to resume interrupted or in progress downloads.</li>
 </ul>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">@UIApplicationMain</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">@UIApplicationMain</span>
 <span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
     
     <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationLaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
@@ -361,9 +356,7 @@ rtp('get', 'campaign',true);
     <span class="p">}</span>
 
     <span class="o">...</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <blockquote>
   <p>Note: Make sure to call <code class="highlighter-rouge">ContentManager.shared.stop()</code> when finished with playback.</p>

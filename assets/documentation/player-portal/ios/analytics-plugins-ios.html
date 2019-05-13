@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Mar 19 11:23:35 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/analytics-plugins-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 10:31:51 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/analytics-plugins-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Mar 19 11:23:35 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 10:31:51 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -142,37 +142,27 @@ rtp('get', 'campaign',true);
 
 <p>The <a href="https://github.com/kaltura/playkit-ios-kava">KAVA plugin</a> is available through CocoaPods as “PlayKitKava”. It was included in the Podfile at the beginning of the guide. To use the plugin, we’ll need to import it, then register and configure it.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import PlayKitKava
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">PlayKitKava</span></code></pre></figure>
 
 <p>Begin with a function that creates the KAVA plugin. It requires the Partner ID, the entry ID, and the KS, which is what identifies the user. The rest of the arguments are optional. Full documentation can be found here.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>func createKavaConfig() -&gt; KavaPluginConfig {
-    return KavaPluginConfig(partnerId: PARTNER_ID, entryId: entryId, ks: ks, playbackContext: nil, referrer: nil, applicationVersion: nil, playlistId: nil, customVar1: nil, customVar2: nil, customVar3: nil)
-}
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">createKavaConfig</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">KavaPluginConfig</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">KavaPluginConfig</span><span class="p">(</span><span class="nv">partnerId</span><span class="p">:</span> <span class="kt">PARTNER_ID</span><span class="p">,</span> <span class="nv">entryId</span><span class="p">:</span> <span class="n">entryId</span><span class="p">,</span> <span class="nv">ks</span><span class="p">:</span> <span class="n">ks</span><span class="p">,</span> <span class="nv">playbackContext</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">referrer</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">applicationVersion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">playlistId</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customVar1</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customVar2</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customVar3</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>Add that plugin to the player in the <code class="highlighter-rouge">loadMedia</code> function by calling <code class="highlighter-rouge">player.updatePluginConfig</code>. This should be included before the <code class="highlighter-rouge">player.prepare</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>player.updatePluginConfig(pluginName: KavaPlugin.pluginName, config: self.createKavaConfig())
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="nf">updatePluginConfig</span><span class="p">(</span><span class="nv">pluginName</span><span class="p">:</span> <span class="kt">KavaPlugin</span><span class="o">.</span><span class="n">pluginName</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="nf">createKavaConfig</span><span class="p">())</span></code></pre></figure>
 
 <p>Next, you need a function that manages all the plugins you might want to add to the player. In our case, it will return the function we just created.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>func createPluginConfig() -&gt; PluginConfig? {
-    return PluginConfig(config: [KavaPlugin.pluginName: createKavaConfig()])
-}
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">createPluginConfig</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">PluginConfig</span><span class="p">?</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">PluginConfig</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="p">[</span><span class="kt">KavaPlugin</span><span class="o">.</span><span class="nv">pluginName</span><span class="p">:</span> <span class="nf">createKavaConfig</span><span class="p">()])</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>Lastly, we’ll pass that function instead of <code class="highlighter-rouge">nil</code> to the loadPlayer call in <code class="highlighter-rouge">viewDidLoad</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>self.player = try! PlayKitManager.shared.loadPlayer(pluginConfig: createPluginConfig())
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="nf">createPluginConfig</span><span class="p">())</span></code></pre></figure>
 
 <p>The KAVA plugin is now included in the player, and all data about plays and shares can be viewed in the KMC or retrieved using the Kaltura Reporting API.</p>
     
@@ -200,17 +190,13 @@ rtp('get', 'campaign',true);
 
 <p>Import and enable:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>pod 'PlayKit/YouboraPlugin'
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">pod</span> <span class="s">"PlayKit/YouboraPlugin"</span></code></pre></figure>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">registerPlugin</span><span class="p">(</span><span class="kt">YouboraPlugin</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">registerPlugin</span><span class="p">(</span><span class="kt">YouboraPlugin</span><span class="o">.</span><span class="k">self</span><span class="p">)</span></code></pre></figure>
 
 <p>A sample Youbora config looks something like this:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="c1">// config options</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// config options</span>
 <span class="k">let</span> <span class="nv">youboraOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s">"accountCode"</span><span class="p">:</span> <span class="s">"nicetest"</span> <span class="c1">// mandatory</span>
     <span class="c1">// YouboraPlugin.enableSmartAdsKey: true - use this if you want to enable smart ads</span>
@@ -222,9 +208,7 @@ rtp('get', 'campaign',true);
 <span class="c1">// create plugin config object</span>
 <span class="k">let</span> <span class="nv">pluginConfig</span> <span class="o">=</span> <span class="kt">PluginConfig</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
 <span class="c1">// load the player with the created plugin config</span>
-<span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="n">pluginConfig</span><span class="p">)</span>
-</code></pre>
-</div>
+<span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="n">pluginConfig</span><span class="p">)</span></code></pre></figure>
 		
 </article>
 

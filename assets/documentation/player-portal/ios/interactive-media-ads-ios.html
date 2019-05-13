@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 05:47:58 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/interactive-media-ads-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 10:31:51 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/interactive-media-ads-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 05:47:58 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 10:31:51 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -154,16 +154,12 @@ rtp('get', 'campaign',true);
 
 <p>If you get below error:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Error Domain=com.kaltura.playkit.error.ima Code=1005 "Ads cannot be requested because the ad container is not attached to the view hierarchy." UserInfo={errorType=1, NSLocalizedDescription=Ads cannot be requested because the ad container is not attached to the view hierarchy.}
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kt">Error</span> <span class="kt">Domain</span><span class="o">=</span><span class="n">com</span><span class="o">.</span><span class="n">kaltura</span><span class="o">.</span><span class="n">playkit</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">ima</span> <span class="kt">Code</span><span class="o">=</span><span class="mi">1005</span> <span class="s">"Ads cannot be requested because the ad container is not attached to the view hierarchy."</span> <span class="kt">UserInfo</span><span class="o">=</span><span class="p">{</span><span class="n">errorType</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="kt">NSLocalizedDescription</span><span class="o">=</span><span class="kt">Ads</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">requested</span> <span class="n">because</span> <span class="n">the</span> <span class="n">ad</span> <span class="n">container</span> <span class="k">is</span> <span class="n">not</span> <span class="n">attached</span> <span class="n">to</span> <span class="n">the</span> <span class="n">view</span> <span class="n">hierarchy</span><span class="o">.</span><span class="p">}</span></code></pre></figure>
 
 <p>Please make sure that the order of removing player on your side is:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="nf">destroy</span><span class="p">()</span>
-<span class="n">player</span><span class="o">.</span><span class="nf">removeFromSuperview</span><span class="p">()</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="nf">destroy</span><span class="p">()</span>
+<span class="n">player</span><span class="o">.</span><span class="nf">removeFromSuperview</span><span class="p">()</span></code></pre></figure>
 
 <ol>
   <li>When not including ads, the PlayerEvent observed events start occurring after calling prepare().<br />
@@ -172,12 +168,10 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>To resolve this issue and get <code class="highlighter-rouge">autoPlay</code> with ads please make sure to call play() before those events start occurring.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="c1">// Firstly call prepare</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// Firstly call prepare</span>
 <span class="n">player</span><span class="o">.</span><span class="nf">prepare</span><span class="p">()</span>
 <span class="c1">// Then immediately </span>
-<span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span>
-</code></pre>
-</div>
+<span class="n">player</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span></code></pre></figure>
     
       <h2 id="enable-ima-plugins-for-the-kaltura-video-player">
         
@@ -189,9 +183,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>To enable the IMA Plugin on iOS devices for the Kaltura Video Player, add the following line to your Podfile:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">pod</span> <span class="s2">"PlayKit_IMA"</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">pod</span> <span class="s">"PlayKit_IMA"</span></code></pre></figure>
     
       <h2 id="control-ad-play">
         
@@ -203,11 +195,9 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>To control ad play during runtime, implement the following Video Player delegate method:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">playerShouldPlayAd</span><span class="p">(</span><span class="n">_</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">playerShouldPlayAd</span><span class="p">(</span><span class="n">_</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
     
       <h2 id="register-the-ima-plugin">
         
@@ -219,9 +209,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>Next, register the IMA Plugin inside your application as follows:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">registerPlugin</span><span class="p">(</span><span class="kt">IMAPlugin</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">registerPlugin</span><span class="p">(</span><span class="kt">IMAPlugin</span><span class="o">.</span><span class="k">self</span><span class="p">)</span></code></pre></figure>
     
       <h2 id="configure-the-kaltura-video-player-to-use-the-ima-plugin">
         
@@ -233,11 +221,9 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>To configure the player to use IMA Plugin, add the following configuration to your <code class="highlighter-rouge">PlayerConfig</code> file as follows:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">adsConfig</span> <span class="o">=</span> <span class="kt">IMAConfig</span><span class="p">()</span>
-<span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">adTagUrl</span><span class="p">:</span> <span class="err">'</span><span class="n">your</span> <span class="n">ad</span> <span class="n">tag</span> <span class="n">url</span><span class="err">'</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">pluginConfig</span> <span class="o">=</span> <span class="kt">PluginConfig</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="p">[</span><span class="kt">IMAPlugin</span><span class="o">.</span><span class="nv">pluginName</span><span class="p">:</span> <span class="n">adsConfig</span><span class="p">])</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">adsConfig</span> <span class="o">=</span> <span class="kt">IMAConfig</span><span class="p">()</span>
+<span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">adTagUrl</span><span class="p">:</span> <span class="s">"your ad tag url"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">pluginConfig</span> <span class="o">=</span> <span class="kt">PluginConfig</span><span class="p">(</span><span class="nv">config</span><span class="p">:</span> <span class="p">[</span><span class="kt">IMAPlugin</span><span class="o">.</span><span class="nv">pluginName</span><span class="p">:</span> <span class="n">adsConfig</span><span class="p">])</span></code></pre></figure>
     
       <h2 id="configure-clickthroughs">
         
@@ -256,9 +242,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>By default, the plugin will open pages using Safari. To update the plugin to use an in-app browser, you’ll need to set the <code class="highlighter-rouge">webOpenerPresentingController</code> value in the AdsConfig object as follows:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">webOpenerPresentingController</span><span class="p">:</span> <span class="n">webOpenerPresentingController</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">webOpenerPresentingController</span><span class="p">:</span> <span class="n">webOpenerPresentingController</span><span class="p">)</span></code></pre></figure>
     
       <h2 id="add-companion-ads">
         
@@ -275,9 +259,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
   <li>Supply a companion ad container to the plugin using the following format (make sure the size of the companion being returned is the same size as the UIView in which you’re trying to display it):</li>
 </ol>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">companionView</span><span class="p">:</span> <span class="n">companionView</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">companionView</span><span class="p">:</span> <span class="n">companionView</span><span class="p">)</span></code></pre></figure>
     
       <h2 id="specify-the-desired-bitrate-and-video-formats">
         
@@ -289,10 +271,8 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>The IMA Plugin enables you to specify the video formats and bitrate using the following configuration:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">videoMimeTypes</span><span class="p">:</span> <span class="p">[</span><span class="s">"video/mp4"</span><span class="p">,</span> <span class="s">"application/x-mpegURL"</span><span class="p">])</span>
-<span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">videoBitrate</span><span class="p">:</span> <span class="mi">1024</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">videoMimeTypes</span><span class="p">:</span> <span class="p">[</span><span class="s">"video/mp4"</span><span class="p">,</span> <span class="s">"application/x-mpegURL"</span><span class="p">])</span>
+<span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">videoBitrate</span><span class="p">:</span> <span class="mi">1024</span><span class="p">)</span></code></pre></figure>
     
       <h2 id="specify-the-localized-ad-language">
         
@@ -306,9 +286,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>To do so, set the language parameter of the AdsConfig to the appropriate language code using <a href="https://developers.google.com/interactive-media-ads/docs/sdks/ios/ads#languagecodes">this reference</a>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">language</span><span class="p">:</span> <span class="s">"en"</span><span class="p">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">adsConfig</span><span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">language</span><span class="p">:</span> <span class="s">"en"</span><span class="p">)</span></code></pre></figure>
     
       <h2 id="listen-to-ad-events">
         
@@ -320,7 +298,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>Use the following code to listen to ad events:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PKEvent</span><span class="o">.</span><span class="k">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adDidRequestPause</span><span class="p">,</span> <span class="kt">AdEvent</span><span class="o">.</span><span class="n">adDidRequestResume</span><span class="p">]</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PKEvent</span><span class="o">.</span><span class="k">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adDidRequestPause</span><span class="p">,</span> <span class="kt">AdEvent</span><span class="o">.</span><span class="n">adDidRequestResume</span><span class="p">]</span>
 
 <span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="n">events</span><span class="p">)</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
     <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">AdEvent</span><span class="o">.</span><span class="n">adDidRequestResume</span> <span class="p">{</span>
@@ -328,9 +306,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">AdEvent</span><span class="o">.</span><span class="n">adDidRequestPause</span> <span class="p">{</span>
         <span class="c1">// handle adDidRequestPause</span>
     <span class="p">}</span>
-<span class="p">})</span>
-</code></pre>
-</div>
+<span class="p">})</span></code></pre></figure>
     
       <h3 id="ad-info-event">
         
@@ -342,7 +318,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>To observe ad info when an ad is starting use the following:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adStarted</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adStarted</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">info</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">adInfo</span> <span class="p">{</span>
         <span class="c1">// use ad info</span>
         <span class="k">switch</span> <span class="n">info</span><span class="o">.</span><span class="n">positionType</span> <span class="p">{</span>
@@ -351,9 +327,7 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
         <span class="k">case</span> <span class="o">.</span><span class="nv">postRoll</span><span class="p">:</span> <span class="c1">// handle post roll</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">})</span>
-</code></pre>
-</div>
+<span class="p">})</span></code></pre></figure>
     
       <h3 id="ad-cue-points-event">
         
@@ -365,15 +339,13 @@ When including ads, none of the PlayerAd events occur after calling prepare().</
 
 <p>To observe ad cue points update use the following:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adCuePointsUpdate</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">AdEvent</span><span class="o">.</span><span class="n">adCuePointsUpdate</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">adCuePoints</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">adCuePoints</span> <span class="p">{</span>
         <span class="c1">// use ad cue points</span>
         <span class="k">if</span> <span class="n">adCuePoints</span><span class="o">.</span><span class="n">hasPreRoll</span> <span class="o">||</span> <span class="n">adCuePoints</span><span class="o">.</span><span class="n">hasMidRoll</span> <span class="o">||</span> <span class="n">adCuePoints</span><span class="o">.</span><span class="n">hasPostRoll</span> <span class="p">{</span>
             <span class="c1">// do your stuff</span>
     <span class="p">}</span>
-<span class="p">})</span>
-</code></pre>
-</div>
+<span class="p">})</span></code></pre></figure>
     
       <h2 id="have-questions-or-need-help">
         
