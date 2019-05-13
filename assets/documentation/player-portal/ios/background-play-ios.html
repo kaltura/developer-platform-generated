@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Apr 1 05:06:12 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/background-play-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/background-play-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Apr 1 05:06:12 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -149,7 +149,7 @@ rtp('get', 'campaign',true);
   <li><strong>Setting the audio session category</strong>. To continue playing media while in the background, you must set an audio session category with background playback (for example: AVAudioSessionCategoryPlayback).</li>
 </ul>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">AVFoundation</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">AVFoundation</span>
 <span class="kd">import</span> <span class="kt">AudioToolbox</span>
 
 <span class="k">let</span> <span class="nv">audioSession</span> <span class="o">=</span> <span class="kt">AVAudioSession</span><span class="o">.</span><span class="nf">sharedInstance</span><span class="p">()</span>
@@ -164,13 +164,11 @@ rtp('get', 'campaign',true);
     <span class="k">try</span> <span class="n">audioSession</span><span class="o">.</span><span class="nf">setActive</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="k">let</span> <span class="nv">error</span> <span class="k">as</span> <span class="kt">NSError</span> <span class="p">{</span>
     <span class="c1">// handle the error condition</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p><strong>Special considerations for video media</strong>. If the current item is displaying video, playback of the player is automatically paused when the application is sent to the background. To prevent this pause from occurring, you’ll need to set the player of an AVPlayerLayer to <em>nil</em>.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="c1">// Remove the AVPlayerLayer from its associated AVPlayer once the app is in the background.</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="c1">// Remove the AVPlayerLayer from its associated AVPlayer once the app is in the background.</span>
 <span class="kd">func</span> <span class="nf">applicationDidEnterBackground</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">playerView</span> <span class="o">=</span> <span class="o">&lt;</span><span class="err">#</span><span class="kt">Get</span> <span class="n">your</span> <span class="n">player</span> <span class="n">view</span><span class="err">#</span><span class="o">&gt;</span>
     <span class="n">playerView</span><span class="o">.</span><span class="n">playerLayer</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="kc">nil</span>
@@ -180,9 +178,7 @@ rtp('get', 'campaign',true);
 <span class="kd">func</span> <span class="nf">applicationDidBecomeActive</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">playerView</span> <span class="o">=</span> <span class="o">&lt;</span><span class="err">#</span><span class="kt">Get</span> <span class="n">your</span> <span class="n">player</span> <span class="n">view</span><span class="err">#</span><span class="o">&gt;</span>
     <span class="n">playerView</span><span class="o">.</span><span class="n">playerLayer</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="n">player</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <blockquote>
   <p>Note: For more information about playing media while the application runs in the background see the <a href="https://developer.apple.com/library/content/qa/qa1668/_index.html">Apple Developer Site</a>.</p>
@@ -203,11 +199,9 @@ If more than one player is used, the network reachability notifications will sto
 
 <p>To observe errors (not just reachability), add an observer for error type and use the error accessor on the event.</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">error</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">error</span><span class="p">])</span> <span class="p">{</span> <span class="n">event</span> <span class="k">in</span>
     <span class="k">let</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSError</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">error</span> <span class="c1">// on unreachable event receive NSError with relevant data</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
     
       <h2 id="have-questions-or-need-help">
         

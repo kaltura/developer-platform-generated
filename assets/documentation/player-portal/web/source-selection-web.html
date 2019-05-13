@@ -109,20 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Fri May 3 16:24:26 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/source-selection-web.md" target="_blank">Contribute to this page</a>
-				<!--tr><td>Created on: Fri May 3 16:23:35 2019, By: Jess Portnoy</td></tr-->
-				<!--tr><td>Last commit: Fri May 3 16:24:26 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/source-selection-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon May 13 08:54:42 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
-				</tr> -->
-
-				<!-- 
-				
-				<tr>
-					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -137,7 +131,7 @@ rtp('get', 'campaign',true);
     		
 		<p>Let us assume that the following player configuration is given and we would like to apply source selection logic.</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">sources</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">hls</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -162,9 +156,7 @@ rtp('get', 'campaign',true);
       <span class="p">}</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
+<span class="p">};</span></code></pre></figure>
 
 <ol>
   <li>The player looks at the <code class="highlighter-rouge">streamPriority</code> array and see that the <code class="highlighter-rouge">dash</code> stream has the highest priority.</li>

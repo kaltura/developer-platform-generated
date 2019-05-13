@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu May 2 06:48:19 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/errors-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/errors-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu May 2 06:48:19 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -169,15 +169,13 @@ rtp('get', 'campaign',true);
 
 <p>You can listen to errors the player emits by listening to an ‘<code class="highlighter-rouge">error</code>’ event as follows:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">player</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">error</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The error severity is: '</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">severity</span><span class="p">);</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The error category is: '</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">category</span><span class="p">);</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The error code is: '</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The error data is'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre>
-</div>
+<span class="p">});</span></code></pre></figure>
     
       <h2 id="creating-an-error">
         
@@ -189,15 +187,11 @@ rtp('get', 'campaign',true);
 
 <p>If you wish to change / emit an error event, you’ll need to create an error object in the following manner:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">myError</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nb">Error</span><span class="p">.</span><span class="nx">Severity</span><span class="p">.</span><span class="nx">CRITICAL</span><span class="p">,</span> <span class="nb">Error</span><span class="p">.</span><span class="nx">Category</span><span class="p">.</span><span class="nx">NETWORK</span><span class="p">,</span> <span class="nb">Error</span><span class="p">.</span><span class="nx">Code</span><span class="p">.</span><span class="nx">HTTP_ERROR</span><span class="p">,</span> <span class="p">{</span><span class="na">url</span><span class="p">:</span> <span class="s1">'www.some-bad-url.com'</span><span class="p">});</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">myError</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nb">Error</span><span class="p">.</span><span class="nx">Severity</span><span class="p">.</span><span class="nx">CRITICAL</span><span class="p">,</span> <span class="nb">Error</span><span class="p">.</span><span class="nx">Category</span><span class="p">.</span><span class="nx">NETWORK</span><span class="p">,</span> <span class="nb">Error</span><span class="p">.</span><span class="nx">Code</span><span class="p">.</span><span class="nx">HTTP_ERROR</span><span class="p">,</span> <span class="p">{</span><span class="na">url</span><span class="p">:</span> <span class="s1">'www.some-bad-url.com'</span><span class="p">});</span></code></pre></figure>
 
 <p>Next, you’ll need to dispatch an <code class="highlighter-rouge">Error</code> event:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">player</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">FakeEvent</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nb">Error</span><span class="p">,</span> <span class="nx">myError</span><span class="p">));</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">player</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">FakeEvent</span><span class="p">(</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nb">Error</span><span class="p">,</span> <span class="nx">myError</span><span class="p">));</span></code></pre></figure>
 
 <blockquote>
   <p>You can find additional information about dispatching events <a href="https://developer.kaltura.com/player/web/player-events-web">here</a>.</p>

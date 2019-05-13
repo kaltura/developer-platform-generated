@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu May 2 16:31:57 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/getting-started-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/getting-started-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Thu Mar 28 10:44:51 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu May 2 16:31:57 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (6 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (7 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -154,11 +154,7 @@ rtp('get', 'campaign',true);
         
       </h2>
 
-<p>Kaltura Video Players are created and managed in the KMC <a href="https://kmc.kaltura.com/index.php/kmcng/studio/v3">Studio</a>, which is the second tab in the header.  You’ll find options for the Universal Studio, for legacy support, and the TV Platform Studio - which is colloquially referred to as Player V7.</p>
-
-<blockquote>
-  <p>The TV Studio Player is not enabled by default, so if you don’t see it, contact support to have it enabled.</p>
-</blockquote>
+<p>Kaltura Video Players are created and managed in the KMC <a href="https://kmc.kaltura.com/index.php/kmcng/studio/v3">Studio</a>, which is the second tab in the header.  You’ll find options for the Universal Studio, for legacy support, and the TV Platform Studio - which is colloquially referred to as Player V7.  <em>If you don’t see the TV Studio tab, contact your account manager.</em></p>
 
 <p>Once in the studio, you will find all your available players from both categories. The steps below will walk you through creating and embedding a TV Studio Player, which is focused on speed and performance.</p>
 
@@ -212,7 +208,7 @@ rtp('get', 'campaign',true);
   <li>Create an HTML page and add a div with the ID of your choice. You can set the dimensions of the player here as well:</li>
 </ol>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
   <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
@@ -220,22 +216,19 @@ rtp('get', 'campaign',true);
 <span class="nt">&lt;body&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"new-player"</span> <span class="na">style=</span><span class="s">"width: 640px;height: 360px"</span><span class="nt">&gt;&lt;/div&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
 <ol>
   <li>Load the player library with this script:</li>
 </ol>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdnapisec.kaltura.com/p/2196781/embedPlaykitJs/uiconf_id/41483031"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdnapisec.kaltura.com/p/2196781/embedPlaykitJs/uiconf_id/41483031"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
 
 <ol>
   <li>The embed script contains the targetId, which is your div ID, as well as your partnerID, the uiConfId (player ID), and the entry ID.</li>
 </ol>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
   <span class="k">try</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">kalturaPlayer</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
       <span class="na">targetId</span><span class="p">:</span> <span class="s2">"kalturaPlayer"</span><span class="p">,</span>
@@ -251,15 +244,13 @@ rtp('get', 'campaign',true);
   <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
   <span class="p">}</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre>
-</div>
+<span class="nt">&lt;/script&gt;</span></code></pre></figure>
 
 <ol>
   <li>Bring it all together:</li>
 </ol>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
   <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
@@ -288,9 +279,7 @@ rtp('get', 'campaign',true);
   <span class="nt">&lt;/script&gt;</span>
 
 <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
 
 <p>Congrats! Running this page should show you a Kaltura Player loaded with the entry that you chose.</p>
 

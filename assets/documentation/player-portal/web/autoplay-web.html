@@ -109,20 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Fri May 3 11:36:35 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/autoplay-web.md" target="_blank">Contribute to this page</a>
-				<!--tr><td>Created on: Fri May 3 11:35:57 2019, By: Jess Portnoy</td></tr-->
-				<!--tr><td>Last commit: Fri May 3 11:36:35 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/autoplay-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon May 13 08:54:42 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
-				</tr> -->
-
-				<!-- 
-				
-				<tr>
-					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -178,28 +172,24 @@ rtp('get', 'campaign',true);
         
       </h4>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">autoplay</span><span class="p">:</span> <span class="kc">true</span>
   <span class="p">},</span>
   <span class="na">sources</span><span class="p">:</span> <span class="p">{...}</span>
 <span class="p">};</span>
 <span class="c1">// No additional code required - playback will begin automatically</span>
-<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
 
 <p><strong><em>Note</em></strong>:<br />
 Some developers simulate the autoplay behavior by calling the play() method right after creating the player without manipulating the player configuration. However, we strongly recommend not doing this!</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
  <span class="na">sources</span><span class="p">:</span> <span class="p">{...}</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
 <span class="c1">// Bad practice!</span>
-<span class="nx">player</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
-</code></pre>
-</div>
+<span class="nx">player</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span></code></pre></figure>
     
       <h4 id="why-its-bad">
         
@@ -300,7 +290,7 @@ The PlayKitJS core can manage this logic on its own, and identify whether the cu
         
       </h4>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">autoplay</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="na">allowMutedAutoPlay</span><span class="p">:</span> <span class="kc">true</span>
@@ -308,9 +298,7 @@ The PlayKitJS core can manage this logic on its own, and identify whether the cu
   <span class="na">sources</span><span class="p">:</span> <span class="p">{...}</span>
 <span class="p">};</span>
 <span class="c1">// If browser blocks autoplay, playback will start muted</span>
-<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
     
       <h4 id="example---basic-usage-2">
         
@@ -320,7 +308,7 @@ The PlayKitJS core can manage this logic on its own, and identify whether the cu
         
       </h4>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">autoplay</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="na">allowMutedAutoPlay</span><span class="p">:</span> <span class="kc">false</span>
@@ -328,9 +316,7 @@ The PlayKitJS core can manage this logic on its own, and identify whether the cu
   <span class="na">sources</span><span class="p">:</span> <span class="p">{...}</span>
 <span class="p">};</span>
 <span class="c1">// If browser blocks autoplay, playback will not start automatically</span>
-<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
 		
 </article>
 

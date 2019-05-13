@@ -51647,7 +51647,7 @@ exports.TooltipModule = TooltipModule;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.VirtualScrollerModule = exports.VirtualScrollerComponent = undefined;
+exports.VirtualScrollerModule = exports.VirtualScrollerComponent = exports.VIRTUAL_SCROLLER_DEFAULT_OPTIONS_FACTORY = undefined;
 
 var _tslib = __webpack_require__("./node_modules/tslib/tslib.es6.js");
 
@@ -51657,8 +51657,19 @@ var _common = __webpack_require__("./node_modules/@angular/common/esm5/common.js
 
 var _tween = __webpack_require__("./node_modules/@tweenjs/tween.js/src/Tween.js");
 
+function VIRTUAL_SCROLLER_DEFAULT_OPTIONS_FACTORY() {
+    return {
+        scrollThrottlingTime: 0,
+        scrollDebounceTime: 0,
+        scrollAnimationTime: 750,
+        checkResizeInterval: 1000,
+        resizeBypassRefreshThreshold: 5,
+        modifyOverflowStyleOfParentScroll: true,
+        stripedTable: false
+    };
+}
 var VirtualScrollerComponent = /** @class */function () {
-    function VirtualScrollerComponent(element, renderer, zone, changeDetectorRef, platformId, scrollThrottlingTime, scrollDebounceTime, scrollAnimationTime, scrollbarWidth, scrollbarHeight, checkResizeInterval, resizeBypassRefreshThreshold, modifyOverflowStyleOfParentScroll, stripedTable) {
+    function VirtualScrollerComponent(element, renderer, zone, changeDetectorRef, platformId, options) {
         this.element = element;
         this.renderer = renderer;
         this.zone = zone;
@@ -51670,9 +51681,6 @@ var VirtualScrollerComponent = /** @class */function () {
         this.ssrViewportWidth = 1920;
         this.ssrViewportHeight = 1080;
         this._bufferAmount = 0;
-        this.scrollAnimationTime = 750;
-        this.resizeBypassRefreshThreshold = 5;
-        this._checkResizeInterval = 1000;
         this._items = [];
         this.compareItems = function (item1, item2) {
             return item1 === item2;
@@ -51692,31 +51700,15 @@ var VirtualScrollerComponent = /** @class */function () {
         this.cachedPageSize = 0;
         this.previousScrollNumberElements = 0;
         this.isAngularUniversalSSR = (0, _common.isPlatformServer)(platformId);
-        this.scrollThrottlingTime = typeof scrollThrottlingTime === 'number' ? scrollThrottlingTime : 0;
-        this.scrollDebounceTime = typeof scrollDebounceTime === 'number' ? scrollDebounceTime : 0;
-        if (typeof scrollAnimationTime === 'number') {
-            this.scrollAnimationTime = scrollAnimationTime;
-        }
-        if (typeof scrollbarWidth === 'number') {
-            this.scrollbarWidth = scrollbarWidth;
-        }
-        if (typeof scrollbarHeight === 'number') {
-            this.scrollbarHeight = scrollbarHeight;
-        }
-        if (typeof checkResizeInterval === 'number') {
-            this.checkResizeInterval = checkResizeInterval;
-        }
-        if (typeof resizeBypassRefreshThreshold === 'number') {
-            this.resizeBypassRefreshThreshold = resizeBypassRefreshThreshold;
-        }
-        this.modifyOverflowStyleOfParentScroll = true;
-        if (typeof modifyOverflowStyleOfParentScroll === 'boolean') {
-            this.modifyOverflowStyleOfParentScroll = modifyOverflowStyleOfParentScroll;
-        }
-        this.stripedTable = false;
-        if (typeof stripedTable === 'boolean') {
-            this.stripedTable = stripedTable;
-        }
+        this.scrollThrottlingTime = options.scrollThrottlingTime;
+        this.scrollDebounceTime = options.scrollDebounceTime;
+        this.scrollAnimationTime = options.scrollAnimationTime;
+        this.scrollbarWidth = options.scrollbarWidth;
+        this.scrollbarHeight = options.scrollbarHeight;
+        this.checkResizeInterval = options.checkResizeInterval;
+        this.resizeBypassRefreshThreshold = options.resizeBypassRefreshThreshold;
+        this.modifyOverflowStyleOfParentScroll = options.modifyOverflowStyleOfParentScroll;
+        this.stripedTable = options.stripedTable;
         this.horizontal = false;
         this.resetWrapGroupDimensions();
     }
@@ -52053,8 +52045,24 @@ var VirtualScrollerComponent = /** @class */function () {
         animate();
         this.currentTween = newTween;
     };
+    VirtualScrollerComponent.prototype.getElementSize = function (element) {
+        var result = element.getBoundingClientRect();
+        var styles = getComputedStyle(element);
+        var marginTop = parseInt(styles['margin-top'], 10) || 0;
+        var marginBottom = parseInt(styles['margin-bottom'], 10) || 0;
+        var marginLeft = parseInt(styles['margin-left'], 10) || 0;
+        var marginRight = parseInt(styles['margin-right'], 10) || 0;
+        return {
+            top: result.top + marginTop,
+            bottom: result.bottom + marginBottom,
+            left: result.left + marginLeft,
+            right: result.right + marginRight,
+            width: result.width + marginLeft + marginRight,
+            height: result.height + marginTop + marginBottom
+        };
+    };
     VirtualScrollerComponent.prototype.checkScrollElementResized = function () {
-        var boundingRect = this.getScrollElement().getBoundingClientRect();
+        var boundingRect = this.getElementSize(this.getScrollElement());
         var sizeChanged;
         if (!this.previousScrollBoundingRect) {
             sizeChanged = true;
@@ -52102,9 +52110,10 @@ var VirtualScrollerComponent = /** @class */function () {
     };
     VirtualScrollerComponent.prototype.throttleTrailing = function (func, wait) {
         var timeout = undefined;
+        var _arguments = arguments;
         var result = function result() {
             var _this = this;
-            var _arguments = arguments;
+            _arguments = arguments;
             if (timeout) {
                 return;
             }
@@ -52269,8 +52278,8 @@ var VirtualScrollerComponent = /** @class */function () {
         }
         if (this.parentScroll) {
             var scrollElement = this.getScrollElement();
-            var elementClientRect = this.element.nativeElement.getBoundingClientRect();
-            var scrollClientRect = scrollElement.getBoundingClientRect();
+            var elementClientRect = this.getElementSize(this.element.nativeElement);
+            var scrollClientRect = this.getElementSize(scrollElement);
             if (this.horizontal) {
                 offset += elementClientRect.left - scrollClientRect.left;
             } else {
@@ -52368,7 +52377,7 @@ var VirtualScrollerComponent = /** @class */function () {
                     }
                 }
                 var child = content.children[0];
-                var clientRect = child.getBoundingClientRect();
+                var clientRect = this.getElementSize(child);
                 this.minMeasuredChildWidth = Math.min(this.minMeasuredChildWidth, clientRect.width);
                 this.minMeasuredChildHeight = Math.min(this.minMeasuredChildHeight, clientRect.height);
             }
@@ -52389,7 +52398,7 @@ var VirtualScrollerComponent = /** @class */function () {
             for (var i = 0; i < content.children.length; ++i) {
                 ++arrayStartIndex;
                 var child = content.children[i];
-                var clientRect = child.getBoundingClientRect();
+                var clientRect = this.getElementSize(child);
                 maxWidthForWrapGroup = Math.max(maxWidthForWrapGroup, clientRect.width);
                 maxHeightForWrapGroup = Math.max(maxHeightForWrapGroup, clientRect.height);
                 if (arrayStartIndex % itemsPerWrapGroup === 0) {
@@ -52637,7 +52646,7 @@ var VirtualScrollerComponent = /** @class */function () {
             '[class.selfScroll]': "!parentScroll"
         },
         styles: ["\n    :host {\n      position: relative;\n\t  display: block;\n      -webkit-overflow-scrolling: touch;\n    }\n\t\n\t:host.horizontal.selfScroll {\n      overflow-y: visible;\n      overflow-x: auto;\n\t}\n\t:host.vertical.selfScroll {\n      overflow-y: auto;\n      overflow-x: visible;\n\t}\n\t\n    .scrollable-content {\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      max-width: 100vw;\n      max-height: 100vh;\n      position: absolute;\n    }\n\n\t.scrollable-content ::ng-deep > * {\n\t\tbox-sizing: border-box;\n\t}\n\t\n\t:host.horizontal {\n\t\twhite-space: nowrap;\n\t}\n\t\n\t:host.horizontal .scrollable-content {\n\t\tdisplay: flex;\n\t}\n\t\n\t:host.horizontal .scrollable-content ::ng-deep > * {\n\t\tflex-shrink: 0;\n\t\tflex-grow: 0;\n\t\twhite-space: initial;\n\t}\n\t\n    .total-padding {\n      width: 1px;\n      opacity: 0;\n    }\n    \n    :host.horizontal .total-padding {\n      height: 100%;\n    }\n  "]
-    }), (0, _tslib.__param)(4, (0, _core.Inject)(_core.PLATFORM_ID)), (0, _tslib.__param)(5, (0, _core.Optional)()), (0, _tslib.__param)(5, (0, _core.Inject)('virtualScroller.scrollThrottlingTime')), (0, _tslib.__param)(6, (0, _core.Optional)()), (0, _tslib.__param)(6, (0, _core.Inject)('virtualScroller.scrollDebounceTime')), (0, _tslib.__param)(7, (0, _core.Optional)()), (0, _tslib.__param)(7, (0, _core.Inject)('virtualScroller.scrollAnimationTime')), (0, _tslib.__param)(8, (0, _core.Optional)()), (0, _tslib.__param)(8, (0, _core.Inject)('virtualScroller.scrollbarWidth')), (0, _tslib.__param)(9, (0, _core.Optional)()), (0, _tslib.__param)(9, (0, _core.Inject)('virtualScroller.scrollbarHeight')), (0, _tslib.__param)(10, (0, _core.Optional)()), (0, _tslib.__param)(10, (0, _core.Inject)('virtualScroller.checkResizeInterval')), (0, _tslib.__param)(11, (0, _core.Optional)()), (0, _tslib.__param)(11, (0, _core.Inject)('virtualScroller.resizeBypassRefreshThreshold')), (0, _tslib.__param)(12, (0, _core.Optional)()), (0, _tslib.__param)(12, (0, _core.Inject)('virtualScroller.modifyOverflowStyleOfParentScroll')), (0, _tslib.__param)(13, (0, _core.Optional)()), (0, _tslib.__param)(13, (0, _core.Inject)('virtualScroller.stripedTable')), (0, _tslib.__metadata)("design:paramtypes", [_core.ElementRef, _core.Renderer2, _core.NgZone, _core.ChangeDetectorRef, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object])], VirtualScrollerComponent);
+    }), (0, _tslib.__param)(4, (0, _core.Inject)(_core.PLATFORM_ID)), (0, _tslib.__param)(5, (0, _core.Optional)()), (0, _tslib.__param)(5, (0, _core.Inject)('virtual-scroller-default-options')), (0, _tslib.__metadata)("design:paramtypes", [_core.ElementRef, _core.Renderer2, _core.NgZone, _core.ChangeDetectorRef, Object, Object])], VirtualScrollerComponent);
     return VirtualScrollerComponent;
 }();
 var VirtualScrollerModule = /** @class */function () {
@@ -52645,7 +52654,11 @@ var VirtualScrollerModule = /** @class */function () {
     VirtualScrollerModule = (0, _tslib.__decorate)([(0, _core.NgModule)({
         exports: [VirtualScrollerComponent],
         declarations: [VirtualScrollerComponent],
-        imports: [_common.CommonModule]
+        imports: [_common.CommonModule],
+        providers: [{
+            provide: 'virtual-scroller-default-options',
+            useFactory: VIRTUAL_SCROLLER_DEFAULT_OPTIONS_FACTORY
+        }]
     })], VirtualScrollerModule);
     return VirtualScrollerModule;
 }();
@@ -52654,6 +52667,7 @@ var VirtualScrollerModule = /** @class */function () {
  * Generated bundle index. Do not edit.
  */
 
+exports.VIRTUAL_SCROLLER_DEFAULT_OPTIONS_FACTORY = VIRTUAL_SCROLLER_DEFAULT_OPTIONS_FACTORY;
 exports.VirtualScrollerComponent = VirtualScrollerComponent;
 exports.VirtualScrollerModule = VirtualScrollerModule;
 //# sourceMappingURL=ngx-virtual-scroller.js.map
@@ -52688,7 +52702,7 @@ var i2 = _interopRequireWildcard(_common);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var VirtualScrollerModuleNgFactory = i0.ɵcmf(i1.VirtualScrollerModule, [], function (_l) {
-  return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, []], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(4608, i2.NgLocalization, i2.NgLocaleLocalization, [i0.LOCALE_ID, [2, i2.ɵa]]), i0.ɵmpd(512, i2.CommonModule, i2.CommonModule, []), i0.ɵmpd(512, i1.VirtualScrollerModule, i1.VirtualScrollerModule, [])]);
+  return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, []], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]), i0.ɵmpd(4608, i2.NgLocalization, i2.NgLocaleLocalization, [i0.LOCALE_ID, [2, i2.ɵa]]), i0.ɵmpd(5120, "virtual-scroller-default-options", i1.VIRTUAL_SCROLLER_DEFAULT_OPTIONS_FACTORY, []), i0.ɵmpd(512, i2.CommonModule, i2.CommonModule, []), i0.ɵmpd(512, i1.VirtualScrollerModule, i1.VirtualScrollerModule, [])]);
 }); /**
      * @fileoverview This file was generated by the Angular template compiler. Do not edit.
      *
@@ -52704,7 +52718,7 @@ function View_VirtualScrollerComponent_0(_l) {
   return i0.ɵvid(0, [i0.ɵqud(402653184, 1, { contentElementRef: 0 }), i0.ɵqud(402653184, 2, { invisiblePaddingElementRef: 0 }), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(3, 0, [[2, 0], ["invisiblePadding", 1]], null, 0, "div", [["class", "total-padding"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵeld(5, 0, [[1, 0], ["content", 1]], null, 3, "div", [["class", "scrollable-content"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\n      "])), i0.ɵncd(null, 0), (_l()(), i0.ɵted(-1, null, ["\n    "])), (_l()(), i0.ɵted(-1, null, ["\n  "]))], null, null);
 }
 function View_VirtualScrollerComponent_Host_0(_l) {
-  return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "virtual-scroller", [], [[2, "horizontal", null], [2, "vertical", null], [2, "selfScroll", null]], null, null, View_VirtualScrollerComponent_0, RenderType_VirtualScrollerComponent)), i0.ɵdid(1, 1032192, null, 2, i1.VirtualScrollerComponent, [i0.ElementRef, i0.Renderer2, i0.NgZone, i0.ChangeDetectorRef, i0.PLATFORM_ID, [2, "virtualScroller.scrollThrottlingTime"], [2, "virtualScroller.scrollDebounceTime"], [2, "virtualScroller.scrollAnimationTime"], [2, "virtualScroller.scrollbarWidth"], [2, "virtualScroller.scrollbarHeight"], [2, "virtualScroller.checkResizeInterval"], [2, "virtualScroller.resizeBypassRefreshThreshold"], [2, "virtualScroller.modifyOverflowStyleOfParentScroll"], [2, "virtualScroller.stripedTable"]], null, null), i0.ɵqud(335544320, 1, { headerElementRef: 0 }), i0.ɵqud(335544320, 2, { containerElementRef: 0 })], function (_ck, _v) {
+  return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "virtual-scroller", [], [[2, "horizontal", null], [2, "vertical", null], [2, "selfScroll", null]], null, null, View_VirtualScrollerComponent_0, RenderType_VirtualScrollerComponent)), i0.ɵdid(1, 1032192, null, 2, i1.VirtualScrollerComponent, [i0.ElementRef, i0.Renderer2, i0.NgZone, i0.ChangeDetectorRef, i0.PLATFORM_ID, [2, "virtual-scroller-default-options"]], null, null), i0.ɵqud(335544320, 1, { headerElementRef: 0 }), i0.ɵqud(335544320, 2, { containerElementRef: 0 })], function (_ck, _v) {
     _ck(_v, 1, 0);
   }, function (_ck, _v) {
     var currVal_0 = i0.ɵnov(_v, 1).horizontal;var currVal_1 = !i0.ɵnov(_v, 1).horizontal;var currVal_2 = !i0.ɵnov(_v, 1).parentScroll;_ck(_v, 0, 0, currVal_0, currVal_1, currVal_2);

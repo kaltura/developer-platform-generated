@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu May 2 16:31:57 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/embed-types-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/embed-types-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu May 2 16:31:57 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -144,10 +144,8 @@ rtp('get', 'campaign',true);
 
 <p>Here’s how to use the auto embed code:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"{TARGET_ID}"</span> <span class="na">style=</span><span class="s">"width: 640px;height: 360px"</span><span class="nt">&gt;&lt;/div&gt;</span>
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">'https://cdnapisec.kaltura.com/p/{PARTNER_ID}/embedPlaykitJs/uiconf_id/{UICONF_ID}?autoembed=true&amp;targetId={TARGET_ID}&amp;entry_id={ENTRY_ID}&amp;config[playback]={"autoplay":true}'</span><span class="nt">&gt;&lt;/script&gt;</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"{TARGET_ID}"</span> <span class="na">style=</span><span class="s">"width: 640px;height: 360px"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">'https://cdnapisec.kaltura.com/p/{PARTNER_ID}/embedPlaykitJs/uiconf_id/{UICONF_ID}?autoembed=true&amp;targetId={TARGET_ID}&amp;entry_id={ENTRY_ID}&amp;config[playback]={"autoplay":true}'</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
     
       <h2 id="dynamic-embed">
         
@@ -161,7 +159,7 @@ rtp('get', 'campaign',true);
 
 <p>Basic dynamic embed codes look like this:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"{TARGET_ID}"</span> <span class="na">style=</span><span class="s">"width: 640px;height: 360px"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"{TARGET_ID}"</span> <span class="na">style=</span><span class="s">"width: 640px;height: 360px"</span><span class="nt">&gt;&lt;/div&gt;</span>
 <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdnapisec.kaltura.com/p/{PARTNER_ID}/embedPlaykitJs/uiconf_id/{UICONF_ID}"</span><span class="nt">&gt;&lt;/script&gt;</span>
   <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
     <span class="k">try</span> <span class="p">{</span>
@@ -179,9 +177,7 @@ rtp('get', 'campaign',true);
     <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
     <span class="p">}</span>
-  <span class="nt">&lt;/script&gt;</span>
-</code></pre>
-</div>
+  <span class="nt">&lt;/script&gt;</span></code></pre></figure>
     
       <h2 id="iframe-embed">
         
@@ -195,11 +191,9 @@ rtp('get', 'campaign',true);
 
 <p>Note that if you use the iFrame-only embed mode, the page won’t be able to access the player API:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;iframe</span> <span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">'https://cdnapisec.kaltura.com/p/{PARTNER_ID}/embedPlaykitJs/uiconf_id/{UICONF_ID}?iframeembed=true&amp;entry_id={ENTRY_ID}&amp;config[playback]={"autoplay":true}'</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;iframe</span> <span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">'https://cdnapisec.kaltura.com/p/{PARTNER_ID}/embedPlaykitJs/uiconf_id/{UICONF_ID}?iframeembed=true&amp;entry_id={ENTRY_ID}&amp;config[playback]={"autoplay":true}'</span>
    <span class="na">style=</span><span class="s">"width: 640px;height: 360px"</span> <span class="na">allowfullscreen</span> <span class="na">webkitallowfullscreen</span> <span class="na">mozAllowFullScreen</span> <span class="na">frameborder=</span><span class="s">"0"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/iframe&gt;</span>
-</code></pre>
-</div>
+<span class="nt">&lt;/iframe&gt;</span></code></pre></figure>
 		
 </article>
 

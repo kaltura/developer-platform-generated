@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Apr 2 08:48:03 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/getting-started-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/getting-started-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Apr 2 08:48:03 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -160,18 +160,17 @@ Lastly, this guide will cover how to add plugins to the application, specificall
       </h3>
 
 <p>You’ll need to install a few Kaltura pods. Consider this sample Podfile</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>source 'https://github.com/CocoaPods/Specs.git'
 
-use_frameworks!
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">source</span> <span class="err">'</span><span class="nv">https</span><span class="p">:</span><span class="c1">//github.com/CocoaPods/Specs.git'</span>
 
-platform :ios, '9.0'
+<span class="n">use_frameworks</span><span class="o">!</span>
 
-target 'OVPStarter' do
-  pod 'PlayKit'
-  pod 'PlayKitProviders'
-end
-</code></pre>
-</div>
+<span class="nv">platform</span> <span class="p">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">'</span><span class="mf">9.0</span><span class="err">'</span>
+
+<span class="n">target</span> <span class="err">'</span><span class="kt">OVPStarter</span><span class="err">'</span> <span class="k">do</span>
+  <span class="n">pod</span> <span class="err">'</span><span class="kt">PlayKit</span><span class="err">'</span>
+  <span class="n">pod</span> <span class="err">'</span><span class="kt">PlayKitProviders</span><span class="err">'</span>
+<span class="n">end</span></code></pre></figure>
 
 <ul>
   <li>The <a href="https://cocoapods.org/pods/PlayKit">Playkit Pod</a> is made up of the core Player infrastructure</li>
@@ -200,21 +199,17 @@ end
 
 <p>In the Controller, import the relevant Kaltura Libraries</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import UIKit
-import PlayKit
-import PlayKitUtils
-import PlayKitKava
-import PlayKitProviders
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">PlayKit</span>
+<span class="kd">import</span> <span class="kt">PlayKitUtils</span>
+<span class="kd">import</span> <span class="kt">PlayKitKava</span>
+<span class="kd">import</span> <span class="kt">PlayKitProviders</span></code></pre></figure>
 
 <p>Set your partner ID and entry ID</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>let SERVER_BASE_URL = "https://cdnapisec.kaltura.com"
-let PARTNER_ID = 0000000
-let ENTRY_ID = "1_abc6st"
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">SERVER_BASE_URL</span> <span class="o">=</span> <span class="s">"https://cdnapisec.kaltura.com"</span>
+<span class="k">let</span> <span class="nv">PARTNER_ID</span> <span class="o">=</span> <span class="mo">0000000</span>
+<span class="k">let</span> <span class="nv">ENTRY_ID</span> <span class="o">=</span> <span class="s">"1_abc6st"</span></code></pre></figure>
     
       <h3 id="create-a-kaltura-session">
         
@@ -226,9 +221,7 @@ let ENTRY_ID = "1_abc6st"
 
 <p>The Kaltura Session is an authorization string that identifies the user watching the video. Including a Kaltura Session (KS) in the player allows for monitoring and analytics of the video, as well as the ability to restrict content access. The KS would generally be created on the server side of the application, and passed to the controller.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>var ks: String?
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">var</span> <span class="nv">ks</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre></figure>
 
 <p>However, if your application does not already create a Kaltura Session, follow <a href="https://developer.kaltura.com/player/ios/kaltura-session-authentication-ios">this guide</a> to learn how to generate a KS with the Application Token API.</p>
     
@@ -242,139 +235,122 @@ let ENTRY_ID = "1_abc6st"
 
 <p>Inside the class, below the <code class="highlighter-rouge">ks</code> declaration, add a declaration for the Player.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>var player: Player?
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="p">?</span></code></pre></figure>
 
 <p>Now lets create our video player. Head over to the Storyboard and create a new PlayerView of the desired size. Add a referencing outlet to your ViewController named playerContainer. Create a new function called <code class="highlighter-rouge">playerSetup</code> and set the player variable to equal the new playerContainer</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>func setupPlayer() {
-    self.player?.view = self.playerContainer
-}
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">setupPlayer</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">playerContainer</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>Now in the <code class="highlighter-rouge">viewDidLoad</code> function, load the player. We’ll start without a pluginConfig, but we will cover adding plugins later in this guide.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>self.player = PlayKitManager.shared.loadPlayer(pluginConfig: nil)
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+ </code></pre></figure>
+
 <p>Next, call the newly created setupPlayer function.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>self.setupPlayer()
-</code></pre>
-</div>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="nf">setupPlayer</span><span class="p">()</span></code></pre></figure>
 
 <p>Now create and call a new function called <code class="highlighter-rouge">loadMedia</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>self.loadMedia()
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">self</span><span class="o">.</span><span class="nf">loadMedia</span><span class="p">()</span></code></pre></figure>
 
 <p>In the loadMedia function, you’ll use the <code class="highlighter-rouge">SimpleSessionProvider</code> and <code class="highlighter-rouge">OVPMediaProvider</code> objects.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
-let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">let</span> <span class="nv">sessionProvider</span> <span class="o">=</span> <span class="kt">SimpleSessionProvider</span><span class="p">(</span><span class="nv">serverURL</span><span class="p">:</span> <span class="kt">SERVER_BASE_URL</span><span class="p">,</span> <span class="nv">partnerId</span><span class="p">:</span> <span class="kt">Int64</span><span class="p">(</span><span class="kt">PARTNER_ID</span><span class="p">),</span> <span class="nv">ks</span><span class="p">:</span> <span class="n">ks</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">mediaProvider</span><span class="p">:</span> <span class="kt">OVPMediaProvider</span> <span class="o">=</span> <span class="kt">OVPMediaProvider</span><span class="p">(</span><span class="n">sessionProvider</span><span class="p">)</span></code></pre></figure>
 
 <p>Now set your entry ID on that <code class="highlighter-rouge">mediaProvider</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mediaProvider.entryId = ENTRY_ID
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">mediaProvider</span><span class="o">.</span><span class="n">entryId</span> <span class="o">=</span> <span class="kt">ENTRY_ID</span></code></pre></figure>
 
 <p>Load the media by creating a <code class="highlighter-rouge">MediaConfig</code> with a video start time of zero seconds, and then passing that config to <code class="highlighter-rouge">player.prepare()</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mediaProvider.loadMedia { (mediaEntry, error) in
-    if let me = mediaEntry, error == nil {
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">mediaProvider</span><span class="o">.</span><span class="n">loadMedia</span> <span class="p">{</span> <span class="p">(</span><span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">me</span> <span class="o">=</span> <span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
     
-        let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
+        <span class="k">let</span> <span class="nv">mediaConfig</span> <span class="o">=</span> <span class="kt">MediaConfig</span><span class="p">(</span><span class="nv">mediaEntry</span><span class="p">:</span> <span class="n">me</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span>
 
-        self.player.prepare(mediaConfig)
-    }
-}
-</code></pre>
-</div>
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="nf">prepare</span><span class="p">(</span><span class="n">mediaConfig</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>The <code class="highlighter-rouge">loadMedia</code> function should now look like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>func loadMedia() {
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">loadMedia</span><span class="p">()</span> <span class="p">{</span>
 
-    let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
+    <span class="k">let</span> <span class="nv">sessionProvider</span> <span class="o">=</span> <span class="kt">SimpleSessionProvider</span><span class="p">(</span><span class="nv">serverURL</span><span class="p">:</span> <span class="kt">SERVER_BASE_URL</span><span class="p">,</span> <span class="nv">partnerId</span><span class="p">:</span> <span class="kt">Int64</span><span class="p">(</span><span class="kt">PARTNER_ID</span><span class="p">),</span> <span class="nv">ks</span><span class="p">:</span> <span class="n">ks</span><span class="p">)</span>
 
-    let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
+    <span class="k">let</span> <span class="nv">mediaProvider</span><span class="p">:</span> <span class="kt">OVPMediaProvider</span> <span class="o">=</span> <span class="kt">OVPMediaProvider</span><span class="p">(</span><span class="n">sessionProvider</span><span class="p">)</span>
 
-    mediaProvider.entryId = ENTRY_ID
+    <span class="n">mediaProvider</span><span class="o">.</span><span class="n">entryId</span> <span class="o">=</span> <span class="kt">ENTRY_ID</span>
 
-    mediaProvider.loadMedia { (mediaEntry, error) in
-        if let me = mediaEntry, error == nil {
+    <span class="n">mediaProvider</span><span class="o">.</span><span class="n">loadMedia</span> <span class="p">{</span> <span class="p">(</span><span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">me</span> <span class="o">=</span> <span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
 
-            let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
+            <span class="k">let</span> <span class="nv">mediaConfig</span> <span class="o">=</span> <span class="kt">MediaConfig</span><span class="p">(</span><span class="nv">mediaEntry</span><span class="p">:</span> <span class="n">me</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span>
 
-            self.player.prepare(mediaConfig)
+            <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="nf">prepare</span><span class="p">(</span><span class="n">mediaConfig</span><span class="p">)</span>
 
-        }
-    }
-}
-</code></pre>
-</div>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
 <p>At this point, you should be able to successfully run the code and see your video player in the app. Your code would look like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>import UIKit
-import PlayKit
-import PlayKitUtils
-import PlayKitProviders
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">PlayKit</span>
+<span class="kd">import</span> <span class="kt">PlayKitUtils</span>
+<span class="kd">import</span> <span class="kt">PlayKitProviders</span>
 
-let SERVER_BASE_URL = "https://cdnapisec.kaltura.com"
-let PARTNER_ID = 1424501
-let ENTRY_ID = "1_djnefl4e"
+<span class="k">let</span> <span class="nv">SERVER_BASE_URL</span> <span class="o">=</span> <span class="s">"https://cdnapisec.kaltura.com"</span>
+<span class="k">let</span> <span class="nv">PARTNER_ID</span> <span class="o">=</span> <span class="mi">1424501</span>
+<span class="k">let</span> <span class="nv">ENTRY_ID</span> <span class="o">=</span> <span class="s">"1_djnefl4e"</span>
 
-class ViewController: UIViewController {
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
     
-    var ks: String?
-    var player: Player!
+    <span class="k">var</span> <span class="nv">ks</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="k">var</span> <span class="nv">player</span><span class="p">:</span> <span class="kt">Player</span><span class="o">!</span>
     
-    @IBOutlet weak var playerContainer: PlayerView!
+    <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">playerContainer</span><span class="p">:</span> <span class="kt">PlayerView</span><span class="o">!</span>
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
 
-        self.player = PlayKitManager.shared.loadPlayer(pluginConfig: createPluginConfig())
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="kt">PlayKitManager</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">loadPlayer</span><span class="p">(</span><span class="nv">pluginConfig</span><span class="p">:</span> <span class="nf">createPluginConfig</span><span class="p">())</span>
         
-        self.setupPlayer()
-        self.loadMedia()
-    }
+        <span class="k">self</span><span class="o">.</span><span class="nf">setupPlayer</span><span class="p">()</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">loadMedia</span><span class="p">()</span>
+    <span class="p">}</span>
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">didReceiveMemoryWarning</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">didReceiveMemoryWarning</span><span class="p">()</span>
+    <span class="p">}</span>
     
-    func setupPlayer() {
-        self.player?.view = self.playerContainer
-    }
+    <span class="kd">func</span> <span class="nf">setupPlayer</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="p">?</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">playerContainer</span>
+    <span class="p">}</span>
     
-    func loadMedia() {
-        let sessionProvider = SimpleSessionProvider(serverURL: SERVER_BASE_URL, partnerId: Int64(PARTNER_ID), ks: ks)
+    <span class="kd">func</span> <span class="nf">loadMedia</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">sessionProvider</span> <span class="o">=</span> <span class="kt">SimpleSessionProvider</span><span class="p">(</span><span class="nv">serverURL</span><span class="p">:</span> <span class="kt">SERVER_BASE_URL</span><span class="p">,</span> <span class="nv">partnerId</span><span class="p">:</span> <span class="kt">Int64</span><span class="p">(</span><span class="kt">PARTNER_ID</span><span class="p">),</span> <span class="nv">ks</span><span class="p">:</span> <span class="n">ks</span><span class="p">)</span>
         
-        let mediaProvider: OVPMediaProvider = OVPMediaProvider(sessionProvider)
+        <span class="k">let</span> <span class="nv">mediaProvider</span><span class="p">:</span> <span class="kt">OVPMediaProvider</span> <span class="o">=</span> <span class="kt">OVPMediaProvider</span><span class="p">(</span><span class="n">sessionProvider</span><span class="p">)</span>
         
-        mediaProvider.entryId = ENTRY_ID
+        <span class="n">mediaProvider</span><span class="o">.</span><span class="n">entryId</span> <span class="o">=</span> <span class="kt">ENTRY_ID</span>
         
-        mediaProvider.loadMedia { (mediaEntry, error) in
-            if let me = mediaEntry, error == nil {
+        <span class="n">mediaProvider</span><span class="o">.</span><span class="n">loadMedia</span> <span class="p">{</span> <span class="p">(</span><span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">me</span> <span class="o">=</span> <span class="n">mediaEntry</span><span class="p">,</span> <span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
                 
-                let mediaConfig = MediaConfig(mediaEntry: me, startTime: 0.0)
+                <span class="k">let</span> <span class="nv">mediaConfig</span> <span class="o">=</span> <span class="kt">MediaConfig</span><span class="p">(</span><span class="nv">mediaEntry</span><span class="p">:</span> <span class="n">me</span><span class="p">,</span> <span class="nv">startTime</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">)</span>
                 
-                if let player = self.player {
-                    player.prepare(mediaConfig)
-                }
-            }
-        }
-    }
-}
-
-</code></pre>
-</div>
+                <span class="k">if</span> <span class="k">let</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span> <span class="p">{</span>
+                    <span class="n">player</span><span class="o">.</span><span class="nf">prepare</span><span class="p">(</span><span class="n">mediaConfig</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>You’ve probably noticed that there are no buttons for playing or pausing the video. To learn about adding elements to the Player’s UI, <a href="https://developer.kaltura.com/player/ios/player-ui-ios">click here</a></p>
 

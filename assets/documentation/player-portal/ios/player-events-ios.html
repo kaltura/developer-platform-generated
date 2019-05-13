@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 10:23:49 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/player-events-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/player-events-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 10:23:49 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -150,7 +150,7 @@ rtp('get', 'campaign',true);
   <p>Reminder to use <code class="highlighter-rouge">weak self</code> when needed in order to prevent retain cycles</p>
 </blockquote>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">playing</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">durationChanged</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">stateChanged</span><span class="p">])</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">playing</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">durationChanged</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">stateChanged</span><span class="p">])</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
      <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">playing</span> <span class="p">{</span>
         <span class="c1">// handle playing event</span>
      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">durationChanged</span> <span class="p">{</span>
@@ -159,9 +159,7 @@ rtp('get', 'campaign',true);
         <span class="k">let</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">newState</span>
         <span class="k">let</span> <span class="nv">oldState</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">oldState</span>
      <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
     
       <h3 id="listening-to-events-from-plugin-code">
         

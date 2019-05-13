@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Apr 1 02:53:07 2019</span>, By <span class="commit-author">iKinnrot</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/audio-mode-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/audio-mode-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Apr 1 02:53:07 2019, By <span class="commit-author">iKinnrot</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -155,27 +155,23 @@ rtp('get', 'campaign',true);
   <p>Note: Should be done on <code class="highlighter-rouge">AppDelegate</code></p>
 </blockquote>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">var</span> <span class="nv">audioSessionInitialCategory</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">var</span> <span class="nv">audioSessionInitialCategory</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
 
 <span class="n">audioSessionInitialCategory</span> <span class="o">=</span> <span class="kt">AVAudioSession</span><span class="o">.</span><span class="nf">sharedInstance</span><span class="p">()</span><span class="o">.</span><span class="n">category</span>
 <span class="k">do</span> <span class="p">{</span>
     <span class="k">try</span> <span class="kt">AVAudioSession</span><span class="o">.</span><span class="nf">sharedInstance</span><span class="p">()</span><span class="o">.</span><span class="nf">setCategory</span><span class="p">(</span><span class="kt">AVAudioSessionCategoryPlayback</span><span class="p">)</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="n">audioSessionInitialCategory</span> <span class="o">=</span> <span class="kc">nil</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p><strong>Note:</strong> When the video is finished, you may return the initial category value as follows:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">_</span> <span class="o">=</span> <span class="n">audioSessionInitialCategory</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="k">if</span> <span class="k">let</span> <span class="nv">_</span> <span class="o">=</span> <span class="n">audioSessionInitialCategory</span> <span class="p">{</span>
    <span class="k">do</span> <span class="p">{</span>
         <span class="k">try</span> <span class="kt">AVAudioSession</span><span class="o">.</span><span class="nf">sharedInstance</span><span class="p">()</span><span class="o">.</span><span class="nf">setCategory</span><span class="p">(</span><span class="n">audioSessionInitialCategory</span><span class="o">!</span><span class="p">)</span>
    <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>For more information about <code class="highlighter-rouge">AVAudioSession</code> see <a href="https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionBasics/AudioSessionBasics.html">Apple’s Doc</a></p>
     

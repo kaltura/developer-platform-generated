@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu May 2 16:31:57 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/user-preferences-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/user-preferences-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu May 2 16:31:57 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -162,15 +162,13 @@ rtp('get', 'campaign',true);
 
 <p>The structure of this initial configuration is as follows:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
 <span class="nl">muted</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
 <span class="nx">volume</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span>
 <span class="nx">audioLanguage</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
 <span class="nx">textLanguage</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
 <span class="nx">textStyle</span><span class="err">:</span> <span class="nx">TextStyle</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>The following flow-chart diagram shows a high-level workflow of this scenario:<br />
 <img src="./setup-flow-local-storage.jpg" alt="setup-flow-local-storage" /></p>
@@ -216,13 +214,11 @@ rtp('get', 'campaign',true);
 
 <p>The user preference configuration is enabled by default. To disable it, you’ll need to configure the <a href="https://developer.kaltura.com/player/web/configuration-web#configdisableusercache"><code class="highlighter-rouge">disableUserCache</code></a> value as <strong>True</strong> when creating the player instance.</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
   <span class="p">...</span>
   <span class="nl">disableUserCache</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// Disable user preferences</span>
   <span class="p">...</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
     
       <h2 id="browser-compatibility">
         
