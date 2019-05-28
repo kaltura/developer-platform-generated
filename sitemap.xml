@@ -718,6 +718,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/partner/action/count</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/partner/action/get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/partner/action/getInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/partner/action/getPublicInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/partner/action/getSecrets</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/partner/action/getStatistics</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/partner/action/getUsage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1212,6 +1213,10 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/PartnerCatalogItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/PartnerCatalogItem/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/PartnerCatalogItem/action/delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/pexip</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/pexip/action/generateSipUrl</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/pexip/action/handleIncomingCall</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/pexip/action/listRooms</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/poll</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/poll/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/poll/action/getVote</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1903,6 +1908,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaParseMultiLanguageCaptionAssetJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartner</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartnerListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartnerPublicInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartnerStatistics</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartnerUsage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartnerUsageListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2032,6 +2038,9 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaSftpDropFolder</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaShortLink</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaShortLinkListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaSipEntryServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaSipResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaSipServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaSiteCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaSiteRestriction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaSourceFileSyncDescriptor</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2679,6 +2688,8 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaSftpDropFolderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaShortLinkOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaShortLinkStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaSipEntryServerNodeStatus</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaSipServerNodeOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaSiteRestrictionType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaSourceType</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaSshDropFolderOrderBy</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3171,6 +3182,10 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSftpDropFolderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaShortLinkBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaShortLinkFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSipEntryServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSipEntryServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSipServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSipServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSshDropFolderBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaSshDropFolderFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaStorageProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3929,6 +3944,7 @@
 <url> <loc>https://developer.kaltura.com/console/service/partner/action/count</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/partner/action/get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/partner/action/getInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/partner/action/getPublicInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/partner/action/getSecrets</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/partner/action/getStatistics</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/partner/action/getUsage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3953,6 +3969,10 @@
 <url> <loc>https://developer.kaltura.com/console/service/permissionItem/action/get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/permissionItem/action/list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/permissionItem/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/pexip</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/pexip/action/generateSipUrl</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/pexip/action/handleIncomingCall</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/pexip/action/listRooms</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/playlist</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/playlist/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/playlist/action/clone</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4939,6 +4959,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/partner/partner_count</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/partner/partner_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/partner/partner_getInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/partner/partner_getPublicInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/partner/partner_getSecrets</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/partner/partner_getStatistics</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/partner/partner_getUsage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4963,6 +4984,10 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/permissionItem/permissionItem_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/permissionItem/permissionItem_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/permissionItem/permissionItem_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/pexip</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/pexip/pexip_generateSipUrl</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/pexip/pexip_handleIncomingCall</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/pexip/pexip_listRooms</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/playlist</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/playlist/playlist_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/playlist/playlist_clone</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -6177,6 +6202,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaPartnerBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaPartnerFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaPartnerListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaPartnerPublicInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaPartnerStatistics</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaPartnerUsage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaPartnerUsageListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -6368,6 +6394,13 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaShortLinkBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaShortLinkFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaShortLinkListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSipEntryServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSipEntryServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSipEntryServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSipResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSipServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSipServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSipServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSiteCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSiteRestriction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaSourceFileSyncDescriptor</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7281,6 +7314,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/partner/partner_count</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/partner/partner_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/partner/partner_getInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/partner/partner_getPublicInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/partner/partner_getSecrets</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/partner/partner_getStatistics</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/partner/partner_getUsage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7305,6 +7339,10 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/permissionItem/permissionItem_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/permissionItem/permissionItem_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/permissionItem/permissionItem_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/pexip</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/pexip/pexip_generateSipUrl</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/pexip/pexip_handleIncomingCall</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/pexip/pexip_listRooms</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/playlist</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/playlist/playlist_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/playlist/playlist_clone</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -8519,6 +8557,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaPartnerBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaPartnerFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaPartnerListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaPartnerPublicInfo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaPartnerStatistics</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaPartnerUsage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaPartnerUsageListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -8710,6 +8749,13 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaShortLinkBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaShortLinkFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaShortLinkListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSipEntryServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSipEntryServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSipEntryServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSipResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSipServerNode</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSipServerNodeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSipServerNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSiteCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSiteRestriction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaSourceFileSyncDescriptor</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>

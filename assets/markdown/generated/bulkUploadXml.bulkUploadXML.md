@@ -762,6 +762,7 @@ table th {
       <xs:enumeration value="10"></xs:enumeration>
       <xs:enumeration value="externalMedia.externalMedia"></xs:enumeration>
       <xs:enumeration value="conference.CONFERENCE_ENTRY_SERVER"></xs:enumeration>
+      <xs:enumeration value="sip.SIP_ENTRY_SERVER"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="KalturaDynamicEnum">
@@ -905,6 +906,7 @@ table th {
       <xs:enumeration value="Kurdish"></xs:enumeration>
       <xs:enumeration value="Laothian"></xs:enumeration>
       <xs:enumeration value="Latin"></xs:enumeration>
+      <xs:enumeration value="Luxembourgish (Letzeburgesch)"></xs:enumeration>
       <xs:enumeration value="Latvian (Lettish)"></xs:enumeration>
       <xs:enumeration value="Limburgish ( Limburger)"></xs:enumeration>
       <xs:enumeration value="Lingala"></xs:enumeration>
@@ -1378,6 +1380,7 @@ table th {
       <xs:enumeration value="Teo Chew"></xs:enumeration>
       <xs:enumeration value="Hainanese"></xs:enumeration>
       <xs:enumeration value="Hakka"></xs:enumeration>
+      <xs:enumeration value="Michif"></xs:enumeration>
       <xs:enumeration value="Undefined"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
