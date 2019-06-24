@@ -856,6 +856,7 @@ table th {
       <xs:enumeration value="Catalan"></xs:enumeration>
       <xs:enumeration value="Chinese"></xs:enumeration>
       <xs:enumeration value="Corsican"></xs:enumeration>
+      <xs:enumeration value="Cree"></xs:enumeration>
       <xs:enumeration value="Croatian"></xs:enumeration>
       <xs:enumeration value="Czech"></xs:enumeration>
       <xs:enumeration value="Danish"></xs:enumeration>
@@ -890,6 +891,7 @@ table th {
       <xs:enumeration value="Indonesian"></xs:enumeration>
       <xs:enumeration value="Interlingua"></xs:enumeration>
       <xs:enumeration value="Interlingue"></xs:enumeration>
+      <xs:enumeration value="Inuinnaqtun"></xs:enumeration>
       <xs:enumeration value="Inuktitut"></xs:enumeration>
       <xs:enumeration value="Inupiak"></xs:enumeration>
       <xs:enumeration value="Irish"></xs:enumeration>
@@ -924,6 +926,7 @@ table th {
       <xs:enumeration value="Nepali"></xs:enumeration>
       <xs:enumeration value="Norwegian"></xs:enumeration>
       <xs:enumeration value="Occitan"></xs:enumeration>
+      <xs:enumeration value="Ojibwe, Ojibwa"></xs:enumeration>
       <xs:enumeration value="Oriya"></xs:enumeration>
       <xs:enumeration value="Oromo (Afan, Galla)"></xs:enumeration>
       <xs:enumeration value="Pashto (Pushto)"></xs:enumeration>
@@ -978,6 +981,7 @@ table th {
       <xs:enumeration value="Yiddish"></xs:enumeration>
       <xs:enumeration value="Yoruba"></xs:enumeration>
       <xs:enumeration value="Zulu"></xs:enumeration>
+      <xs:enumeration value="No linguistic content"></xs:enumeration>
       <xs:enumeration value="Multilingual"></xs:enumeration>
       <xs:enumeration value="Afade"></xs:enumeration>
       <xs:enumeration value="Abnaki Western"></xs:enumeration>
@@ -1003,6 +1007,7 @@ table th {
       <xs:enumeration value="Alabama"></xs:enumeration>
       <xs:enumeration value="Qawasqar"></xs:enumeration>
       <xs:enumeration value="Aleut"></xs:enumeration>
+      <xs:enumeration value="Algonquian languages"></xs:enumeration>
       <xs:enumeration value="Albanian (Gheg)"></xs:enumeration>
       <xs:enumeration value="Algonquin"></xs:enumeration>
       <xs:enumeration value="Albanian (Tosk)"></xs:enumeration>
@@ -1019,6 +1024,7 @@ table th {
       <xs:enumeration value="Arapaho"></xs:enumeration>
       <xs:enumeration value="Assiniboine"></xs:enumeration>
       <xs:enumeration value="Asturian"></xs:enumeration>
+      <xs:enumeration value="Athapascan languages"></xs:enumeration>
       <xs:enumeration value="Atikamekw"></xs:enumeration>
       <xs:enumeration value="Waorani"></xs:enumeration>
       <xs:enumeration value="Kotava"></xs:enumeration>
@@ -1138,6 +1144,7 @@ table th {
       <xs:enumeration value="Halkomelem"></xs:enumeration>
       <xs:enumeration value="Iloko"></xs:enumeration>
       <xs:enumeration value="Ingush"></xs:enumeration>
+      <xs:enumeration value="Iroquoian languages"></xs:enumeration>
       <xs:enumeration value="Itelmen"></xs:enumeration>
       <xs:enumeration value="Ingrian"></xs:enumeration>
       <xs:enumeration value="Lojban"></xs:enumeration>
@@ -1217,6 +1224,7 @@ table th {
       <xs:enumeration value="Min Bei Chinese"></xs:enumeration>
       <xs:enumeration value="Mansi"></xs:enumeration>
       <xs:enumeration value="Mon"></xs:enumeration>
+      <xs:enumeration value="Montagnais"></xs:enumeration>
       <xs:enumeration value="Mohawk"></xs:enumeration>
       <xs:enumeration value="Mossi"></xs:enumeration>
       <xs:enumeration value="Maranao"></xs:enumeration>
@@ -1291,6 +1299,7 @@ table th {
       <xs:enumeration value="Romanian Megleno"></xs:enumeration>
       <xs:enumeration value="Okinawan Central"></xs:enumeration>
       <xs:enumeration value="Sakha"></xs:enumeration>
+      <xs:enumeration value="Salishan languages"></xs:enumeration>
       <xs:enumeration value="Aramaic Samaritan"></xs:enumeration>
       <xs:enumeration value="Santali"></xs:enumeration>
       <xs:enumeration value="Sicilian"></xs:enumeration>
@@ -1311,6 +1320,7 @@ table th {
       <xs:enumeration value="Shawnee"></xs:enumeration>
       <xs:enumeration value="Salar"></xs:enumeration>
       <xs:enumeration value="Southern Sami"></xs:enumeration>
+      <xs:enumeration value="Sami languages"></xs:enumeration>
       <xs:enumeration value="Lule Sami"></xs:enumeration>
       <xs:enumeration value="Inari Sami"></xs:enumeration>
       <xs:enumeration value="Skolt Sami"></xs:enumeration>
@@ -1332,6 +1342,7 @@ table th {
       <xs:enumeration value="Tamasheq"></xs:enumeration>
       <xs:enumeration value="Tarahumara Central"></xs:enumeration>
       <xs:enumeration value="Tagbanwa"></xs:enumeration>
+      <xs:enumeration value="Southern Tutchone"></xs:enumeration>
       <xs:enumeration value="Toda"></xs:enumeration>
       <xs:enumeration value="Tulu"></xs:enumeration>
       <xs:enumeration value="Tai Na"></xs:enumeration>
@@ -1382,6 +1393,8 @@ table th {
       <xs:enumeration value="Hakka"></xs:enumeration>
       <xs:enumeration value="Michif"></xs:enumeration>
       <xs:enumeration value="Undefined"></xs:enumeration>
+      <xs:enumeration value="Siksika"></xs:enumeration>
+      <xs:enumeration value="Okanagan"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="KalturaThumbCuePointSubType">

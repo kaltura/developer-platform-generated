@@ -416,7 +416,6 @@ table th {
   <xs:element name="scenes" type="T_scenes" substitutionGroup="item-extension"></xs:element>
   <xs:element name="scene" type="T_scene"></xs:element>
   <xs:element name="scene-extension"></xs:element>
-  <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:complexType name="T_scene_questionCuePoint">
     <xs:complexContent>
       <xs:extension base="T_scene">
@@ -457,6 +456,7 @@ table th {
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="scene-answer-cue-point" type="T_scene_answerCuePoint" substitutionGroup="scene"></xs:element>
+  <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:simpleType name="KalturaEntryType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="-1"></xs:enumeration>
@@ -579,6 +579,7 @@ table th {
       <xs:enumeration value="Catalan"></xs:enumeration>
       <xs:enumeration value="Chinese"></xs:enumeration>
       <xs:enumeration value="Corsican"></xs:enumeration>
+      <xs:enumeration value="Cree"></xs:enumeration>
       <xs:enumeration value="Croatian"></xs:enumeration>
       <xs:enumeration value="Czech"></xs:enumeration>
       <xs:enumeration value="Danish"></xs:enumeration>
@@ -613,6 +614,7 @@ table th {
       <xs:enumeration value="Indonesian"></xs:enumeration>
       <xs:enumeration value="Interlingua"></xs:enumeration>
       <xs:enumeration value="Interlingue"></xs:enumeration>
+      <xs:enumeration value="Inuinnaqtun"></xs:enumeration>
       <xs:enumeration value="Inuktitut"></xs:enumeration>
       <xs:enumeration value="Inupiak"></xs:enumeration>
       <xs:enumeration value="Irish"></xs:enumeration>
@@ -647,6 +649,7 @@ table th {
       <xs:enumeration value="Nepali"></xs:enumeration>
       <xs:enumeration value="Norwegian"></xs:enumeration>
       <xs:enumeration value="Occitan"></xs:enumeration>
+      <xs:enumeration value="Ojibwe, Ojibwa"></xs:enumeration>
       <xs:enumeration value="Oriya"></xs:enumeration>
       <xs:enumeration value="Oromo (Afan, Galla)"></xs:enumeration>
       <xs:enumeration value="Pashto (Pushto)"></xs:enumeration>
@@ -701,6 +704,7 @@ table th {
       <xs:enumeration value="Yiddish"></xs:enumeration>
       <xs:enumeration value="Yoruba"></xs:enumeration>
       <xs:enumeration value="Zulu"></xs:enumeration>
+      <xs:enumeration value="No linguistic content"></xs:enumeration>
       <xs:enumeration value="Multilingual"></xs:enumeration>
       <xs:enumeration value="Afade"></xs:enumeration>
       <xs:enumeration value="Abnaki Western"></xs:enumeration>
@@ -726,6 +730,7 @@ table th {
       <xs:enumeration value="Alabama"></xs:enumeration>
       <xs:enumeration value="Qawasqar"></xs:enumeration>
       <xs:enumeration value="Aleut"></xs:enumeration>
+      <xs:enumeration value="Algonquian languages"></xs:enumeration>
       <xs:enumeration value="Albanian (Gheg)"></xs:enumeration>
       <xs:enumeration value="Algonquin"></xs:enumeration>
       <xs:enumeration value="Albanian (Tosk)"></xs:enumeration>
@@ -742,6 +747,7 @@ table th {
       <xs:enumeration value="Arapaho"></xs:enumeration>
       <xs:enumeration value="Assiniboine"></xs:enumeration>
       <xs:enumeration value="Asturian"></xs:enumeration>
+      <xs:enumeration value="Athapascan languages"></xs:enumeration>
       <xs:enumeration value="Atikamekw"></xs:enumeration>
       <xs:enumeration value="Waorani"></xs:enumeration>
       <xs:enumeration value="Kotava"></xs:enumeration>
@@ -861,6 +867,7 @@ table th {
       <xs:enumeration value="Halkomelem"></xs:enumeration>
       <xs:enumeration value="Iloko"></xs:enumeration>
       <xs:enumeration value="Ingush"></xs:enumeration>
+      <xs:enumeration value="Iroquoian languages"></xs:enumeration>
       <xs:enumeration value="Itelmen"></xs:enumeration>
       <xs:enumeration value="Ingrian"></xs:enumeration>
       <xs:enumeration value="Lojban"></xs:enumeration>
@@ -940,6 +947,7 @@ table th {
       <xs:enumeration value="Min Bei Chinese"></xs:enumeration>
       <xs:enumeration value="Mansi"></xs:enumeration>
       <xs:enumeration value="Mon"></xs:enumeration>
+      <xs:enumeration value="Montagnais"></xs:enumeration>
       <xs:enumeration value="Mohawk"></xs:enumeration>
       <xs:enumeration value="Mossi"></xs:enumeration>
       <xs:enumeration value="Maranao"></xs:enumeration>
@@ -1014,6 +1022,7 @@ table th {
       <xs:enumeration value="Romanian Megleno"></xs:enumeration>
       <xs:enumeration value="Okinawan Central"></xs:enumeration>
       <xs:enumeration value="Sakha"></xs:enumeration>
+      <xs:enumeration value="Salishan languages"></xs:enumeration>
       <xs:enumeration value="Aramaic Samaritan"></xs:enumeration>
       <xs:enumeration value="Santali"></xs:enumeration>
       <xs:enumeration value="Sicilian"></xs:enumeration>
@@ -1034,6 +1043,7 @@ table th {
       <xs:enumeration value="Shawnee"></xs:enumeration>
       <xs:enumeration value="Salar"></xs:enumeration>
       <xs:enumeration value="Southern Sami"></xs:enumeration>
+      <xs:enumeration value="Sami languages"></xs:enumeration>
       <xs:enumeration value="Lule Sami"></xs:enumeration>
       <xs:enumeration value="Inari Sami"></xs:enumeration>
       <xs:enumeration value="Skolt Sami"></xs:enumeration>
@@ -1055,6 +1065,7 @@ table th {
       <xs:enumeration value="Tamasheq"></xs:enumeration>
       <xs:enumeration value="Tarahumara Central"></xs:enumeration>
       <xs:enumeration value="Tagbanwa"></xs:enumeration>
+      <xs:enumeration value="Southern Tutchone"></xs:enumeration>
       <xs:enumeration value="Toda"></xs:enumeration>
       <xs:enumeration value="Tulu"></xs:enumeration>
       <xs:enumeration value="Tai Na"></xs:enumeration>
@@ -1105,6 +1116,8 @@ table th {
       <xs:enumeration value="Hakka"></xs:enumeration>
       <xs:enumeration value="Michif"></xs:enumeration>
       <xs:enumeration value="Undefined"></xs:enumeration>
+      <xs:enumeration value="Siksika"></xs:enumeration>
+      <xs:enumeration value="Okanagan"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="KalturaThumbCuePointSubType">
@@ -4099,142 +4112,6 @@ table th {
 
 
 
-<span class="k-et">scene-customData element</span>
-
-
-
-
-
-<span class="element-description">XML for custom metadata</span>
-
-
-
-
-
-##### Attributes
-
-
-
-<table>
-<thead><tr>
-<th>Attribute Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>metadataId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Id of the custom metadata object</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataVersion</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Version of the custom metadata object</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfile</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile system name</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile id</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileName</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile name</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileVersion</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile version</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody><tr class="">
-<td class="first" colspan="2">[Any element]</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>any type</td>
-<td class="last"></td>
-</tr></tbody>
-</table>
-
-
-
-##### XML Example
-
-
-
-```xml
-<scene-ad-cue-point entryId="{entry id}">
-  <sceneStartTime>00:00:05</sceneStartTime>
-  <sceneTitle>my ad title</sceneTitle>
-  <sourceUrl>http://source.to.my/ad.xml</sourceUrl>
-  <adType>1</adType>
-  <protocolType>1</protocolType>
-  <scene-customData metadataProfile="MY_AD_METADATA_PROFILE_SYSTEM_NAME">
-    <metadata>
-      <adData>my ad custom data</adData>
-    </metadata>
-  </scene-customData>
-</scene-ad-cue-point>
-```
-
---------
-
-
-
-
-
 <span class="k-et">optionalAnswers element</span>
 
 
@@ -4629,6 +4506,142 @@ table th {
     <tag>my_tag</tag>
   </tags>
 </scene-answer-cue-point>
+```
+
+--------
+
+
+
+
+
+<span class="k-et">scene-customData element</span>
+
+
+
+
+
+<span class="element-description">XML for custom metadata</span>
+
+
+
+
+
+##### Attributes
+
+
+
+<table>
+<thead><tr>
+<th>Attribute Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>metadataId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Id of the custom metadata object</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataVersion</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Version of the custom metadata object</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfile</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile system name</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile id</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileName</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile name</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileVersion</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile version</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody><tr class="">
+<td class="first" colspan="2">[Any element]</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>any type</td>
+<td class="last"></td>
+</tr></tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<scene-ad-cue-point entryId="{entry id}">
+  <sceneStartTime>00:00:05</sceneStartTime>
+  <sceneTitle>my ad title</sceneTitle>
+  <sourceUrl>http://source.to.my/ad.xml</sourceUrl>
+  <adType>1</adType>
+  <protocolType>1</protocolType>
+  <scene-customData metadataProfile="MY_AD_METADATA_PROFILE_SYSTEM_NAME">
+    <metadata>
+      <adData>my ad custom data</adData>
+    </metadata>
+  </scene-customData>
+</scene-ad-cue-point>
 ```
 
 
