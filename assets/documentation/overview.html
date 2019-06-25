@@ -165,7 +165,7 @@ rtp('get', 'campaign',true);
 window.kalturaIntroVideoLoaded = false;
 function embedVideo() {
   if (window.kalturaIntroVideoLoaded) return;
-  if (!window.lucyBotReady) return setTimeout(embedVideo, 100);
+  if (!window.lucyBotReady || !window.PathKalturaPlayer) return setTimeout(embedVideo, 100);
   window.kalturaIntroVideoLoaded = true;
 
   var kconfig = {
