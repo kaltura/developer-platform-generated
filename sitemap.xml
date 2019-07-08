@@ -1251,6 +1251,8 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/sharepointExtension/action/listUiconfs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/synacorHbo</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/synacorHbo/action/getFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/thumbnail</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/thumbnail/action/transform</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/thumbParamsOutput</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/thumbParamsOutput/action/get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/thumbParamsOutput/action/list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4152,6 +4154,8 @@
 <url> <loc>https://developer.kaltura.com/console/service/thumbAsset/action/setAsDefault</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/thumbAsset/action/setContent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/thumbAsset/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/thumbnail</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/thumbnail/action/transform</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/thumbParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/thumbParams/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/thumbParams/action/delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5168,6 +5172,8 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/thumbAsset/thumbAsset_setAsDefault</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/thumbAsset/thumbAsset_setContent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/thumbAsset/thumbAsset_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/thumbnail</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/thumbnail/thumbnail_transform</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/thumbParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/thumbParams/thumbParams_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/thumbParams/thumbParams_delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7529,6 +7535,8 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/thumbAsset/thumbAsset_setAsDefault</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/thumbAsset/thumbAsset_setContent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/thumbAsset/thumbAsset_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/thumbnail</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/thumbnail/thumbnail_transform</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/thumbParams</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/thumbParams/thumbParams_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/thumbParams/thumbParams_delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
