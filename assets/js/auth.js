@@ -69,6 +69,7 @@
       window.jquery('#KalturaSidebar .not-logged-in').show();
       window.jquery('input[name="KalturaEmail"]').val('');
       window.jquery('input[name="KalturaPassword"]').val('');
+      window.jquery('input[name="OTP"]').val('');
       window.jquery('input[name="KalturaSession"]').val('');
     } else {
       window.jquery('#KalturaNav ul.nav').append(loggedInTemplate());
@@ -238,6 +239,7 @@
     window.jquery('#KalturaSignInModal #KalturaSignInButton').html('<i class="fa fa-spin fa-refresh"></i>').attr('disabled', 'disabled');
     creds.email = window.jquery('input[name="KalturaEmail"]').val();
     creds.password = window.jquery('input[name="KalturaPassword"]').val();
+    creds.otp = window.jquery('input[name="OTP"]').val();
     creds.partnerId = window.jquery('input[name="KalturaPartnerId"]').val();
 
     if (window.lucybot.env.target_api === 'ott') {
