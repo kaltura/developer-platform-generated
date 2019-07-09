@@ -10209,9 +10209,9 @@ var language_opts = {
       // e.g. name = captionAsset, id = caption_captionasset, should return caption.captionAsset
       var pieces = id.split('_');
       if (pieces.length === 1) return name;
-      var plugin = pieces[0];
-      if (plugin === 'elasticsearch') plugin = 'elasticSearch';
-      if (plugin.toLowerCase() === name.toLowerCase()) plugin = name;
+      var plugin = this.swagger.tags.filter(function (t) {
+        return t.name == name;
+      })[0]['x-plugin'];
       return plugin + '.' + name;
     },
     rewriteVariable: function rewriteVariable(s) {
