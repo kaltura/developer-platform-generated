@@ -10197,6 +10197,11 @@ var language_opts = {
       }
       return c;
     },
+    assign: function assign(lval, rval) {
+      var isArr = lval.match(/^(.*)\[(\d+)\]$/);
+      if (!isArr) return lval + ' = ' + rval;
+      return isArr[1] + '.append(' + rval + ')';
+    },
     rewriteAction: function rewriteAction(s) {
       return replaceActionSuffix(s);
     },
@@ -10205,6 +10210,7 @@ var language_opts = {
       var pieces = id.split('_');
       if (pieces.length === 1) return name;
       var plugin = pieces[0];
+      if (plugin === 'elasticsearch') plugin = 'elasticSearch';
       if (plugin.toLowerCase() === name.toLowerCase()) plugin = name;
       return plugin + '.' + name;
     },
