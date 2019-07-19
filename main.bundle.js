@@ -6460,10 +6460,10 @@ function View_SideMenuComponent_8(_l) {
     }, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\xA0"])), (_l()(), i0.ɵeld(3, 0, null, null, 0, "i", [["class", "fa fa-times"]], null, null, null, null, null)), (_l()(), i0.ɵeld(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\xA0"]))], null, null);
 }
 function View_SideMenuComponent_9(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "side-menu-item", [], [[8, "hidden", 0]], null, null, View_SideMenuItemComponent_0, RenderType_SideMenuItemComponent)), i0.ɵdid(1, 4243456, null, 0, i2.SideMenuItemComponent, [i3.UtilsService, i4.SearchService, i5.RoutesService], { item: [0, "item"], basePage: [1, "basePage"] }, null)], function (_ck, _v) {
-        var _co = _v.component;var currVal_1 = _v.context.$implicit;var currVal_2 = _co.basePage;_ck(_v, 1, 0, currVal_1, currVal_2);
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "side-menu-item", [], [[2, "hidden-xs", null], [8, "hidden", 0]], null, null, View_SideMenuItemComponent_0, RenderType_SideMenuItemComponent)), i0.ɵdid(1, 4243456, null, 0, i2.SideMenuItemComponent, [i3.UtilsService, i4.SearchService, i5.RoutesService], { item: [0, "item"], basePage: [1, "basePage"] }, null)], function (_ck, _v) {
+        var _co = _v.component;var currVal_2 = _v.context.$implicit;var currVal_3 = _co.basePage;_ck(_v, 1, 0, currVal_2, currVal_3);
     }, function (_ck, _v) {
-        var currVal_0 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded;_ck(_v, 0, 0, currVal_0);
+        var _co = _v.component;var currVal_0 = _co.basePage === "documentation" && _co.search.query;var currVal_1 = _v.context.$implicit.hidden && !_v.context.$implicit.active && !_v.context.$implicit.expanded;_ck(_v, 0, 0, currVal_0, currVal_1);
     });
 }
 function View_SideMenuComponent_0(_l) {
