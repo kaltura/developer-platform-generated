@@ -858,6 +858,7 @@ table th {
       <xs:enumeration value="2"></xs:enumeration>
       <xs:enumeration value="3"></xs:enumeration>
       <xs:enumeration value="4"></xs:enumeration>
+      <xs:enumeration value="5"></xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="KalturaLanguage">
