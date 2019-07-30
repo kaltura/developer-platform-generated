@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu May 2 16:31:57 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Jul 30 06:50:46 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu May 2 16:31:57 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Tue Jul 30 06:50:46 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (4 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (7 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -131,12 +131,10 @@ rtp('get', 'campaign',true);
     		
 		<p>Player configuration parameters are provided whenever a player instance is created.</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">// Configuration here</span>
 <span class="p">};</span>
-<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-</code></pre>
-</div>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
       <h4 id="configuration-structure">
         
         
@@ -147,29 +145,19 @@ rtp('get', 'campaign',true);
 
 <p>The configuration uses the following structure:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">targetId</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
-  <span class="nx">logLevel</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
-  <span class="nx">disableUserCache</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
-  <span class="nx">playback</span><span class="err">:</span> <span class="nx">PKPlaybackConfigObject</span><span class="p">,</span>
-  <span class="nx">sources</span><span class="err">:</span> <span class="nx">PKSourcesConfigObject</span><span class="p">,</span>
-  <span class="nx">playlist</span><span class="err">:</span> <span class="nx">KPPlaylisyObject</span><span class="p">,</span>
-  <span class="nx">plugins</span><span class="err">:</span> <span class="nx">PKPluginsConfigObject</span><span class="p">,</span>
-  <span class="nx">session</span><span class="err">:</span> <span class="nx">PKSessionConfigObject</span><span class="p">,</span>
-  <span class="nx">provider</span><span class="err">:</span> <span class="nx">ProviderOptionsObject</span><span class="p">,</span>
-  <span class="nx">ui</span><span class="err">:</span> <span class="nx">UIOptionsObject</span><span class="p">,</span>
-  <span class="nx">cast</span><span class="err">:</span> <span class="nx">CastConfigObject</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h1>
-        
-        
-          #
-        
-        
-      </h1>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="err">targetId:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+  </span><span class="err">logLevel:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+  </span><span class="err">disableUserCache:</span><span class="w"> </span><span class="err">boolean,</span><span class="w">
+  </span><span class="err">playback:</span><span class="w"> </span><span class="err">PKPlaybackConfigObject,</span><span class="w">
+  </span><span class="err">sources:</span><span class="w"> </span><span class="err">PKSourcesConfigObject,</span><span class="w">
+  </span><span class="err">playlist:</span><span class="w"> </span><span class="err">KPPlaylisyObject,</span><span class="w">
+  </span><span class="err">plugins:</span><span class="w"> </span><span class="err">PKPluginsConfigObject,</span><span class="w">
+  </span><span class="err">session:</span><span class="w"> </span><span class="err">PKSessionConfigObject,</span><span class="w">
+  </span><span class="err">provider:</span><span class="w"> </span><span class="err">ProviderOptionsObject,</span><span class="w">
+  </span><span class="err">ui:</span><span class="w"> </span><span class="err">UIOptionsObject,</span><span class="w">
+  </span><span class="err">cast:</span><span class="w"> </span><span class="err">CastConfigObject</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
     
       <h3 id="configtargetid">
         
@@ -202,14 +190,6 @@ rtp('get', 'campaign',true);
         
         
       </h5>
-    
-      <h1 id="-1">
-        
-        
-          # <a href="#-1"></a>
-        
-        
-      </h1>
     
       <h3 id="configloglevel">
         
@@ -245,14 +225,6 @@ rtp('get', 'campaign',true);
 
 <p>Possible values: <code class="highlighter-rouge">"DEBUG", "INFO", "TIME", "WARN", "ERROR", "OFF"</code></p>
     
-      <h1 id="-2">
-        
-        
-          # <a href="#-2"></a>
-        
-        
-      </h1>
-    
       <h3 id="configdisableusercache">
         
         
@@ -286,14 +258,6 @@ rtp('get', 'campaign',true);
       </h5>
 
 <p>You can learn more about user preferences in the player <a href="https://developer.kaltura.com/player/web/user-preferences-web">here</a>.</p>
-    
-      <h1 id="-3">
-        
-        
-          # <a href="#-3"></a>
-        
-        
-      </h1>
     
       <h3 id="configplayback">
         
@@ -415,14 +379,6 @@ rtp('get', 'campaign',true);
         
       </h5>
     
-      <h1 id="-4">
-        
-        
-          # <a href="#-4"></a>
-        
-        
-      </h1>
-    
       <h3 id="configprovider">
         
         
@@ -447,14 +403,6 @@ rtp('get', 'campaign',true);
         
       </h5>
     
-      <h1 id="-5">
-        
-        
-          # <a href="#-5"></a>
-        
-        
-      </h1>
-    
       <h3 id="configui">
         
         
@@ -478,14 +426,6 @@ rtp('get', 'campaign',true);
         
         
       </h5>
-    
-      <h1 id="-6">
-        
-        
-          # <a href="#-6"></a>
-        
-        
-      </h1>
     
       <h3 id="configcast">
         
@@ -525,7 +465,7 @@ rtp('get', 'campaign',true);
 
 <ul>
   <li><strong>Application</strong> - This is the application that embeds the player and can be used to configures the player in-line upon instantiation.</li>
-  <li><strong>Server</strong> - This is a partner configuration that is saved on the server. The partner can use this configuration when configuring the player by suppling the <code class="highlighter-rouge">uiConfId</code> value.</li>
+  <li><strong>Server</strong> - This is a partner configuration that is saved on the server. The partner can use this configuration when configuring the player by supplying the <code class="highlighter-rouge">uiConfId</code> value.</li>
   <li><strong>Local Storage (Browser)</strong> - This is the user preferences configuration, which is saved in the local storage of the browser.</li>
   <li><strong>Default Player Configuration</strong> - The default player configuration is defined internally by the player.</li>
 </ul>
@@ -553,54 +493,44 @@ rtp('get', 'campaign',true);
 
 <p>Local Storage</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-	<span class="nl">muted</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-	<span class="nx">audioLanguage</span><span class="err">:</span> <span class="s1">'spa'</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+	</span><span class="err">muted:</span><span class="w"> </span><span class="err">true,</span><span class="w">
+	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'spa'</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <p>Application</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-	<span class="nl">muted</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+	</span><span class="err">muted:</span><span class="w"> </span><span class="err">false,</span><span class="w">
+	</span><span class="err">volume:</span><span class="w"> </span><span class="err">0.7</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <p>Server</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'eng'</span><span class="p">;</span>
-  <span class="nl">autoplay</span><span class="p">:</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'eng';</span><span class="w">
+  </span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true;</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <p>Default Player Configuration</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
-	<span class="nx">muted</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
-	<span class="nx">volume</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
-	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">false</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
+	</span><span class="err">textLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
+	</span><span class="err">muted:</span><span class="w"> </span><span class="err">false,</span><span class="w">
+	</span><span class="err">volume:</span><span class="w"> </span><span class="err">1,</span><span class="w">
+	</span><span class="err">autoplay:</span><span class="w"> </span><span class="err">false</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <p><strong>The resulting runtime configuration will, therefore, be as follows:</strong></p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'spa'</span><span class="p">,</span>
-	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
-	<span class="nx">muted</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
-	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span><span class="p">,</span>
-	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">true</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'spa',</span><span class="w">
+	</span><span class="err">textLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
+	</span><span class="err">muted:</span><span class="w"> </span><span class="err">true,</span><span class="w">
+	</span><span class="err">volume:</span><span class="w"> </span><span class="err">0.7,</span><span class="w">
+	</span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 		
 </article>
 

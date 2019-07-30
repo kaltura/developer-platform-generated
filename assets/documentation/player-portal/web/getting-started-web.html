@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/getting-started-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Jul 30 06:50:46 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/getting-started-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Thu Mar 28 10:44:51 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Tue Jul 30 06:50:46 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (7 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (9 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -135,7 +135,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-		<p>The Kaltura HTML5 Player is really awesome and cool and fast and has nice features.</p>
+		<p>Looking for Native Mobile SDKs? Check out the docs for the <a href="https://developer.kaltura.com/player/ios/getting-started-ios/">iOS Player SDK</a> or the <a href="https://developer.kaltura.com/player/android/getting-started-android/">Android Player SDK</a>.</p>
       <h2 id="before-you-begin">
         
         
@@ -196,10 +196,10 @@ rtp('get', 'campaign',true);
 <p>To manually write an embed code, you’ll need a few things:</p>
 
 <ul>
-  <li>Your partner ID, which can be found in the KMC under <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">Integration Settings</a></li>
-  <li>The Player ID of the player you wish to use, which can be found in the Studio tab in the ID column. It is also known as the UI Conf ID.</li>
-  <li>The Entry ID for the entry you want to embed, which is found in the Content tab</li>
-  <li>An HTML div in the page you want to embed your player</li>
+  <li><strong>Your partner ID</strong>, which can be found in the KMC under <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">Integration Settings</a></li>
+  <li><strong>The Player ID</strong> of the player you wish to use, which can be found in the Studio tab in the ID column. It is also known as the UI Conf ID.</li>
+  <li><strong>The Entry ID</strong> for the entry you want to embed, which is found in the Content tab</li>
+  <li><strong>An HTML div</strong> in the page you want to embed your player</li>
 </ul>
 
 <p>Let’s walk through the steps for writing that embed code.</p>
@@ -222,7 +222,7 @@ rtp('get', 'campaign',true);
   <li>Load the player library with this script:</li>
 </ol>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdnapisec.kaltura.com/p/2196781/embedPlaykitJs/uiconf_id/41483031"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdnapisec.kaltura.com/p/000000/embedPlaykitJs/uiconf_id/22222222"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></figure>
 
 <ol>
   <li>The embed script contains the targetId, which is your div ID, as well as your partnerID, the uiConfId (player ID), and the entry ID.</li>
@@ -266,7 +266,7 @@ rtp('get', 'campaign',true);
       <span class="na">targetId</span><span class="p">:</span> <span class="s2">"kalturaPlayer"</span><span class="p">,</span>
       <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">partnerId</span><span class="p">:</span> <span class="mi">0000000</span><span class="p">,</span>
-        <span class="na">uiConfId</span><span class="p">:</span> <span class="mi">42929341</span>
+        <span class="na">uiConfId</span><span class="p">:</span> <span class="mi">22222222</span>
       <span class="p">},</span>
       <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">autoplay</span><span class="p">:</span> <span class="kc">true</span>
@@ -281,9 +281,9 @@ rtp('get', 'campaign',true);
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span></code></pre></figure>
 
-<p>Congrats! Running this page should show you a Kaltura Player loaded with the entry that you chose.</p>
+<p>Congrats! Running that page should show you a Kaltura Player loaded with the entry that you chose.</p>
 
-<p>Notice that this method is the <strong>Dynamic Embed</strong>, which is different than the aforementioned auto embed code, and is useful for cases when you want control runtime configuration dynamically. Click <a href="https://developer.kaltura.com/player/web/embed-types-web">here</a> to read more about embed types.</p>
+<p>Notice that this method is the <strong>Dynamic Embed</strong>, which is different than the aforementioned <strong>auto embed</strong> code, and is useful for cases when you want control runtime configuration dynamically. Click <a href="https://developer.kaltura.com/player/web/embed-types-web">here</a> to read more about embed types.</p>
     
       <h2 id="configuring-the-player">
         

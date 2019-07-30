@@ -1,0 +1,647 @@
+  <title>Player UI Events</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player UI Events" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player UI Events</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Jul 30 08:38:12 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playkit-js-ui/ui-events.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Jul 30 02:08:55 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Tue Jul 30 08:38:12 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<table>
+  <thead>
+    <tr>
+      <th>Events List</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#UI_CLICKED"><code class="highlighter-rouge">UI_CLICKED</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#UI_VISIBILITY_CHANGED"><code class="highlighter-rouge">UI_VISIBILITY_CHANGED</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_CLICKED_PLAY"><code class="highlighter-rouge">USER_CLICKED_PLAY</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_CLICKED_PAUSE"><code class="highlighter-rouge">USER_CLICKED_PAUSE</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_CLICKED_REWIND"><code class="highlighter-rouge">USER_CLICKED_REWIND</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_CLICKED_LIVE_TAG"><code class="highlighter-rouge">USER_CLICKED_LIVE_TAG</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_CLICKED_MUTE"><code class="highlighter-rouge">USER_CLICKED_MUTE</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_CLICKED_UNMUTE"><code class="highlighter-rouge">USER_CLICKED_UNMUTE</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_CHANGED_VOLUME"><code class="highlighter-rouge">USER_CHANGED_VOLUME</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_SELECTED_CAPTION_TRACK"><code class="highlighter-rouge">USER_SELECTED_CAPTION_TRACK</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_SELECTED_AUDIO_TRACK"><code class="highlighter-rouge">USER_SELECTED_AUDIO_TRACK</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_SELECTED_QUALITY_TRACK"><code class="highlighter-rouge">USER_SELECTED_QUALITY_TRACK</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_ENTERED_FULL_SCREEN"><code class="highlighter-rouge">USER_ENTERED_FULL_SCREEN</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_EXITED_FULL_SCREEN"><code class="highlighter-rouge">USER_EXITED_FULL_SCREEN</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_SELECTED_CAPTIONS_STYLE"><code class="highlighter-rouge">USER_SELECTED_CAPTIONS_STYLE</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_SELECTED_SPEED"><code class="highlighter-rouge">USER_SELECTED_SPEED</code></a></td>
+    </tr>
+    <tr>
+      <td><a href="#USER_SEEKED"><code class="highlighter-rouge">USER_SEEKED</code></a></td>
+    </tr>
+  </tbody>
+</table>
+      <h2 id="ui_clicked">
+        
+        
+          UI_CLICKED <a href="#ui_clicked"></a>
+        
+        
+      </h2>
+
+<p>Fires on any user interaction with the UI.</p>
+    
+      <h2 id="ui_visibility_changed">
+        
+        
+          UI_VISIBILITY_CHANGED <a href="#ui_visibility_changed"></a>
+        
+        
+      </h2>
+
+<p>Fires when the UI visibility state changes from visible to hidden or from hidden to visible.</p>
+    
+      <h3 id="payload-parameters">
+        
+        
+          Payload Parameters <a href="#payload-parameters"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">visible</code></td>
+      <td><code class="highlighter-rouge">boolean</code></td>
+      <td>True when the UI is shown, false when the UI is hidden</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_clicked_play">
+        
+        
+          USER_CLICKED_PLAY <a href="#user_clicked_play"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user initiated play by the UI.<br />
+It will fires neither by clicking the play button or by clicking the video area.</p>
+    
+      <h2 id="user_clicked_pause">
+        
+        
+          USER_CLICKED_PAUSE <a href="#user_clicked_pause"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user initiated pause by the UI.<br />
+It will fires neither by clicking the pause button or by clicking the video area.</p>
+    
+      <h2 id="user_clicked_rewind">
+        
+        
+          USER_CLICKED_REWIND <a href="#user_clicked_rewind"></a>
+        
+        
+      </h2>
+
+<p>Fires when the rewind button has been clicked by the user.</p>
+    
+      <h3 id="payload-parameters-1">
+        
+        
+          Payload Parameters <a href="#payload-parameters-1"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">from</code></td>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>The playback time before the click</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">to</code></td>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>The playback time after the click</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_clicked_live_tag">
+        
+        
+          USER_CLICKED_LIVE_TAG <a href="#user_clicked_live_tag"></a>
+        
+        
+      </h2>
+
+<p>Fires when the live tag button has been clicked by the user.<br /></p>
+    
+      <h2 id="user_clicked_mute">
+        
+        
+          USER_CLICKED_MUTE <a href="#user_clicked_mute"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user clicked the volume button and changed his state to mute.</p>
+    
+      <h2 id="user_clicked_unmute">
+        
+        
+          USER_CLICKED_UNMUTE <a href="#user_clicked_unmute"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user clicked the volume button and changed his state to unmute.</p>
+    
+      <h2 id="user_changed_volume">
+        
+        
+          USER_CHANGED_VOLUME <a href="#user_changed_volume"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user dragged the volume bar and changed its value.</p>
+    
+      <h3 id="payload-parameters-2">
+        
+        
+          Payload Parameters <a href="#payload-parameters-2"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">volume</code></td>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>The new volume</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_selected_caption_track">
+        
+        
+          USER_SELECTED_CAPTION_TRACK <a href="#user_selected_caption_track"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user selected a caption from the Captions dropdown.</p>
+    
+      <h3 id="payload-parameters-3">
+        
+        
+          Payload Parameters <a href="#payload-parameters-3"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">captionTrack</code></td>
+      <td><code class="highlighter-rouge">Object</code></td>
+      <td>The selected caption track</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_selected_audio_track">
+        
+        
+          USER_SELECTED_AUDIO_TRACK <a href="#user_selected_audio_track"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user selected an audio track from the Audio dropdown.</p>
+    
+      <h3 id="payload-parameters-4">
+        
+        
+          Payload Parameters <a href="#payload-parameters-4"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">audioTrack</code></td>
+      <td><code class="highlighter-rouge">Object</code></td>
+      <td>The selected audio track</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_selected_quality_track">
+        
+        
+          USER_SELECTED_QUALITY_TRACK <a href="#user_selected_quality_track"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user selected quality from the Quality dropdown.</p>
+    
+      <h3 id="payload-parameters-5">
+        
+        
+          Payload Parameters <a href="#payload-parameters-5"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">qualityTrack</code></td>
+      <td><code class="highlighter-rouge">Object</code></td>
+      <td>The selected quality track</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_entered_full_screen">
+        
+        
+          USER_ENTERED_FULL_SCREEN <a href="#user_entered_full_screen"></a>
+        
+        
+      </h2>
+
+<p>Fires when the UI is entered to full screen mode due to user gesture.<br /><br />
+This can be done neither by clicking the full screen button or by double clicking the video area.</p>
+    
+      <h2 id="user_exited_full_screen">
+        
+        
+          USER_EXITED_FULL_SCREEN <a href="#user_exited_full_screen"></a>
+        
+        
+      </h2>
+
+<p>Fires when the UI is exited from full screen mode due to user gesture.<br /><br />
+This can be done neither by clicking the full screen button or by double clicking the video area.</p>
+    
+      <h2 id="user_selected_captions_style">
+        
+        
+          USER_SELECTED_CAPTIONS_STYLE <a href="#user_selected_captions_style"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user selected a captions style from the Advanced Captions Settings menu.</p>
+    
+      <h3 id="payload-parameters-6">
+        
+        
+          Payload Parameters <a href="#payload-parameters-6"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">captionsStyle</code></td>
+      <td><code class="highlighter-rouge">Object</code></td>
+      <td>The selected captions style</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_selected_speed">
+        
+        
+          USER_SELECTED_SPEED <a href="#user_selected_speed"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user selected a certain speed from the Speed dropdown.</p>
+    
+      <h3 id="payload-parameters-7">
+        
+        
+          Payload Parameters <a href="#payload-parameters-7"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">speed</code></td>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>The selected speed</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h2 id="user_seeked">
+        
+        
+          USER_SEEKED <a href="#user_seeked"></a>
+        
+        
+      </h2>
+
+<p>Fires when the user initiated seek by dragging the seek bar.</p>
+    
+      <h3 id="payload-parameters-8">
+        
+        
+          Payload Parameters <a href="#payload-parameters-8"></a>
+        
+        
+      </h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">from</code></td>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>The playback time before the seek</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">to</code></td>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>The playback time after the seek</td>
+    </tr>
+  </tbody>
+</table>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

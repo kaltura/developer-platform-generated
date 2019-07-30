@@ -1,0 +1,445 @@
+  <title>Google Cast Android</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Google Cast Android" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Google Cast Android</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Jul 30 06:40:06 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/googlecast-android.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Jul 30 02:08:55 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Tue Jul 30 06:40:06 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h1 id="cast-with-v3-caf-receiver">
+        
+        
+          CAST with V3 CAF Receiver <a href="#cast-with-v3-caf-receiver"></a>
+        
+        
+      </h1>
+
+<p>The guide below walks you through casting with the <a href="https://developers.google.com/cast/docs/caf_receiver/">Cast Applications Framework V3</a>. You need to first configure the receiver before continuing with the steps below.</p>
+    
+      <h2 id="setting-up-the-cast-builder">
+        
+        
+          Setting up the Cast Builder: <a href="#setting-up-the-cast-builder"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// note that not all parameters are required. </span>
+<span class="n">CAFCastBuilder</span> <span class="n">ovpV3CastBuilder</span> <span class="o">=</span>  <span class="k">new</span> <span class="n">KalturaCastBuilder</span><span class="o">()</span>
+<span class="o">.</span><span class="na">setMediaEntryId</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getEntryId</span><span class="o">())</span>
+<span class="o">.</span><span class="na">setKs</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getKs</span><span class="o">())</span>
+<span class="o">.</span><span class="na">setStreamType</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">isLive</span><span class="o">()</span> <span class="o">?</span> <span class="n">CAFCastBuilder</span><span class="o">.</span><span class="na">StreamType</span><span class="o">.</span><span class="na">LIVE</span> <span class="o">:</span>  <span class="n">CAFCastBuilder</span><span class="o">.</span><span class="na">StreamType</span><span class="o">.</span><span class="na">VOD</span><span class="o">)</span>
+<span class="o">.</span><span class="na">setDefaultTextLangaugeCode</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getTextLanguage</span><span class="o">())</span>
+<span class="o">.</span><span class="na">setDefaultAudioLangaugeCode</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getAudioLanguage</span><span class="o">());</span>
+
+<span class="k">if</span> <span class="o">(!</span><span class="n">TextUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getVastAdTagUrl</span><span class="o">()))</span>   
+    <span class="o">{</span>
+        <span class="n">ovpV3CastBuilder</span><span class="o">.</span><span class="na">setAdsConfig</span><span class="o">(</span><span class="n">createAdsConfigVast</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getVastAdTagUrl</span><span class="o">()));</span>
+    <span class="o">}</span> 
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(!</span><span class="n">TextUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getVmapAdTagUrl</span><span class="o">()))</span>
+    <span class="o">{</span>
+        <span class="n">ovpV3CastBuilder</span><span class="o">.</span><span class="na">setAdsConfig</span><span class="o">(</span><span class="n">createAdsConfigVmap</span><span class="o">(</span><span class="n">converterOvpV3Cast</span><span class="o">.</span><span class="na">getVmapAdTagUrl</span><span class="o">()));</span>
+    <span class="o">}</span>
+<span class="n">MediaInfo</span> <span class="n">mediaInfo</span> <span class="o">=</span> <span class="n">ovpCastBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+    
+      <h2 id="adding-ads-to-the-builder-using-setadsconfig">
+        
+        
+          Adding Ads to the Builder using setAdsConfig: <a href="#adding-ads-to-the-builder-using-setadsconfig"></a>
+        
+        
+      </h2>
+    
+      <h2 id="vmap">
+        
+        
+          VMAP <a href="#vmap"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">AdsConfig</span> <span class="nf">createAdsConfigVmap</span><span class="o">(</span><span class="n">String</span> <span class="n">adTagUrl</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MediaInfoUtils</span><span class="o">.</span><span class="na">createAdsConfigVmap</span><span class="o">(</span><span class="n">adTagUrl</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+    
+      <h2 id="vast">
+        
+        
+          VAST <a href="#vast"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">AdsConfig</span> <span class="nf">createAdsConfigVast</span><span class="o">(</span><span class="n">String</span> <span class="n">adTagUrl</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MediaInfoUtils</span><span class="o">.</span><span class="na">createAdsConfigVastInPosition</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">adTagUrl</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Both Builder APIs support setting your own customized metadata as exposed in the Cast SDK using:</p>
+
+<p><code class="highlighter-rouge">cafCastBuilder.setMetadata(mediaMetadata);</code></p>
+
+<p>By default, however, it is not required, since these settings are already configured internally</p>
+    
+      <h2 id="loading-the-mediainfo">
+        
+        
+          Loading the MediaInfo <a href="#loading-the-mediainfo"></a>
+        
+        
+      </h2>
+
+<p>Once the app has a MediaInfo Object, it can call the Cast API to load this mediaInfo:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PendingResult</span><span class="o">&lt;</span><span class="n">RemoteMediaClient</span><span class="o">.</span><span class="na">MediaChannelResult</span><span class="o">&gt;</span> <span class="n">pendingResult</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="n">MediaLoadOptions</span> <span class="n">loadOptions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MediaLoadOptions</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">setAutoplay</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">setPlayPosition</span><span class="o">(</span><span class="n">mPlaybackStartPosition</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+<span class="n">pendingResult</span> <span class="o">=</span> <span class="n">remoteMediaClient</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">mediaInfo</span><span class="o">,</span><span class="n">loadOptions</span><span class="o">);</span>
+<span class="n">pendingResult</span><span class="o">.</span><span class="na">setResultCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">ResultCallback</span><span class="o">&lt;</span><span class="n">RemoteMediaClient</span><span class="o">.</span><span class="na">MediaChannelResult</span><span class="o">&gt;()</span> <span class="o">{</span>
+
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onResult</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">RemoteMediaClient</span><span class="o">.</span><span class="na">MediaChannelResult</span> <span class="n">mediaChannelResult</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="n">JSONObject</span> <span class="n">customData</span> <span class="o">=</span> <span class="n">mediaChannelResult</span><span class="o">.</span><span class="na">getCustomData</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">customData</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">"loadMediaInfo. customData = "</span> <span class="o">+</span> <span class="n">customData</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">"loadMediaInfo. customData == null"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">});</span>
+<span class="o">}</span>
+
+<span class="n">PendingResult</span><span class="o">&lt;</span><span class="n">RemoteMediaClient</span><span class="o">.</span><span class="na">MediaChannelResult</span><span class="o">&gt;</span> <span class="n">pendingResult</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="n">MediaLoadOptions</span> <span class="n">loadOptions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MediaLoadOptions</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">setAutoplay</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">setPlayPosition</span><span class="o">(</span><span class="n">mPlaybackStartPosition</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+<span class="n">pendingResult</span> <span class="o">=</span> <span class="n">remoteMediaClient</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">mediaInfo</span><span class="o">,</span><span class="n">loadOptions</span><span class="o">);</span>
+<span class="n">pendingResult</span><span class="o">.</span><span class="na">setResultCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">ResultCallback</span><span class="o">&lt;</span><span class="n">RemoteMediaClient</span><span class="o">.</span><span class="na">MediaChannelResult</span><span class="o">&gt;()</span> <span class="o">{</span>
+
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onResult</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">RemoteMediaClient</span><span class="o">.</span><span class="na">MediaChannelResult</span> <span class="n">mediaChannelResult</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="n">JSONObject</span> <span class="n">customData</span> <span class="o">=</span> <span class="n">mediaChannelResult</span><span class="o">.</span><span class="na">getCustomData</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">customData</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">"loadMediaInfo. customData = "</span> <span class="o">+</span> <span class="n">customData</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">"loadMediaInfo. customData == null"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">});</span>
+<span class="o">}</span>   </code></pre></figure>
+    
+      <h3 id="start-position">
+        
+        
+          Start Position <a href="#start-position"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li>The start position value should be given in milliseconds</li>
+  <li>For VOD and LIVE_DVR you can pass in any value that a is valid position in the stream</li>
+  <li>For LIVE, the given start position must be -1 so that the Cast player will know to begin the media from Live Edge</li>
+</ul>
+    
+      <h2 id="how-to-registerunregister-to-custom-events">
+        
+        
+          How to Register/Unregister to Custom Events <a href="#how-to-registerunregister-to-custom-events"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">try</span> <span class="o">{</span>
+    <span class="n">getCastSession</span><span class="o">().</span><span class="na">setMessageReceivedCallbacks</span><span class="o">(</span>
+            <span class="n">adsChannel</span><span class="o">.</span><span class="na">getNamespace</span><span class="o">(),</span>
+            <span class="n">adsChannel</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span>  <span class="s">"Exception while creating channel"</span><span class="o">);</span>
+    <span class="k">return</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">getCastSession</span><span class="o">().</span><span class="na">removeMessageReceivedCallbacks</span><span class="o">(</span><span class="n">adsChannel</span><span class="o">.</span><span class="na">getNamespace</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+    
+      <h2 id="receiving-ad-events">
+        
+        
+          Receiving Ad Events <a href="#receiving-ad-events"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">AdsChannel</span> <span class="kd">implements</span> <span class="n">Cast</span><span class="o">.</span><span class="na">MessageReceivedCallback</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getNamespace</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"urn:x-cast:com.kaltura.cast.playkit"</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMessageReceived</span><span class="o">(</span><span class="n">CastDevice</span> <span class="n">castDevice</span><span class="o">,</span> <span class="n">String</span> <span class="n">namespace</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//{"type":"event","event":"adbreakstart","payload":{"adBreak":{"type":"preroll","position":0,"numAds":1}}}</span>
+        <span class="c1">//{"type":"event","event":"adloaded","payload":{"ad":{"id":"GENERATED:0","url":"https://redirector.gvt1.com/videoplayback/id/5bad011a1282b323/itag/15/source/gfp_video_ads/requiressl/yes/acao/yes/mime/video%2Fmp4/ctier/L/ip/0.0.0.0/ipbits/0/expire/1540312045/sparams/ip,ipbits,expire,id,itag,source,requiressl,acao,mime,ctier/signature/B0C65CFC421ABB433C55D42BD833444B652AB66F.5305D980B5A87E86030908EBACC4C8E5D39C1050/key/ck2/file/file.mp4","contentType":"video/mp4","title":"External NCA1C1L1 Preroll","position":1,"duration":10,"clickThroughUrl":"https://pubads.g.doubleclick.net/pcs/click?xai=AKAOjsskuczQERjZ_IVOvH_LCehqzMQv_agXXw4iVAF1rOt7NO5EGaZsuA4m8icemkWAHDYvr-sUidNJ7eCA6KPU4aNA1d6VQ8MMQXzoMY07ZADCGNWqujJAlOc0H6SNuyngWMKEgRtEqHmYnY4DuJ47QuU4sqE93DUzr5CVBRXLUTAsjgnKQLJpVVu-oOIhBAuWFyEOjyGGkiX6tNcjwUJq2GaJ_gEg3ci_QPLy4WgVAU7W1-5Ef7NmIPuYanT9JTqtt9TcMZ1yRN4jm6A-Awqilthh6phenFscOG4&amp;sig=Cg0ArKJSzCT6OKUAhcpk&amp;adurl=https://developers.google.com/interactive-media-ads/docs/vastinspector_dual","linear":true,"skippable":false}}}</span>
+        <span class="c1">//{"type":"event","event":"admanifestloaded","payload":{"adBreaksPosition":[0,15,-1]}}</span>
+        <span class="c1">//{"type":"event","event":"adpaused"}</span>
+        <span class="c1">//{"type":"event","event":"adresumed"}</span>
+        <span class="c1">//{"type":"event","event":"adstarted"}</span>
+        <span class="c1">//{"type":"event","event":"adprogress","payload":{"adProgress":{"currentTime":0,"duration":10}}}</span>
+        <span class="c1">//{"type":"event","event":"adprogress","payload":{"adProgress":{"currentTime":6.863323,"duration":10}}}</span>
+        <span class="c1">//{"type":"event","event":"adfirstquartile"}</span>
+        <span class="c1">//{"type":"event","event":"admidpoint"}</span>
+        <span class="c1">//{"type":"event","event":"adthirdquartile"}</span>
+        <span class="c1">//{"type":"event","event":"adcompleted"}</span>
+        <span class="c1">//{"type":"event","event":"adbreakend"}</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"onMessageReceived: "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">TextUtils</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">message</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">JSONObject</span> <span class="n">jsonObj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">jsonObj</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">jsonObj</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"type"</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">jsonObj</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"event"</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"type = "</span> <span class="o">+</span> <span class="n">jsonObj</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"type"</span><span class="o">));</span>
+                    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"event: "</span> <span class="o">+</span> <span class="n">jsonObj</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"event"</span><span class="o">));</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="s">"adcanskip"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">jsonObj</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"event"</span><span class="o">)));{</span>
+                        <span class="c1">// ==&gt;here you can know you can enable skip buttonh that calles -  sendSkipAdMessage();</span>
+                    <span class="o">}</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">jsonObj</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"payload"</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="n">JSONObject</span> <span class="n">payloadJson</span> <span class="o">=</span> <span class="n">jsonObj</span><span class="o">.</span><span class="na">getJSONObject</span><span class="o">(</span><span class="s">"payload"</span><span class="o">);</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">payloadJson</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"adProgress"</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="n">JSONObject</span> <span class="n">adProgressJson</span> <span class="o">=</span> <span class="n">payloadJson</span><span class="o">.</span><span class="na">getJSONObject</span><span class="o">(</span><span class="s">"adProgress"</span><span class="o">);</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"adProgress currentTime = "</span>    <span class="o">+</span> <span class="n">adProgressJson</span><span class="o">.</span><span class="na">getDouble</span><span class="o">(</span><span class="s">"currentTime"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"XXX adProgress duration: "</span>        <span class="o">+</span> <span class="n">adProgressJson</span><span class="o">.</span><span class="na">getDouble</span><span class="o">(</span><span class="s">"duration"</span><span class="o">));</span>
+                        <span class="o">}</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">payloadJson</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"adBreak"</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="n">JSONObject</span> <span class="n">adBreakJson</span> <span class="o">=</span> <span class="n">payloadJson</span><span class="o">.</span><span class="na">getJSONObject</span><span class="o">(</span><span class="s">"adBreak"</span><span class="o">);</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"adBreak type = "</span>    <span class="o">+</span> <span class="n">adBreakJson</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"type"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"adBreak position: "</span> <span class="o">+</span> <span class="n">adBreakJson</span><span class="o">.</span><span class="na">getDouble</span><span class="o">(</span><span class="s">"position"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"adBreak numAds: "</span>   <span class="o">+</span> <span class="n">adBreakJson</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"numAds"</span><span class="o">));</span>
+                        <span class="o">}</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">payloadJson</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"ad"</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="n">JSONObject</span> <span class="n">adJson</span> <span class="o">=</span> <span class="n">payloadJson</span><span class="o">.</span><span class="na">getJSONObject</span><span class="o">(</span><span class="s">"ad"</span><span class="o">);</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad id = "</span>    <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"id"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad url: "</span>    <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"url"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad contentType: "</span>   <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"contentType"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad title: "</span>         <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"title"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad position: "</span>      <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getDouble</span><span class="o">(</span><span class="s">"position"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad duration: "</span>      <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getDouble</span><span class="o">(</span><span class="s">"duration"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad clickThroughUrl: "</span>   <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"clickThroughUrl"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad linear: "</span>        <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getBoolean</span><span class="o">(</span><span class="s">"linear"</span><span class="o">));</span>
+                            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"ad skippable: "</span>     <span class="o">+</span> <span class="n">adJson</span><span class="o">.</span><span class="na">getBoolean</span><span class="o">(</span><span class="s">"skippable"</span><span class="o">));</span>
+                        <span class="o">}</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">payloadJson</span><span class="o">.</span><span class="na">has</span><span class="o">(</span><span class="s">"adBreaksPosition"</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="n">JSONArray</span> <span class="n">adBreaksPositionArray</span> <span class="o">=</span> <span class="n">payloadJson</span><span class="o">.</span><span class="na">getJSONArray</span><span class="o">(</span><span class="s">"adBreaksPosition"</span><span class="o">);</span>
+                            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">adBreaksPositionArray</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                                <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"adBreaksPosition : "</span> <span class="o">+</span> <span class="n">adBreaksPositionArray</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">JSONException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Error "</span> <span class="o">+</span>  <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+    
+      <h2 id="sending-skip-ad-command">
+        
+        
+          Sending Skip Ad Command <a href="#sending-skip-ad-command"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">sendSkipAdMessage</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">String</span> <span class="n">skipAdMessage</span> <span class="o">=</span> <span class="s">"{\n"</span> <span class="o">+</span>
+                <span class="s">"  \"type\": \"action\",\n"</span> <span class="o">+</span>
+                <span class="s">"  \"action\": \"skipAd\"\n"</span> <span class="o">+</span>
+                <span class="s">"}"</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">adsChannel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">getCastSession</span><span class="o">().</span><span class="na">sendMessage</span><span class="o">(</span><span class="n">adsChannel</span><span class="o">.</span><span class="na">getNamespace</span><span class="o">(),</span> <span class="n">skipAdMessage</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setResultCallback</span><span class="o">(</span>
+                                <span class="k">new</span> <span class="n">ResultCallback</span><span class="o">&lt;</span><span class="n">Status</span><span class="o">&gt;()</span> <span class="o">{</span>
+                                    <span class="nd">@Override</span>
+                                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onResult</span><span class="o">(</span><span class="n">Status</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+                                        <span class="k">if</span> <span class="o">(!</span><span class="n">result</span><span class="o">.</span><span class="na">isSuccess</span><span class="o">())</span> <span class="o">{</span>
+                                            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Sending message failed"</span><span class="o">);</span>
+                                        <span class="o">}</span>
+                                    <span class="o">}</span>
+                                <span class="o">});</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Exception while sending message"</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

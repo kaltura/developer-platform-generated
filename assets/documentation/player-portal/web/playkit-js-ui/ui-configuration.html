@@ -1,0 +1,842 @@
+  <title>Player UI Configuration</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player UI Configuration" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player UI Configuration</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Jul 30 08:38:12 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playkit-js-ui/ui-configuration.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Jul 30 02:08:55 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Tue Jul 30 08:38:12 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>Configuration parameters could be provided upon instantiation of the UI manager instance.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Configuration here</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">uiManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">UIManager</span><span class="p">(</span><span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+</code></pre>
+</div>
+      <h4 id="configuration-structure">
+        
+        
+          Configuration Structure <a href="#configuration-structure"></a>
+        
+        
+      </h4>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">targetId:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+  </span><span class="err">debugActions:</span><span class="w"> </span><span class="err">boolean,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">forceTouchUI:</span><span class="w"> </span><span class="err">boolean,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">logLevel:</span><span class="w"> </span><span class="err">string,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">components:</span><span class="w"> </span><span class="err">Object,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">translations:</span><span class="w"> </span><span class="err">Object,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">locale:</span><span class="w"> </span><span class="err">Object</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h1>
+        
+        
+          #
+        
+        
+      </h1>
+    
+      <h3 id="configtargetid">
+        
+        
+          config.targetId <a href="#configtargetid"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default--">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default--"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-player-container-dom-element-id">
+        
+        
+          Description: Defines the player container DOM element ID. <a href="#description-defines-the-player-container-dom-element-id"></a>
+        
+        
+      </h5>
+
+<p>The UI manager needs this parameter since it renders the player UI below it.</p>
+    
+      <h3 id="configdebugactions">
+        
+        
+          config.debugActions <a href="#configdebugactions"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-boolean">
+        
+        
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-false">
+        
+        
+          Default: <code class="highlighter-rouge">false</code> <a href="#default-false"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-whether-to-print-the-fired-redux-actions">
+        
+        
+          Description: Whether to print the fired redux actions. <a href="#description-whether-to-print-the-fired-redux-actions"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configforcetouchui">
+        
+        
+          config.forceTouchUI <a href="#configforcetouchui"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-boolean-1">
+        
+        
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-false-1">
+        
+        
+          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-view-type-of-the-ui-mobile-or-desktop">
+        
+        
+          Description: Defines the view type of the UI (mobile or desktop). <a href="#description-defines-the-view-type-of-the-ui-mobile-or-desktop"></a>
+        
+        
+      </h5>
+
+<p>Useful for applications that wants to force mobile view of player UI.</p>
+    
+      <h3 id="configloglevel">
+        
+        
+          config.logLevel <a href="#configloglevel"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-1">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-error">
+        
+        
+          Default: <code class="highlighter-rouge">"ERROR"</code> <a href="#default-error"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-ui-log-level">
+        
+        
+          Description: Defines the UI log level. <a href="#description-defines-the-ui-log-level"></a>
+        
+        
+      </h5>
+
+<p>Possible values: <code class="highlighter-rouge">"DEBUG", "INFO", "TIME", "WARN", "ERROR", "OFF"</code></p>
+    
+      <h3 id="configtranslations">
+        
+        
+          config.translations <a href="#configtranslations"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-langkey-string-object">
+        
+        
+          Type: <code class="highlighter-rouge"><span class="p">{</span><span class="err">[langKey:</span><span class="w"> </span><span class="err">string]:</span><span class="w"> </span><span class="err">Object</span><span class="p">}</span></code> <a href="#type-langkey-string-object"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-see-enjson">
+        
+        
+          Default: <code class="highlighter-rouge">see en.json</code> <a href="#default-see-enjson"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-ui-translation-dictionary-configuration">
+        
+        
+          Description: Defines the UI translation dictionary configuration. <a href="#description-defines-the-ui-translation-dictionary-configuration"></a>
+        
+        
+      </h5>
+
+<p>Optional components to configure: <code class="highlighter-rouge">watermark</code>,<code class="highlighter-rouge">seekbar</code>, <code class="highlighter-rouge">fullscreen</code></p>
+    
+      <h3 id="configlocale">
+        
+        
+          config.locale <a href="#configlocale"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-2">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-2"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-en">
+        
+        
+          Default: <code class="highlighter-rouge">en</code> <a href="#default-en"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-ui-locale-configuration">
+        
+        
+          Description: Defines the UI locale configuration. <a href="#description-defines-the-ui-locale-configuration"></a>
+        
+        
+      </h5>
+
+<p>Determine the translation dictionary to be used</p>
+    
+      <h3 id="configcomponents">
+        
+        
+          config.components <a href="#configcomponents"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-object">
+        
+        
+          Type: <code class="highlighter-rouge">Object</code> <a href="#type-object"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default---1">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default---1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-ui-components-configuration">
+        
+        
+          Description: Defines the UI components configuration. <a href="#description-defines-the-ui-components-configuration"></a>
+        
+        
+      </h5>
+
+<p>Optional components to configure: <code class="highlighter-rouge">watermark</code>,<code class="highlighter-rouge">seekbar</code>, <code class="highlighter-rouge">fullscreen</code></p>
+    
+      <h3 id="configcomponentswatermark">
+        
+        
+          config.components.watermark <a href="#configcomponentswatermark"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-object-1">
+        
+        
+          Type: <code class="highlighter-rouge">Object</code> <a href="#type-object-1"></a>
+        
+        
+      </h5>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="err">img:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+   </span><span class="err">url:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+   </span><span class="err">placement:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+   </span><span class="err">timeout:</span><span class="w"> </span><span class="err">number</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="default">
+        
+        
+          Default: <a href="#default"></a>
+        
+        
+      </h5>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="err">img:</span><span class="w"> </span><span class="err">'',</span><span class="w">
+   </span><span class="err">url:</span><span class="w"> </span><span class="err">'',</span><span class="w">
+   </span><span class="err">placement:</span><span class="w"> </span><span class="err">'top-left',</span><span class="w">
+   </span><span class="err">timeout:</span><span class="w"> </span><span class="err">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="description-defines-a-watermark-component">
+        
+        
+          Description: Defines a watermark component. <a href="#description-defines-a-watermark-component"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentswatermarkimg">
+        
+        
+          config.components.watermark.img <a href="#configcomponentswatermarkimg"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-3">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-3"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-">
+        
+        
+          Default: <code class="highlighter-rouge">''</code> <a href="#default-"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-the-url-for-the-watermark-image">
+        
+        
+          Description: The URL for the watermark image. <a href="#description-the-url-for-the-watermark-image"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentswatermarkurl">
+        
+        
+          config.components.watermark.url <a href="#configcomponentswatermarkurl"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-4">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-4"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default--1">
+        
+        
+          Default: <code class="highlighter-rouge">''</code> <a href="#default--1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-the-url-to-open-on-clicking-the-watermark">
+        
+        
+          Description: The URL to open on clicking the watermark. <a href="#description-the-url-to-open-on-clicking-the-watermark"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentswatermarkplacement">
+        
+        
+          config.components.watermark.placement <a href="#configcomponentswatermarkplacement"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-5">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-5"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-top-left">
+        
+        
+          Default: <code class="highlighter-rouge">'top-left'</code> <a href="#default-top-left"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-the-placement-of-the-watermark">
+        
+        
+          Description: The placement of the watermark. <a href="#description-the-placement-of-the-watermark"></a>
+        
+        
+      </h5>
+
+<p>Possible values: <code class="highlighter-rouge">'top-left', 'top-right', 'bottom-left', 'bottom-right'</code></p>
+    
+      <h3 id="configcomponentswatermarktimeout">
+        
+        
+          config.components.watermark.timeout <a href="#configcomponentswatermarktimeout"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-number">
+        
+        
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-0">
+        
+        
+          Default: <code class="highlighter-rouge">0</code> <a href="#default-0"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-timeout-in-milliseconds-to-hide-the-watermark">
+        
+        
+          Description: Timeout (in milliseconds) to hide the watermark. <a href="#description-timeout-in-milliseconds-to-hide-the-watermark"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentsseekbar">
+        
+        
+          config.components.seekbar <a href="#configcomponentsseekbar"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-object-2">
+        
+        
+          Type: <code class="highlighter-rouge">Object</code> <a href="#type-object-2"></a>
+        
+        
+      </h5>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="err">thumbsSprite:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+   </span><span class="err">thumbsWidth:</span><span class="w"> </span><span class="err">number,</span><span class="w">
+   </span><span class="err">thumbsSlices:</span><span class="w"> </span><span class="err">number</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="description-defines-the-seekbar-component-optional-configuration">
+        
+        
+          Description: Defines the seekbar component optional configuration. <a href="#description-defines-the-seekbar-component-optional-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentsseekbarthumbssprite">
+        
+        
+          config.components.seekbar.thumbsSprite <a href="#configcomponentsseekbarthumbssprite"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-6">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-6"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default---2">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default---2"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-the-url-for-the-preview-thumbnail-image">
+        
+        
+          Description: The URL for the preview thumbnail image. <a href="#description-the-url-for-the-preview-thumbnail-image"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentsseekbarthumbswidth">
+        
+        
+          config.components.seekbar.thumbsWidth <a href="#configcomponentsseekbarthumbswidth"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-number-1">
+        
+        
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default---3">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default---3"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-the-width-of-each-preview-thumbnail-slice">
+        
+        
+          Description: The width of each preview thumbnail slice. <a href="#description-the-width-of-each-preview-thumbnail-slice"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentswatermarkthumbsslices">
+        
+        
+          config.components.watermark.thumbsSlices <a href="#configcomponentswatermarkthumbsslices"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-number-2">
+        
+        
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-2"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default---4">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default---4"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-the-amount-of-slices-that-the-preview-thumbnail-image-will-divided-into">
+        
+        
+          Description: The amount of slices that the preview thumbnail image will divided into. <a href="#description-the-amount-of-slices-that-the-preview-thumbnail-image-will-divided-into"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentsfullscreen-deprecated">
+        
+        
+          config.components.fullscreen (Deprecated) <a href="#configcomponentsfullscreen-deprecated"></a>
+        
+        
+      </h3>
+    
+      <h4 id="moved-under-playbackinbrowserfullscreen">
+        
+        
+          Moved under playback.inBrowserFullscreen <a href="#moved-under-playbackinbrowserfullscreen"></a>
+        
+        
+      </h4>
+    
+      <h5 id="type-object-3">
+        
+        
+          Type: <code class="highlighter-rouge">Object</code> <a href="#type-object-3"></a>
+        
+        
+      </h5>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">inBrowserFullscreenForIOS</span><span class="p">:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h5 id="default-1">
+        
+        
+          Default: <a href="#default-1"></a>
+        
+        
+      </h5>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">inBrowserFullscreenForIOS:</span><span class="w"> </span><span class="err">false;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="description-defines-a-fullscreen-component">
+        
+        
+          Description: Defines a fullscreen component. <a href="#description-defines-a-fullscreen-component"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcomponentsfullscreeninbrowserfullscreenforios">
+        
+        
+          config.components.fullscreen.inBrowserFullscreenForIOS <a href="#configcomponentsfullscreeninbrowserfullscreenforios"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-boolean-2">
+        
+        
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-2"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-false-2">
+        
+        
+          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-2"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-gives-the-ability-to-choose-an-in-browser-fullscreen-experience-on-ios-devices-which-will-replace-the-native-fullscreen-of-the-av-player">
+        
+        
+          Description: Gives the ability to choose an in-browser fullscreen experience on iOS devices which will replace the native fullscreen of the AV player. <a href="#description-gives-the-ability-to-choose-an-in-browser-fullscreen-experience-on-ios-devices-which-will-replace-the-native-fullscreen-of-the-av-player"></a>
+        
+        
+      </h5>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

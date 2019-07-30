@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 12:44:17 2019</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Jul 30 06:34:48 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 12:44:17 2019, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Tue Jul 30 06:34:48 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -141,42 +141,7 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-		<h1 id="download-to-go-for-android">
-        
-        
-          Download-to-Go for Android <a href="#download-to-go-for-android"></a>
-        
-        
-      </h1>
-
-<p>Download to Go (DTG) is an Android library that facilitates the download of video assets, with an emphasis on DASH and HLS.</p>
-
-<p>On this page:</p>
-<ul id="markdown-toc">
-  <li><a href="#download-to-go-for-android" id="markdown-toc-download-to-go-for-android">Download-to-Go for Android</a>    <ul>
-      <li><a href="#supported-video-formats" id="markdown-toc-supported-video-formats">Supported Video Formats</a></li>
-      <li><a href="#project-setup" id="markdown-toc-project-setup">Project Setup</a></li>
-      <li><a href="#download-states" id="markdown-toc-download-states">Download States</a></li>
-      <li><a href="#usage" id="markdown-toc-usage">Usage</a>        <ul>
-          <li><a href="#start-and-stop-the-service" id="markdown-toc-start-and-stop-the-service">Start and Stop the Service</a></li>
-          <li><a href="#new-download-sequence" id="markdown-toc-new-download-sequence">New Download Sequence</a></li>
-        </ul>
-      </li>
-      <li><a href="#track-selection" id="markdown-toc-track-selection">Track Selection</a>        <ul>
-          <li><a href="#sequence-diagram" id="markdown-toc-sequence-diagram">Sequence Diagram</a></li>
-          <li><a href="#interactive-selection-before-download-is-started" id="markdown-toc-interactive-selection-before-download-is-started">Interactive Selection Before Download is Started</a></li>
-          <li><a href="#interactive-selection-after-download-is-finished" id="markdown-toc-interactive-selection-after-download-is-finished">Interactive Selection After Download is Finished</a></li>
-          <li><a href="#preference-based-selection" id="markdown-toc-preference-based-selection">Preference-based Selection</a></li>
-          <li><a href="#track-selection-samples" id="markdown-toc-track-selection-samples">Track Selection Samples</a></li>
-          <li><a href="#default-selection" id="markdown-toc-default-selection">Default Selection</a></li>
-          <li><a href="#alternate-audio-size-with-hls" id="markdown-toc-alternate-audio-size-with-hls">Alternate audio size with HLS</a></li>
-        </ul>
-      </li>
-      <li><a href="#frequently-asked-questions" id="markdown-toc-frequently-asked-questions">Frequently asked Questions</a></li>
-    </ul>
-  </li>
-</ul>
-    
+		<p>Download to Go (DTG) is an Android library that facilitates the download of video assets, with an emphasis on DASH and HLS.</p>
       <h2 id="supported-video-formats">
         
         
@@ -230,22 +195,7 @@ rtp('get', 'campaign',true);
         
       </h2>
 
-<p><img src="states.svg" alt="" /></p>
-
-<div hidden="">
-	@startuml 
-	
-	[*] --&gt; NEW
-	NEW --&gt; INFO_LOADED: loadInfo()
-	INFO_LOADED --&gt; IN_PROGRESS: start()
-	IN_PROGRESS --&gt; PAUSED: pause()
-	PAUSED --&gt; IN_PROGRESS: start()
-	IN_PROGRESS --&gt; COMPLETE: finished
-	IN_PROGRESS --&gt; FAILED: failed
-	FAILED --&gt; IN_PROGRESS: start()
-	
-	@enduml
-</div>
+<p><img src="./images/states.svg" alt="Download States" /></p>
     
       <h2 id="usage">
         
@@ -257,11 +207,11 @@ rtp('get', 'campaign',true);
 
 <p>The following classes/interfaces are the public API of the library:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    com.kaltura.dtg.
-        - ContentManager
-        - DownloadItem
-        - DownloadState
-        - DownloadStateListener
+<div class="highlighter-rouge"><pre class="highlight"><code>com.kaltura.dtg.
+    - ContentManager
+    - DownloadItem
+    - DownloadState
+    - DownloadStateListener
 </code></pre>
 </div>
 
@@ -276,8 +226,8 @@ rtp('get', 'campaign',true);
         
         
       </h3>
-
-<p><img src="start-stop.svg" alt="" /></p>
+<p>h<br />
+<img src="start-stop.svg" alt="" /></p>
 
 <div hidden="">
   @startuml 
@@ -501,15 +451,6 @@ To mitigate, <code class="highlighter-rouge">ContentManager.Settings</code> incl
 </div>
 
 <p>The default is 64000 bps.</p>
-    
-      <h2 id="frequently-asked-questions">
-        
-        
-          Frequently asked Questions <a href="#frequently-asked-questions"></a>
-        
-        
-      </h2>
-<p>See the <a href="faq.md">FAQ</a>.</p>
 		
 </article>
 

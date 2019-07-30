@@ -1,0 +1,290 @@
+  <title>Adding a New Kaltura API Client Library Generator</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Adding a New Kaltura API Client Library Generator" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Adding a New Kaltura API Client Library Generator</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Thu Jul 25 07:43:13 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/client-library-generator.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed Jul 24 11:21:49 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Thu Jul 25 07:43:13 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (4 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The Kaltura API Client Library Generator is an automatic method of packaging the native API client libraries from the latest API code. The Kaltura Server provides a unique way of generating an always up-to-date native API Client Libraries by using an XML based reflection of Kaltura’s internal API classes (API services, actions, objects, Enums…).</p>
+      <h2 id="the-api-schema">
+        
+        
+          The API Schema <a href="#the-api-schema"></a>
+        
+        
+      </h2>
+
+<p>The updated version of the API description can be retrieved <a href="http://www.kaltura.com/api_v3/api_schema.php">here</a></p>
+
+<p>By parsing the schema.xml file,  it is possible to construct the complete structure of the objects in the system. A generic template to parse the schema file was created to ease the process of creating new parsers. The TemplateClientGenerator is a basic template for creating a custom client library generator, by providing the following:</p>
+
+<p>A high-level parsing of class types: Enums, Objects and Services (implemented in the generate() function).<br />
+A template of parsing functions to be overridden or replaced by the actual parser implementation to create the client library of the target programming language.<br />
+The schema structure</p>
+
+<p><strong>The schema is divided to three main sections:</strong></p>
+
+<ul>
+  <li><strong>Enums</strong> - Constants and Types defined and used by the system.</li>
+  <li><strong>Classes</strong> - Objects (Value Objects) defined and used by the system.</li>
+  <li><strong>Services</strong> - The Services and Actions defined and exposed by the system API to manipulate the Objects.</li>
+</ul>
+
+<p><em>Every node defines a respective part of the system (whether enum, class or service) and provides the following information:</em></p>
+
+<p><strong>Enums:</strong> Define name and value of the constant properties of the enum class.</p>
+
+<p><strong>Classes:</strong> Define name, variable type (string, int, etc.), if the property is readOnly (read) or insertOnly (write) and description of the class and it’s uses.</p>
+
+<p><strong>Services:</strong> Define a list of actions available, the parameters sent required by the action, the service and actions description and uses.<br />
+Creating a custom client library generator</p>
+    
+      <h2 id="creating-your-own">
+        
+        
+          Creating Your Own <a href="#creating-your-own"></a>
+        
+        
+      </h2>
+
+<p>To create your own customized Automatic Kaltura API Client Library, download the <a href="http://knowledge.kaltura.com/sites/default/files/dl_resources/client-library-generator-template.zip">TemplateClientGenerator project</a>.</p>
+    
+      <h3 id="the-template-files">
+        
+        
+          The Template Files <a href="#the-template-files"></a>
+        
+        
+      </h3>
+
+<p>The TemplateClientGenerator project includes the following files:</p>
+
+<p><strong>ClientGeneratorFromXml.php</strong> - Abstract class extended by the TemplateClientGenerator, provides base helper functions.</p>
+
+<p><strong>generate_client.php</strong> - Wrapper script to run the generator and test the client library creation - this class saves the files generated by the TemplateClientGenerator class to the disk.</p>
+
+<p><strong>TemplateClientGenerator.php</strong> - The Client Library Generator script, this class parses the <a href="http://www.kaltura.com/api_v3/api_schema.php">API reflection XML schema</a> and creates the client library files contents.</p>
+    
+      <h3 id="using-the-template-files">
+        
+        
+          Using the Template Files <a href="#using-the-template-files"></a>
+        
+        
+      </h3>
+
+<p>Either create a new class and extend TemplateClientGenerator.php or directly modify TemplateClientGenerator.php code.</p>
+
+<p>Change the following functions to create classes and files in your programming language of choice:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">writeEnum</code> - Parses Enum (types) classes.</li>
+  <li><code class="highlighter-rouge">writeObjectClass</code> - Parses Object (Value Objects) classes.</li>
+  <li><code class="highlighter-rouge">writeService</code> - Parses Services and actions (calls that can be performed on the objects)</li>
+  <li><code class="highlighter-rouge">writeMainClass</code> - Create the main class of the client library, may parse Services and actions.</li>
+  <li><code class="highlighter-rouge">writeProjectFile</code> - Create the project file (if needed).</li>
+</ul>
+
+<p>At the end of every function un-comment the following line:</p>
+
+<p><code class="highlighter-rouge">$this-&gt;addFile('path to new file', 'file contents');</code></p>
+
+<p>For every file you want to create in the generator,  call the method <code class="highlighter-rouge">addFile</code>. The <code class="highlighter-rouge">addFile</code> method adds all the files you have created into an Array, which will then be saved to disk to create your client library.</p>
+    
+      <h3 id="helper-functions">
+        
+        
+          Helper functions <a href="#helper-functions"></a>
+        
+        
+      </h3>
+
+<p>The ClientGeneratorFromXml also provides the following helper functions to ease development:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">setParam</code> / <code class="highlighter-rouge">getParam</code> - An interface to add custom parameters during generation (this can be used to create configurable client libraries, e.g. the flash and flex client libraries are generated from the same generator class, by default it creates the flash library, however, when passing a parameter ‘type’ with value of ‘flex_client’ the generator will create a Flex library).</li>
+  <li><code class="highlighter-rouge">endsWith</code> - Test if a given string ends with another string.</li>
+  <li><code class="highlighter-rouge">beginsWith</code> - Test if a given string starts with another string.</li>
+</ul>
+    
+      <h3 id="the-php-reflection-generator">
+        
+        
+          The PHP Reflection Generator <a href="#the-php-reflection-generator"></a>
+        
+        
+      </h3>
+
+<p>In addition to the method of using the schema XML, there is also a method of creating a Client Library Generator by extending the ClientGeneratorFromPhp class. The ClientGeneratorFromPhp class provides a reflection mechanism that doesn’t require the step of creating or downloading the schema XML. However, this method requires that the full server will be deployed and configured. This method should be treated as deprecated and avoided.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

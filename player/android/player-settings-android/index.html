@@ -1,0 +1,1175 @@
+<!DOCTYPE html><html><head>
+    <title>Player Settings - API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-68472312-3');
+</script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><meta name="title" content="Player Settings - API Documentation"><meta name="description" content="undefined"><meta name="keywords" content=""><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <label>One Time Authentication code</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="OTP">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/homepage/assets/images/Kaltura-logo.png">
+        <span class="brand-subtitle">Developer</span>
+      </a>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+          <a href="api-docs">API Docs</a>
+        </li>
+        <li class="navbar-link">
+          <a href="console">API Console</a>
+        </li>
+        <li class="navbar-link workflows-link">
+          <a href="workflows">Workflows</a>
+        </li>
+        <!--li class="navbar-link">
+          <a href="#">Player</a>
+        </li-->
+        <li class="navbar-link">
+          <a href="api-docs/Client_Libraries">Client Libraries</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Getting Started with the Player SDK" href="/player/android/getting-started-android"><span class="ng-tns-c5-0" innerhtml="Getting Started with the Player SDK">Getting Started with the Player SDK</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Events" href="/player/android/player-events-android"><span class="ng-tns-c5-1" innerhtml="Player Events">Player Events</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-2 active ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Settings" href="/player/android/player-settings-android"><span class="ng-tns-c5-2" innerhtml="Player Settings">Player Settings</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Configuration" href="/player/android/player-configuration-android"><span class="ng-tns-c5-3" innerhtml="Player Configuration">Player Configuration</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Security Provider" href="/player/android/security-provider-android"><span class="ng-tns-c5-4" innerhtml="Security Provider">Security Provider</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Download-to-go" href="/player/android/Download-to-go-android"><span class="ng-tns-c5-5" innerhtml="Download-to-go">Download-to-go</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Player UI Tutorial" href="/player/android/player-ui-android"><span class="ng-tns-c5-6" innerhtml="Player UI Tutorial">Player UI Tutorial</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura Android Player Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Player Settings</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>Player Settings for Android</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Player Settings for Android">
+    <meta property="st:published_at" content="">
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+
+
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+
+
+
+
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Player Settings for Android</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Jul 30 06:34:48 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Tue Jul 30 06:34:48 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<div class="highlighter-rouge"><pre class="highlight"><code>    interface Settings {
+        /**
+         * Set the Player's contentRequestAdapter.
+         *
+         * @param contentRequestAdapter - request adapter.
+         * @return - Player Settings.
+         */
+        Settings setContentRequestAdapter(PKRequestParams.Adapter contentRequestAdapter);
+
+        /**
+         * Set the Player's licenseRequestAdapter.
+         *
+         * @param licenseRequestAdapter - request adapter.
+         * @return - Player Settings.
+         */
+        Settings setLicenseRequestAdapter(PKRequestParams.Adapter licenseRequestAdapter);
+
+        /**
+         * Enable/disable cea-608 text tracks.
+         * By default they are disabled.
+         * Note! Once set, this value will be applied to all mediaSources for that instance of Player.
+         * In order to disable/enable it again, you should update that value once again.
+         * Otherwise it will stay in the previous state.
+         *
+         * @param cea608CaptionsEnabled - should cea-608 track should be enabled.
+         * @return - Player Settings.
+         */
+        Settings setCea608CaptionsEnabled(boolean cea608CaptionsEnabled);
+
+        /**
+         * Enable/disable MPGA audio tracks.
+         * By default they are disabled.
+         * Note! Once set, this value will be applied to all mediaSources for that instance of Player.
+         * In order to disable/enable it again, you should update that value once again.
+         * Otherwise it will stay in the previous state.
+         *
+         * @param mpgaAudioFormatEnabled - should Enable MPGA Audio track.
+         * @return - Player Settings.
+         */
+        Settings setMpgaAudioFormatEnabled(boolean mpgaAudioFormatEnabled);
+
+        /**
+         * Decide if player should use {@link android.view.TextureView} as primary surface
+         * to render the video content. If set to false, will use the {@link android.view.SurfaceView} instead.
+         * Note!!! Use this carefully, because {@link android.view.TextureView} is more expensive and not DRM
+         * protected. But it allows dynamic animations/scaling e.t.c on the player. By default it will be always set
+         * to false.
+         *
+         * @param useTextureView - true if should use {@link android.view.TextureView}.
+         * @return - Player Settings.
+         */
+        Settings useTextureView(boolean useTextureView);
+
+        /**
+         * Decide if player should do cross protocol redirect or not. By default it will be always set
+         * to false.
+         *
+         * @param crossProtocolRedirectEnabled - true if should do cross protocol redirect.
+         * @return - Player Settings.
+         */
+        Settings setAllowCrossProtocolRedirect(boolean crossProtocolRedirectEnabled);
+
+        /**
+         * Decide if player should play clear lead content
+         *
+         * @param allowClearLead - should enable/disable clear lead playback default false
+         * @return - Player Settings.
+         */
+        Settings allowClearLead(boolean allowClearLead);
+
+        /**
+         * Decide if player should use secure rendering on the surface.
+         * Known limitation - when useTextureView set to true and isSurfaceSecured set to true -
+         * secure rendering will have no effect.
+         *
+         * @param isSurfaceSecured - should enable/disable secure rendering
+         * @return - Player Settings.
+         */
+        Settings setSecureSurface(boolean isSurfaceSecured);
+
+        /**
+         * Decide the Ad will be auto played when comes to foreground from background
+         *
+         * @param autoPlayOnResume true if it is autoplayed or else false, default is TRUE
+         * @return Player Settings
+         */
+        Settings setAdAutoPlayOnResume(boolean autoPlayOnResume);
+
+        /**
+         * Set the player buffers size
+         *
+         * @param loadControlBuffers LoadControlBuffers
+         * @return Player Settings
+         */
+        Settings setPlayerBuffers(LoadControlBuffers loadControlBuffers);
+
+        /**
+         * Set the Player's VR/360 support
+         *
+         * @param vrPlayerEnabled - If 360 media should be played on VR player or default player - default == true.
+         * @return - Player Settings.
+         */
+        Settings setVRPlayerEnabled(boolean vrPlayerEnabled);
+
+        /**
+         * Set the Player's preferredAudioTrackConfig.
+         *
+         * @param preferredAudioTrackConfig - AudioTrackConfig.
+         * @return - Player Settings.
+         */
+        Settings setPreferredAudioTrack(PKTrackConfig preferredAudioTrackConfig);
+
+        /**
+         * Set the Player's preferredTextTrackConfig.
+         *
+         * @param preferredTextTrackConfig - TextTrackConfig.
+         * @return - Player Settings.
+         */
+        Settings setPreferredTextTrack(PKTrackConfig preferredTextTrackConfig);
+
+        /**
+         * Set the Player's PreferredMediaFormat.
+         *
+         * @param preferredMediaFormat - PKMediaFormat.
+         * @return - Player Settings.
+         */
+        Settings setPreferredMediaFormat(PKMediaFormat preferredMediaFormat);
+
+        /**
+         * Set the Player's Subtitles
+         *
+         * @param subtitleStyleSettings - SubtitleStyleSettings
+         * @return - Player Settings
+         */
+        Settings setSubtitleStyle(SubtitleStyleSettings subtitleStyleSettings);
+    }  
+</code></pre>
+</div>
+
+<p>Once you created a player instance you can set the above settings on it.</p>
+      <h2 id="example">
+        
+        
+          Example <a href="#example"></a>
+        
+        
+      </h2>
+    
+      <h3 id="create-a-player">
+        
+        
+          Create a player: <a href="#create-a-player"></a>
+        
+        
+      </h3>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">Player</span> <span class="n">player</span> <span class="o">=</span> <span class="n">PlayKitManager</span><span class="o">.</span><span class="na">loadPlayer</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">pluginConfigs</span><span class="o">);</span>
+</code></pre>
+</div>
+    
+      <h2 id="apply-player-settings-if-required">
+        
+        
+          Apply Player Settings if required: <a href="#apply-player-settings-if-required"></a>
+        
+        
+      </h2>
+    
+      <h3 id="enable-crossprotocolredirect">
+        
+        
+          Enable crossProtocolRedirect <a href="#enable-crossprotocolredirect"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-1">
+        
+        
+          Example: <a href="#example-1"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> //Configure if to player allow http/https mix.
+ player.getSettings().setAllowCrossProtocolRedirect(crossProtocolRedirectEnabled); // default is false
+</code></pre>
+</div>
+    
+      <h3 id="enable-drm-clear-lead-playback">
+        
+        
+          Enable DRM Clear Lead Playback <a href="#enable-drm-clear-lead-playback"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-2">
+        
+        
+          Example: <a href="#example-2"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> //Configure if player will start playing clear lead in DRM content 
+ player.getSettings(). allowClearLead(true/false); // default is false
+</code></pre>
+</div>
+    
+      <h3 id="enable-secure-surface">
+        
+        
+          Enable Secure Surface <a href="#enable-secure-surface"></a>
+        
+        
+      </h3>
+
+<p>In case App wants to block ability to take screen capture</p>
+    
+      <h5 id="example-3">
+        
+        
+          Example: <a href="#example-3"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setSecureSurface(isSurfaceSecured); // default is false
+</code></pre>
+</div>
+    
+      <h3 id="configure-players-preferredmediaformat">
+        
+        
+          Configure Player’s PreferredMediaFormat. <a href="#configure-players-preferredmediaformat"></a>
+        
+        
+      </h3>
+
+<p>In the case where the Media Entry contains multiple sources, the player will attempt to use formats in this priority order:</p>
+<ul>
+  <li>DASH (mpd)</li>
+  <li>HLS</li>
+  <li>WVM</li>
+  <li>MP4</li>
+  <li>MP3</li>
+</ul>
+
+<p>In order to force a Media Format that is different than the priority list, use <code class="highlighter-rouge">setPreferredMediaFormat</code> with the desired type:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>player.getSettings().setPreferredMediaFormat(PKMediaFormat.mp4);
+</code></pre>
+</div>
+<p>Making this call, for example, would move MP4 format to the top of the priority list.</p>
+    
+      <h3 id="configure-player-load-control">
+        
+        
+          Configure Player Load Control <a href="#configure-player-load-control"></a>
+        
+        
+      </h3>
+
+<p>Using builder API you can create LoadControl Buffers with the default ExoPlayer values<br>
+then it is possible configure any parameter from the LoadControlBuffers Object.</p>
+
+<p>Defaults can be found here:<br>
+<a href="https://github.com/google/ExoPlayer/blob/release-v2/library/core/src/main/java/com/google/android/exoplayer2/DefaultLoadControl.java">Defaults</a></p>
+    
+      <h5 id="example-4">
+        
+        
+          Example: <a href="#example-4"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>             LoadControlBuffers loadControlBuffers = new LoadControlBuffers().
+                    setMinPlayerBufferMs(2000).
+                    setMaxPlayerBufferMs(45000).
+                    setBackBufferDurationMs(2000).
+                    setMinBufferAfterReBufferMs(2000).
+                    setMinBufferAfterInteractionMs(2000).
+                    setRetainBackBufferFromKeyframe(true);
+                    
+            player.getSettings().setPlayerBuffers(loadControlBuffers);
+</code></pre>
+</div>
+    
+      <h3 id="configure-if-to-use-textureview-instead-of-surface-view">
+        
+        
+          Configure if to use TextureView instead of surface view <a href="#configure-if-to-use-textureview-instead-of-surface-view"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-5">
+        
+        
+          Example: <a href="#example-5"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().useTextureView(false); // default is false
+</code></pre>
+</div>
+    
+      <h3 id="enable-cea608captions">
+        
+        
+          Enable Cea608Captions <a href="#enable-cea608captions"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-6">
+        
+        
+          Example: <a href="#example-6"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> //Configure if to consider Cea608Captions which exist stream for text track selection.
+ player.getSettings().setCea608CaptionsEnabled(false); // default is false
+</code></pre>
+</div>
+    
+      <h3 id="configure-kalturaplaybackrequestadapter">
+        
+        
+          Configure KalturaPlaybackRequestAdapter <a href="#configure-kalturaplaybackrequestadapter"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-7">
+        
+        
+          Example: <a href="#example-7"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> //Configure different app name/domain in KalturaPlaybackRequestAdapter which allows adapting the request parameters before sending network requests
+ KalturaPlaybackRequestAdapter.install(player, "yourApplicationName"); // default is app package name
+</code></pre>
+</div>
+    
+      <h3 id="configure-kalturaudrmlicenserequestadapter">
+        
+        
+          Configure KalturaUDRMLicenseRequestAdapter <a href="#configure-kalturaudrmlicenserequestadapter"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-8">
+        
+        
+          Example: <a href="#example-8"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> //configure different app name/domain in KalturaUDRMLicenseRequestAdapter which allows adapting the request parameters before sending DRM requests
+ KalturaUDRMLicenseRequestAdapter.install(player, "yourApplicationName"); // default is app package name
+</code></pre>
+</div>
+    
+      <h3 id="enable---ad-will-auto-play-on-resume">
+        
+        
+          Enable - Ad will auto play on resume <a href="#enable---ad-will-auto-play-on-resume"></a>
+        
+        
+      </h3>
+
+<p>In some cases where app does not expose play pause API on ads this API will do the auto play after resume from background</p>
+    
+      <h5 id="example-9">
+        
+        
+          Example: <a href="#example-9"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setAdAutoPlayOnResume(autoPlayOnResume);
+</code></pre>
+</div>
+    
+      <h3 id="setvrplayerenabledboolean-vrplayerenabled">
+        
+        
+          setVRPlayerEnabled(boolean vrPlayerEnabled); <a href="#setvrplayerenabledboolean-vrplayerenabled"></a>
+        
+        
+      </h3>
+
+<p>If case 360 media should be played on VR player or default player - default is true</p>
+    
+      <h5 id="example-10">
+        
+        
+          Example: <a href="#example-10"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setVRPlayerEnabled(vrPlayerEnabled);
+</code></pre>
+</div>
+    
+      <h3 id="configure-preferred-text-tracks--default-is-no-captions-displayed">
+        
+        
+          Configure preferred TEXT TRACKS – Default is no captions displayed. <a href="#configure-preferred-text-tracks--default-is-no-captions-displayed"></a>
+        
+        
+      </h3>
+    
+      <h5 id="example-11">
+        
+        
+          Example: <a href="#example-11"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF)); // no text tracks
+ //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("hi")); // select specific track lang if not exist select manifest default if exist else the first from manifest
+ player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO)); // select the track by locale if does not exist manifest default
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> /Configure preferred AUDIO TRACKS - Default is Stream's default
+
+ //player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF); // default audio track (Done automatically actually)
+ //player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("ru")); // select specific track lang if not exist select manifest default
+ player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO));
+</code></pre>
+</div>
+    
+      <h2 id="set-preferred-audiotext-track">
+        
+        
+          Set Preferred Audio/Text Track <a href="#set-preferred-audiotext-track"></a>
+        
+        
+      </h2>
+
+<p>The player allows you to set the preferred language audio/text by instantiating the <code class="highlighter-rouge">PKTrackConfig</code>, which is created via the builder method.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> public PKTrackConfig setTrackLanguage(String trackLanguage)
+ public PKTrackConfig setPreferredMode(@NonNull Mode preferredMode)
+</code></pre>
+</div>
+<p>Language options are:</p>
+<ul>
+  <li>Explicitly setting the language code</li>
+  <li>Auto, which sets the language based on location, if available.</li>
+  <li>Default, which contains no text and uses the first available audio track.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> PKTrackConfig trackConfig = new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF);
+ PKTrackConfig trackConfig = new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO);
+ PKTrackConfig trackConfig = new  PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("ru")
+</code></pre>
+</div>
+
+<p>Once we have the <code class="highlighter-rouge">PKTrackConfig</code> object we can use it as parameter for the API.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>player.getSettings().setPreferredAudioTrack(preferredAudioTrackConfig)
+player.getSettings().setPreferredTextTrack(preferredTextTrackConfig)
+</code></pre>
+</div>
+    
+      <h3 id="tracks-configuration-possibilities">
+        
+        
+          Tracks Configuration possibilities <a href="#tracks-configuration-possibilities"></a>
+        
+        
+      </h3>
+    
+      <h4 id="there-are-3-modes-available">
+        
+        
+          There are 3 modes available: <a href="#there-are-3-modes-available"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">OFF</code> - for Text tracks it will cancel text tracks display for audio it will select the default from the manifest</li>
+  <li><code class="highlighter-rouge">AUTO</code> - SDK will check if the stream has audio/text track that matches the device locale and will select it else it will take stream default</li>
+  <li><code class="highlighter-rouge">SELECTION</code> - this mode requires to set the language explicitly (2 or 3 letters)  if this language does not exist SDK will take the streams<br>
+default Audio/Text track</li>
+</ul>
+    
+      <h4 id="note">
+        
+        
+          NOTE!!! <a href="#note"></a>
+        
+        
+      </h4>
+<p>The languages that are expected by player should match the SO 639-X codes definition</p>
+    
+      <h2 id="subtitle-sideloading-for-player">
+        
+        
+          Subtitle Sideloading for Player <a href="#subtitle-sideloading-for-player"></a>
+        
+        
+      </h2>
+
+<blockquote>
+  <p>Since Playkit version 3.9.0</p>
+</blockquote>
+
+<p>To load Subtitle from external source for the player, need to create a <code class="highlighter-rouge">List</code> of <code class="highlighter-rouge">PKExternalSubtitle</code> and then pass it to <code class="highlighter-rouge">PKMediaEntry</code> object.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>PKExternalSubtitle pkExternalSubtitle = new PKExternalSubtitle()
+                .setUrl("http://URL_OF_EXTERNAL_SUBTITLE.vtt")
+                .setMimeType(PKSubtitleFormat.vtt)
+                .setLabel("de")
+                .setLanguage("deu");
+mList.add(pkExternalSubtitle);
+
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mediaEntry.setExternalSubtitleList(mList);
+</code></pre>
+</div>
+<p>Use <code class="highlighter-rouge">setDefault()</code> while creating <code class="highlighter-rouge">PKExternalSubtitle</code> to make it default subtitle.<br>
+<code class="highlighter-rouge">TEXT_VTT</code> and <code class="highlighter-rouge">APPLICATION_SUBRIP</code> mime-types are supported for subtitles.</p>
+    
+      <h2 id="subtitle-styles-for-player">
+        
+        
+          Subtitle Styles for Player <a href="#subtitle-styles-for-player"></a>
+        
+        
+      </h2>
+
+<p>To configure Subtitles to the player, first need to set the Subtitles using <code class="highlighter-rouge">settings</code> from <code class="highlighter-rouge">player</code>object.<br>
+While creating <code class="highlighter-rouge">SubtitleStyleSettings</code> object, need to pass <code class="highlighter-rouge">subtitleStyleName</code> param in constructor.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings("MyCustomSubtitleStyle");
+player.getSettings().setSubtitleStyle(subtitleStyleSettings);
+</code></pre>
+</div>
+
+<p>To update the Subtitles call <code class="highlighter-rouge">updateSubtitleStyle()</code> using only <code class="highlighter-rouge">player</code> object. Use updated <code class="highlighter-rouge">subtitleStyleSettings</code> object.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>player.updateSubtitleStyle(subtitleStyleSettings);
+</code></pre>
+</div>
+
+<p>Using builder pattern for setters in <code class="highlighter-rouge">subtitleStyleSettings</code>, Following Styles can be applied,</p>
+
+<ul>
+  <li><code class="highlighter-rouge">setTextColor</code> - Change subtitle text color</li>
+  <li><code class="highlighter-rouge">setBackgroundColor</code> - Change subtitle background color</li>
+  <li><code class="highlighter-rouge">setEdgeColor</code> - Change subtitle text edge color</li>
+  <li>
+    <p><code class="highlighter-rouge">setWindowColor</code> - Change subtitle window color</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">setEdgeType</code> - Change subtitle Edge types using <code class="highlighter-rouge">enum SubtitleStyleEdgeType</code> with the values <code class="highlighter-rouge">EDGE_TYPE_NONE, EDGE_TYPE_OUTLINE, EDGE_TYPE_DROP_SHADOW, EDGE_TYPE_RAISED, EDGE_TYPE_DEPRESSED;</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">setTextSizeFraction</code> - Change subtitle text size fraction using <code class="highlighter-rouge">enum SubtitleTextSizeFraction</code> with the values <code class="highlighter-rouge">SUBTITLE_FRACTION_50, SUBTITLE_FRACTION_75, SUBTITLE_FRACTION_100, SUBTITLE_FRACTION_125, SUBTITLE_FRACTION_150, SUBTITLE_FRACTION_200</code></p>
+  </li>
+  <li><code class="highlighter-rouge">setTypeface</code> - Change subtitle typeface using <code class="highlighter-rouge">enum SubtitleStyleTypeface</code> with the values <code class="highlighter-rouge">DEFAULT, DEFAULT_BOLD, MONOSPACE, SERIF, SANS_SERIF</code></li>
+</ul>
+    
+      <h4 id="example-12">
+        
+        
+          Example <a href="#example-12"></a>
+        
+        
+      </h4>
+
+<p>To set the Subtitles,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings("MyCustomSubtitleStyle")
+                    .setBackgroundColor(Color.BLUE)
+                    .setTextColor(Color.WHITE)
+                    .setTextSizeFraction(SubtitleStyleSettings.SubtitleTextSizeFraction.SUBTITLE_FRACTION_50)
+                    .setWindowColor(Color.YELLOW)
+                    .setEdgeColor(Color.BLUE)
+                    .setTypeface(SubtitleStyleSettings.SubtitleStyleTypeface.MONOSPACE)
+                    .setEdgeType(SubtitleStyleSettings.SubtitleStyleEdgeType.EDGE_TYPE_DROP_SHADOW);
+
+player.getSettings().setSubtitleStyle(subtitleStyleSettings);
+</code></pre>
+</div>
+
+<p>To update the existing Subtitles,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings("MyNewCustomSubtitleStyle")
+                        .setBackgroundColor(Color.WHITE)
+                        .setTextColor(Color.RED)
+                        .setTextSizeFraction(SubtitleStyleSettings.SubtitleTextSizeFraction.SUBTITLE_FRACTION_100)
+                        .setWindowColor(Color.BLUE)
+                        .setEdgeColor(Color.BLUE)
+                        .setTypeface(SubtitleStyleSettings.SubtitleStyleTypeface.SANS_SERIF)
+                        .setEdgeType(SubtitleStyleSettings.SubtitleStyleEdgeType.EDGE_TYPE_DROP_SHADOW);
+
+player.updateSubtitleStyle(subtitleStyleSettings);
+
+</code></pre>
+</div>
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
+</div><!----><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+<div id="KalturaFooter" class="w-section footer-section">
+  <div class="w-container container footer-container">
+    <div class="row">
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#vpaasLinks">VPaaS<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="vpaasLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a Free Trial</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#toolsLinks">Tools<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="toolsLinks" class="collapse">
+          <a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/api-docs/Client_Libraries">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#resourcesLinks">Resources<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="resourcesLinks" class="collapse">
+          <a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#communityLinks">Community<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="communityLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a>
+        </div>
+        <div class="secondary-links">
+          <h5 class="footer-headings footer-heading-margin"><a data-toggle="collapse" data-target="#openSourceLinks">Open Source<i class="fa fa-chevron-up"></i></a></h5>
+          <div id="openSourceLinks" class="collapse">
+            <a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kaltura-links">
+    <div class="container">
+      <div class="row">
+        <div class="col col-xs-12 col-sm-4">
+          <img src="/homepage/assets/images/Kaltura-Logo-white.png">
+        </div>
+        <div class="col col-xs-12 col-sm-4 footer-last-links-column">
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a>
+          <a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a>
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a>
+        </div>
+        <div class="social-icon-container col col-xs-12 col-sm-4">
+          <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a>
+          <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a>
+          <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a>
+          <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-container container copyright-container">
+    <div class="row">
+      <div class="col col-xs-12 copyright-column">
+        <div class="footer-copyright">Copyright © <span id="KalturaYear"></span> Kaltura Inc.</div>
+        <script>
+          document.getElementById('KalturaYear').innerHTML = (new Date()).getFullYear();
+        </script>
+        <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners.
+          <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/player-portal/android/player-settings-android.html&q;:null,&q;G.http://localhost:3333/assets/documentation/player-portal/android/player-settings-android.html&q;:{&q;body&q;:&q;  &l;title&g;Player Settings for Android&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Player Settings for Android\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;script type=\&q;text/javascript\&q;&g;\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Player Settings for Android&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Tue Jul 30 06:34:48 2019&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Avital&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Tue Mar 19 11:23:35 2019, By: Avital&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Tue Jul 30 06:34:48 2019, By &l;span class=\&q;commit-author\&q;&g;Avital&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Avital (2 commits) (&l;a href=\&q;mailto:avital.tzubeli@kaltura.com\&q;&g;avital.tzubeli@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;tzubeli (3 commits) (&l;a href=\&q;mailto:avital.tzubeli@kaltura.com\&q;&g;avital.tzubeli@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n\t\t&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;    interface Settings {\n        /**\n         * Set the Player&s;s contentRequestAdapter.\n         *\n         * @param contentRequestAdapter - request adapter.\n         * @return - Player Settings.\n         */\n        Settings setContentRequestAdapter(PKRequestParams.Adapter contentRequestAdapter);\n\n        /**\n         * Set the Player&s;s licenseRequestAdapter.\n         *\n         * @param licenseRequestAdapter - request adapter.\n         * @return - Player Settings.\n         */\n        Settings setLicenseRequestAdapter(PKRequestParams.Adapter licenseRequestAdapter);\n\n        /**\n         * Enable/disable cea-608 text tracks.\n         * By default they are disabled.\n         * Note! Once set, this value will be applied to all mediaSources for that instance of Player.\n         * In order to disable/enable it again, you should update that value once again.\n         * Otherwise it will stay in the previous state.\n         *\n         * @param cea608CaptionsEnabled - should cea-608 track should be enabled.\n         * @return - Player Settings.\n         */\n        Settings setCea608CaptionsEnabled(boolean cea608CaptionsEnabled);\n\n        /**\n         * Enable/disable MPGA audio tracks.\n         * By default they are disabled.\n         * Note! Once set, this value will be applied to all mediaSources for that instance of Player.\n         * In order to disable/enable it again, you should update that value once again.\n         * Otherwise it will stay in the previous state.\n         *\n         * @param mpgaAudioFormatEnabled - should Enable MPGA Audio track.\n         * @return - Player Settings.\n         */\n        Settings setMpgaAudioFormatEnabled(boolean mpgaAudioFormatEnabled);\n\n        /**\n         * Decide if player should use {@link android.view.TextureView} as primary surface\n         * to render the video content. If set to false, will use the {@link android.view.SurfaceView} instead.\n         * Note!!! Use this carefully, because {@link android.view.TextureView} is more expensive and not DRM\n         * protected. But it allows dynamic animations/scaling e.t.c on the player. By default it will be always set\n         * to false.\n         *\n         * @param useTextureView - true if should use {@link android.view.TextureView}.\n         * @return - Player Settings.\n         */\n        Settings useTextureView(boolean useTextureView);\n\n        /**\n         * Decide if player should do cross protocol redirect or not. By default it will be always set\n         * to false.\n         *\n         * @param crossProtocolRedirectEnabled - true if should do cross protocol redirect.\n         * @return - Player Settings.\n         */\n        Settings setAllowCrossProtocolRedirect(boolean crossProtocolRedirectEnabled);\n\n        /**\n         * Decide if player should play clear lead content\n         *\n         * @param allowClearLead - should enable/disable clear lead playback default false\n         * @return - Player Settings.\n         */\n        Settings allowClearLead(boolean allowClearLead);\n\n        /**\n         * Decide if player should use secure rendering on the surface.\n         * Known limitation - when useTextureView set to true and isSurfaceSecured set to true -\n         * secure rendering will have no effect.\n         *\n         * @param isSurfaceSecured - should enable/disable secure rendering\n         * @return - Player Settings.\n         */\n        Settings setSecureSurface(boolean isSurfaceSecured);\n\n        /**\n         * Decide the Ad will be auto played when comes to foreground from background\n         *\n         * @param autoPlayOnResume true if it is autoplayed or else false, default is TRUE\n         * @return Player Settings\n         */\n        Settings setAdAutoPlayOnResume(boolean autoPlayOnResume);\n\n        /**\n         * Set the player buffers size\n         *\n         * @param loadControlBuffers LoadControlBuffers\n         * @return Player Settings\n         */\n        Settings setPlayerBuffers(LoadControlBuffers loadControlBuffers);\n\n        /**\n         * Set the Player&s;s VR/360 support\n         *\n         * @param vrPlayerEnabled - If 360 media should be played on VR player or default player - default == true.\n         * @return - Player Settings.\n         */\n        Settings setVRPlayerEnabled(boolean vrPlayerEnabled);\n\n        /**\n         * Set the Player&s;s preferredAudioTrackConfig.\n         *\n         * @param preferredAudioTrackConfig - AudioTrackConfig.\n         * @return - Player Settings.\n         */\n        Settings setPreferredAudioTrack(PKTrackConfig preferredAudioTrackConfig);\n\n        /**\n         * Set the Player&s;s preferredTextTrackConfig.\n         *\n         * @param preferredTextTrackConfig - TextTrackConfig.\n         * @return - Player Settings.\n         */\n        Settings setPreferredTextTrack(PKTrackConfig preferredTextTrackConfig);\n\n        /**\n         * Set the Player&s;s PreferredMediaFormat.\n         *\n         * @param preferredMediaFormat - PKMediaFormat.\n         * @return - Player Settings.\n         */\n        Settings setPreferredMediaFormat(PKMediaFormat preferredMediaFormat);\n\n        /**\n         * Set the Player&s;s Subtitles\n         *\n         * @param subtitleStyleSettings - SubtitleStyleSettings\n         * @return - Player Settings\n         */\n        Settings setSubtitleStyle(SubtitleStyleSettings subtitleStyleSettings);\n    }  \n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Once you created a player instance you can set the above settings on it.&l;/p&g;\n      &l;h2 id=\&q;example\&q;&g;\n        \n        \n          Example &l;a href=\&q;#example\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n    \n      &l;h3 id=\&q;create-a-player\&q;&g;\n        \n        \n          Create a player: &l;a href=\&q;#create-a-player\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; &l;span class=\&q;n\&q;&g;Player&l;/span&g; &l;span class=\&q;n\&q;&g;player&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlayKitManager&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;loadPlayer&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;context&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;pluginConfigs&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;apply-player-settings-if-required\&q;&g;\n        \n        \n          Apply Player Settings if required: &l;a href=\&q;#apply-player-settings-if-required\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n    \n      &l;h3 id=\&q;enable-crossprotocolredirect\&q;&g;\n        \n        \n          Enable crossProtocolRedirect &l;a href=\&q;#enable-crossprotocolredirect\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;example-1\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-1\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; //Configure if to player allow http/https mix.\n player.getSettings().setAllowCrossProtocolRedirect(crossProtocolRedirectEnabled); // default is false\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;enable-drm-clear-lead-playback\&q;&g;\n        \n        \n          Enable DRM Clear Lead Playback &l;a href=\&q;#enable-drm-clear-lead-playback\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;example-2\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-2\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; //Configure if player will start playing clear lead in DRM content \n player.getSettings(). allowClearLead(true/false); // default is false\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;enable-secure-surface\&q;&g;\n        \n        \n          Enable Secure Surface &l;a href=\&q;#enable-secure-surface\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n\n&l;p&g;In case App wants to block ability to take screen capture&l;/p&g;\n    \n      &l;h5 id=\&q;example-3\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-3\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; player.getSettings().setSecureSurface(isSurfaceSecured); // default is false\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;configure-players-preferredmediaformat\&q;&g;\n        \n        \n          Configure Player’s PreferredMediaFormat. &l;a href=\&q;#configure-players-preferredmediaformat\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n\n&l;p&g;In the case where the Media Entry contains multiple sources, the player will attempt to use formats in this priority order:&l;/p&g;\n&l;ul&g;\n  &l;li&g;DASH (mpd)&l;/li&g;\n  &l;li&g;HLS&l;/li&g;\n  &l;li&g;WVM&l;/li&g;\n  &l;li&g;MP4&l;/li&g;\n  &l;li&g;MP3&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;In order to force a Media Format that is different than the priority list, use &l;code class=\&q;highlighter-rouge\&q;&g;setPreferredMediaFormat&l;/code&g; with the desired type:&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;player.getSettings().setPreferredMediaFormat(PKMediaFormat.mp4);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n&l;p&g;Making this call, for example, would move MP4 format to the top of the priority list.&l;/p&g;\n    \n      &l;h3 id=\&q;configure-player-load-control\&q;&g;\n        \n        \n          Configure Player Load Control &l;a href=\&q;#configure-player-load-control\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n\n&l;p&g;Using builder API you can create LoadControl Buffers with the default ExoPlayer values&l;br /&g;\nthen it is possible configure any parameter from the LoadControlBuffers Object.&l;/p&g;\n\n&l;p&g;Defaults can be found here:&l;br /&g;\n&l;a href=\&q;https://github.com/google/ExoPlayer/blob/release-v2/library/core/src/main/java/com/google/android/exoplayer2/DefaultLoadControl.java\&q;&g;Defaults&l;/a&g;&l;/p&g;\n    \n      &l;h5 id=\&q;example-4\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-4\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;             LoadControlBuffers loadControlBuffers = new LoadControlBuffers().\n                    setMinPlayerBufferMs(2000).\n                    setMaxPlayerBufferMs(45000).\n                    setBackBufferDurationMs(2000).\n                    setMinBufferAfterReBufferMs(2000).\n                    setMinBufferAfterInteractionMs(2000).\n                    setRetainBackBufferFromKeyframe(true);\n                    \n            player.getSettings().setPlayerBuffers(loadControlBuffers);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;configure-if-to-use-textureview-instead-of-surface-view\&q;&g;\n        \n        \n          Configure if to use TextureView instead of surface view &l;a href=\&q;#configure-if-to-use-textureview-instead-of-surface-view\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;example-5\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-5\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; player.getSettings().useTextureView(false); // default is false\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;enable-cea608captions\&q;&g;\n        \n        \n          Enable Cea608Captions &l;a href=\&q;#enable-cea608captions\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;example-6\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-6\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; //Configure if to consider Cea608Captions which exist stream for text track selection.\n player.getSettings().setCea608CaptionsEnabled(false); // default is false\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;configure-kalturaplaybackrequestadapter\&q;&g;\n        \n        \n          Configure KalturaPlaybackRequestAdapter &l;a href=\&q;#configure-kalturaplaybackrequestadapter\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;example-7\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-7\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; //Configure different app name/domain in KalturaPlaybackRequestAdapter which allows adapting the request parameters before sending network requests\n KalturaPlaybackRequestAdapter.install(player, \&q;yourApplicationName\&q;); // default is app package name\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;configure-kalturaudrmlicenserequestadapter\&q;&g;\n        \n        \n          Configure KalturaUDRMLicenseRequestAdapter &l;a href=\&q;#configure-kalturaudrmlicenserequestadapter\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;example-8\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-8\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; //configure different app name/domain in KalturaUDRMLicenseRequestAdapter which allows adapting the request parameters before sending DRM requests\n KalturaUDRMLicenseRequestAdapter.install(player, \&q;yourApplicationName\&q;); // default is app package name\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;enable---ad-will-auto-play-on-resume\&q;&g;\n        \n        \n          Enable - Ad will auto play on resume &l;a href=\&q;#enable---ad-will-auto-play-on-resume\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n\n&l;p&g;In some cases where app does not expose play pause API on ads this API will do the auto play after resume from background&l;/p&g;\n    \n      &l;h5 id=\&q;example-9\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-9\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; player.getSettings().setAdAutoPlayOnResume(autoPlayOnResume);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;setvrplayerenabledboolean-vrplayerenabled\&q;&g;\n        \n        \n          setVRPlayerEnabled(boolean vrPlayerEnabled); &l;a href=\&q;#setvrplayerenabledboolean-vrplayerenabled\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n\n&l;p&g;If case 360 media should be played on VR player or default player - default is true&l;/p&g;\n    \n      &l;h5 id=\&q;example-10\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-10\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; player.getSettings().setVRPlayerEnabled(vrPlayerEnabled);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;configure-preferred-text-tracks--default-is-no-captions-displayed\&q;&g;\n        \n        \n          Configure preferred TEXT TRACKS – Default is no captions displayed. &l;a href=\&q;#configure-preferred-text-tracks--default-is-no-captions-displayed\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;example-11\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-11\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF)); // no text tracks\n //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage(\&q;hi\&q;)); // select specific track lang if not exist select manifest default if exist else the first from manifest\n player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO)); // select the track by locale if does not exist manifest default\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; /Configure preferred AUDIO TRACKS - Default is Stream&s;s default\n\n //player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF); // default audio track (Done automatically actually)\n //player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage(\&q;ru\&q;)); // select specific track lang if not exist select manifest default\n player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO));\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;set-preferred-audiotext-track\&q;&g;\n        \n        \n          Set Preferred Audio/Text Track &l;a href=\&q;#set-preferred-audiotext-track\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;The player allows you to set the preferred language audio/text by instantiating the &l;code class=\&q;highlighter-rouge\&q;&g;PKTrackConfig&l;/code&g;, which is created via the builder method.&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; public PKTrackConfig setTrackLanguage(String trackLanguage)\n public PKTrackConfig setPreferredMode(@NonNull Mode preferredMode)\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n&l;p&g;Language options are:&l;/p&g;\n&l;ul&g;\n  &l;li&g;Explicitly setting the language code&l;/li&g;\n  &l;li&g;Auto, which sets the language based on location, if available.&l;/li&g;\n  &l;li&g;Default, which contains no text and uses the first available audio track.&l;/li&g;\n&l;/ul&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; PKTrackConfig trackConfig = new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF);\n PKTrackConfig trackConfig = new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO);\n PKTrackConfig trackConfig = new  PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage(\&q;ru\&q;)\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Once we have the &l;code class=\&q;highlighter-rouge\&q;&g;PKTrackConfig&l;/code&g; object we can use it as parameter for the API.&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;player.getSettings().setPreferredAudioTrack(preferredAudioTrackConfig)\nplayer.getSettings().setPreferredTextTrack(preferredTextTrackConfig)\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;tracks-configuration-possibilities\&q;&g;\n        \n        \n          Tracks Configuration possibilities &l;a href=\&q;#tracks-configuration-possibilities\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h4 id=\&q;there-are-3-modes-available\&q;&g;\n        \n        \n          There are 3 modes available: &l;a href=\&q;#there-are-3-modes-available\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n\n&l;ul&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;OFF&l;/code&g; - for Text tracks it will cancel text tracks display for audio it will select the default from the manifest&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;AUTO&l;/code&g; - SDK will check if the stream has audio/text track that matches the device locale and will select it else it will take stream default&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;SELECTION&l;/code&g; - this mode requires to set the language explicitly (2 or 3 letters)  if this language does not exist SDK will take the streams&l;br /&g;\ndefault Audio/Text track&l;/li&g;\n&l;/ul&g;\n    \n      &l;h4 id=\&q;note\&q;&g;\n        \n        \n          NOTE!!! &l;a href=\&q;#note\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;The languages that are expected by player should match the SO 639-X codes definition&l;/p&g;\n    \n      &l;h2 id=\&q;subtitle-sideloading-for-player\&q;&g;\n        \n        \n          Subtitle Sideloading for Player &l;a href=\&q;#subtitle-sideloading-for-player\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;blockquote&g;\n  &l;p&g;Since Playkit version 3.9.0&l;/p&g;\n&l;/blockquote&g;\n\n&l;p&g;To load Subtitle from external source for the player, need to create a &l;code class=\&q;highlighter-rouge\&q;&g;List&l;/code&g; of &l;code class=\&q;highlighter-rouge\&q;&g;PKExternalSubtitle&l;/code&g; and then pass it to &l;code class=\&q;highlighter-rouge\&q;&g;PKMediaEntry&l;/code&g; object.&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;PKExternalSubtitle pkExternalSubtitle = new PKExternalSubtitle()\n                .setUrl(\&q;http://URL_OF_EXTERNAL_SUBTITLE.vtt\&q;)\n                .setMimeType(PKSubtitleFormat.vtt)\n                .setLabel(\&q;de\&q;)\n                .setLanguage(\&q;deu\&q;);\nmList.add(pkExternalSubtitle);\n\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;mediaEntry.setExternalSubtitleList(mList);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n&l;p&g;Use &l;code class=\&q;highlighter-rouge\&q;&g;setDefault()&l;/code&g; while creating &l;code class=\&q;highlighter-rouge\&q;&g;PKExternalSubtitle&l;/code&g; to make it default subtitle.&l;br /&g;\n&l;code class=\&q;highlighter-rouge\&q;&g;TEXT_VTT&l;/code&g; and &l;code class=\&q;highlighter-rouge\&q;&g;APPLICATION_SUBRIP&l;/code&g; mime-types are supported for subtitles.&l;/p&g;\n    \n      &l;h2 id=\&q;subtitle-styles-for-player\&q;&g;\n        \n        \n          Subtitle Styles for Player &l;a href=\&q;#subtitle-styles-for-player\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;To configure Subtitles to the player, first need to set the Subtitles using &l;code class=\&q;highlighter-rouge\&q;&g;settings&l;/code&g; from &l;code class=\&q;highlighter-rouge\&q;&g;player&l;/code&g;object.&l;br /&g;\nWhile creating &l;code class=\&q;highlighter-rouge\&q;&g;SubtitleStyleSettings&l;/code&g; object, need to pass &l;code class=\&q;highlighter-rouge\&q;&g;subtitleStyleName&l;/code&g; param in constructor.&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings(\&q;MyCustomSubtitleStyle\&q;);\nplayer.getSettings().setSubtitleStyle(subtitleStyleSettings);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;To update the Subtitles call &l;code class=\&q;highlighter-rouge\&q;&g;updateSubtitleStyle()&l;/code&g; using only &l;code class=\&q;highlighter-rouge\&q;&g;player&l;/code&g; object. Use updated &l;code class=\&q;highlighter-rouge\&q;&g;subtitleStyleSettings&l;/code&g; object.&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;player.updateSubtitleStyle(subtitleStyleSettings);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Using builder pattern for setters in &l;code class=\&q;highlighter-rouge\&q;&g;subtitleStyleSettings&l;/code&g;, Following Styles can be applied,&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;setTextColor&l;/code&g; - Change subtitle text color&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;setBackgroundColor&l;/code&g; - Change subtitle background color&l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;setEdgeColor&l;/code&g; - Change subtitle text edge color&l;/li&g;\n  &l;li&g;\n    &l;p&g;&l;code class=\&q;highlighter-rouge\&q;&g;setWindowColor&l;/code&g; - Change subtitle window color&l;/p&g;\n  &l;/li&g;\n  &l;li&g;\n    &l;p&g;&l;code class=\&q;highlighter-rouge\&q;&g;setEdgeType&l;/code&g; - Change subtitle Edge types using &l;code class=\&q;highlighter-rouge\&q;&g;enum SubtitleStyleEdgeType&l;/code&g; with the values &l;code class=\&q;highlighter-rouge\&q;&g;EDGE_TYPE_NONE, EDGE_TYPE_OUTLINE, EDGE_TYPE_DROP_SHADOW, EDGE_TYPE_RAISED, EDGE_TYPE_DEPRESSED;&l;/code&g;&l;/p&g;\n  &l;/li&g;\n  &l;li&g;\n    &l;p&g;&l;code class=\&q;highlighter-rouge\&q;&g;setTextSizeFraction&l;/code&g; - Change subtitle text size fraction using &l;code class=\&q;highlighter-rouge\&q;&g;enum SubtitleTextSizeFraction&l;/code&g; with the values &l;code class=\&q;highlighter-rouge\&q;&g;SUBTITLE_FRACTION_50, SUBTITLE_FRACTION_75, SUBTITLE_FRACTION_100, SUBTITLE_FRACTION_125, SUBTITLE_FRACTION_150, SUBTITLE_FRACTION_200&l;/code&g;&l;/p&g;\n  &l;/li&g;\n  &l;li&g;&l;code class=\&q;highlighter-rouge\&q;&g;setTypeface&l;/code&g; - Change subtitle typeface using &l;code class=\&q;highlighter-rouge\&q;&g;enum SubtitleStyleTypeface&l;/code&g; with the values &l;code class=\&q;highlighter-rouge\&q;&g;DEFAULT, DEFAULT_BOLD, MONOSPACE, SERIF, SANS_SERIF&l;/code&g;&l;/li&g;\n&l;/ul&g;\n    \n      &l;h4 id=\&q;example-12\&q;&g;\n        \n        \n          Example &l;a href=\&q;#example-12\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n\n&l;p&g;To set the Subtitles,&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings(\&q;MyCustomSubtitleStyle\&q;)\n                    .setBackgroundColor(Color.BLUE)\n                    .setTextColor(Color.WHITE)\n                    .setTextSizeFraction(SubtitleStyleSettings.SubtitleTextSizeFraction.SUBTITLE_FRACTION_50)\n                    .setWindowColor(Color.YELLOW)\n                    .setEdgeColor(Color.BLUE)\n                    .setTypeface(SubtitleStyleSettings.SubtitleStyleTypeface.MONOSPACE)\n                    .setEdgeType(SubtitleStyleSettings.SubtitleStyleEdgeType.EDGE_TYPE_DROP_SHADOW);\n\nplayer.getSettings().setSubtitleStyle(subtitleStyleSettings);\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;To update the existing Subtitles,&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings(\&q;MyNewCustomSubtitleStyle\&q;)\n                        .setBackgroundColor(Color.WHITE)\n                        .setTextColor(Color.RED)\n                        .setTextSizeFraction(SubtitleStyleSettings.SubtitleTextSizeFraction.SUBTITLE_FRACTION_100)\n                        .setWindowColor(Color.BLUE)\n                        .setEdgeColor(Color.BLUE)\n                        .setTypeface(SubtitleStyleSettings.SubtitleStyleTypeface.SANS_SERIF)\n                        .setEdgeType(SubtitleStyleSettings.SubtitleStyleEdgeType.EDGE_TYPE_DROP_SHADOW);\n\nplayer.updateSubtitleStyle(subtitleStyleSettings);\n\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Tue, 30 Jul 2019 13:40:50 GMT&q;],&q;etag&q;:[&q;W/\&q;7691-16c431cb44c\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;30353&q;],&q;date&q;:[&q;Tue, 30 Jul 2019 13:59:25 GMT&q;],&q;connection&q;:[&q;keep-alive&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/player-portal/android/player-settings-android.html&q;}}</script></body></html>
