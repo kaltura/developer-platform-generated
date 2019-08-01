@@ -109,14 +109,14 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Jul 30 06:34:48 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Wed Jul 31 14:41:56 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Jul 30 06:34:48 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Wed Jul 31 14:41:56 2019, By <span class="commit-author">Avital</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -135,165 +135,274 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-		<div class="highlighter-rouge"><pre class="highlight"><code>    interface Settings {
-        /**
-         * Set the Player's contentRequestAdapter.
-         *
-         * @param contentRequestAdapter - request adapter.
-         * @return - Player Settings.
-         */
-        Settings setContentRequestAdapter(PKRequestParams.Adapter contentRequestAdapter);
-
-        /**
-         * Set the Player's licenseRequestAdapter.
-         *
-         * @param licenseRequestAdapter - request adapter.
-         * @return - Player Settings.
-         */
-        Settings setLicenseRequestAdapter(PKRequestParams.Adapter licenseRequestAdapter);
-
-        /**
-         * Enable/disable cea-608 text tracks.
-         * By default they are disabled.
-         * Note! Once set, this value will be applied to all mediaSources for that instance of Player.
-         * In order to disable/enable it again, you should update that value once again.
-         * Otherwise it will stay in the previous state.
-         *
-         * @param cea608CaptionsEnabled - should cea-608 track should be enabled.
-         * @return - Player Settings.
-         */
-        Settings setCea608CaptionsEnabled(boolean cea608CaptionsEnabled);
-
-        /**
-         * Enable/disable MPGA audio tracks.
-         * By default they are disabled.
-         * Note! Once set, this value will be applied to all mediaSources for that instance of Player.
-         * In order to disable/enable it again, you should update that value once again.
-         * Otherwise it will stay in the previous state.
-         *
-         * @param mpgaAudioFormatEnabled - should Enable MPGA Audio track.
-         * @return - Player Settings.
-         */
-        Settings setMpgaAudioFormatEnabled(boolean mpgaAudioFormatEnabled);
-
-        /**
-         * Decide if player should use {@link android.view.TextureView} as primary surface
-         * to render the video content. If set to false, will use the {@link android.view.SurfaceView} instead.
-         * Note!!! Use this carefully, because {@link android.view.TextureView} is more expensive and not DRM
-         * protected. But it allows dynamic animations/scaling e.t.c on the player. By default it will be always set
-         * to false.
-         *
-         * @param useTextureView - true if should use {@link android.view.TextureView}.
-         * @return - Player Settings.
-         */
-        Settings useTextureView(boolean useTextureView);
-
-        /**
-         * Decide if player should do cross protocol redirect or not. By default it will be always set
-         * to false.
-         *
-         * @param crossProtocolRedirectEnabled - true if should do cross protocol redirect.
-         * @return - Player Settings.
-         */
-        Settings setAllowCrossProtocolRedirect(boolean crossProtocolRedirectEnabled);
-
-        /**
-         * Decide if player should play clear lead content
-         *
-         * @param allowClearLead - should enable/disable clear lead playback default false
-         * @return - Player Settings.
-         */
-        Settings allowClearLead(boolean allowClearLead);
-
-        /**
-         * Decide if player should use secure rendering on the surface.
-         * Known limitation - when useTextureView set to true and isSurfaceSecured set to true -
-         * secure rendering will have no effect.
-         *
-         * @param isSurfaceSecured - should enable/disable secure rendering
-         * @return - Player Settings.
-         */
-        Settings setSecureSurface(boolean isSurfaceSecured);
-
-        /**
-         * Decide the Ad will be auto played when comes to foreground from background
-         *
-         * @param autoPlayOnResume true if it is autoplayed or else false, default is TRUE
-         * @return Player Settings
-         */
-        Settings setAdAutoPlayOnResume(boolean autoPlayOnResume);
-
-        /**
-         * Set the player buffers size
-         *
-         * @param loadControlBuffers LoadControlBuffers
-         * @return Player Settings
-         */
-        Settings setPlayerBuffers(LoadControlBuffers loadControlBuffers);
-
-        /**
-         * Set the Player's VR/360 support
-         *
-         * @param vrPlayerEnabled - If 360 media should be played on VR player or default player - default == true.
-         * @return - Player Settings.
-         */
-        Settings setVRPlayerEnabled(boolean vrPlayerEnabled);
-
-        /**
-         * Set the Player's preferredAudioTrackConfig.
-         *
-         * @param preferredAudioTrackConfig - AudioTrackConfig.
-         * @return - Player Settings.
-         */
-        Settings setPreferredAudioTrack(PKTrackConfig preferredAudioTrackConfig);
-
-        /**
-         * Set the Player's preferredTextTrackConfig.
-         *
-         * @param preferredTextTrackConfig - TextTrackConfig.
-         * @return - Player Settings.
-         */
-        Settings setPreferredTextTrack(PKTrackConfig preferredTextTrackConfig);
-
-        /**
-         * Set the Player's PreferredMediaFormat.
-         *
-         * @param preferredMediaFormat - PKMediaFormat.
-         * @return - Player Settings.
-         */
-        Settings setPreferredMediaFormat(PKMediaFormat preferredMediaFormat);
-
-        /**
-         * Set the Player's Subtitles
-         *
-         * @param subtitleStyleSettings - SubtitleStyleSettings
-         * @return - Player Settings
-         */
-        Settings setSubtitleStyle(SubtitleStyleSettings subtitleStyleSettings);
-    }  
-</code></pre>
-</div>
-
-<p>Once you created a player instance you can set the above settings on it.</p>
-      <h2 id="example">
+		<p>Once you’ve created a player instance, you can make changes to its settings:</p>
+      <h2 id="setcontentrequestadapter">
         
         
-          Example <a href="#example"></a>
+          setContentRequestAdapter <a href="#setcontentrequestadapter"></a>
         
         
       </h2>
-    
-      <h3 id="create-a-player">
-        
-        
-          Create a player: <a href="#create-a-player"></a>
-        
-        
-      </h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">Player</span> <span class="n">player</span> <span class="o">=</span> <span class="n">PlayKitManager</span><span class="o">.</span><span class="na">loadPlayer</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">pluginConfigs</span><span class="o">);</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">interface</span> <span class="nc">Settings</span> <span class="o">{</span>
+  <span class="cm">/**
+    * Set the Player's contentRequestAdapter.
+    *
+    * @param contentRequestAdapter - request adapter.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setContentRequestAdapter</span><span class="o">(</span><span class="n">PKRequestParams</span><span class="o">.</span><span class="na">Adapter</span> <span class="n">contentRequestAdapter</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setlicenserequestadapter">
+        
+        
+          setLicenseRequestAdapter <a href="#setlicenserequestadapter"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Set the Player's licenseRequestAdapter.
+    *
+    * @param licenseRequestAdapter - request adapter.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setLicenseRequestAdapter</span><span class="o">(</span><span class="n">PKRequestParams</span><span class="o">.</span><span class="na">Adapter</span> <span class="n">licenseRequestAdapter</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setcea608captionsenabled">
+        
+        
+          setCea608CaptionsEnabled <a href="#setcea608captionsenabled"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Enable/disable cea-608 text tracks.
+    * By default they are disabled.
+    * Note! Once set, this value will be applied to all mediaSources for that instance of Player.
+    * In order to disable/enable it again, you should update that value once again.
+    * Otherwise it will stay in the previous state.
+    *
+    * @param cea608CaptionsEnabled - should cea-608 track should be enabled.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setCea608CaptionsEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">cea608CaptionsEnabled</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setmpgaaudioformatenabled">
+        
+        
+          setMpgaAudioFormatEnabled <a href="#setmpgaaudioformatenabled"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Enable/disable MPGA audio tracks.
+    * By default they are disabled.
+    * Note! Once set, this value will be applied to all mediaSources for that instance of Player.
+    * In order to disable/enable it again, you should update that value once again.
+    * Otherwise it will stay in the previous state.
+    *
+    * @param mpgaAudioFormatEnabled - should Enable MPGA Audio track.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setMpgaAudioFormatEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mpgaAudioFormatEnabled</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="usetextureview">
+        
+        
+          useTextureView <a href="#usetextureview"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Decide if player should use {@link android.view.TextureView} as primary surface
+    * to render the video content. If set to false, will use the {@link android.view.SurfaceView} instead.
+    * Note!!! Use this carefully, because {@link android.view.TextureView} is more expensive and not DRM
+    * protected. But it allows dynamic animations/scaling e.t.c on the player. By default it will be always set
+    * to false.
+    *
+    * @param useTextureView - true if should use {@link android.view.TextureView}.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">useTextureView</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">useTextureView</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setallowcrossprotocolredirect">
+        
+        
+          setAllowCrossProtocolRedirect <a href="#setallowcrossprotocolredirect"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Decide if player should do cross protocol redirect or not. By default it will be always set
+    * to false.
+    *
+    * @param crossProtocolRedirectEnabled - true if should do cross protocol redirect.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setAllowCrossProtocolRedirect</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">crossProtocolRedirectEnabled</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="allowclearlead">
+        
+        
+          allowClearLead <a href="#allowclearlead"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Decide if player should play clear lead content
+    *
+    * @param allowClearLead - should enable/disable clear lead playback default false
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">allowClearLead</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">allowClearLead</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setsecuresurface">
+        
+        
+          setSecureSurface <a href="#setsecuresurface"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Decide if player should use secure rendering on the surface.
+    * Known limitation - when useTextureView set to true and isSurfaceSecured set to true -
+    * secure rendering will have no effect.
+    *
+    * @param isSurfaceSecured - should enable/disable secure rendering
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setSecureSurface</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">isSurfaceSecured</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setadautoplayonresume">
+        
+        
+          setAdAutoPlayOnResume <a href="#setadautoplayonresume"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Decide the Ad will be auto played when comes to foreground from background
+    *
+    * @param autoPlayOnResume true if it is autoplayed or else false, default is TRUE
+    * @return Player Settings
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setAdAutoPlayOnResume</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">autoPlayOnResume</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setplayerbuffers">
+        
+        
+          setPlayerBuffers <a href="#setplayerbuffers"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Set the player buffers size
+    *
+    * @param loadControlBuffers LoadControlBuffers
+    * @return Player Settings
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setPlayerBuffers</span><span class="o">(</span><span class="n">LoadControlBuffers</span> <span class="n">loadControlBuffers</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setvrplayerenabled">
+        
+        
+          setVRPlayerEnabled <a href="#setvrplayerenabled"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Set the Player's VR/360 support
+    *
+    * @param vrPlayerEnabled - If 360 media should be played on VR player or default player - default == true.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setVRPlayerEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">vrPlayerEnabled</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setpreferredaudiotrack">
+        
+        
+          setPreferredAudioTrack <a href="#setpreferredaudiotrack"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Set the Player's preferredAudioTrackConfig.
+    *
+    * @param preferredAudioTrackConfig - AudioTrackConfig.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setPreferredAudioTrack</span><span class="o">(</span><span class="n">PKTrackConfig</span> <span class="n">preferredAudioTrackConfig</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setpreferredtexttrack">
+        
+        
+          setPreferredTextTrack <a href="#setpreferredtexttrack"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Set the Player's preferredTextTrackConfig.
+    *
+    * @param preferredTextTrackConfig - TextTrackConfig.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setPreferredTextTrack</span><span class="o">(</span><span class="n">PKTrackConfig</span> <span class="n">preferredTextTrackConfig</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setpreferredmediaformat">
+        
+        
+          setPreferredMediaFormat <a href="#setpreferredmediaformat"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Set the Player's PreferredMediaFormat.
+    *
+    * @param preferredMediaFormat - PKMediaFormat.
+    * @return - Player Settings.
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setPreferredMediaFormat</span><span class="o">(</span><span class="n">PKMediaFormat</span> <span class="n">preferredMediaFormat</span><span class="o">);</span></code></pre></figure>
+    
+      <h2 id="setsubtitlestyle">
+        
+        
+          setSubtitleStyle <a href="#setsubtitlestyle"></a>
+        
+        
+      </h2>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="cm">/**
+    * Set the Player's Subtitles
+    *
+    * @param subtitleStyleSettings - SubtitleStyleSettings
+    * @return - Player Settings
+    */</span>
+  <span class="n">Settings</span> <span class="nf">setSubtitleStyle</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span> <span class="n">subtitleStyleSettings</span><span class="o">);</span>
+<span class="o">}</span>  </code></pre></figure>
+    
+      <h1 id="creating-a-player">
+        
+        
+          Creating A Player <a href="#creating-a-player"></a>
+        
+        
+      </h1>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="n">java</span>
+ <span class="n">Player</span> <span class="n">player</span> <span class="o">=</span> <span class="n">PlayKitManager</span><span class="o">.</span><span class="na">loadPlayer</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">pluginConfigs</span><span class="o">);</span></code></pre></figure>
     
       <h2 id="apply-player-settings-if-required">
         
@@ -311,18 +420,16 @@ rtp('get', 'campaign',true);
         
       </h3>
     
-      <h5 id="example-1">
+      <h5 id="example">
         
         
-          Example: <a href="#example-1"></a>
+          Example: <a href="#example"></a>
         
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> //Configure if to player allow http/https mix.
- player.getSettings().setAllowCrossProtocolRedirect(crossProtocolRedirectEnabled); // default is false
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="c1">//Configure if to player allow http/https mix.</span>
+ <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setAllowCrossProtocolRedirect</span><span class="o">(</span><span class="n">crossProtocolRedirectEnabled</span><span class="o">);</span> <span class="c1">// default is false</span></code></pre></figure>
     
       <h3 id="enable-drm-clear-lead-playback">
         
@@ -332,18 +439,16 @@ rtp('get', 'campaign',true);
         
       </h3>
     
-      <h5 id="example-2">
+      <h5 id="example-1">
         
         
-          Example: <a href="#example-2"></a>
+          Example: <a href="#example-1"></a>
         
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> //Configure if player will start playing clear lead in DRM content 
- player.getSettings(). allowClearLead(true/false); // default is false
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="c1">//Configure if player will start playing clear lead in DRM content </span>
+ <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span> <span class="n">allowClearLead</span><span class="o">(</span><span class="kc">true</span><span class="o">/</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// default is false</span></code></pre></figure>
     
       <h3 id="enable-secure-surface">
         
@@ -355,17 +460,15 @@ rtp('get', 'campaign',true);
 
 <p>In case App wants to block ability to take screen capture</p>
     
-      <h5 id="example-3">
+      <h5 id="example-2">
         
         
-          Example: <a href="#example-3"></a>
+          Example: <a href="#example-2"></a>
         
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setSecureSurface(isSurfaceSecured); // default is false
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setSecureSurface</span><span class="o">(</span><span class="n">isSurfaceSecured</span><span class="o">);</span> <span class="c1">// default is false</span></code></pre></figure>
     
       <h3 id="configure-players-preferredmediaformat">
         
@@ -386,9 +489,8 @@ rtp('get', 'campaign',true);
 
 <p>In order to force a Media Format that is different than the priority list, use <code class="highlighter-rouge">setPreferredMediaFormat</code> with the desired type:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>player.getSettings().setPreferredMediaFormat(PKMediaFormat.mp4);
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setPreferredMediaFormat</span><span class="o">(</span><span class="n">PKMediaFormat</span><span class="o">.</span><span class="na">mp4</span><span class="o">);</span></code></pre></figure>
+
 <p>Making this call, for example, would move MP4 format to the top of the priority list.</p>
     
       <h3 id="configure-player-load-control">
@@ -405,6 +507,33 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 <p>Defaults can be found here:<br />
 <a href="https://github.com/google/ExoPlayer/blob/release-v2/library/core/src/main/java/com/google/android/exoplayer2/DefaultLoadControl.java">Defaults</a></p>
     
+      <h5 id="example-3">
+        
+        
+          Example: <a href="#example-3"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">java</span>
+<span class="n">LoadControlBuffers</span> <span class="n">loadControlBuffers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoadControlBuffers</span><span class="o">().</span>
+      <span class="n">setMinPlayerBufferMs</span><span class="o">(</span><span class="mi">2000</span><span class="o">).</span>
+      <span class="n">setMaxPlayerBufferMs</span><span class="o">(</span><span class="mi">45000</span><span class="o">).</span>
+      <span class="n">setBackBufferDurationMs</span><span class="o">(</span><span class="mi">2000</span><span class="o">).</span>
+      <span class="n">setMinBufferAfterReBufferMs</span><span class="o">(</span><span class="mi">2000</span><span class="o">).</span>
+      <span class="n">setMinBufferAfterInteractionMs</span><span class="o">(</span><span class="mi">2000</span><span class="o">).</span>
+      <span class="n">setRetainBackBufferFromKeyframe</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+      
+<span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setPlayerBuffers</span><span class="o">(</span><span class="n">loadControlBuffers</span><span class="o">);</span></code></pre></figure>
+    
+      <h3 id="configure-if-to-use-textureview-instead-of-surface-view">
+        
+        
+          Configure if to use TextureView instead of surface view <a href="#configure-if-to-use-textureview-instead-of-surface-view"></a>
+        
+        
+      </h3>
+    
       <h5 id="example-4">
         
         
@@ -413,22 +542,13 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>             LoadControlBuffers loadControlBuffers = new LoadControlBuffers().
-                    setMinPlayerBufferMs(2000).
-                    setMaxPlayerBufferMs(45000).
-                    setBackBufferDurationMs(2000).
-                    setMinBufferAfterReBufferMs(2000).
-                    setMinBufferAfterInteractionMs(2000).
-                    setRetainBackBufferFromKeyframe(true);
-                    
-            player.getSettings().setPlayerBuffers(loadControlBuffers);
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">java</span>
+ <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">useTextureView</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// default is false</span></code></pre></figure>
     
-      <h3 id="configure-if-to-use-textureview-instead-of-surface-view">
+      <h3 id="enable-cea608captions">
         
         
-          Configure if to use TextureView instead of surface view <a href="#configure-if-to-use-textureview-instead-of-surface-view"></a>
+          Enable Cea608Captions <a href="#enable-cea608captions"></a>
         
         
       </h3>
@@ -441,14 +561,13 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().useTextureView(false); // default is false
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">//Configure if to consider Cea608Captions which exist stream for text track selection.</span>
+<span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setCea608CaptionsEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// default is false</span></code></pre></figure>
     
-      <h3 id="enable-cea608captions">
+      <h3 id="configure-kalturaplaybackrequestadapter">
         
         
-          Enable Cea608Captions <a href="#enable-cea608captions"></a>
+          Configure KalturaPlaybackRequestAdapter <a href="#configure-kalturaplaybackrequestadapter"></a>
         
         
       </h3>
@@ -461,15 +580,14 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> //Configure if to consider Cea608Captions which exist stream for text track selection.
- player.getSettings().setCea608CaptionsEnabled(false); // default is false
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="c1">//Configure different app name/domain in KalturaPlaybackRequestAdapter </span>
+ <span class="c1">//which allows adapting the request parameters before sending network requests</span>
+ <span class="n">KalturaPlaybackRequestAdapter</span><span class="o">.</span><span class="na">install</span><span class="o">(</span><span class="n">player</span><span class="o">,</span> <span class="s">"yourApplicationName"</span><span class="o">);</span> <span class="c1">// default is app package name</span></code></pre></figure>
     
-      <h3 id="configure-kalturaplaybackrequestadapter">
+      <h3 id="configure-kalturaudrmlicenserequestadapter">
         
         
-          Configure KalturaPlaybackRequestAdapter <a href="#configure-kalturaplaybackrequestadapter"></a>
+          Configure KalturaUDRMLicenseRequestAdapter <a href="#configure-kalturaudrmlicenserequestadapter"></a>
         
         
       </h3>
@@ -482,31 +600,8 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> //Configure different app name/domain in KalturaPlaybackRequestAdapter which allows adapting the request parameters before sending network requests
- KalturaPlaybackRequestAdapter.install(player, "yourApplicationName"); // default is app package name
-</code></pre>
-</div>
-    
-      <h3 id="configure-kalturaudrmlicenserequestadapter">
-        
-        
-          Configure KalturaUDRMLicenseRequestAdapter <a href="#configure-kalturaudrmlicenserequestadapter"></a>
-        
-        
-      </h3>
-    
-      <h5 id="example-8">
-        
-        
-          Example: <a href="#example-8"></a>
-        
-        
-      </h5>
-
-<div class="highlighter-rouge"><pre class="highlight"><code> //configure different app name/domain in KalturaUDRMLicenseRequestAdapter which allows adapting the request parameters before sending DRM requests
- KalturaUDRMLicenseRequestAdapter.install(player, "yourApplicationName"); // default is app package name
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="c1">//configure different app name/domain in KalturaUDRMLicenseRequestAdapter which allows adapting the request parameters before sending DRM requests</span>
+ <span class="n">KalturaUDRMLicenseRequestAdapter</span><span class="o">.</span><span class="na">install</span><span class="o">(</span><span class="n">player</span><span class="o">,</span> <span class="s">"yourApplicationName"</span><span class="o">);</span> <span class="c1">// default is app package name</span></code></pre></figure>
     
       <h3 id="enable---ad-will-auto-play-on-resume">
         
@@ -518,17 +613,15 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 
 <p>In some cases where app does not expose play pause API on ads this API will do the auto play after resume from background</p>
     
-      <h5 id="example-9">
+      <h5 id="example-8">
         
         
-          Example: <a href="#example-9"></a>
+          Example: <a href="#example-8"></a>
         
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setAdAutoPlayOnResume(autoPlayOnResume);
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setAdAutoPlayOnResume</span><span class="o">(</span><span class="n">autoPlayOnResume</span><span class="o">);</span></code></pre></figure>
     
       <h3 id="setvrplayerenabledboolean-vrplayerenabled">
         
@@ -540,17 +633,15 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 
 <p>If case 360 media should be played on VR player or default player - default is true</p>
     
-      <h5 id="example-10">
+      <h5 id="example-9">
         
         
-          Example: <a href="#example-10"></a>
+          Example: <a href="#example-9"></a>
         
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> player.getSettings().setVRPlayerEnabled(vrPlayerEnabled);
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setVRPlayerEnabled</span><span class="o">(</span><span class="n">vrPlayerEnabled</span><span class="o">);</span></code></pre></figure>
     
       <h3 id="configure-preferred-text-tracks--default-is-no-captions-displayed">
         
@@ -560,27 +651,23 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h3>
     
-      <h5 id="example-11">
+      <h5 id="example-10">
         
         
-          Example: <a href="#example-11"></a>
+          Example: <a href="#example-10"></a>
         
         
       </h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF)); // no text tracks
- //player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("hi")); // select specific track lang if not exist select manifest default if exist else the first from manifest
- player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO)); // select the track by locale if does not exist manifest default
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="c1">//player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF)); // no text tracks</span>
+ <span class="c1">//player.getSettings().setPreferredTextTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("hi")); // select specific track lang if not exist select manifest default if exist else the first from manifest</span>
+ <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setPreferredTextTrack</span><span class="o">(</span><span class="k">new</span> <span class="n">PKTrackConfig</span><span class="o">().</span><span class="na">setPreferredMode</span><span class="o">(</span><span class="n">PKTrackConfig</span><span class="o">.</span><span class="na">Mode</span><span class="o">.</span><span class="na">AUTO</span><span class="o">));</span> <span class="c1">// select the track by locale if does not exist manifest default</span></code></pre></figure>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> /Configure preferred AUDIO TRACKS - Default is Stream's default
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="o">/</span><span class="n">Configure</span> <span class="n">preferred</span> <span class="n">AUDIO</span> <span class="n">TRACKS</span> <span class="o">-</span> <span class="n">Default</span> <span class="n">is</span> <span class="n">Stream</span><span class="err">'</span><span class="n">s</span> <span class="k">default</span>
 
- //player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF); // default audio track (Done automatically actually)
- //player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("ru")); // select specific track lang if not exist select manifest default
- player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO));
-</code></pre>
-</div>
+ <span class="c1">//player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF); // default audio track (Done automatically actually)</span>
+ <span class="c1">//player.getSettings().setPreferredAudioTrack(new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("ru")); // select specific track lang if not exist select manifest default</span>
+ <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setPreferredAudioTrack</span><span class="o">(</span><span class="k">new</span> <span class="n">PKTrackConfig</span><span class="o">().</span><span class="na">setPreferredMode</span><span class="o">(</span><span class="n">PKTrackConfig</span><span class="o">.</span><span class="na">Mode</span><span class="o">.</span><span class="na">AUTO</span><span class="o">));</span></code></pre></figure>
     
       <h2 id="set-preferred-audiotext-track">
         
@@ -592,10 +679,9 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 
 <p>The player allows you to set the preferred language audio/text by instantiating the <code class="highlighter-rouge">PKTrackConfig</code>, which is created via the builder method.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> public PKTrackConfig setTrackLanguage(String trackLanguage)
- public PKTrackConfig setPreferredMode(@NonNull Mode preferredMode)
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="kd">public</span> <span class="n">PKTrackConfig</span> <span class="nf">setTrackLanguage</span><span class="o">(</span><span class="n">String</span> <span class="n">trackLanguage</span><span class="o">)</span>
+ <span class="kd">public</span> <span class="n">PKTrackConfig</span> <span class="nf">setPreferredMode</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Mode</span> <span class="n">preferredMode</span><span class="o">)</span></code></pre></figure>
+
 <p>Language options are:</p>
 <ul>
   <li>Explicitly setting the language code</li>
@@ -603,18 +689,14 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
   <li>Default, which contains no text and uses the first available audio track.</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> PKTrackConfig trackConfig = new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.OFF);
- PKTrackConfig trackConfig = new PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.AUTO);
- PKTrackConfig trackConfig = new  PKTrackConfig().setPreferredMode(PKTrackConfig.Mode.SELECTION).setTrackLanguage("ru")
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="n">PKTrackConfig</span> <span class="n">trackConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKTrackConfig</span><span class="o">().</span><span class="na">setPreferredMode</span><span class="o">(</span><span class="n">PKTrackConfig</span><span class="o">.</span><span class="na">Mode</span><span class="o">.</span><span class="na">OFF</span><span class="o">);</span>
+ <span class="n">PKTrackConfig</span> <span class="n">trackConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKTrackConfig</span><span class="o">().</span><span class="na">setPreferredMode</span><span class="o">(</span><span class="n">PKTrackConfig</span><span class="o">.</span><span class="na">Mode</span><span class="o">.</span><span class="na">AUTO</span><span class="o">);</span>
+ <span class="n">PKTrackConfig</span> <span class="n">trackConfig</span> <span class="o">=</span> <span class="k">new</span>  <span class="n">PKTrackConfig</span><span class="o">().</span><span class="na">setPreferredMode</span><span class="o">(</span><span class="n">PKTrackConfig</span><span class="o">.</span><span class="na">Mode</span><span class="o">.</span><span class="na">SELECTION</span><span class="o">).</span><span class="na">setTrackLanguage</span><span class="o">(</span><span class="s">"ru"</span><span class="o">)</span></code></pre></figure>
 
 <p>Once we have the <code class="highlighter-rouge">PKTrackConfig</code> object we can use it as parameter for the API.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>player.getSettings().setPreferredAudioTrack(preferredAudioTrackConfig)
-player.getSettings().setPreferredTextTrack(preferredTextTrackConfig)
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setPreferredAudioTrack</span><span class="o">(</span><span class="n">preferredAudioTrackConfig</span><span class="o">)</span>
+<span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setPreferredTextTrack</span><span class="o">(</span><span class="n">preferredTextTrackConfig</span><span class="o">)</span></code></pre></figure>
     
       <h3 id="tracks-configuration-possibilities">
         
@@ -646,7 +728,7 @@ default Audio/Text track</li>
         
         
       </h4>
-<p>The languages that are expected by player should match the SO 639-X codes definition</p>
+<p>The languages that are expected by the player to match the SO 639-X codes definition</p>
     
       <h2 id="subtitle-sideloading-for-player">
         
@@ -662,19 +744,15 @@ default Audio/Text track</li>
 
 <p>To load Subtitle from external source for the player, need to create a <code class="highlighter-rouge">List</code> of <code class="highlighter-rouge">PKExternalSubtitle</code> and then pass it to <code class="highlighter-rouge">PKMediaEntry</code> object.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>PKExternalSubtitle pkExternalSubtitle = new PKExternalSubtitle()
-                .setUrl("http://URL_OF_EXTERNAL_SUBTITLE.vtt")
-                .setMimeType(PKSubtitleFormat.vtt)
-                .setLabel("de")
-                .setLanguage("deu");
-mList.add(pkExternalSubtitle);
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PKExternalSubtitle</span> <span class="n">pkExternalSubtitle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PKExternalSubtitle</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="s">"http://URL_OF_EXTERNAL_SUBTITLE.vtt"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setMimeType</span><span class="o">(</span><span class="n">PKSubtitleFormat</span><span class="o">.</span><span class="na">vtt</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setLabel</span><span class="o">(</span><span class="s">"de"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setLanguage</span><span class="o">(</span><span class="s">"deu"</span><span class="o">);</span>
+<span class="n">mList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">pkExternalSubtitle</span><span class="o">);</span></code></pre></figure>
 
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">mediaEntry</span><span class="o">.</span><span class="na">setExternalSubtitleList</span><span class="o">(</span><span class="n">mList</span><span class="o">);</span></code></pre></figure>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mediaEntry.setExternalSubtitleList(mList);
-</code></pre>
-</div>
 <p>Use <code class="highlighter-rouge">setDefault()</code> while creating <code class="highlighter-rouge">PKExternalSubtitle</code> to make it default subtitle.<br />
 <code class="highlighter-rouge">TEXT_VTT</code> and <code class="highlighter-rouge">APPLICATION_SUBRIP</code> mime-types are supported for subtitles.</p>
     
@@ -689,16 +767,12 @@ mList.add(pkExternalSubtitle);
 <p>To configure Subtitles to the player, first need to set the Subtitles using <code class="highlighter-rouge">settings</code> from <code class="highlighter-rouge">player</code>object.<br />
 While creating <code class="highlighter-rouge">SubtitleStyleSettings</code> object, need to pass <code class="highlighter-rouge">subtitleStyleName</code> param in constructor.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings("MyCustomSubtitleStyle");
-player.getSettings().setSubtitleStyle(subtitleStyleSettings);
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">SubtitleStyleSettings</span> <span class="n">subtitleStyleSettings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubtitleStyleSettings</span><span class="o">(</span><span class="s">"MyCustomSubtitleStyle"</span><span class="o">);</span>
+<span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setSubtitleStyle</span><span class="o">(</span><span class="n">subtitleStyleSettings</span><span class="o">);</span></code></pre></figure>
 
 <p>To update the Subtitles call <code class="highlighter-rouge">updateSubtitleStyle()</code> using only <code class="highlighter-rouge">player</code> object. Use updated <code class="highlighter-rouge">subtitleStyleSettings</code> object.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>player.updateSubtitleStyle(subtitleStyleSettings);
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">updateSubtitleStyle</span><span class="o">(</span><span class="n">subtitleStyleSettings</span><span class="o">);</span></code></pre></figure>
 
 <p>Using builder pattern for setters in <code class="highlighter-rouge">subtitleStyleSettings</code>, Following Styles can be applied,</p>
 
@@ -709,53 +783,53 @@ player.getSettings().setSubtitleStyle(subtitleStyleSettings);
   <li>
     <p><code class="highlighter-rouge">setWindowColor</code> - Change subtitle window color</p>
   </li>
-  <li>
-    <p><code class="highlighter-rouge">setEdgeType</code> - Change subtitle Edge types using <code class="highlighter-rouge">enum SubtitleStyleEdgeType</code> with the values <code class="highlighter-rouge">EDGE_TYPE_NONE, EDGE_TYPE_OUTLINE, EDGE_TYPE_DROP_SHADOW, EDGE_TYPE_RAISED, EDGE_TYPE_DEPRESSED;</code></p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">setTextSizeFraction</code> - Change subtitle text size fraction using <code class="highlighter-rouge">enum SubtitleTextSizeFraction</code> with the values <code class="highlighter-rouge">SUBTITLE_FRACTION_50, SUBTITLE_FRACTION_75, SUBTITLE_FRACTION_100, SUBTITLE_FRACTION_125, SUBTITLE_FRACTION_150, SUBTITLE_FRACTION_200</code></p>
-  </li>
-  <li><code class="highlighter-rouge">setTypeface</code> - Change subtitle typeface using <code class="highlighter-rouge">enum SubtitleStyleTypeface</code> with the values <code class="highlighter-rouge">DEFAULT, DEFAULT_BOLD, MONOSPACE, SERIF, SANS_SERIF</code></li>
+  <li><code class="highlighter-rouge">setEdgeType</code> - Change subtitle Edge types using <code class="highlighter-rouge">enum SubtitleStyleEdgeType</code> with the values</li>
 </ul>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="n">EDGE_TYPE_NONE</span><span class="o">,</span> <span class="n">EDGE_TYPE_OUTLINE</span><span class="o">,</span> <span class="n">EDGE_TYPE_DROP_SHADOW</span><span class="o">,</span> <span class="n">EDGE_TYPE_RAISED</span><span class="o">,</span> <span class="n">EDGE_TYPE_DEPRESSED</span><span class="o">;</span> </code></pre></figure>
+
+<ul>
+  <li><code class="highlighter-rouge">setTextSizeFraction</code> - Change subtitle text size fraction using <code class="highlighter-rouge">enum SubtitleTextSizeFraction</code> with the values</li>
+</ul>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">SUBTITLE_FRACTION_50</span><span class="o">,</span> <span class="n">SUBTITLE_FRACTION_75</span><span class="o">,</span> <span class="n">SUBTITLE_FRACTION_100</span><span class="o">,</span> <span class="n">SUBTITLE_FRACTION_125</span><span class="o">,</span> <span class="n">SUBTITLE_FRACTION_150</span><span class="o">,</span> <span class="n">SUBTITLE_FRACTION_200</span></code></pre></figure>
+
+<ul>
+  <li><code class="highlighter-rouge">setTypeface</code> - Change subtitle typeface using <code class="highlighter-rouge">enum SubtitleStyleTypeface</code> with the values</li>
+</ul>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DEFAULT</span><span class="o">,</span> <span class="n">DEFAULT_BOLD</span><span class="o">,</span> <span class="n">MONOSPACE</span><span class="o">,</span> <span class="n">SERIF</span><span class="o">,</span> <span class="n">SANS_SERIF</span> </code></pre></figure>
     
-      <h4 id="example-12">
+      <h4 id="example-11">
         
         
-          Example <a href="#example-12"></a>
+          Example <a href="#example-11"></a>
         
         
       </h4>
 
 <p>To set the Subtitles,</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings("MyCustomSubtitleStyle")
-                    .setBackgroundColor(Color.BLUE)
-                    .setTextColor(Color.WHITE)
-                    .setTextSizeFraction(SubtitleStyleSettings.SubtitleTextSizeFraction.SUBTITLE_FRACTION_50)
-                    .setWindowColor(Color.YELLOW)
-                    .setEdgeColor(Color.BLUE)
-                    .setTypeface(SubtitleStyleSettings.SubtitleStyleTypeface.MONOSPACE)
-                    .setEdgeType(SubtitleStyleSettings.SubtitleStyleEdgeType.EDGE_TYPE_DROP_SHADOW);
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">SubtitleStyleSettings</span> <span class="n">subtitleStyleSettings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubtitleStyleSettings</span><span class="o">(</span><span class="s">"MyCustomSubtitleStyle"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setBackgroundColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setTextColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setTextSizeFraction</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span><span class="o">.</span><span class="na">SubtitleTextSizeFraction</span><span class="o">.</span><span class="na">SUBTITLE_FRACTION_50</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setWindowColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setEdgeColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setTypeface</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span><span class="o">.</span><span class="na">SubtitleStyleTypeface</span><span class="o">.</span><span class="na">MONOSPACE</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setEdgeType</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span><span class="o">.</span><span class="na">SubtitleStyleEdgeType</span><span class="o">.</span><span class="na">EDGE_TYPE_DROP_SHADOW</span><span class="o">);</span>
 
-player.getSettings().setSubtitleStyle(subtitleStyleSettings);
-</code></pre>
-</div>
+<span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setSubtitleStyle</span><span class="o">(</span><span class="n">subtitleStyleSettings</span><span class="o">);</span></code></pre></figure>
 
-<p>To update the existing Subtitles,</p>
+<p>To update the existing Subtitles:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>SubtitleStyleSettings subtitleStyleSettings = new SubtitleStyleSettings("MyNewCustomSubtitleStyle")
-                        .setBackgroundColor(Color.WHITE)
-                        .setTextColor(Color.RED)
-                        .setTextSizeFraction(SubtitleStyleSettings.SubtitleTextSizeFraction.SUBTITLE_FRACTION_100)
-                        .setWindowColor(Color.BLUE)
-                        .setEdgeColor(Color.BLUE)
-                        .setTypeface(SubtitleStyleSettings.SubtitleStyleTypeface.SANS_SERIF)
-                        .setEdgeType(SubtitleStyleSettings.SubtitleStyleEdgeType.EDGE_TYPE_DROP_SHADOW);
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">SubtitleStyleSettings</span> <span class="n">subtitleStyleSettings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubtitleStyleSettings</span><span class="o">(</span><span class="s">"MyNewCustomSubtitleStyle"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setBackgroundColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setTextColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setTextSizeFraction</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span><span class="o">.</span><span class="na">SubtitleTextSizeFraction</span><span class="o">.</span><span class="na">SUBTITLE_FRACTION_100</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setWindowColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setEdgeColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setTypeface</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span><span class="o">.</span><span class="na">SubtitleStyleTypeface</span><span class="o">.</span><span class="na">SANS_SERIF</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">setEdgeType</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span><span class="o">.</span><span class="na">SubtitleStyleEdgeType</span><span class="o">.</span><span class="na">EDGE_TYPE_DROP_SHADOW</span><span class="o">);</span>
 
-player.updateSubtitleStyle(subtitleStyleSettings);
-
-</code></pre>
-</div>
+<span class="n">player</span><span class="o">.</span><span class="na">updateSubtitleStyle</span><span class="o">(</span><span class="n">subtitleStyleSettings</span><span class="o">);</span></code></pre></figure>
 		
 </article>
 
