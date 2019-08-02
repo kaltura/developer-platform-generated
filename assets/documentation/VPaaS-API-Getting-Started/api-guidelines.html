@@ -1,0 +1,585 @@
+  <title>Kaltura API Usage and Guidelines</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Kaltura API Usage and Guidelines" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Kaltura API Usage and Guidelines</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Thu Jul 25 07:43:13 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/api-guidelines.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed Jul 24 11:21:49 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Thu Jul 25 07:43:13 2019, By <span class="commit-author">Avital</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (5 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h3 id="document-conventions">
+        
+        
+          Document Conventions <a href="#document-conventions"></a>
+        
+        
+      </h3>
+
+<p>A string in brackets [] represents a value. Replace the string – including the brackets – with an actual value. For example: replace <em>[SERVICENAME]</em> with <em>syndicationFeed</em>.</p>
+    
+      <h3 id="finding-the-latest-api-version-number">
+        
+        
+          Finding the Latest API Version Number <a href="#finding-the-latest-api-version-number"></a>
+        
+        
+      </h3>
+
+<p>To find the version number of the API that contains the latest updates, use the <a href="https://developer.kaltura.com/console/service/system/action/getVersion">system.getVersion</a> API.</p>
+    
+      <h3 id="getting-a-client-library-for-the-kaltura-api">
+        
+        
+          Getting a Client Library for the Kaltura API <a href="#getting-a-client-library-for-the-kaltura-api"></a>
+        
+        
+      </h3>
+
+<p>To work with the Kaltura API, you need code that can:</p>
+
+<ul>
+  <li>Construct a Kaltura request.</li>
+  <li>Perform an HTTP request.</li>
+  <li>Parse the result of a Kaltura request.</li>
+</ul>
+
+<p>To save you time, Kaltura provides client libraries. A client library is a set of classes that includes:</p>
+
+<ul>
+  <li>The functional infrastructure for communication with the Kaltura API: constructing a request, performing an HTTP request, and parsing a response</li>
+  <li>A full object representation of all the entities that are available through the Kaltura API, including enumeration objects</li>
+  <li>Infrastructure for developers, such as built-in log capabilities</li>
+</ul>
+
+<p>The Kaltura API SDK includes client library packages in different languages, including PHP, Java, C#, and JavaScript. For the latest version of all client libraries, refer to <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Kaltura API SDK - Native Client Libraries</a>.</p>
+
+<p>To get the entire API in your IDE, just download the client library for the language that you use to develop your applications and include the client library in your application or project.</p>
+    
+      <h3 id="getting-a-client-library-for-a-language-that-kaltura-does-not-provide">
+        
+        
+          Getting a Client Library for a Language that Kaltura Does Not Provide <a href="#getting-a-client-library-for-a-language-that-kaltura-does-not-provide"></a>
+        
+        
+      </h3>
+
+<p>The Kaltura client libraries are generated automatically based on API schema. Kaltura also strives to include contributions from the community and customers, and we welcome contributions of client libraries for languages that Kaltura does not yet provide.</p>
+
+<p>You can write a custom generator class in PHP that generates code in the language of your choice.</p>
+
+<p>If you provide the generator class to Kaltura, Kaltura will include your generator class in the Kaltura core generator. The new client library will be automatically generated and will be publicly available.</p>
+
+<p>For more information on creating a client library generator, refer to <a href="https://vpaas.kaltura.com/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html">Adding New Kaltura API Client Library Generator</a>.</p>
+    
+      <h3 id="api-authentication-and-kaltura-sessions">
+        
+        
+          API Authentication and Kaltura Sessions <a href="#api-authentication-and-kaltura-sessions"></a>
+        
+        
+      </h3>
+
+<p>Most Kaltura API calls require you to authenticate before executing a call. Calls that require authentication usually have a response that cannot be shared between different accounts. For the Kaltura server to know that you are allowed to “ask that question,” you must authenticate before executing the call.</p>
+
+<p>To learn more about the Kaltura Session and API Authentication, read: <a href="https://vpaas.kaltura.com/documentation/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura’s API Authentication and Security</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Error Code</th>
+      <th>Error Message</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>INTERNAL_SERVER_ERROR</td>
+      <td>Internal server error occurred</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>MISSING_KS</td>
+      <td>Missing KS, session not established</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>INVALID_KS</td>
+      <td>Invalid KS “%KS%”, Error “%KS_ERROR_CODE%,%KS_ERROR_DESCRIPTION%”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SERVICE_NOT_SPECIFIED</td>
+      <td>Service name was not specified, please specify one</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SERVICE_DOES_NOT_EXISTS</td>
+      <td>Service “%SERVICE_NAME%” does not exist</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ACTION_NOT_SPECIFIED</td>
+      <td>Action name was not specified, please specify one</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ACTION_DOES_NOT_EXISTS</td>
+      <td>Action “%ACTION_NAME%” does not exist for service “%SERVICE_NAME%”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>MISSING_MANDATORY_PARAMETER</td>
+      <td>Missing parameter “%PARAMETER_NAME%”</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h3 id="kaltura-api-responserequest-format">
+        
+        
+          Kaltura API Response/Request Format <a href="#kaltura-api-responserequest-format"></a>
+        
+        
+      </h3>
+    
+      <h4 id="request-structure">
+        
+        
+          Request Structure <a href="#request-structure"></a>
+        
+        
+      </h4>
+
+<p>The Kaltura API implements a standard HTTP POST/GET URL encoded request structure. URL-encoded requests are targeted to a specific API method.</p>
+
+<p>Each API method location is concatenated from:</p>
+
+<ul>
+  <li>Base URI</li>
+  <li>Service identifier string</li>
+  <li>Action identifier string</li>
+</ul>
+
+<p>The format of the API method location is: /api_v3/service/[SERVICENAME]/action/[ACTIONNAME], where</p>
+
+<ul>
+  <li>[SERVICENAME] represents a specific service</li>
+  <li>[ACTIONNAME] represent an action to be applied in the specific service</li>
+</ul>
+    
+      <h4 id="request-input-parameters">
+        
+        
+          Request Input Parameters <a href="#request-input-parameters"></a>
+        
+        
+      </h4>
+
+<p>Each API method receives a different set of input parameters.</p>
+
+<p>For all request types:</p>
+
+<ul>
+  <li>Send input parameters as a standard URL-encoded key-value string.</li>
+  <li>When an input parameter is an object, flatten it to pairs of ObjectName:Param keys.</li>
+</ul>
+    
+      <h4 id="request-input-parameters-example">
+        
+        
+          Request Input Parameters Example <a href="#request-input-parameters-example"></a>
+        
+        
+      </h4>
+
+<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">id=abc12&amp;name=name%20with%20spaces&amp;entry:tag=mytag&amp;entry:description=mydesc</code></pre></figure>
+
+<p>In the example, the following parameters are URL encoded and are passed as API input parameters:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">id</span> <span class="o">=</span> <span class="s1">'abc'</span>
+<span class="nx">name</span> <span class="o">=</span> <span class="s1">'name with spaces'</span>
+<span class="nx">entry</span> <span class="p">{</span>
+	<span class="nx">tag</span> <span class="o">=</span> <span class="s1">'mytag'</span><span class="p">,</span>
+	<span class="nx">description</span> <span class="o">=</span> <span class="s1">'mydesc'</span>
+<span class="p">}</span></code></pre></figure>
+    
+      <h3 id="api-errors-and-error-handling">
+        
+        
+          API Errors and Error Handling <a href="#api-errors-and-error-handling"></a>
+        
+        
+      </h3>
+
+<p>The Kaltura API can return errors, which are represented by an error identifier followed by a description:</p>
+
+<ul>
+  <li>An error ID is a unique string. The parts of the string are separated by underscores.</li>
+  <li>An error description is textual. The description may include a dynamic value.</li>
+</ul>
+
+<p>A comma separates the error ID from the description.</p>
+    
+      <h4 id="api-error-example">
+        
+        
+          API Error Example <a href="#api-error-example"></a>
+        
+        
+      </h4>
+
+<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">ENTRY_ID_NOT_FOUND,Entry id "%s" not found</code></pre></figure>
+
+<p>where <em>%s</em> is replaced with the value that is sent to the API call.</p>
+
+<p>In the response XML:</p>
+
+<ul>
+  <li>The *<code>* node contains the error code (such as *ENTRY\_ID\_NOT_FOUND*).</code></li>
+  <li>The *<message>* node contains the description (such as *Entry id “%s” not found*).</message></li>
+</ul>
+    
+      <h4 id="errorresponse">
+        
+        
+          ErrorResponse <a href="#errorresponse"></a>
+        
+        
+      </h4>
+
+<p><strong>Error Handling</strong></p>
+
+<p>In most client libraries, the client library code throws an exception when an error is returned from the API. Depending on the programming language, catching the exception to read the code and/or the message enables user-friendly error handling. Errors that you encounter during development usually are caused by incorrect implementation.</p>
+    
+      <h3 id="the-multi-request-api">
+        
+        
+          The Multi-request API <a href="#the-multi-request-api"></a>
+        
+        
+      </h3>
+    
+      <h4 id="understanding-the-multi-request-feature">
+        
+        
+          Understanding the Multi-request Feature <a href="#understanding-the-multi-request-feature"></a>
+        
+        
+      </h4>
+
+<p>The Kaltura API can execute several API calls in a single HTTP request to Kaltura. The multi-request feature improves performance in Kaltura integrations. The feature enables a developer to stack multiple API calls and issue them in a single request. This reduces the number of round-trips from server-side or client-side developer code to Kaltura.</p>
+
+<p>The Kaltura API processes each of the API calls that are included in the single HTTP request. The response essentially is a list of the results for each of the calls in the request. The multi-request feature includes the ability to have one request depend on the result of another request.</p>
+
+<p>While the Kaltura API is processing each of the API calls in a multi-request, it detects when there is a dependency in one of the call parameters. The Kaltura API parses the dependency and replaces it with the result of the relevant call.</p>
+    
+      <h4 id="using-the-multi-request-feature">
+        
+        
+          Using the Multi-request Feature <a href="#using-the-multi-request-feature"></a>
+        
+        
+      </h4>
+    
+      <h5 id="multi-request-with-dependency---sample-use-case">
+        
+        
+          Multi-request with Dependency - Sample Use Case <a href="#multi-request-with-dependency---sample-use-case"></a>
+        
+        
+      </h5>
+
+<p>To create a new entry out of a file in your server, execute several different API calls:</p>
+
+<ol>
+  <li>uploadToken.add</li>
+  <li>uploadToken.upload</li>
+  <li>baseEntry.addFromUploadedFile</li>
+</ol>
+
+<p>The result of <em>uploadToken.add</em> is an <em>uploadToken</em> object that consists of a token string.</p>
+
+<p>You’ll need the token string when executing the next action – uploading the file, therefore, you must complete the first action to call the second one.</p>
+
+<p>Using the multi-request feature, in the second request you specify obtaining the value of the token parameter from the token property that is the result of the first request.</p>
+    
+      <h3 id="multi-request-structure">
+        
+        
+          Multi-request Structure <a href="#multi-request-structure"></a>
+        
+        
+      </h3>
+
+<p>To perform a multi-request call:</p>
+
+<ol>
+  <li>
+    <p>Define the <em>GET</em> parameter of <em>service</em> as <em>multirequest</em> and define the <em>action</em> as <em>null</em> using (http://www.kaltura.com/api_v3/?service=multirequest&amp;action=null).</p>
+  </li>
+  <li>
+    <p>Prefix each API call with a number that represents its order in the multi-request call, followed by a colon. Prefix the first call with <em>1:</em>, the second with <em>2:</em>, and so on.</p>
+  </li>
+  <li>
+    <p>Use the prefix for each of an API call’s parameters (service, action, and action parameters).</p>
+  </li>
+</ol>
+    
+      <h3 id="multi-request-structure-example">
+        
+        
+          Multi-Request Structure Example <a href="#multi-request-structure-example"></a>
+        
+        
+      </h3>
+
+<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">Request URL: api_v3/index.php?service=multirequest&amp;action=null
+	POST variables:
+		1:service=baseEntry
+		1:action=get
+		1:version=-1
+		1:entryId=0_zsadqv3e
+		2:service=flavorasset
+		2:action=getWebPlayableByEntryId
+		2:entryId=0_zsadqv3e
+		2:version=-1
+		ks={ks}</code></pre></figure>
+    
+      <h3 id="multi-request-with-dependency---structure">
+        
+        
+          Multi-request with Dependency - Structure <a href="#multi-request-with-dependency---structure"></a>
+        
+        
+      </h3>
+
+<p>To create a multi-request with a dependent request, use the following structure as input in the variable whose value you want to replace with a result of a preceding request:</p>
+
+<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">{num:result:propertyName}</code></pre></figure>
+
+<p>where:</p>
+
+<ul>
+  <li><em>num</em> is the number of the request from which to collect data.</li>
+  <li><em>result</em> instructs the Kaltura API to replace this value with a result from another request.</li>
+  <li><em>propertyName</em> is the property to obtain from the object of the required result.</li>
+</ul>
+    
+      <h3 id="multi-request-with-dependency---example">
+        
+        
+          Multi-Request With Dependency - Example <a href="#multi-request-with-dependency---example"></a>
+        
+        
+      </h3>
+
+<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">Request URL: api_v3/index.php?service=multirequest&amp;action=null
+	POST variables:
+		1:service=media
+		1:action=list
+		1:filter:nameLike=myentry
+		2:service=media
+		2:action=get
+		2:entryId={1:result:objects:0:id}
+		ks={ks}</code></pre></figure>
+
+<p>In the example, the first request lists entries whose names resemble <em>myentry</em>. The <a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a> request returns an object of type <em>KalturaMediaListResponse</em>, which contains an object named <em>objects</em> of type <em>KalturaMediaEntryArray</em>.</p>
+
+<p>The second request is <a href="https://developer.kaltura.com/console/service/media/action/get">media.get</a>, which uses <code class="highlighter-rouge">entryId</code> as input.</p>
+
+<p>The <code class="highlighter-rouge">entryId</code> input is dynamic, and the value is obtained from the first request. Since the <a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a> response is constructed of array object within a response object, the first property to access is <code class="highlighter-rouge">KalturaMediaEntryArray</code>.</p>
+
+<p>Since in the <code class="highlighter-rouge">KalturaMediaEntryArray</code> you want to obtain the first element (index <em>*), add *:0</em> to the request value.</p>
+
+<p>Since from the first element you want only the ID that is the input for the second request, add <em>:id</em> to the request value.</p>
+    
+      <h3 id="maintaining-backward-compatibility-and-tracking-version-changes">
+        
+        
+          Maintaining Backward Compatibility and Tracking Version Changes <a href="#maintaining-backward-compatibility-and-tracking-version-changes"></a>
+        
+        
+      </h3>
+
+<p>Maintaining backward compatibility during API upgrades is a common concern for developers utilizing APIs to build applications.</p>
+
+<p>Kaltura’s client libraries are automatically generated from the server code, that include an automatic client libraries’ generator mechanism. See <a href="https://knowledge.kaltura.com/node/43">Adding the New Kaltura API Client Library Generator</a> for more information. As a result, the Kaltura API client libraries are not available as a static code repository that you can track for changes.</p>
+
+<p>To keep up to date with the changes between releases, follow the <a href="https://twitter.com/Kaltura_API">Kaltura API Twitter account</a>.</p>
+
+<p>For each Kaltura release, the Kaltura API Twitter account notifies followers about additions and changes made to the REST APIs, Players APIs, and changes to the Client Libraries, and release notes are provided about the new release.</p>
+
+<p>Kaltura API based applications do not require frequent updates to the client library used. Kaltura is committed to provide full backward computability to the API layer, keeping deprecated APIs functional, and ensuring that additions or changes introduced in new versions will not break existing applications.</p>
+
+<p>When new functionalities for your applications are introduced, or when maintenance upgrades are made to your applications, we encourage you to keep your client libraries updated even though an upgrade based on the availability of new Kaltura releases is not required.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
