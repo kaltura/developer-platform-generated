@@ -1984,11 +1984,12 @@ var DocumentationComponent = /** @class */ (function () {
                     .then(function (md) {
                     item.contents = md;
                 })
-                    .catch(function (e) {
-                    _this.error = (e.error && e.error.message) || "Unknown error.";
-                })
                     .then(function () {
                     _this.setActiveItemHTML(item.contents, !item.isHTML);
+                })
+                    .catch(function (e) {
+                    _this.error = (e.error && e.error.message) || "Unknown error.";
+                    return Promise.reject(e);
                 });
             }
             else {
