@@ -8600,6 +8600,8 @@ var OpenAPIService = /** @class */ (function () {
         var _this = this;
         if (checked === void 0) { checked = []; }
         if (recursive === void 0) { recursive = true; }
+        if (smaller.$ref)
+            return;
         if (schema.$ref)
             schema = this.resolveReference(schema.$ref);
         if (!smaller.properties)
@@ -8630,6 +8632,8 @@ var OpenAPIService = /** @class */ (function () {
             checked.push(sub);
         }
         for (var key in smaller.properties) {
+            if (smaller.properties[key].$ref)
+                continue;
             var subschema = schema.properties[key];
             if (!subschema)
                 continue;
