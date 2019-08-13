@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Mar 25 09:53:03 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-events-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon Aug 12 11:14:33 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-events-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Mar 25 09:53:03 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon Aug 12 11:14:33 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
@@ -122,7 +122,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>tzubeli (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>tzubeli (4 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -146,9 +146,7 @@ rtp('get', 'campaign',true);
 
 <p>Call the following Player method, one or more times. <code class="highlighter-rouge">eventTypes</code> is the list of events that should be sent to the given listener:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">player</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="n">player</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span></code></pre></figure>
     
       <h2 id="removing-event-listeners-from-application-v362-and-up">
         
@@ -163,17 +161,16 @@ rtp('get', 'campaign',true);
 <p>There are two methods that allow removing event listeners:</p>
 
 <ul>
-  <li>Remove listener from specific events:
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="na">removeEventListener</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">events</span><span class="o">);</span> <span class="c1">// remove by event</span>
-</code></pre>
-    </div>
-  </li>
-  <li>Remove listener from all events:
-    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">.</span><span class="na">removeListener</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">);</span> <span class="c1">// remove all rgeisterd events</span>
-</code></pre>
-    </div>
-  </li>
+  <li>Remove listener from specific events:</li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="n">player</span><span class="o">.</span><span class="na">removeEventListener</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">events</span><span class="o">);</span> <span class="c1">// remove by event</span></code></pre></figure>
+
+<ul>
+  <li>Remove listener from all events:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="n">player</span><span class="o">.</span><span class="na">removeListener</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">);</span> <span class="c1">// remove all registered events</span></code></pre></figure>
     
       <h2 id="listening-to-events-from-plugins">
         
@@ -185,9 +182,7 @@ rtp('get', 'campaign',true);
 
 <p><code class="highlighter-rouge">player.addEventListener()</code> is only meant to be used by applications. It does not work for plugins. Instead, plugins are given an instance of PlayKit’s MessageBus.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code>  <span class="n">messageBus</span><span class="o">.</span><span class="na">listen</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="n">messageBus</span><span class="o">.</span><span class="na">listen</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span></code></pre></figure>
     
       <h2 id="core-player-events">
         
@@ -215,7 +210,7 @@ rtp('get', 'campaign',true);
   <li>CAN_PLAY: Sent when enough data is available that the media can be played, at least for a couple of frames. This corresponds to the HAVE_ENOUGH_DATA readyState.</li>
   <li>PLAY: Sent when playback of the media starts after having been paused; that is, when playback is resumed after a prior pause event.</li>
   <li>PLAYING: Sent when the media begins to play (either for the first time, after having been paused, or after ending and then restarting).</li>
-  <li>PLAYHEAD_UPDATED: Send player position every 100 Milisec</li>
+  <li>PLAYHEAD_UPDATED: Send player position every 100 ms</li>
   <li>ENDED: Sent when playback completes.</li>
 </ul>
     

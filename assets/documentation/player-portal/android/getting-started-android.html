@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Jul 30 02:08:55 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon Aug 12 11:12:26 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Jul 30 02:08:55 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon Aug 12 11:12:26 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
@@ -122,7 +122,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>tzubeli (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>tzubeli (5 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -142,6 +142,296 @@ rtp('get', 'campaign',true);
 <p>If you prefer to see a Java sample, click <a href="https://github.com/kaltura/kaltura-player-android-samples/tree/develop/OVPSamples">here</a>.</p>
 
 <p>If you’re looking for the iOS guide, click <a href="https://developer.kaltura.com/player/ios/getting-started-ios/">here</a>.</p>
+      <h2 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h2>
+
+<p>You’ll need two things:</p>
+
+<ol>
+  <li>Your Kaltura Partner ID, which can be found in the KMC under Settings&gt;Integration Settings</li>
+  <li>Any video entry, which can be found in the KMC as well.</li>
+</ol>
+    
+      <h2 id="setting-up">
+        
+        
+          Setting Up <a href="#setting-up"></a>
+        
+        
+      </h2>
+
+<p>Begin by creating a new project in Android Studio. For this guide we chose the Fullscreen Activity Preset, to make it simpler to view the player in full-screen:</p>
+
+<p><img src="../images/Fullscreen.png" alt="Fullscreen Activity Project" /></p>
+
+<p>The <code class="highlighter-rouge">FullScreenActivity.kt</code> comes pre-loaded with functions for showing and hiding the Action Bar and the Controls menu, to achieve the full-screen functionality.</p>
+    
+      <h2 id="compile-options">
+        
+        
+          Compile Options <a href="#compile-options"></a>
+        
+        
+      </h2>
+
+<p>Depending on your Compile Settings, you might get an error about Invoke-customs or supported release versions. In that case should add java 1.8 to your compile options in <strong>build.gradle</strong></p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="n">android</span> <span class="p">{</span>
+    <span class="n">compileSdkVersion</span> <span class="m">28</span>
+    <span class="n">android</span> <span class="p">{</span>
+        <span class="n">compileOptions</span> <span class="p">{</span>
+            <span class="n">sourceCompatibility</span> <span class="m">1.8</span>
+            <span class="n">targetCompatibility</span> <span class="m">1.8</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></figure>
+    
+      <h3 id="dependencies">
+        
+        
+          Dependencies <a href="#dependencies"></a>
+        
+        
+      </h3>
+
+<p>In your <strong>build.gradle</strong> add the Kaltura-Player dependency:</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="n">implementation</span> <span class="err">'</span><span class="n">com</span><span class="p">.</span><span class="n">kaltura</span><span class="p">.</span><span class="n">player</span><span class="p">:</span><span class="n">tvplayer</span><span class="p">:</span><span class="m">4.0</span><span class="p">.</span><span class="m">0</span><span class="err">'</span></code></pre></figure>
+    
+      <h3 id="imports">
+        
+        
+          Imports <a href="#imports"></a>
+        
+        
+      </h3>
+
+<p>In the <code class="highlighter-rouge">FullScreenActivity.kt</code>, import the following:</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">import</span> <span class="nn">com.kaltura.playkit.PlayerState</span>
+<span class="k">import</span> <span class="nn">com.kaltura.tvplayer.KalturaPlayer</span>
+<span class="k">import</span> <span class="nn">com.kaltura.tvplayer.OVPMediaOptions</span>
+<span class="k">import</span> <span class="nn">com.kaltura.tvplayer.PlayerInitOptions</span></code></pre></figure>
+    
+      <h3 id="companion-objects">
+        
+        
+          Companion Objects <a href="#companion-objects"></a>
+        
+        
+      </h3>
+
+<p>Static variables in Kotlin are placed in the Companion Object, which acts as an inner singleton class that gives access to its members as direct members of the class.</p>
+
+<p>In our Companion Object, we’ll declare the log-tag and Partner ID:</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">companion</span> <span class="kd">object</span> <span class="err">{
+
+    </span><span class="nc">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">TAG</span> <span class="p">=</span> <span class="s">"FullscreenActivity"</span>
+    <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">PARTNER_ID</span> <span class="p">=</span> <span class="m">2215841</span>
+<span class="p">}</span></code></pre></figure>
+    
+      <h3 id="class-variables">
+        
+        
+          Class Variables <a href="#class-variables"></a>
+        
+        
+      </h3>
+
+<p>For starters you’ll need the ID of the entry, or video, that you want to display in the player. You can find this in the KMC under <a href="https://kmc.kaltura.com/index.php/kmcng/content/entries/list">Content</a>.</p>
+
+<p>You’ll need an object for the Player, and you’ll also need to hold onto the Player State (for playing and pausing):</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">private</span> <span class="kd">val</span> <span class="py">entryId</span> <span class="p">=</span> <span class="s">"1_w9zx2eti"</span>
+<span class="k">private</span> <span class="kd">var</span> <span class="py">player</span><span class="p">:</span> <span class="n">KalturaPlayer</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="k">private</span> <span class="kd">var</span> <span class="py">playerState</span><span class="p">:</span> <span class="n">PlayerState</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span></code></pre></figure>
+    
+      <h2 id="the-player">
+        
+        
+          The Player <a href="#the-player"></a>
+        
+        
+      </h2>
+
+<p>Create a new function called <code class="highlighter-rouge">loadPlaykitPlayer</code>. This function will:</p>
+<ol>
+  <li>Set configuration and behavior (auto-play set to True)</li>
+  <li>Initialize the player</li>
+  <li>Create a view that is determined by the size of the player using <code class="highlighter-rouge">fullscreen_content</code> object that was created by the Fullscreen preset</li>
+  <li>Load the media entry inside the player using OVP Provider Object</li>
+  <li>Use built in Log object to document an error if loading the entry fails</li>
+  <li>Set the global Player to the new one if nothing fails</li>
+  <li>Call <code class="highlighter-rouge">addPlayerStateListener</code> function</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">private</span> <span class="k">fun</span> <span class="nf">loadPlaykitPlayer</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">val</span> <span class="py">playerInitOptions</span> <span class="p">=</span> <span class="n">PlayerInitOptions</span><span class="p">(</span><span class="n">PARTNER_ID</span><span class="p">)</span> <span class="c1">//player config/behavior
+</span>    <span class="n">playerInitOptions</span><span class="p">.</span><span class="n">setAutoPlay</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+
+    <span class="kd">val</span> <span class="py">player</span> <span class="p">=</span> <span class="n">KalturaPlayer</span><span class="p">.</span><span class="n">createOVPPlayer</span><span class="p">(</span><span class="k">this</span><span class="n">@FullscreenActivity</span><span class="p">,</span> <span class="n">playerInitOptions</span><span class="p">)</span> <span class="o">?:</span> <span class="k">return</span>
+
+    <span class="n">player</span><span class="p">.</span><span class="n">setPlayerView</span><span class="p">(</span><span class="n">FrameLayout</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">WRAP_CONTENT</span><span class="p">,</span> <span class="n">FrameLayout</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">WRAP_CONTENT</span><span class="p">)</span>
+
+    <span class="n">fullscreen_content</span><span class="p">.</span><span class="n">addView</span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">playerView</span><span class="p">)</span>
+
+    <span class="kd">val</span> <span class="py">ovpMediaOptions</span> <span class="p">=</span> <span class="n">buildOvpMediaOptions</span><span class="p">()</span>
+    <span class="n">player</span><span class="p">.</span><span class="n">loadMedia</span><span class="p">(</span><span class="n">ovpMediaOptions</span><span class="p">)</span> <span class="p">{</span> <span class="n">entry</span><span class="p">,</span> <span class="n">loadError</span> <span class="p">-&gt;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">loadError</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Snackbar</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">findViewById</span><span class="p">(</span><span class="n">android</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">loadError</span><span class="p">.</span><span class="n">message</span><span class="p">,</span> <span class="n">Snackbar</span><span class="p">.</span><span class="n">LENGTH_LONG</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="s">"OVPMedia onEntryLoadComplete  entry = "</span> <span class="p">+</span> <span class="n">entry</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">player</span> <span class="p">=</span> <span class="n">player</span>
+    <span class="n">addPlayerStateListener</span><span class="p">()</span>
+<span class="p">}</span></code></pre></figure>
+    
+      <h3 id="provider-options">
+        
+        
+          Provider Options <a href="#provider-options"></a>
+        
+        
+      </h3>
+
+<p>The provider helps the player access the Kaltura backend. The entryId is checked against the API, and there is an option to pass a Kaltura Session, which is always recommended when creating a player. If your application doesn’t already generate a Kaltura Session, read <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">this</a> to learn more.</p>
+
+<p>Create a function called <code class="highlighter-rouge">buildOvpMediaOptions</code>. The <code class="highlighter-rouge">apply</code> keyword in Kotlin will run the code block and pass the <em>receiver</em>, or in this case, <code class="highlighter-rouge">mediaOptions</code> as <strong><code class="highlighter-rouge">this</code></strong>.</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"> 
+<span class="k">private</span> <span class="k">fun</span> <span class="nf">buildOvpMediaOptions</span><span class="p">():</span> <span class="n">OVPMediaOptions</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">mediaOptions</span> <span class="p">=</span> <span class="n">OVPMediaOptions</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+        <span class="n">entryId</span> <span class="p">=</span> <span class="n">myEntryId</span>
+        <span class="n">ks</span> <span class="p">=</span> <span class="k">null</span>
+    <span class="p">}</span></code></pre></figure>
+    
+      <h3 id="state-listener">
+        
+        
+          State Listener <a href="#state-listener"></a>
+        
+        
+      </h3>
+
+<p>Create another function called <code class="highlighter-rouge">addPlayerStateListener</code>. It sets the state of the player any time it changes and logs the state change.</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"> 
+<span class="k">private</span> <span class="k">fun</span> <span class="nf">addPlayerStateListener</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">player</span><span class="o">!!</span><span class="p">.</span><span class="n">addListener</span><span class="p">&lt;</span><span class="n">PlayerEvent</span><span class="p">.</span><span class="n">StateChanged</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">,</span> <span class="n">PlayerEvent</span><span class="p">.</span><span class="n">stateChanged</span><span class="p">)</span> <span class="p">{</span> <span class="n">event</span> <span class="p">-&gt;</span>
+        <span class="n">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">"State changed from "</span> <span class="p">+</span> <span class="n">event</span><span class="p">.</span><span class="n">oldState</span> <span class="p">+</span> <span class="s">" to "</span> <span class="p">+</span> <span class="n">event</span><span class="p">.</span><span class="n">newState</span><span class="p">)</span>
+        <span class="n">playerState</span> <span class="p">=</span> <span class="n">event</span><span class="p">.</span><span class="n">newState</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+    
+      <h3 id="oncreate">
+        
+        
+          onCreate <a href="#oncreate"></a>
+        
+        
+      </h3>
+
+<p>Let’s put all the pieces together. In the <code class="highlighter-rouge">onCreate</code> function, you’ll need to call the functions we just created:</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin">    <span class="n">loadPlaykitPlayer</span><span class="p">()</span>
+    <span class="n">addPlayPauseButton</span><span class="p">()</span></code></pre></figure>
+
+<p>We removed the <code class="highlighter-rouge">setOnTouchListner</code> for the button, and ended up with something that looks like this:</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="n">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+
+    <span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_fullscreen</span><span class="p">)</span>
+    <span class="n">supportActionBar</span><span class="o">?.</span><span class="n">setDisplayHomeAsUpEnabled</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+
+    <span class="n">mVisible</span> <span class="p">=</span> <span class="k">true</span>
+
+    <span class="n">loadPlaykitPlayer</span><span class="p">()</span>
+    <span class="n">addPlayPauseButton</span><span class="p">()</span>
+    
+    <span class="n">fullscreen_content</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span> <span class="n">toggle</span><span class="p">()</span> <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>If you run the app now, you should see the player, and your video should start automatically. If you turn off the screen lock, you’ll see that the video becomes fullscreen and that the buttons disappear. Notice however that you have no way of pausing the video. We’ll need play and pause buttons.</p>
+    
+      <h3 id="play-and-pause">
+        
+        
+          Play and Pause <a href="#play-and-pause"></a>
+        
+        
+      </h3>
+
+<p>The Fullscreen project has already created two buttons for us. In this example we removed one of the buttons and called the other one playPauseButton. We also turned it into an imageButton (instead of text) so that we can use proper images from the Exo image library that we imported earlier.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"> <span class="nt">&lt;ImageButton</span>
+    <span class="na">android:layout_width=</span><span class="s">"0dp"</span>
+    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span> <span class="na">app:srcCompat=</span><span class="s">"@drawable/exo_controls_play"</span>
+    <span class="na">android:id=</span><span class="s">"@+id/playPauseButton"</span> <span class="na">android:layout_weight=</span><span class="s">"1"</span> <span class="na">android:background=</span><span class="s">"#00FFFFFF"</span><span class="nt">/&gt;</span></code></pre></figure>
+
+<p>The <code class="highlighter-rouge">addPlayPauseButton</code> sets the button to rely on Player state in order to know which image to show. Meaning if the video is playing, the button should show a <em>pause</em> icon, and when the button is clicked, the video pauses and the image turns to a <em>play</em> icon.</p>
+
+<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">private</span> <span class="k">fun</span> <span class="nf">addPlayPauseButton</span><span class="p">()</span> <span class="p">{</span>
+    
+    <span class="n">playPauseButton</span><span class="o">!!</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span> <span class="n">v</span> <span class="p">-&gt;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">player</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">player</span><span class="o">!!</span><span class="p">.</span><span class="n">isPlaying</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">//If player is playing, change text of the button and pause.
+</span>                <span class="n">player</span><span class="o">!!</span><span class="p">.</span><span class="n">pause</span><span class="p">()</span>
+                <span class="n">playPauseButton</span><span class="o">!!</span><span class="p">.</span><span class="n">setImageResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">exo_controls_play</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">//If player is not playing, change text of the button and play.
+</span>                <span class="n">player</span><span class="o">!!</span><span class="p">.</span><span class="n">play</span><span class="p">()</span>
+                <span class="n">playPauseButton</span><span class="o">!!</span><span class="p">.</span><span class="n">setImageResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">exo_controls_pause</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>We made a few other changes to the activity XML, like turning the view into a <code class="highlighter-rouge">LinearLayout</code>. See full XML:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;FrameLayout</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+            <span class="na">xmlns:app=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span> <span class="na">xmlns:tools=</span><span class="s">"http://schemas.android.com/tools"</span>
+            <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+            <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+            <span class="na">android:background=</span><span class="s">"#0099cc"</span>
+            <span class="na">tools:context=</span><span class="s">".FullscreenActivity"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;LinearLayout</span> <span class="na">android:id=</span><span class="s">"@+id/fullscreen_content"</span>
+                <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+                <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+                <span class="na">android:keepScreenOn=</span><span class="s">"true"</span>
+                <span class="na">android:gravity=</span><span class="s">"center"</span> <span class="na">android:orientation=</span><span class="s">"horizontal"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;FrameLayout</span> <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+                <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+                <span class="na">android:fitsSystemWindows=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;LinearLayout</span> <span class="na">android:id=</span><span class="s">"@+id/fullscreen_content_controls"</span>
+                    <span class="na">style=</span><span class="s">"?metaButtonBarStyle"</span>
+                    <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+                    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+                    <span class="na">android:layout_gravity=</span><span class="s">"bottom|center_horizontal"</span>
+                    <span class="na">android:background=</span><span class="s">"@color/black_overlay"</span>
+                    <span class="na">android:orientation=</span><span class="s">"horizontal"</span>
+                    <span class="na">tools:ignore=</span><span class="s">"UselessParent"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;ImageButton</span>
+                <span class="na">android:layout_width=</span><span class="s">"0dp"</span>
+                <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span> <span class="na">app:srcCompat=</span><span class="s">"@drawable/exo_controls_play"</span>
+                <span class="na">android:id=</span><span class="s">"@+id/playPauseButton"</span> <span class="na">android:layout_weight=</span><span class="s">"1"</span> <span class="na">android:background=</span><span class="s">"#00FFFFFF"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+<span class="nt">&lt;/FrameLayout&gt;</span>
+
+<span class="nt">&lt;/FrameLayout&gt;</span></code></pre></figure>
 		
 </article>
 

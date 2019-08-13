@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu Jul 25 07:43:13 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/api-guidelines.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon Aug 5 11:01:55 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/api-guidelines.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed Jul 24 11:21:49 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu Jul 25 07:43:13 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Mon Aug 5 11:01:55 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (5 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -129,25 +135,51 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-		<h3 id="document-conventions">
+		<h3 id="understanding-document-conventions">
         
         
-          Document Conventions <a href="#document-conventions"></a>
+          Understanding Document Conventions <a href="#understanding-document-conventions"></a>
         
         
       </h3>
 
 <p>A string in brackets [] represents a value. Replace the string – including the brackets – with an actual value. For example: replace <em>[SERVICENAME]</em> with <em>syndicationFeed</em>.</p>
     
-      <h3 id="finding-the-latest-api-version-number">
+      <h2 id="latest-api-version">
         
         
-          Finding the Latest API Version Number <a href="#finding-the-latest-api-version-number"></a>
+          Latest API Version <a href="#latest-api-version"></a>
         
         
-      </h3>
+      </h2>
 
 <p>To find the version number of the API that contains the latest updates, use the <a href="https://developer.kaltura.com/console/service/system/action/getVersion">system.getVersion</a> API.</p>
+    
+      <h2 id="kaltura-client-libraries">
+        
+        
+          Kaltura Client Libraries <a href="#kaltura-client-libraries"></a>
+        
+        
+      </h2>
+
+<p>Kaltura Client Libraries make it easier and faster to make calls against the Kaltura API.</p>
+
+<p>A client library is a set of classes that includes:</p>
+
+<ul>
+  <li>The functional infrastructure for communication with the Kaltura API, such as constructing a request, performing an HTTP request, and parsing a response</li>
+  <li>A full object representation of all the entities that are available through the Kaltura API, including enumeration objects</li>
+  <li>Infrastructure for developers, such as built-in log capabilities</li>
+</ul>
+
+<p>The client library provides code that can, among other things</p>
+
+<ul>
+  <li>Construct a Kaltura request</li>
+  <li>Perform an HTTP request</li>
+  <li>Parse the result of a Kaltura request</li>
+</ul>
     
       <h3 id="getting-a-client-library-for-the-kaltura-api">
         
@@ -156,22 +188,6 @@ rtp('get', 'campaign',true);
         
         
       </h3>
-
-<p>To work with the Kaltura API, you need code that can:</p>
-
-<ul>
-  <li>Construct a Kaltura request.</li>
-  <li>Perform an HTTP request.</li>
-  <li>Parse the result of a Kaltura request.</li>
-</ul>
-
-<p>To save you time, Kaltura provides client libraries. A client library is a set of classes that includes:</p>
-
-<ul>
-  <li>The functional infrastructure for communication with the Kaltura API: constructing a request, performing an HTTP request, and parsing a response</li>
-  <li>A full object representation of all the entities that are available through the Kaltura API, including enumeration objects</li>
-  <li>Infrastructure for developers, such as built-in log capabilities</li>
-</ul>
 
 <p>The Kaltura API SDK includes client library packages in different languages, including PHP, Java, C#, and JavaScript. For the latest version of all client libraries, refer to <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Kaltura API SDK - Native Client Libraries</a>.</p>
 
@@ -193,17 +209,17 @@ rtp('get', 'campaign',true);
 
 <p>For more information on creating a client library generator, refer to <a href="https://vpaas.kaltura.com/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html">Adding New Kaltura API Client Library Generator</a>.</p>
     
-      <h3 id="api-authentication-and-kaltura-sessions">
+      <h2 id="api-authentication-and-kaltura-sessions">
         
         
           API Authentication and Kaltura Sessions <a href="#api-authentication-and-kaltura-sessions"></a>
         
         
-      </h3>
+      </h2>
 
 <p>Most Kaltura API calls require you to authenticate before executing a call. Calls that require authentication usually have a response that cannot be shared between different accounts. For the Kaltura server to know that you are allowed to “ask that question,” you must authenticate before executing the call.</p>
 
-<p>To learn more about the Kaltura Session and API Authentication, read: <a href="https://vpaas.kaltura.com/documentation/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura’s API Authentication and Security</a>.</p>
+<p>To learn more about the Kaltura Session and API Authentication, read: <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Kaltura_API_Authentication_and_Security.html">Kaltura’s API Authentication and Security</a>.</p>
 
 <table>
   <thead>
@@ -257,21 +273,21 @@ rtp('get', 'campaign',true);
   </tbody>
 </table>
     
-      <h3 id="kaltura-api-responserequest-format">
+      <h2 id="kaltura-api-responserequest-format">
         
         
           Kaltura API Response/Request Format <a href="#kaltura-api-responserequest-format"></a>
         
         
-      </h3>
+      </h2>
     
-      <h4 id="request-structure">
+      <h3 id="request-structure">
         
         
           Request Structure <a href="#request-structure"></a>
         
         
-      </h4>
+      </h3>
 
 <p>The Kaltura API implements a standard HTTP POST/GET URL encoded request structure. URL-encoded requests are targeted to a specific API method.</p>
 
@@ -290,13 +306,13 @@ rtp('get', 'campaign',true);
   <li>[ACTIONNAME] represent an action to be applied in the specific service</li>
 </ul>
     
-      <h4 id="request-input-parameters">
+      <h3 id="request-input-parameters">
         
         
           Request Input Parameters <a href="#request-input-parameters"></a>
         
         
-      </h4>
+      </h3>
 
 <p>Each API method receives a different set of input parameters.</p>
 
@@ -307,13 +323,13 @@ rtp('get', 'campaign',true);
   <li>When an input parameter is an object, flatten it to pairs of ObjectName:Param keys.</li>
 </ul>
     
-      <h4 id="request-input-parameters-example">
+      <h3 id="request-input-parameters-example">
         
         
           Request Input Parameters Example <a href="#request-input-parameters-example"></a>
         
         
-      </h4>
+      </h3>
 
 <figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">id=abc12&amp;name=name%20with%20spaces&amp;entry:tag=mytag&amp;entry:description=mydesc</code></pre></figure>
 
@@ -326,13 +342,13 @@ rtp('get', 'campaign',true);
 	<span class="nx">description</span> <span class="o">=</span> <span class="s1">'mydesc'</span>
 <span class="p">}</span></code></pre></figure>
     
-      <h3 id="api-errors-and-error-handling">
+      <h2 id="api-errors-and-error-handling">
         
         
           API Errors and Error Handling <a href="#api-errors-and-error-handling"></a>
         
         
-      </h3>
+      </h2>
 
 <p>The Kaltura API can return errors, which are represented by an error identifier followed by a description:</p>
 
@@ -343,13 +359,13 @@ rtp('get', 'campaign',true);
 
 <p>A comma separates the error ID from the description.</p>
     
-      <h4 id="api-error-example">
+      <h3 id="api-error-example">
         
         
           API Error Example <a href="#api-error-example"></a>
         
         
-      </h4>
+      </h3>
 
 <figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">ENTRY_ID_NOT_FOUND,Entry id "%s" not found</code></pre></figure>
 
@@ -358,69 +374,61 @@ rtp('get', 'campaign',true);
 <p>In the response XML:</p>
 
 <ul>
-  <li>The *<code>* node contains the error code (such as *ENTRY\_ID\_NOT_FOUND*).</code></li>
-  <li>The *<message>* node contains the description (such as *Entry id “%s” not found*).</message></li>
+  <li>The <code class="highlighter-rouge">code</code> node contains the error code (such as <em>ENTRY_ID_NOT_FOUND</em>).</li>
+  <li>The <code class="highlighter-rouge">message</code> node contains the description (such as <em>Entry id “%s” not found</em>).</li>
 </ul>
     
-      <h4 id="errorresponse">
+      <h3 id="errorresponse">
         
         
           ErrorResponse <a href="#errorresponse"></a>
         
         
-      </h4>
+      </h3>
 
 <p><strong>Error Handling</strong></p>
 
 <p>In most client libraries, the client library code throws an exception when an error is returned from the API. Depending on the programming language, catching the exception to read the code and/or the message enables user-friendly error handling. Errors that you encounter during development usually are caused by incorrect implementation.</p>
     
-      <h3 id="the-multi-request-api">
+      <h2 id="the-multi-request-api">
         
         
           The Multi-request API <a href="#the-multi-request-api"></a>
         
         
-      </h3>
+      </h2>
+
+<p>The Kaltura API can execute several API calls in a single HTTP request to Kaltura. The multi-request feature improves performance in Kaltura integrations. The feature enables a developer to stack multiple API calls and issue them in a single request. This reduces the number of round-trips from server-side or client-side developer code to Kaltura.</p>
     
-      <h4 id="understanding-the-multi-request-feature">
+      <h3 id="understanding-the-multi-request-feature">
         
         
           Understanding the Multi-request Feature <a href="#understanding-the-multi-request-feature"></a>
         
         
-      </h4>
-
-<p>The Kaltura API can execute several API calls in a single HTTP request to Kaltura. The multi-request feature improves performance in Kaltura integrations. The feature enables a developer to stack multiple API calls and issue them in a single request. This reduces the number of round-trips from server-side or client-side developer code to Kaltura.</p>
+      </h3>
 
 <p>The Kaltura API processes each of the API calls that are included in the single HTTP request. The response essentially is a list of the results for each of the calls in the request. The multi-request feature includes the ability to have one request depend on the result of another request.</p>
 
 <p>While the Kaltura API is processing each of the API calls in a multi-request, it detects when there is a dependency in one of the call parameters. The Kaltura API parses the dependency and replaces it with the result of the relevant call.</p>
     
-      <h4 id="using-the-multi-request-feature">
+      <h3 id="multi-request-with-dependency-sample-use-case">
         
         
-          Using the Multi-request Feature <a href="#using-the-multi-request-feature"></a>
+          Multi-request with Dependency (Sample Use Case) <a href="#multi-request-with-dependency-sample-use-case"></a>
         
         
-      </h4>
-    
-      <h5 id="multi-request-with-dependency---sample-use-case">
-        
-        
-          Multi-request with Dependency - Sample Use Case <a href="#multi-request-with-dependency---sample-use-case"></a>
-        
-        
-      </h5>
+      </h3>
 
 <p>To create a new entry out of a file in your server, execute several different API calls:</p>
 
 <ol>
-  <li>uploadToken.add</li>
-  <li>uploadToken.upload</li>
-  <li>baseEntry.addFromUploadedFile</li>
+  <li><a href="https://developer.kaltura.com/console/service/uploadToken/action/add">uploadToken.add</a></li>
+  <li><a href="https://developer.kaltura.com/console/service/uploadToken/action/upload">uploadToken.upload</a></li>
+  <li>baseEntry.addFromUploadedFile(https://developer.kaltura.com/console/service/baseentry/action/addfromuploadedfile)</li>
 </ol>
 
-<p>The result of <em>uploadToken.add</em> is an <em>uploadToken</em> object that consists of a token string.</p>
+<p>The result of <code class="highlighter-rouge">uploadToken.add</code> is an <code class="highlighter-rouge">uploadToken</code> object that consists of a token string.</p>
 
 <p>You’ll need the token string when executing the next action – uploading the file, therefore, you must complete the first action to call the second one.</p>
 
@@ -438,7 +446,7 @@ rtp('get', 'campaign',true);
 
 <ol>
   <li>
-    <p>Define the <em>GET</em> parameter of <em>service</em> as <em>multirequest</em> and define the <em>action</em> as <em>null</em> using (http://www.kaltura.com/api_v3/?service=multirequest&amp;action=null).</p>
+    <p>Define the <em>GET</em> parameter of <strong>service</strong> as <strong>multirequest</strong> and define the <strong>action</strong> as <strong>null</strong> using (http://www.kaltura.com/api_v3/?service=multirequest&amp;action=null).</p>
   </li>
   <li>
     <p>Prefix each API call with a number that represents its order in the multi-request call, followed by a colon. Prefix the first call with <em>1:</em>, the second with <em>2:</em>, and so on.</p>
@@ -448,13 +456,13 @@ rtp('get', 'campaign',true);
   </li>
 </ol>
     
-      <h3 id="multi-request-structure-example">
+      <h4 id="example">
         
         
-          Multi-Request Structure Example <a href="#multi-request-structure-example"></a>
+          Example <a href="#example"></a>
         
         
-      </h3>
+      </h4>
 
 <figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">Request URL: api_v3/index.php?service=multirequest&amp;action=null
 	POST variables:
@@ -488,13 +496,13 @@ rtp('get', 'campaign',true);
   <li><em>propertyName</em> is the property to obtain from the object of the required result.</li>
 </ul>
     
-      <h3 id="multi-request-with-dependency---example">
+      <h4 id="example-1">
         
         
-          Multi-Request With Dependency - Example <a href="#multi-request-with-dependency---example"></a>
+          Example <a href="#example-1"></a>
         
         
-      </h3>
+      </h4>
 
 <figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">Request URL: api_v3/index.php?service=multirequest&amp;action=null
 	POST variables:
@@ -516,17 +524,17 @@ rtp('get', 'campaign',true);
 
 <p>Since from the first element you want only the ID that is the input for the second request, add <em>:id</em> to the request value.</p>
     
-      <h3 id="maintaining-backward-compatibility-and-tracking-version-changes">
+      <h2 id="maintaining-backward-compatibility-and-tracking-version-changes">
         
         
           Maintaining Backward Compatibility and Tracking Version Changes <a href="#maintaining-backward-compatibility-and-tracking-version-changes"></a>
         
         
-      </h3>
+      </h2>
 
 <p>Maintaining backward compatibility during API upgrades is a common concern for developers utilizing APIs to build applications.</p>
 
-<p>Kaltura’s client libraries are automatically generated from the server code, that include an automatic client libraries’ generator mechanism. See <a href="https://knowledge.kaltura.com/node/43">Adding the New Kaltura API Client Library Generator</a> for more information. As a result, the Kaltura API client libraries are not available as a static code repository that you can track for changes.</p>
+<p>Kaltura’s client libraries are automatically generated from the server code, that include an automatic client libraries’ generator mechanism. See <a href="https://vpaas.kaltura.com/documentation/VPaaS-API-Getting-Started/introduction-kaltura-client-libraries.html">Adding the New Kaltura API Client Library Generator</a> for more information. As a result, the Kaltura API client libraries are not available as a static code repository that you can track for changes.</p>
 
 <p>To keep up to date with the changes between releases, follow the <a href="https://twitter.com/Kaltura_API">Kaltura API Twitter account</a>.</p>
 
