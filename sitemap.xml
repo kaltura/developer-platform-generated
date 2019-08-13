@@ -4317,6 +4317,7 @@
 <url> <loc>https://developer.kaltura.com/player/web</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/getting-started-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/embed-types-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/player/web/angular-embed-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/player-setup-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/configuration-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/playlist-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
