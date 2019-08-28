@@ -1,8 +1,8 @@
-  <title>Player Configuration for Web</title>
+  <title>Configuration for Web Player</title>
 
   <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
 ">
-    <meta property="st:title" content="Player Configuration for Web" >
+    <meta property="st:title" content="Configuration for Web Player" >
     <meta property="st:published_at" content="">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -103,20 +103,26 @@ rtp('get', 'campaign',true);
             <!-- INSERT JEKYLL CONTENT HERE -->
 
           	<header class="post-header">
-    			<h1 class="post-title">Player Configuration for Web</h1>
+    			<h1 class="post-title">Configuration for Web Player</h1>
   			</header>
 
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Wed Jul 31 14:41:56 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Aug 27 13:57:39 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Wed Jul 31 14:41:56 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Tue Aug 27 13:57:39 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (8 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -145,19 +151,21 @@ rtp('get', 'campaign',true);
 
 <p>The configuration uses the following structure:</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="err">targetId:</span><span class="w"> </span><span class="err">string,</span><span class="w">
   </span><span class="err">logLevel:</span><span class="w"> </span><span class="err">string,</span><span class="w">
   </span><span class="err">disableUserCache:</span><span class="w"> </span><span class="err">boolean,</span><span class="w">
   </span><span class="err">playback:</span><span class="w"> </span><span class="err">PKPlaybackConfigObject,</span><span class="w">
   </span><span class="err">sources:</span><span class="w"> </span><span class="err">PKSourcesConfigObject,</span><span class="w">
-  </span><span class="err">playlist:</span><span class="w"> </span><span class="err">KPPlaylisyObject,</span><span class="w">
+  </span><span class="err">playlist:</span><span class="w"> </span><span class="err">KPPlaylistObject,</span><span class="w">
   </span><span class="err">plugins:</span><span class="w"> </span><span class="err">PKPluginsConfigObject,</span><span class="w">
   </span><span class="err">session:</span><span class="w"> </span><span class="err">PKSessionConfigObject,</span><span class="w">
   </span><span class="err">provider:</span><span class="w"> </span><span class="err">ProviderOptionsObject,</span><span class="w">
   </span><span class="err">ui:</span><span class="w"> </span><span class="err">UIOptionsObject,</span><span class="w">
   </span><span class="err">cast:</span><span class="w"> </span><span class="err">CastConfigObject</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
     
       <h3 id="configtargetid">
         
@@ -493,44 +501,54 @@ rtp('get', 'campaign',true);
 
 <p>Local Storage</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="err">muted:</span><span class="w"> </span><span class="err">true,</span><span class="w">
 	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'spa'</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>Application</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="err">muted:</span><span class="w"> </span><span class="err">false,</span><span class="w">
 	</span><span class="err">volume:</span><span class="w"> </span><span class="err">0.7</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>Server</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
-  </span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'eng';</span><span class="w">
-  </span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true;</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'eng',</span><span class="w">
+  </span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>Default Player Configuration</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
 	</span><span class="err">textLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
 	</span><span class="err">muted:</span><span class="w"> </span><span class="err">false,</span><span class="w">
 	</span><span class="err">volume:</span><span class="w"> </span><span class="err">1,</span><span class="w">
 	</span><span class="err">autoplay:</span><span class="w"> </span><span class="err">false</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <p><strong>The resulting runtime configuration will, therefore, be as follows:</strong></p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'spa',</span><span class="w">
 	</span><span class="err">textLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
 	</span><span class="err">muted:</span><span class="w"> </span><span class="err">true,</span><span class="w">
 	</span><span class="err">volume:</span><span class="w"> </span><span class="err">0.7,</span><span class="w">
 	</span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 		
 </article>
 

@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Jul 30 07:41:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playkit-js-ui/custom-ui-presets.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Aug 27 13:57:39 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playkit-js-ui/custom-ui-presets.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Jul 30 02:08:55 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Jul 30 07:41:42 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Tue Aug 27 13:57:39 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -145,7 +151,7 @@ rtp('get', 'campaign',true);
 
 <p>A conditional preset will only be shown if it’s defined condition is met.</p>
 
-<p>The UI manager has a list of pre-defined conditions, and custom conditions can be defined as well, see <a href="#defining-ui-conditions">below</a>.</p>
+<p>The UI manager has a list of pre-defined conditions, and custom conditions can be defined as well, <strong>Defining UI Conditions</strong> below.</p>
 
 <p>The order that the UI presets are defined and their respective conditions define the priority which they’ll be rendered, where the order is ascending, so first UI preset condition will be evaluated first and last will be evaluated last.</p>
 
@@ -165,11 +171,9 @@ rtp('get', 'campaign',true);
         
       </h2>
 
-<p>A preset is a simple function that returns a tree that defines the components structure to be used in a layout.</p>
+<p>A preset is a simple function that returns a tree that defines the components structure to be used in a layout, for example, in the case where the fullscreen UI should only include the bottom bar with fullscreen control.</p>
 
-<p>For example- Let’s say that we want our fullscreen UI to have only the bottom bar with the fullscreen control. nothing else.</p>
-
-<p>this is a UI preset that will define the look of fullscreen state, which uses the built-in components <code class="highlighter-rouge">BottomBar</code> and <code class="highlighter-rouge">FullscreenControl</code></p>
+<p>This is a UI preset that will define the look of fullscreen state, which uses the built-in components <code class="highlighter-rouge">BottomBar</code> and <code class="highlighter-rouge">FullscreenControl</code>:</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//fullscreen-preset.js</span>
 <span class="kr">const</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">h</span><span class="p">;</span>
@@ -212,7 +216,7 @@ npm install --save-dev babel-plugin-transform-react-jsx
 </div>
 
 <ol>
-  <li>in your babel config (most likely in your <code class="highlighter-rouge">.babelrc</code> file) add:</li>
+  <li>In your babel config (most likely in your <code class="highlighter-rouge">.babelrc</code> file) add:</li>
 </ol>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="s2">"plugins"</span><span class="err">:</span> <span class="p">[</span>
@@ -227,7 +231,7 @@ npm install --save-dev babel-plugin-transform-react-jsx
 </div>
 
 <ol>
-  <li>change the UI markup to use JSX syntax:</li>
+  <li>Change the UI markup to use JSX syntax:</li>
 </ol>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//fullscreen-preset.js</span>
@@ -262,7 +266,7 @@ return (
 )
 }
 
-````
+```
 </details>
     
       <h2 id="attaching-the-preset-to-the-fullscreen-state">
@@ -272,6 +276,7 @@ return (
         
         
       </h2>
+
 <p>In order to use a preset we pass our custom preset function to the UI manager.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">//@flow</span>
@@ -345,7 +350,7 @@ playerUIManager.buildCustomUI(uis);
       </h2>
 <p>Presets can be created by using the player default library components, but you can also create and use your own components to define the layout.</p>
 
-<p>See example on how to create and use your own components <a href="https://developer.kaltura.com/player/web/ui/components">here</a></p>
+<p>See an example on how to create and use your own components <a href="https://developer.kaltura.com/player/web/ui/components">here</a></p>
 		
 </article>
 

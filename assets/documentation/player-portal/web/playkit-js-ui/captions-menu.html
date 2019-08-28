@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Jul 30 02:08:55 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playkit-js-ui/captions-menu.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Aug 27 13:57:39 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/playkit-js-ui/captions-menu.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Jul 30 02:08:55 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Jul 30 02:08:55 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Tue Aug 27 13:57:39 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -139,16 +145,15 @@ rtp('get', 'campaign',true);
 
 <p>The player enables viewers to modify the captions style using the <strong>advanced captions settings</strong> in the language menu, and then clicking the <strong>set custom caption</strong> button.</p>
 
-<p>To prevent viewers from using these modifications, overload the style option’s class with:</p>
-<pre><code class="language-display:none```">
-For example, adding the line below will remove the ability to change the captions color:
+<p>To prevent viewers from applying these modifications, overload the style option’s class with <strong>display:none</strong>.</p>
 
-</code></pre>
-<p>.playkit-font-color {<br />
-  display: none<br />
-}<br />
-```<br />
-See this list of caption settings classes below for detailed information about each class.</p>
+<p>For example, adding the line below will remove the ability to change the captions color:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.playkit-font-color</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>See this list of caption settings classes below for detailed information about each class.</p>
     
       <h2 id="captions-settings-class-list">
         

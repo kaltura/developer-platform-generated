@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Nov 27 12:20:02 2018</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon Aug 26 09:22:35 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/VPaaS-API-Getting-Started/Getting-Started-VPaaS-API.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Jul 24 11:34:21 2016, By: Jess Portnoy</td></tr-->
-				<!--tr><td>Last commit: Tue Nov 27 12:20:02 2018, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Mon Aug 26 09:22:35 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
@@ -129,6 +129,12 @@ rtp('get', 'campaign',true);
 				
 				<tr>
 					<td>Zohar Babin (4 commits) (<a href="mailto:z.babin@gmail.com">z.babin@gmail.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -276,7 +282,7 @@ client.setSessionId(session);</code></pre>
 
 <p>Generating a KS with <a href="https://developer.kaltura.com/console/service/session/action/start"><code class="highlighter-rouge">session.start</code></a> is simple, and great for applications which you alone have access to. <br />
 Other methods include the <a href="https://developer.kaltura.com/api-docs/service/user/action/loginByLoginId"><code class="highlighter-rouge">user.loginByLoginId</code></a> action, which allows users to log in using their own KMC credentials, and the <code class="highlighter-rouge">appToken</code> service, which is recommended when providing access to applications in production that are managed by others. <br />
-Learn more <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/Generating-KS-with-App-Tokens.html/">here</a> about various ways to create a Kaltura Session.</p>
+Learn more <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/application-tokens.html">here</a> about various ways to create a Kaltura Session.</p>
     
       <h2 id="uploading-media-files">
         
@@ -508,6 +514,7 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 });</code></pre>
           </div>
 </div>
+<p> </p>
 
 <p>The Kaltura Entry is a logical object that package all of the related assets to the uploaded file. The Media Entry represents Media assets (such as Image, Audio, or Video assets) and references all of the metadata, caption assets, transcoded renditions (flavors), thumbnails, access control rules, entitled users or any other related asset that is a part of that particular media item.</p>
 
@@ -614,17 +621,25 @@ AddUploadTokenBuilder requestBuilder = UploadTokenService.add(uploadToken)
 
 <p>At this point, Kaltura will start analyzing the uploaded file, prepare for the transcoding and distribution flows and any other predefined workflows or notifications.</p>
     
-      <h2 id="searching-entries">
+      <h2 id="finding-entries">
         
         
-          Searching Entries <a href="#searching-entries"></a>
+          Finding Entries <a href="#finding-entries"></a>
         
         
       </h2>
-<p>To retrieve that newly uploaded entry, we’ll use the <a href="https://developer.kaltura.com/console/service/eSearch/action/searchEntry">Kaltura Search API</a>.</p>
 
-<p><strong>Step 1: Params and Operator</strong><br />
-If you have multiple search conditions, you would set an <code class="highlighter-rouge">AND</code> or <code class="highlighter-rouge">OR</code> to your operator, but in this case we’ll only be searching for one item. However, you still need to add a searchItems array to the operator.</p>
+<p>To retrieve that newly uploaded entry, we’ll use <a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a>. If you inspect that API in the console, and expand the filter object, you’ll see a whole bunch of options for filtering down to the entries you want.</p>
+    
+      <h3 id="finding-entries-by-name">
+        
+        
+          Finding Entries By Name <a href="#finding-entries-by-name"></a>
+        
+        
+      </h3>
+
+<p>In the case of this example, a quick way to find the new entry is by searching for part of its name - in this case, “Logo”. We need a filter object called <code class="highlighter-rouge">KalturaMediaEntryFilter</code> on which to set the values, which we then pass to the endpoint.</p>
 
 <div class="code-examples">            <div class="the_buttons examples">
               <ul class="code-tab">
@@ -632,153 +647,41 @@ If you have multiple search conditions, you would set an <code class="highlighte
               </ul>
             </div>
           <div class="highlight example python">
-            <pre><code class="python" data-lang="python">searchParams = KalturaESearchEntryParams()
-searchParams.searchOperator = KalturaESearchEntryOperator()
-searchParams.searchOperator.searchItems = []</code></pre>
+            <pre><code class="python" data-lang="python">filter = KalturaMediaEntryFilter()
+filter.nameLike = &quot;Logo&quot;
+pager = KalturaFilterPager()
+
+result = client.media.list(filter, pager)
+print(result)</code></pre>
           </div>
           <div class="highlight example php">
-            <pre><code class="php" data-lang="php">$elasticSearchPlugin = KalturaElasticSearchClientPlugin::get($client);
-$searchParams = new KalturaESearchEntryParams();
-$searchParams-&gt;searchOperator = new KalturaESearchEntryOperator();
-$searchParams-&gt;searchOperator-&gt;searchItems = [];</code></pre>
-          </div>
-          <div class="highlight example node">
-            <pre><code class="node" data-lang="node">let searchParams = new kaltura.objects.ESearchEntryParams();
-searchParams.searchOperator = new kaltura.objects.ESearchEntryOperator();
-searchParams.searchOperator.searchItems = [];
+            <pre><code class="php" data-lang="php">$filter = new KalturaMediaEntryFilter();
+$filter-&gt;nameLike = &quot;Logo&quot;;
+$pager = new KalturaFilterPager();
+
+$result = $client-&gt;media-&gt;listAction($filter, $pager);
 </code></pre>
           </div>
-          <div class="highlight example java">
-            <pre><code class="java" data-lang="java">ESearchEntryParams searchParams = new ESearchEntryParams();
-searchParams.setSearchOperator(new ESearchEntryOperator());
-searchParams.getSearchOperator().setSearchItems(new ArrayList&lt;ESearchEntryBaseItem&gt;(1));</code></pre>
-          </div>
-</div>
-<p> </p>
-
-<p><strong>Step 2: Search Type</strong></p>
-
-<p>We’ll be using the Unified search, which searches through all entry data, such as metadata and captions. Other options are <code class="highlighter-rouge">KalturaESearchEntryMetadataItem</code> or <code class="highlighter-rouge">KalturaESearchEntryCuePointItem</code>. We’ll add that search item to the first index of the search operator.</p>
-
-<div class="code-examples">            <div class="the_buttons examples">
-              <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
-              </ul>
-            </div>
-          <div class="highlight example python">
-            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0] = KalturaESearchUnifiedItem()</code></pre>
-          </div>
-          <div class="highlight example php">
-            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0] = new KalturaESearchUnifiedItem();</code></pre>
-          </div>
           <div class="highlight example node">
-            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0] = new kaltura.objects.ESearchUnifiedItem();</code></pre>
-          </div>
-          <div class="highlight example java">
-            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().set(0, new ESearchUnifiedItem());</code></pre>
-          </div>
-</div>
-<p> </p>
+            <pre><code class="node" data-lang="node">let filter = new kaltura.objects.MediaEntryFilter();
+filter.nameLike = &quot;Logo&quot;;
+let pager = new kaltura.objects.FilterPager();
 
-<p><strong>Step 3: Search Term</strong></p>
-
-<p>We’ll search for the kaltura logo sample video, which we named accordingly.</p>
-
-<div class="code-examples">            <div class="the_buttons examples">
-              <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
-              </ul>
-            </div>
-          <div class="highlight example python">
-            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0].searchTerm = &quot;kaltura logo&quot;</code></pre>
-          </div>
-          <div class="highlight example php">
-            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;searchTerm = &quot;kaltura logo&quot;;</code></pre>
-          </div>
-          <div class="highlight example node">
-            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0].searchTerm = &quot;kaltura logo&quot;;</code></pre>
-          </div>
-          <div class="highlight example java">
-            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setSearchTerm(&quot;kaltura logo&quot;);</code></pre>
-          </div>
-</div>
-<p> </p>
-
-<p><strong>Step 4: Search Item Type</strong></p>
-
-<p>In this case, we want an exact match of the text in our search term. Other options are <code class="highlighter-rouge">partial</code> or <code class="highlighter-rouge">startsWith</code>.</p>
-
-<div class="code-examples">            <div class="the_buttons examples">
-              <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
-              </ul>
-            </div>
-          <div class="highlight example python">
-            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0].itemType = KalturaESearchItemType.EXACT_MATCH</code></pre>
-          </div>
-          <div class="highlight example php">
-            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;itemType = KalturaESearchItemType::EXACT_MATCH;</code></pre>
-          </div>
-          <div class="highlight example node">
-            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0].itemType = kaltura.enums.ESearchItemType.EXACT_MATCH;</code></pre>
-          </div>
-          <div class="highlight example java">
-            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setItemType(ESearchItemType.EXACT_MATCH.getValue());
-</code></pre>
-          </div>
-</div>
-<p> </p>
-
-<p><strong>Step 5: Add Highlight</strong></p>
-
-<p>We set <code class="highlighter-rouge">addHighlight</code> to True so that we can see exactly where our search term appeared in the search results.</p>
-
-<div class="code-examples">            <div class="the_buttons examples">
-              <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
-              </ul>
-            </div>
-          <div class="highlight example python">
-            <pre><code class="python" data-lang="python">searchParams.searchOperator.searchItems[0].addHighlight = True</code></pre>
-          </div>
-          <div class="highlight example php">
-            <pre><code class="php" data-lang="php">$searchParams-&gt;searchOperator-&gt;searchItems[0]-&gt;addHighlight = true;</code></pre>
-          </div>
-          <div class="highlight example node">
-            <pre><code class="node" data-lang="node">searchParams.searchOperator.searchItems[0].addHighlight = true;</code></pre>
-          </div>
-          <div class="highlight example java">
-            <pre><code class="java" data-lang="java">searchParams.getSearchOperator().getSearchItems().get(0).setAddHighlight(true);</code></pre>
-          </div>
-</div>
-<p> </p>
-
-<p><strong>Step 6: Search</strong></p>
-
-<div class="code-examples">            <div class="the_buttons examples">
-              <ul class="code-tab">
-                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
-              </ul>
-            </div>
-          <div class="highlight example python">
-            <pre><code class="python" data-lang="python">result = client.elasticsearch.eSearch.searchEntry(searchParams);
-print(result);</code></pre>
-          </div>
-          <div class="highlight example php">
-            <pre><code class="php" data-lang="php">$result = $elasticSearchPlugin-&gt;eSearch-&gt;searchEntry($searchParams);</code></pre>
-          </div>
-          <div class="highlight example node">
-            <pre><code class="node" data-lang="node">kaltura.services.eSearch.searchEntry(searchParams)
+kaltura.services.media.listAction(filter, pager)
 .execute(client)
 .then(result =&gt; {
     console.log(result);
 });</code></pre>
           </div>
           <div class="highlight example java">
-            <pre><code class="java" data-lang="java">SearchEntryESearchBuilder requestBuilder = ESearchService.searchEntry(searchParams)
-    .setCompletion(new OnCompletion&lt;Response&lt;ESearchEntryResponse&gt;&gt;() {
+            <pre><code class="java" data-lang="java">MediaEntryFilter filter = new MediaEntryFilter();
+filter.setNameLike(&quot;Logo&quot;);
+FilterPager pager = new FilterPager();
+
+ListMediaBuilder requestBuilder = MediaService.list(filter, pager)
+    .setCompletion(new OnCompletion&lt;Response&lt;ListResponse&lt;MediaEntry&gt;&gt;&gt;() {
         @Override
-        public void onComplete(Response&lt;ESearchEntryResponse&gt; result) {
+        public void onComplete(Response&lt;ListResponse&lt;MediaEntry&gt;&gt; result) {
             System.out.println(result);
         }
     });</code></pre>
@@ -786,7 +689,75 @@ print(result);</code></pre>
 </div>
 <p> </p>
 
-<p>Success! The result will return as a list of  <code class="highlighter-rouge">KalturaMediaEntry</code> objects.</p>
+<p>The result will return as a list of  <code class="highlighter-rouge">KalturaMediaEntry</code> objects. Notice the Pager object. It is useful for large result sets if you want to get a specific amount of results for page.</p>
+    
+      <h3 id="finding-entries-by-date">
+        
+        
+          Finding Entries By Date <a href="#finding-entries-by-date"></a>
+        
+        
+      </h3>
+
+<p>Another way to find the entry is by date. Using epoch timestamp, this code lists all entries created in July of 2019:</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">filter = KalturaMediaEntryFilter()
+filter.createdAtGreaterThanOrEqual = 1561982373
+filter.createdAtLessThanOrEqual = 1564660773
+pager = KalturaFilterPager()
+
+result = client.media.list(filter, pager)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">
+$filter = new KalturaMediaEntryFilter();
+$filter-&gt;createdAtGreaterThanOrEqual = 1561982373;
+$filter-&gt;createdAtLessThanOrEqual = 1564660773;
+$pager = new KalturaFilterPager();
+
+$result = $client-&gt;media-&gt;listAction($filter, $pager);
+</code></pre>
+          </div>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let filter = new kaltura.objects.MediaEntryFilter();
+filter.createdAtGreaterThanOrEqual = 1561982373;
+filter.createdAtLessThanOrEqual = 1564660773;
+let pager = new kaltura.objects.FilterPager();
+
+kaltura.services.media.listAction(filter, pager)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">MediaEntryFilter filter = new MediaEntryFilter();
+filter.setCreatedAtGreaterThanOrEqual(1561982373);
+filter.setCreatedAtLessThanOrEqual(1564660773);
+FilterPager pager = new FilterPager();
+
+ListMediaBuilder requestBuilder = MediaService.list(filter, pager)
+    .setCompletion(new OnCompletion&lt;Response&lt;ListResponse&lt;MediaEntry&gt;&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;ListResponse&lt;MediaEntry&gt;&gt; result) {
+            System.out.println(result);
+        }
+    });</code></pre>
+          </div>
+</div>
+<p> </p>
+
+<blockquote>
+  <p>Note that Kaltura Sessions with limited privileges might get limited results when making a <code class="highlighter-rouge">media.list</code> API call.</p>
+</blockquote>
+
+<p>To conduct a more thorough search, for example, <strong>if you want to search within captions or metadata</strong>, use the <a href="https://developer.kaltura.com/console/service/eSearch/action/searchEntry">Kaltura Search API</a>. Read about it <a href="https://developer.kaltura.com/api-docs/Search--Discover-and-Personalize/esearch.html">here</a>.</p>
     
       <h2 id="embedding-your-video-player">
         
@@ -802,35 +773,45 @@ For this you’ll need to log into the KMC and click on the <a href="https://kmc
 The Universal player (or mwEmbed as we call it) offers legacy support - such as for enterprise customers using the old internet explorer - and also features interactivity options, like the dual player or In-Video Quizzes. <br />
 The TV player (or playkit) is built on modern javascript and focuses more on performance. Both players are totally responsive.</p>
 
-<p>We will focus on the TV player:</p>
+<p>We will focus on the TV player, for which you can find resources and information <a href="https://developer.kaltura.com/player">here</a>.</p>
 
 <ol>
   <li>Create a new TV player, give it a name, and check out the various player options.</li>
   <li>Save the player and go back to players list; you should now see it the top of the player list. Notice that player ID - that is your <code class="highlighter-rouge">UI Conf ID</code>. <br />
 Now you can use it for embedding your player:</li>
 </ol>
+    
+      <h3 id="dynamic-player-embed">
+        
+        
+          Dynamic Player Embed <a href="#dynamic-player-embed"></a>
+        
+        
+      </h3>
 
-<p><strong>Dynamic Player Embed</strong></p>
+<p>The first script in the code below <em>loads</em> the player, and the second script handles the embed. This method of embedding makes it easy to dynamically control the configuration of the player during runtime.</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;</span>
-		<span class="kd">var</span> <span class="nx">kalturaPlayer</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
-			<span class="na">targetId</span><span class="p">:</span> <span class="s2">"kalturaplayer"</span><span class="p">,</span>
-			<span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
-				<span class="na">partnerId</span><span class="p">:</span> <span class="nx">PARTER_ID</span><span class="p">,</span>
-				<span class="na">uiConfId</span><span class="p">:</span> <span class="nx">UI_CONF_ID</span>
-			<span class="p">},</span>
-			<span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
-				<span class="na">autoplay</span><span class="p">:</span> <span class="kc">true</span>
-			<span class="p">}</span>
-		<span class="p">});</span>
-		<span class="kd">var</span> <span class="nx">mediaInfo</span> <span class="o">=</span> <span class="p">{</span>
-			<span class="na">entryId</span><span class="p">:</span> <span class="nx">ENTRY_ID</span><span class="p">,</span>
-			<span class="na">ks</span><span class="p">:</span> <span class="nx">KS</span>
-		<span class="p">};</span>
-		<span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadMedia</span><span class="p">(</span><span class="nx">mediaInfo</span><span class="p">);</span>
-	<span class="o">&lt;</span><span class="sr">/script&gt;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"{TARGET_ID}"</span> <span class="nx">style</span><span class="o">=</span><span class="s2">"width: 640px;height: 360px"</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"https://cdnapisec.kaltura.com/p/{PARTNER_ID}/embedPlaykitJs/uiconf_id/{UICONF_ID}"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">kalturaPlayer</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+        <span class="na">targetId</span><span class="p">:</span> <span class="s2">"{TARGET_ID}"</span><span class="p">,</span>
+        <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">partnerId</span><span class="p">:</span> <span class="p">{</span><span class="nx">PARTNER_ID</span><span class="p">},</span>
+          <span class="na">uiConfId</span><span class="p">:</span> <span class="p">{</span><span class="nx">UICONF_ID</span><span class="p">}</span>
+        <span class="p">},</span>
+        <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">autoplay</span><span class="p">:</span> <span class="kc">true</span>
+          <span class="p">}</span>
+      <span class="p">});</span>
+      <span class="nx">kalturaPlayer</span><span class="p">.</span><span class="nx">loadMedia</span><span class="p">({</span><span class="na">entryId</span><span class="p">:</span> <span class="s1">'{ENTRY_ID}'</span><span class="p">});</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="o">&lt;</span><span class="sr">/script&gt;</span></code></pre></figure>
 
-<p>Learn about other embed types <a href="https://github.com/kaltura/kaltura-player-js/blob/master/docs/embed-types.md">here.</a></p>
+<p>Learn about other embed types <a href="https://developer.kaltura.com/player/web/embed-types-web/">here.</a></p>
     
       <h2 id="wrapping-up">
         
@@ -840,7 +821,7 @@ Now you can use it for embedding your player:</li>
         
       </h2>
 
-<p>Including a kaltura session allows you to keep track of user analytics for each entry and set permissions and privileges. Notice that in this case, the KS is created on the server side of the app.</p>
+<p>Including a Kaltura Session allows you to keep track of user analytics for each entry and set permissions and privileges. Notice that in this case, the KS is created on the server side of the app.</p>
 
 <p><strong>Congrats! You’ve learned how to:</strong></p>
 <ul>
@@ -857,7 +838,7 @@ Now you can use it for embedding your player:</li>
   <li>Analyze Engagement <a href="https://developer.kaltura.com/api-docs/Video-Analytics-and-Insights/media-analytics.html">Analytics</a></li>
 </ul>
 
-<p>You can learn more about these steps in our <a href="https://developer.kaltura.com/api-docs/">docs</a>, play around in the <a href="https://developer.kaltura.com/console">console</a>, or enjoy full interactive experiences with our <a href="https://developer.kaltura.com/workflows">workflows</a>.</p>
+<p>You can find more API resources in our <a href="https://developer.kaltura.com/api-docs/">docs</a>, play around in the <a href="https://developer.kaltura.com/console">console</a>, or enjoy full interactive experiences with our <a href="https://developer.kaltura.com/workflows">workflows</a>.</p>
 
 <p>And of course, feel free to reach out at vpaas@kaltura.com if you have any questions.</p>
 		
@@ -907,5 +888,4 @@ Now you can use it for embedding your player:</li>
 })();
 </script>
 
-<script src="assets/js/jekyll-code-example-buttons.js"></script>
 <!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

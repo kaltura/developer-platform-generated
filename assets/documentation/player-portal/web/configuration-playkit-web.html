@@ -1,8 +1,8 @@
-  <title>Player Configuration for Playkit</title>
+  <title>Provider Configuration</title>
 
   <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
 ">
-    <meta property="st:title" content="Player Configuration for Playkit" >
+    <meta property="st:title" content="Provider Configuration" >
     <meta property="st:published_at" content="">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -103,20 +103,20 @@ rtp('get', 'campaign',true);
             <!-- INSERT JEKYLL CONTENT HERE -->
 
           	<header class="post-header">
-    			<h1 class="post-title">Player Configuration for Playkit</h1>
+    			<h1 class="post-title">Provider Configuration</h1>
   			</header>
 
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu May 2 16:31:57 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-playkit-web.md" target="_blank">Contribute to this page</a>
-				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu May 2 16:31:57 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<span>Updated: Tue Aug 27 13:57:39 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-provider-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Aug 26 09:22:04 2019, By: tzubeli</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 27 13:57:39 2019, By <span class="commit-author">tzubeli</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
-					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+					<td>tzubeli (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!--  -->
@@ -129,106 +129,60 @@ rtp('get', 'campaign',true);
 
             <div class="post-content">
     		
-		<p>Configuration parameters could be provided upon instantiation of the player instance.</p>
+		<h2 id="configuration">
+        
+        
+          Configuration <a href="#configuration"></a>
+        
+        
+      </h2>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+<p>Configuration parameters are provided upon instantiation of the provider instance.</p>
+    
+      <h4 id="ovp">
+        
+        
+          OVP <a href="#ovp"></a>
+        
+        
+      </h4>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">// Configuration here</span>
 <span class="p">};</span>
-<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">loadPlayer</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
-</code></pre>
-</div>
-      <h4 id="configuration-structure">
+<span class="kd">var</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">ovp</span><span class="p">.</span><span class="nx">Provider</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
+    
+      <h4 id="cloud-tv">
+        
+        
+          Cloud TV <a href="#cloud-tv"></a>
+        
+        
+      </h4>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Configuration here</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">ott</span><span class="p">.</span><span class="nx">Provider</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
+    
+      <h3 id="configuration-structure">
         
         
           Configuration Structure <a href="#configuration-structure"></a>
         
         
-      </h4>
+      </h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">logLevel</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
-  <span class="nx">playback</span><span class="err">:</span> <span class="nx">PKPlaybackConfigObject</span><span class="p">,</span>
-  <span class="nx">sources</span><span class="err">:</span> <span class="nx">PKSourcesConfigObject</span><span class="p">,</span>
-  <span class="nx">session</span><span class="err">:</span> <span class="nx">PKSessionConfigObject</span><span class="p">,</span>
-  <span class="nx">plugins</span><span class="err">:</span> <span class="nx">PKPluginsConfigObject</span><span class="p">,</span>
-  <span class="nx">customLabels</span><span class="err">:</span> <span class="nx">PKCustomLabelsConfigObject</span><span class="p">,</span>
-  <span class="nx">abr</span><span class="err">:</span> <span class="nx">PKAbrConfigObject</span><span class="p">,</span>
-  <span class="nx">drm</span><span class="err">:</span> <span class="nx">PKDrmConfigObject</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h4 id="default-configuration-values">
-        
-        
-          Default Configuration Values <a href="#default-configuration-values"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">logLevel</span><span class="p">:</span> <span class="s1">'ERROR'</span><span class="p">,</span>
-  <span class="na">sources</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">forceRedirectExternalStreams</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">},</span>
-    <span class="na">metadata</span><span class="p">:</span> <span class="p">{}</span>
-  <span class="p">},</span>
-  <span class="na">plugins</span><span class="p">:</span> <span class="p">{},</span>
-  <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">audioLanguage</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-    <span class="na">textLanguage</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-    <span class="na">useNativeTextTrack</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">enableCEA708Captions</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">captionsTextTrack1Label</span><span class="p">:</span> <span class="s1">'English'</span><span class="p">,</span>
-    <span class="na">captionsTextTrack1LanguageCode</span><span class="p">:</span> <span class="s1">'en'</span><span class="p">,</span>
-    <span class="na">captionsTextTrack2Label</span><span class="p">:</span> <span class="s1">'Spanish'</span><span class="p">,</span>
-    <span class="na">captionsTextTrack2LanguageCode</span><span class="p">:</span> <span class="s1">'es'</span><span class="p">,</span>
-    <span class="na">volume</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="na">startTime</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="na">playsinline</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="na">preload</span><span class="p">:</span> <span class="s1">'none'</span><span class="p">,</span>
-    <span class="na">autoplay</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">allowMutedAutoPlay</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="na">loop</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">muted</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="na">pictureInPicture</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">html5</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">hls</span><span class="p">:</span> <span class="p">{},</span>
-        <span class="na">dash</span><span class="p">:</span> <span class="p">{},</span>
-        <span class="na">native</span><span class="p">:</span> <span class="p">{}</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="na">preferNative</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">hls</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-      <span class="na">dash</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">},</span>
-    <span class="na">streamPriority</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
-        <span class="na">format</span><span class="p">:</span> <span class="s1">'hls'</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
-        <span class="na">format</span><span class="p">:</span> <span class="s1">'dash'</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
-        <span class="na">format</span><span class="p">:</span> <span class="s1">'progressive'</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="na">abr</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">fpsDroppedFramesInterval</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
-    <span class="na">fpsDroppedMonitoringThreshold</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
-    <span class="na">capLevelOnFPSDrop</span><span class="p">:</span> <span class="kc">true</span>
-  <span class="p">},</span>
-  <span class="na">drm</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">keySystem</span><span class="p">:</span> <span class="s1">''</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">partnerId:</span><span class="w"> </span><span class="err">number,</span><span class="w">
+  </span><span class="err">log:</span><span class="w"> </span><span class="err">ProviderLogConfigObject,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">ks:</span><span class="w"> </span><span class="err">string,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">uiConfId:</span><span class="w"> </span><span class="err">number,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">env:</span><span class="w"> </span><span class="err">ProviderEnvConfigObject,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">networkRetryParameters:</span><span class="w"> </span><span class="err">ProviderNetworkRetryParameters,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">filterOptions:</span><span class="w"> </span><span class="err">ProviderFilterOptionsObject</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
     
       <h1>
@@ -239,10 +193,26 @@ rtp('get', 'campaign',true);
         
       </h1>
     
+      <h3 id="configlog">
+        
+        
+          config.log <a href="#configlog"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-object">
+        
+        
+          Type: <code class="highlighter-rouge">Object</code> <a href="#type-object"></a>
+        
+        
+      </h5>
+    
       <h3 id="configloglevel">
         
         
-          config.logLevel <a href="#configloglevel"></a>
+          config.log.level <a href="#configloglevel"></a>
         
         
       </h3>
@@ -263,391 +233,20 @@ rtp('get', 'campaign',true);
         
       </h5>
     
-      <h5 id="description-defines-the-player-log-level">
+      <h5 id="description-defines-the-provider-log-level">
         
         
-          Description: Defines the player log level. <a href="#description-defines-the-player-log-level"></a>
+          Description: Defines the provider log level. <a href="#description-defines-the-provider-log-level"></a>
         
         
       </h5>
 
 <p>Possible values: <code class="highlighter-rouge">"DEBUG", "INFO", "TIME", "WARN", "ERROR", "OFF"</code></p>
     
-      <h3 id="configsources">
+      <h3 id="configloghandler">
         
         
-          config.sources <a href="#configsources"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pksourcesconfig">
-        
-        
-          Type: <code class="highlighter-rouge">PKSourcesConfig</code> <a href="#type-pksourcesconfig"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">dash</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">PKMediaSourceObject</span>
- <span class="nl">hls</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">PKMediaSourceObject</span>
- <span class="nl">progressive</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">PKMediaSourceObject</span><span class="p">,</span>
- <span class="nx">options</span><span class="err">:</span> <span class="nx">PKMediaSourceOptionsObject</span><span class="p">,</span>
- <span class="nx">type</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">dvr</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">metadata</span><span class="err">:</span> <span class="nx">PKMetadataConfigObject</span><span class="p">,</span>
- <span class="nx">id</span><span class="p">?:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">poster</span><span class="p">?:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">duration</span><span class="p">?:</span> <span class="nx">number</span><span class="p">,</span>
- <span class="nx">captions</span><span class="p">?:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">PKExternalCaptionObject</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="type-pkmediasourceobject">
-        
-        
-          Type <code class="highlighter-rouge">PKMediaSourceObject</code> <a href="#type-pkmediasourceobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">mimetype</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">url</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">id</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span> <span class="c1">// optional</span>
- <span class="nx">bandwidth</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span> <span class="c1">// optional</span>
- <span class="nx">width</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span> <span class="c1">// optional</span>
- <span class="nx">height</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span> <span class="c1">// optional</span>
- <span class="nx">drmData</span><span class="err">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">PKDrmDataObject</span><span class="c1">// optional</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="type-pkdrmdataobject">
-        
-        
-          Type <code class="highlighter-rouge">PKDrmDataObject</code> <a href="#type-pkdrmdataobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">licenseUrl</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">scheme</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">certificate</span><span class="err">:</span> <span class="nx">string</span> <span class="c1">// optional</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="type-pkmediasourceoptionsobject">
-        
-        
-          Type <code class="highlighter-rouge">PKMediaSourceOptionsObject</code> <a href="#type-pkmediasourceoptionsobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">forceRedirectExternalStreams</span><span class="p">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">redirectExternalStreamsHandler</span><span class="err">:</span> <span class="p">?</span><span class="nb">Function</span><span class="p">,</span>
- <span class="nx">redirectExternalStreamsTimeout</span><span class="p">:</span> <span class="p">?</span><span class="nx">number</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="type-pkmetadataconfigobject">
-        
-        
-          Type <code class="highlighter-rouge">PKMetadataConfigObject</code> <a href="#type-pkmetadataconfigobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nx">name</span><span class="p">?:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">description</span><span class="p">?:</span> <span class="nx">string</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="type-pkexternalcaptionobject">
-        
-        
-          Type <code class="highlighter-rouge">PKExternalCaptionObject</code> <a href="#type-pkexternalcaptionobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">url</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">label</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">language</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="k">default</span><span class="p">?:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">type</span><span class="p">?:</span> <span class="nx">string</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="default">
-        
-        
-          Default: <a href="#default"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">options</span><span class="p">:</span> <span class="p">{</span>
-   <span class="nl">forceRedirectExternalStreams</span><span class="p">:</span> <span class="kc">false</span>
- <span class="p">}.</span>
- <span class="nl">metadata</span><span class="p">:</span> <span class="p">{}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="description-defines-related-sources-configurations">
-        
-        
-          Description: Defines related sources configurations. <a href="#description-defines-related-sources-configurations"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourceshls">
-        
-        
-          config.sources.hls <a href="#configsourceshls"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-arraypkmediasourceobject">
-        
-        
-          Type: <code class="highlighter-rouge">Array&lt;PKMediaSourceObject</code> <a href="#type-arraypkmediasourceobject"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-">
-        
-        
-          Default: <code class="highlighter-rouge">[]</code> <a href="#default-"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-optional-hls-sources-for-playback">
-        
-        
-          Description: Defines the optional HLS sources for playback. <a href="#description-defines-the-optional-hls-sources-for-playback"></a>
-        
-        
-      </h5>
-    
-      <h4 id="example">
-        
-        
-          Example: <a href="#example"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">sources</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">hls</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="na">mimetype</span><span class="p">:</span> <span class="s1">'application/x-mpegurl'</span><span class="p">,</span>
-        <span class="na">url</span><span class="p">:</span> <span class="s1">'//PATH/TO/MANIFEST.m3u8'</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-    
-      <h3 id="configsourcesdash">
-        
-        
-          config.sources.dash <a href="#configsourcesdash"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-arraypkmediasourceobject-1">
-        
-        
-          Type: <code class="highlighter-rouge">Array&lt;PKMediaSourceObject</code> <a href="#type-arraypkmediasourceobject-1"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default--1">
-        
-        
-          Default: <code class="highlighter-rouge">[]</code> <a href="#default--1"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-optional-dash-sources-for-playback">
-        
-        
-          Description: Defines the optional dash sources for playback. <a href="#description-defines-the-optional-dash-sources-for-playback"></a>
-        
-        
-      </h5>
-    
-      <h4 id="example-1">
-        
-        
-          Example: <a href="#example-1"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">sources</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">dash</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="na">mimetype</span><span class="p">:</span> <span class="s1">'application/x-mpegurl'</span><span class="p">,</span>
-        <span class="na">url</span><span class="p">:</span> <span class="s1">'//PATH/TO/MANIFEST.mpd'</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-    
-      <h3 id="configsourcesprogressive">
-        
-        
-          config.sources.progressive <a href="#configsourcesprogressive"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-arraypkmediasourceobject-2">
-        
-        
-          Type: <code class="highlighter-rouge">Array&lt;PKMediaSourceObject</code> <a href="#type-arraypkmediasourceobject-2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default--2">
-        
-        
-          Default: <code class="highlighter-rouge">[]</code> <a href="#default--2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-optional-progressive-sources-for-playback">
-        
-        
-          Description: Defines the optional progressive sources for playback. <a href="#description-defines-the-optional-progressive-sources-for-playback"></a>
-        
-        
-      </h5>
-    
-      <h4 id="example-2">
-        
-        
-          Example: <a href="#example-2"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">sources</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">progressive</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="na">mimetype</span><span class="p">:</span> <span class="s1">'video/mp4'</span><span class="p">,</span>
-        <span class="na">url</span><span class="p">:</span> <span class="s1">'//PATH/TO/FILE.mp4'</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-    
-      <h3 id="configsourcesoptions">
-        
-        
-          config.sources.options <a href="#configsourcesoptions"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pkmediasourceoptionsobject-1">
-        
-        
-          Type: <code class="highlighter-rouge">PKMediaSourceOptionsObject</code> <a href="#type-pkmediasourceoptionsobject-1"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-1">
-        
-        
-          Default: <a href="#default-1"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">forceRedirectExternalStreams</span><span class="p">:</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="description-defines-the-sources-options">
-        
-        
-          Description: Defines the sources options. <a href="#description-defines-the-sources-options"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourcesoptionsforceredirectexternalstreams">
-        
-        
-          config.sources.options.forceRedirectExternalStreams <a href="#configsourcesoptionsforceredirectexternalstreams"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-false">
-        
-        
-          Default: <code class="highlighter-rouge">false</code> <a href="#default-false"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-enable-workaround-for-some-user-agents-that-dont-allow-redirects-after-a-successful-cors-preflight-request">
-        
-        
-          Description: Enable workaround for some user-agents that don’t allow redirects after a successful CORS-preflight request. <a href="#description-enable-workaround-for-some-user-agents-that-dont-allow-redirects-after-a-successful-cors-preflight-request"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourcesoptionsredirectexternalstreamshandler">
-        
-        
-          config.sources.options.redirectExternalStreamsHandler <a href="#configsourcesoptionsredirectexternalstreamshandler"></a>
+          config.log.handler <a href="#configloghandler"></a>
         
         
       </h3>
@@ -655,31 +254,31 @@ rtp('get', 'campaign',true);
       <h5 id="type-function">
         
         
-          Type: <code class="highlighter-rouge">Function</code> <a href="#type-function"></a>
+          Type: <code class="highlighter-rouge">function</code> <a href="#type-function"></a>
         
         
       </h5>
     
-      <h5 id="default--">
+      <h5 id="description-defines-the-log-handler-function-by-default-will-write-to-console">
         
         
-          Default: <code class="highlighter-rouge">-</code> <a href="#default--"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-handler-function-which-redirects-the-stream">
-        
-        
-          Description: The handler function which redirects the stream. <a href="#description-the-handler-function-which-redirects-the-stream"></a>
+          Description: Defines the log handler function by default will write to console. <a href="#description-defines-the-log-handler-function-by-default-will-write-to-console"></a>
         
         
       </h5>
     
-      <h3 id="configsourcesoptionsredirectexternalstreamstimeout">
+      <h1 id="-1">
         
         
-          config.sources.options.redirectExternalStreamsTimeout <a href="#configsourcesoptionsredirectexternalstreamstimeout"></a>
+          # <a href="#-1"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configpartnerid">
+        
+        
+          config.partnerId <a href="#configpartnerid"></a>
         
         
       </h3>
@@ -692,26 +291,34 @@ rtp('get', 'campaign',true);
         
       </h5>
     
-      <h5 id="default---1">
+      <h5 id="default--">
         
         
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---1"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-timeout-for-the-redirect-operation">
-        
-        
-          Description: The timeout for the redirect operation. <a href="#description-the-timeout-for-the-redirect-operation"></a>
+          Default: <code class="highlighter-rouge">-</code> <a href="#default--"></a>
         
         
       </h5>
     
-      <h3 id="configsourcestype">
+      <h5 id="description-defines-the-customers-partner-id">
         
         
-          config.sources.type <a href="#configsourcestype"></a>
+          Description: Defines the customer’s partner ID. <a href="#description-defines-the-customers-partner-id"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-2">
+        
+        
+          # <a href="#-2"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configks">
+        
+        
+          config.ks <a href="#configks"></a>
         
         
       </h3>
@@ -724,222 +331,34 @@ rtp('get', 'campaign',true);
         
       </h5>
     
-      <h5 id="default---2">
+      <h5 id="default-">
         
         
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-type-of-media-being-used">
-        
-        
-          Description: Defines the type of media being used. <a href="#description-defines-the-type-of-media-being-used"></a>
-        
-        
-      </h5>
-
-<p>Possible values: <code class="highlighter-rouge">"Vod", "Live", "Image", "Audio", "Unknown"</code>.</p>
-    
-      <h3 id="configsourcesdvr">
-        
-        
-          config.sources.dvr <a href="#configsourcesdvr"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-1">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-1"></a>
+          Default: <code class="highlighter-rouge">''</code> <a href="#default-"></a>
         
         
       </h5>
     
-      <h5 id="default---3">
+      <h5 id="description-defines-the-customers-unique-ks">
         
         
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---3"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-dvr-value">
-        
-        
-          Description: Defines the dvr value. <a href="#description-defines-the-dvr-value"></a>
-        
-        
-      </h5>
-
-<p>Relevant only if the media type=<code class="highlighter-rouge">"Live"</code>.</p>
-    
-      <h3 id="configsourcesmetadata">
-        
-        
-          config.sources.metadata <a href="#configsourcesmetadata"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pkmetadataconfigobject-1">
-        
-        
-          Type: <code class="highlighter-rouge">PKMetadataConfigObject</code> <a href="#type-pkmetadataconfigobject-1"></a>
+          Description: Defines the customer’s unique KS. <a href="#description-defines-the-customers-unique-ks"></a>
         
         
       </h5>
     
-      <h5 id="default--3">
+      <h1 id="-3">
         
         
-          Default: <code class="highlighter-rouge"><span class="p">{}</span></code> <a href="#default--3"></a>
+          # <a href="#-3"></a>
         
         
-      </h5>
+      </h1>
     
-      <h5 id="description-defines-the-metadata-of-the-media">
+      <h3 id="configuiconfid">
         
         
-          Description: Defines the metadata of the media. <a href="#description-defines-the-metadata-of-the-media"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourcesmetadataname">
-        
-        
-          config.sources.metadata.name <a href="#configsourcesmetadataname"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-2">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---4">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---4"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-name-of-the-media">
-        
-        
-          Description: The name of the media. <a href="#description-the-name-of-the-media"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourcesmetadatadescription">
-        
-        
-          config.sources.metadata.description <a href="#configsourcesmetadatadescription"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-3">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-3"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---5">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---5"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-description-of-the-media">
-        
-        
-          Description: The description of the media. <a href="#description-the-description-of-the-media"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourcesid">
-        
-        
-          config.sources.id <a href="#configsourcesid"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-4">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-4"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---6">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---6"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-id-of-the-media">
-        
-        
-          Description: The id of the media. <a href="#description-the-id-of-the-media"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourcesposter">
-        
-        
-          config.sources.poster <a href="#configsourcesposter"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-5">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-5"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---7">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---7"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-poster-url-of-the-media">
-        
-        
-          Description: The poster url of the media. <a href="#description-the-poster-url-of-the-media"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsourcesduration">
-        
-        
-          config.sources.duration <a href="#configsourcesduration"></a>
+          config.uiConfId <a href="#configuiconfid"></a>
         
         
       </h3>
@@ -952,709 +371,101 @@ rtp('get', 'campaign',true);
         
       </h5>
     
-      <h5 id="default---8">
+      <h5 id="default---1">
         
         
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---8"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-duration-of-the-media">
-        
-        
-          Description: The duration of the media. <a href="#description-the-duration-of-the-media"></a>
+          Default: <code class="highlighter-rouge">-</code> <a href="#default---1"></a>
         
         
       </h5>
     
-      <h3 id="configsourcescaptions">
+      <h5 id="description-defines-the-customers-ui-config-id">
         
         
-          config.sources.captions <a href="#configsourcescaptions"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-arraypkexternalcaptionobject">
-        
-        
-          Type: <code class="highlighter-rouge">Array&lt;PKExternalCaptionObject</code> <a href="#type-arraypkexternalcaptionobject"></a>
+          Description: Defines the customer’s UI config ID. <a href="#description-defines-the-customers-ui-config-id"></a>
         
         
       </h5>
     
-      <h5 id="default---9">
+      <h1 id="-4">
         
         
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---9"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-an-array-of-captions-to-be-added-to-the-media">
-        
-        
-          Description: An array of captions to be added to the media. <a href="#description-an-array-of-captions-to-be-added-to-the-media"></a>
-        
-        
-      </h5>
-
-<p>The following fields are mandatory: <code class="highlighter-rouge">url</code>, <code class="highlighter-rouge">language</code> and <code class="highlighter-rouge">label</code>.</p>
-    
-      <h4 id="example-3">
-        
-        
-          Example: <a href="#example-3"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">sources</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">captions</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="na">url</span><span class="p">:</span> <span class="s1">'www.path.to/your/captions/file'</span><span class="p">,</span>
-        <span class="na">type</span><span class="p">:</span> <span class="s1">'vtt'</span><span class="p">,</span>
-        <span class="na">default</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="na">language</span><span class="p">:</span> <span class="s1">'en'</span><span class="p">,</span>
-        <span class="na">label</span><span class="p">:</span> <span class="s1">'English'</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-    
-      <h3 id="configplugins">
-        
-        
-          config.plugins <a href="#configplugins"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pkpluginsobject">
-        
-        
-          Type: <code class="highlighter-rouge">PKPluginsObject</code> <a href="#type-pkpluginsobject"></a>
-        
-        
-      </h5>
-
-<p><code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">[plugin:</span><span class="w"> </span><span class="err">string]:</span><span class="w"> </span><span class="err">Object</span><span class="w"> </span><span class="p">}</span></code></p>
-    
-      <h5 id="default--4">
-        
-        
-          Default: <code class="highlighter-rouge"><span class="p">{}</span></code> <a href="#default--4"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-active-plugins">
-        
-        
-          Description: Defines the active plugins. <a href="#description-defines-the-active-plugins"></a>
-        
-        
-      </h5>
-
-<p>This should map the plugin to its config object.</p>
-    
-      <h4 id="example-4">
-        
-        
-          Example: <a href="#example-4"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">myAwesomePlugin1</span><span class="p">:</span> <span class="p">{},</span>
-    <span class="na">myAwesomePlugin2</span><span class="p">:</span> <span class="p">{}</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-    
-      <h3 id="configpluginsplugin_namedisable">
-        
-        
-          config.plugins.PLUGIN_NAME.disable <a href="#configpluginsplugin_namedisable"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-2">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-false-1">
-        
-        
-          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-1"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-allow-to-disable-a-specific-plugin">
-        
-        
-          Description: Allow to disable a specific plugin. <a href="#description-allow-to-disable-a-specific-plugin"></a>
-        
-        
-      </h5>
-    
-      <h4 id="example-5">
-        
-        
-          Example: <a href="#example-5"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">myAwesomePlugin</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">disable</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-    
-      <h3 id="configplayback">
-        
-        
-          config.playback <a href="#configplayback"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pkplaybackconfig">
-        
-        
-          Type: <code class="highlighter-rouge">PKPlaybackConfig</code> <a href="#type-pkplaybackconfig"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">audioLanguage</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">textLanguage</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">useNativeTextTrack</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">enableCEA708Captions</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">captionsTextTrack1Label</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">captionsTextTrack1LanguageCode</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">captionsTextTrack2Label</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">captionsTextTrack2LanguageCode</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">volume</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span>
- <span class="nx">startTime</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span>
- <span class="nx">playsinline</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">crossOrigin</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">preload</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">autoplay</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">allowMutedAutoPlay</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">loop</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">muted</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">pictureInPicture</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">options</span><span class="err">:</span> <span class="nx">PKPlaybackOptionsObject</span><span class="p">,</span>
- <span class="nx">streamPriority</span><span class="err">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">PKStreamPriorityObject</span><span class="p">,</span>
- <span class="nx">preferNative</span><span class="err">:</span> <span class="nx">PKPreferNativeConfigObject</span><span class="p">,</span>
- <span class="nx">inBrowserFullscreen</span><span class="err">:</span> <span class="kr">boolean</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="default-2">
-        
-        
-          Default: <a href="#default-2"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">audioLanguage</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
- <span class="nx">textLanguage</span><span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
- <span class="nx">useNativeTextTrack</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
- <span class="nx">enableCEA708Captions</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
- <span class="nx">captionsTextTrack1Label</span><span class="err">:</span> <span class="s2">"English"</span><span class="p">,</span>
- <span class="nx">captionsTextTrack1LanguageCode</span><span class="err">:</span> <span class="s2">"en"</span><span class="p">,</span>
- <span class="nx">captionsTextTrack2Label</span><span class="err">:</span> <span class="s2">"Spanish"</span><span class="p">,</span>
- <span class="nx">captionsTextTrack2LanguageCode</span><span class="err">:</span> <span class="s2">"es"</span><span class="p">,</span>
- <span class="nx">volume</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="nx">startTime</span><span class="err">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
- <span class="nx">playsinline</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
- <span class="nx">preload</span><span class="err">:</span> <span class="s2">"none"</span><span class="p">,</span>
- <span class="nx">autoplay</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
- <span class="nx">allowMutedAutoPlay</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
- <span class="nx">loop</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
- <span class="nx">muted</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
- <span class="nx">pictureInPicture</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
- <span class="nx">options</span><span class="err">:</span> <span class="p">{</span>
-   <span class="nl">html5</span><span class="p">:</span> <span class="p">{</span>
-     <span class="nl">hls</span><span class="p">:</span> <span class="p">{},</span>
-     <span class="nx">dash</span><span class="err">:</span> <span class="p">{}</span>
-   <span class="p">}</span>
- <span class="p">},</span>
- <span class="nx">preferNative</span><span class="err">:</span> <span class="p">{</span>
-   <span class="nl">hls</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-   <span class="nx">dash</span><span class="err">:</span> <span class="kc">false</span>
- <span class="p">},</span>
- <span class="nx">streamPriority</span><span class="err">:</span> <span class="p">[</span>
-   <span class="p">{</span>
-     <span class="na">engine</span><span class="p">:</span> <span class="s2">"html5"</span><span class="p">,</span>
-     <span class="na">format</span><span class="p">:</span> <span class="s2">"hls"</span>
-   <span class="p">},</span>
-   <span class="p">{</span>
-     <span class="na">engine</span><span class="p">:</span> <span class="s2">"html5"</span><span class="p">,</span>
-     <span class="na">format</span><span class="p">:</span> <span class="s2">"dash"</span>
-   <span class="p">},</span>
-   <span class="p">{</span>
-     <span class="na">engine</span><span class="p">:</span> <span class="s2">"html5"</span><span class="p">,</span>
-     <span class="na">format</span><span class="p">:</span> <span class="s2">"progressive"</span>
-   <span class="p">}</span>
- <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="description-defines-the-playback-options">
-        
-        
-          Description: Defines the playback options. <a href="#description-defines-the-playback-options"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configplaybackaudiolanguage">
-        
-        
-          config.playback.audioLanguage <a href="#configplaybackaudiolanguage"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-6">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-6"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default--5">
-        
-        
-          Default: <code class="highlighter-rouge">""</code> <a href="#default--5"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-sets-the-default-audio-track-language">
-        
-        
-          Description: Sets the default audio track language. <a href="#description-sets-the-default-audio-track-language"></a>
-        
-        
-      </h5>
-
-<p>If an audio track with the defined language exists, this audio track will be selected as the initial audio track.</p>
-    
-      <h4 id="example-6">
-        
-        
-          Example: <a href="#example-6"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">audioLanguage</span><span class="p">:</span> <span class="s1">'eng'</span> <span class="c1">// Start playback with english audio</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-    
-      <h3 id="configplaybacktextlanguage">
-        
-        
-          config.playback.textLanguage <a href="#configplaybacktextlanguage"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string--auto">
-        
-        
-          Type: <code class="highlighter-rouge">string || "auto"</code> <a href="#type-string--auto"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default--6">
-        
-        
-          Default: <code class="highlighter-rouge">""</code> <a href="#default--6"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-default-captions-language">
-        
-        
-          Description: Defines the default captions language <a href="#description-defines-the-default-captions-language"></a>
-        
-        
-      </h5>
-
-<p>If captions for the defined language are available, this text track will be selected as the initial text track.</p>
-    
-      <h4 id="example-7">
-        
-        
-          Example: <a href="#example-7"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">textLanguage</span><span class="p">:</span> <span class="s1">'heb'</span> <span class="c1">// Start playback with hebrew captions</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-
-<p>If the value <code class="highlighter-rouge">"auto"</code> is set, i.e:</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">textLanguage</span><span class="p">:</span> <span class="s1">'auto'</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-
-<p>The player will choose the default captions language using the following logic:</p>
-
-<ol>
-  <li><strong>Locale language</strong> - If there are captions in the user’s system language then this language will be selected.</li>
-  <li><strong>Manifest default language</strong> - If a default language is specified in the manifest file then this language will be selected.</li>
-  <li><strong>First language in manifest</strong> - The first language specified in the manifest file will be selected.</li>
-  <li>If none of the above conditions have taken place, do not display captions.</li>
-</ol>
-    
-      <h1 id="-1">
-        
-        
-          # <a href="#-1"></a>
+          # <a href="#-4"></a>
         
         
       </h1>
     
-      <h3 id="configplaybackusenativetexttrack">
+      <h3 id="configenv">
         
         
-          config.playback.useNativeTextTrack <a href="#configplaybackusenativetexttrack"></a>
+          config.env <a href="#configenv"></a>
         
         
       </h3>
     
-      <h5 id="type-boolean-3">
+      <h5 id="type-providerenvconfigobject">
         
         
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-3"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-false-2">
-        
-        
-          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-determines-whether-to-use-native-browser-text-tracks-or-not">
-        
-        
-          Description: Determines whether to use native browser text tracks or not. <a href="#description-determines-whether-to-use-native-browser-text-tracks-or-not"></a>
+          Type: <code class="highlighter-rouge">ProviderEnvConfigObject</code> <a href="#type-providerenvconfigobject"></a>
         
         
       </h5>
 
-<p>If set to True, the native browser captions will be displayed.</p>
-    
-      <h3 id="configplaybackenablecea708captions">
-        
-        
-          config.playback.enableCEA708Captions <a href="#configplaybackenablecea708captions"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-4">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-4"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-false-3">
-        
-        
-          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-3"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-whether-or-not-to-enable-cea-708-captions">
-        
-        
-          Description: Whether or not to enable CEA-708 captions. <a href="#description-whether-or-not-to-enable-cea-708-captions"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configplaybackcaptionstexttrack1label">
-        
-        
-          config.playback.captionsTextTrack1Label <a href="#configplaybackcaptionstexttrack1label"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-7">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-7"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-english">
-        
-        
-          Default: <code class="highlighter-rouge">English</code> <a href="#default-english"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-label-for-the-cea-708-captions-track-1">
-        
-        
-          Description: Label for the CEA-708 captions track 1. <a href="#description-label-for-the-cea-708-captions-track-1"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configplaybackcaptionstexttrack1languagecode">
-        
-        
-          config.playback.captionsTextTrack1LanguageCode <a href="#configplaybackcaptionstexttrack1languagecode"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-8">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-8"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-en">
-        
-        
-          Default: <code class="highlighter-rouge">en</code> <a href="#default-en"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-rfc-3066-language-code-for-the-cea-708-captions-track-1">
-        
-        
-          Description: RFC 3066 language code for the CEA-708 captions track 1. <a href="#description-rfc-3066-language-code-for-the-cea-708-captions-track-1"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configplaybackcaptionstexttrack2label">
-        
-        
-          config.playback.captionsTextTrack2Label <a href="#configplaybackcaptionstexttrack2label"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-9">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-9"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-spanish">
-        
-        
-          Default: <code class="highlighter-rouge">Spanish</code> <a href="#default-spanish"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-label-for-the-cea-708-captions-track-2">
-        
-        
-          Description: Label for the CEA-708 captions track 2. <a href="#description-label-for-the-cea-708-captions-track-2"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configplaybackcaptionstexttrack2languagecode">
-        
-        
-          config.playback.captionsTextTrack2LanguageCode <a href="#configplaybackcaptionstexttrack2languagecode"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-10">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-10"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-es">
-        
-        
-          Default: <code class="highlighter-rouge">es</code> <a href="#default-es"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-rfc-3066-language-code-for-the-cea-708-captions-track-2">
-        
-        
-          Description: RFC 3066 language code for the CEA-708 captions track 2. <a href="#description-rfc-3066-language-code-for-the-cea-708-captions-track-2"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configplaybackvolume">
-        
-        
-          config.playback.volume <a href="#configplaybackvolume"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-number-2">
-        
-        
-          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-1">
-        
-        
-          Default: <code class="highlighter-rouge">1</code> <a href="#default-1"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-initial-volume-value">
-        
-        
-          Description: Defines the initial volume value. <a href="#description-defines-the-initial-volume-value"></a>
-        
-        
-      </h5>
-
-<p>The value must be in the range of 0-1.</p>
-    
-      <h4 id="example-8">
-        
-        
-          Example: <a href="#example-8"></a>
-        
-        
-      </h4>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">volume</span><span class="p">:</span> <span class="mf">0.5</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">serviceUrl:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+ </span><span class="err">cdnUrl:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+ </span><span class="err">useApiCaptions:</span><span class="w"> </span><span class="err">boolean</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
     
-      <h3 id="configplaybackstarttime">
+      <h5 id="default">
         
         
-          config.playback.startTime <a href="#configplaybackstarttime"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-number-3">
-        
-        
-          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-3"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default--1">
-        
-        
-          Default: <code class="highlighter-rouge">-1</code> <a href="#default--1"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-optional-start-time-in-seconds-to-begin-playback">
-        
-        
-          Description: Optional start time, in seconds, to begin playback. <a href="#description-optional-start-time-in-seconds-to-begin-playback"></a>
+          Default: <a href="#default"></a>
         
         
       </h5>
 
-<p>Default -1 refer to automatic start time - 0 to VOD and live edge to live.</p>
+<p><strong>OVP</strong></p>
 
-<p>Note. <code class="highlighter-rouge">startTime</code> affects the ad playback, e.g. <code class="highlighter-rouge">startTime: 10</code> will skip ads scheduled until 10.<br />
-To force playing ads scheduled before <code class="highlighter-rouge">startTime</code>, need to configure the ads plugin.<br />
-For example with <a href="https://github.com/kaltura/playkit-js-ima/blob/master/docs/api.md">IMA</a> plugin, set <code class="highlighter-rouge">adsRenderingSettings: {playAdsAfterTime: -1}</code>.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">serviceUrl:</span><span class="w"> </span><span class="nt">"//www.kaltura.com/api_v3"</span><span class="err">,</span><span class="w">
+ </span><span class="err">cdnUrl</span><span class="p">:</span><span class="w"> </span><span class="s2">"//cdnapisec.kaltura.com"</span><span class="p">,</span><span class="w">
+ </span><span class="err">useApiCaptions</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><strong>Cloud TV</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">serviceUrl:</span><span class="w"> </span><span class="nt">"//api-preprod.ott.kaltura.com/v4_6/api_v3"</span><span class="err">,</span><span class="w">
+ </span><span class="err">cdnUrl</span><span class="p">:</span><span class="w"> </span><span class="s2">"//api-preprod.ott.kaltura.com/v4_7"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
     
-      <h3 id="configplaybackplaysinline">
+      <h5 id="description-defines-the-server-environment-to-run-against">
         
         
-          config.playback.playsinline <a href="#configplaybackplaysinline"></a>
+          Description: Defines the server environment to run against. <a href="#description-defines-the-server-environment-to-run-against"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configenvuseapicaptions">
+        
+        
+          config.env.useApiCaptions <a href="#configenvuseapicaptions"></a>
         
         
       </h3>
     
-      <h5 id="type-boolean-5">
+      <h5 id="type-boolean">
         
         
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-5"></a>
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean"></a>
         
         
       </h5>
@@ -1662,191 +473,63 @@ For example with <a href="https://github.com/kaltura/playkit-js-ima/blob/master/
       <h5 id="default-true">
         
         
-          Default: <code class="highlighter-rouge">true</code> <a href="#default-true"></a>
+          Default: true <a href="#default-true"></a>
         
         
       </h5>
     
-      <h5 id="description-a-boolean-attribute-that-indicates-whether-the-video-should-be-played-inline-that-is-within-the-elements-playback-area">
+      <h5 id="description-show-captions-on-platforms-that-dont-support-in-band-captions-for-example-playing-using-flash-this-flag-is-for-the-ovp-provider-and-can-be-turned-off-by-setting-its-value-to-false">
         
         
-          Description: A Boolean attribute that indicates whether the video should be played “inline”, that is, within the element’s playback area. <a href="#description-a-boolean-attribute-that-indicates-whether-the-video-should-be-played-inline-that-is-within-the-elements-playback-area"></a>
+          Description: Show captions on platforms that don’t support in-band captions (for example: playing using Flash). This flag is for the OVP provider, and can be turned off by setting its value to <code class="highlighter-rouge">false</code>. <a href="#description-show-captions-on-platforms-that-dont-support-in-band-captions-for-example-playing-using-flash-this-flag-is-for-the-ovp-provider-and-can-be-turned-off-by-setting-its-value-to-false"></a>
         
         
       </h5>
-
-<p>This is especially relevant when playing videos on iPhone devices, where - if the value is set to false - the video will be played using the AV Player (iOS native video player).</p>
     
-      <h3 id="configplaybackcrossorigin">
+      <h1 id="-5">
         
         
-          config.playback.crossOrigin <a href="#configplaybackcrossorigin"></a>
+          # <a href="#-5"></a>
+        
+        
+      </h1>
+    
+      <h3 id="confignetworkretryparameters">
+        
+        
+          config.networkRetryParameters <a href="#confignetworkretryparameters"></a>
         
         
       </h3>
     
-      <h5 id="type-string-11">
+      <h5 id="type-providernetworkretryparameters">
         
         
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-11"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---10">
-        
-        
-          Default: - <a href="#default---10"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-this-enumerated-attribute-indicates-whether-to-use-cors-to-fetch-the-related-image-cors-enabled-resources-can-be-reused-in-the-canvaselement-without-being-tainted">
-        
-        
-          Description: This enumerated attribute indicates whether to use CORS to fetch the related image. <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image">CORS-enabled resources</a> can be reused in the &lt;canvaselement without being tainted. <a href="#description-this-enumerated-attribute-indicates-whether-to-use-cors-to-fetch-the-related-image-cors-enabled-resources-can-be-reused-in-the-canvaselement-without-being-tainted"></a>
+          Type: <code class="highlighter-rouge">ProviderNetworkRetryParameters</code> <a href="#type-providernetworkretryparameters"></a>
         
         
       </h5>
 
-<p>Possible values:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">"anonymous"</code>: Sends a cross-origin request without a credential. In other words, it sends the Origin: HTTP header without a cookie, X.509 certificate, or performing HTTP Basic authentication. If the server does not give credentials to the origin site (by not setting the Access-Control-Allow-Origin: HTTP header), the image will be tainted, and its usage restricted.</li>
-  <li><code class="highlighter-rouge">"use-credentials"</code>: Sends a cross-origin request with a credential. In other words, it sends the Origin: HTTP header with a cookie, a certificate, or performing HTTP Basic authentication. If the server does not give credentials to the origin site (through Access-Control-Allow-Credentials: HTTP header), the image will be tainted and its usage restricted.</li>
-</ul>
-
-<p>When not present, the resource is fetched without a CORS request (i.e. without sending the Origin: HTTP header), preventing its non-tainted used in &lt;canvaselements. If invalid, it is handled as if the enumerated keyword anonymous was used. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes">CORS settings attributes</a> for additional information.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">async?:</span><span class="w"> </span><span class="err">boolean,</span><span class="w">
+ </span><span class="err">timeout?:</span><span class="w"> </span><span class="err">number,</span><span class="w">
+ </span><span class="err">maxAttempts?:</span><span class="w"> </span><span class="err">number</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
     
-      <h3 id="configplaybackpreload">
+      <h3 id="confignetworkretryparametersasync">
         
         
-          config.playback.preload <a href="#configplaybackpreload"></a>
+          config.networkRetryParameters.async <a href="#confignetworkretryparametersasync"></a>
         
         
       </h3>
     
-      <h5 id="type-string-12">
+      <h5 id="type-boolean-1">
         
         
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-12"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-none">
-        
-        
-          Default: <code class="highlighter-rouge">"none"</code> <a href="#default-none"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-indicates-whether-the-video-should-be-preloaded-or-not">
-        
-        
-          Description: Indicates whether the video should be preloaded or not. <a href="#description-indicates-whether-the-video-should-be-preloaded-or-not"></a>
-        
-        
-      </h5>
-
-<p>Possible values:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">"none"</code>: indicates that the video should not be preloaded.</li>
-  <li><code class="highlighter-rouge">"auto"</code>: indicates that the whole video file could be downloaded, even if the user is not expected to use it.</li>
-</ul>
-    
-      <h3 id="configplaybackautoplayallowmutedautoplay">
-        
-        
-          config.playback.autoplay/allowMutedAutoPlay <a href="#configplaybackautoplayallowmutedautoplay"></a>
-        
-        
-      </h3>
-
-<p>for <code class="highlighter-rouge">autoplay</code> &amp; <code class="highlighter-rouge">allowMutedAutoPlay</code> options read <a href="https://developer.kaltura.com/player/web/autoplay-web">here</a>.</p>
-    
-      <h3 id="configplaybackloop">
-        
-        
-          config.playback.loop <a href="#configplaybackloop"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-6">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-6"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-false-4">
-        
-        
-          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-4"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-indicates-whether-the-video-should-play-in-loop">
-        
-        
-          Description: Indicates whether the video should play in loop. <a href="#description-indicates-whether-the-video-should-play-in-loop"></a>
-        
-        
-      </h5>
-
-<p>This is a Boolean attribute that indicates the default setting of the loop playback option. If set, the player will restart playback upon completion. The attribute’s default value is false, which means that the video will pause when the video is finished playing.</p>
-    
-      <h3 id="configplaybackmuted">
-        
-        
-          config.playback.muted <a href="#configplaybackmuted"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-7">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-7"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-false-5">
-        
-        
-          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-5"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-indicates-whether-the-video-should-be-muted-or-not">
-        
-        
-          Description: Indicates whether the video should be muted or not. <a href="#description-indicates-whether-the-video-should-be-muted-or-not"></a>
-        
-        
-      </h5>
-
-<p>This is a Boolean attribute that indicates the default setting of the audio contained in the video. If set, the audio will be initially silenced. The attribute’s default value is false, which means that the audio will be played automatically when the video is played.</p>
-    
-      <h3 id="configplaybackpictureinpicture">
-        
-        
-          config.playback.pictureInPicture <a href="#configplaybackpictureinpicture"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-8">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-8"></a>
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-1"></a>
         
         
       </h5>
@@ -1859,693 +542,137 @@ For example with <a href="https://github.com/kaltura/playkit-js-ima/blob/master/
         
       </h5>
     
-      <h5 id="description-indicates-if-the-picture-in-picture-feature-is-enabled">
+      <h5 id="description-defines-whether-or-not-to-perform-the-request-operation-asynchronously">
         
         
-          Description: Indicates if the picture in picture feature is enabled. <a href="#description-indicates-if-the-picture-in-picture-feature-is-enabled"></a>
+          Description: Defines whether or not to perform the request operation asynchronously. <a href="#description-defines-whether-or-not-to-perform-the-request-operation-asynchronously"></a>
         
         
       </h5>
-
-<p>This is a boolean attribute that allows to disable (enabled by default) the picture in picture feature (it will be enabled only in browsers supporting this ability)</p>
     
-      <h3 id="configplaybackoptions">
+      <h1 id="-6">
         
         
-          config.playback.options <a href="#configplaybackoptions"></a>
+          # <a href="#-6"></a>
+        
+        
+      </h1>
+    
+      <h3 id="confignetworkretryparameterstimeout">
+        
+        
+          config.networkRetryParameters.timeout <a href="#confignetworkretryparameterstimeout"></a>
         
         
       </h3>
     
-      <h5 id="type-pkplaybackoptionsobject">
+      <h5 id="type-number-2">
         
         
-          Type: <code class="highlighter-rouge">PKPlaybackOptionsObject</code> <a href="#type-pkplaybackoptionsobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">html5</span><span class="p">:</span> <span class="p">{</span>
-   <span class="nl">hls</span><span class="p">:</span> <span class="nb">Object</span><span class="p">,</span>
-   <span class="nx">dash</span><span class="err">:</span> <span class="nb">Object</span>
- <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="default-3">
-        
-        
-          Default: <a href="#default-3"></a>
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-2"></a>
         
         
       </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">html5</span><span class="p">:</span> <span class="p">{</span>
-   <span class="nl">hls</span><span class="p">:</span> <span class="p">{},</span>
-   <span class="nx">dash</span><span class="err">:</span> <span class="p">{}</span>
- <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
     
-      <h5 id="description-defines-the-media-source-adapters-configurations">
+      <h5 id="default-0---this-means-it-will-use-the-browser-default-timeout">
         
         
-          Description: Defines the media source adapters configurations. <a href="#description-defines-the-media-source-adapters-configurations"></a>
+          Default: <code class="highlighter-rouge">0</code> - This means it will use the browser default timeout. <a href="#default-0---this-means-it-will-use-the-browser-default-timeout"></a>
         
         
       </h5>
-
-<ul>
-  <li>For <code class="highlighter-rouge">hls</code> configuration, see the <a href="https://github.com/video-dev/hls.js/blob/master/doc/API.md#fine-tuning">hls.js</a> documentation.</li>
-  <li>For <code class="highlighter-rouge">dash</code> configuration, see the <a href="https://shaka-player-demo.appspot.com/docs/api/tutorial-config.html">shaka-player</a> documentation.</li>
-</ul>
     
-      <h3 id="configplaybackprefernative">
+      <h5 id="description-defines-the-timeout-for-provider-requests-in-milliseconds">
         
         
-          config.playback.preferNative <a href="#configplaybackprefernative"></a>
+          Description: Defines the timeout for provider requests in milliseconds. <a href="#description-defines-the-timeout-for-provider-requests-in-milliseconds"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-7">
+        
+        
+          # <a href="#-7"></a>
+        
+        
+      </h1>
+    
+      <h3 id="confignetworkretryparametersmaxattempts">
+        
+        
+          config.networkRetryParameters.maxAttempts <a href="#confignetworkretryparametersmaxattempts"></a>
         
         
       </h3>
     
-      <h5 id="type-pkprefernativeconfig">
+      <h5 id="type-number-3">
         
         
-          Type: <code class="highlighter-rouge">PKPreferNativeConfig</code> <a href="#type-pkprefernativeconfig"></a>
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-3"></a>
         
         
       </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">hls</span><span class="p">:</span> <span class="kr">boolean</span><span class="p">,</span>
- <span class="nx">dash</span><span class="err">:</span> <span class="kr">boolean</span>
-<span class="p">}</span>
-</code></pre>
-</div>
     
       <h5 id="default-4">
         
         
-          Default: <a href="#default-4"></a>
+          Default: <code class="highlighter-rouge">4</code> <a href="#default-4"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-number-of-attempts-the-provider-should-try-make-a-request-before-the-request-fails">
+        
+        
+          Description: Defines the number of attempts the provider should try make a request before the request fails. <a href="#description-defines-the-number-of-attempts-the-provider-should-try-make-a-request-before-the-request-fails"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configfilteroptions">
+        
+        
+          config.filterOptions <a href="#configfilteroptions"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-providerfilteroptionsobject">
+        
+        
+          Type: <code class="highlighter-rouge">ProviderFilterOptionsObject</code> <a href="#type-providerfilteroptionsobject"></a>
         
         
       </h5>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">hls</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
- <span class="nx">dash</span><span class="err">:</span> <span class="kc">false</span>
-<span class="p">}</span>
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">redirectFromEntryId:</span><span class="w"> </span><span class="err">boolean;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
     
-      <h5 id="description-indicates-whether-to-prefer-native-browser-playback-if-supported-with-media-source-extensions">
+      <h5 id="default-1">
         
         
-          Description: Indicates whether to prefer native browser playback (if supported) with media source extensions. <a href="#description-indicates-whether-to-prefer-native-browser-playback-if-supported-with-media-source-extensions"></a>
-        
-        
-      </h5>
-
-<p>If one of the values is set to True and the player chooses to play that media source extension, the player will try to play it natively if supported by the browser.</p>
-    
-      <h4 id="example-9">
-        
-        
-          Example: <a href="#example-9"></a>
-        
-        
-      </h4>
-
-<p>Lets assume the following configuration:</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">playback</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">preferNative</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">hls</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-
-<p>If the player is running on a <em>Safari</em> browser, the player will use the native hls playback managed by the <em>Safari</em> browser. However, if running on a browser in which hls playback is not supported natively, for example, <em>Chrome</em>, the player will play hls using the <code class="highlighter-rouge">hls.js</code> library.</p>
-    
-      <h3 id="configplaybackinbrowserfullscreen">
-        
-        
-          config.playback.inBrowserFullscreen <a href="#configplaybackinbrowserfullscreen"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-9">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-9"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-false-6">
-        
-        
-          Default: <code class="highlighter-rouge">false</code> <a href="#default-false-6"></a>
+          Default: <a href="#default-1"></a>
         
         
       </h5>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">inBrowserFullscreen</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">;</span>
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">redirectFromEntryId:</span><span class="w"> </span><span class="err">true;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 </div>
     
-      <h5 id="description-gives-the-ability-to-choose-an-in-browser-fullscreen-experience-useful-on-ios-devices-which-will-replace-the-native-fullscreen-of-the-av-player">
+      <h5 id="description-defines-whether-after-a-livestream-ends-there-should-be-a-redirect-to-the-vod-entry-or-not">
         
         
-          Description: Gives the ability to choose an in-browser fullscreen experience. Useful on iOS devices which will replace the native fullscreen of the AV player. <a href="#description-gives-the-ability-to-choose-an-in-browser-fullscreen-experience-useful-on-ios-devices-which-will-replace-the-native-fullscreen-of-the-av-player"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configplaybackstreampriority">
-        
-        
-          config.playback.streamPriority <a href="#configplaybackstreampriority"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-arraypkstreampriorityobject">
-        
-        
-          Type: <code class="highlighter-rouge">Array&lt;PKStreamPriorityObject</code> <a href="#type-arraypkstreampriorityobject"></a>
+          Description: Defines whether after a livestream ends there should be a redirect to the VOD entry or not. <a href="#description-defines-whether-after-a-livestream-ends-there-should-be-a-redirect-to-the-vod-entry-or-not"></a>
         
         
       </h5>
-    
-      <h5 id="type-pkstreampriorityobject">
-        
-        
-          Type <code class="highlighter-rouge">PKStreamPriorityObject</code> <a href="#type-pkstreampriorityobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">engine</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
-  <span class="nx">format</span><span class="err">:</span> <span class="nx">string</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="default-5">
-        
-        
-          Default: <a href="#default-5"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
-    <span class="na">format</span><span class="p">:</span> <span class="s1">'hls'</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
-    <span class="na">format</span><span class="p">:</span> <span class="s1">'dash'</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="na">engine</span><span class="p">:</span> <span class="s1">'html5'</span><span class="p">,</span>
-    <span class="na">format</span><span class="p">:</span> <span class="s1">'progressive'</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="na">engine</span><span class="p">:</span> <span class="s1">'flash'</span><span class="p">,</span>
-    <span class="na">format</span><span class="p">:</span> <span class="s1">'hls'</span>
-  <span class="p">}</span>
-<span class="p">];</span>
-</code></pre>
-</div>
-    
-      <h5 id="description-specifies-the-list-of-engine-and-stream-format-pairs-of-the-player-by-ascending-order">
-        
-        
-          Description: Specifies the list of engine and stream format pairs of the player by ascending order. <a href="#description-specifies-the-list-of-engine-and-stream-format-pairs-of-the-player-by-ascending-order"></a>
-        
-        
-      </h5>
-
-<p>As soon as the player receives the sources, it will review the configuration array and try to play the source with the matched stream format according to the matched engine.<br />
-For example, in the priority configuration above, the player will try to play the hls stream using an html5 engine first. If an hls stream isn’t received, the player will continue to play the dash stream using an html5 engine. If a dash stream isn’t received, the player will then will continue to play the progressive stream using an html5 engine.</p>
-    
-      <h3 id="configsession">
-        
-        
-          config.session <a href="#configsession"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pksessionconfigobject">
-        
-        
-          Type: <code class="highlighter-rouge">PKSessionConfigObject</code> <a href="#type-pksessionconfigobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">id</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">ks</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
- <span class="nx">partnerId</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span>
- <span class="nx">uiConfId</span><span class="err">:</span> <span class="nx">number</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="default---11">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---11"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-defines-the-session-data-optional">
-        
-        
-          Description: Defines the session data (optional). <a href="#description-defines-the-session-data-optional"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsessionid">
-        
-        
-          config.session.id <a href="#configsessionid"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-13">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-13"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---12">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---12"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-session-id">
-        
-        
-          Description: The session id. <a href="#description-the-session-id"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsessionks">
-        
-        
-          config.session.ks <a href="#configsessionks"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-14">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-14"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---13">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---13"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-session-secret">
-        
-        
-          Description: The session secret. <a href="#description-the-session-secret"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsessionpartnerid">
-        
-        
-          config.session.partnerId <a href="#configsessionpartnerid"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-number-4">
-        
-        
-          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-4"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---14">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---14"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-partner-id">
-        
-        
-          Description: The partner id. <a href="#description-the-partner-id"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configsessionuiconfid">
-        
-        
-          config.session.uiConfId <a href="#configsessionuiconfid"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-number-5">
-        
-        
-          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-5"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default---15">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---15"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-ui-configuration-id">
-        
-        
-          Description: The ui configuration id. <a href="#description-the-ui-configuration-id"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configcustomlabels">
-        
-        
-          config.customLabels <a href="#configcustomlabels"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pkcustomlabelsconfigobject">
-        
-        
-          Type: <code class="highlighter-rouge">PKCustomLabelsConfigObject</code> <a href="#type-pkcustomlabelsconfigobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">audio</span><span class="p">:</span> <span class="nb">Function</span><span class="p">,</span>
- <span class="nx">qualities</span><span class="err">:</span> <span class="nb">Function</span><span class="p">,</span>
- <span class="nx">captions</span><span class="err">:</span> <span class="nb">Function</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="default---16">
-        
-        
-          Default: <code class="highlighter-rouge">-</code> <a href="#default---16"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-specifies-callback-functions-that-modify-the-default-label-of-a-track-if-this-section-or-one-of-the-keys-is-not-present-the-player-will-use-a-default-label">
-        
-        
-          Description: Specifies callback functions that modify the default label of a track. If this section or one of the keys is not present, the player will use a default label. <a href="#description-specifies-callback-functions-that-modify-the-default-label-of-a-track-if-this-section-or-one-of-the-keys-is-not-present-the-player-will-use-a-default-label"></a>
-        
-        
-      </h5>
-
-<p>This part of the configuration has three possible keys:</p>
-
-<ul>
-  <li>audio (for Audio tracks).</li>
-  <li>qualities (for Video tracks).</li>
-  <li>captions (for Text tracks).</li>
-</ul>
-
-<p>The value of the keys is a reference to a function.<br />
-The function gets a track object as an input and returns a string with the custom label.<br />
-Here is an example to a possible use of this configuration:</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">customLabels</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">qualities</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">videoTrack</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">videoTrack</span><span class="p">.</span><span class="nx">height</span> <span class="mi">500</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="s1">'High'</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="k">return</span> <span class="s1">'Low'</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</code></pre>
-</div>
-
-<p><strong>Important</strong>:<br />
-A Text track has language and label properties. The label is set by the label property in the manifest.<br />
-However, in case the manifest does not have a label property - the language property will be set as the tracks label.</p>
-    
-      <h3 id="configabr">
-        
-        
-          config.abr <a href="#configabr"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pkabrconfigobject">
-        
-        
-          Type: <code class="highlighter-rouge">PKAbrConfigObject</code> <a href="#type-pkabrconfigobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">fpsDroppedMonitoringThreshold</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span>
- <span class="nx">fpsDroppedFramesInterval</span><span class="err">:</span> <span class="nx">number</span><span class="p">,</span>
- <span class="nx">capLevelOnFPSDrop</span><span class="err">:</span> <span class="kr">boolean</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="default-6">
-        
-        
-          Default: <a href="#default-6"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
- <span class="nl">fpsDroppedMonitoringThreshold</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
- <span class="nx">fpsDroppedFramesInterval</span><span class="err">:</span> <span class="mi">5000</span><span class="p">,</span>
- <span class="nx">capLevelOnFPSDrop</span><span class="err">:</span> <span class="kc">true</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="description-specifies-flags-to-control--restrict-the-abr-mechanism">
-        
-        
-          Description: Specifies flags to control / restrict the abr mechanism. <a href="#description-specifies-flags-to-control--restrict-the-abr-mechanism"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configabrfpsdroppedframesinterval">
-        
-        
-          config.abr.fpsDroppedFramesInterval <a href="#configabrfpsdroppedframesinterval"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-number-6">
-        
-        
-          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-6"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-5000">
-        
-        
-          Default: <code class="highlighter-rouge">5000</code> <a href="#default-5000"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-interval-time-in-milliseconds-to-check-if-too-many-frames-are-dropped">
-        
-        
-          Description: Interval time in milliseconds to check if too many frames are dropped <a href="#description-interval-time-in-milliseconds-to-check-if-too-many-frames-are-dropped"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configabrfpsdroppedmonitoringthreshold">
-        
-        
-          config.abr.fpsDroppedMonitoringThreshold <a href="#configabrfpsdroppedmonitoringthreshold"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-number-7">
-        
-        
-          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-7"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-02">
-        
-        
-          Default: <code class="highlighter-rouge">0.2</code> <a href="#default-02"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-the-allowed-frames-dropped-threshold">
-        
-        
-          Description: The allowed frames dropped threshold. <a href="#description-the-allowed-frames-dropped-threshold"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configabrcaplevelonfpsdrop">
-        
-        
-          config.abr.capLevelOnFPSDrop <a href="#configabrcaplevelonfpsdrop"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-boolean-10">
-        
-        
-          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-10"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default-true-2">
-        
-        
-          Default: true <a href="#default-true-2"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-if-the-player-should-cap-the-level-when-the-fps-exceeds-the-threshold">
-        
-        
-          Description: If the player should cap the level when the fps exceeds the threshold. <a href="#description-if-the-player-should-cap-the-level-when-the-fps-exceeds-the-threshold"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configdrm">
-        
-        
-          config.drm <a href="#configdrm"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-pkdrmconfigobject">
-        
-        
-          Type: <code class="highlighter-rouge">PKDrmConfigObject</code> <a href="#type-pkdrmconfigobject"></a>
-        
-        
-      </h5>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">keySystem</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-    
-      <h5 id="description-drm-system-configuration">
-        
-        
-          Description: DRM system configuration <a href="#description-drm-system-configuration"></a>
-        
-        
-      </h5>
-    
-      <h3 id="configdrmkeysystem">
-        
-        
-          config.drm.keySystem <a href="#configdrmkeysystem"></a>
-        
-        
-      </h3>
-    
-      <h5 id="type-string-15">
-        
-        
-          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-15"></a>
-        
-        
-      </h5>
-    
-      <h5 id="default--7">
-        
-        
-          Default: `` <a href="#default--7"></a>
-        
-        
-      </h5>
-    
-      <h5 id="description-a-specific-drm-key-system-to-use">
-        
-        
-          Description: A specific DRM key system to use. <a href="#description-a-specific-drm-key-system-to-use"></a>
-        
-        
-      </h5>
-
-<p>Now that we’ve learned about the different options available in the player configuration, let’s see <a href="https://developer.kaltura.com/player/web/source-selection-logic">how does the source selection logic works</a>.</p>
 		
 </article>
 
