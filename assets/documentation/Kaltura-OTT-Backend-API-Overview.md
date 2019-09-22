@@ -1,7 +1,5 @@
-temp
----
-layout: page
-title: Kaltura’s OTT Backend API Overview
+
+Kaltura’s OTT Backend API Overview
 ---
 
 Kaltura’s OTT Backend features hundreds of REST-based APIs that provide programmable access to every OTT service. With full access to the OTT Backend API, you can extend every feature and functionality of the Kaltura Platform integrate Kaltura’s solutions, services, and widgets seamlessly, creating a unified experience within your chosen environments.
