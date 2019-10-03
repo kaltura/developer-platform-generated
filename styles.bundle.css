@@ -6871,6 +6871,9 @@ pre code {
 operation-documentation .input-output-box h4 {
   font-size: 21px;
 }
+img {
+  max-width:100%; 
+}
 ---
 layout: null
 sitemap: false
@@ -10245,7 +10248,9 @@ ul.code-tab li a {
 /*ul.code-tab li a:hover {background-color: #ddd;}*/
 /* Create an active/current tablink class */
 /*ul.code-tab li a:focus, .active {background-color: #ccc;}*/
-
+img {
+  max-width:100%; 
+}
 
 #KalturaSignInModal .partner-id-input {
   display: none;
@@ -10350,6 +10355,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs-subst {
   font-weight: normal;
+}
+
+img {
+  max-width:100%; 
 }
 /**
  * prism.js default theme for JavaScript, CSS and HTML

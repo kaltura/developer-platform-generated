@@ -95,3 +95,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-subst {
   font-weight: normal;
 }
+img {
+  max-width:100%; 
+}
