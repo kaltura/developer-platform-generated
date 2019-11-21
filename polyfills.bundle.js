@@ -9287,7 +9287,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         "name": "ejs",
         "description": "Embedded JavaScript templates",
         "keywords": ["template", "engine", "ejs"],
-        "version": "2.7.2",
+        "version": "2.7.4",
         "author": "Matthew Eernisse <mde@fleegix.org> (http://fleegix.org)",
         "license": "Apache-2.0",
         "main": "./lib/ejs.js",
@@ -9302,7 +9302,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           "browserify": "^13.1.1",
           "eslint": "^4.14.0",
           "git-directory-deploy": "^1.5.1",
-          "istanbul": "~0.4.3",
           "jake": "^10.3.1",
           "jsdoc": "^3.4.0",
           "lru-cache": "^4.0.1",
@@ -9313,7 +9312,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           "node": ">=0.10.0"
         },
         "scripts": {
-          "postinstall": "node -e \"console.log('Thank you for installing \\u001b[35mEJS\\u001b[0m: built with the \\u001b[32mJake\\u001b[0m JavaScript build tool (\\u001b[32mhttps://jakejs.com/\\u001b[0m)\\n');\""
+          "test": "mocha",
+          "postinstall": "node ./postinstall.js"
         }
       };
     }, {}] }, {}, [1])(1);
