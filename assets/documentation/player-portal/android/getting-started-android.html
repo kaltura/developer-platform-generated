@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Aug 26 09:22:04 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Dec 3 12:44:19 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Aug 26 09:22:04 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Tue Dec 3 12:44:19 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (3 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -140,8 +146,6 @@ rtp('get', 'campaign',true);
 <p>In this Kotlin tutorial,  you’ll learn how to import the Kaltura Player SDK, find the necessary credentials, and load the player with your Entry ID of choice. <strong>Because the player is focused on performance and giving you the simplest integration possible, it does not contain a UI.</strong> That being said, this guide will show you how to listen to events in order to manage the player state, as well as examples for adding play/pause buttons and a slider to the player.</p>
 
 <p>If you prefer to see a Java sample, click <a href="https://github.com/kaltura/kaltura-player-android-samples/tree/develop/OVPSamples">here</a>.</p>
-
-<p>If you’re looking for the iOS guide, click <a href="https://developer.kaltura.com/player/ios/getting-started-ios/">here</a>.</p>
       <h2 id="before-you-begin">
         
         
@@ -157,17 +161,17 @@ rtp('get', 'campaign',true);
   <li>Any video entry, which can be found in the KMC as well.</li>
 </ol>
     
-      <h2 id="setting-up">
+      <h2 id="setting-up-ovp-player">
         
         
-          Setting Up <a href="#setting-up"></a>
+          Setting Up OVP Player <a href="#setting-up-ovp-player"></a>
         
         
       </h2>
 
 <p>Begin by creating a new project in Android Studio. For this guide we chose the Fullscreen Activity Preset, to make it simpler to view the player in full-screen:</p>
 
-<p><img src="/assets/images/fullscreen-activity.png" alt="Fullscreen Activity Project" /></p>
+<p><img src="../images/fullscreen-activity.png" alt="Fullscreen Activity Project" /></p>
 
 <p>The <code class="highlighter-rouge">FullScreenActivity.kt</code> comes pre-loaded with functions for showing and hiding the Action Bar and the Controls menu, to achieve the full-screen functionality.</p>
     
@@ -179,16 +183,16 @@ rtp('get', 'campaign',true);
         
       </h2>
 
-<p>Depending on your Compile Settings, you might get an error about Invoke-customs or supported release versions. In that case should add java 1.8 to your compile options in <strong>build.gradle</strong></p>
+<p>Depending on your Compile Settings, you might get an error about Invoke-customs or supported release versions. In that case should add java 1.8 to your compile options in <code class="highlighter-rouge">build.gradle</code></p>
 
-<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="n">android</span> <span class="p">{</span>
-    <span class="n">compileSdkVersion</span> <span class="m">28</span>
-    <span class="n">android</span> <span class="p">{</span>
-        <span class="n">compileOptions</span> <span class="p">{</span>
-            <span class="n">sourceCompatibility</span> <span class="m">1.8</span>
-            <span class="n">targetCompatibility</span> <span class="m">1.8</span>
-        <span class="p">}</span>
-    <span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-gradle" data-lang="gradle"><span class="n">android</span> <span class="o">{</span>
+    <span class="n">compileSdkVersion</span> <span class="mi">28</span>
+    <span class="n">android</span> <span class="o">{</span>
+        <span class="n">compileOptions</span> <span class="o">{</span>
+            <span class="n">sourceCompatibility</span> <span class="mf">1.8</span>
+            <span class="n">targetCompatibility</span> <span class="mf">1.8</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
     
       <h3 id="dependencies">
         
@@ -198,9 +202,24 @@ rtp('get', 'campaign',true);
         
       </h3>
 
-<p>In your <strong>build.gradle</strong> add the Kaltura-Player dependency:</p>
+<p>In your <code class="highlighter-rouge">build.gradle</code> add the Kaltura-Player dependency:</p>
 
-<figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="n">implementation</span> <span class="err">'</span><span class="n">com</span><span class="p">.</span><span class="n">kaltura</span><span class="p">.</span><span class="n">player</span><span class="p">:</span><span class="n">tvplayer</span><span class="p">:</span><span class="m">4.0</span><span class="p">.</span><span class="m">0</span><span class="err">'</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-gradle" data-lang="gradle"><span class="n">implementation</span> <span class="s1">'com.kaltura.player:tvplayer:4.x.x'</span></code></pre></figure>
+
+<p><a href="https://github.com/kaltura/kaltura-player-android/releases">tvplayer releases</a></p>
+    
+      <h3 id="appicationsplash-activity">
+        
+        
+          Appication/Splash Activity <a href="#appicationsplash-activity"></a>
+        
+        
+      </h3>
+<p>KalturaOvpPlayer should be initialized in the application class or in a splash activity before using the player.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>KalturaOvpPlayer.initialize(this, OVP_PARTNER_ID, OVP_SERVER_URL)
+</code></pre>
+</div>
     
       <h3 id="imports">
         
@@ -217,22 +236,22 @@ rtp('get', 'campaign',true);
 <span class="k">import</span> <span class="nn">com.kaltura.tvplayer.OVPMediaOptions</span>
 <span class="k">import</span> <span class="nn">com.kaltura.tvplayer.PlayerInitOptions</span></code></pre></figure>
     
-      <h3 id="companion-objects">
+      <h3 id="constants">
         
         
-          Companion Objects <a href="#companion-objects"></a>
+          Constants <a href="#constants"></a>
         
         
       </h3>
 
-<p>Static variables in Kotlin are placed in the Companion Object, which acts as an inner singleton class that gives access to its members as direct members of the class.</p>
+<p>Static variables in <code class="highlighter-rouge">Kotlin</code> are placed in the <code class="highlighter-rouge">Companion</code> Object, which acts as an inner singleton class that gives access to its members as direct members of the class.</p>
 
 <p>In our Companion Object, we’ll declare the log-tag and Partner ID:</p>
 
 <figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="k">companion</span> <span class="kd">object</span> <span class="err">{
-
     </span><span class="nc">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">TAG</span> <span class="p">=</span> <span class="s">"FullscreenActivity"</span>
-    <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">PARTNER_ID</span> <span class="p">=</span> <span class="m">2215841</span>
+    <span class="k">public</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">OVP_SERVER_URL</span> <span class="p">=</span> <span class="s">"https://cdnapisec.kaltura.com"</span>
+    <span class="k">public</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">PARTNER_ID</span> <span class="p">=</span> <span class="m">2215841</span>
 <span class="p">}</span></code></pre></figure>
     
       <h3 id="class-variables">
@@ -275,7 +294,7 @@ rtp('get', 'campaign',true);
     <span class="kd">val</span> <span class="py">playerInitOptions</span> <span class="p">=</span> <span class="n">PlayerInitOptions</span><span class="p">(</span><span class="n">PARTNER_ID</span><span class="p">)</span> <span class="c1">//player config/behavior
 </span>    <span class="n">playerInitOptions</span><span class="p">.</span><span class="n">setAutoPlay</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
 
-    <span class="kd">val</span> <span class="py">player</span> <span class="p">=</span> <span class="n">KalturaPlayer</span><span class="p">.</span><span class="n">createOVPPlayer</span><span class="p">(</span><span class="k">this</span><span class="n">@FullscreenActivity</span><span class="p">,</span> <span class="n">playerInitOptions</span><span class="p">)</span> <span class="o">?:</span> <span class="k">return</span>
+    <span class="kd">val</span> <span class="py">player</span> <span class="p">=</span> <span class="n">KalturaOvpPlayer</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="k">this</span><span class="n">@FullscreenActivity</span><span class="p">,</span> <span class="n">playerInitOptions</span><span class="p">)</span> <span class="o">?:</span> <span class="k">return</span>
 
     <span class="n">player</span><span class="p">.</span><span class="n">setPlayerView</span><span class="p">(</span><span class="n">FrameLayout</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">WRAP_CONTENT</span><span class="p">,</span> <span class="n">FrameLayout</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">WRAP_CONTENT</span><span class="p">)</span>
 
@@ -432,6 +451,16 @@ rtp('get', 'campaign',true);
 <span class="nt">&lt;/FrameLayout&gt;</span>
 
 <span class="nt">&lt;/FrameLayout&gt;</span></code></pre></figure>
+    
+      <h3 id="full-sample">
+        
+        
+          Full Sample <a href="#full-sample"></a>
+        
+        
+      </h3>
+
+<p><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/release/v4.4.0/OVPSamples/GettingStarted">Download</a></p>
 		
 </article>
 

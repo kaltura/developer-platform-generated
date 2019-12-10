@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Jul 30 06:57:03 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-config-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Dec 10 08:10:47 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-config-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Jul 30 06:57:03 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Tue Dec 10 08:10:47 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (4 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -160,14 +166,34 @@ prepares the source that will play the media, decides which type of player is re
 <ol>
   <li>
     <p><strong>Manually</strong> - Instantiate a new PKMediaEntry instance and fill the fields.</p>
+    
+      <h4 id="example">
+        
+        
+          Example: <a href="#example"></a>
+        
+        
+      </h4>
+
+    <p><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/master/BasicSamples/BasicSetup">Basic Setup without provider</a></p>
   </li>
   <li>
     <p><strong>Using a MockMediaProvider</strong> - Create a PKMediaEntry from a JSON input file or JsonObject.</p>
   </li>
   <li>
-    <p><strong>Using a remote media provider</strong> - Use one of the provided MediaEntryProvider implementations:<br />
- For OVP environments, use “KalturaOvpMediaProvider”.<br />
- For OTT environments, use “PhoenixMediaProvider”.</p>
+    <p><strong>Using a remote media provider</strong> - Use one of the provided MediaEntryProvider implementations:</p>
+
+    <p>For OVP environments, use “KalturaOvpMediaProvider”.</p>
+
+    <p>#### Example:</p>
+
+    <p><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/master/OVPSamples/BasicSetupp">OVP media provider</a></p>
+
+    <p>For OTT environments, use “PhoenixMediaProvider”.</p>
+
+    <p>#### Example:</p>
+
+    <p><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/master/OTTSamples/BasicSetup">Phoenix media provider</a></p>
 
     <p>To use this method, you’ll need to do the following:</p>
 
@@ -188,16 +214,38 @@ prepares the source that will play the media, decides which type of player is re
         
         
       </h3>
+    
+      <h4 id="note">
+        
+        
+          NOTE: <a href="#note"></a>
+        
+        
+      </h4>
 
-<p>The PkMediaEntry holds information gathered from the media details and needed for the player, such as the URL to play, the DRM data, and duration.</p>
+<ul>
+  <li>
+    <p>Building the <code class="highlighter-rouge">PKMediaEntry</code>  manually is more relevant for customers which do not use Kaltura BE to store their content.</p>
+  </li>
+  <li>
+    <p>Once content is stored in Kaltura’s BE you can use our <code class="highlighter-rouge">Media Providers</code> to fetch the PKMediaEntry</p>
+  </li>
+</ul>
+
+<p>The <code class="highlighter-rouge">PKMediaEntry</code> holds information gathered from the OVP/Phoenix media providers. This information is used by the player and plugins like manifest url, DRM data, media duration and the type of the media.</p>
+
+<p>This object usually will be created using one of the media providers in case Kaltura’s BE is used for hosting your media files.</p>
 
 <p>Additional information includes:</p>
 
 <ul>
   <li>String id - correlates to the media/entry id</li>
-  <li>long duration - the media duration in seconds</li>
+  <li>String name - media name</li>
+  <li>long duration - the media duration in ms.</li>
   <li>MediaEntryType mediaType - indicates the type to be played (VOD, Live or Unknown)</li>
   <li>List<PKMediaSource> sources - list of source objects</PKMediaSource></li>
+  <li>boolean isVRMediaType - property to flag if this is VR/360 media</li>
+  <li>List<PKExternalSubtitle> externalSubtitleList - it is optional to add external subtitles to the media</PKExternalSubtitle></li>
 </ul>
 
 <p>The PKMediaEntry can be created with builder style instantiation, chain setters as follows:</p>
@@ -223,10 +271,10 @@ prepares the source that will play the media, decides which type of player is re
 
 <p>To learn more, see <a href="https://github.com/kaltura/playkit-android/blob/develop/playkit/src/main/java/com/kaltura/playkit/PKMediaSource.java">PKMediaSource</a></p>
     
-      <h4 id="manually-a-create-media-source">
+      <h4 id="manual-creation-of-media-source">
         
         
-          Manually a Create Media Source <a href="#manually-a-create-media-source"></a>
+          Manual creation of media source <a href="#manual-creation-of-media-source"></a>
         
         
       </h4>
@@ -271,6 +319,77 @@ PKMediaSource items are created according to several criteria:</p>
       </h3>
 
 <p>PKDrmParams represents a single DRM license info object. PKDrmParams contains the licenseUri that will be needed for the play. The PKMediaSource contains a list of “PKDrmParams” items. The player will select the source and the relevant DRM data according to device type, connectivity, supported formats, etc.</p>
+    
+      <h4 id="example-for-creating-mediaentry-with-drm-configuration-without-media-provider">
+        
+        
+          Example for creating MediaEntry with DRM configuration without media provider <a href="#example-for-creating-mediaentry-with-drm-configuration-without-media-provider"></a>
+        
+        
+      </h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>   private PKMediaEntry createMediaEntry() {
+        //Create media entry.
+        PKMediaEntry mediaEntry = new PKMediaEntry();
+
+        //Set id for the entry.
+        mediaEntry.setId("testEntry");
+        mediaEntry.setName("testEntryName");
+        mediaEntry.setDuration(881000);
+        //Set media entry type. It could be Live,Vod or Unknown.
+        //In this sample we use Vod.
+        mediaEntry.setMediaType(PKMediaEntry.MediaEntryType.Vod);
+
+        //Create list that contains at least 1 media source.
+        //Each media entry can contain a couple of different media sources.
+        //All of them represent the same content, the difference is in it format.
+        //For example same entry can contain PKMediaSource with dash and another
+        // PKMediaSource can be with hls. The player will decide by itself which source is
+        // preferred for playback.
+        List&lt;PKMediaSource&gt; mediaSources = createMediaSourcesDRM();
+
+        //Set media sources to the entry.
+        mediaEntry.setSources(mediaSources);
+
+        return mediaEntry;
+    }
+    
+    private List&lt;PKMediaSource&gt; createMediaSourcesDRM() {
+
+        //Create new PKMediaSource instance.
+        PKMediaSource mediaSource = new PKMediaSource();
+        mediaSource.setId("1_f93tepsn");
+        //Set the id.
+        mediaSource.setId("drmTestSource");
+
+        String DRM_SOURCE_URL =  "DRM CONTENT URL";
+        String DRM_LICENSE_URL = "DRM CONTENT LICENSE";
+        mediaSource.setUrl(DRM_SOURCE_URL);
+
+        // Add DRM data if required
+        if (DRM_LICENSE_URL != null) {
+            mediaSource.setDrmData(Collections.singletonList(
+                    new PKDrmParams(DRM_LICENSE_URL, PKDrmParams.Scheme.WidevineCENC)
+            ));
+        }
+
+        //Set the format of the source. In our case it will be hls in case of mpd/wvm formats you have to to call mediaSource.setDrmData method as well
+        mediaSource.setMediaFormat(PKMediaFormat.dash);
+
+        return Collections.singletonList(mediaSource);
+    }
+</code></pre>
+</div>
+    
+      <h3 id="sample">
+        
+        
+          Sample <a href="#sample"></a>
+        
+        
+      </h3>
+
+<p><a href="https://github.com/kaltura/playkit-android-samples/tree/master/BasicSetup">Basic Setup</a></p>
 		
 </article>
 

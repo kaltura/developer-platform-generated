@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Wed Jul 31 14:41:56 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Dec 10 08:10:47 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Wed Jul 31 14:41:56 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Tue Dec 10 08:10:47 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (4 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (2 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -180,12 +186,12 @@ rtp('get', 'campaign',true);
       </h2>
 
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-	<span class="n">compile</span> <span class="s1">'com.kaltura.dtg:dtglib:2.4.0'</span>
+	<span class="n">compile</span> <span class="s1">'com.kaltura.dtg:dtglib:2.4.4'</span>
 <span class="o">}</span>
 </code></pre>
 </div>
 
-<p>Replace <code class="highlighter-rouge">2.4.0</code> with the <a href="https://bintray.com/kaltura/android/dtglib">latest release</a>.</p>
+<p>Replace <code class="highlighter-rouge">2.4.4</code> with the <a href="https://bintray.com/kaltura/android/dtglib">latest release</a>.</p>
     
       <h2 id="download-states">
         
@@ -195,7 +201,7 @@ rtp('get', 'campaign',true);
         
       </h2>
 
-<p><img src="/assets/images/states.svg" alt="Download States" /></p>
+<p><img src="../images/states.svg" alt="Download States" /></p>
     
       <h2 id="usage">
         
@@ -227,7 +233,7 @@ rtp('get', 'campaign',true);
         
       </h3>
 
-<p><img src="/assets/images/start-stop.svg" alt="" /></p>
+<p><img src="../images/start-stop.svg" alt="" /></p>
 
 <div hidden="">
   @startuml 
@@ -256,7 +262,7 @@ rtp('get', 'campaign',true);
         
       </h3>
 
-<p><img src="/assets/images/new-download.svg" alt="" /></p>
+<p><img src="../images/new-download.svg" alt="" /></p>
 
 <div hidden="">
     @startuml 
@@ -327,7 +333,7 @@ Given a TrackSelector, the application performs selection:</p>
         
       </h3>
 
-<p><img src="/assets/images/track-selection.svg" alt="" /></p>
+<p><img src="../images/track-selection.svg" alt="" /></p>
 
 <div hidden="">
     @startuml 
@@ -451,6 +457,18 @@ To mitigate, <code class="highlighter-rouge">ContentManager.Settings</code> incl
 </div>
 
 <p>The default is 64000 bps.</p>
+    
+      <h3 id="samples">
+        
+        
+          Samples <a href="#samples"></a>
+        
+        
+      </h3>
+
+<p><a href="https://github.com/kaltura/playkit-dtg-android/tree/current/dtgdemo">dtg sample</a></p>
+
+<p><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/master/OfflineDemo">offline manager sample</a></p>
 		
 </article>
 

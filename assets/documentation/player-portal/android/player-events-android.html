@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Aug 12 11:14:33 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-events-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Dec 10 08:10:47 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-events-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon Aug 12 11:14:33 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+				<!--tr><td>Last commit: Tue Dec 10 08:10:47 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (1 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (2 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -147,6 +153,45 @@ rtp('get', 'campaign',true);
 <p>Call the following Player method, one or more times. <code class="highlighter-rouge">eventTypes</code> is the list of events that should be sent to the given listener:</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java">  <span class="n">player</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">PKEvent</span><span class="o">.</span><span class="na">Listener</span> <span class="n">listener</span><span class="o">,</span> <span class="n">Enum</span><span class="o">...</span> <span class="n">eventTypes</span><span class="o">)</span></code></pre></figure>
+    
+      <h4 id="example">
+        
+        
+          Example <a href="#example"></a>
+        
+        
+      </h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>   private fun addPlayerStateListener() {
+        player!!.addListener(this, PlayerEvent.stateChanged) { event -&gt;
+            Log.d(TAG, "State changed from " + event.oldState + " to " + event.newState)
+            playerState = event.newState
+        }
+    }
+
+    private fun addPlayerEventsListener() {
+        player!!.addListener(this, PlayerEvent.tracksAvailable) { event -&gt;
+            Log.d(TAG, "TracksAvailable event")
+            val trackInfo = event.tracksInfo
+            for(videoTrack in trackInfo.videoTracks) {
+                Log.d(TAG, "video id = " + videoTrack.uniqueId + " track bitrate = " + videoTrack.bitrate)
+            }
+        }
+
+        player!!.addListener(this,  PlayerEvent.canPlay) { event -&gt;
+            Log.d(TAG, "PlayerEvent " + event.eventType())
+        }
+
+        player!!.addListener(this,  PlayerEvent.playing) { event -&gt;
+            Log.d(TAG, "PlayerEvent " + event.eventType())
+        }
+
+        player!!.addListener(this,  PlayerEvent.error) { event -&gt;
+            Log.d(TAG, "Error PlayerEvent " + event.error.message + " isFatal = " + event.error.isFatal)
+        }
+    }
+</code></pre>
+</div>
     
       <h2 id="removing-event-listeners-from-application-v362-and-up">
         
@@ -337,16 +382,23 @@ The STATE_CHANGED event is fired when the player transitions between states.</p>
   <li>ERROR</li>
 </ul>
     
-      <h2 id="code-samples">
+      <h2 id="code-samples-for-v4xx">
         
         
-          Code Samples <a href="#code-samples"></a>
+          Code Samples for v4.x.x <a href="#code-samples-for-v4xx"></a>
         
         
       </h2>
+
 <ul>
-  <li><a href="https://github.com/kaltura/playkit-android-samples/tree/master/EventsRegistration">Events Registration</a></li>
-  <li><a href="https://github.com/kaltura/playkit-android-samples/tree/master/AppAnalyticsSample">App Analytics</a></li>
+  <li><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/master/AdvancedSamples/EventsRegistration">Events Registration</a></li>
+  <li><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/master/AdvancedSamples/Youbora">Youbora Analytics</a></li>
+</ul>
+
+<p>Kava Analytics is turned on automatically in Kaltura player in the following sample it is configured manually</p>
+
+<ul>
+  <li>[Kava Analytics] (https://github.com/kaltura/playkit-android-samples/tree/master/KavaAnalytics)</li>
 </ul>
 		
 </article>

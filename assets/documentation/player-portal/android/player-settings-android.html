@@ -109,14 +109,20 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Wed Jul 31 14:41:56 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Wed Dec 4 08:59:35 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Wed Jul 31 14:41:56 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Wed Dec 4 08:59:35 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (1 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -136,6 +142,29 @@ rtp('get', 'campaign',true);
             <div class="post-content">
     		
 		<p>Once you’ve created a player instance, you can make changes to its settings:</p>
+
+<ul>
+  <li>In Kaltura Player the same settings api below are integrated inside <code class="highlighter-rouge">PlayerInitOptions</code> object</li>
+</ul>
+      <h4 id="example">
+        
+        
+          Example <a href="#example"></a>
+        
+        
+      </h4>
+<div class="highlighter-rouge"><pre class="highlight"><code> playerInitOptions = PlayerInitOptions(mediaPartnerId)
+        playerInitOptions?.setAutoPlay(true)
+        playerInitOptions?.setPreload(true)
+        playerInitOptions?.setSecureSurface(false)
+        playerInitOptions?.setAdAutoPlayOnResume(true)
+        playerInitOptions?.setAllowCrossProtocolEnabled(true)
+        playerInitOptions?.setReferrer("app://MyApplicationDomain")
+ 
+ player = KalturaOvpPlayer.create(this@MainActivity, playerInitOptions)
+</code></pre>
+</div>
+    
       <h2 id="setcontentrequestadapter">
         
         
@@ -420,10 +449,10 @@ rtp('get', 'campaign',true);
         
       </h3>
     
-      <h5 id="example">
+      <h5 id="example-1">
         
         
-          Example: <a href="#example"></a>
+          Example: <a href="#example-1"></a>
         
         
       </h5>
@@ -439,10 +468,10 @@ rtp('get', 'campaign',true);
         
       </h3>
     
-      <h5 id="example-1">
+      <h5 id="example-2">
         
         
-          Example: <a href="#example-1"></a>
+          Example: <a href="#example-2"></a>
         
         
       </h5>
@@ -460,10 +489,10 @@ rtp('get', 'campaign',true);
 
 <p>In case App wants to block ability to take screen capture</p>
     
-      <h5 id="example-2">
+      <h5 id="example-3">
         
         
-          Example: <a href="#example-2"></a>
+          Example: <a href="#example-3"></a>
         
         
       </h5>
@@ -507,10 +536,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 <p>Defaults can be found here:<br />
 <a href="https://github.com/google/ExoPlayer/blob/release-v2/library/core/src/main/java/com/google/android/exoplayer2/DefaultLoadControl.java">Defaults</a></p>
     
-      <h5 id="example-3">
+      <h5 id="example-4">
         
         
-          Example: <a href="#example-3"></a>
+          Example: <a href="#example-4"></a>
         
         
       </h5>
@@ -534,10 +563,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h3>
     
-      <h5 id="example-4">
+      <h5 id="example-5">
         
         
-          Example: <a href="#example-4"></a>
+          Example: <a href="#example-5"></a>
         
         
       </h5>
@@ -553,10 +582,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h3>
     
-      <h5 id="example-5">
+      <h5 id="example-6">
         
         
-          Example: <a href="#example-5"></a>
+          Example: <a href="#example-6"></a>
         
         
       </h5>
@@ -572,10 +601,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h3>
     
-      <h5 id="example-6">
+      <h5 id="example-7">
         
         
-          Example: <a href="#example-6"></a>
+          Example: <a href="#example-7"></a>
         
         
       </h5>
@@ -592,10 +621,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h3>
     
-      <h5 id="example-7">
+      <h5 id="example-8">
         
         
-          Example: <a href="#example-7"></a>
+          Example: <a href="#example-8"></a>
         
         
       </h5>
@@ -613,10 +642,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 
 <p>In some cases where app does not expose play pause API on ads this API will do the auto play after resume from background</p>
     
-      <h5 id="example-8">
+      <h5 id="example-9">
         
         
-          Example: <a href="#example-8"></a>
+          Example: <a href="#example-9"></a>
         
         
       </h5>
@@ -633,10 +662,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
 
 <p>If case 360 media should be played on VR player or default player - default is true</p>
     
-      <h5 id="example-9">
+      <h5 id="example-10">
         
         
-          Example: <a href="#example-9"></a>
+          Example: <a href="#example-10"></a>
         
         
       </h5>
@@ -651,10 +680,10 @@ then it is possible configure any parameter from the LoadControlBuffers Object.<
         
       </h3>
     
-      <h5 id="example-10">
+      <h5 id="example-11">
         
         
-          Example: <a href="#example-10"></a>
+          Example: <a href="#example-11"></a>
         
         
       </h5>
@@ -797,10 +826,10 @@ While creating <code class="highlighter-rouge">SubtitleStyleSettings</code> obje
 </ul>
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DEFAULT</span><span class="o">,</span> <span class="n">DEFAULT_BOLD</span><span class="o">,</span> <span class="n">MONOSPACE</span><span class="o">,</span> <span class="n">SERIF</span><span class="o">,</span> <span class="n">SANS_SERIF</span> </code></pre></figure>
     
-      <h4 id="example-11">
+      <h4 id="example-12">
         
         
-          Example <a href="#example-11"></a>
+          Example <a href="#example-12"></a>
         
         
       </h4>
