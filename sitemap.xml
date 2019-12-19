@@ -4314,7 +4314,7 @@
 <url> <loc>https://developer.kaltura.com/workflows/Secure_Control_and_Govern</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Secure_Control_and_Govern/Group_Management</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Ingest_and_Upload_Media</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
-<url> <loc>https://developer.kaltura.com/workflows/Ingest_and_Upload_Media/Upload_a_Video</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/workflows/Ingest_and_Upload_Media/Uploading_Media_Files</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Ingest_and_Upload_Media/Upload_YouTube_videos</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Enrich_and_Organize_Metadata</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/workflows/Enrich_and_Organize_Metadata/Working_with_metadata</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
