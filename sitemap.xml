@@ -242,6 +242,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/liveStream/action/addLiveStreamPushPublishConfiguration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/liveStream/action/allocateConferenceRoom</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/liveStream/action/appendRecording</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/liveStream/action/archive</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/liveStream/action/authenticate</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/liveStream/action/createPeriodicSyncPoints</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/liveStream/action/createRecordedEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1860,6 +1861,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveChannelSegment</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveChannelSegmentListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveEntryArchiveJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveEntryCompareAttributeCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveEntryMatchAttributeCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaLiveEntryRecordingOptions</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3932,6 +3934,7 @@
 <url> <loc>https://developer.kaltura.com/console/service/liveStream/action/addLiveStreamPushPublishConfiguration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/liveStream/action/allocateConferenceRoom</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/liveStream/action/appendRecording</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/liveStream/action/archive</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/liveStream/action/authenticate</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/liveStream/action/createPeriodicSyncPoints</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/liveStream/action/createRecordedEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4989,6 +4992,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/liveStream/liveStream_addLiveStreamPushPublishConfiguration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/liveStream/liveStream_allocateConferenceRoom</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/liveStream/liveStream_appendRecording</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/liveStream/liveStream_archive</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/liveStream/liveStream_authenticate</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/liveStream/liveStream_createPeriodicSyncPoints</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/liveStream/liveStream_createRecordedEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -6228,6 +6232,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaLiveChannelSegmentFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaLiveChannelSegmentListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaLiveEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaLiveEntryArchiveJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaLiveEntryBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaLiveEntryCompareAttributeCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaLiveEntryFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7407,6 +7412,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/liveStream/liveStream_addLiveStreamPushPublishConfiguration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/liveStream/liveStream_allocateConferenceRoom</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/liveStream/liveStream_appendRecording</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/liveStream/liveStream_archive</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/liveStream/liveStream_authenticate</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/liveStream/liveStream_createPeriodicSyncPoints</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/liveStream/liveStream_createRecordedEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -8646,6 +8652,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaLiveChannelSegmentFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaLiveChannelSegmentListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaLiveEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaLiveEntryArchiveJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaLiveEntryBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaLiveEntryCompareAttributeCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaLiveEntryFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
