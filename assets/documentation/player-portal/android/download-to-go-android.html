@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Dec 10 08:10:47 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Wed Feb 19 17:14:05 2020</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/download-to-go-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Dec 10 08:10:47 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
+				<!--tr><td>Last commit: Wed Feb 19 17:14:05 2020, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
@@ -122,7 +122,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Gilad Nadav (2 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
+					<td>Gilad Nadav (4 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -321,7 +321,12 @@ Given a TrackSelector, the application performs selection:</p>
 <span class="n">trackSelector</span><span class="o">.</span><span class="na">setSelectedTracks</span><span class="o">(</span><span class="n">AUDIO</span><span class="o">,</span> <span class="n">filteredTracks</span><span class="o">)</span>
 <span class="c1">// Repeat for other track types (VIDEO, TEXT)</span>
 
-<span class="n">trackSelector</span><span class="o">.</span><span class="na">apply</span><span class="o">();</span>
+<span class="n">trackSelector</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="k">new</span> <span class="n">DownloadItem</span><span class="o">.</span><span class="na">OnTrackSelectionListener</span><span class="o">()</span> <span class="o">{</span>
+                                    <span class="nd">@Override</span>
+                                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTrackSelectionComplete</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                                        
+                                    <span class="o">}</span>
+                                <span class="o">});</span>
 </code></pre>
 </div>
     

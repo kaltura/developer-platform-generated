@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Wed Dec 4 08:59:35 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Mar 24 10:47:43 2020</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Wed Dec 4 08:59:35 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
+				<!--tr><td>Last commit: Tue Mar 24 10:47:43 2020, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
@@ -122,7 +122,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Gilad Nadav (1 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
+					<td>Gilad Nadav (6 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -144,26 +144,25 @@ rtp('get', 'campaign',true);
 		<p>Once you’ve created a player instance, you can make changes to its settings:</p>
 
 <ul>
-  <li>In Kaltura Player the same settings api below are integrated inside <code class="highlighter-rouge">PlayerInitOptions</code> object</li>
+  <li>In Kaltura Player the same settings API below are integrated inside <code class="highlighter-rouge">PlayerInitOptions</code> object</li>
 </ul>
-      <h4 id="example">
+      <h5 id="example">
         
         
-          Example <a href="#example"></a>
+          Example: <a href="#example"></a>
         
         
-      </h4>
-<div class="highlighter-rouge"><pre class="highlight"><code> playerInitOptions = PlayerInitOptions(mediaPartnerId)
-        playerInitOptions?.setAutoPlay(true)
-        playerInitOptions?.setPreload(true)
-        playerInitOptions?.setSecureSurface(false)
-        playerInitOptions?.setAdAutoPlayOnResume(true)
-        playerInitOptions?.setAllowCrossProtocolEnabled(true)
-        playerInitOptions?.setReferrer("app://MyApplicationDomain")
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="n">playerInitOptions</span> <span class="o">=</span> <span class="n">PlayerInitOptions</span><span class="o">(</span><span class="n">mediaPartnerId</span><span class="o">)</span>
+        <span class="n">playerInitOptions</span><span class="o">?.</span><span class="na">setAutoPlay</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="n">playerInitOptions</span><span class="o">?.</span><span class="na">setPreload</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="n">playerInitOptions</span><span class="o">?.</span><span class="na">setSecureSurface</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+        <span class="n">playerInitOptions</span><span class="o">?.</span><span class="na">setAdAutoPlayOnResume</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="n">playerInitOptions</span><span class="o">?.</span><span class="na">setAllowCrossProtocolEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="n">playerInitOptions</span><span class="o">?.</span><span class="na">setReferrer</span><span class="o">(</span><span class="s">"app://MyApplicationDomain"</span><span class="o">)</span>
  
- player = KalturaOvpPlayer.create(this@MainActivity, playerInitOptions)
-</code></pre>
-</div>
+ <span class="n">player</span> <span class="o">=</span> <span class="n">KalturaOvpPlayer</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">this</span><span class="nd">@MainActivity</span><span class="o">,</span> <span class="n">playerInitOptions</span><span class="o">)</span></code></pre></figure>
     
       <h2 id="setcontentrequestadapter">
         
@@ -826,13 +825,13 @@ While creating <code class="highlighter-rouge">SubtitleStyleSettings</code> obje
 </ul>
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DEFAULT</span><span class="o">,</span> <span class="n">DEFAULT_BOLD</span><span class="o">,</span> <span class="n">MONOSPACE</span><span class="o">,</span> <span class="n">SERIF</span><span class="o">,</span> <span class="n">SANS_SERIF</span> </code></pre></figure>
     
-      <h4 id="example-12">
+      <h5 id="example-12">
         
         
-          Example <a href="#example-12"></a>
+          Example: <a href="#example-12"></a>
         
         
-      </h4>
+      </h5>
 
 <p>To set the Subtitles,</p>
 
@@ -859,6 +858,326 @@ While creating <code class="highlighter-rouge">SubtitleStyleSettings</code> obje
                         <span class="o">.</span><span class="na">setEdgeType</span><span class="o">(</span><span class="n">SubtitleStyleSettings</span><span class="o">.</span><span class="na">SubtitleStyleEdgeType</span><span class="o">.</span><span class="na">EDGE_TYPE_DROP_SHADOW</span><span class="o">);</span>
 
 <span class="n">player</span><span class="o">.</span><span class="na">updateSubtitleStyle</span><span class="o">(</span><span class="n">subtitleStyleSettings</span><span class="o">);</span></code></pre></figure>
+    
+      <h3 id="set-abr-settings">
+        
+        
+          Set ABR Settings <a href="#set-abr-settings"></a>
+        
+        
+      </h3>
+
+<p>To enable track selection to select subset of tracks that participate in the ABR values are expected in bits</p>
+    
+      <h5 id="example-13">
+        
+        
+          Example: <a href="#example-13"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setABRSettings</span><span class="o">(</span><span class="k">new</span> <span class="n">ABRSettings</span><span class="o">().</span>
+<span class="n">setMinVideoBitrate</span><span class="o">(</span><span class="mi">900000</span><span class="o">).</span>
+<span class="n">setMaxVideoBitrate</span><span class="o">(</span><span class="mi">3000000</span><span class="o">).</span>
+<span class="n">setInitialBitrateEstimate</span><span class="o">(</span><span class="mi">100000</span><span class="o">));</span></code></pre></figure>
+
+<p>In order to reset these values in Change Media if needed:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setABRSettings</span><span class="o">(</span><span class="k">new</span> <span class="n">ABRSettings</span><span class="o">());</span></code></pre></figure>
+    
+      <h3 id="set-surface-aspect-ratio-resize-mode">
+        
+        
+          Set Surface Aspect Ratio Resize Mode <a href="#set-surface-aspect-ratio-resize-mode"></a>
+        
+        
+      </h3>
+
+<p>To configure Full screen Fit/Fill/Zoom support for devices with special resolution like 18:9 in order to prevent letter-boxing of video playback</p>
+    
+      <h5 id="new-enum-added-to-support-this-functionality">
+        
+        
+          New enum added to support this functionality <a href="#new-enum-added-to-support-this-functionality"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">enum</span> <span class="n">PKAspectRatioResizeMode</span> <span class="o">{</span>
+    <span class="n">fit</span><span class="o">,</span> <span class="c1">// common aspect ratio </span>
+    <span class="n">fixedWidth</span><span class="o">,</span>
+    <span class="n">fixedHeight</span><span class="o">,</span>
+    <span class="n">fill</span><span class="o">,</span> <span class="c1">// 18:9 aspect ratio</span>
+    <span class="n">zoom</span>
+<span class="o">}</span></code></pre></figure>
+    
+      <h5 id="example-for-updating-the-ratio-resize-mode-for-playback-start-time">
+        
+        
+          Example for updating the ratio resize mode for playback start time: <a href="#example-for-updating-the-ratio-resize-mode-for-playback-start-time"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setSurfaceAspectRatioResizeMode</span><span class="o">(</span><span class="n">PKAspectRatioResizeMode</span><span class="o">.</span><span class="na">fill</span><span class="o">);</span></code></pre></figure>
+    
+      <h5 id="example-for-updating-the-ratio-settings-during-the-playback">
+        
+        
+          Example for updating the ratio settings during the playback: <a href="#example-for-updating-the-ratio-settings-during-the-playback"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">updateSurfaceAspectRatioResizeMode</span><span class="o">(</span><span class="n">PKAspectRatioResizeMode</span><span class="o">.</span><span class="na">zoom</span><span class="o">)</span></code></pre></figure>
+    
+      <h3 id="force-single-player-engine">
+        
+        
+          Force Single Player Engine <a href="#force-single-player-engine"></a>
+        
+        
+      </h3>
+
+<p>Use forceSinglePlayerEngine for Ads playback to achieve preperContentAfterAd behaviour</p>
+
+<p>To can tell the player not to prepare the content player when Ad starts(if exists); <br />
+instead content player will be prepared when content_resume_requested is called.<br />
+so low end devices with lack of enough decoders will be able to play ads + content separately.<br />
+Default value for this configuration is set to ‘false’.</p>
+    
+      <h5 id="example-14">
+        
+        
+          Example: <a href="#example-14"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">useSinglePlayerInstance</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span></code></pre></figure>
+    
+      <h3 id="set-hide-video-views">
+        
+        
+          Set Hide Video Views <a href="#set-hide-video-views"></a>
+        
+        
+      </h3>
+
+<p>Used to enable video thumbnail to be displayed for Audio Entries<br />
+This config enable apps to hide the video surface to for audio only medias it will be able to put behind the player thumbnail and still captions will be available.</p>
+
+<p>Note:  <code class="highlighter-rouge">player.getSettings().setHideVideoViews(true)</code> should be called before calling player prepare.</p>
+
+<p>In case there is change media between audio and video, app should call <code class="highlighter-rouge">player.getSettings().setHideVideoViews(false)</code> in order to make the video surface visible again.</p>
+
+<p>Default value for this API is false and <code class="highlighter-rouge">player.getSettings().setHideVideoViews(false)</code> should be called again if changing media between audio only and video.</p>
+    
+      <h5 id="example-15">
+        
+        
+          Example: <a href="#example-15"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setHideVideoViews</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="n">player</span><span class="o">.</span><span class="na">prepare</span><span class="o">(</span><span class="n">config</span><span class="o">);</span></code></pre></figure>
+
+<p>AudioOnlyBasicSetupSample Sample can be found in the samples repository</p>
+
+<p>Note: It is application’s responsibility for hiding/showing the artwork by its own logic.</p>
+    
+      <h3 id="set-vr-settings">
+        
+        
+          Set VR Settings <a href="#set-vr-settings"></a>
+        
+        
+      </h3>
+
+<p>For VR and 360 medias, <code class="highlighter-rouge">PKMediaEntry</code> has now new member <code class="highlighter-rouge">isVRMediaType</code> that signs media as VR media</p>
+
+<p>In case media provider is used, <code class="highlighter-rouge">PKMediaEntry</code> will be populated automatically on the MediaEntry which is returned from the callback.</p>
+
+<p>if <code class="highlighter-rouge">VRsettings</code> is not configured, default values will be used (only touch will be available) <br />
+take in account that not all devices support motion so make sure you verify that motion is supported using hte API <code class="highlighter-rouge">VRUtil.isModeSupported</code></p>
+    
+      <h5 id="example-16">
+        
+        
+          Example: <a href="#example-16"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setVRSettings</span><span class="o">(</span><span class="k">new</span> <span class="n">VRSettings</span><span class="o">().</span><span class="na">setInteractionMode</span><span class="o">(</span><span class="n">VRInteractionMode</span><span class="o">.</span><span class="na">MotionWithTouch</span><span class="o">).</span><span class="na">setFlingEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">));</span></code></pre></figure>
+    
+      <h5 id="example-17">
+        
+        
+          Example <a href="#example-17"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="k">if</span> <span class="o">(</span><span class="n">mediaEntry</span><span class="o">.</span><span class="na">isVRMediaType</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">VRSettings</span> <span class="n">vrSettings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VRSettings</span><span class="o">();</span>
+                <span class="n">vrSettings</span><span class="o">.</span><span class="na">setFlingEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                <span class="n">vrSettings</span><span class="o">.</span><span class="na">setVrModeEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+                <span class="n">vrSettings</span><span class="o">.</span><span class="na">setZoomWithPinchEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                <span class="n">VRInteractionMode</span> <span class="n">interactionMode</span> <span class="o">=</span> <span class="n">vrSettings</span><span class="o">.</span><span class="na">getInteractionMode</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">VRUtil</span><span class="o">.</span><span class="na">isModeSupported</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">VRInteractionMode</span><span class="o">.</span><span class="na">MotionWithTouch</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">vrSettings</span><span class="o">.</span><span class="na">setInteractionMode</span><span class="o">(</span><span class="n">VRInteractionMode</span><span class="o">.</span><span class="na">MotionWithTouch</span><span class="o">);</span> <span class="c1">// DEFAULT is Touch only!</span>
+                <span class="o">}</span>
+                <span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setVRSettings</span><span class="o">(</span><span class="n">vrSettings</span><span class="o">);</span>
+            <span class="o">}</span></code></pre></figure>
+
+<p>For more VR settings and it defaults explore <code class="highlighter-rouge">VRSettings</code> APIs</p>
+    
+      <h3 id="set-custom-load-control-strategy">
+        
+        
+          Set Custom Load Control Strategy <a href="#set-custom-load-control-strategy"></a>
+        
+        
+      </h3>
+
+<p>To change the LoadControl and the Bandwidth Meter that is being used by ExoPlayer <br />
+    <code class="highlighter-rouge">ExoPlayerWrapper.LoadControlStrategy</code> interface has to be implemented and to be passed to the <code class="highlighter-rouge">setCustomLoadControlStrategy</code> API</p>
+    
+      <h5 id="example-18">
+        
+        
+          Example: <a href="#example-18"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setCustomLoadControlStrategy</span><span class="o">(</span><span class="k">new</span> <span class="n">PlaykitLoadControlStrategy</span><span class="o">(</span><span class="k">this</span><span class="o">));</span></code></pre></figure>
+    
+      <h5 id="the-class-code">
+        
+        
+          The class code <a href="#the-class-code"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>package com.kaltura.playkitdemo;
+
+import android.content.Context;
+import android.os.Handler;
+
+import com.kaltura.android.exoplayer2.DefaultLoadControl;
+import com.kaltura.android.exoplayer2.LoadControl;
+import com.kaltura.android.exoplayer2.upstream.BandwidthMeter;
+import com.kaltura.android.exoplayer2.upstream.DataSource;
+import com.kaltura.android.exoplayer2.upstream.DataSpec;
+import com.kaltura.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.kaltura.android.exoplayer2.upstream.TransferListener;
+import com.kaltura.playkit.player.ExoPlayerWrapper;
+
+import androidx.annotation.Nullable;
+
+public class PlaykitLoadControlStrategy implements ExoPlayerWrapper.LoadControlStrategy {
+
+    private Context context;
+
+    public PlaykitLoadControlStrategy(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    public LoadControl getCustomLoadControl() {
+        return new DefaultLoadControl();
+    }
+
+    @Override
+    public BandwidthMeter getCustomBandwidthMeter() {
+        //return new DefaultBandwidthMeter.Builder(context).build();
+
+        TransferListener tl = new TransferListener() {
+            @Override
+            public void onTransferInitializing(DataSource source, DataSpec dataSpec, boolean isNetwork) {
+
+            }
+
+            @Override
+            public void onTransferStart(DataSource source, DataSpec dataSpec, boolean isNetwork) {
+
+            }
+
+            @Override
+            public void onBytesTransferred(DataSource source, DataSpec dataSpec, boolean isNetwork, int bytesTransferred) {
+
+            }
+
+            @Override
+            public void onTransferEnd(DataSource source, DataSpec dataSpec, boolean isNetwork) {
+
+            }
+        };
+
+        return new BandwidthMeter() {
+            private EventListener listener;
+
+            @Override
+            public long getBitrateEstimate() {
+                return 1500000;
+            }
+
+            @Nullable
+            @Override
+            public TransferListener getTransferListener() {
+                return tl;
+            }
+
+            @Override
+            public void addEventListener(Handler eventHandler, EventListener eventListener) {
+                this.listener = eventListener;
+
+                eventHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        eventListener.onBandwidthSample(1000, 1000000/8, 1500000);
+                        eventHandler.postDelayed(this, 1000);
+
+                    }
+                });
+            }
+
+            @Override
+            public void removeEventListener(EventListener eventListener) {
+                this.listener = null;
+            }
+        };
+    }
+}
+</code></pre>
+</div>
+    
+      <h3 id="set-tunneled-audio-playback">
+        
+        
+          Set Tunneled Audio Playback <a href="#set-tunneled-audio-playback"></a>
+        
+        
+      </h3>
+
+<p>Used to enable/disable audio tunneling.</p>
+    
+      <h5 id="example-19">
+        
+        
+          Example: <a href="#example-19"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setTunneledAudioPlayback</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span></code></pre></figure>
 		
 </article>
 
