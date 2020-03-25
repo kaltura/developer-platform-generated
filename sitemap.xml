@@ -4443,6 +4443,7 @@
 <url> <loc>https://developer.kaltura.com/player/android/download-to-go-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/android/drm-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/android/ads-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/player/android/playlist-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow</loc> <changefreq>daily</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/API_Description</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/accessControl</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
