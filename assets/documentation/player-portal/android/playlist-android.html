@@ -1,0 +1,897 @@
+  <title>Playlist for Android</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Playlist for Android" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Playlist for Android</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Mar 24 14:30:52 2020</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/playlist-android.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Feb 3 10:02:41 2020, By: Gilad Nadav</td></tr-->
+				<!--tr><td>Last commit: Tue Mar 24 14:30:52 2020, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (15 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h1 id="playlist">
+        
+        
+          Playlist <a href="#playlist"></a>
+        
+        
+      </h1>
+
+<p>Kaltura Player provides several APIs that are used for loading, configuring, and manipulating playlists.</p>
+    
+      <h2 id="table-of-contents">
+        
+        
+          Table of Contents <a href="#table-of-contents"></a>
+        
+        
+      </h2>
+
+<ul>
+  <li><a href="#load-playlist">Load Playlist</a>
+    <ul>
+      <li><a href="#by-playlist-id-ovp-only">By Playlist ID</a></li>
+      <li><a href="#by-entry-list">By Entry List</a></li>
+      <li><a href="#by-configuration">By Configuration</a></li>
+    </ul>
+  </li>
+  <li><a href="#configure-the-playlist">Configure the Playlist</a></li>
+  <li><a href="#playlistcontroller-interface">PlaylistController Interface</a></li>
+  <li><a href="#playlist-navigation">Playlist Navigation</a></li>
+  <li><a href="#change-playlist">Change Playlist</a></li>
+  <li><a href="#playlist-events">Playlist Events</a></li>
+</ul>
+    
+      <h3 id="load-a-playlist">
+        
+        
+          Load A Playlist <a href="#load-a-playlist"></a>
+        
+        
+      </h3>
+<p>Before loading a playlist, you’ll need to set up a Kaltura Player instance:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">val</span> <span class="n">playerInitOptions</span> <span class="o">=</span> <span class="n">PlayerInitOptions</span><span class="o">(</span><span class="n">PARTNER_ID</span><span class="o">)</span>
+ <span class="n">playerInitOptions</span><span class="o">.</span><span class="na">setAutoPlay</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+ <span class="n">player</span> <span class="o">=</span> <span class="n">KalturaOvpPlayer</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">this</span><span class="nd">@MainActivity</span><span class="o">,</span> <span class="n">playerInitOptions</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<p>To learn how to set up a Kaltura Player, please go over this document: <a href="https://developer.kaltura.com/player/android/getting-started-android">getting-started-android</a>.<br />
+<br />Once you have a Kaltura Player instance, you can load a playlist using one of the following methods:</p>
+    
+      <h4 id="by-playlist-id-ovp-only">
+        
+        
+          By Playlist ID (OVP Only) <a href="#by-playlist-id-ovp-only"></a>
+        
+        
+      </h4>
+
+<p>To load a playlist by ID, use OVPPlaylistIdOptions when calling <code class="highlighter-rouge">loadPlaylistById</code> method.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">val</span> <span class="n">ovpPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistIdOptions</span><span class="o">()</span>
+<span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistId</span> <span class="o">=</span> <span class="s">"0_w0hpzdni"</span>
+<span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylistById</span><span class="o">(</span><span class="n">ovpPlaylistIdOptions</span><span class="o">,</span>
+<span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+       <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"OVPPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+       <span class="o">}</span>
+<span class="o">})</span>
+</code></pre>
+</div>
+    
+      <h4 id="by-entry-list">
+        
+        
+          By Entry List <a href="#by-entry-list"></a>
+        
+        
+      </h4>
+    
+      <h5 id="ovp">
+        
+        
+          OVP <a href="#ovp"></a>
+        
+        
+      </h5>
+
+<p>To load a playlist by entryId list, use OVPMediaOptions &amp; OVPPlaylistOptions when calling loadPlaylist method.<br />
+<br />This method creates a playlist according to the given entries.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">var</span> <span class="n">ovpMediaOptions1</span> <span class="o">=</span> <span class="n">buildOvpMediaOptions</span><span class="o">()</span>
+<span class="n">var</span> <span class="n">ovpMediaOptions2</span> <span class="o">=</span> <span class="n">buildOvpMediaOptions</span><span class="o">()</span>
+<span class="n">var</span> <span class="n">ovpMediaOptions3</span> <span class="o">=</span> <span class="n">buildOvpMediaOptions</span><span class="o">()</span>
+
+<span class="n">var</span> <span class="n">mediaList</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">ovpMediaOptions1</span><span class="o">,</span> <span class="n">ovpMediaOptions2</span><span class="o">,</span> <span class="n">ovpMediaOptions3</span><span class="o">)</span>
+
+<span class="n">val</span> <span class="n">ovpPlaylistOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistOptions</span><span class="o">()</span>
+<span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOVPPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"2"</span><span class="o">)</span>
+<span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">ovpMediaOptionsList</span> <span class="o">=</span> <span class="n">mediaList</span>
+<span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylist</span><span class="o">(</span><span class="n">ovpPlaylistOptions</span><span class="o">,</span> 
+	<span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"OVPPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">})</span>
+
+<span class="kd">private</span> <span class="n">fun</span> <span class="nf">buildOvpMediaOptions</span><span class="o">():</span> <span class="n">OVPMediaOptions</span> <span class="o">{</span>
+      <span class="n">var</span> <span class="n">ovpMediaAsset</span> <span class="o">=</span> <span class="n">OVPMediaAsset</span><span class="o">()</span>
+      <span class="n">ovpMediaAsset</span><span class="o">.</span><span class="na">entryId</span> <span class="o">=</span> <span class="n">ENTRY_ID</span>
+      <span class="n">ovpMediaAsset</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span> <span class="kc">null</span>
+      <span class="n">val</span> <span class="n">ovpMediaOptions</span> <span class="o">=</span> <span class="n">OVPMediaOptions</span><span class="o">(</span><span class="n">ovpMediaAsset</span><span class="o">)</span>
+      <span class="n">ovpMediaOptions</span><span class="o">.</span><span class="na">startPosition</span> <span class="o">=</span> <span class="n">START_POSITION</span>
+      <span class="n">ovpMediaOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">();</span>
+
+     <span class="k">return</span> <span class="n">ovpMediaOptions</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h5 id="ott">
+        
+        
+          OTT <a href="#ott"></a>
+        
+        
+      </h5>
+
+<p>To load a playlist by entryId list, use <code class="highlighter-rouge">OVPMediaOptions</code> &amp; <code class="highlighter-rouge">OTTPlaylistOptions</code> when calling <code class="highlighter-rouge">loadPlaylist</code> method.<br />
+<br />This method creates a playlist according to the given entries.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">var</span> <span class="n">ottMediaOptions1</span> <span class="o">=</span> <span class="n">buildOttMediaOptions</span><span class="o">(</span><span class="s">"111111"</span><span class="o">,</span> <span class="s">"XXX_Main"</span><span class="o">)</span>
+<span class="n">val</span> <span class="n">ottMediaOptions2</span> <span class="o">=</span> <span class="n">buildOttMediaOptions</span><span class="o">(</span><span class="s">"222222"</span><span class="o">,</span> <span class="s">"YYY_Main"</span><span class="o">)</span>
+<span class="n">var</span> <span class="n">ottMediaOptions3</span> <span class="o">=</span> <span class="n">buildOttMediaOptions</span><span class="o">(</span><span class="s">"333333"</span><span class="o">,</span> <span class="s">"ZZZ_Main"</span><span class="o">)</span>
+
+<span class="n">var</span> <span class="n">mediaList</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">ottMediaOptions1</span><span class="o">,</span> <span class="n">ottMediaOptions2</span><span class="o">,</span> <span class="n">ottMediaOptions3</span><span class="o">)</span>
+
+<span class="n">val</span> <span class="n">ottPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OTTPlaylistOptions</span><span class="o">()</span>
+<span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOTTPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+<span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">ottMediaOptionsList</span> <span class="o">=</span> <span class="n">mediaList</span>
+
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylist</span><span class="o">(</span><span class="n">ottPlaylistIdOptions</span><span class="o">,</span>
+	 <span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"OTTPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+   <span class="o">}</span>
+<span class="o">})</span>
+
+<span class="kd">private</span> <span class="n">fun</span> <span class="nf">buildOttMediaOptions</span><span class="o">(</span><span class="n">assetId</span> <span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">format</span> <span class="o">:</span> <span class="n">String</span><span class="o">):</span> <span class="n">OTTMediaOptions</span> <span class="o">{</span>
+	<span class="n">val</span> <span class="n">ottMediaAsset</span> <span class="o">=</span> <span class="n">OTTMediaAsset</span><span class="o">()</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">assetId</span> <span class="o">=</span> <span class="n">assetId</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">assetType</span> <span class="o">=</span> <span class="n">APIDefines</span><span class="o">.</span><span class="na">KalturaAssetType</span><span class="o">.</span><span class="na">Media</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">contextType</span> <span class="o">=</span> <span class="n">APIDefines</span><span class="o">.</span><span class="na">PlaybackContextType</span><span class="o">.</span><span class="na">Playback</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">assetReferenceType</span> <span class="o">=</span> <span class="n">APIDefines</span><span class="o">.</span><span class="na">AssetReferenceType</span><span class="o">.</span><span class="na">Media</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">protocol</span> <span class="o">=</span> <span class="n">PhoenixMediaProvider</span><span class="o">.</span><span class="na">HttpProtocol</span><span class="o">.</span><span class="na">Https</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span> <span class="kc">null</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">referrer</span> <span class="o">=</span> <span class="s">"app://MyTestApp"</span><span class="o">;</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">formats</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">format</span><span class="o">)</span>
+    
+    <span class="n">val</span> <span class="n">ottMediaOptions</span> <span class="o">=</span> <span class="n">OTTMediaOptions</span><span class="o">(</span><span class="n">ottMediaAsset</span><span class="o">)</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">startPosition</span> <span class="o">=</span> <span class="n">START_POSITION</span>
+    <span class="k">return</span> <span class="n">ottMediaOptions</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h4 id="by-configuration">
+        
+        
+          By Configuration <a href="#by-configuration"></a>
+        
+        
+      </h4>
+    
+      <h4 id="basic">
+        
+        
+          Basic <a href="#basic"></a>
+        
+        
+      </h4>
+
+<p>You can load a Manual Basic playlist by configuring the playlist data and items explicitly using the <a href="./api.md#configure-3"><code class="highlighter-rouge">configure</code></a> method.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">var</span> <span class="n">basicMediaOptions0</span> <span class="o">=</span> <span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="s">"1_w9zx2eti1"</span><span class="o">,</span> <span class="n">SOURCE_URL</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">50000</span><span class="o">,</span> <span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+<span class="n">val</span> <span class="n">basicMediaOptions1</span> <span class="o">=</span> <span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="s">"0_uka1msg4"</span><span class="o">,</span> <span class="n">SOURCE_URL2</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+<span class="n">var</span> <span class="n">basicMediaOptions2</span> <span class="o">=</span> <span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="s">"1_w9zx2eti2"</span><span class="o">,</span> <span class="n">SOURCE_URL</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">())</span>
+
+<span class="n">var</span> <span class="n">basicMediaOptionsList</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">basicMediaOptions0</span><span class="o">,</span> <span class="n">basicMediaOptions1</span><span class="o">,</span> <span class="n">basicMediaOptions2</span><span class="o">)</span>
+        
+<span class="n">val</span> <span class="n">basicPlaylistIdOptions</span> <span class="o">=</span> <span class="n">BasicPlaylistOptions</span><span class="o">()</span>
+<span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestBasicPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+<span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">basicMediaOptionsList</span> <span class="o">=</span> <span class="n">basicMediaOptionsList</span>
+        
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylist</span><span class="o">(</span><span class="n">basicPlaylistIdOptions</span><span class="o">,</span> 
+	<span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+   <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"BasicPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+   <span class="o">}</span>
+<span class="o">})</span>
+
+<span class="kd">private</span> <span class="n">fun</span> <span class="nf">createBasicMediaOptions</span><span class="o">(</span><span class="nl">id:</span> <span class="n">String</span><span class="o">,</span> <span class="n">url</span> <span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="nl">countdownOptions:</span> <span class="n">CountDownOptions</span><span class="o">):</span> <span class="n">BasicMediaOptions</span> <span class="o">{</span>
+
+  <span class="n">val</span> <span class="n">mediaEntry</span> <span class="o">=</span> <span class="n">PKMediaEntry</span><span class="o">()</span>
+  <span class="n">mediaEntry</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span>
+
+  <span class="n">mediaEntry</span><span class="o">.</span><span class="na">mediaType</span> <span class="o">=</span> <span class="n">PKMediaEntry</span><span class="o">.</span><span class="na">MediaEntryType</span><span class="o">.</span><span class="na">Vod</span>
+  <span class="n">val</span> <span class="n">mediaSources</span> <span class="o">=</span> <span class="n">createMediaSources</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">url</span><span class="o">)</span>
+  <span class="n">mediaEntry</span><span class="o">.</span><span class="na">sources</span> <span class="o">=</span> <span class="n">mediaSources</span>
+  <span class="k">return</span> <span class="nf">BasicMediaOptions</span><span class="o">(</span><span class="n">mediaEntry</span><span class="o">,</span> <span class="n">countdownOptions</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="configure-the-playlist">
+        
+        
+          Configure the Playlist <a href="#configure-the-playlist"></a>
+        
+        
+      </h2>
+    
+      <h3 id="playlist-options">
+        
+        
+          Playlist Options <a href="#playlist-options"></a>
+        
+        
+      </h3>
+    <hr />
+      <h4 id="playlist-metadata---playlistmetadata">
+        
+        
+          Playlist Metadata - <code class="highlighter-rouge">playlistMetadata</code> <a href="#playlist-metadata---playlistmetadata"></a>
+        
+        
+      </h4>
+<p>Should be used for all Playlists except the OVP by id configuration where this data is retrieved from the BE.</p>
+    
+      <h4 id="start-index---startindex">
+        
+        
+          Start Index - <code class="highlighter-rouge">startIndex</code> <a href="#start-index---startindex"></a>
+        
+        
+      </h4>
+<p>The index that the playlist playback should start from (default index = 0)</p>
+    
+      <h4 id="loop---loopenabled">
+        
+        
+          Loop - <code class="highlighter-rouge">loopEnabled</code> <a href="#loop---loopenabled"></a>
+        
+        
+      </h4>
+<p>The playlist will play the first media in the playlist once the last media in the playlist has ended (default false)</p>
+    
+      <h4 id="auto-continue--autocontinue">
+        
+        
+          Auto Continue -<code class="highlighter-rouge">autoContinue</code> <a href="#auto-continue--autocontinue"></a>
+        
+        
+      </h4>
+<p>The next media in the playlist will be played automatically once the previous media ended (default true)</p>
+    
+      <h4 id="recover-on-error---recoveronerror">
+        
+        
+          Recover On Error - <code class="highlighter-rouge">recoverOnError</code> <a href="#recover-on-error---recoveronerror"></a>
+        
+        
+      </h4>
+<p>The playlist manager is able to recover from errors once that flag is enabled, so it will continue to the next media whether the current media is incorrect or it’s URL is broken. If auto continue is enabled it will auto play without user intervention.</p>
+    
+      <h4 id="count-down-options---playlistcountdownoptions">
+        
+        
+          Count Down Options - <code class="highlighter-rouge">playlistCountDownOptions</code> <a href="#count-down-options---playlistcountdownoptions"></a>
+        
+        
+      </h4>
+<p>The logic by which count down start event will be fired (default is 10 last sec for 10 sec).<br />
+if <code class="highlighter-rouge">autoContinue</code> feature is enabled  at the end of the count down the <code class="highlighter-rouge">PlaylistController</code> will trigger auto continue feature to play next media. If auto continue == false countdown will events will not be fired.<br />
+If <code class="highlighter-rouge">loop</code> is disabled the events will not be fired for last media.</p>
+    
+      <h4 id="use-api-captions---useapicaptions">
+        
+        
+          Use API Captions - <code class="highlighter-rouge">useApiCaptions</code> <a href="#use-api-captions---useapicaptions"></a>
+        
+        
+      </h4>
+<p>used only for OVP configuration this can be configured on the playlist level or media level</p>
+
+<p><br />To change this behavior, configure the playlist options using one of the following methods:<br />
+<br />Via the API:</p>
+    
+      <h4 id="example">
+        
+        
+          Example: <a href="#example"></a>
+        
+        
+      </h4>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>
+       <span class="c1">// OVPPlaylistIdOptions</span>
+       
+       <span class="n">val</span> <span class="n">ovpPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistIdOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistId</span> <span class="o">=</span> <span class="s">"zzzzzzz"</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">useApiCaptions</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span>  <span class="kc">true</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+       <span class="c1">// OVPPlaylistOptions</span>
+       
+       <span class="n">val</span> <span class="n">ovpPlaylistOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span>  <span class="s">""</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOTTPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">ovpMediaOptionsList</span> <span class="o">=</span> <span class="n">ovpMediaOptionsList</span> <span class="c1">//(useApiCaptions is configured for each media separetly)</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+       <span class="c1">// OVPPlaylistOptions </span>
+       <span class="n">val</span> <span class="n">ottPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OTTPlaylistOptions</span><span class="o">()</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOTTPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">ottMediaOptionsList</span> <span class="o">=</span> <span class="n">ottMediaOptionsList</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+       <span class="c1">// BasicPlaylistOptions  </span>
+       <span class="n">val</span> <span class="n">basicPlaylistIdOptions</span> <span class="o">=</span> <span class="n">BasicPlaylistOptions</span><span class="o">()</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span>  <span class="mi">0</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestBasicPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">basicMediaOptionsList</span> <span class="o">=</span> <span class="n">basicMediaOptionsList</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: The <code class="highlighter-rouge">autoContinue</code> property is relevant only for the second item onwards.<br />
+<br />To control the first entry playback, set the <code class="highlighter-rouge">autoPlay</code> property to the desired value (default = true).</p>
+</blockquote>
+    
+      <h3 id="playlist-count-countdown-options">
+        
+        
+          Playlist Count Countdown Options <a href="#playlist-count-countdown-options"></a>
+        
+        
+      </h3>
+
+<p>When the current item is about to end and the playlist is set to continue automatically  by setting <code class="highlighter-rouge">autoContinue	 = true</code>, the application will get countdown start event. Then the application can display up next or watch credits pop up.<br />
+Once countdown is over, countdown ended event will be fired.<br />
+Using the <code class="highlighter-rouge">disableCountDown</code> API, application can cancel the current countdown configuration, so it will not be executed and the <code class="highlighter-rouge">PlaylistController</code> will not trigger the <code class="highlighter-rouge">playNext</code> API.</p>
+    
+      <h5 id="example-1">
+        
+        
+          Example: <a href="#example-1"></a>
+        
+        
+      </h5>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">disableCountDown</span><span class="o">()</span>
+</code></pre>
+</div>
+
+<p>By default, the countdown is fired at the last 10 media seconds for the last 10 seconds of the media.<br />
+The <code class="highlighter-rouge">CountDownOptions</code> <code class="highlighter-rouge">timeToShow</code> and <code class="highlighter-rouge">duration</code> values are presented in milliseconds.</p>
+
+<p><br />To change this behavior, configure the <code class="highlighter-rouge">CountDownOptions</code><br />
+<br /> For example, to show the countdown for 20 seconds until the end, configure:<br />
+<br />Via the API:</p>
+
+<p>OVP by id - exists only for the playlist level.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">20000</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<p>OVP/OTT by entries list - exists both on playlist level or media level.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ovpMediaOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">90000</span><span class="o">,</span> <span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>By configuration:</p>
+
+<p>Available for playlist level or media level</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">countDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">5000</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="s">"1_w9zx2eti1"</span><span class="o">,</span> <span class="n">SOURCE_URL</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">60000</span><span class="o">,</span> <span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+</code></pre>
+</div>
+
+<p>Note:<br />
+Once the <code class="highlighter-rouge">playlistCountDownEnd</code> event is fired, the next media entry in the playlist a will be played.</p>
+    
+      <h2 id="playlistcontroller-interface">
+        
+        
+          PlaylistController Interface <a href="#playlistcontroller-interface"></a>
+        
+        
+      </h2>
+
+<p>Once playlist is loaded the callback will return a controller object the can be used to control the playlist life cycle from the application perspective.</p>
+
+<p>Another option to get a reference to the controller, is to <br />
+call <code class="highlighter-rouge">player?.playlistController</code> with the required API from the interface after the playlist is loaded.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PlaylistController</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * getPlaylist - get current playlist data
+     *
+     * @return - PKPlaylist
+     */</span>
+    <span class="n">PKPlaylist</span> <span class="nf">getPlaylist</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * getPlaylistType - get current playlist type OVP_ID,OVP_LIST,OTT_LIST,BASIC_LIST
+     *
+     * @return - PKPlaylistType
+     */</span>
+    <span class="n">PKPlaylistType</span> <span class="nf">getPlaylistType</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * getCurrentPlaylistMedia - get current playlist media data.
+     *
+     * @return - PKPlaylistMedia
+     */</span>
+    <span class="n">PKPlaylistMedia</span> <span class="nf">getCurrentPlaylistMedia</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * getCurrentMediaIndex for current playing media.
+     *
+     * @return - int
+     */</span>
+    <span class="kt">int</span> <span class="nf">getCurrentMediaIndex</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * GetCurrentCountDownOptions for current media.
+     *
+     * @return - CountDownOptions
+     */</span>
+    <span class="n">CountDownOptions</span> <span class="nf">getCurrentCountDownOptions</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * DisableCountDown for current media.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">disableCountDown</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * Preload next item - will do the provider request for specific media to save network calls not relevant for basic player.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">preloadNext</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * PreloadItem by index - will do the provider request for specific media to save network calls not relevant for basic player.
+     *
+     * @param index - media index in playlist.
+     */</span>
+    <span class="kt">void</span> <span class="nf">preloadItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * PlayItem by index.
+     *
+     * @param index - media index in playlist.
+     */</span>
+    <span class="kt">void</span> <span class="nf">playItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * PlayItem by index and auto play configuration.
+     *
+     * @param index - media index in playlist.
+     * @param isAutoPlay - isAutoPlay.
+     */</span>
+    <span class="kt">void</span> <span class="nf">playItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isAutoPlay</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * playNext - play the next media in the playlist.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">playNext</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * playPrev - play the previous media in the playlist.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">playPrev</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * replay - play the playlist from the first index.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">replay</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * isMediaLoaded - validation if media was fetched/played at least one time so the playback information is available.
+     *
+     * @param mediaId - media id in playlist.
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isMediaLoaded</span><span class="o">(</span><span class="n">String</span> <span class="n">mediaId</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * setLoop - configure the controller to play the playlist again
+     * when last playlist media is ended
+     *
+     * @param mode - enabled/disabled.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setLoop</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mode</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * isLoopEnabled - validation if playlist controller is configured to support setLoop mode.
+     *
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isLoopEnabled</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * setAutoContinue - configure the controller to play the playlist in setAutoContinue mode
+     *
+     * @param mode - enabled/disabled.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setAutoContinue</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mode</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * isAutoContinueEnabled - validation if playlist controller is configured to support setAutoContinue mode.
+     *
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isAutoContinueEnabled</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * setRecoverOnError - ignore media playback errors and continue
+     *
+     * @param mode - enabled/disabled.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setRecoverOnError</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mode</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * isRecoverOnError - validation if playlist controller should recover on error.
+     *
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isRecoverOnError</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * release - should e called if we want to reuse the player for single media or for loading new play list.
+     */</span>
+    <span class="kt">void</span> <span class="nf">release</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * setPlaylistOptions - configure the controller with the initial playlist options
+     *
+     * @param playlistOptions - playlist initial configuration.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setPlaylistOptions</span><span class="o">(</span><span class="n">PlaylistOptions</span> <span class="n">playlistOptions</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * setPlaylistCountDownOptions - update the current playlist countdown configuration
+     *
+     * @param playlistCountDownOptions - playlist countdown.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setPlaylistCountDownOptions</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">CountDownOptions</span> <span class="n">playlistCountDownOptions</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>##Playlist Navigation</p>
+
+<p>Using the <code class="highlighter-rouge">PlaylistController</code> API, you can get the playlist data and then switch between the items.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// switch to the next item</span>
+<span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">playNext</span><span class="o">()</span>
+
+<span class="c1">// switch to the previous item</span>
+<span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">playPrev</span><span class="o">()</span>
+
+<span class="c1">// switch to a specific item by index</span>
+<span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">playItem</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</code></pre>
+</div>
+    
+      <h2 id="change-playlist">
+        
+        
+          Change Playlist <a href="#change-playlist"></a>
+        
+        
+      </h2>
+
+<p>To clean the playlist data, you’ll need to call the playlist controller <code class="highlighter-rouge">release()</code> API<br />
+<br />Here is an example for how it is possible to change the playlist using the <code class="highlighter-rouge">release</code> method when previous playlist ended.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">?.</span><span class="na">addListener</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">PlaylistEvent</span><span class="o">.</span><span class="na">playListEnded</span><span class="o">)</span> <span class="o">{</span> <span class="n">event</span> <span class="o">-&gt;</span>
+      <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"PLAYLIST playListEnded"</span><span class="o">)</span>
+       <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistId</span> <span class="o">=</span> <span class="s">"0_jco198ds"</span>
+       <span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylistById</span><span class="o">(</span><span class="n">ovpPlaylistIdOptions</span><span class="o">)</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">playbackControlsManager</span><span class="o">?.</span><span class="na">addChangeMediaImgButtonsListener</span><span class="o">(</span><span class="n">playlistController</span><span class="o">.</span><span class="na">playlist</span><span class="o">.</span><span class="na">mediaListSize</span><span class="o">)</span>
+        <span class="o">}</span>
+     <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="playlist-events">
+        
+        
+          Playlist Events <a href="#playlist-events"></a>
+        
+        
+      </h2>
+
+<p>Application can add listeners to the following events<br />
+using these events application can react to UI changes for example.</p>
+
+<p>These events are defined in <code class="highlighter-rouge">PlaylistEvent</code> class.<br />
+Please check the class for the event payload.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    public enum Type {
+        PLAYLIST_LOADED,
+        PLAYLIST_STARTED,
+        PLAYLIST_ENDED,
+        PLAYLIST_COUNT_DOWN_START,
+        PLAYLIST_COUNT_DOWN_END,
+        PLAYLIST_LOOP_STATE_CHANGED,
+        PLAYLIST_SUFFLE_STATE_CHANGED,
+        PLAYLIST_AUTO_CONTINUE_STATE_CHANGED,
+        PLAYLIST_ERROR,
+        PLAYLIST_LOAD_MEDIA_ERROR
+    }    
+        player?.addListener(this, PlaylistEvent.playListLoaded) { event -&gt;
+            log.d("playListLoaded " + event.playlist.name)
+        }
+
+        player?.addListener(this, PlaylistEvent.playListStarted) { event -&gt;
+            log.d("playListStarted " + event.playlist.name)
+        }
+
+
+        player?.addListener(this, PlaylistEvent.playListEnded) { event -&gt;
+            log.d("PlaylistEnded " +  event.playlist.name)
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistCountDownStart) { event -&gt;
+            log.d("playlistCountDownStart currentPlayingIndex = " + event.currentPlayingIndex + " durationMS = " + event.playlistCountDownOptions.durationMS);
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistCountDownEnd) { event -&gt;
+            log.d("playlistCountDownEnd currentPlayingIndex = " + event.currentPlayingIndex + " durationMS = " + event.playlistCountDownOptions.durationMS);
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistLoopStateChanged) { event -&gt;
+            log.d("playlistLoopStateChanged " + event.mode);
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistAutoContinueStateChanged) { event -&gt;
+            log.d("PLAYLIST playlistAutoContinueStateChanged " + event.mode)
+        }
+        
+        player?.addListener(this, PlaylistEvent.playListError) { event -&gt;
+            log.d("playListError = " + event.error.message);
+        }
+                player?.addListener(this, PlaylistEvent.playlistLoadMediaError) { event -&gt;
+            log.d("playListMediaError = " + event.error.message);
+        }
+</code></pre>
+</div>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
