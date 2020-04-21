@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Mar 24 10:47:43 2020</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Apr 21 08:05:45 2020</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/player-settings-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Mar 24 10:47:43 2020, By <span class="commit-author">Gilad Nadav</span></td></tr-->
+				<!--tr><td>Last commit: Tue Apr 21 08:05:45 2020, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
@@ -122,7 +122,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Gilad Nadav (6 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
+					<td>Gilad Nadav (7 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -1178,6 +1178,92 @@ public class PlaykitLoadControlStrategy implements ExoPlayerWrapper.LoadControlS
       </h5>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setTunneledAudioPlayback</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span></code></pre></figure>
+    
+      <h3 id="handle-audio-becoming-noisy">
+        
+        
+          Handle Audio Becoming Noisy <a href="#handle-audio-becoming-noisy"></a>
+        
+        
+      </h3>
+
+<p>Sets whether the player should pause automatically<br />
+when audio is rerouted from a headset to device speakers.<br />
+default=false</p>
+    
+      <h5 id="example-20">
+        
+        
+          Example: <a href="#example-20"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">handleAudioBecomingNoisyEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span></code></pre></figure>
+    
+      <h3 id="set-max-video-size">
+        
+        
+          Set Max Video Size <a href="#set-max-video-size"></a>
+        
+        
+      </h3>
+
+<p>Sets the maximum allowed video width and height.<br />
+to set the maximum allowed video bitrate to sd resolution call: <br />
+<code class="highlighter-rouge">setMaxVideoSize(new PKMaxVideoSize().setMaxVideoWidth(1279).setMaxVideoHeight(719)</code><br />
+to reset call:<br />
+<code class="highlighter-rouge">setMaxVideoSize(new PKMaxVideoSize().setMaxVideoWidth(Integer.MAX_VALUE).setMaxVideoHeight(Integer.MAX_VALUE)</code></p>
+    
+      <h5 id="example-21">
+        
+        
+          Example: <a href="#example-21"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setMaxVideoSize</span><span class="o">(</span><span class="k">new</span> <span class="n">PKMaxVideoSize</span><span class="o">().</span><span class="na">setMaxVideoWidth</span><span class="o">(</span><span class="mi">640</span><span class="o">).</span><span class="na">setMaxVideoHeight</span><span class="o">(</span><span class="mi">360</span><span class="o">));</span></code></pre></figure>
+    
+      <h3 id="set-max-audio-bitrate">
+        
+        
+          Set Max Audio Bitrate <a href="#set-max-audio-bitrate"></a>
+        
+        
+      </h3>
+
+<p>Sets the maximum allowed Audio bitrate</p>
+    
+      <h5 id="example-22">
+        
+        
+          Example: <a href="#example-22"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setMaxAudioBitrate</span><span class="o">(</span><span class="mi">65000</span><span class="o">);</span> <span class="c1">// input in bps</span></code></pre></figure>
+    
+      <h3 id="set-max-audio-channel-count">
+        
+        
+          Set Max Audio Channel Count <a href="#set-max-audio-channel-count"></a>
+        
+        
+      </h3>
+
+<p>Sets maximum allowed audio channel count. default max = Integer.MAX_VALUE</p>
+    
+      <h5 id="example-23">
+        
+        
+          Example: <a href="#example-23"></a>
+        
+        
+      </h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">player</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">setMaxAudioChannelCount</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span> <span class="c1">// channels allowed</span></code></pre></figure>
 		
 </article>
 
