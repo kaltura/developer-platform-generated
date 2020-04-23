@@ -1,5 +1,5 @@
 (function() {
-  var COOKIE_TIMEOUT_MS = 60 * 60 * 1000;
+  var COOKIE_TIMEOUT_MS = 84600 * 1000;
   var PROMPT_TIMEOUT_MS = COOKIE_TIMEOUT_MS - 2 * 60 * 1000;
   var STORAGE_KEY = 'LUCYBOT_RECIPE_CREDS';
   var user = window.kalturaUser = {};
