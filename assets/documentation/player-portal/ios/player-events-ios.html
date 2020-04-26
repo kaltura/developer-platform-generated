@@ -109,14 +109,26 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon May 13 08:54:42 2019</span>, By <span class="commit-author">Avital</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/player-events-ios.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Sun Apr 26 05:03:52 2020</span>, By <span class="commit-author">Nilit Danan</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/player-events-ios.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Mon May 13 08:54:42 2019, By <span class="commit-author">Avital</span></td></tr-->
+				<!--tr><td>Last commit: Sun Apr 26 05:03:52 2020, By <span class="commit-author">Nilit Danan</span></td></tr-->
 			
 				<!-- 
 				
 				<tr>
 					<td>Avital (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Nilit Danan (1 commits) (<a href="mailto:Nilit.danan@kaltura.com">Nilit.danan@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Nilit Danan (1 commits) (<a href="mailto:nilit.danan@kaltura.com">nilit.danan@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -151,14 +163,25 @@ rtp('get', 'campaign',true);
 </blockquote>
 
 <figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">player</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">events</span><span class="p">:</span> <span class="p">[</span><span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">playing</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">durationChanged</span><span class="p">,</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">stateChanged</span><span class="p">])</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">event</span> <span class="k">in</span>
-     <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">playing</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">self</span> <span class="o">=</span> <span class="k">self</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+    <span class="k">switch</span> <span class="n">event</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">Playing</span><span class="p">:</span>
         <span class="c1">// handle playing event</span>
-     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">durationChanged</span> <span class="p">{</span>
-        <span class="k">let</span> <span class="nv">duration</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">duration</span>
-     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">event</span><span class="p">)</span> <span class="o">==</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="n">stateChanged</span> <span class="p">{</span>
+        <span class="k">break</span>
+    <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">DurationChanged</span><span class="p">:</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">playerEvent</span> <span class="o">=</span> <span class="n">event</span> <span class="k">as?</span> <span class="kt">PlayerEvent</span><span class="p">,</span> <span class="k">let</span> <span class="nv">duration</span> <span class="o">=</span> <span class="n">playerEvent</span><span class="o">.</span><span class="n">duration</span> <span class="k">as?</span> <span class="kt">TimeInterval</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">duration</span> <span class="o">=</span> <span class="n">duration</span>
+        <span class="p">}</span>
+    <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">PlayheadUpdate</span><span class="p">:</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">playerEvent</span> <span class="o">=</span> <span class="n">event</span> <span class="k">as?</span> <span class="kt">PlayerEvent</span><span class="p">,</span> <span class="k">let</span> <span class="nv">currentTime</span> <span class="o">=</span> <span class="n">playerEvent</span><span class="o">.</span><span class="n">currentTime</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">playheadSlider</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kt">Float</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">currentTime</span> <span class="o">/</span> <span class="k">self</span><span class="o">.</span><span class="n">player</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="k">case</span> <span class="k">is</span> <span class="kt">PlayerEvent</span><span class="o">.</span><span class="kt">StateChanged</span><span class="p">:</span>
         <span class="k">let</span> <span class="nv">newState</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">newState</span>
         <span class="k">let</span> <span class="nv">oldState</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">oldState</span>
-     <span class="p">}</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
     
       <h3 id="listening-to-events-from-plugin-code">
@@ -189,42 +212,55 @@ rtp('get', 'campaign',true);
         
       </h3>
 <ul>
-  <li><strong>sourceSelected:</strong> Sent when a playback source is selected</li>
-  <li><strong>loadedMetadata:</strong> The media’s metadata has finished loading; all attributes now contain as much useful information as they’re going to.</li>
-  <li><strong>durationChanged:</strong> The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.</li>
-  <li><strong>tracksAvailable:</strong> Sent when track info is available.</li>
-  <li><strong>playbackInfo:</strong> Sent event that notify about changes in the playback parameters. When bitrate of the video or audio track changes or new media loaded. Holds the PlaybackInfo.java object with relevant data.</li>
-  <li><strong>canPlay:</strong> Sent when enough data is available that the media can be played, at least for a couple of frames. This corresponds to the HAVE_ENOUGH_DATA readyState.</li>
-  <li><strong>play:</strong> Sent when playback of the media starts after having been paused; that is, when playback is resumed after a prior pause event.</li>
-  <li><strong>playing:</strong> Sent when the media begins to play (either for the first time, after having been paused, or after ending and then restarting).</li>
-  <li><strong>ended:</strong> Sent when playback completes.</li>
+  <li><strong>SourceSelected:</strong> Sent when a playback source is selected.</li>
+  <li><strong>LoadedMetadata:</strong> The media’s metadata has finished loading, all attributes now contain as much useful information as they’re going to.</li>
+  <li><strong>DurationChanged:</strong> The metadata has loaded or changed, indicating a change in duration of the media. This is sent, for example, when the media has loaded enough that the duration is known.</li>
+  <li><strong>TracksAvailable:</strong> Sent when track info is available.</li>
+  <li><strong>PlaybackInfo:</strong> Sent to notify about changes in the playback parameters. When bitrate of the video or audio track changes or new media is loaded. Holds the PlaybackInfo.java object with relevant data.</li>
+  <li><strong>CanPlay:</strong> Sent when enough data is available that the media can be played, at least for a couple of frames. This corresponds to the HAVE_ENOUGH_DATA readyState.</li>
+  <li><strong>Play:</strong> Sent when playback of the media starts after having been paused; that is, when playback is resumed after a prior pause event.</li>
+  <li><strong>Playing:</strong> Sent when the media begins to play (either for the first time, after having been paused, or after ending and then restarting).</li>
+  <li><strong>Ended:</strong> Sent when playback completes.</li>
 </ul>
     
       <h3 id="additional-user-actions">
         
         
-          Additional User actions <a href="#additional-user-actions"></a>
+          Additional User Actions <a href="#additional-user-actions"></a>
         
         
       </h3>
 <ul>
-  <li><strong>pause:</strong> Sent when playback is paused.</li>
-  <li><strong>seeked:</strong> Sent when a seek operation completes.</li>
-  <li><strong>seeking:</strong> Sent when a seek operation begins.</li>
-  <li><strong>stopped:</strong> sent when stop player API is called</li>
+  <li><strong>Pause:</strong> Sent when playback is paused.</li>
+  <li><strong>Seeked:</strong> Sent when a seek operation completes.</li>
+  <li><strong>Seeking:</strong> Sent when a seek operation begins.</li>
+  <li><strong>Stopped:</strong> Sent when stop player API is called</li>
+  <li><strong>Replay:</strong> Sent when a replay operation is performed.</li>
+</ul>
+    
+      <h3 id="playhead">
+        
+        
+          Playhead <a href="#playhead"></a>
+        
+        
+      </h3>
+<ul>
+  <li><strong>PlayheadUpdate:</strong> Sent when the playhead (current time) has moved.</li>
+  <li><strong>LoadedTimeRanges:</strong> Sent when loaded time ranges was changed, loaded time ranges represent the buffered content. Could be used to show amount buffered on the playhead UI.</li>
 </ul>
     
       <h3 id="track-change">
         
         
-          Track change <a href="#track-change"></a>
+          Track Change <a href="#track-change"></a>
         
         
       </h3>
 <ul>
-  <li><strong>videoTrackChanged:</strong> A video track was selected</li>
-  <li><strong>audioTrackChanged:</strong> An audio track was selected</li>
-  <li><strong>textTrackChanged:</strong> A text track was selected</li>
+  <li><strong>VideoTrackChanged:</strong> A video track was selected</li>
+  <li><strong>AudioTrackChanged:</strong> An audio track was selected</li>
+  <li><strong>TextTrackChanged:</strong> A text track was selected</li>
 </ul>
     
       <h3 id="metadata-id3-tags-and-related">
@@ -235,7 +271,33 @@ rtp('get', 'campaign',true);
         
       </h3>
 <ul>
-  <li><strong>timedMetadata:</strong> Sent when there is metadata available for this entry.</li>
+  <li><strong>TimedMetadata:</strong> Sent when there is metadata available for this entry.</li>
+</ul>
+    
+      <h3 id="state-change">
+        
+        
+          State Change <a href="#state-change"></a>
+        
+        
+      </h3>
+<ul>
+  <li><strong>StateChanged:</strong> Sent when player state is changed.</li>
+</ul>
+
+<p>The Player can be in one of 4 playback states:</p>
+
+<p><code class="highlighter-rouge">idle</code>, <code class="highlighter-rouge">buffering</code>, <code class="highlighter-rouge">ready</code>, <code class="highlighter-rouge">ended</code>, <code class="highlighter-rouge">error</code></p>
+    
+      <h3 id="stalled">
+        
+        
+          Stalled <a href="#stalled"></a>
+        
+        
+      </h3>
+<ul>
+  <li><strong>PlaybackStalled:</strong> Sent when the player has stalled. Buffering with no available data to play.</li>
 </ul>
     
       <h3 id="errors">
@@ -246,21 +308,9 @@ rtp('get', 'campaign',true);
         
       </h3>
 <ul>
-  <li><strong>error:</strong> Sent when an error occurs. The element’s error attribute contains more information. See Error handling for details.</li>
+  <li><strong>Error:</strong> Sent when an error occurs. The element’s error attribute contains more information. See Error handling for details.</li>
+  <li><strong>ErrorLog:</strong> Sent when an error log event received from player (non fatal errors).</li>
 </ul>
-    
-      <h3 id="state-change">
-        
-        
-          State Change <a href="#state-change"></a>
-        
-        
-      </h3>
-<p>The Player can be in one of 4 playback states:</p>
-
-<p><code class="highlighter-rouge">idle</code>, <code class="highlighter-rouge">buffering</code>, <code class="highlighter-rouge">ready</code>, <code class="highlighter-rouge">ended</code></p>
-
-<p>The <code class="highlighter-rouge">stateChanged</code> event is fired when the player transitions between states.</p>
     
       <h2 id="ad-events">
         
@@ -273,7 +323,13 @@ rtp('get', 'campaign',true);
 <p>Defined in AdEvent class.</p>
 
 <ul>
+  <li>streamLoaded // Only in DAI</li>
+  <li>streamStarted // Only in DAI</li>
   <li>adBreakReady</li>
+  <li>adBreakStarted // Only in DAI</li>
+  <li>adBreakEnded // Only in DAI</li>
+  <li>adPeriodStarted // Only in DAI</li>
+  <li>adPeriodEnded // Only in DAI</li>
   <li>allAdsCompleted</li>
   <li>adComplete</li>
   <li>adClicked</li>
@@ -290,23 +346,28 @@ rtp('get', 'campaign',true);
   <li>adDidProgressToTime</li>
   <li>adDidRequestContentPause</li>
   <li>adDidRequestContentResume</li>
+  <li>adWebOpenerWillOpenExternalBrowser</li>
+  <li>adWebOpenerWillOpenInAppBrowser</li>
+  <li>adWebOpenerDidOpenInAppBrowser</li>
+  <li>adWebOpenerWillCloseInAppBrowser</li>
+  <li>adWebOpenerDidCloseInAppBrowser</li>
   <li>adCuePointsUpdate</li>
   <li>adStartedBuffering</li>
   <li>adPlaybackReady</li>
   <li>requestTimedOut</li>
   <li>adsRequested</li>
+  <li>error</li>
 </ul>
     
-      <h2 id="code-samples">
+      <h2 id="code-sample">
         
         
-          Code Samples <a href="#code-samples"></a>
+          Code Sample <a href="#code-sample"></a>
         
         
       </h2>
 <ul>
-  <li><a href="https://github.com/kaltura/playkit-ios-samples/tree/master/EventsRegistration">Events Registration</a></li>
-  <li><a href="https://github.com/kaltura/playkit-ios-samples/tree/master/AppAnalyticsSample">App Analytics</a></li>
+  <li><a href="https://github.com/kaltura/playkit-ios-samples/tree/develop/EventsRegistration">Events Registration</a></li>
 </ul>
 		
 </article>
