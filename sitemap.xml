@@ -542,6 +542,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/user/action/setInitialPassword</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/user/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/user/action/updateLoginData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/user/action/validateHashKey</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/groupUser</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/groupUser/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/groupUser/action/delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -754,6 +755,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/user/action/setInitialPassword</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/user/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/user/action/updateLoginData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/user/action/validateHashKey</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/userRole</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/userRole/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/userRole/action/clone</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -1107,7 +1109,9 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/exportcsv</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/exportcsv/action/serveCsv</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/fileSync</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/fileSync/action/deleteLocalFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/fileSync/action/list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/fileSync/action/lockFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/fileSync/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/filesyncImportBatch</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/filesyncImportBatch/action/extendFileSyncLock</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2188,6 +2192,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaTranscriptAssetListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaTransformMetadataJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaTransformMetadataResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaTranslationVendorTaskData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaTubeMogulSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaTvinciDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaTvinciDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -2260,6 +2265,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVendorChapteringCatalogItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVendorCredit</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVendorTaskData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVendorTaskDataCaptionAsset</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVendorTranslationCatalogItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVerizonVcastDistributionJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaVerizonVcastDistributionProfile</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -3834,7 +3840,9 @@
 <url> <loc>https://developer.kaltura.com/console/service/fileAsset/action/setContent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/fileAsset/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/fileSync</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/fileSync/action/deleteLocalFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/fileSync/action/list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/fileSync/action/lockFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/fileSync/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/filesyncImportBatch</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/filesyncImportBatch/action/extendFileSyncLock</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4382,6 +4390,7 @@
 <url> <loc>https://developer.kaltura.com/console/service/user/action/setInitialPassword</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/user/action/update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/user/action/updateLoginData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/user/action/validateHashKey</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/userEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/userEntry/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/userEntry/action/bulkDelete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4925,7 +4934,9 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/fileAsset/fileAsset_setContent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/fileAsset/fileAsset_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/fileSync</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/fileSync/fileSync_deleteLocalFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/fileSync/fileSync_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/fileSync/fileSync_lockFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/fileSync/fileSync_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/filesyncImportBatch</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/filesyncImportBatch/filesyncImportBatch_extendFileSyncLock</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5473,6 +5484,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/user/user_setInitialPassword</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/user/user_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/user/user_updateLoginData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/user/user_validateHashKey</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/userEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/userEntry/userEntry_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/userEntry/userEntry_bulkDelete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -6808,6 +6820,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaTranscriptAssetListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaTransformMetadataJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaTransformMetadataResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaTranslationVendorTaskData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaTubeMogulSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaTubeMogulSyndicationFeedBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaTubeMogulSyndicationFeedFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -6918,6 +6931,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaVendorChapteringCatalogItemFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaVendorCredit</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaVendorTaskData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaVendorTaskDataCaptionAsset</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaVendorTranslationCatalogItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaVendorTranslationCatalogItemBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaVendorTranslationCatalogItemFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7396,7 +7410,9 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/fileAsset/fileAsset_setContent</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/fileAsset/fileAsset_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/fileSync</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/fileSync/fileSync_deleteLocalFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/fileSync/fileSync_list</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/fileSync/fileSync_lockFileSyncs</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/fileSync/fileSync_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/filesyncImportBatch</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/filesyncImportBatch/filesyncImportBatch_extendFileSyncLock</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -7944,6 +7960,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/user/user_setInitialPassword</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/user/user_update</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/user/user_updateLoginData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/user/user_validateHashKey</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/userEntry</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/userEntry/userEntry_add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/userEntry/userEntry_bulkDelete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -9279,6 +9296,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaTranscriptAssetListResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaTransformMetadataJobData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaTransformMetadataResponse</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaTranslationVendorTaskData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaTubeMogulSyndicationFeed</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaTubeMogulSyndicationFeedBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaTubeMogulSyndicationFeedFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -9389,6 +9407,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaVendorChapteringCatalogItemFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaVendorCredit</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaVendorTaskData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaVendorTaskDataCaptionAsset</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaVendorTranslationCatalogItem</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaVendorTranslationCatalogItemBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaVendorTranslationCatalogItemFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
