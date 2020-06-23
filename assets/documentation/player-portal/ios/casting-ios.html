@@ -1,0 +1,467 @@
+  <title>Casting for iOS</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Casting for iOS" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Casting for iOS</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Jun 22 15:12:18 2020</span>, By <span class="commit-author">Avital Tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/ios/casting-ios.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Jun 22 05:45:55 2020, By: Avital Tzubeli</td></tr-->
+				<!--tr><td>Last commit: Mon Jun 22 15:12:18 2020, By <span class="commit-author">Avital Tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital Tzubeli (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The following casting schemes are supported on iOS devices:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">About</th>
+      <th style="text-align: center">Sample</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="./airPlay.png" alt="help" /></td>
+      <td style="text-align: center"><a href="https://developer.kaltura.com/player/ios/casting-ios#airplay">AirPlay</a></td>
+      <td style="text-align: center"><a href="">x</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><img src="./chromecast.png" alt="help" /></td>
+      <td style="text-align: center"><a href="https://developer.kaltura.com/player/ios/casting-ios#google-cast">Google Cast</a></td>
+      <td style="text-align: center"><a href="https://github.com/kaltura/playkit-ios-samples/tree/master/ChromecastSample">Cast basic sample</a></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+      <h2 id="airplay">
+        
+        
+          Airplay <a href="#airplay"></a>
+        
+        
+      </h2>
+
+<p>This article describes the steps required for adding support for the AirPlay functionality on iOS devices. AirPlay (developed by Apple Inc.) enables wireless streaming of audio, video, photos and more between devices.</p>
+    
+      <h3 id="add-the-airplay-functionality">
+        
+        
+          Add the AirPlay Functionality <a href="#add-the-airplay-functionality"></a>
+        
+        
+      </h3>
+
+<ol>
+  <li>Enable the Audio, Airplay, and Picture in the Picture background mode.</li>
+  <li>
+    <p>In Xcode 8, select a target, and then under Capabilities &gt; Background Modes, enable <strong>Audio, Airplay and Picture in Picture</strong>.</p>
+
+    <p><img src="./EnableAirPlay.png" alt="AirPlay Functionality" /></p>
+  </li>
+  <li>Import MediaPlayer, create an <code class="highlighter-rouge">MPVolumeView</code>, and then add it to your view as follows:</li>
+</ol>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">airPlayBtn</span> <span class="o">=</span> <span class="kt">MPVolumeView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">))</span>
+<span class="n">airPlayBtn</span><span class="o">.</span><span class="n">showsVolumeSlider</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="n">container</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">airPlayBtn</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><strong>Optional:</strong> Customize the image of the AirPlay button as follows:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">airPlayBtn</span><span class="o">.</span><span class="nf">setRouteButtonImage</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"name"</span><span class="p">),</span> <span class="nv">for</span><span class="p">:</span> <span class="kt">UIControlState</span><span class="o">.</span><span class="n">normal</span><span class="p">)</span>
+
+</code></pre>
+</div>
+    
+      <h2 id="adding-support-for-google-cast-on-ios-devices">
+        
+        
+          Adding Support for Google Cast on iOS devices. <a href="#adding-support-for-google-cast-on-ios-devices"></a>
+        
+        
+      </h2>
+
+<p>This article describes how to add support for Google Cast on iOS devices.</p>
+    
+      <h3 id="install-google-cast">
+        
+        
+          Install Google Cast <a href="#install-google-cast"></a>
+        
+        
+      </h3>
+
+<p>Add the following to your pod file:</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">pod</span> <span class="s2">"PlayKit/GoogleCastAddon"</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/kaltura/playkit-ios.git'</span><span class="p">,</span> <span class="ss">:tag</span> <span class="o">=&gt;</span> <span class="no">PLAYKIT_TAG</span><span class="o">.</span>
+</code></pre>
+</div>
+    
+      <h3 id="import-the-required-files">
+        
+        
+          Import the Required Files <a href="#import-the-required-files"></a>
+        
+        
+      </h3>
+
+<p>Next, import the following:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">GoogleCast</span>
+<span class="kd">import</span> <span class="kt">PlayKit</span>
+</code></pre>
+</div>
+
+<p>For example, to reach the GCKGoogleCastContext you’ll need the <code class="highlighter-rouge">import GoogleCast</code>. To reach OVP/OTT-CastBuilder you’ll need <code class="highlighter-rouge">import PlayKit</code>.</p>
+    
+      <h3 id="casting">
+        
+        
+          Casting <a href="#casting"></a>
+        
+        
+      </h3>
+
+<p>To begin casting, you’ll need to create a <code class="highlighter-rouge">GCKMediaInformation</code> by using a CastBuilder: either <code class="highlighter-rouge">OVPCastBuilder</code> or <code class="highlighter-rouge">TVPAPICastBuilder</code>.</p>
+    
+      <h4 id="example-of-casting-using-ovpcastbuilder">
+        
+        
+          Example of Casting Using OVPCastBuilder <a href="#example-of-casting-using-ovpcastbuilder"></a>
+        
+        
+      </h4>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">do</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="nv">media</span><span class="p">:</span> <span class="kt">GCKMediaInformation</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+	<span class="n">media</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">OVPCastBuilder</span><span class="p">()</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">ks</span><span class="p">:</span> <span class="n">ks</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">contentId</span><span class="p">:</span> <span class="n">entryId</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">adTagURL</span><span class="p">:</span> <span class="n">adTagURL</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">uiconfID</span><span class="p">:</span> <span class="n">uiconfId</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">partnerID</span><span class="p">:</span> <span class="n">partnerId</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">metaData</span><span class="p">:</span> <span class="n">metaData</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+
+	<span class="k">if</span> <span class="k">let</span> <span class="nv">m</span> <span class="o">=</span> <span class="n">media</span> <span class="p">{</span>
+                <span class="k">self</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="nv">mediaInformation</span><span class="p">:</span> <span class="n">m</span><span class="p">)</span>    
+            <span class="p">}</span>
+	<span class="p">}</span><span class="k">catch</span><span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h4 id="example-of-casting-using-tvpapicastbuilder">
+        
+        
+          Example of Casting Using TVPAPICastBuilder <a href="#example-of-casting-using-tvpapicastbuilder"></a>
+        
+        
+      </h4>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code>	<span class="k">do</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="nv">media</span><span class="p">:</span> <span class="kt">GCKMediaInformation</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+ 	<span class="n">media</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">TVPAPICastBuilder</span><span class="p">()</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">contentId</span><span class="p">:</span> <span class="n">entryId</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">uiconfID</span><span class="p">:</span> <span class="n">uiconfId</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">partnerID</span><span class="p">:</span> <span class="n">partnerId</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">metaData</span><span class="p">:</span> <span class="n">metaData</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">initObject</span><span class="p">:</span> <span class="n">initObject</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="n">format</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+
+	<span class="k">if</span> <span class="k">let</span> <span class="nv">m</span> <span class="o">=</span> <span class="n">media</span> <span class="p">{</span>
+                <span class="k">self</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="nv">mediaInformation</span><span class="p">:</span> <span class="n">m</span><span class="p">)</span>    
+            <span class="p">}</span>
+	<span class="p">}</span><span class="k">catch</span><span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+	<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h3 id="loading-media">
+        
+        
+          Loading Media <a href="#loading-media"></a>
+        
+        
+      </h3>
+
+<p>Next, use the <code class="highlighter-rouge">loadmedia</code> to load the required media:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="nv">mediaInformation</span><span class="p">:</span><span class="kt">GCKMediaInformation</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span>  <span class="kt">GCKCastContext</span><span class="o">.</span><span class="nf">sharedInstance</span><span class="p">()</span><span class="o">.</span><span class="n">sessionManager</span><span class="o">.</span><span class="n">currentCastSession</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">currentSession</span> <span class="o">=</span> <span class="n">session</span><span class="p">,</span>  
+    	<span class="k">let</span> <span class="nv">remoteMediaClient</span> <span class="o">=</span> <span class="n">currentSession</span><span class="o">.</span><span class="n">remoteMediaClient</span> <span class="p">{</span>
+            <span class="n">remoteMediaClient</span><span class="o">.</span><span class="nf">loadMedia</span><span class="p">(</span><span class="n">mediaInformation</span><span class="p">,</span> <span class="nv">autoplay</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="p">}</span>
+ 	<span class="p">}</span>
+
+</code></pre>
+</div>
+    
+      <h3 id="custom-data">
+        
+        
+          Custom Data <a href="#custom-data"></a>
+        
+        
+      </h3>
+
+<p>To add custom data:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">customData</span><span class="p">(</span><span class="nv">mediaMetaData</span><span class="p">:</span> <span class="kt">MediaMetadataData</span><span class="p">?)</span> <span class="o">-&gt;</span>  <span class="kt">GCKMediaMetadata</span> <span class="p">{</span>
+        
+        <span class="k">let</span> <span class="nv">metaData</span> <span class="o">=</span> <span class="kt">GCKMediaMetadata</span><span class="p">(</span><span class="nv">metadataType</span><span class="p">:</span> <span class="kt">GCKMediaMetadataType</span><span class="o">.</span><span class="n">movie</span><span class="p">)</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">title</span> <span class="o">=</span> <span class="n">mediaMetaData</span><span class="p">?</span><span class="o">.</span><span class="n">title</span> <span class="p">{</span>
+            <span class="n">metaData</span><span class="o">.</span><span class="nf">setString</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">kGCKMetadataKeyTitle</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">subtitle</span> <span class="o">=</span> <span class="n">mediaMetaData</span><span class="p">?</span><span class="o">.</span><span class="n">subtitle</span> <span class="p">{</span>
+            <span class="n">metaData</span><span class="o">.</span><span class="nf">setString</span><span class="p">(</span><span class="n">subtitle</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="n">kGCKMetadataKeySubtitle</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">images</span> <span class="o">=</span> <span class="n">mediaMetaData</span><span class="p">?</span><span class="o">.</span><span class="n">imageUrls</span> <span class="p">{</span>
+            
+        <span class="k">for</span> <span class="n">image</span> <span class="k">in</span> <span class="n">images</span> <span class="p">{</span>
+                
+                <span class="k">guard</span> <span class="k">let</span> <span class="nv">urlString</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="kt">URL</span><span class="p">,</span>
+                    <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span><span class="n">urlString</span><span class="p">),</span>
+                    <span class="k">let</span> <span class="nv">sheight</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                    <span class="k">let</span> <span class="nv">swidth</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+                    <span class="k">let</span> <span class="nv">width</span> <span class="o">=</span> <span class="kt">Int</span><span class="p">(</span><span class="n">swidth</span><span class="p">),</span>
+                    <span class="k">let</span> <span class="nv">hight</span> <span class="o">=</span> <span class="kt">Int</span><span class="p">(</span><span class="n">sheight</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="p">{</span>
+                        <span class="k">continue</span>
+                <span class="p">}</span>
+                
+                <span class="n">metaData</span><span class="o">.</span><span class="nf">addImage</span><span class="p">(</span><span class="kt">GCKImage</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span><span class="n">url</span> <span class="p">,</span> <span class="nv">width</span><span class="p">:</span><span class="n">width</span> <span class="p">,</span> <span class="nv">height</span><span class="p">:</span><span class="n">hight</span><span class="p">))</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">metaData</span>
+        
+   	 <span class="p">}</span>
+
+</code></pre>
+</div>
+    
+      <h2 id="adding-support-for-advertisements-on-cast-media">
+        
+        
+          Adding Support for Advertisements on Cast Media <a href="#adding-support-for-advertisements-on-cast-media"></a>
+        
+        
+      </h2>
+
+<p>To add support for advertisements:</p>
+
+<ol>
+  <li>Add an ad tag URL to the cast builder as follows:</li>
+</ol>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">media</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">OVPCastBuilder</span><span class="p">()</span>
+<span class="o">...</span>
+<span class="o">.</span><span class="nf">set</span><span class="p">(</span><span class="nv">adTagURL</span><span class="p">:</span> <span class="n">gcAddonData</span><span class="o">.</span><span class="n">params</span><span class="p">?</span><span class="o">.</span><span class="n">adTagURL</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">.</span><span class="nf">build</span><span class="p">()</span>
+
+</code></pre>
+</div>
+
+<ol>
+  <li>Next, set the adInfoParserDelegate in the remoteMediaClient to AdInfoParser (a class from the PlayKit) as follows:</li>
+</ol>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">load</span><span class="p">(</span><span class="nv">mediaInformation</span><span class="p">:</span><span class="kt">GCKMediaInformation</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span>  <span class="kt">GCKCastContext</span><span class="o">.</span><span class="nf">sharedInstance</span><span class="p">()</span><span class="o">.</span><span class="n">sessionManager</span><span class="o">.</span><span class="n">currentCastSession</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">currentSession</span> <span class="o">=</span> <span class="n">session</span><span class="p">,</span>  <span class="k">let</span> <span class="nv">remoteMediaClient</span> <span class="o">=</span> <span class="n">currentSession</span><span class="o">.</span><span class="n">remoteMediaClient</span> <span class="p">{</span>
+        <span class="n">remoteMediaClient</span><span class="o">.</span><span class="nf">loadMedia</span><span class="p">(</span><span class="n">mediaInformation</span><span class="p">,</span> <span class="nv">autoplay</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="c1">//add the following raw</span>
+        <span class="n">remoteMediaClient</span><span class="o">.</span><span class="n">adInfoParserDelegate</span> <span class="o">=</span> <span class="kt">AdInfoParser</span><span class="o">.</span><span class="n">shared</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="have-questions-or-need-help">
+        
+        
+          Have Questions or Need Help? <a href="#have-questions-or-need-help"></a>
+        
+        
+      </h2>
+
+<p>Check out the <a href="https://forum.kaltura.org/c/playkit">Kaltura Player SDK Forum</a> page for different ways of getting in touch.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

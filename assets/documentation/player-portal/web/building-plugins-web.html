@@ -1,0 +1,1022 @@
+  <title>Building Plugins  for Web Player</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Building Plugins  for Web Player" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Building Plugins  for Web Player</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Jun 22 15:12:18 2020</span>, By <span class="commit-author">Avital Tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/building-plugins-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Jun 22 06:10:47 2020, By: Avital Tzubeli</td></tr-->
+				<!--tr><td>Last commit: Mon Jun 22 15:12:18 2020, By <span class="commit-author">Avital Tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital Tzubeli (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>To build your own plugin for the Kaltura Player, you’ll need to go through a few simple steps:</p>
+
+<ul>
+  <li>Import the player library.</li>
+  <li>Write your plugin logic and implement the plugin API methods and properties.</li>
+  <li>Register the plugin in the player framework.</li>
+</ul>
+
+<p>In this guide we’ll go through these steps and elaborate with examples of both Plain JavaScript &amp; ES6.</p>
+
+<p>The player core library exposes two main utilities:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">BasePlugin</code> - The class that your plugin will inherit from.</li>
+  <li><code class="highlighter-rouge">registerPlugin</code> - The static player method that will register your plugin in the player registry.</li>
+</ul>
+
+<p>Lets take a look at the <code class="highlighter-rouge">BasePlugin</code> API.</p>
+      <h2 id="base-plugin-api">
+        
+        
+          Base Plugin API <a href="#base-plugin-api"></a>
+        
+        
+      </h2>
+
+<blockquote>
+    
+      <h4 id="constructorname-player-config">
+        
+        
+          <code class="highlighter-rouge">constructor(name, player, config)</code> <a href="#constructorname-player-config"></a>
+        
+        
+      </h4>
+
+  <p><strong>Parameters</strong></p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">name</code></td>
+      <td><code class="highlighter-rouge">string</code></td>
+      <td>Plugin name</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">player</code></td>
+      <td><code class="highlighter-rouge">playkit.core.Player</code></td>
+      <td>Player instance</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">config</code></td>
+      <td><code class="highlighter-rouge">Object</code></td>
+      <td>Plugin config</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>#</p>
+    
+      <h3 id="properties">
+        
+        
+          Properties <a href="#properties"></a>
+        
+        
+      </h3>
+
+<blockquote>
+    
+      <h4 id="config">
+        
+        
+          <code class="highlighter-rouge">config</code> <a href="#config"></a>
+        
+        
+      </h4>
+
+  <p>Type: <code class="highlighter-rouge">Object</code> - The runtime plugin config.</p>
+    
+      <h4 id="player">
+        
+        
+          <code class="highlighter-rouge">player</code> <a href="#player"></a>
+        
+        
+      </h4>
+
+  <p>Type: <code class="highlighter-rouge">playkit.core.Player</code> - The player instance.</p>
+    
+      <h4 id="name">
+        
+        
+          <code class="highlighter-rouge">name</code> <a href="#name"></a>
+        
+        
+      </h4>
+
+  <p>Type: <code class="highlighter-rouge">string</code> - The plugin registry name.</p>
+    
+      <h4 id="logger">
+        
+        
+          <code class="highlighter-rouge">logger</code> <a href="#logger"></a>
+        
+        
+      </h4>
+
+  <p>Type: <code class="highlighter-rouge">playkit.core.Logger</code> - The logger of the plugin.</p>
+    
+      <h4 id="eventmanager">
+        
+        
+          <code class="highlighter-rouge">eventManager</code> <a href="#eventmanager"></a>
+        
+        
+      </h4>
+
+  <p>Type: <code class="highlighter-rouge">playkit.core.EventManager</code> - The plugin event manager.</p>
+</blockquote>
+
+<p>#</p>
+    
+      <h3 id="properties-to-implement">
+        
+        
+          Properties to Implement <a href="#properties-to-implement"></a>
+        
+        
+      </h3>
+
+<blockquote>
+    
+      <h4 id="static-defaultconfig">
+        
+        
+          <code class="highlighter-rouge">(static) defaultConfig</code> <a href="#static-defaultconfig"></a>
+        
+        
+      </h4>
+
+  <p>Type: <code class="highlighter-rouge">Object</code> - The default plugin config.</p>
+</blockquote>
+
+<p>#</p>
+    
+      <h3 id="methods">
+        
+        
+          Methods <a href="#methods"></a>
+        
+        
+      </h3>
+
+<blockquote>
+    
+      <h4 id="getconfigattr">
+        
+        
+          <code class="highlighter-rouge">getConfig(attr)</code> <a href="#getconfigattr"></a>
+        
+        
+      </h4>
+
+  <p><strong>Parameters</strong></p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">attr</code></td>
+      <td><code class="highlighter-rouge">string</code></td>
+      <td>config key (optional)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Returns: <code class="highlighter-rouge">any</code> - If an attribute is provided, returns the value of the config attribute. If not, returns the plugin config.</p>
+
+<blockquote>
+    
+      <h4 id="updateconfigupdate">
+        
+        
+          <code class="highlighter-rouge">updateConfig(update)</code> <a href="#updateconfigupdate"></a>
+        
+        
+      </h4>
+
+  <p><strong>Parameters</strong></p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">update</code></td>
+      <td><code class="highlighter-rouge">Object</code></td>
+      <td>New full or partial config</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Returns: <code class="highlighter-rouge">void</code> - Merges the update config with the existing config.</p>
+
+<blockquote>
+    
+      <h4 id="getname">
+        
+        
+          <code class="highlighter-rouge">getName()</code> <a href="#getname"></a>
+        
+        
+      </h4>
+
+  <p>Returns: <code class="highlighter-rouge">string</code> - The plugin name.</p>
+</blockquote>
+
+<blockquote>
+    
+      <h4 id="dispatcheventname-payload">
+        
+        
+          <code class="highlighter-rouge">dispatchEvent(name, payload)</code> <a href="#dispatcheventname-payload"></a>
+        
+        
+      </h4>
+
+  <p><strong>Parameters</strong></p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">name</code></td>
+      <td><code class="highlighter-rouge">string</code></td>
+      <td>The event name</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">payload</code></td>
+      <td><code class="highlighter-rouge">Object</code></td>
+      <td>The event payload object</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Returns: <code class="highlighter-rouge">void</code> - Dispatches an event from the player.</p>
+
+<p>#</p>
+    
+      <h3 id="methods-to-implement">
+        
+        
+          Methods to Implement <a href="#methods-to-implement"></a>
+        
+        
+      </h3>
+
+<blockquote>
+    
+      <h4 id="static-isvalidplayer">
+        
+        
+          <code class="highlighter-rouge">(static) isValid(player)</code> <a href="#static-isvalidplayer"></a>
+        
+        
+      </h4>
+</blockquote>
+
+<p><strong>Parameters</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">player</code></td>
+      <td><code class="highlighter-rouge">playkit.core.Player</code></td>
+      <td>Player instance</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Returns: <code class="highlighter-rouge">boolean</code> - Whether the plugin is valid or not.</p>
+
+<p>You can help the player instance API with your decision logic. For example, if you want to enable your plugin on a Chrome browser only, you can simply implement the following:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Plain JavaScript</span>
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">isValid</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">player</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">'Chrome'</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// ES6</span>
+<span class="kr">class</span> <span class="nx">MyPlugin</span> <span class="kr">extends</span> <span class="nx">BasePlugin</span> <span class="p">{</span>
+  <span class="kr">static</span> <span class="nx">isValid</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">player</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">browser</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">'Chrome'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+    
+      <h4 id="destroy">
+        
+        
+          <code class="highlighter-rouge">destroy()</code> <a href="#destroy"></a>
+        
+        
+      </h4>
+
+  <p>Returns: <code class="highlighter-rouge">void</code> - Runs the plugin destroy logic.</p>
+</blockquote>
+
+<p>The player will call this method before destroying itself.</p>
+
+<blockquote>
+    
+      <h4 id="reset">
+        
+        
+          <code class="highlighter-rouge">reset()</code> <a href="#reset"></a>
+        
+        
+      </h4>
+
+  <p>Returns: <code class="highlighter-rouge">void</code> - Runs the plugin reset logic.</p>
+</blockquote>
+
+<p>The player will call this method before changing media.</p>
+
+<p>#</p>
+
+<p>Now, lets take a look at the <code class="highlighter-rouge">registerPlugin</code> API.</p>
+    
+      <h2 id="register-plugin-api">
+        
+        
+          Register Plugin API <a href="#register-plugin-api"></a>
+        
+        
+      </h2>
+
+<blockquote>
+    
+      <h4 id="registerpluginpluginname-pluginclass">
+        
+        
+          <code class="highlighter-rouge">registerPlugin(pluginName, pluginClass)</code> <a href="#registerpluginpluginname-pluginclass"></a>
+        
+        
+      </h4>
+</blockquote>
+
+<p><strong>Parameters</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">pluginName</code></td>
+      <td><code class="highlighter-rouge">string</code></td>
+      <td>The plugin name</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">pluginClass</code></td>
+      <td><code class="highlighter-rouge">playkit.core.BasePlugin</code></td>
+      <td>The plugin class</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h1 id="writing-a-basic-plugin">
+        
+        
+          Writing a Basic Plugin <a href="#writing-a-basic-plugin"></a>
+        
+        
+      </h1>
+
+<p>In this section, we’ll learn how to write a simple plugin, one that doesn’t require any installation or setup steps except for a player script in hand (remotely or locally).</p>
+
+<p>We’ll use both Vanilla JavaScript &amp; ES6 examples.</p>
+
+<blockquote>
+  <p>Note: If you’re using ES6 already, you can use that syntax with your transpiler/language of choice (<code class="highlighter-rouge">Babel</code>, <code class="highlighter-rouge">TypeScript</code>, <code class="highlighter-rouge">Flow</code>, etc).</p>
+</blockquote>
+    
+      <h2 id="step-1-import-the-player-library">
+        
+        
+          Step 1: Import the Player Library <a href="#step-1-import-the-player-library"></a>
+        
+        
+      </h2>
+
+<p>1 . In your <strong><em>index.html</em></strong> file, include a path to the player script:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>MyPlugin<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"PATH/TO/PLAYER/LIB/FILENAME.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>2 . Create a new file called <strong><code class="highlighter-rouge">my-plugin.js</code></strong> and include it in your <code class="highlighter-rouge">index.html</code>:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>MyPlugin<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"PATH/TO/PLAYER/LIB/FILENAME.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"PATH/TO/FILE/my-plugin.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+    
+      <h2 id="step-2-create-your-plugin-class">
+        
+        
+          Step 2: Create Your Plugin Class <a href="#step-2-create-your-plugin-class"></a>
+        
+        
+      </h2>
+
+<p>1 . In <strong><code class="highlighter-rouge">my-plugin.js</code></strong>, define the plugin class:</p>
+    
+      <h3 id="plain-javascript">
+        
+        
+          Plain JavaScript <a href="#plain-javascript"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">MyPlugin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{};</span>
+</code></pre>
+</div>
+    
+      <h3 id="es6">
+        
+        
+          ES6 <a href="#es6"></a>
+        
+        
+      </h3>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyPlugin</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>2 . Next, and add the code that will inherit from <code class="highlighter-rouge">BasePlugin</code>:</p>
+    
+      <h3 id="plain-javascript-1">
+        
+        
+          Plain JavaScript <a href="#plain-javascript-1"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">MyPlugin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">createPlugin</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">.</span><span class="nx">createPlugin</span><span class="p">;</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">();</span>
+</code></pre>
+</div>
+    
+      <h3 id="es6-1">
+        
+        
+          ES6 <a href="#es6-1"></a>
+        
+        
+      </h3>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyPlugin</span> <span class="k">extends</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="step-3-override-the-baseplugin-methods">
+        
+        
+          Step 3: Override the <code class="highlighter-rouge">BasePlugin</code> Methods <a href="#step-3-override-the-baseplugin-methods"></a>
+        
+        
+      </h2>
+
+<p>In <strong><code class="highlighter-rouge">my-plugin.js</code></strong>, add the necessary methods and properties to override as explained above:</p>
+    
+      <h3 id="plain-javascript-2">
+        
+        
+          Plain JavaScript <a href="#plain-javascript-2"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">MyPlugin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">createPlugin</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">.</span><span class="nx">createPlugin</span><span class="p">;</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">();</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">defaultConfig</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">isValid</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">destroy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+</code></pre>
+</div>
+    
+      <h3 id="es6-2">
+        
+        
+          ES6 <a href="#es6-2"></a>
+        
+        
+      </h3>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyPlugin</span> <span class="k">extends</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="nx">defaultConfig</span> <span class="o">=</span> <span class="p">{};</span>
+
+  <span class="k">static</span> <span class="nx">isValid</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">destroy</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="nx">reset</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="step-4-fill-in-simple-implementations">
+        
+        
+          Step 4: Fill in Simple Implementations <a href="#step-4-fill-in-simple-implementations"></a>
+        
+        
+      </h2>
+
+<p>To see the plugin in action, lets fill in some simple implementations:</p>
+    
+      <h3 id="plain-javascript-3">
+        
+        
+          Plain JavaScript <a href="#plain-javascript-3"></a>
+        
+        
+      </h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">MyPlugin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'Hello from '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s1">' plugin constructor!'</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">myValue</span><span class="p">];</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">_addBindings</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">createPlugin</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">.</span><span class="nx">createPlugin</span><span class="p">;</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span><span class="p">();</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">defaultConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">myValue</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">isValid</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">destroy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'Empty collection'</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'Reset collection'</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">myValue</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_addBindings</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">eventManager</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">SEEKED</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">+</span> <span class="s1">' Added to my collection'</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">currentTime</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="s1">'collectionUpdate'</span><span class="p">,</span> <span class="p">{</span><span class="na">collection</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span><span class="p">});</span>
+    <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+    
+      <h3 id="es6-3">
+        
+        
+          ES6 <a href="#es6-3"></a>
+        
+        
+      </h3>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyPlugin</span> <span class="k">extends</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">BasePlugin</span> <span class="p">{</span>
+  <span class="nx">_myCollection</span><span class="p">;</span>
+
+  <span class="k">static</span> <span class="nx">defaultConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">myValue</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">};</span>
+
+  <span class="k">static</span> <span class="nx">isValid</span><span class="p">(</span><span class="nx">player</span><span class="p">)</span><span class="err">:</span> <span class="kr">boolean</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">player</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'Hello from '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s1">' plugin constructor!'</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">myValue</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_addBindings</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">destroy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'Empty collection'</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+
+  <span class="nx">reset</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'Reset collection'</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">myValue</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="nx">_addBindings</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">eventManager</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">SEEKED</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">+</span> <span class="s1">' Added to my collection'</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">player</span><span class="p">.</span><span class="nx">currentTime</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="s1">'collectionUpdate'</span><span class="p">,</span> <span class="p">{</span><span class="na">collection</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_myCollection</span><span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="step-5-register-your-plugin">
+        
+        
+          Step 5: Register Your Plugin <a href="#step-5-register-your-plugin"></a>
+        
+        
+      </h2>
+
+<p>Use the factory <code class="highlighter-rouge">registerPlugin</code> method to register your plugin in the player framework:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>MyPlugin<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"PATH/TO/PLAYER/LIB/FILENAME.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"PATH/TO/FILE/my-plugin.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+	<span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">registerPlugin</span><span class="p">(</span><span class="s2">"myPlugin"</span><span class="p">,</span> <span class="nx">MyPlugin</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+    
+      <h2 id="step-6-configure-your-plugin">
+        
+        
+          Step 6: Configure Your Plugin <a href="#step-6-configure-your-plugin"></a>
+        
+        
+      </h2>
+
+<p>All that’s left now is to verify that the player activates the plugin during runtime.</p>
+
+<p>Include the new plugin name and plugin configuration in the player configuration. For example:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">myPlugin</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">myValue</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>Let’s expand our test page and add a placeholder div to the player:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"player-div"</span> <span class="na">style=</span><span class="s">"width: 360px; height: 640px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<p>A basic player configuration:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">log</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">level</span><span class="p">:</span> <span class="s1">'DEBUG'</span>
+  <span class="p">},</span>
+  <span class="na">targetId</span><span class="p">:</span> <span class="s1">'player-div'</span><span class="p">,</span>
+  <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">partnerId</span><span class="p">:</span> <span class="s1">'YOUR_PARTNER_ID'</span>
+  <span class="p">},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">myPlugin</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">myValue</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>And setup code:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">mediaInfo</span> <span class="o">=</span> <span class="p">{</span><span class="na">entryId</span><span class="p">:</span> <span class="s1">'YOUR_ENTRY_ID'</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">loadMedia</span><span class="p">(</span><span class="nx">mediaInfo</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">player</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Plug everything together and you’ll get:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>MyPlugin<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"PATH/TO/PLAYER/LIB/FILENAME.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"PATH/TO/FILE/my-plugin.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">registerPlugin</span><span class="p">(</span><span class="s2">"myPlugin"</span><span class="p">,</span> <span class="nx">MyPlugin</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">log</span><span class="p">:{</span>
+      <span class="na">level</span><span class="p">:</span> <span class="s1">'DEBUG'</span>
+    <span class="p">},</span>
+    <span class="na">targetId</span><span class="p">:</span> <span class="s2">"player-div"</span><span class="p">,</span>
+    <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">partnerId</span><span class="p">:</span> <span class="s2">"YOUR_PARTNER_ID"</span>
+    <span class="p">},</span>
+    <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">myPlugin</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">myValue</span><span class="p">:</span> <span class="mi">10</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">mediaInfo</span> <span class="o">=</span> <span class="p">{</span><span class="na">entryId</span><span class="p">:</span> <span class="s2">"YOUR_ENTRY_ID"</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">loadMedia</span><span class="p">(</span><span class="nx">mediaInfo</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">player</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p><strong>That’s it! the player starts to play and your plugin is activated.</strong></p>
+    
+      <h1 id="writing-an-advanced-plugin">
+        
+        
+          Writing an Advanced Plugin <a href="#writing-an-advanced-plugin"></a>
+        
+        
+      </h1>
+
+<p>An advanced plugin is one that is built as a self project and handles a version, tests, documentation, dev scripts and so on.<br />
+All of the options described above can be achieved by using the <code class="highlighter-rouge">PlayKit JS Plugin Generator</code> tool.<br />
+<br />Read <a href="https://github.com/kaltura/playkit-js-plugin-generator">here</a> to learn more.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

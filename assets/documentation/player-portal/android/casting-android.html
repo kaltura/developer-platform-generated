@@ -1,0 +1,398 @@
+  <title>Casting for Android</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Casting for Android" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Casting for Android</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Jun 22 15:12:18 2020</span>, By <span class="commit-author">Avital Tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/casting-android.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Jun 22 05:45:55 2020, By: Avital Tzubeli</td></tr-->
+				<!--tr><td>Last commit: Mon Jun 22 15:12:18 2020, By <span class="commit-author">Avital Tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital Tzubeli (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h2 id="introduction">
+        
+        
+          Introduction <a href="#introduction"></a>
+        
+        
+      </h2>
+
+<p>The Cast functionality allows your videos to be cast from a Android mobile device, via the Chromecast plugin, directly to a Kaltura Player receiver app on a Chromecast-connected TV.</p>
+    
+      <h3 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h3>
+
+<p>Before you begin setting up the Cast feature, make sure you’ve read the article <a href="/api-docs/Mobile-Video-Player-SDKs/Android-Getting-Started.html">Android Player SDK and Environment Setup - Getting Started</a>.</p>
+    
+      <h2 id="basic-definitions">
+        
+        
+          Basic Definitions <a href="#basic-definitions"></a>
+        
+        
+      </h2>
+
+<ul>
+  <li><code class="highlighter-rouge">Sender</code> - A Cast enabled Kaltura Player running inside of a iOS Application; the Kaltura Player requires a Sender App ID.</li>
+  <li><code class="highlighter-rouge">Receiver</code> - A Kaltura Player Receiver App that runs on the Chromecast device.</li>
+</ul>
+    
+      <h3 id="getting-started">
+        
+        
+          Getting Started <a href="#getting-started"></a>
+        
+        
+      </h3>
+
+<p>To begin casting, follow these steps:</p>
+
+<ol>
+  <li>Create the <code class="highlighter-rouge">KPPlayerConfig config</code> as follows:<br />
+     <code class="highlighter-rouge">java
+     KPPlayerConfig config = new KPPlayerConfig("{your-server-id}", "{your-ui-conf-id}", "{your-pqrtner-id}").setEntryId("{your-entry_id}");
+    </code></li>
+  <li>Next, add the following to your <code class="highlighter-rouge">config</code> instance:</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.plugin"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">);</span>
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.useKalturaPlayer"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">);</span> 
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.applicationID"</span><span class="o">,</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">app_id</span><span class="o">));</span>
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.useKalturaPlayer"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">);</span>
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.receiverLogo"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">);</span>
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.defaultThumbnail"</span><span class="o">,</span> <span class="s">"the thumbnail you want to use"</span><span class="o">);</span>
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast"</span><span class="o">,</span> <span class="s">"{\"proxyData\":"</span> <span class="o">+</span> <span class="n">proxyDataReceiver</span> <span class="o">+</span> <span class="s">"}"</span><span class="o">);</span>  <span class="c1">// change the played media Format in order to stream it to TV in higher resolution</span>
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"strings.mwe-chromecast-loading"</span><span class="o">,</span> <span class="s">"Loading to CC"</span><span class="o">);</span>  <span class="c1">// Set Loading message</span>
+<span class="n">config</span><span class="o">.</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.logoUrl"</span><span class="o">,</span> <span class="s">"Your Logo"</span><span class="o">)</span>
+            
+</code></pre>
+</div>
+    
+      <h4 id="scanningconnecting-chromecast-devices">
+        
+        
+          Scanning/Connecting Chromecast Devices <a href="#scanningconnecting-chromecast-devices"></a>
+        
+        
+      </h4>
+
+<p>This version does not require device scanning and connection methods this is achieved now by Cast V3 MediaRouteButton that should be attached to the Activity</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> mMediaRouteButton = (MediaRouteButton) findViewById(R.id.media_route_button);
+ CastButtonFactory.setUpMediaRouteButton(getApplicationContext(), mMediaRouteButton);
+</code></pre>
+</div>
+    
+      <h4 id="casting-media">
+        
+        
+          Casting Media <a href="#casting-media"></a>
+        
+        
+      </h4>
+
+<p>To cast media, set the <code class="highlighter-rouge">mCastProvider</code> property under <code class="highlighter-rouge">PlayerViewController</code> with the <code class="highlighter-rouge">KCastProvider</code> object you created as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">mCastProvider</span> <span class="o">=</span> <span class="o">(</span><span class="n">KCastProviderV3Impl</span><span class="o">)</span> <span class="n">KCastFactory</span><span class="o">.</span><span class="na">createCastProvider</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">app_id</span><span class="o">),</span> <span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">cast_logo_url</span><span class="o">));</span>
+ <span class="n">mCastProvider</span><span class="o">.</span><span class="na">addCastStateListener</span><span class="o">(</span><span class="n">mCastStateListener</span><span class="o">);</span>
+</code></pre>
+</div>
+    
+      <h4 id="setting-cast-provider">
+        
+        
+          Setting Cast Provider <a href="#setting-cast-provider"></a>
+        
+        
+      </h4>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">mPlayer</span><span class="o">.</span><span class="na">setCastProvider</span><span class="o">(</span><span class="n">mCastProvider</span><span class="o">);</span>
+<span class="n">mCastProvider</span><span class="o">.</span><span class="na">setKCastProviderListener</span><span class="o">(</span><span class="k">new</span> <span class="n">KCastProvider</span><span class="o">.</span><span class="na">KCastProviderListener</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCastMediaRemoteControlReady</span><span class="o">(</span><span class="n">KCastMediaRemoteControl</span> <span class="n">castMediaRemoteControl</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">LOGD</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"onCastMediaRemoteControlReady hasMediaSession = "</span> <span class="o">+</span> <span class="n">castMediaRemoteControl</span><span class="o">.</span><span class="na">hasMediaSession</span><span class="o">(</span><span class="kc">false</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCastReceiverError</span><span class="o">(</span><span class="n">String</span> <span class="n">errorMsg</span> <span class="o">,</span> <span class="kt">int</span> <span class="n">errorCode</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">LOGE</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"onCastReceiverError errorMsg = "</span> <span class="o">+</span> <span class="n">errorMsg</span> <span class="o">+</span> <span class="s">" errorCode = "</span>  <span class="o">+</span> <span class="n">errorCode</span><span class="o">);</span>
+        <span class="o">}</span>
+<span class="o">});</span>
+</code></pre>
+</div>
+    
+      <h4 id="disconnecting-from-a-device">
+        
+        
+          Disconnecting from a Device <a href="#disconnecting-from-a-device"></a>
+        
+        
+      </h4>
+
+<p>To disconnect from a device use the following:</p>
+
+<p>You can disconnect using the mediaRouterButton or programmatically:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">mCastProvider</span><span class="o">.</span><span class="na">disconnectFromDevcie</span><span class="o">();</span>
+</code></pre>
+</div>
+    
+      <h3 id="using-the-media-remote-control">
+        
+        
+          Using the Media Remote Control <a href="#using-the-media-remote-control"></a>
+        
+        
+      </h3>
+
+<p>The <code class="highlighter-rouge">KCastProvider</code> includes a <code class="highlighter-rouge">mCastProvider.getCastMediaRemoteControl()</code> instance that controls the playback of the video being cast.</p>
+
+<p>At the app level you may add listener to the <br />
+<code class="highlighter-rouge">onCastMediaRemoteControlReady</code><br />
+and the <code class="highlighter-rouge">onCastReceiverError</code> Events.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">KCastProvider</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">startReceiver</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">guestModeEnabled</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">startReceiver</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">disconnectFromCastDevice</span><span class="o">();</span>
+    <span class="n">KCastDevice</span> <span class="nf">getSelectedCastDevice</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">setKCastProviderListener</span><span class="o">(</span><span class="n">KCastProviderListener</span> <span class="n">listener</span><span class="o">);</span>
+    <span class="n">KCastMediaRemoteControl</span> <span class="nf">getCastMediaRemoteControl</span><span class="o">();</span>
+    <span class="kt">boolean</span> <span class="nf">isRecconected</span><span class="o">();</span>
+    <span class="kt">boolean</span> <span class="nf">isConnected</span><span class="o">();</span>
+    <span class="kt">boolean</span> <span class="nf">isCasting</span><span class="o">();</span>
+
+    <span class="kd">interface</span> <span class="nc">KCastProviderListener</span> <span class="o">{</span>
+        <span class="kt">void</span> <span class="nf">onCastMediaRemoteControlReady</span><span class="o">(</span><span class="n">KCastMediaRemoteControl</span> <span class="n">castMediaRemoteControl</span><span class="o">);</span>
+        <span class="kt">void</span> <span class="nf">onCastReceiverError</span><span class="o">(</span><span class="n">String</span> <span class="n">errorMsg</span><span class="o">,</span> <span class="kt">int</span> <span class="n">errorCode</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h3 id="change-media">
+        
+        
+          Change Media <a href="#change-media"></a>
+        
+        
+      </h3>
+
+<p>In order to switch between videos during cast playback you should use</p>
+    
+      <h5 id="ovp">
+        
+        
+          OVP <a href="#ovp"></a>
+        
+        
+      </h5>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">mPlayer</span><span class="o">.</span><span class="na">changeMedia</span><span class="o">(</span><span class="s">"Entry ID"</span><span class="o">);</span>
+</code></pre>
+</div>
+    
+      <h5 id="ott">
+        
+        
+          OTT <a href="#ott"></a>
+        
+        
+      </h5>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">URL</span> <span class="o">=</span> <span class="s">"Your thumbnail URL"</span><span class="o">;</span>
+<span class="c1">//if proxy data for CC has to be different than the player</span>
+<span class="n">mPlayer</span><span class="o">.</span><span class="na">setKDPAttribute</span><span class="o">(</span><span class="s">"chromecast"</span><span class="o">,</span><span class="s">"proxyData"</span><span class="o">,</span><span class="n">getChromecatProxyDataJson</span><span class="o">(</span><span class="n">entryID</span><span class="o">));</span>
+<span class="c1">//for changing the thumbnail of the minicontroller for current media id </span>
+<span class="n">mPlayer</span><span class="o">.</span><span class="na">setKDPAttribute</span><span class="o">(</span><span class="s">"chromecast"</span><span class="o">,</span><span class="s">"defaultThumbnail"</span><span class="o">,</span><span class="s">"'"</span> <span class="o">+</span> <span class="n">URL</span> <span class="o">+</span> <span class="s">"'"</span><span class="o">);</span>  
+<span class="c1">//for updating mini controller png</span>
+<span class="n">mPlayer</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">addConfig</span><span class="o">(</span><span class="s">"chromecast.defaultThumbnail"</span><span class="o">,</span> <span class="n">URL</span><span class="o">);</span>
+<span class="n">mPlayer</span><span class="o">.</span><span class="na">changeMedia</span><span class="o">(</span><span class="n">proxyData</span> <span class="n">JSON</span> <span class="n">Object</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p><strong>It is required to set castProvider again in case that player activity or fragment was destroyed.</strong></p>
+    
+      <h3 id="demo-application">
+        
+        
+          Demo Application <a href="#demo-application"></a>
+        
+        
+      </h3>
+
+<p>A best practice sample application, which demonstrates the code that is required for a proper casting experience, can be found in this <br />
+<a href="https://github.com/kaltura/player-sdk-native-android/tree/develop/KalturaDemos/CCPlayerDemo">demo Android</a>.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
