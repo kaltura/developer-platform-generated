@@ -44,6 +44,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/Bulk-Content-Ingestion.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/how-ingest-media-file-bundled-metadata-csv-xml-api.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/create-new-kaltura-entry-and-upload-video-file-using-kaltura-api.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/express-recorder.html</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/uploadToken</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/uploadToken/action/add</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/uploadToken/action/delete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4498,6 +4499,7 @@
 <url> <loc>https://developer.kaltura.com/player/web/autoplay-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/player-states-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/api-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/player/web/plugins-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/errors-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/debugging-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/web/source-selection-web</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4519,6 +4521,7 @@
 <url> <loc>https://developer.kaltura.com/player/ios/live-streaming-ios</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/ios/background-play-ios</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/ios/download-to-go-ios</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/player/ios/casting-ios</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/ios/offline-assets-ios</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/ios/vr-360-ios</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/ios/kaltura-session-authentication-ios</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4531,6 +4534,7 @@
 <url> <loc>https://developer.kaltura.com/player/android/player-config-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/android/security-provider-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/android/download-to-go-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/player/android/casting-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/android/drm-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/android/ads-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/player/android/playlist-android</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
