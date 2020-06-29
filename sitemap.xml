@@ -3191,6 +3191,11 @@
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaImageFlavorParamsOutputBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaImageFlavorParamsOutputFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaIndexAdvancedFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaInteractivityDataFieldsFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaInteractivityDataFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaInteractivityInteractionFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaInteractivityNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaInteractivityRootFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaKontikiStorageProfileBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaKontikiStorageProfileFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/General_Objects/Filters/KalturaLikeBaseFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -6345,6 +6350,11 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaIntegrationJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaIntegrationJobTriggerData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaInteractivity</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaInteractivityDataFieldsFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaInteractivityDataFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaInteractivityInteractionFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaInteractivityNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaInteractivityRootFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaIpAddressCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaIpAddressContextField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/Definitions/KalturaIpAddressRestriction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -8821,6 +8831,11 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaIntegrationJobProviderData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaIntegrationJobTriggerData</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaInteractivity</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaInteractivityDataFieldsFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaInteractivityDataFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaInteractivityInteractionFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaInteractivityNodeFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaInteractivityRootFilter</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaIpAddressCondition</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaIpAddressContextField</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/Definitions/KalturaIpAddressRestriction</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
