@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Dec 10 17:25:35 2019</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Thu Jul 9 04:50:27 2020</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Dec 10 17:25:35 2019, By <span class="commit-author">Gilad Nadav</span></td></tr-->
+				<!--tr><td>Last commit: Thu Jul 9 04:50:27 2020, By <span class="commit-author">Gilad Nadav</span></td></tr-->
 			
 				<!-- 
 				
@@ -122,7 +122,7 @@ rtp('get', 'campaign',true);
 				<!-- 
 				
 				<tr>
-					<td>Gilad Nadav (4 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
+					<td>Gilad Nadav (5 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -459,6 +459,132 @@ rtp('get', 'campaign',true);
       </h3>
 
 <p><a href="https://github.com/kaltura/kaltura-player-android-samples/tree/master/OVPSamples/GettingStarted">Download</a></p>
+    
+      <h3 id="gradle-dependencies-for-playkit-sdk">
+        
+        
+          Gradle Dependencies for Playkit SDK <a href="#gradle-dependencies-for-playkit-sdk"></a>
+        
+        
+      </h3>
+    
+      <h5 id="a-kaltura-player">
+        
+        
+          A. Kaltura Player: <a href="#a-kaltura-player"></a>
+        
+        
+      </h5>
+<p>This dependency can be used on client app side. If client app use this then <em>there is no need to use Playkit, Kava, DTG and Providers dependency separately</em>. Because it is inbuilt in Kaltura Player.<br />
+Find more <a href="https://github.com/kaltura/kaltura-player-android/blob/develop/README.md">here</a></p>
+
+<p><code class="highlighter-rouge">implementation 'com.kaltura.player:tvplayer:kaltura_player_version'</code></p>
+
+<p>Please check our <a href="https://github.com/kaltura/kaltura-player-android-samples/blob/8c743c7083ec2848cc0db979a194b9c92ce1a36b/AdvancedSamples/FullDemo/playkitdemo/build.gradle#L34">Kaltura Player samples</a></p>
+
+<p>#####B. Use Player components standalone: <br />
+If client app wants to use player and its plugins standalone then other dependecies should be added.Find more <a href="https://kaltura.github.io/playkit/guide/android/">here</a></p>
+
+<p>Please check our <a href="https://github.com/kaltura/playkit-android-samples/blob/fd33d9709396fce6c4df983fc5efe7652fd1427b/FullDemo/app/build.gradle#L29">Playkit Samples</a></p>
+    
+      <h5 id="1-playkit">
+        
+        
+          1. Playkit: <a href="#1-playkit"></a>
+        
+        
+      </h5>
+<p>Core Player which handles Non-DRM/Clear and DRM content playback.<br />
+<code class="highlighter-rouge">implementation 'com.kaltura.playkit:playkit:latest_version'</code></p>
+    
+      <h5 id="2-dtg-download-to-go">
+        
+        
+          2. DTG (Download To Go): <a href="#2-dtg-download-to-go"></a>
+        
+        
+      </h5>
+<p>Plugin which handles download of dash(including DRM) and hls streams(clear streams)<br />
+<code class="highlighter-rouge">implementation 'com.kaltura.dtg:dtglib:dtg_latest_version'</code></p>
+    
+      <h5 id="3-phoenix-provider-plugin">
+        
+        
+          3. Phoenix Provider Plugin: <a href="#3-phoenix-provider-plugin"></a>
+        
+        
+      </h5>
+<p>If you are Kaltura customer then this plugin which handles Kaltura OTT and OVP BE api calls.<br />
+<code class="highlighter-rouge">implementation 'com.kaltura.playkit:playkitproviders:latest_version'</code></p>
+    
+      <h5 id="4-ima-ads-plugin">
+        
+        
+          4. IMA Ads Plugin: <a href="#4-ima-ads-plugin"></a>
+        
+        
+      </h5>
+<p>Plugin which handles ads playback. <br />
+<code class="highlighter-rouge">implementation 'com.kaltura.playkit:imaplugin:latest_version'</code></p>
+    
+      <h5 id="5-kava-analytics-plugin">
+        
+        
+          5. Kava Analytics Plugin: <a href="#5-kava-analytics-plugin"></a>
+        
+        
+      </h5>
+<p>Plugin for analytics.<br />
+<code class="highlighter-rouge">implementation 'com.kaltura.playkit:kavaplugin:latest_version'</code></p>
+    
+      <h5 id="6-youbora-analytics-plugin">
+        
+        
+          6. Youbora Analytics Plugin: <a href="#6-youbora-analytics-plugin"></a>
+        
+        
+      </h5>
+<p>Plugin for Youbora analytics.<br />
+<code class="highlighter-rouge">implementation 'com.kaltura.playkit:youboraplugin:latest_version'</code></p>
+    
+      <h5 id="7-googlecast-plugin">
+        
+        
+          7. Googlecast Plugin: <a href="#7-googlecast-plugin"></a>
+        
+        
+      </h5>
+<p>Plugin for content playback on Googlecast.<br />
+<code class="highlighter-rouge">implementation 'com.kaltura.playkit:googlecast:latest_version'</code></p>
+    
+      <h5 id="8-vr-plugin">
+        
+        
+          8. VR Plugin: <a href="#8-vr-plugin"></a>
+        
+        
+      </h5>
+<p>Plugin for 360 or VR content playback.<br />
+<code class="highlighter-rouge">implementation 'com.kaltura.playkit:vrplugin:latest_version'</code></p>
+
+<p>If client apps want to exclude the playkit from other plugins in case they find any cyclic dependency issue on app side then simply it can exclude the tree from the relavant dependency.</p>
+
+<p>######Example</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>implementation 'com.kaltura.playkit:anyPlugin:latest_version', {
+exclude group: 'com.kaltura.playkit', module: 'playkit'
+}
+
+</code></pre>
+</div>
+
+<p>######Note</p>
+<blockquote>
+  <p><code class="highlighter-rouge">latest_version</code> can be picked up from <a href="https://github.com/kaltura/playkit-android/releases">here</a>.</p>
+
+  <p><code class="highlighter-rouge">dtg_latest_version </code> can be picked from <a href="https://github.com/kaltura/playkit-dtg-android/releases">here</a></p>
+
+  <p><code class="highlighter-rouge">kaltura_player_version</code> can be picked from <a href="https://github.com/kaltura/kaltura-player-android/releases">here</a></p>
+</blockquote>
 		
 </article>
 
