@@ -109,10 +109,16 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Mon Aug 21 09:27:57 2017</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Ingest_and_Upload_Media/create-new-kaltura-entry-and-upload-video-file-using-kaltura-api.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Tue Jul 28 03:49:04 2020</span>, By <span class="commit-author">Adir Versano</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Ingest_and_Upload_Media/create-new-kaltura-entry-and-upload-video-file-using-kaltura-api.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Sun Apr 9 09:45:36 2017, By: AnnaAleksandrowicz</td></tr-->
-				<!--tr><td>Last commit: Mon Aug 21 09:27:57 2017, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Tue Jul 28 03:49:04 2020, By <span class="commit-author">Adir Versano</span></td></tr-->
 			
+				<!-- 
+				
+				<tr>
+					<td>Adir Versano (1 commits) (<a href="mailto:37370463+Adirv@users.noreply.github.com">37370463+Adirv@users.noreply.github.com</a>)</td>
+				</tr> -->
+
 				<!-- 
 				
 				<tr>
@@ -145,7 +151,7 @@ rtp('get', 'campaign',true);
 
 <figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">KalturaConfiguration</span> <span class="n">config</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">KalturaConfiguration</span><span class="p">(</span><span class="n">PARTNER_ID</span><span class="p">);</span>
 <span class="n">config</span><span class="p">.</span><span class="n">ServiceUrl</span> <span class="p">=</span> <span class="n">SERVICE_URL</span><span class="p">;</span>
-<span class="n">KalturaClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">KalturaClient</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="n">Client</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Client</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
 <span class="n">client</span><span class="p">.</span><span class="n">KS</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">GenerateSession</span><span class="p">(</span><span class="n">ADMIN_SECRET</span><span class="p">,</span> <span class="n">USER_ID</span><span class="p">,</span> <span class="n">KalturaSessionType</span><span class="p">.</span><span class="n">ADMIN</span><span class="p">,</span> <span class="n">PARTNER_ID</span><span class="p">,</span> <span class="m">86400</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span></code></pre></figure>
 
 <p>Create a new Media Entry to which we’ll attach the uploaded file:</p>
