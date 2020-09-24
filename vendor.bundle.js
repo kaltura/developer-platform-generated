@@ -51685,9 +51685,13 @@ var VirtualScrollerComponent = /** @class */function () {
         this.compareItems = function (item1, item2) {
             return item1 === item2;
         };
+        this.update = new _core.EventEmitter();
         this.vsUpdate = new _core.EventEmitter();
+        this.change = new _core.EventEmitter();
         this.vsChange = new _core.EventEmitter();
+        this.start = new _core.EventEmitter();
         this.vsStart = new _core.EventEmitter();
+        this.end = new _core.EventEmitter();
         this.vsEnd = new _core.EventEmitter();
         this.calculatedScrollbarWidth = 0;
         this.calculatedScrollbarHeight = 0;
@@ -51876,19 +51880,6 @@ var VirtualScrollerComponent = /** @class */function () {
         if (this.cachedItemsLength !== this.items.length) {
             this.cachedItemsLength = this.items.length;
             this.refresh_internal(true);
-            return;
-        }
-        if (this.previousViewPort && this.viewPortItems && this.viewPortItems.length > 0) {
-            var itemsArrayChanged = false;
-            for (var i = 0; i < this.viewPortItems.length; ++i) {
-                if (!this.compareItems(this.items[this.previousViewPort.startIndexWithBuffer + i], this.viewPortItems[i])) {
-                    itemsArrayChanged = true;
-                    break;
-                }
-            }
-            if (itemsArrayChanged) {
-                this.refresh_internal(true);
-            }
         }
     };
     VirtualScrollerComponent.prototype.refresh = function () {
@@ -52147,44 +52138,13 @@ var VirtualScrollerComponent = /** @class */function () {
         //note: maxRunTimes is to force it to keep recalculating if the previous iteration caused a re-render (different sliced items in viewport or scrollPosition changed).
         //The default of 2x max will probably be accurate enough without causing too large a performance bottleneck
         //The code would typically quit out on the 2nd iteration anyways. The main time it'd think more than 2 runs would be necessary would be for vastly different sized child items or if this is the 1st time the items array was initialized.
-        //Without maxRunTimes, If the user is actively scrolling this code would become an infinite loop until they stopped scrolling. This would be okay, except each scroll event would start an additional infinte loop. We want to short-circuit it to prevent this.
+        //Without maxRunTimes, If the user is actively scrolling this code would become an infinite loop until they stopped scrolling. This would be okay, except each scroll event would start an additional infinte loop. We want to short-circuit it to prevent his.
         var _this_1 = this;
         if (refreshCompletedCallback === void 0) {
             refreshCompletedCallback = undefined;
         }
         if (maxRunTimes === void 0) {
             maxRunTimes = 2;
-        }
-        if (itemsArrayModified) {
-            //if items were prepended, scroll forward to keep same items visible
-            var oldViewPort_1 = this.previousViewPort;
-            var oldViewPortItems_1 = this.viewPortItems;
-            var oldRefreshCompletedCallback_1 = refreshCompletedCallback;
-            refreshCompletedCallback = function refreshCompletedCallback() {
-                var scrollLengthDelta = _this_1.previousViewPort.scrollLength - oldViewPort_1.scrollLength;
-                if (scrollLengthDelta > 0 && _this_1.viewPortItems) {
-                    var oldStartItem_1 = oldViewPortItems_1[0];
-                    var oldStartItemIndex = _this_1.items.findIndex(function (x) {
-                        return _this_1.compareItems(oldStartItem_1, x);
-                    });
-                    if (oldStartItemIndex > _this_1.previousViewPort.startIndexWithBuffer) {
-                        var itemOrderChanged = false;
-                        for (var i = 1; i < _this_1.viewPortItems.length; ++i) {
-                            if (!_this_1.compareItems(_this_1.items[oldStartItemIndex + i], oldViewPortItems_1[i])) {
-                                itemOrderChanged = true;
-                                break;
-                            }
-                        }
-                        if (!itemOrderChanged) {
-                            _this_1.scrollToPosition(_this_1.previousViewPort.scrollStartPosition + scrollLengthDelta, 0, oldRefreshCompletedCallback_1);
-                            return;
-                        }
-                    }
-                }
-                if (oldRefreshCompletedCallback_1) {
-                    oldRefreshCompletedCallback_1();
-                }
-            };
         }
         this.zone.runOutsideAngular(function () {
             requestAnimationFrame(function () {
@@ -52217,6 +52177,8 @@ var VirtualScrollerComponent = /** @class */function () {
                     _this_1.renderer.setStyle(_this_1.headerElementRef.nativeElement, 'webkitTransform', _this_1._translateDir + "(" + offset + "px)");
                 }
                 var changeEventArg = startChanged || endChanged ? {
+                    start: viewport.startIndex,
+                    end: viewport.endIndex,
                     startIndex: viewport.startIndex,
                     endIndex: viewport.endIndex,
                     scrollStartPosition: viewport.scrollStartPosition,
@@ -52229,15 +52191,19 @@ var VirtualScrollerComponent = /** @class */function () {
                     var handleChanged = function handleChanged() {
                         // update the scroll list to trigger re-render of components in viewport
                         _this_1.viewPortItems = viewport.startIndexWithBuffer >= 0 && viewport.endIndexWithBuffer >= 0 ? _this_1.items.slice(viewport.startIndexWithBuffer, viewport.endIndexWithBuffer + 1) : [];
+                        _this_1.update.emit(_this_1.viewPortItems);
                         _this_1.vsUpdate.emit(_this_1.viewPortItems);
                         if (startChanged) {
+                            _this_1.start.emit(changeEventArg);
                             _this_1.vsStart.emit(changeEventArg);
                         }
                         if (endChanged) {
+                            _this_1.end.emit(changeEventArg);
                             _this_1.vsEnd.emit(changeEventArg);
                         }
                         if (startChanged || endChanged) {
                             _this_1.changeDetectorRef.markForCheck();
+                            _this_1.change.emit(changeEventArg);
                             _this_1.vsChange.emit(changeEventArg);
                         }
                         if (maxRunTimes > 0) {
@@ -52658,9 +52624,13 @@ var VirtualScrollerComponent = /** @class */function () {
     (0, _tslib.__decorate)([(0, _core.Input)(), (0, _tslib.__metadata)("design:type", Function)], VirtualScrollerComponent.prototype, "compareItems", void 0);
     (0, _tslib.__decorate)([(0, _core.Input)(), (0, _tslib.__metadata)("design:type", Boolean), (0, _tslib.__metadata)("design:paramtypes", [Boolean])], VirtualScrollerComponent.prototype, "horizontal", null);
     (0, _tslib.__decorate)([(0, _core.Input)(), (0, _tslib.__metadata)("design:type", Object), (0, _tslib.__metadata)("design:paramtypes", [Object])], VirtualScrollerComponent.prototype, "parentScroll", null);
+    (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "update", void 0);
     (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "vsUpdate", void 0);
+    (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "change", void 0);
     (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "vsChange", void 0);
+    (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "start", void 0);
     (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "vsStart", void 0);
+    (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "end", void 0);
     (0, _tslib.__decorate)([(0, _core.Output)(), (0, _tslib.__metadata)("design:type", _core.EventEmitter)], VirtualScrollerComponent.prototype, "vsEnd", void 0);
     (0, _tslib.__decorate)([(0, _core.ViewChild)('content', { read: _core.ElementRef }), (0, _tslib.__metadata)("design:type", _core.ElementRef)], VirtualScrollerComponent.prototype, "contentElementRef", void 0);
     (0, _tslib.__decorate)([(0, _core.ViewChild)('invisiblePadding', { read: _core.ElementRef }), (0, _tslib.__metadata)("design:type", _core.ElementRef)], VirtualScrollerComponent.prototype, "invisiblePaddingElementRef", void 0);
@@ -52754,7 +52724,7 @@ function View_VirtualScrollerComponent_Host_0(_l) {
     var currVal_0 = i0.ɵnov(_v, 1).horizontal;var currVal_1 = !i0.ɵnov(_v, 1).horizontal;var currVal_2 = !i0.ɵnov(_v, 1).parentScroll;_ck(_v, 0, 0, currVal_0, currVal_1, currVal_2);
   });
 }
-var VirtualScrollerComponentNgFactory = i0.ɵccf("virtual-scroller,[virtualScroller]", i1.VirtualScrollerComponent, View_VirtualScrollerComponent_Host_0, { executeRefreshOutsideAngularZone: "executeRefreshOutsideAngularZone", enableUnequalChildrenSizes: "enableUnequalChildrenSizes", useMarginInsteadOfTranslate: "useMarginInsteadOfTranslate", modifyOverflowStyleOfParentScroll: "modifyOverflowStyleOfParentScroll", stripedTable: "stripedTable", scrollbarWidth: "scrollbarWidth", scrollbarHeight: "scrollbarHeight", childWidth: "childWidth", childHeight: "childHeight", ssrChildWidth: "ssrChildWidth", ssrChildHeight: "ssrChildHeight", ssrViewportWidth: "ssrViewportWidth", ssrViewportHeight: "ssrViewportHeight", bufferAmount: "bufferAmount", scrollAnimationTime: "scrollAnimationTime", resizeBypassRefreshThreshold: "resizeBypassRefreshThreshold", scrollThrottlingTime: "scrollThrottlingTime", scrollDebounceTime: "scrollDebounceTime", checkResizeInterval: "checkResizeInterval", items: "items", compareItems: "compareItems", horizontal: "horizontal", parentScroll: "parentScroll" }, { vsUpdate: "vsUpdate", vsChange: "vsChange", vsStart: "vsStart", vsEnd: "vsEnd" }, ["*"]);
+var VirtualScrollerComponentNgFactory = i0.ɵccf("virtual-scroller,[virtualScroller]", i1.VirtualScrollerComponent, View_VirtualScrollerComponent_Host_0, { executeRefreshOutsideAngularZone: "executeRefreshOutsideAngularZone", enableUnequalChildrenSizes: "enableUnequalChildrenSizes", useMarginInsteadOfTranslate: "useMarginInsteadOfTranslate", modifyOverflowStyleOfParentScroll: "modifyOverflowStyleOfParentScroll", stripedTable: "stripedTable", scrollbarWidth: "scrollbarWidth", scrollbarHeight: "scrollbarHeight", childWidth: "childWidth", childHeight: "childHeight", ssrChildWidth: "ssrChildWidth", ssrChildHeight: "ssrChildHeight", ssrViewportWidth: "ssrViewportWidth", ssrViewportHeight: "ssrViewportHeight", bufferAmount: "bufferAmount", scrollAnimationTime: "scrollAnimationTime", resizeBypassRefreshThreshold: "resizeBypassRefreshThreshold", scrollThrottlingTime: "scrollThrottlingTime", scrollDebounceTime: "scrollDebounceTime", checkResizeInterval: "checkResizeInterval", items: "items", compareItems: "compareItems", horizontal: "horizontal", parentScroll: "parentScroll" }, { update: "update", vsUpdate: "vsUpdate", change: "change", vsChange: "vsChange", start: "start", vsStart: "vsStart", end: "end", vsEnd: "vsEnd" }, ["*"]);
 exports.VirtualScrollerComponentNgFactory = VirtualScrollerComponentNgFactory;
 
 /***/ }),
