@@ -964,6 +964,7 @@ table th {
       <xs:enumeration value="Pashto (Pushto)"></xs:enumeration>
       <xs:enumeration value="Polish"></xs:enumeration>
       <xs:enumeration value="Portuguese"></xs:enumeration>
+      <xs:enumeration value="Portuguese (Brazil)"></xs:enumeration>
       <xs:enumeration value="Punjabi"></xs:enumeration>
       <xs:enumeration value="Quechua"></xs:enumeration>
       <xs:enumeration value="Rhaeto-Romance"></xs:enumeration>
@@ -984,6 +985,7 @@ table th {
       <xs:enumeration value="Slovenian"></xs:enumeration>
       <xs:enumeration value="Somali"></xs:enumeration>
       <xs:enumeration value="Spanish"></xs:enumeration>
+      <xs:enumeration value="Spanish (Latin America)"></xs:enumeration>
       <xs:enumeration value="Sundanese"></xs:enumeration>
       <xs:enumeration value="Swahili (Kiswahili)"></xs:enumeration>
       <xs:enumeration value="Swedish"></xs:enumeration>
