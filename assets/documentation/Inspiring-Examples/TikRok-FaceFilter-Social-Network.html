@@ -1,0 +1,686 @@
+ <title>Create a Video Social Network in 20 Minutes</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Create a Video Social Network in 20 Minutes" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Create a Video Social Network in 20 Minutes</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Thu Nov 12 07:19:38 2020</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/Inspiring-Examples/TikRok-FaceFilter-Social-Network.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Thu Oct 29 11:16:37 2020, By: Hunter Peress</td></tr-->
+				<!--tr><td>Last commit: Thu Nov 12 07:19:38 2020, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunter Peress (3 commits) (<a href="mailto:hunter.p@h.p">hunter.p@h.p</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Hunter Peress (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (3 commits) (<a href="mailto:hunter.p@h.p">hunter.p@h.p</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h2 id="creating-your-own-video-social-network-in-under-20-minutes">
+        
+        
+          Creating Your Own Video Social Network in Under 20 Minutes! <a href="#creating-your-own-video-social-network-in-under-20-minutes"></a>
+        
+        
+      </h2>
+
+<p>In this tutorial, you will build an MVP of a social network (aka TikRok) powered by Kaltura. Tikrok is a fully functional social network. Users can record videos using a built-in face filter, upload them, and browse other users’ videos.</p>
+
+<p><img src="/assets/images/tikrok/HighLevel.png" alt="HighLevel" /></p>
+    
+      <h2 id="try-it-live">
+        
+        
+          Try it Live: <a href="#try-it-live"></a>
+        
+        
+      </h2>
+
+<p>https://tik-rok.herokuapp.com/</p>
+    
+      <h2 id="video-code-walkthrough">
+        
+        
+          Video Code Walkthrough: <a href="#video-code-walkthrough"></a>
+        
+        
+      </h2>
+
+<iframe src="https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedIframeJs/uiconf_id/42923951/partner_id/2421271?iframeembed=true&amp;entry_id=1_zxnf9ha7&amp;flashvars[streamerType]=auto" frameborder="0" title="vPaaS Foodies Interactive Video - Developers"></iframe>
+
+    
+      <h2 id="design-choices">
+        
+        
+          Design Choices <a href="#design-choices"></a>
+        
+        
+      </h2>
+
+<p>Many shortcuts were taken in order to give you the barebones, simplest implementation of this concept aka an MVP. I chose a web front end to give a low barrier to entry across any platform. While recording does not work on all mobile browsers, the face filters do, and a more robust implementation could make use of Kaltura’s many <a href="https://developer.kaltura.com/api-docs/Client_Libraries">Client Libraries</a></p>
+    
+      <h2 id="this-is-just-a-kernel">
+        
+        
+          This is just a kernel… <a href="#this-is-just-a-kernel"></a>
+        
+        
+      </h2>
+
+<p>Don’t limit yourself to copying TikRok, the purpose of this tutorial is to ignite your creativity. There are so many directions you <strong>could</strong> go in, for example, there are open source emotion recognition engines. Why not make an app that detects if someone is sad or angry and notify their friends they need cheering up? Food for thought. And it doesn’t have to be entertaining, think healthcare/covid-19, think education, think business, think food, fashion, music, finance, holidays, think what can I do with face detection, an augmented reality canvas or just something creative with video?</p>
+
+<p><img src="/assets/images/tikrok/HAPPY.jpg" alt="HAPPY" style="zoom:30%;" /></p>
+
+<p>From https://github.com/justadudewhohacks/face-api.js/</p>
+    
+      <h2 id="introducing-tikrok">
+        
+        
+          Introducing TikRok <a href="#introducing-tikrok"></a>
+        
+        
+      </h2>
+
+<p>This sample, fully functional social network lets you use a funny face filter to make a video, upload it, browse everyone’s videos, and gives users their own page.</p>
+    
+      <h2 id="getting-started">
+        
+        
+          Getting Started <a href="#getting-started"></a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>First, you will need a free Kaltura account: start a <a href="https://corp.kaltura.com/video-paas/registration?utm_campaign=Tikrok&amp;utm_medium=affiliates&amp;utm_source=GitHub">free trial</a></p>
+  </li>
+  <li>
+    <p>Clone the TikRok Github repo https://github.com/kaltura-vpaas/example-tikrok</p>
+  </li>
+  <li>
+    <p>Let’s take a look at .env.template:</p>
+
+    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="err">ADMIN_SECRET=</span><span class="w">   </span><span class="err">//obtain</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings</span><span class="w">
+</span><span class="err">PARTNER_ID=</span><span class="w">     </span><span class="err">//obtain</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings</span><span class="w">
+</span><span class="err">PLAYER_ID=</span><span class="w">      </span><span class="err">//obtain</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">https://kmc.kaltura.com/index.php/kmcng/studio/v</span><span class="mi">3</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>Copy  <code class="highlighter-rouge">.env.template</code> to <code class="highlighter-rouge">.env</code> and edit the values above.</p>
+
+    <p>We need to get your Kaltura Partner Id and API Admin Secret so let’s head over to <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">Integration Settings tab</a></p>
+
+    <p><img src="/assets/images/tikrok/KMC_CODES.png" alt="KMC_CODES" style="zoom:45%;" /></p>
+  </li>
+</ol>
+
+<p>Head to https://kmc.kaltura.com/index.php/kmcng/studio/v3 , create a player and get its ID. Make sure to create your player through the “TV Platform Studio” as pictured:</p>
+
+<p><img src="/assets/images/tikrok/KMC_PLAYER.png" alt="KMC_PLAYER.png" style="zoom:50%;" /></p>
+
+<ol>
+  <li>Install the components for node:</li>
+</ol>
+
+<p><code class="highlighter-rouge">npm install</code></p>
+
+<ol>
+  <li>
+    <p><strong>Its Showtime!!</strong> run</p>
+
+    <p><code class="highlighter-rouge">npm start</code></p>
+
+    <p>and head to</p>
+
+    <p><code class="highlighter-rouge">http://localhost:3000</code></p>
+  </li>
+</ol>
+    
+      <h2 id="connecting-the-back-end-to-kaltura">
+        
+        
+          Connecting the back end to Kaltura <a href="#connecting-the-back-end-to-kaltura"></a>
+        
+        
+      </h2>
+
+<p>Pick a screen name and hit go:</p>
+
+<p><img src="/assets/images/tikrok/SCREEN_NAME.png" alt="SCREEN_NAME" /></p>
+
+<p>The next touch point is the <code class="highlighter-rouge">router.post('/', </code>method of <code class="highlighter-rouge">routes/login.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">adminks</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">KalturaClientFactory</span><span class="p">.</span><span class="nx">getKS</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">enums</span><span class="p">.</span><span class="nx">SessionType</span><span class="p">.</span><span class="nx">ADMIN</span><span class="p">});</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">KalturaClientFactory</span><span class="p">.</span><span class="nx">getClient</span><span class="p">(</span><span class="nx">adminks</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">getOrCreateUser</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">userId</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">userKs</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">KalturaClientFactory</span><span class="p">.</span><span class="nx">getKS</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,{</span><span class="na">privileges</span><span class="p">:</span> <span class="s1">'editadmintags:*'</span><span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Take a look at <code class="highlighter-rouge">lib/KalturaClientFactory.js</code> to see how the <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">Kaltura Session</a> is created</p>
+
+<p>We first create an admin session <code class="highlighter-rouge">adminks</code> which is required to create a user. Then we create a user session <code class="highlighter-rouge">userKs</code>  and store the <code class="highlighter-rouge">userKs</code> to the node session so it can be used later.</p>
+
+<p><code class="highlighter-rouge">req.session.ks = userKs;</code></p>
+
+<p>And then we are redirected to the <strong><em>REALLY</em></strong> fun stuff: the face filter!</p>
+    
+      <h2 id="the-face-filter">
+        
+        
+          The Face Filter <a href="#the-face-filter"></a>
+        
+        
+      </h2>
+
+<p>We will use the open source face filter library https://github.com/jeeliz/jeelizFaceFilter There is nothing stopping you from getting very creative with these filters! You could supply your own artwork….the sky is the limit!</p>
+
+<p>Here is a high level overview of the video creation work flow:</p>
+
+<p><img src="/assets/images/tikrok/FaceFilter.png" alt="FaceFilter" /></p>
+
+<p>By itself, the face filter demo displays to a canvas element. Some of the demo’s use <code class="highlighter-rouge">&lt;divs&gt;</code> to display graphics on top of a canvas, those demos won’t work with our approach as we can only record what is actually on the canvas</p>
+    
+      <h3 id="loading-and-switching-filters">
+        
+        
+          Loading and Switching Filters <a href="#loading-and-switching-filters"></a>
+        
+        
+      </h3>
+
+<p>First, let’s set up the filter:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span><span class="err">
+.vidsize {
+    width:600px;
+    height:600px;
+}
+&lt;/style
+&lt;/head&gt;
+&lt;body onload="init_filter()"&gt;
+    &lt;div class="vidsize" style="margin:0 auto;position: relative;"&gt;
+        &lt;div id="loading" class="loading"&gt;
+            Loading Filter 
+            &lt;br&gt;
+            &lt;img class="loading" src="//assets/images/tikrok/loading_black.png"&gt;
+        &lt;/div&gt;
+        &lt;div id="filterRow"&gt;
+            &lt;a href="#" onclick="loadFilter('football')"&gt;🇫🇷&lt;/a&gt;
+            &lt;a href="#" onclick="loadFilter('angel')"&gt;😇😈&lt;/a&gt;
+            &lt;a href="#" onclick="loadFilter('deform')"&gt;🥴&lt;/a&gt;
+            &lt;a href="#" onclick="loadFilter('faceswap')"&gt;😀🔄😀&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id="filterBtn"&gt;&lt;a href="#" onclick="filterBtnToggle()"&gt;😃&lt;/a&gt;&lt;/div&gt;
+        &lt;canvas width="600" height="600" id='jeeFaceFilterCanvas'&gt;&lt;/canvas&gt;
+        &lt;div id="controls" class="vidsize"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+</span></code></pre>
+</div>
+
+<p>So <code class="highlighter-rouge">onload</code> calls the <code class="highlighter-rouge">initFilter()</code> method from the default filter at <code class="highlighter-rouge">public/filters/deform/deform.js</code> which sets up the canvas element to render the face filter over webcam video. I created a naming convention the code uses to switch filters and it is:</p>
+
+<p><code class="highlighter-rouge">public/filters/filtername/filtername.js</code> and each filter has the same initFilter() method. When <code class="highlighter-rouge">loadFilter(filter)</code> is called it actually routes us to a completely different webpage:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function loadFilter(filter) {
+	window.onbeforeunload = null;
+  window.location = "/record?filter="+filter
+</code></pre>
+</div>
+
+<p>And the filter is loaded through a query parameter:</p>
+
+<p><code class="highlighter-rouge">&lt;script src='facefilter/filters/&lt;%=filter%&gt;/&lt;%=filter%&gt;.js'&gt;&lt;/script&gt;</code></p>
+
+<p>Nothing is stopping you from switching filters entirely in javascript, just some refactoring would be necessary.</p>
+
+<p>In case you are wondering about the <code class="highlighter-rouge">#loading</code> animated png…it displays by default on page load, and then is hidden by each of the four filters by calling</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  $("#loading").hide();
+} //end init_threeScene()
+</code></pre>
+</div>
+
+<p>in <code class="highlighter-rouge">deform.js</code></p>
+    
+      <h3 id="setup-kaltura-express-recorder">
+        
+        
+          Setup Kaltura Express Recorder <a href="#setup-kaltura-express-recorder"></a>
+        
+        
+      </h3>
+
+<p>In <code class="highlighter-rouge">views/record.ejs</code> we will use the <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/express-recorder.html">Kaltura Express Recorder</a>, which has the option to record a canvas element and combine it with your webcam’s audio.</p>
+
+<p><strong>Note</strong>:The github for TikRok includes a forked “canvas” version of express recorder named <code class="highlighter-rouge">kaltura-canvas-express-recorder.js</code></p>
+
+<ol>
+  <li><code class="highlighter-rouge">&lt;div id="controls"</code> is where the <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/express-recorder.html">Kaltura Express Recorder</a> controls will be injected. These elements must all have the same video size to render properly. Now to instantiate the express recorder:</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>			 <span class="kr">const</span> <span class="nx">expressRec</span> <span class="o">=</span> <span class="nx">Kaltura</span><span class="p">.</span><span class="nx">ExpressRecorder</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'controls'</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s2">"ks"</span><span class="p">:</span> <span class="s2">"&lt;%=ks%&gt;"</span><span class="p">,</span>
+            <span class="s2">"serviceUrl"</span><span class="p">:</span> <span class="s2">"https://www.kaltura.com"</span><span class="p">,</span> <span class="c1">// IE http://www.kaltura.com,</span>
+            <span class="s2">"app"</span><span class="p">:</span> <span class="s2">"APP_NAME"</span><span class="p">,</span>
+            <span class="s2">"playerUrl"</span><span class="p">:</span> <span class="s2">"https://cdnapi.kaltura.com"</span><span class="p">,</span> <span class="c1">// IE http://cdnapi.kaltura.com,</span>
+            <span class="s2">"conversionProfileId"</span><span class="p">:</span> <span class="s2">"CONVERSION_PROFILE_ID"</span><span class="p">,</span>
+            <span class="s2">"partnerId"</span><span class="p">:</span> <span class="o">&lt;%=</span><span class="nx">partnerId</span><span class="o">%&gt;</span><span class="p">,</span>
+            <span class="s2">"uiConfId"</span><span class="p">:</span> <span class="o">&lt;%=</span><span class="nx">playerId</span><span class="o">%&gt;</span><span class="p">,</span>
+            <span class="s2">"canvasId"</span><span class="p">:</span> <span class="s2">"jeeFaceFilterCanvas"</span>
+        <span class="p">});</span>
+</code></pre>
+</div>
+
+<p>We have supplied all relevant id strings from node,  and we specify the canvas to record via <code class="highlighter-rouge">canvasId</code> <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/express-recorder.html">Kaltura Express Recorder</a> has many more configuration options and event listeners.</p>
+
+<ol>
+  <li>We will also use the express recorder’s event listener interface to create a better UX:</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> 				<span class="nx">expressRec</span><span class="p">.</span><span class="nx">instance</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"recordingStarted"</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+            <span class="c1">//hide the filter buttons when recording has started</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'#filterRow'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'#filterBtn'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="p">});</span>
+        
+        <span class="nx">expressRec</span><span class="p">.</span><span class="nx">instance</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"recordingCancelled"</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          	<span class="c1">//if use hits cancel button, then show the filters again</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'#filterBtn'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>   
+        <span class="p">});</span>
+
+        <span class="nx">expressRec</span><span class="p">.</span><span class="nx">instance</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"mediaUploadEnded"</span><span class="p">,(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+           <span class="c1">//once upload is finished, then move on to gallery</span>
+           <span class="nb">window</span><span class="p">.</span><span class="nx">onbeforeunload</span> <span class="o">=</span> <span class="kc">null</span>
+           <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="o">=</span><span class="s2">"/gallery"</span><span class="p">;</span>
+        <span class="p">});</span>                  
+</code></pre>
+</div>
+
+<ol>
+  <li>You should see something like this:</li>
+</ol>
+
+<p><img src="/assets/images/tikrok/FUNNY.PNG" alt="FUNNY" style="zoom:50%;" /></p>
+    
+      <h2 id="the-gallery-">
+        
+        
+          The Gallery : <a href="#the-gallery-"></a>
+        
+        
+      </h2>
+
+<p>We are taking a very MVP approach to displaying the gallery with a simplifying assumption: this app will be the only source of videos connected to your account. If you want more control over how to organize videos, check out <a href="https://developer.kaltura.com/api-docs/service/playlist">Playlists</a></p>
+
+<p>The express recorder creates a <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMediaEntry">Kaltura Media Entry</a> for your video and associates it with your user id. Our approach will simply list all media in our account via the <a href="https://developer.kaltura.com/console/service/media/action/list">Media.list</a> API call</p>
+    
+      <h3 id="kaltura-api-console">
+        
+        
+          Kaltura API Console <a href="#kaltura-api-console"></a>
+        
+        
+      </h3>
+
+<p>When you look at <a href="https://developer.kaltura.com/console/service/media/action/list">Media.list</a> in the console:</p>
+
+<p><img src="/assets/images/tikrok/MEDIALIST.png" alt="MEDIALIST" /></p>
+
+<p>On the left, we can send the request or add parameters. On the right side you can auto-generate a sample code corresponding to the request on the left from all supported languages.</p>
+
+<p>And the auto-generated code is very close to that of <code class="highlighter-rouge">gallery.js</code> :</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">getMedia</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">objects</span><span class="p">.</span><span class="nx">MediaEntryFilter</span>
+        <span class="nx">filter</span><span class="p">.</span><span class="nx">orderBy</span> <span class="o">=</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">enums</span><span class="p">.</span><span class="nx">MediaEntryOrderBy</span><span class="p">.</span><span class="nx">UPDATED_AT_DESC</span><span class="p">;</span>
+       
+        <span class="kd">let</span> <span class="nx">pager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">objects</span><span class="p">.</span><span class="nx">FilterPager</span><span class="p">();</span>
+        <span class="nx">pager</span><span class="p">.</span><span class="nx">pageSize</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+        <span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span>
+            <span class="p">.</span><span class="nx">listAction</span><span class="p">(</span><span class="nx">filter</span><span class="p">,</span> <span class="nx">pager</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">resolve</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+            <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h3 id="animated-thumbnails">
+        
+        
+          Animated thumbnails <a href="#animated-thumbnails"></a>
+        
+        
+      </h3>
+
+<p>We are using https://github.com/kaltura/VideoThumbnailAnimator in <code class="highlighter-rouge">views/gallery.ejs</code> to provide animated thumbnails for the gallery</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"thumbnails"</span><span class="nt">&gt;</span>
+        <span class="err">&lt;</span>%- include('gallery/entries.ejs', {entries: entries}) %&gt;
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+        <span class="kd">var</span> <span class="nx">thumbAnimator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaThumbAnimator</span><span class="p">();</span>
+        <span class="nx">thumbAnimator</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="s2">"videothumbnail"</span><span class="p">,</span> <span class="s2">"http://cfvod.kaltura.com"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> 
+    <span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+    
+      <h2 id="user-page">
+        
+        
+          User Page <a href="#user-page"></a>
+        
+        
+      </h2>
+    
+      <h3 id="querying-for-users-kaltura-media-entries">
+        
+        
+          Querying for user’s Kaltura Media Entries <a href="#querying-for-users-kaltura-media-entries"></a>
+        
+        
+      </h3>
+
+<p>To display a users videos, We will use <a href="https://developer.kaltura.com/console/service/media/action/list">Media.list</a> but this time we will filter by userId. You can build this query using the API Console:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">objects</span><span class="p">.</span><span class="nx">MediaEntryFilter</span>
+<span class="nx">filter</span><span class="p">.</span><span class="nx">orderBy</span> <span class="o">=</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">enums</span><span class="p">.</span><span class="nx">MediaEntryOrderBy</span><span class="p">.</span><span class="nx">UPDATED_AT_DESC</span><span class="p">;</span>
+<span class="nx">filter</span><span class="p">.</span><span class="nx">userIdEqual</span> <span class="o">=</span> <span class="nx">userId</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">pager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">objects</span><span class="p">.</span><span class="nx">FilterPager</span><span class="p">();</span>
+<span class="nx">pager</span><span class="p">.</span><span class="nx">pageSize</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">listAction</span><span class="p">(</span><span class="nx">filter</span><span class="p">,</span> <span class="nx">pager</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">resolve</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h3 id="playing-video">
+        
+        
+          Playing Video <a href="#playing-video"></a>
+        
+        
+      </h3>
+
+<p>in <code class="highlighter-rouge">views/user.ejs</code></p>
+
+<p>We will be following the steps to set up a player from https://developer.kaltura.com/player/web/getting-started-web</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span> 
+<span class="nx">src</span><span class="o">=</span><span class="s2">"https://cdnapisec.kaltura.com/p/&lt;%=partnerId %&gt;/embedPlaykitJs/uiconf_id/&lt;%=playerId%&gt;"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span><span class="o">&gt;</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+                <span class="na">targetId</span><span class="p">:</span> <span class="s2">"playerContainer"</span><span class="p">,</span>
+                <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">partnerId</span><span class="p">:</span> <span class="o">&lt;%=</span> <span class="nx">partnerId</span> <span class="o">%&gt;</span><span class="p">,</span>
+                <span class="na">uiConfId</span><span class="p">:</span> <span class="o">&lt;%=</span> <span class="nx">playerId</span> <span class="o">%&gt;</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="nx">player</span><span class="p">.</span><span class="nx">loadMedia</span><span class="p">({</span> <span class="na">entryId</span><span class="p">:</span> <span class="s1">'&lt;%= entries[0].id %&gt;'</span> <span class="p">});</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre>
+</div>
+
+<p>And in <code class="highlighter-rouge">routes/user/post.ejs</code> we will load the player with:</p>
+
+<p><code class="highlighter-rouge">&lt;a href="#" onclick="player.loadMedia({entryId: '&lt;%= entry.id %&gt;'})"&gt;&lt;img src="&lt;%= entry.thumbnailUrl %&gt;"&gt;&lt;/a&gt;</code></p>
+    
+      <h1 id="and---thats-it">
+        
+        
+          AND - That’s It! <a href="#and---thats-it"></a>
+        
+        
+      </h1>
+
+<p>I hope this tutorial has helped show you how easy it can be to create a canvas-based application in node using the Kaltura VPaaS API</p>
+    
+      <h1 id="how-you-can-help-guidelines-for-contributors">
+        
+        
+          How you can help (guidelines for contributors) <a href="#how-you-can-help-guidelines-for-contributors"></a>
+        
+        
+      </h1>
+
+<p>Thank you for helping Kaltura grow! If you’d like to contribute please follow these steps:</p>
+
+<ul>
+  <li>Use the repository issues tracker to report bugs or feature requests</li>
+  <li>Read <a href="https://github.com/kaltura/platform-install-packages/blob/master/doc/Contributing-to-the-Kaltura-Platform.md">Contributing Code to the Kaltura Platform</a></li>
+  <li>Sign the <a href="https://agentcontribs.kaltura.org/">Kaltura Contributor License Agreement</a></li>
+</ul>
+    
+      <h1 id="where-to-get-help">
+        
+        
+          Where to get help <a href="#where-to-get-help"></a>
+        
+        
+      </h1>
+
+<ul>
+  <li>Join the <a href="https://forum.kaltura.org/">Kaltura Community Forums</a> to ask questions or start discussions</li>
+  <li>Read the <a href="https://forum.kaltura.org/faq">Code of conduct</a> and be patient and respectful</li>
+</ul>
+    
+      <h1 id="get-in-touch">
+        
+        
+          Get in touch <a href="#get-in-touch"></a>
+        
+        
+      </h1>
+
+<p>You can learn more about Kaltura and start a free trial <a href="https://corp.kaltura.com/video-paas/registration?utm_campaign=Tikrok&amp;utm_medium=affiliates&amp;utm_source=GitHub">here</a> <br />
+Contact us via Twitter <a href="https://twitter.com/Kaltura_API">@Kaltura_API</a> or email: <a href="mailto:community@kaltura.com">community@kaltura.com</a><br />
+We’d love to hear from you!</p>
+    
+      <h1 id="license-and-copyright-information">
+        
+        
+          License and Copyright Information <a href="#license-and-copyright-information"></a>
+        
+        
+      </h1>
+
+<p>All code in this project is released under the <a href="http://www.gnu.org/licenses/agpl-3.0.html">AGPLv3 license</a> unless a different license for a particular library is specified in the applicable library path.</p>
+
+<p>Copyright © Kaltura Inc. All rights reserved.</p>
+    
+      <h3 id="open-source-libraries-used">
+        
+        
+          Open Source Libraries Used: <a href="#open-source-libraries-used"></a>
+        
+        
+      </h3>
+
+<p>https://github.com/jeeliz/jeelizFaceFilter</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
