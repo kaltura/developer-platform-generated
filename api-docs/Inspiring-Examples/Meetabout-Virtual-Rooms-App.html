@@ -1,0 +1,484 @@
+<!DOCTYPE html><html><head>
+    <title>Meetabout: Kaltura Virtual Rooms Example - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-68472312-3');
+</script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style><meta name="title" content="Meetabout: Kaltura Virtual Rooms Example - Kaltura VPaaS API Documentation"><meta name="description" content="Full documentation for the Kaltura VPaaS API"><meta name="keywords" content=""></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <label>One Time Authentication code (leave empty if OTP is not enabled for your partner[s])</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="OTP">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="/homepage/assets/images/Kaltura-logo.png">
+        <span class="brand-subtitle">Developer</span>
+      </a>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+          <a href="api-docs">API Docs</a>
+        </li>
+        <li class="navbar-link">
+	  <a href="https://developer.kaltura.com/player/">Player</a>
+        </li>
+        <li class="navbar-link">
+          <a href="console">Console</a>
+        </li>
+        <li class="navbar-link workflows-link">
+          <a href="workflows">Workflows</a>
+        </li>
+        <li class="navbar-link">
+          <a href="api-docs/Client_Libraries">Client Libraries</a>
+        </li>
+        <li class="navbar-link">
+          <a href="api-docs/Sample_applications">Inspiring Examples</a>
+          <!-- navbar.html-->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----><div _ngcontent-c1="" class="modal fade ng-star-inserted" id="AuthenticationModal" tabindex="-1"><div _ngcontent-c1="" class="modal-dialog"><form _ngcontent-c1="" class="modal-content ng-untouched ng-pristine ng-valid" novalidate=""><div _ngcontent-c1="" class="modal-header"><button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><i _ngcontent-c1="" class="fa fa-times"></i></button><div _ngcontent-c1="" class="modal-title"><h3 _ngcontent-c1="">API Authorization</h3></div></div><div _ngcontent-c1="" class="modal-body"><!----><ul _ngcontent-c1="" class="nav nav-tabs nav-justified" hidden=""><!----><li _ngcontent-c1="" class="active ng-star-inserted"><a _ngcontent-c1="" innerhtml="ks">ks</a></li></ul><!----><div _ngcontent-c1="" class="ng-star-inserted"><div _ngcontent-c1="" class="form-group"><label _ngcontent-c1="" innerhtml="ks">ks</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine ng-valid" name="apiKey" type="text" value=""></div></div><!----><!----></div><div _ngcontent-c1="" class="modal-footer"><!----><button _ngcontent-c1="" class="btn btn-success" type="submit"><!----><span _ngcontent-c1="" class="ng-star-inserted">Authorize</span><!----></button></div></form></div></div></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Overview" href="/api-docs/Overview"><span class="ng-tns-c5-0" innerhtml="Overview">Overview</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Getting Started" href="/api-docs/VPaaS-API-Getting-Started"><span class="ng-tns-c5-1" innerhtml="Getting Started">Getting Started</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/api-docs/Client_Libraries"><span class="ng-tns-c5-2" innerhtml="Client Libraries">Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="XML Schemas" href="/api-docs/XML_Schemas"><span class="ng-tns-c5-3" innerhtml="XML Schemas">XML Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Generate API Sessions" href="/api-docs/Generate_API_Sessions"><span class="ng-tns-c5-4" innerhtml="Generate API Sessions">Generate API Sessions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Ingest and Upload Media" href="/api-docs/Ingest_and_Upload_Media"><span class="ng-tns-c5-5" innerhtml="Ingest and Upload Media">Ingest and Upload Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Execute Bulk Ingest and Updates" href="/api-docs/Execute_Bulk_Ingest_and_Updates"><span class="ng-tns-c5-6" innerhtml="Execute Bulk Ingest and Updates">Execute Bulk Ingest and Updates</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Convert and Transcode Media" href="/api-docs/Convert_and_Transcode_Media"><span class="ng-tns-c5-7" innerhtml="Convert and Transcode Media">Convert and Transcode Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Stream and Broadcast" href="/api-docs/Live_Stream_and_Broadcast"><span class="ng-tns-c5-8" innerhtml="Live Stream and Broadcast">Live Stream and Broadcast</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Enrich and Organize Metadata" href="/api-docs/Enrich_and_Organize_Metadata"><span class="ng-tns-c5-9" innerhtml="Enrich and Organize Metadata">Enrich and Organize Metadata</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-10 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Search, Discover and Personalize" href="/api-docs/Search_Discover_and_Personalize"><span class="ng-tns-c5-10" innerhtml="Search, Discover and Personalize">Search, Discover and Personalize</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-11 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Engage and Publish" href="/api-docs/Engage_and_Publish"><span class="ng-tns-c5-11" innerhtml="Engage and Publish">Engage and Publish</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Media Analytics" href="/api-docs/Media_Analytics"><span class="ng-tns-c5-12" innerhtml="Media Analytics">Media Analytics</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-13 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Deliver and Distribute Media" href="/api-docs/Deliver_and_Distribute_Media"><span class="ng-tns-c5-13" innerhtml="Deliver and Distribute Media">Deliver and Distribute Media</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-14 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Secure, Control and Govern" href="/api-docs/Secure_Control_and_Govern"><span class="ng-tns-c5-14" innerhtml="Secure, Control and Govern">Secure, Control and Govern</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-15 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Integration, Scheduling and Hooks" href="/api-docs/Integration_Scheduling_and_Hooks"><span class="ng-tns-c5-15" innerhtml="Integration, Scheduling and Hooks">Integration, Scheduling and Hooks</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-16 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Encrypt and License Content" href="/api-docs/Encrypt_and_License_Content"><span class="ng-tns-c5-16" innerhtml="Encrypt and License Content">Encrypt and License Content</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-17 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Documents and Other Assets" href="/api-docs/Manage_Documents_and_Other_Assets"><span class="ng-tns-c5-17" innerhtml="Manage Documents and Other Assets">Manage Documents and Other Assets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-18 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage and Deliver Apps and Widgets" href="/api-docs/Manage_and_Deliver_Apps_and_Widgets"><span class="ng-tns-c5-18" innerhtml="Manage and Deliver Apps and Widgets">Manage and Deliver Apps and Widgets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-19 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Manage Backend and Storage" href="/api-docs/Manage_Backend_and_Storage"><span class="ng-tns-c5-19" innerhtml="Manage Backend and Storage">Manage Backend and Storage</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-star-inserted" hidden=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-20 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Miscellaneous" href="/api-docs/Miscellaneous"><span class="ng-tns-c5-20" innerhtml="Miscellaneous">Miscellaneous</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-21 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Sample applications" href="/api-docs/Sample_applications"><span class="ng-tns-c5-21" innerhtml="Sample applications">Sample applications</span></a></div><!----><div class="side-menu-children ng-tns-c5-21 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-25 ng-tns-c5-21 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-25 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Video social network" href="/api-docs/Inspiring-Examples/TikRok-FaceFilter-Social-Network.html"><span class="ng-tns-c5-25" innerhtml="Video social network">Video social network</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-21 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-26 active ng-star-inserted" preservefragment="" preservequeryparams="" title="Meetabout: Kaltura Virtual Rooms Example" href="/api-docs/Inspiring-Examples/Meetabout-Virtual-Rooms-App.html"><span class="ng-tns-c5-26" innerhtml="Meetabout: Kaltura Virtual Rooms Example">Meetabout: Kaltura Virtual Rooms Example</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-22 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/api-docs/Contribute"><span class="ng-tns-c5-22" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-23 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="General Objects" href="/api-docs/General_Objects"><span class="ng-tns-c5-23" innerhtml="General Objects">General Objects</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-24 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Error Codes" href="/api-docs/Error_Codes"><span class="ng-tns-c5-24" innerhtml="Error Codes">Error Codes</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Meetabout: Kaltura Virtual Rooms Example</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents"><h1 id="meetabout">Meetabout</h1>
+
+<p><em>Meetabout</em> is a web app that facilitates virtual meetings between strangers to discuss shared interests. So, if two people decide to meet to talk about X, <em>Meetabout</em>  leverages the easy-to-use <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms">Virtual Meeting Room API</a> to host the meeting on the Kaltura platform.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="things-to-know">Things to Know</h3>
+
+<p><em>Meetabout</em> is a sample application not intended to run in a production environment in its current state.</p>
+
+<h3 id="live-demo">Live Demo:</h3>
+
+<p><a href="https://meetabout.herokuapp.com/">https://meetabout.herokuapp.com/</a></p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ol>
+  <li><a href="https://nodejs.org/en/">Nodejs</a></li>
+  <li><a href="https://www.mongodb.com/">MongoDB</a></li>
+  <li><a href="https://corp.kaltura.com/video-paas/registration?utm_campaign=Meetabout&amp;utm_medium=affiliates&amp;utm_source=GitHub">Kaltura VPaaS account</a>. Once you’ve opened an account, send an email to <a href="mailto:VPaaS@kaltura.com">VPaaS@kaltura.com</a> to activate Meetings.</li>
+</ol>
+
+<h3 id="install-and-run">Install and Run</h3>
+
+<ol>
+  <li>Clone the <a href="https://github.com/kaltura-vpaas/meetabout">Meetabout Github Repo</a></li>
+  <li>Run <code class="highlighter-rouge">npm install</code></li>
+  <li>Copy <code class="highlighter-rouge">.env.template</code> to <code class="highlighter-rouge">.env</code> and populate the following required fields (other fields in the file are not required to run this app):</li>
+</ol>
+
+<pre><code class="language-env">SESSION_SECRET= #Key used for encrypting session cookies 
+SERVER_HOST_URL=http://localhost:3000 
+MONGO_URI= #mongodb+srv:// 
+KALTURA_SERVICE_URL=https://www.kaltura.com 
+KALTURA_ADMIN_SECRET= #obtained from https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings 
+KALTURA_PARTNER_ID=#obtained from https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings 
+KALTURA_USER_ID=#set it to the Kaltura user designated as admin. This is usually the email address you used to create your Kaltura account 
+</code></pre>
+<ol>
+  <li>Run the app: <code class="highlighter-rouge">npm start</code></li>
+</ol>
+
+<h3 id="logging-in">Logging In</h3>
+
+<p><em>Meetabout</em> requires a logged-in user to work. Any attempt to execute the app will force a modal login window to appear. The default login method uses <code class="highlighter-rouge">passportjs</code> local strategy, which is completely insecure and therefore  should only run on your local machine. Of course this approach does make it very easy to get up and running quickly.</p>
+
+<p><strong>Note:</strong> If you want to run <em>Meetabout</em> as a production app, comment out <code class="highlighter-rouge">router.post('/', </code> in <code class="highlighter-rouge">routes/auth_local.js</code> and implement other authentication strategies. For example, the GitHub, LinkedIn, Microsoft and Google OAuth strategies are implemented in <code class="highlighter-rouge">routes/auth_&lt;x&gt;</code> and you can uncomment those routes from <code class="highlighter-rouge">app.js</code>. You would also need to create OAuth credentials for those services and supply the keys in <code class="highlighter-rouge">.env</code>.</p>
+
+<p>Once logged in, you can begin using the app!</p>
+
+<h3 id="adding-a-topic">Adding a Topic</h3>
+
+<p>Begin by creating a topic to have a meeting about! Enter a topic into “More Topics” and press “Add New Topic”.</p>
+
+<p><img src="/assets/images/meetabout/addtopic.png" alt="addtopic" style="zoom:50%;"></p>
+
+<h3 id="finding-a-meeting">Finding a Meeting</h3>
+
+<p>When clicking on the “Find Meetings” button, there will not be anyone to meet with. To find a (pseudo) partner, open another browser, log in with a different user, and subscribe to the topic you created with both users. After both users join, they will be able to see one another!</p>
+
+<p>The UI will look like this:</p>
+
+<p><img src="/assets/images/meetabout/foundmeeting.png" alt="foundmeeting" style="zoom:75%;"></p>
+
+<p>Click on the other user to go to the meeting page.</p>
+
+<h2 id="a-meeting">A Meeting!</h2>
+
+<p>The meeting page is the location within <em>Meetabout</em> where meetings take place on a given topic. It consists of:</p>
+
+<ol>
+  <li>Descriptions of the users in the meeting</li>
+  <li>A Join Meeting button</li>
+  <li>A chat area where users can chat via email and come back to this meeting page when a new message occurs.  Some setup is required to get the chat feature to work, which will be covered later.</li>
+</ol>
+
+<p>A meeting page will look like so:</p>
+
+<p><img src="/assets/images/meetabout/meetingpage.png" alt="meetingpage" style="zoom:70%;"></p>
+
+<p>If any user on this meeting page clicks on the “Join Meeting” button, they will enter a live, virtual meeting room:<br>
+<img src="/assets/images/meetabout/newrow_room.png" alt="newrow_room" style="zoom:35%;"></p>
+
+<h3 id="setting-up-a-meeting-beneath-the-hood">Setting Up a Meeting: Beneath the Hood</h3>
+
+<p>A Kaltura virtual meeting room is created and joined through a series of API calls, described in detail in the <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms">integration guide</a>. The <a href="https://github.com/kaltura-vpaas/liveroom_manager">Virtual Room Manager App</a> is another helpful tool to understand its usage.</p>
+
+<p>Now, let’s walk through the Meetings API, as it relates to <em>Meetabout</em>.</p>
+
+<p>To create a new meeting, we are routed to <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js">/routes/meetings.js</a> which calls the <code class="highlighter-rouge">createRoom</code> function in <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/lib/createroom.js">/lib/createroom.js</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">createRoom</span><span class="p">(</span><span class="nx">topicName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">kalturaResponse</span><span class="p">)</span> <span class="p">{</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">kaltura.services.session.start</code> creates a <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-an-admin-session">Kaltura Admin Session</a> which is needed to <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-resource">create the virtual room</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// Create the virtual room</span>
+<span class="kd">let</span> <span class="nx">scheduleResource</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">objects</span><span class="p">.</span><span class="nx">LocationScheduleResource</span><span class="p">();</span>
+<span class="nx">scheduleResource</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">topicName</span><span class="p">;</span>
+<span class="nx">scheduleResource</span><span class="p">.</span><span class="nx">tags</span> <span class="o">=</span> <span class="s2">"vcprovider:newrow"</span><span class="p">;</span>
+
+<span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">scheduleResource</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">scheduleResource</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Notice that the topicName from <em>Meetabout</em> is passed as the topic of the Virtual Room.</p>
+
+<p>The call to <code class="highlighter-rouge">kaltura.services.scheduleResource.add(scheduleResource)</code> creates a <code class="highlighter-rouge">resource</code>, which is Kaltura’s terminology for a virtual room. The resource has an ID which is saved to the Mongo <code class="highlighter-rouge">Meeting</code> Model in <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js">/routes/meetings.js</a></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">createRoom</span><span class="p">(</span><span class="nx">topicName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">kalturaResponse</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="nx">Meeting</span><span class="p">({</span>
+        <span class="na">topic</span><span class="p">:</span> <span class="nx">topicId</span><span class="p">,</span>
+        <span class="na">user1</span><span class="p">:</span> <span class="nx">uid1</span><span class="p">,</span>
+        <span class="na">user2</span><span class="p">:</span> <span class="nx">uid2</span><span class="p">,</span>
+        <span class="na">kalturaResourceId</span><span class="p">:</span> <span class="nx">kalturaResponse</span><span class="p">.</span><span class="nx">id</span>
+      <span class="p">}).</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+</code></pre>
+</div>
+
+<p>The virtual meeting room has now been created and is ready to be used!</p>
+
+<h3 id="joining-the-virtual-meeting-room">Joining the Virtual Meeting Room</h3>
+
+<p>Some preparation is needed to join the <code class="highlighter-rouge">resource</code> or virtual meeting room. The room needs to know your identity and your user type. Kaltura can designate meeting users as either admins or viewers, where the admins have special privileges. However, in <em>Meetabout</em>, both users are treated as equals and both will be made admins.</p>
+
+<p>In order to identify a user to the room, we need to create a <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-kaltura-session">Kaltura Session</a> with some metadata related to the Virtual Meeting Room API, and this is kicked off from <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js">/routes/meetings.js</a> right after <code class="highlighter-rouge">.save</code> from above by calling:</p>
+
+<p><code class="highlighter-rouge">  joinRoom(kalturaResponse.id, user.name, user.email, function (joinLink) {</code></p>
+
+<p>This then calls <a href="/lib/joinroom.js">/lib/joinroom.js</a> to create a <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-kaltura-session">Kaltura Session</a> and authenticates the user that clicked the “Join Meeting” button.</p>
+
+<p>The URL scheme for the room follows the <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-the-virtual-meeting-room-url">convention for virtual meeting rooms</a> and is created in <a href="/lib/joinroom.js">/lib/joinroom.js</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">roomUrl</span> <span class="o">=</span> <span class="s2">"https://"</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s2">".kaf.kaltura.com/virtualEvent/launch?ks="</span> <span class="o">+</span> <span class="nx">result</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">ks</code> is a string representing the <code class="highlighter-rouge">Kaltura Session</code> for the user for this meeting room. And the <code class="highlighter-rouge">partnerId</code> is your Kaltura VPaaS account’s partner ID.</p>
+
+<p>And that is it! The URL is ready to use to join the room! It is passed back to the meeting webpage and into the <em>href</em> of the “Join Meeting” button! <br>
+And by the way, this link can also be embedded in an iframe inside your own application for a fully integrated experience!</p>
+
+<h4 id="email-setup">Email Setup</h4>
+
+<p>Note: this step is unrelated to the usage of the Kaltura Virtual Room API</p>
+
+<p>A production app would use an SMTP server at a company, or an SMTP service. For testing purposes, you can sign up for a free account at <a href="https://ethereal.email/">ethereal</a> and fill out the following fields in <code class="highlighter-rouge">.env</code>:</p>
+
+<pre><code class="language-env">SMTP_HOST=smtp.ethereal.email
+SMTP_USER=
+SMTP_PASS=
+SMTP_PORT=587
+</code></pre>
+</div><!----><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+<div id="KalturaFooter" class="w-section footer-section">
+  <div class="w-container container footer-container">
+    <div class="row">
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#vpaasLinks">VPaaS<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="vpaasLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a Free Trial</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#toolsLinks">Tools<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="toolsLinks" class="collapse">
+          <a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/player">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#resourcesLinks">Resources<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="resourcesLinks" class="collapse">
+          <a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://university.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a>
+        </div>
+      </div>
+      <div class="col col-sm-3 footer-links-columns">
+        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#communityLinks">Community<i class="fa fa-chevron-up"></i></a></h5>
+        <div id="communityLinks" class="collapse">
+          <a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a>
+        </div>
+        <div class="secondary-links">
+          <h5 class="footer-headings footer-heading-margin"><a data-toggle="collapse" data-target="#openSourceLinks">Open Source<i class="fa fa-chevron-up"></i></a></h5>
+          <div id="openSourceLinks" class="collapse">
+            <a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kaltura-links">
+    <div class="container">
+      <div class="row">
+        <div class="col col-xs-12 col-sm-4">
+          <img src="/homepage/assets/images/Kaltura-Logo-white.png">
+        </div>
+        <div class="col col-xs-12 col-sm-4 footer-last-links-column">
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a>
+          <a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a>
+          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a>
+        </div>
+        <div class="social-icon-container col col-xs-12 col-sm-4">
+          <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a>
+          <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a>
+          <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a>
+          <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-container container copyright-container">
+    <div class="row">
+      <div class="col col-xs-12 copyright-column">
+        <div class="footer-copyright">Copyright © <span id="KalturaYear"></span> Kaltura Inc.</div>
+        <script>
+          document.getElementById('KalturaYear').innerHTML = (new Date()).getFullYear();
+        </script>
+        <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners.
+          <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/Inspiring-Examples/Meetabout-Virtual-Rooms-App.html&q;:null,&q;G.http://localhost:3333/assets/documentation/Inspiring-Examples/Meetabout-Virtual-Rooms-App.html&q;:{&q;body&q;:&q;&l;h1 id=\&q;meetabout\&q;&g;Meetabout&l;/h1&g;\n\n&l;p&g;&l;em&g;Meetabout&l;/em&g; is a web app that facilitates virtual meetings between strangers to discuss shared interests. So, if two people decide to meet to talk about X, &l;em&g;Meetabout&l;/em&g;  leverages the easy-to-use &l;a href=\&q;https://github.com/kaltura-vpaas/virtual-meeting-rooms\&q;&g;Virtual Meeting Room API&l;/a&g; to host the meeting on the Kaltura platform.&l;/p&g;\n\n&l;h2 id=\&q;getting-started\&q;&g;Getting Started&l;/h2&g;\n\n&l;h3 id=\&q;things-to-know\&q;&g;Things to Know&l;/h3&g;\n\n&l;p&g;&l;em&g;Meetabout&l;/em&g; is a sample application not intended to run in a production environment in its current state.&l;/p&g;\n\n&l;h3 id=\&q;live-demo\&q;&g;Live Demo:&l;/h3&g;\n\n&l;p&g;&l;a href=\&q;https://meetabout.herokuapp.com/\&q;&g;https://meetabout.herokuapp.com/&l;/a&g;&l;/p&g;\n\n&l;h3 id=\&q;prerequisites\&q;&g;Prerequisites&l;/h3&g;\n\n&l;ol&g;\n  &l;li&g;&l;a href=\&q;https://nodejs.org/en/\&q;&g;Nodejs&l;/a&g;&l;/li&g;\n  &l;li&g;&l;a href=\&q;https://www.mongodb.com/\&q;&g;MongoDB&l;/a&g;&l;/li&g;\n  &l;li&g;&l;a href=\&q;https://corp.kaltura.com/video-paas/registration?utm_campaign=Meetabout&a;amp;utm_medium=affiliates&a;amp;utm_source=GitHub\&q;&g;Kaltura VPaaS account&l;/a&g;. Once you’ve opened an account, send an email to &l;a href=\&q;mailto:VPaaS@kaltura.com\&q;&g;VPaaS@kaltura.com&l;/a&g; to activate Meetings.&l;/li&g;\n&l;/ol&g;\n\n&l;h3 id=\&q;install-and-run\&q;&g;Install and Run&l;/h3&g;\n\n&l;ol&g;\n  &l;li&g;Clone the &l;a href=\&q;https://github.com/kaltura-vpaas/meetabout\&q;&g;Meetabout Github Repo&l;/a&g;&l;/li&g;\n  &l;li&g;Run &l;code class=\&q;highlighter-rouge\&q;&g;npm install&l;/code&g;&l;/li&g;\n  &l;li&g;Copy &l;code class=\&q;highlighter-rouge\&q;&g;.env.template&l;/code&g; to &l;code class=\&q;highlighter-rouge\&q;&g;.env&l;/code&g; and populate the following required fields (other fields in the file are not required to run this app):&l;/li&g;\n&l;/ol&g;\n\n&l;pre&g;&l;code class=\&q;language-env\&q;&g;SESSION_SECRET= #Key used for encrypting session cookies \nSERVER_HOST_URL=http://localhost:3000 \nMONGO_URI= #mongodb+srv:// \nKALTURA_SERVICE_URL=https://www.kaltura.com \nKALTURA_ADMIN_SECRET= #obtained from https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings \nKALTURA_PARTNER_ID=#obtained from https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings \nKALTURA_USER_ID=#set it to the Kaltura user designated as admin. This is usually the email address you used to create your Kaltura account \n&l;/code&g;&l;/pre&g;\n&l;ol&g;\n  &l;li&g;Run the app: &l;code class=\&q;highlighter-rouge\&q;&g;npm start&l;/code&g;&l;/li&g;\n&l;/ol&g;\n\n&l;h3 id=\&q;logging-in\&q;&g;Logging In&l;/h3&g;\n\n&l;p&g;&l;em&g;Meetabout&l;/em&g; requires a logged-in user to work. Any attempt to execute the app will force a modal login window to appear. The default login method uses &l;code class=\&q;highlighter-rouge\&q;&g;passportjs&l;/code&g; local strategy, which is completely insecure and therefore  should only run on your local machine. Of course this approach does make it very easy to get up and running quickly.&l;/p&g;\n\n&l;p&g;&l;strong&g;Note:&l;/strong&g; If you want to run &l;em&g;Meetabout&l;/em&g; as a production app, comment out &l;code class=\&q;highlighter-rouge\&q;&g;router.post(&s;/&s;, &l;/code&g; in &l;code class=\&q;highlighter-rouge\&q;&g;routes/auth_local.js&l;/code&g; and implement other authentication strategies. For example, the GitHub, LinkedIn, Microsoft and Google OAuth strategies are implemented in &l;code class=\&q;highlighter-rouge\&q;&g;routes/auth_&a;lt;x&a;gt;&l;/code&g; and you can uncomment those routes from &l;code class=\&q;highlighter-rouge\&q;&g;app.js&l;/code&g;. You would also need to create OAuth credentials for those services and supply the keys in &l;code class=\&q;highlighter-rouge\&q;&g;.env&l;/code&g;.&l;/p&g;\n\n&l;p&g;Once logged in, you can begin using the app!&l;/p&g;\n\n&l;h3 id=\&q;adding-a-topic\&q;&g;Adding a Topic&l;/h3&g;\n\n&l;p&g;Begin by creating a topic to have a meeting about! Enter a topic into “More Topics” and press “Add New Topic”.&l;/p&g;\n\n&l;p&g;&l;img src=\&q;/assets/images/meetabout/addtopic.png\&q; alt=\&q;addtopic\&q; style=\&q;zoom:50%;\&q; /&g;&l;/p&g;\n\n&l;h3 id=\&q;finding-a-meeting\&q;&g;Finding a Meeting&l;/h3&g;\n\n&l;p&g;When clicking on the “Find Meetings” button, there will not be anyone to meet with. To find a (pseudo) partner, open another browser, log in with a different user, and subscribe to the topic you created with both users. After both users join, they will be able to see one another!&l;/p&g;\n\n&l;p&g;The UI will look like this:&l;/p&g;\n\n&l;p&g;&l;img src=\&q;/assets/images/meetabout/foundmeeting.png\&q; alt=\&q;foundmeeting\&q; style=\&q;zoom:75%;\&q; /&g;&l;/p&g;\n\n&l;p&g;Click on the other user to go to the meeting page.&l;/p&g;\n\n&l;h2 id=\&q;a-meeting\&q;&g;A Meeting!&l;/h2&g;\n\n&l;p&g;The meeting page is the location within &l;em&g;Meetabout&l;/em&g; where meetings take place on a given topic. It consists of:&l;/p&g;\n\n&l;ol&g;\n  &l;li&g;Descriptions of the users in the meeting&l;/li&g;\n  &l;li&g;A Join Meeting button&l;/li&g;\n  &l;li&g;A chat area where users can chat via email and come back to this meeting page when a new message occurs.  Some setup is required to get the chat feature to work, which will be covered later.&l;/li&g;\n&l;/ol&g;\n\n&l;p&g;A meeting page will look like so:&l;/p&g;\n\n&l;p&g;&l;img src=\&q;/assets/images/meetabout/meetingpage.png\&q; alt=\&q;meetingpage\&q; style=\&q;zoom:70%;\&q; /&g;&l;/p&g;\n\n&l;p&g;If any user on this meeting page clicks on the “Join Meeting” button, they will enter a live, virtual meeting room:&l;br /&g;\n&l;img src=\&q;/assets/images/meetabout/newrow_room.png\&q; alt=\&q;newrow_room\&q; style=\&q;zoom:35%;\&q; /&g;&l;/p&g;\n\n&l;h3 id=\&q;setting-up-a-meeting-beneath-the-hood\&q;&g;Setting Up a Meeting: Beneath the Hood&l;/h3&g;\n\n&l;p&g;A Kaltura virtual meeting room is created and joined through a series of API calls, described in detail in the &l;a href=\&q;https://github.com/kaltura-vpaas/virtual-meeting-rooms\&q;&g;integration guide&l;/a&g;. The &l;a href=\&q;https://github.com/kaltura-vpaas/liveroom_manager\&q;&g;Virtual Room Manager App&l;/a&g; is another helpful tool to understand its usage.&l;/p&g;\n\n&l;p&g;Now, let’s walk through the Meetings API, as it relates to &l;em&g;Meetabout&l;/em&g;.&l;/p&g;\n\n&l;p&g;To create a new meeting, we are routed to &l;a href=\&q;https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js\&q;&g;/routes/meetings.js&l;/a&g; which calls the &l;code class=\&q;highlighter-rouge\&q;&g;createRoom&l;/code&g; function in &l;a href=\&q;https://github.com/kaltura-vpaas/meetabout/blob/master/lib/createroom.js\&q;&g;/lib/createroom.js&l;/a&g;:&l;/p&g;\n\n&l;div class=\&q;language-javascript highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; &l;span class=\&q;nx\&q;&g;createRoom&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;topicName&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g; &l;span class=\&q;kd\&q;&g;function&l;/span&g; &l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;kalturaResponse&l;/span&g;&l;span class=\&q;p\&q;&g;)&l;/span&g; &l;span class=\&q;p\&q;&g;{&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;&l;code class=\&q;highlighter-rouge\&q;&g;kaltura.services.session.start&l;/code&g; creates a &l;a href=\&q;https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-an-admin-session\&q;&g;Kaltura Admin Session&l;/a&g; which is needed to &l;a href=\&q;https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-resource\&q;&g;create the virtual room&l;/a&g;:&l;/p&g;\n\n&l;div class=\&q;language-javascript highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;c1\&q;&g;// Create the virtual room&l;/span&g;\n&l;span class=\&q;kd\&q;&g;let&l;/span&g; &l;span class=\&q;nx\&q;&g;scheduleResource&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;kaltura&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;objects&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;LocationScheduleResource&l;/span&g;&l;span class=\&q;p\&q;&g;();&l;/span&g;\n&l;span class=\&q;nx\&q;&g;scheduleResource&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;name&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;topicName&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;span class=\&q;nx\&q;&g;scheduleResource&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;tags&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s2\&q;&g;\&q;vcprovider:newrow\&q;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n\n&l;span class=\&q;nx\&q;&g;kaltura&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;services&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;scheduleResource&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;add&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;scheduleResource&l;/span&g;&l;span class=\&q;p\&q;&g;)&l;/span&g;\n&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;execute&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;client&l;/span&g;&l;span class=\&q;p\&q;&g;)&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Notice that the topicName from &l;em&g;Meetabout&l;/em&g; is passed as the topic of the Virtual Room.&l;/p&g;\n\n&l;p&g;The call to &l;code class=\&q;highlighter-rouge\&q;&g;kaltura.services.scheduleResource.add(scheduleResource)&l;/code&g; creates a &l;code class=\&q;highlighter-rouge\&q;&g;resource&l;/code&g;, which is Kaltura’s terminology for a virtual room. The resource has an ID which is saved to the Mongo &l;code class=\&q;highlighter-rouge\&q;&g;Meeting&l;/code&g; Model in &l;a href=\&q;https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js\&q;&g;/routes/meetings.js&l;/a&g;&l;/p&g;\n\n&l;div class=\&q;language-javascript highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;nx\&q;&g;createRoom&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;topicName&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g; &l;span class=\&q;kd\&q;&g;function&l;/span&g; &l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;kalturaResponse&l;/span&g;&l;span class=\&q;p\&q;&g;)&l;/span&g; &l;span class=\&q;p\&q;&g;{&l;/span&g;\n      &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;Meeting&l;/span&g;&l;span class=\&q;p\&q;&g;({&l;/span&g;\n        &l;span class=\&q;na\&q;&g;topic&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;topicId&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n        &l;span class=\&q;na\&q;&g;user1&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;uid1&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n        &l;span class=\&q;na\&q;&g;user2&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;uid2&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n        &l;span class=\&q;na\&q;&g;kalturaResourceId&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;kalturaResponse&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;id&l;/span&g;\n      &l;span class=\&q;p\&q;&g;}).&l;/span&g;&l;span class=\&q;nx\&q;&g;save&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;kd\&q;&g;function&l;/span&g; &l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;err&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g; &l;span class=\&q;nx\&q;&g;doc&l;/span&g;&l;span class=\&q;p\&q;&g;)&l;/span&g; &l;span class=\&q;p\&q;&g;{&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;The virtual meeting room has now been created and is ready to be used!&l;/p&g;\n\n&l;h3 id=\&q;joining-the-virtual-meeting-room\&q;&g;Joining the Virtual Meeting Room&l;/h3&g;\n\n&l;p&g;Some preparation is needed to join the &l;code class=\&q;highlighter-rouge\&q;&g;resource&l;/code&g; or virtual meeting room. The room needs to know your identity and your user type. Kaltura can designate meeting users as either admins or viewers, where the admins have special privileges. However, in &l;em&g;Meetabout&l;/em&g;, both users are treated as equals and both will be made admins.&l;/p&g;\n\n&l;p&g;In order to identify a user to the room, we need to create a &l;a href=\&q;https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-kaltura-session\&q;&g;Kaltura Session&l;/a&g; with some metadata related to the Virtual Meeting Room API, and this is kicked off from &l;a href=\&q;https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js\&q;&g;/routes/meetings.js&l;/a&g; right after &l;code class=\&q;highlighter-rouge\&q;&g;.save&l;/code&g; from above by calling:&l;/p&g;\n\n&l;p&g;&l;code class=\&q;highlighter-rouge\&q;&g;  joinRoom(kalturaResponse.id, user.name, user.email, function (joinLink) {&l;/code&g;&l;/p&g;\n\n&l;p&g;This then calls &l;a href=\&q;/lib/joinroom.js\&q;&g;/lib/joinroom.js&l;/a&g; to create a &l;a href=\&q;https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-kaltura-session\&q;&g;Kaltura Session&l;/a&g; and authenticates the user that clicked the “Join Meeting” button.&l;/p&g;\n\n&l;p&g;The URL scheme for the room follows the &l;a href=\&q;https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-the-virtual-meeting-room-url\&q;&g;convention for virtual meeting rooms&l;/a&g; and is created in &l;a href=\&q;/lib/joinroom.js\&q;&g;/lib/joinroom.js&l;/a&g;:&l;/p&g;\n\n&l;div class=\&q;language-javascript highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;kd\&q;&g;let&l;/span&g; &l;span class=\&q;nx\&q;&g;roomUrl&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s2\&q;&g;\&q;https://\&q;&l;/span&g; &l;span class=\&q;o\&q;&g;+&l;/span&g; &l;span class=\&q;nx\&q;&g;partnerId&l;/span&g; &l;span class=\&q;o\&q;&g;+&l;/span&g; &l;span class=\&q;s2\&q;&g;\&q;.kaf.kaltura.com/virtualEvent/launch?ks=\&q;&l;/span&g; &l;span class=\&q;o\&q;&g;+&l;/span&g; &l;span class=\&q;nx\&q;&g;result&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;The &l;code class=\&q;highlighter-rouge\&q;&g;ks&l;/code&g; is a string representing the &l;code class=\&q;highlighter-rouge\&q;&g;Kaltura Session&l;/code&g; for the user for this meeting room. And the &l;code class=\&q;highlighter-rouge\&q;&g;partnerId&l;/code&g; is your Kaltura VPaaS account’s partner ID.&l;/p&g;\n\n&l;p&g;And that is it! The URL is ready to use to join the room! It is passed back to the meeting webpage and into the &l;em&g;href&l;/em&g; of the “Join Meeting” button! &l;br /&g;\nAnd by the way, this link can also be embedded in an iframe inside your own application for a fully integrated experience!&l;/p&g;\n\n&l;h4 id=\&q;email-setup\&q;&g;Email Setup&l;/h4&g;\n\n&l;p&g;Note: this step is unrelated to the usage of the Kaltura Virtual Room API&l;/p&g;\n\n&l;p&g;A production app would use an SMTP server at a company, or an SMTP service. For testing purposes, you can sign up for a free account at &l;a href=\&q;https://ethereal.email/\&q;&g;ethereal&l;/a&g; and fill out the following fields in &l;code class=\&q;highlighter-rouge\&q;&g;.env&l;/code&g;:&l;/p&g;\n\n&l;pre&g;&l;code class=\&q;language-env\&q;&g;SMTP_HOST=smtp.ethereal.email\nSMTP_USER=\nSMTP_PASS=\nSMTP_PORT=587\n&l;/code&g;&l;/pre&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Wed, 09 Dec 2020 20:15:18 GMT&q;],&q;etag&q;:[&q;W/\&q;3222-1764924d2e0\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;12834&q;],&q;date&q;:[&q;Wed, 09 Dec 2020 20:27:28 GMT&q;],&q;connection&q;:[&q;keep-alive&q;],&q;keep-alive&q;:[&q;timeout=5&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/Inspiring-Examples/Meetabout-Virtual-Rooms-App.html&q;}}</script></body></html>

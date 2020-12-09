@@ -1,0 +1,155 @@
+<h1 id="meetabout">Meetabout</h1>
+
+<p><em>Meetabout</em> is a web app that facilitates virtual meetings between strangers to discuss shared interests. So, if two people decide to meet to talk about X, <em>Meetabout</em>  leverages the easy-to-use <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms">Virtual Meeting Room API</a> to host the meeting on the Kaltura platform.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="things-to-know">Things to Know</h3>
+
+<p><em>Meetabout</em> is a sample application not intended to run in a production environment in its current state.</p>
+
+<h3 id="live-demo">Live Demo:</h3>
+
+<p><a href="https://meetabout.herokuapp.com/">https://meetabout.herokuapp.com/</a></p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ol>
+  <li><a href="https://nodejs.org/en/">Nodejs</a></li>
+  <li><a href="https://www.mongodb.com/">MongoDB</a></li>
+  <li><a href="https://corp.kaltura.com/video-paas/registration?utm_campaign=Meetabout&amp;utm_medium=affiliates&amp;utm_source=GitHub">Kaltura VPaaS account</a>. Once you’ve opened an account, send an email to <a href="mailto:VPaaS@kaltura.com">VPaaS@kaltura.com</a> to activate Meetings.</li>
+</ol>
+
+<h3 id="install-and-run">Install and Run</h3>
+
+<ol>
+  <li>Clone the <a href="https://github.com/kaltura-vpaas/meetabout">Meetabout Github Repo</a></li>
+  <li>Run <code class="highlighter-rouge">npm install</code></li>
+  <li>Copy <code class="highlighter-rouge">.env.template</code> to <code class="highlighter-rouge">.env</code> and populate the following required fields (other fields in the file are not required to run this app):</li>
+</ol>
+
+<pre><code class="language-env">SESSION_SECRET= #Key used for encrypting session cookies 
+SERVER_HOST_URL=http://localhost:3000 
+MONGO_URI= #mongodb+srv:// 
+KALTURA_SERVICE_URL=https://www.kaltura.com 
+KALTURA_ADMIN_SECRET= #obtained from https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings 
+KALTURA_PARTNER_ID=#obtained from https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings 
+KALTURA_USER_ID=#set it to the Kaltura user designated as admin. This is usually the email address you used to create your Kaltura account 
+</code></pre>
+<ol>
+  <li>Run the app: <code class="highlighter-rouge">npm start</code></li>
+</ol>
+
+<h3 id="logging-in">Logging In</h3>
+
+<p><em>Meetabout</em> requires a logged-in user to work. Any attempt to execute the app will force a modal login window to appear. The default login method uses <code class="highlighter-rouge">passportjs</code> local strategy, which is completely insecure and therefore  should only run on your local machine. Of course this approach does make it very easy to get up and running quickly.</p>
+
+<p><strong>Note:</strong> If you want to run <em>Meetabout</em> as a production app, comment out <code class="highlighter-rouge">router.post('/', </code> in <code class="highlighter-rouge">routes/auth_local.js</code> and implement other authentication strategies. For example, the GitHub, LinkedIn, Microsoft and Google OAuth strategies are implemented in <code class="highlighter-rouge">routes/auth_&lt;x&gt;</code> and you can uncomment those routes from <code class="highlighter-rouge">app.js</code>. You would also need to create OAuth credentials for those services and supply the keys in <code class="highlighter-rouge">.env</code>.</p>
+
+<p>Once logged in, you can begin using the app!</p>
+
+<h3 id="adding-a-topic">Adding a Topic</h3>
+
+<p>Begin by creating a topic to have a meeting about! Enter a topic into “More Topics” and press “Add New Topic”.</p>
+
+<p><img src="/assets/images/meetabout/addtopic.png" alt="addtopic" style="zoom:50%;" /></p>
+
+<h3 id="finding-a-meeting">Finding a Meeting</h3>
+
+<p>When clicking on the “Find Meetings” button, there will not be anyone to meet with. To find a (pseudo) partner, open another browser, log in with a different user, and subscribe to the topic you created with both users. After both users join, they will be able to see one another!</p>
+
+<p>The UI will look like this:</p>
+
+<p><img src="/assets/images/meetabout/foundmeeting.png" alt="foundmeeting" style="zoom:75%;" /></p>
+
+<p>Click on the other user to go to the meeting page.</p>
+
+<h2 id="a-meeting">A Meeting!</h2>
+
+<p>The meeting page is the location within <em>Meetabout</em> where meetings take place on a given topic. It consists of:</p>
+
+<ol>
+  <li>Descriptions of the users in the meeting</li>
+  <li>A Join Meeting button</li>
+  <li>A chat area where users can chat via email and come back to this meeting page when a new message occurs.  Some setup is required to get the chat feature to work, which will be covered later.</li>
+</ol>
+
+<p>A meeting page will look like so:</p>
+
+<p><img src="/assets/images/meetabout/meetingpage.png" alt="meetingpage" style="zoom:70%;" /></p>
+
+<p>If any user on this meeting page clicks on the “Join Meeting” button, they will enter a live, virtual meeting room:<br />
+<img src="/assets/images/meetabout/newrow_room.png" alt="newrow_room" style="zoom:35%;" /></p>
+
+<h3 id="setting-up-a-meeting-beneath-the-hood">Setting Up a Meeting: Beneath the Hood</h3>
+
+<p>A Kaltura virtual meeting room is created and joined through a series of API calls, described in detail in the <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms">integration guide</a>. The <a href="https://github.com/kaltura-vpaas/liveroom_manager">Virtual Room Manager App</a> is another helpful tool to understand its usage.</p>
+
+<p>Now, let’s walk through the Meetings API, as it relates to <em>Meetabout</em>.</p>
+
+<p>To create a new meeting, we are routed to <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js">/routes/meetings.js</a> which calls the <code class="highlighter-rouge">createRoom</code> function in <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/lib/createroom.js">/lib/createroom.js</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">createRoom</span><span class="p">(</span><span class="nx">topicName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">kalturaResponse</span><span class="p">)</span> <span class="p">{</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">kaltura.services.session.start</code> creates a <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-an-admin-session">Kaltura Admin Session</a> which is needed to <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-resource">create the virtual room</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// Create the virtual room</span>
+<span class="kd">let</span> <span class="nx">scheduleResource</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">kaltura</span><span class="p">.</span><span class="nx">objects</span><span class="p">.</span><span class="nx">LocationScheduleResource</span><span class="p">();</span>
+<span class="nx">scheduleResource</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">topicName</span><span class="p">;</span>
+<span class="nx">scheduleResource</span><span class="p">.</span><span class="nx">tags</span> <span class="o">=</span> <span class="s2">"vcprovider:newrow"</span><span class="p">;</span>
+
+<span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">scheduleResource</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">scheduleResource</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">client</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Notice that the topicName from <em>Meetabout</em> is passed as the topic of the Virtual Room.</p>
+
+<p>The call to <code class="highlighter-rouge">kaltura.services.scheduleResource.add(scheduleResource)</code> creates a <code class="highlighter-rouge">resource</code>, which is Kaltura’s terminology for a virtual room. The resource has an ID which is saved to the Mongo <code class="highlighter-rouge">Meeting</code> Model in <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js">/routes/meetings.js</a></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">createRoom</span><span class="p">(</span><span class="nx">topicName</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">kalturaResponse</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="nx">Meeting</span><span class="p">({</span>
+        <span class="na">topic</span><span class="p">:</span> <span class="nx">topicId</span><span class="p">,</span>
+        <span class="na">user1</span><span class="p">:</span> <span class="nx">uid1</span><span class="p">,</span>
+        <span class="na">user2</span><span class="p">:</span> <span class="nx">uid2</span><span class="p">,</span>
+        <span class="na">kalturaResourceId</span><span class="p">:</span> <span class="nx">kalturaResponse</span><span class="p">.</span><span class="nx">id</span>
+      <span class="p">}).</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+</code></pre>
+</div>
+
+<p>The virtual meeting room has now been created and is ready to be used!</p>
+
+<h3 id="joining-the-virtual-meeting-room">Joining the Virtual Meeting Room</h3>
+
+<p>Some preparation is needed to join the <code class="highlighter-rouge">resource</code> or virtual meeting room. The room needs to know your identity and your user type. Kaltura can designate meeting users as either admins or viewers, where the admins have special privileges. However, in <em>Meetabout</em>, both users are treated as equals and both will be made admins.</p>
+
+<p>In order to identify a user to the room, we need to create a <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-kaltura-session">Kaltura Session</a> with some metadata related to the Virtual Meeting Room API, and this is kicked off from <a href="https://github.com/kaltura-vpaas/meetabout/blob/master/routes/meetings.js">/routes/meetings.js</a> right after <code class="highlighter-rouge">.save</code> from above by calling:</p>
+
+<p><code class="highlighter-rouge">  joinRoom(kalturaResponse.id, user.name, user.email, function (joinLink) {</code></p>
+
+<p>This then calls <a href="/lib/joinroom.js">/lib/joinroom.js</a> to create a <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-a-kaltura-session">Kaltura Session</a> and authenticates the user that clicked the “Join Meeting” button.</p>
+
+<p>The URL scheme for the room follows the <a href="https://github.com/kaltura-vpaas/virtual-meeting-rooms#creating-the-virtual-meeting-room-url">convention for virtual meeting rooms</a> and is created in <a href="/lib/joinroom.js">/lib/joinroom.js</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">roomUrl</span> <span class="o">=</span> <span class="s2">"https://"</span> <span class="o">+</span> <span class="nx">partnerId</span> <span class="o">+</span> <span class="s2">".kaf.kaltura.com/virtualEvent/launch?ks="</span> <span class="o">+</span> <span class="nx">result</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">ks</code> is a string representing the <code class="highlighter-rouge">Kaltura Session</code> for the user for this meeting room. And the <code class="highlighter-rouge">partnerId</code> is your Kaltura VPaaS account’s partner ID.</p>
+
+<p>And that is it! The URL is ready to use to join the room! It is passed back to the meeting webpage and into the <em>href</em> of the “Join Meeting” button! <br />
+And by the way, this link can also be embedded in an iframe inside your own application for a fully integrated experience!</p>
+
+<h4 id="email-setup">Email Setup</h4>
+
+<p>Note: this step is unrelated to the usage of the Kaltura Virtual Room API</p>
+
+<p>A production app would use an SMTP server at a company, or an SMTP service. For testing purposes, you can sign up for a free account at <a href="https://ethereal.email/">ethereal</a> and fill out the following fields in <code class="highlighter-rouge">.env</code>:</p>
+
+<pre><code class="language-env">SMTP_HOST=smtp.ethereal.email
+SMTP_USER=
+SMTP_PASS=
+SMTP_PORT=587
+</code></pre>
