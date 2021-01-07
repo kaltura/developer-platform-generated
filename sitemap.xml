@@ -1354,6 +1354,7 @@
 <url> <loc>https://developer.kaltura.com/api-docs/service/zoomVendor</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/zoomVendor/action/deAuthorization</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/zoomVendor/action/fetchRegistrationPage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/api-docs/service/zoomVendor/action/get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/zoomVendor/action/oauthValidation</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/zoomVendor/action/recordingComplete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/api-docs/service/zoomVendor/action/submitRegistration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -4491,6 +4492,7 @@
 <url> <loc>https://developer.kaltura.com/console/service/zoomVendor</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/zoomVendor/action/deAuthorization</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/zoomVendor/action/fetchRegistrationPage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/console/service/zoomVendor/action/get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/zoomVendor/action/oauthValidation</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/zoomVendor/action/recordingComplete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/console/service/zoomVendor/action/submitRegistration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -5599,6 +5601,7 @@
 <url> <loc>https://developer.kaltura.com/new-workflow/zoomVendor</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/zoomVendor/zoomVendor_deAuthorization</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/zoomVendor/zoomVendor_fetchRegistrationPage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/new-workflow/zoomVendor/zoomVendor_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/zoomVendor/zoomVendor_oauthValidation</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/zoomVendor/zoomVendor_recordingComplete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/new-workflow/zoomVendor/zoomVendor_submitRegistration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
@@ -8098,6 +8101,7 @@
 <url> <loc>https://developer.kaltura.com/preview-workflow/zoomVendor</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/zoomVendor/zoomVendor_deAuthorization</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/zoomVendor/zoomVendor_fetchRegistrationPage</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
+<url> <loc>https://developer.kaltura.com/preview-workflow/zoomVendor/zoomVendor_get</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/zoomVendor/zoomVendor_oauthValidation</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/zoomVendor/zoomVendor_recordingComplete</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
 <url> <loc>https://developer.kaltura.com/preview-workflow/zoomVendor/zoomVendor_submitRegistration</loc> <changefreq>daily</changefreq> <priority>0.2</priority> </url>
