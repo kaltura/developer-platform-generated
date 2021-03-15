@@ -306,6 +306,7 @@ table th {
       <xs:choice minOccurs="1" maxOccurs="1">
         <xs:element ref="serverFileContentResource" minOccurs="1" maxOccurs="1"></xs:element>
         <xs:element ref="urlContentResource" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="sshUrlContentResource" minOccurs="1" maxOccurs="1"></xs:element>
         <xs:element ref="remoteStorageContentResource" minOccurs="1" maxOccurs="1"></xs:element>
         <xs:element ref="remoteStorageContentResources" minOccurs="1" maxOccurs="1"></xs:element>
         <xs:element ref="entryContentResource" minOccurs="1" maxOccurs="1"></xs:element>
@@ -3336,8 +3337,19 @@ table th {
 <td class="last"></td>
 </tr>
 <tr class="choice">
-<td class="first"><span>remoteStorageContentResource</span></td>
+<td class="first"><span>sshUrlContentResource</span></td>
 <td rowspan="1">Option 3</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that the content file location is a URL (scp/sftp)</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td></td>
+<td class="last"></td>
+</tr>
+<tr class="choice">
+<td class="first"><span>remoteStorageContentResource</span></td>
+<td rowspan="1">Option 4</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content file location is a path within a Kaltura defined remote storage</xs:documentation></span><br>
 </td>
@@ -3348,7 +3360,7 @@ table th {
 </tr>
 <tr class="choice">
 <td class="first"><span>remoteStorageContentResources</span></td>
-<td rowspan="1">Option 4</td>
+<td rowspan="1">Option 5</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Set of content files within several Kaltura defined remote storages</xs:documentation></span><br>
 </td>
@@ -3359,7 +3371,7 @@ table th {
 </tr>
 <tr class="choice">
 <td class="first"><span>entryContentResource</span></td>
-<td rowspan="1">Option 5</td>
+<td rowspan="1">Option 6</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content is a Kaltura entry</xs:documentation></span><br>
 </td>
@@ -3370,7 +3382,7 @@ table th {
 </tr>
 <tr class="choice">
 <td class="first"><span>assetContentResource</span></td>
-<td rowspan="1">Option 6</td>
+<td rowspan="1">Option 7</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies that content is a Kaltura asset</xs:documentation></span><br>
 </td>
