@@ -7629,14 +7629,26 @@ var GitHubService = /** @class */ (function () {
         }
         return search;
     };
-    GitHubService.prototype.get = function (url, params) {
-        if (params === void 0) { params = {}; }
-        return this.setUpRequest(this.http.get(BASE_URL + url, { params: this.buildSearch(params) }));
+    GitHubService.prototype.buildHeaders = function (toAdd) {
+        if (toAdd === void 0) { toAdd = {}; }
+        if (this.access_token) {
+            toAdd['Authorization'] = 'Bearer ' + this.access_token;
+        }
+        return new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["HttpHeaders"](toAdd);
+    };
+    GitHubService.prototype.get = function (url, query) {
+        if (query === void 0) { query = {}; }
+        var headers = this.buildHeaders();
+        var params = this.buildSearch(query);
+        return this.setUpRequest(this.http.get(BASE_URL + url, { headers: headers, params: params }));
     };
     GitHubService.prototype.putOrPost = function (method, url, body, query) {
         if (body === void 0) { body = {}; }
         if (query === void 0) { query = {}; }
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["HttpHeaders"]({ 'Content-Type': 'application/json' });
+        var headersObj = {
+            'Content-Type': 'application/json',
+        };
+        var headers = this.buildHeaders(headersObj);
         var params = this.buildSearch(query);
         return this.setUpRequest(this.http[method](BASE_URL + url, JSON.stringify(body), { headers: headers, params: params }));
     };
