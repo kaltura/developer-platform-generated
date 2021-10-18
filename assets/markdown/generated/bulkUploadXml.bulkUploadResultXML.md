@@ -295,6 +295,7 @@ table th {
           <xs:restriction base="xs:string">
             <xs:enumeration value="update"></xs:enumeration>
             <xs:enumeration value="replace"></xs:enumeration>
+            <xs:enumeration value="delete"></xs:enumeration>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
@@ -304,7 +305,7 @@ table th {
   <xs:complexType name="T_subTitle">
     <xs:sequence>
       <xs:element name="tags" minOccurs="1" maxOccurs="1" type="T_tags"></xs:element>
-      <xs:choice minOccurs="1" maxOccurs="1">
+      <xs:choice minOccurs="0" maxOccurs="1">
         <xs:element ref="serverFileContentResource" minOccurs="1" maxOccurs="1"></xs:element>
         <xs:element ref="urlContentResource" minOccurs="1" maxOccurs="1"></xs:element>
         <xs:element ref="sshUrlContentResource" minOccurs="1" maxOccurs="1"></xs:element>
@@ -3146,8 +3147,9 @@ table th {
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">
 						The action to apply:<br>
-						Update - Update existing subtitle(s). Requires captionAssetId or captionParamsId<br>
-						Replace - Replace all subtitles. When &quot;lang&quot; is provided, replace only subtitles with the given language. If &quot;tags&quot; are also provided, replace only subtitles with the given language and tags. 
+						Update - Update existing subtitle(s). Requires &quot;captionAssetId&quot;, &quot;captionParamsId&quot; or &quot;captionParams&quot;<br>
+						Replace - If no subTitle is provided, delete all subtitles. When subTitle is provided, requires &quot;lang&quot; (&quot;tags&quot; are optional). Replace only subtitles with the given language. If &quot;tags&quot; are also provided, replace only subtitles with the given language and tags.
+						Delete - If no subTitle is provided, delete all subtitles. When subTitle is provided, requires &quot;captionAssetId&quot; or &quot;lang&quot; (&quot;tags&quot; are optional) . When &quot;captionAssetId&quot; is provided, delete the specific subtitle. When &quot;lang&quot; is provided, delete only subtitles with the given language. If &quot;tags&quot; are also provided, replace only subtitles with the given language and tags.
 					</xs:documentation></span><br>
 </td>
 <td>No</td>
@@ -3158,6 +3160,7 @@ table th {
 			<ul>
 <li>update</li>
 <li>replace</li>
+<li>delete</li>
 </ul>
 </td>
 </tr>
@@ -3315,7 +3318,7 @@ table th {
 <tr class="choice-head ">
 <td class="first" colspan="2">Choice</td>
 <td></td>
-<td>Yes</td>
+<td>No</td>
 <td>1</td>
 <td></td>
 <td class="last">
