@@ -1,0 +1,352 @@
+<!DOCTYPE html><html><head>
+    <title>Native Client Libraries - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-68472312-3');
+</script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><meta name="title" content="Native Client Libraries - Kaltura VPaaS API Documentation"><meta name="description" content="Download and learn how to use Kaltura's client libraries"><meta name="keywords" content=""><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <label>One Time Authentication code (leave empty if OTP is not enabled for your partner[s])</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="OTP">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <button type="button" class="side-menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="assets/images/KalturaLogo.png">
+        <!--
+        <span class="brand-subtitle">Developer</span>
+        -->
+      </a>
+      <div class="form-group has-feedback has-search">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        <input type="text" class="form-control g-search-box" placeholder="Search the documentation">
+      </div>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+	        <a href="#">Contact Us</a>
+        </li>
+        <li class="navbar-link">
+          <a href="https://forum.kaltura.org">Community</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="nav-tabs-b">
+    <span class="subnav subnav-guides" data-to="/"><a>Guides &amp; Workflows</a></span>
+    <span class="subnav subnav-apis" data-to="/api-docs"><a>APIs &amp; SDKs</a></span>
+    <span class="subnav subnav-samples" data-to="/samples"><a>Samples</a></span>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Home" href="/Home"><span class="ng-tns-c5-0" innerhtml="Home">Home</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Introduction to Kaltura Media Services" href="/Introduction_to_Kaltura_Media_Services"><span class="ng-tns-c5-1" innerhtml="Introduction to Kaltura Media Services">Introduction to Kaltura Media Services</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Getting Started" href="/Getting-Started-Building-Video-Applications"><span class="ng-tns-c5-2" innerhtml="Getting Started">Getting Started</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Video On Demand and Digital Assets Management" href="/Video-On-Demand-and-Digital-Assets-Management"><span class="ng-tns-c5-3" innerhtml="Video On Demand and Digital Assets Management">Video On Demand and Digital Assets Management</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Video Webcasting" href="/Live-Video-Webcasting"><span class="ng-tns-c5-4" innerhtml="Live Video Webcasting">Live Video Webcasting</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Real-time Video Meetings Experience" href="/Real-time-Video-Meetings-Experience"><span class="ng-tns-c5-5" innerhtml="Real-time Video Meetings Experience">Real-time Video Meetings Experience</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Streaming &amp; Publishing" href="/Streaming-and-Publishing"><span class="ng-tns-c5-6" innerhtml="Streaming &amp;amp; Publishing">Streaming &amp; Publishing</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Scheduling Recorded and Live Stream Events" href="/Scheduling-Recorded-and-Live-Stream-Events"><span class="ng-tns-c5-7" innerhtml="Scheduling Recorded and Live Stream Events">Scheduling Recorded and Live Stream Events</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="SEO, Syndication &amp; Distribution" href="/SEO-Syndication-and-Distribution"><span class="ng-tns-c5-8" innerhtml="SEO, Syndication &amp;amp; Distribution">SEO, Syndication &amp; Distribution</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Analytics &amp; Reporting" href="/Analytics-and-Reporting"><span class="ng-tns-c5-9" innerhtml="Analytics &amp;amp; Reporting">Analytics &amp; Reporting</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-10 active ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/Client_Libraries"><span class="ng-tns-c5-10" innerhtml="Client Libraries">Client Libraries</span></a></div><!----><div class="side-menu-children ng-tns-c5-10 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-13 ng-tns-c5-10 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Support Matrix" href="/Client_Libraries/Support_Matrix"><span class="ng-tns-c5-13" innerhtml="Support Matrix">Support Matrix</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-11 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Schemas" href="/Schemas"><span class="ng-tns-c5-11" innerhtml="Schemas">Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/Contribute"><span class="ng-tns-c5-12" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Client Libraries</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents"><h1 id="kaltura-api-sdk-native-client-libraries">Kaltura API SDK - Native Client Libraries</h1>
+<p>When developing applications that interact with the Kaltura API, it is best to use a native Client Library.</p>
+<p>Below you can download the Client Library for the programming language of your choice.</p>
+<p>To learn how to use the client libraries and see example code implementations, use the <a href="/console">API Test Console</a> and <a href="/workflows">Interactive Workflows</a>.
+The Test Console and Workflows automatically generate sample code based on the API actions and parameters you select.</p>
+<p>Please note, the client libraries provided here have been generated for the Kaltura.com API.
+Users of self-hosted editions of Kaltura (On-Prem or CE) are encouraged to use their Kaltura Server Clients Generator for optimal compatibility.</p>
+<h2 id="download-client-archives">Download Client Archives</h2>
+<style>
+.client-lib-link {
+  width: 71px;
+  height: 81px;
+  overflow: hidden;
+  margin-top: 12px;
+  margin-right: 12px;
+  display: inline-block;
+  background-image: url(assets/img/client-libs.png);
+  background-position: -70px;
+}
+</style>
+
+<p><a class="client-lib-link php5" data-language="php5" href="https://github.com/kaltura/KalturaGeneratedAPIClientsPHP/archive/v17.5.0.tar.gz" style="background-position: 0px"></a><a class="client-lib-link php53" data-language="php53" href="https://github.com/kaltura/KalturaGeneratedAPIClientsPHP53/archive/v17.5.0.tar.gz" style="background-position: -71px"></a><a class="client-lib-link php5Zend" data-language="php5Zend" href="https://github.com/kaltura/KalturaGeneratedAPIClientsZF/archive/v17.5.0.tar.gz" style="background-position: -142px"></a><a class="client-lib-link java" data-language="java" href="https://github.com/kaltura/KalturaGeneratedAPIClientsJava/archive/v17.5.0.tar.gz" style="background-position: -213px"></a><a class="client-lib-link csharp" data-language="csharp" href="https://github.com/kaltura/KalturaGeneratedAPIClientsCsharp/archive/v17.5.0.tar.gz" style="background-position: -284px"></a><a class="client-lib-link ruby" data-language="ruby" href="https://github.com/kaltura/KalturaGeneratedAPIClientsRuby/archive/v17.5.0.tar.gz" style="background-position: -355px"></a><a class="client-lib-link python" data-language="python" href="https://github.com/kaltura/KalturaGeneratedAPIClientsPython/archive/v17.5.0.tar.gz" style="background-position: -426px"></a><a class="client-lib-link nodejs" data-language="nodejs" href="https://github.com/kaltura/KalturaGeneratedAPIClientsNodeJS/archive/v17.5.0.tar.gz" style="background-position: -497px"></a><a class="client-lib-link ajax" data-language="ajax" href="https://github.com/kaltura/KalturaGeneratedAPIClientsAJAX/archive/v17.5.0.tar.gz" style="background-position: -568px"></a><a class="client-lib-link cli" data-language="cli" href="https://github.com/kaltura/KalturaGeneratedAPIClientsCLI/archive/v17.5.0.tar.gz" style="background-position: -639px"></a><a class="client-lib-link android" data-language="android" href="https://github.com/kaltura/KalturaGeneratedAPIClientsAndroid/archive/v17.5.0.tar.gz" style="background-position: -710px"></a><a class="client-lib-link swift" data-language="swift" href="https://github.com/kaltura/KalturaGeneratedAPIClientsSwift/archive/v17.5.0.tar.gz" style="background-position: -781px"></a><a class="client-lib-link angular" data-language="angular" href="https://github.com/kaltura/KalturaGeneratedAPIClientsAngular/archive/v17.5.0.tar.gz" style="background-position: -852px"></a><a class="client-lib-link typescript" data-language="typescript" href="https://github.com/kaltura/KalturaGeneratedAPIClientsTypescript/archive/v17.5.0.tar.gz" style="background-position: -923px"></a></p>
+<script>
+  window.jquery('.client-lib-link').click(function() {
+    var lang = $(this).attr('data-language');
+    mixpanel.track('client_library', {language: lang});
+  })
+</script>
+
+
+<h2 id="install-via-package-managers">Install Via Package Managers</h2>
+<p>In programming languages that use package managers, Kaltura also provides
+client libraries as packages that can be installed via the respective package manager.</p>
+<p><a href="https://nodei.co/npm/kaltura-client/"><img src="https://nodei.co/npm/kaltura-client.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM"></a></p>
+<ul>
+<li><a href="https://packagist.org/packages/kaltura/api-client-library">PHP</a> <code>composer require kaltura/api-client-library</code></li>
+<li><a href="https://rubygems.org/gems/kaltura-client">Ruby</a> <code>gem install kaltura-client</code></li>
+<li><a href="https://pypi.python.org/pypi/KalturaApiClient">Python</a> <code>pip install KalturaApiClient</code></li>
+<li><a href="http://cocoapods.org/pods/KalturaClient">Swift</a> <code>pod "KalturaClient"</code></li>
+<li><a href="https://mvnrepository.com/artifact/com.kaltura/kalturaApiClient">Java</a> (via Maven)</li>
+</ul>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;com.kaltura&lt;/groupId&gt;
+  &lt;artifactId&gt;kalturaApiClient&lt;/artifactId&gt;
+  &lt;version&gt;16.14.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+<h2 id="missing-a-language-">Missing a Language?</h2>
+<p>Tweet <a href="http://twitter.com/?status=@Kaltura_API%20pls%20add%20sdk%20for%3A%20%5Bprogramming_language%5D">@Kaltura_API pls add sdk for: [lang]</a></p>
+<p>or <a href="https://knowledge.kaltura.com/introduction-kaltura-client-libraries#GeneratingaKalturaClientLibrary">create your own Client Library Generator</a></p>
+</div><!----><!----><!----><div _ngcontent-c0="" class="docs-children ng-star-inserted"><h4 _ngcontent-c0="">Subtopics</h4><ul _ngcontent-c0=""><!----><li _ngcontent-c0="" class="ng-star-inserted"><a _ngcontent-c0="" href="/Client_Libraries/Support_Matrix"><span _ngcontent-c0="">Support Matrix</span></a></li></ul></div></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+
+  <div class="kaltura-foot-links">
+    <div class="container" style="width: 100%;">
+      <div class="row">
+        <div class="col col-xs-12 col-lg-3">
+          <img src="assets/icons/kaltura-logo.png" style="width: 120px;">
+          <div class="social-container" style="padding-top:20px;">
+            <a href="https://twitter.com/Kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/twitter.png" style="width:32px;"></a>
+            <a href="https://www.linkedin.com/company/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/linkedin.png" style="width:32px;"></a>
+            <a href="https://github.com/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/github.png" style="width:32px;"></a>
+            <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/stackoverflow.png" style="width:32px;"></a>
+          </div>
+        </div>
+        <div class="col col-xs-12 col-lg-9">
+          <div class="row">
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Media Services</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="/Home">Overview</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a free Trial</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Resources</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://knowledge.kaltura.com/">Kaltura Knowledge Center</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://github.com/kaltura">Kaltura on Github</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Contact</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Support</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Request Training</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Talk to Sales</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Community</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://forum.kaltura.org/">Developer Forum</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-technology-marketplace/">Partner Network</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;&q;:&q;# Kaltura API SDK - Native Client Libraries\n\nWhen developing applications that interact with the Kaltura API, it is best to use a native Client Library.\n\nBelow you can download the Client Library for the programming language of your choice.\n\nTo learn how to use the client libraries and see example code implementations, use the [API Test Console](/console) and [Interactive Workflows](/workflows).\nThe Test Console and Workflows automatically generate sample code based on the API actions and parameters you select.\n\nPlease note, the client libraries provided here have been generated for the Kaltura.com API.\nUsers of self-hosted editions of Kaltura (On-Prem or CE) are encouraged to use their Kaltura Server Clients Generator for optimal compatibility.\n\n## Download Client Archives\n&l;style&g;\n.client-lib-link {\n  width: 71px;\n  height: 81px;\n  overflow: hidden;\n  margin-top: 12px;\n  margin-right: 12px;\n  display: inline-block;\n  background-image: url(assets/img/client-libs.png);\n  background-position: -70px;\n}\n&l;/style&g;\n\n&l;a class=\&q;client-lib-link php5\&q; data-language=\&q;php5\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsPHP/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: 0px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link php53\&q; data-language=\&q;php53\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsPHP53/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -71px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link php5Zend\&q; data-language=\&q;php5Zend\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsZF/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -142px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link java\&q; data-language=\&q;java\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsJava/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -213px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link csharp\&q; data-language=\&q;csharp\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsCsharp/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -284px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link ruby\&q; data-language=\&q;ruby\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsRuby/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -355px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link python\&q; data-language=\&q;python\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsPython/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -426px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link nodejs\&q; data-language=\&q;nodejs\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsNodeJS/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -497px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link ajax\&q; data-language=\&q;ajax\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsAJAX/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -568px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link cli\&q; data-language=\&q;cli\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsCLI/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -639px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link android\&q; data-language=\&q;android\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsAndroid/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -710px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link swift\&q; data-language=\&q;swift\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsSwift/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -781px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link angular\&q; data-language=\&q;angular\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsAngular/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -852px\&q;&g;&l;/a&g;&l;a class=\&q;client-lib-link typescript\&q; data-language=\&q;typescript\&q; href=\&q;https://github.com/kaltura/KalturaGeneratedAPIClientsTypescript/archive/v17.5.0.tar.gz\&q; style=\&q;background-position: -923px\&q;&g;&l;/a&g;\n\n&l;script&g;\n  window.jquery(&s;.client-lib-link&s;).click(function() {\n    var lang = $(this).attr(&s;data-language&s;);\n    mixpanel.track(&s;client_library&s;, {language: lang});\n  })\n&l;/script&g;\n\n\n## Install Via Package Managers\nIn programming languages that use package managers, Kaltura also provides\nclient libraries as packages that can be installed via the respective package manager.\n\n[![NPM](https://nodei.co/npm/kaltura-client.png?downloads=true&a;downloadRank=true&a;stars=true)](https://nodei.co/npm/kaltura-client/)\n\n* [PHP](https://packagist.org/packages/kaltura/api-client-library) `composer require kaltura/api-client-library`\n* [Ruby](https://rubygems.org/gems/kaltura-client) `gem install kaltura-client`\n* [Python](https://pypi.python.org/pypi/KalturaApiClient) `pip install KalturaApiClient`\n* [Swift](http://cocoapods.org/pods/KalturaClient) `pod \&q;KalturaClient\&q;`\n* [Java](https://mvnrepository.com/artifact/com.kaltura/kalturaApiClient) (via Maven)\n\n```xml\n&l;dependency&g;\n  &l;groupId&g;com.kaltura&l;/groupId&g;\n  &l;artifactId&g;kalturaApiClient&l;/artifactId&g;\n  &l;version&g;16.14.0&l;/version&g;\n&l;/dependency&g;\n```\n\n\n## Missing a Language?\nTweet [@Kaltura_API pls add sdk for: [lang]](http://twitter.com/?status=@Kaltura_API%20pls%20add%20sdk%20for%3A%20%5Bprogramming_language%5D)\n\nor [create your own Client Library Generator](https://knowledge.kaltura.com/introduction-kaltura-client-libraries#GeneratingaKalturaClientLibrary)\n&q;}</script></body></html>

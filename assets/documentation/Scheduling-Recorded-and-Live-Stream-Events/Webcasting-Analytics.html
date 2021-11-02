@@ -1,0 +1,294 @@
+  <title>Webcasting Analytics</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Webcasting Analytics" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Webcasting Analytics</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Scheduling-Recorded-and-Live-Stream-Events/Webcasting-Analytics.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>Analytics for the livestream event can be retrieved via the <a href="https://developer.kaltura.com/console/service/report/">reporting</a> API. The API actions are split between <code class="highlighter-rouge">getTable</code>, <code class="highlighter-rouge">getGraph</code>, <code class="highlighter-rouge">getTotal</code>, etc - depending on the format in which you’d like to receive the data.</p>
+
+<p>There is also a webcasting module that is part of  <a href="../Analytics-and-Reporting /Embedded-Analytics-Reports.md">Embedded Analytics Reports</a></p>
+
+<p>In this guide, the types of reports will be demonstrated using the <a href="https://developer.kaltura.com/console/service/report/action/getTable">report.getTable</a> to make it easy to view results.</p>
+
+<p>If you scroll through the <code class="highlighter-rouge">reportType</code> field, you’ll see that Realtime reports are those with REALTIME in the name, from 10001, to 10013.</p>
+
+<p>For an understanding of the reporting API, try the TOP_CONTENT report first. <br />
+Note that reports always need a fromDay and toDay in the filter, as well as a pager.</p>
+      <h2 id="top-content">
+        
+        
+          TOP CONTENT <a href="#top-content"></a>
+        
+        
+      </h2>
+
+<p>A basic Top Content overview might look something like this:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">report_type</span> <span class="o">=</span> <span class="n">KalturaReportType</span><span class="o">.</span><span class="n">TOP_CONTENT</span>
+<span class="n">report_input_filter</span> <span class="o">=</span> <span class="n">KalturaReportInputFilter</span><span class="p">()</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">fromDay</span> <span class="o">=</span> <span class="s">"20200212"</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">toDay</span> <span class="o">=</span> <span class="s">"20200514"</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">getTable</span><span class="p">(</span><span class="n">report_type</span><span class="p">,</span> <span class="n">report_input_filter</span><span class="p">,</span> <span class="n">pager</span><span class="p">)</span><span class="err">`</span>
+</code></pre>
+</div>
+
+<p>If you’re using python, a print function for the results can be found <a href="https://github.com/kaltura-vpaas/webcasting-app-python/blob/master/print-analytics.py">here</a></p>
+    
+      <h2 id="users_overview_realtime">
+        
+        
+          USERS_OVERVIEW_REALTIME <a href="#users_overview_realtime"></a>
+        
+        
+      </h2>
+
+<p>This is an overview on user engagement, best retrieved in small time frames with an interval of ten seconds, like so:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">report_type</span> <span class="o">=</span> <span class="n">KalturaReportType</span><span class="o">.</span><span class="n">USERS_OVERVIEW_REALTIME</span>
+<span class="n">report_input_filter</span> <span class="o">=</span> <span class="n">KalturaReportInputFilter</span><span class="p">()</span>
+<span class="n">pager</span> <span class="o">=</span> <span class="n">KalturaFilterPager</span><span class="p">()</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">fromDay</span> <span class="o">=</span> <span class="s">"20200623"</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">toDay</span> <span class="o">=</span> <span class="s">"20200624"</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">KalturaReportInterval</span><span class="o">.</span><span class="n">TEN_SECONDS</span>
+
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">getTable</span><span class="p">(</span><span class="n">report_type</span><span class="p">,</span> <span class="n">report_input_filter</span><span class="p">,</span> <span class="n">pager</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+<span class="n">printTable</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">result</span><span class="p">),</span> <span class="s">"USERS OVERVIEW REALTIME"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The result header will look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>|date_id|view_unique_audience|view_unique_engaged_users|views|avg_view_engagement|
+</code></pre>
+</div>
+    
+      <h2 id="platforms-realtime">
+        
+        
+          PLATFORMS REALTIME <a href="#platforms-realtime"></a>
+        
+        
+      </h2>
+
+<p>The platforms report is a breakdown on which devices viewers are using to watch the livestream. You can even add <code class="highlighter-rouge">object_ids</code> to filter by entry ID.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">report_type</span> <span class="o">=</span> <span class="n">KalturaReportType</span><span class="o">.</span><span class="n">PLATFORMS_REALTIME</span>
+<span class="n">report_input_filter</span> <span class="o">=</span> <span class="n">KalturaReportInputFilter</span><span class="p">()</span>
+<span class="n">response_options</span> <span class="o">=</span> <span class="n">KalturaReportResponseOptions</span><span class="p">()</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">fromDay</span> <span class="o">=</span> <span class="s">"20200620"</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">toDay</span> <span class="o">=</span> <span class="s">"20200624"</span>
+<span class="n">object_ids</span> <span class="o">=</span> <span class="s">"&lt;ENTRY&gt;"</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">getTable</span><span class="p">(</span><span class="n">report_type</span><span class="p">,</span> <span class="n">report_input_filter</span><span class="p">,</span> <span class="n">pager</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">object_ids</span><span class="p">)</span>
+<span class="n">printTable</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">result</span><span class="p">),</span> <span class="s">"PLATFORMS REALTIME"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The result header will look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+----------+----------------------+---------------+
+|  device  | view_unique_audience | sum_view_time |
++----------+----------------------+---------------+
+</code></pre>
+</div>
+    
+      <h2 id="breakdown-per-user">
+        
+        
+          BREAKDOWN PER USER <a href="#breakdown-per-user"></a>
+        
+        
+      </h2>
+
+<p>The breakdown per user report shows the sum time viewed by user and how much buffering they encountered</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">report_type</span> <span class="o">=</span> <span class="n">KalturaReportType</span><span class="o">.</span><span class="n">ENTRY_LEVEL_USERS_DISCOVERY_REALTIME</span>
+<span class="n">report_input_filter</span> <span class="o">=</span> <span class="n">KalturaReportInputFilter</span><span class="p">()</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">fromDay</span> <span class="o">=</span> <span class="s">"20200610"</span>
+<span class="n">report_input_filter</span><span class="o">.</span><span class="n">toDay</span> <span class="o">=</span> <span class="s">"20200630"</span>
+<span class="n">pager</span> <span class="o">=</span> <span class="n">KalturaFilterPager</span><span class="p">()</span>
+<span class="n">response_options</span> <span class="o">=</span> <span class="n">KalturaReportResponseOptions</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">report</span><span class="o">.</span><span class="n">getTable</span><span class="p">(</span><span class="n">report_type</span><span class="p">,</span> <span class="n">report_input_filter</span><span class="p">,</span> <span class="n">pager</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The result header will look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>|user_id|user_name|sum_view_time_live|sum_view_time_dvr|sum_view_time|avg_view_buffering | avg_view_engagement|view_buffer_time_ratio|
+</code></pre>
+</div>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

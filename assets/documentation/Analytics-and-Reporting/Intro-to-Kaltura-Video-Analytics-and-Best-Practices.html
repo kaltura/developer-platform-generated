@@ -1,0 +1,227 @@
+  <title>Intro to Kaltura Video Analytics and Best Practices</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Intro to Kaltura Video Analytics and Best Practices" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Intro to Kaltura Video Analytics and Best Practices</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Analytics-and-Reporting/Intro-to-Kaltura-Video-Analytics-and-Best-Practices.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The Kaltura Analytics API reports provide you with the insight you need to manage your content, reach your audience, and optimize your video workflow. You can view a quick snapshot of high-level figures, or drill down to user-specific or video-specific information. Use the analytics reports to gain business insights and understand user trends.</p>
+      <h2 id="report-service">
+        
+        
+          Report Service <a href="#report-service"></a>
+        
+        
+      </h2>
+
+<p>Kaltura analytics data is exposed via the <a href="https://developer.kaltura.com/console/service/report"><code class="highlighter-rouge">Report Service</code></a>.   <br />
+A number of actions within this service will enable you to pull data for Content, User Engagement, Bandwidth and Storage, and System. A specific set of filters will ensure you get the insights you need.</p>
+
+<p>You can follow the <a href="https://developer.kaltura.com/workflows/Review_Media_Analytics/Analytics_Reports">Interactive Code Workflow,</a> or continue reading to learn about a few basic reports:</p>
+
+<p>The Report API contains a couple of different actions for returning data. For the purpose of this doc, we will use <a href="https://developer.kaltura.com/console/service/report/action/getTable"><code class="highlighter-rouge">report.getTable</code></a>, which returns an object of the insights data, as well as the respective column headers. Other actions include <a href="https://developer.kaltura.com/console/service/report/action/getGraphs"><code class="highlighter-rouge">report.getGraphs</code></a> which returns points for a graph UI, and <a href="https://developer.kaltura.com/console/service/report/action/getUrlForReportAsCsv"><code class="highlighter-rouge">report.getUrlForReportAsCsv</code></a>, which produces a CSV report based on your given headers.</p>
+
+<p>For any <code class="highlighter-rouge">report.getTable</code> action, you need:</p>
+<ul>
+  <li><strong>reportType:</strong> Object enum or integer (list of types found <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaReportType">here</a>) that determines the type of report to produce</li>
+  <li><strong>reportInputFilter:</strong> Can be of type <code class="highlighter-rouge">KalturaReportInputFilter</code> or <code class="highlighter-rouge">KalturaEndUserReportInputFilter</code>. It is required, and allows you to set date range, specific categories, keywords, or custom variables.</li>
+  <li><strong>pager:</strong> Unlike some other Kaltura APIs, a pager is always required for this action. It contains the <code class="highlighter-rouge">pageIndex</code> and <code class="highlighter-rouge">pageSize</code> (number of results you’d like per page).</li>
+</ul>
+
+<p>Other optional parameters:</p>
+<ul>
+  <li><strong>objectIds:</strong> For when you want to drill down on statistics for a specific entry or user.</li>
+  <li><strong>order:</strong> Order by any column from the given results table</li>
+</ul>
+    
+      <h2 id="integrated-analytics-partners">
+        
+        
+          Integrated Analytics Partners <a href="#integrated-analytics-partners"></a>
+        
+        
+      </h2>
+
+<p>Already using an analytics or audience measurement tool? Leverage the Kaltura pre-integrated plugins for all major analytics providers and consolidate your data securely and reliably.</p>
+
+<p>To learn how to setup player plugins read: <a href="https://knowledge.kaltura.com/universal-studio-information-guide#configuring_analytics">Configuring Analytics Plugins</a>.</p>
+
+<ul>
+  <li><a href="https://knowledge.kaltura.com/node/1675">Youbora</a></li>
+  <li><a href="http://player.kaltura.com/docs/ComscoreAnalytics">comScore</a></li>
+  <li><a href="http://player.kaltura.com/docs/NielsenVideoCensus">Nielsen</a></li>
+  <li><a href="https://knowledge.kaltura.com/node/1148#googleanalytics">Google Analytics</a></li>
+  <li><a href="http://support.chartbeat.com/docs/video.html#kaltura">Chartbeat</a></li>
+</ul>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

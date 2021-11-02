@@ -27,7 +27,7 @@
   }
 
   var LOGGED_OUT_HTML =
-      '<li class="navbar-link auth-link"><a class="btn btn-success" onclick="lucybot.startLogin()">Sign In</a></li>';
+      '<li class="navbar-link auth-link"><a class="btn btn-outline-primary btn-signin" onclick="lucybot.startLogin()">Sign In</a></li>';
 
   function setPartnerChoices(choices) {
     window.kalturaPartners = choices;

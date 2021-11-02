@@ -1,0 +1,329 @@
+  <title>Enriching Player Analytics with Custom Event Data</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Enriching Player Analytics with Custom Event Data" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Enriching Player Analytics with Custom Event Data</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Analytics-and-Reporting/Enriching_Player_Analytics_with_Custom_Event_Data.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h1 id="enriching-player-analytics-with-custom-event-data">
+        
+        
+          Enriching Player Analytics with Custom Event Data <a href="#enriching-player-analytics-with-custom-event-data"></a>
+        
+        
+      </h1>
+
+<p>While Kaltura <a href="Intro-to-Kaltura-Video-Analytics-and-Best-Practices.md">collects</a> most of the highly requested and common analytics data points, sometimes you may require information that is not already collected. Kaltura provides a convenient way for you to collect any kind of data you want with the <code class="highlighter-rouge">customVar</code> feature.</p>
+    
+      <h2 id="configuring-the-player">
+        
+        
+          Configuring the player <a href="#configuring-the-player"></a>
+        
+        
+      </h2>
+
+<p>Kaltura players accept a <code class="highlighter-rouge">customVar</code> argument through the <a href="https://github.com/kaltura/playkit-js-kava">KAVA</a> analytics framework. These are named <code class="highlighter-rouge">customVar1</code>, <code class="highlighter-rouge">customVar2</code> and <code class="highlighter-rouge">customVar3</code>.</p>
+    
+      <h3 id="configuring-javascript-player">
+        
+        
+          Configuring Javascript Player <a href="#configuring-javascript-player"></a>
+        
+        
+      </h3>
+
+<p>First check in the <a href="https://kmc.kaltura.com/index.php/kmcng/studio/v3">KMC</a> to make sure the KAVA plugin is enabled on your <a href="https://developer.kaltura.com/player/web/getting-started-web">player</a>: it is enabled by default.</p>
+
+<p><img src="/assets/images/kmc_kava.png" alt="kmc_kava" style="zoom:65%;" /></p>
+
+<p>Next configure the player to accept customVar1 via KAVA:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>     <span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">({</span>
+                <span class="na">targetId</span><span class="p">:</span> <span class="s2">"kaltura-player"</span><span class="p">,</span>
+                <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">partnerId</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+                    <span class="na">uiConfId</span><span class="p">:</span> <span class="mi">678910</span>
+                <span class="p">},</span>
+                <span class="na">plugins</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">kava</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="na">customVar1</span><span class="p">:</span> <span class="s2">"hello"</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+</code></pre>
+</div>
+    
+      <h3 id="configuring-ios-player">
+        
+        
+          Configuring iOS Player <a href="#configuring-ios-player"></a>
+        
+        
+      </h3>
+
+<p>If you refer to the <a href="https://developer.kaltura.com/player/ios/analytics-plugins-ios">iOS analytics</a> documentation, you will notice the <code class="highlighter-rouge">createKavaConfig</code> method below accepts <code class="highlighter-rouge">customVar[123]</code></p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">createKavaConfig</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">KavaPluginConfig</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kt">KavaPluginConfig</span><span class="p">(</span><span class="nv">partnerId</span><span class="p">:</span> <span class="kt">PARTNER_ID</span><span class="p">,</span> <span class="nv">entryId</span><span class="p">:</span> <span class="n">entryId</span><span class="p">,</span> <span class="nv">ks</span><span class="p">:</span> <span class="n">ks</span><span class="p">,</span> <span class="nv">playbackContext</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">referrer</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">applicationVersion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">playlistId</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customVar1</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customVar2</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customVar3</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h3 id="configuring-android-player">
+        
+        
+          Configuring Android Player <a href="#configuring-android-player"></a>
+        
+        
+      </h3>
+
+<p>Refer to the <a href="https://developer.kaltura.com/player/android/getting-started-android">android player setup page</a> which also links to the <a href="https://github.com/kaltura/playkit-android-kava">Android KAVA demo</a></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>            //Set your configurations.
+            KavaAnalyticsConfig kavaConfig = new KavaAnalyticsConfig()
+                    .setPartnerId(123456) //Your partnerId. Mandatory field!
+                    .setBaseUrl("yourBaseUrl")
+                    .setUiConfId(123456)
+                    .setKs("your_ks")
+                    .setCustomVar1("customVar1")
+                    .setCustomVar2("customVar2")
+                    .setCustomVar3("customVar3");
+</code></pre>
+</div>
+    
+      <h2 id="querying-analytics-for-customvar">
+        
+        
+          Querying Analytics for customVar <a href="#querying-analytics-for-customvar"></a>
+        
+        
+      </h2>
+
+<p>Now that you have supplied <code class="highlighter-rouge">customVar</code> to your player, and users are interacting with your players, you will want to see how your <code class="highlighter-rouge">customVar</code> data is performing.</p>
+
+<p>Using the <a href="Intro-to-Kaltura-Video-Analytics-and-Best-Practices.md">analytics API</a>  you will be able to create different kinds of reports for your customVar.</p>
+    
+      <h3 id="top_content-report">
+        
+        
+          TOP_CONTENT report <a href="#top_content-report"></a>
+        
+        
+      </h3>
+
+<p>Using the <a href="https://developer.kaltura.com/console/service/report/action/getTable">report.getTable</a> API call, as shown below, a <code class="highlighter-rouge">reportType</code> of <code class="highlighter-rouge">TOP_CONTENT</code> is produced and it allows you to filter by string via the <code class="highlighter-rouge">customVar1In</code> field of <code class="highlighter-rouge">reportInputFilter</code></p>
+
+<p><img src="/assets/images/customVar_topContent.png" alt="customVar_topContent" style="zoom:40%;" /></p>
+
+<p>Which will return a tab-delimited report like:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"header"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object_id,entry_name,count_plays,sum_time_viewed,avg_time_viewed,count_loads,load_play_ratio,avg_view_drop_off,unique_known_users"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1_z81cf9,TAKE2_EDIT,6,1,1,9,1,1,1;
+           1_em9nua,inside    ,1,0,0,1,1,0,1;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"objectType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KalturaReportTable"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>As you can see, a <code class="highlighter-rouge">;</code> delimited list of all the entryIds that matched “hello” were returned in the <code class="highlighter-rouge">data</code> object.</p>
+    
+      <h3 id="custom_var-report">
+        
+        
+          CUSTOM_VAR report <a href="#custom_var-report"></a>
+        
+        
+      </h3>
+
+<p>If you wanted to query all of the customVar data for your account, this is also possible using a <code class="highlighter-rouge">reportType</code> of <code class="highlighter-rouge">TOP_CUSTOM_VAR1</code>, <code class="highlighter-rouge">TOP_CUSTOM_VAR2</code>, or <code class="highlighter-rouge">TOP_CUSTOM_VAR3</code></p>
+
+<p><img src="/assets/images/TOP_CUSTOMVAR_REPORT.png" alt="TOP_CUSTOMVAR_REPORT" style="zoom:40%;" /></p>
+
+<p>Which returns the following result:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"header"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_var1,count_plays,sum_time_viewed,avg_time_viewed,count_loads,load_play_ratio,avg_view_drop_off"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello,6,0.533,0.088888,9,1,0.6;                				
+  	       world,1,0.066,0.066666,1,1,0.5;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"objectType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KalturaReportTable"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>As you see the <strong>“hello”</strong> and <strong>“world”</strong> are the two <code class="highlighter-rouge">customVar1</code> that have been used with this account during the specified time period.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

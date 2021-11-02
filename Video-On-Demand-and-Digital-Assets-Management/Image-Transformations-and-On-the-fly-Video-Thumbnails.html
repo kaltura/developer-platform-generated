@@ -1,0 +1,2169 @@
+<!DOCTYPE html><html><head>
+    <title>On-the-fly Video Thumbnails and Image Transformations - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-68472312-3');
+</script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><meta name="title" content="On-the-fly Video Thumbnails and Image Transformations - Kaltura VPaaS API Documentation"><meta name="description" content="Full documentation for the Kaltura VPaaS API"><meta name="keywords" content=""><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <label>One Time Authentication code (leave empty if OTP is not enabled for your partner[s])</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="OTP">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <button type="button" class="side-menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="assets/images/KalturaLogo.png">
+        <!--
+        <span class="brand-subtitle">Developer</span>
+        -->
+      </a>
+      <div class="form-group has-feedback has-search">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        <input type="text" class="form-control g-search-box" placeholder="Search the documentation">
+      </div>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+	        <a href="#">Contact Us</a>
+        </li>
+        <li class="navbar-link">
+          <a href="https://forum.kaltura.org">Community</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="nav-tabs-b">
+    <span class="subnav subnav-guides" data-to="/"><a>Guides &amp; Workflows</a></span>
+    <span class="subnav subnav-apis" data-to="/api-docs"><a>APIs &amp; SDKs</a></span>
+    <span class="subnav subnav-samples" data-to="/samples"><a>Samples</a></span>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Home" href="/Home"><span class="ng-tns-c5-0" innerhtml="Home">Home</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Introduction to Kaltura Media Services" href="/Introduction_to_Kaltura_Media_Services"><span class="ng-tns-c5-1" innerhtml="Introduction to Kaltura Media Services">Introduction to Kaltura Media Services</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Getting Started" href="/Getting-Started-Building-Video-Applications"><span class="ng-tns-c5-2" innerhtml="Getting Started">Getting Started</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Video On Demand and Digital Assets Management" href="/Video-On-Demand-and-Digital-Assets-Management"><span class="ng-tns-c5-3" innerhtml="Video On Demand and Digital Assets Management">Video On Demand and Digital Assets Management</span></a></div><!----><div class="side-menu-children ng-tns-c5-3 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-13 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Upload and Import Video Files via API" href="/Video-On-Demand-and-Digital-Assets-Management/Upload-and-Import-Video-Files-via-API.html"><span class="ng-tns-c5-13" innerhtml="Upload and Import Video Files via API">Upload and Import Video Files via API</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-14 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Express Recorder" href="/Video-On-Demand-and-Digital-Assets-Management/express-recorder.html"><span class="ng-tns-c5-14" innerhtml="Express Recorder">Express Recorder</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-15 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Video Editor" href="/Video-On-Demand-and-Digital-Assets-Management/Video-Editor.html"><span class="ng-tns-c5-15" innerhtml="Video Editor">Video Editor</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-16 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Captions" href="/Video-On-Demand-and-Digital-Assets-Management/Embeddable-Captions-Editor.html"><span class="ng-tns-c5-16" innerhtml="Captions">Captions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-17 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Enrichment Services" href="/Video-On-Demand-and-Digital-Assets-Management/Enrichment-Services.html"><span class="ng-tns-c5-17" innerhtml="Enrichment Services">Enrichment Services</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-18 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Personal Video Capture" href="/Video-On-Demand-and-Digital-Assets-Management/Personal-Video-Capture.html"><span class="ng-tns-c5-18" innerhtml="Personal Video Capture">Personal Video Capture</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-19 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Import Video Files via Bulk Upload" href="/Video-On-Demand-and-Digital-Assets-Management/Import-Video-Files-via-Bulk-Upload.html"><span class="ng-tns-c5-19" innerhtml="Import Video Files via Bulk Upload">Import Video Files via Bulk Upload</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-20 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Creating &amp; Managing Custom Metadata Fields" href="/Video-On-Demand-and-Digital-Assets-Management/Creating-and-Managing-Custom-Metadata-Fields.html"><span class="ng-tns-c5-20" innerhtml="Creating &amp;amp; Managing Custom Metadata Fields">Creating &amp; Managing Custom Metadata Fields</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-21 active ng-star-inserted" preservefragment="" preservequeryparams="" title="On-the-fly Video Thumbnails and Image Transformations" href="/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.html"><span class="ng-tns-c5-21" innerhtml="On-the-fly Video Thumbnails and Image Transformations">On-the-fly Video Thumbnails and Image Transformations</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-22 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Searching for Media Entries" href="/Video-On-Demand-and-Digital-Assets-Management/Searching-for-Media-Entries.html"><span class="ng-tns-c5-22" innerhtml="Searching for Media Entries">Searching for Media Entries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-23 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Categories &amp; Entitlement Rules" href="/Video-On-Demand-and-Digital-Assets-Management/Categories-and-Entitlement-Rules.html"><span class="ng-tns-c5-23" innerhtml="Categories &amp;amp; Entitlement Rules">Categories &amp; Entitlement Rules</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-24 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Hardening Security with Media Access Control Rules" href="/Video-On-Demand-and-Digital-Assets-Management/Media-Access-Control.html"><span class="ng-tns-c5-24" innerhtml="Hardening Security with Media Access Control Rules">Hardening Security with Media Access Control Rules</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-25 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-25 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Implementing Playlists" href="/Video-On-Demand-and-Digital-Assets-Management/Implementing-Playlists.html"><span class="ng-tns-c5-25" innerhtml="Implementing Playlists">Implementing Playlists</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-26 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Working with Documents and Data Assets" href="/Video-On-Demand-and-Digital-Assets-Management/Working-with-Documents-and-Data-Assets.html"><span class="ng-tns-c5-26" innerhtml="Working with Documents and Data Assets">Working with Documents and Data Assets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-27 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-27 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Transcoding" href="/Video-On-Demand-and-Digital-Assets-Management/Transcoding.html"><span class="ng-tns-c5-27" innerhtml="Transcoding">Transcoding</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Video Webcasting" href="/Live-Video-Webcasting"><span class="ng-tns-c5-4" innerhtml="Live Video Webcasting">Live Video Webcasting</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Real-time Video Meetings Experience" href="/Real-time-Video-Meetings-Experience"><span class="ng-tns-c5-5" innerhtml="Real-time Video Meetings Experience">Real-time Video Meetings Experience</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Streaming &amp; Publishing" href="/Streaming-and-Publishing"><span class="ng-tns-c5-6" innerhtml="Streaming &amp;amp; Publishing">Streaming &amp; Publishing</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Scheduling Recorded and Live Stream Events" href="/Scheduling-Recorded-and-Live-Stream-Events"><span class="ng-tns-c5-7" innerhtml="Scheduling Recorded and Live Stream Events">Scheduling Recorded and Live Stream Events</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="SEO, Syndication &amp; Distribution" href="/SEO-Syndication-and-Distribution"><span class="ng-tns-c5-8" innerhtml="SEO, Syndication &amp;amp; Distribution">SEO, Syndication &amp; Distribution</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Analytics &amp; Reporting" href="/Analytics-and-Reporting"><span class="ng-tns-c5-9" innerhtml="Analytics &amp;amp; Reporting">Analytics &amp; Reporting</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-10 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/Client_Libraries"><span class="ng-tns-c5-10" innerhtml="Client Libraries">Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-11 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Schemas" href="/Schemas"><span class="ng-tns-c5-11" innerhtml="Schemas">Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/Contribute"><span class="ng-tns-c5-12" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">On-the-fly Video Thumbnails and Image Transformations</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>On-the-fly Video Thumbnails and Image Transformations</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="On-the-fly Video Thumbnails and Image Transformations">
+    <meta property="st:published_at" content="">
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+
+
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+
+
+
+
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">On-the-fly Video Thumbnails and Image Transformations</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Sep 27 05:03:14 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (3 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (For the static thumbnail assets management API refer to the <a href="https://developer.kaltura.com/api-docs/#/thumbAsset">thumbAsset</a>) There is also a <a href="">legacy Thumbnail API</a></p>
+      <h1 id="interactive-demo">
+        
+        
+          Interactive Demo <a href="#interactive-demo"></a>
+        
+        
+      </h1>
+
+<p>Head over to the <a href="https://kaltura-vpaas.github.io/ThumbnailStudio/demo/">interactive demo</a> to try any combination of transformations for the Thumbnail API</p>
+    
+      <h1 id="using-the-thumbnail-api">
+        
+        
+          Using the Thumbnail API <a href="#using-the-thumbnail-api"></a>
+        
+        
+      </h1>
+
+<p>The Thumbnail API provides a simple means to dynamically transform (change size, crop, add text, apply filters, etc) image entries, and to generate images from Kaltura video entries on the fly.</p>
+
+<p>The images are generated upon request (with caching on disk and via CDN) by calling the following URL format</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;serviceUrl&gt;/api_v3/service/thumbnail_thumbnail/p/&lt;partner_id&gt;/action/transform/&lt;transformString&gt;
+</code></pre>
+</div>
+
+<p>The images are generated upon request (with caching on disk and via CDN) by calling the following URL format. Example: https://cdnsecakmi.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-3.2_w-1500_h-500</p>
+    
+      <h1 id="transformstring">
+        
+        
+          <strong>transformString</strong> <a href="#transformstring"></a>
+        
+        
+      </h1>
+
+<p>transformString is a collection of transformSteps separated by ‘+’</p>
+
+<p><code class="highlighter-rouge">&lt;transformStep&gt;+&lt;transformStep&gt;</code></p>
+
+<p>The order in the transformString is important</p>
+
+<p><img src="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10" alt="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10"></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y–140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x–800_y–150_opacity-100_compositetype-10</p>
+
+<p>This is an example using two <code class="highlighter-rouge">transformSteps</code></p>
+
+<p>The first is <code class="highlighter-rouge">id-0_60gyd613,vidsec</code> and the second is added for a different video entry using <code class="highlighter-rouge">+</code></p>
+
+<p><code class="highlighter-rouge">id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10</code></p>
+
+<p>This thumbnail was created using the <a href="https://kaltura-vpaas.github.io/ThumbnailStudio/demo/">interactive demo</a> to easily lay out the two images and get the order of operations correct.</p>
+    
+      <h1 id="transformstep">
+        
+        
+          <strong>transformStep</strong> <a href="#transformstep"></a>
+        
+        
+      </h1>
+
+<p>The transformStep format is <code class="highlighter-rouge">&lt;source&gt;,&lt;sourceActions&gt;,&lt;imageActions&gt;</code></p>
+
+<p>An example:</p>
+
+<p><img src="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec_second-3,crop_height-500_width-500_gravityPoint-5" style="zoom:50%;"></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec_second-3,crop_height-500_width-500_gravityPoint-5</p>
+
+<p>Here the <code class="highlighter-rouge">&lt;source&gt;</code> is <code class="highlighter-rouge">id-0_60gyd613</code></p>
+
+<p>The <code class="highlighter-rouge">&lt;sourceActions&gt;</code> is <code class="highlighter-rouge">vidsec_second-3</code></p>
+
+<p>And the <code class="highlighter-rouge">&lt;imageActions&gt;</code> is <code class="highlighter-rouge">crop_height-500_width-500_gravityPoint-5</code></p>
+    
+      <h1 id="sourceactions">
+        
+        
+          SourceActions <a href="#sourceactions"></a>
+        
+        
+      </h1>
+
+<p>Source actions are used to transform a video source into an image</p>
+    
+      <h2 id="vidsec">
+        
+        
+          VidSec <a href="#vidsec"></a>
+        
+        
+      </h2>
+
+<p>Picking a frame from a video by second</p>
+
+<p><strong>Action name:</strong> vidsec <strong>alias:</strong> vsec</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>second</td>
+      <td>The time to snap a frame from the video</td>
+      <td>float</td>
+      <td>Yes</td>
+      <td>s, sec</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>Requested height in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>Requested width in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>vidsec_s-1.1</p>
+
+<ul>
+  <li>URL full example:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-1.1</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-20_w-500_h-250</p>
+    
+      <h2 id="vid-slice">
+        
+        
+          <strong>Vid Slice</strong> <a href="#vid-slice"></a>
+        
+        
+      </h2>
+
+<p>Picking a frame by dividing the video into slices and then pick the slice</p>
+
+<p><strong>Action name:</strong> vidSlice <strong>Alias:</strong> vslice</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>numberofslices</td>
+      <td>Number of slices to split the video</td>
+      <td>Int</td>
+      <td>Yes</td>
+      <td>nos</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>sliceNumber</td>
+      <td>Number of slice out of slices</td>
+      <td>Int</td>
+      <td>Yes</td>
+      <td>sn</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>Requested height in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>Requested width in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>startSec</td>
+      <td>The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition).</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>ss</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>endSec</td>
+      <td>The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>es</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>vslice_nos-13_sn-4</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vslice_nos-10_sn-4<br>
+https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_nos-20_sn-11_ss-1_se-11</p>
+    
+      <h2 id="vidstrip">
+        
+        
+          <strong>VidStrip</strong> <a href="#vidstrip"></a>
+        
+        
+      </h2>
+
+<p>Splitting the video into slices and glue them into one image</p>
+
+<p><strong>Action name:</strong> vidStrip <strong>Alias:</strong> vstrip</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>numberofslices</td>
+      <td>the number of slices to split the video</td>
+      <td>Int</td>
+      <td>Yes</td>
+      <td>nos</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>Requested height in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>Requested width in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>startSec</td>
+      <td>The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition).</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>ss</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>endSec</td>
+      <td>The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>es</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>vstrip_nos-13</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vstrip_nos-5</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vstrip_nos-10_endSec-30_w-200_h-100</p>
+    
+      <h1 id="imageactions">
+        
+        
+          ImageActions <a href="#imageactions"></a>
+        
+        
+      </h1>
+
+<p>Actions to manipulate the image</p>
+    
+      <h2 id="crop">
+        
+        
+          <strong>Crop</strong> <a href="#crop"></a>
+        
+        
+      </h2>
+
+<p>Crop the image into a smaller one</p>
+
+<p><strong>Action name:</strong> crop <strong>Alias:</strong> c</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gravityPoint</td>
+      <td>The gravity point to where to crop the image</td>
+      <td>Int</td>
+      <td>No if x and y are supplied</td>
+      <td>gp</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>The required height</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>The required width</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>crop to start from specific x coordinate</td>
+      <td>Int</td>
+      <td>No if gravity point is supplied</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>crop to start from specific y coordinate</td>
+      <td>Int</td>
+      <td>No if gravity point is supplied</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>gravityPoint can be 1-9 1- northwest, 2 - north, 3 - northeast, 4- west, 5 - center, 6 - east, 7 - southwest, 8 - south, 9 - southeast</li>
+  <li>example:</li>
+</ul>
+
+<p>c_w-140_h-120_x-50_y-40</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,c_x-50_y-50_w-200_h-200_x-100_y-100</p>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,c_gp-0_w-200_h-200">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,c_gp-5_w-200_h-200</a></p>
+    
+      <h2 id="resize">
+        
+        
+          <strong>resize</strong> <a href="#resize"></a>
+        
+        
+      </h2>
+
+<p>Changing the image dimensions</p>
+
+<p><strong>Action name:</strong> resize <strong>Alias:</strong> re</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>height</td>
+      <td>The required height</td>
+      <td>Int</td>
+      <td>Yes unless cf is suppliedYou can pass 0 for proportional scalingIf bf isn’t supplied</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>The required width</td>
+      <td>Int</td>
+      <td>Yes unless cf is suppliedYou can pass 0 for proportional scalingIf bf isn’t supplied</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Advanced parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Blur</td>
+      <td>The blur factor where &gt; 1 is blurry, &lt; 1 is sharp.Only relevant if we resizing to a smaller size</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>b</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>filterType</td>
+      <td>See <a href="#Filter List">Filter List</a></td>
+      <td>Int</td>
+      <td>No</td>
+      <td>ft</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>bestFit</td>
+      <td>Optional fit parameter</td>
+      <td>Bool</td>
+      <td>No</td>
+      <td>bf</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>compositeFit</td>
+      <td>Trying to scale the image to the previous tranformationStep image</td>
+      <td>Bool</td>
+      <td>No</td>
+      <td>cf</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>resize_w-200_h-200</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,re_w-500_h-0</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,re_w-50_h-10_bf_b-0.9</p>
+    
+      <h2 id="roundcorners">
+        
+        
+          <strong>roundcorners</strong> <a href="#roundcorners"></a>
+        
+        
+      </h2>
+
+<p>Rounding the corners</p>
+
+<p><strong>Action name:</strong> roundcorners <strong>Alias:</strong> rc</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xRounding</td>
+      <td>x rounding</td>
+      <td>float</td>
+      <td>Yes</td>
+      <td>x, xr</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>yRounding</td>
+      <td>y rounding</td>
+      <td>float</td>
+      <td>Yes</td>
+      <td>y, yr</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Advanced parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>strokeWidth</td>
+      <td>stroke width</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sw</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>displace</td>
+      <td>image displace</td>
+      <td>float</td>
+      <td>No</td>
+      <td>d</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>sizeCorrection</td>
+      <td>size correction</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sc</td>
+      <td>-6</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>color for the corners</td>
+      <td>color</td>
+      <td>No</td>
+      <td>bg</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>rc_x-100_y-100</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,rc_x-200_y-100_bg-white_sw–50_sc-10_d-20</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,rc_x-200_y-100_bg-red</p>
+    
+      <h2 id="rotate">
+        
+        
+          <strong>Rotate</strong> <a href="#rotate"></a>
+        
+        
+      </h2>
+
+<p>Rotating the image</p>
+
+<p><strong>Action name:</strong>rotate <strong>Alias:</strong>r</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>degrees</td>
+      <td>degrees to turn</td>
+      <td>int</td>
+      <td>Yes</td>
+      <td>d, deg</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>Color to fill empty space created by the rotationcolor string without # like “fff” or fixed names like “red”,”blue”</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>b, bg</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>r_deg-90_b-fff</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-90</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-60_bg-pink</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-222_bg-fff124</p>
+    
+      <h2 id="text">
+        
+        
+          Text <a href="#text"></a>
+        
+        
+      </h2>
+
+<p>Adding a text on the image</p>
+
+<p><strong>Action name:</strong> text <strong>Alias:</strong> t, txt</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>The text, it must be URL encoded</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>t, txt</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>font</td>
+      <td>See <a href="#Font List">Font List</a></td>
+      <td>string</td>
+      <td>No</td>
+      <td>f</td>
+      <td>Courier</td>
+    </tr>
+    <tr>
+      <td>fontSize</td>
+      <td>The font size</td>
+      <td>float</td>
+      <td>No</td>
+      <td>fs</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>strokeWidth</td>
+      <td>Stroke width</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sw</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>Horizontal offset in pixels to the left of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>Vertical offset in pixels to the baseline of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>angle</td>
+      <td>The angle to write the text</td>
+      <td>float</td>
+      <td>No</td>
+      <td>a</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>maxHeight</td>
+      <td>If you want to limit the textbox</td>
+      <td>int</td>
+      <td>No</td>
+      <td>mh</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>maxWidth</td>
+      <td>If you want to limit the textbox, it will try to word warp</td>
+      <td>int</td>
+      <td>No</td>
+      <td>mw</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>strokeColor</td>
+      <td>Stroke color</td>
+      <td>color string or code without #</td>
+      <td>No</td>
+      <td>sc</td>
+      <td>black</td>
+    </tr>
+    <tr>
+      <td>fillColor</td>
+      <td>Fill color</td>
+      <td>color string or code without #</td>
+      <td>No</td>
+      <td>fc</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>See section 7 for supported font list</li>
+  <li>example:</li>
+</ul>
+
+<p>t_text-test2_fs-40_y-80_x-35</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,t_t-Fire_fs-90_fc-red_y-100_x-200</p>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,txt_t-An example _fs-40_sc-green_y-50_x-200_a-90">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,txt_t-An%20example%20_fs-40_sc-green_y-50_x-200_a-90</a></p>
+    
+      <h2 id="filter">
+        
+        
+          <strong>Filter</strong> <a href="#filter"></a>
+        
+        
+      </h2>
+
+<p>Applying predefined filters on the image</p>
+
+<p><strong>Action name:</strong>filter <strong>Alias:</strong>f</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>filterType</td>
+      <td>the desired filter</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>f, ft</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Current filter type options are</p>
+
+<p>blueshift, charcoal, contrast, edge, oil, polaroid, raise, sepia, shade, solarize, vignette, wave</p>
+
+<ul>
+  <li>Example</li>
+</ul>
+
+<p><a href="http://zuronprem2/api_v3/service/thumbnail_thumbnail/action/transform/p/212/transformString/id-0_rk73kvqj,filter_f-shade/nocache/1">filter_f-shade</a></p>
+
+<ul>
+  <li>URL full examples</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-10,filter_filtertype-wave</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-11.2,filter_filtertype-shade</p>
+    
+      <h2 id="image-texture-text">
+        
+        
+          <strong>Image texture text</strong> <a href="#image-texture-text"></a>
+        
+        
+      </h2>
+
+<p>Creating a text with thumbnail image as texture</p>
+
+<p><strong>Action name:</strong> imageTextureText <strong>Alias:</strong> itt</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>The text, it must be URL encoded</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>t, txt</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>font</td>
+      <td>Name of the font case sensitive</td>
+      <td>string</td>
+      <td>No</td>
+      <td>f</td>
+      <td>Courier</td>
+    </tr>
+    <tr>
+      <td>fontSize</td>
+      <td>The font size</td>
+      <td>float</td>
+      <td>No</td>
+      <td>fs</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>strokeWidth</td>
+      <td>Stroke width</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sw</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>Horizontal offset in pixels to the left of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>Vertical offset in pixels to the baseline of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>angle</td>
+      <td>The angle to write the text</td>
+      <td>float</td>
+      <td>No</td>
+      <td>a</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>See below for supported font list</li>
+  <li>Example</li>
+</ul>
+
+<p>itt_text-test_fs-40_y-80_x-35</p>
+
+<ul>
+  <li>URL full examples</li>
+</ul>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-1_ss-0_es-10,itt_t-test test_fs-50_x-200_y-100_sw-5_a-45_mw-10">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-1_ss-0_es-10,itt_t-test%20test_fs-50_x-200_y-100_sw-5_a-45_mw-10</a></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,itt_text-candle_fs-180_y-250_x-105_sw-10</p>
+    
+      <h2 id="composite">
+        
+        
+          <strong>Composite</strong> <a href="#composite"></a>
+        
+        
+      </h2>
+
+<p><strong>Action name</strong>: composite <strong>Alias</strong>: comp<br>
+<strong>Parameters</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td>The column offset of the composited image</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>The row offset of the composited image</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>opacity</td>
+      <td>the opacity of the added image value can be between 1-100</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>op</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Advanced parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>compositetype</td>
+      <td>See <a href="#Composite Type List">Composite Type List</a></td>
+      <td>Int</td>
+      <td>No</td>
+      <td>ct</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>channel</td>
+      <td>See <a href="#Channel Type List">Channel Type List</a> provide any channel constant that is valid for your channel modeTo apply to more than one channel, combine channeltype constants using bitwise operators</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>ch</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>This action can’t be part of the first transformation step</li>
+  <li>If you have more than one transformation step this action become mandatory for the non-first steps</li>
+  <li>Example</li>
+</ul>
+
+<p>comp_op-50</p>
+
+<ul>
+  <li>URL full examples</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez+id-1_fgy9sh8i,vidsec_s-5,itt_text-erez_fs-180_y-250_x-95_sw-10,comp_x-10_y–30</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-5+id-1_7anel7ez,re_h-200_w-300,r_d-10_bg-none,comp_x-1130_y-230</p>
+    
+      <h2 id="output">
+        
+        
+          <strong>Output</strong> <a href="#output"></a>
+        
+        
+      </h2>
+
+<p>Modify the image output parameters</p>
+
+<p><strong>Action name:</strong> output <strong>Alias:</strong> o, io, output, imageoutput</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>format</td>
+      <td>the image format</td>
+      <td>string</td>
+      <td>No</td>
+      <td>f</td>
+      <td>JPEG</td>
+    </tr>
+    <tr>
+      <td>quality</td>
+      <td>the image compression quality</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>q</td>
+      <td>75</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>o_q-50_f-JPEG</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,o_q-50_d-50">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,o_q-50</a></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,o_f-PNG</p>
+    
+      <h1 id="font-list">
+        
+        
+          <strong>Font List</strong> <a href="#font-list"></a>
+        
+        
+      </h1>
+
+<p>We currently support the following fonts:</p>
+
+<p>AvantGarde-Book, AvantGarde-BookOblique, AvantGarde-Demi, AvantGarde-DemiOblique, Bookman-Demi, Bookman-DemiItalic, Bookman-Light, Bookman-LightItalic, Courier, Courier-Bold, Courier-BoldOblique, Courier-Oblique, fixed, Helvetica, Helvetica-Bold, Helvetica-BoldOblique, Helvetica-Narrow, Helvetica-Narrow-Bold, Helvetica-Narrow-BoldOblique, Helvetica-Narrow-Oblique, Helvetica-Oblique, NewCenturySchlbk-Bold, NewCenturySchlbk-BoldItalic, NewCenturySchlbk-Italic, NewCenturySchlbk-Roman, Palatino-Bold, Palatino-BoldItalic, Palatino-Italic, Palatino-Roman, Symbol, Times-Bold, Times-BoldItalic, Times-Italic, Times-Roman, DejaVu-Sans-Bold, DejaVu-Sans-Mono-Bold, DejaVu-Serif-Bold, symbol</p>
+
+<ul>
+  <li>Please notice the fonts are case sensitive</li>
+</ul>
+    
+      <h1 id="filter-list">
+        
+        
+          Filter List <a href="#filter-list"></a>
+        
+        
+      </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UNDEFINED</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>POINT</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>BOX</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>TRIANGLE</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>HERMITE</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>HANNING</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>HAMMING</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>BLACKMAN</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>GAUSSIAN</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>QUADRATIC</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>CUBIC</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>CATROM</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>MITCHELL</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>LANCZOS</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>BESSEL</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>SINC</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h1 id="composite-type-list">
+        
+        
+          Composite Type List <a href="#composite-type-list"></a>
+        
+        
+      </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filter</th>
+      <th>Value</th>
+      <th>Description</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DEFAULT</td>
+      <td>54</td>
+      <td>The default composite operator</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>UNDEFINED</td>
+      <td>0</td>
+      <td>Undefined composite operator</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>NO</td>
+      <td>52</td>
+      <td>No composite operator defined</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>ATOP</td>
+      <td>2</td>
+      <td>The result is the same shape as image, with composite image obscuring image where the image shapes overlap</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>BLEND</td>
+      <td>3</td>
+      <td>Blends the image</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>BUMPMAP</td>
+      <td>5</td>
+      <td>The same as COMPOSITE_MULTIPLY, except the source is converted to grayscale first.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>CLEAR</td>
+      <td>7</td>
+      <td>Makes the target image transparent</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COLORBURN</td>
+      <td>8</td>
+      <td>Darkens the destination image to reflect the source image</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COLORDODGE</td>
+      <td>9</td>
+      <td>Brightens the destination image to reflect the source image</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COLORIZE</td>
+      <td>10</td>
+      <td>Colorizes the target image using the composite image</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYBLACK</td>
+      <td>11</td>
+      <td>Copies black from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYBLUE</td>
+      <td>12</td>
+      <td>Copies blue from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPY</td>
+      <td>13</td>
+      <td>Copies the source image on the target image</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYCYAN</td>
+      <td>14</td>
+      <td>Copies cyan from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYGREEN</td>
+      <td>15</td>
+      <td>Copies green from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYMAGENTA</td>
+      <td>16</td>
+      <td>Copies magenta from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYOPACITY</td>
+      <td>17</td>
+      <td>Copies opacity from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYRED</td>
+      <td>18</td>
+      <td>Copies red from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>COPYYELLOW</td>
+      <td>19</td>
+      <td>Copies yellow from the source to target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DARKEN</td>
+      <td>20</td>
+      <td>Darkens the target image</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DSTATOP</td>
+      <td>28</td>
+      <td>The part of the destination lying inside of the source is composited over the source and replaces the destination</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DST</td>
+      <td>29</td>
+      <td>The target is left untouched</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DSTIN</td>
+      <td>30</td>
+      <td>The parts inside the source replace the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DSTOUT</td>
+      <td>31</td>
+      <td>The parts outside the source replace the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DSTOVER</td>
+      <td>32</td>
+      <td>Target replaces the source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DIFFERENCE</td>
+      <td>22</td>
+      <td>Subtracts the darker of the two constituent colors from the lighter</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DISPLACE</td>
+      <td>23</td>
+      <td>Shifts target image pixels as defined by the source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>DISSOLVE</td>
+      <td>24</td>
+      <td>Dissolves the source in to the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>EXCLUSION</td>
+      <td>33</td>
+      <td>Produces an effect similar to that of DIFFERENCE, but appears as lower contrast</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>HARDLIGHT</td>
+      <td>34</td>
+      <td>Multiplies or screens the colors, dependent on the source color value</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>HUE</td>
+      <td>36</td>
+      <td>Modifies the hue of the target as defined by source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>IN</td>
+      <td>37</td>
+      <td>Composites source into the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>LIGHTEN</td>
+      <td>39</td>
+      <td>Lightens the target as defined by source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>LUMINIZE</td>
+      <td>44</td>
+      <td>Luminizes the target as defined by source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>MODULATE</td>
+      <td>48</td>
+      <td>Modulates the target brightness, saturation and hue as defined by source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>MULTIPLY</td>
+      <td>51</td>
+      <td>Multiplies the target to the source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>OUT</td>
+      <td>53</td>
+      <td>Composites outer parts of the source on the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>OVER</td>
+      <td>54</td>
+      <td>Composites source over the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>OVERLAY</td>
+      <td>55</td>
+      <td>Overlays the source on the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>PLUS</td>
+      <td>58</td>
+      <td>Adds the source to the target</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>REPLACE</td>
+      <td>59</td>
+      <td>Replaces the target with the source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SATURATE</td>
+      <td>60</td>
+      <td>Saturates the target as defined by the source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SCREEN</td>
+      <td>61</td>
+      <td>The source and destination are complemented and then multiplied and then replace the destination</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SOFTLIGHT</td>
+      <td>62</td>
+      <td>Darkens or lightens the colors, dependent on the source</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SRCATOP</td>
+      <td>63</td>
+      <td>The part of the source lying inside of the destination is composited onto the destination</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SRC</td>
+      <td>64</td>
+      <td>The source is copied to the destination</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SRCIN</td>
+      <td>65</td>
+      <td>The part of the source lying inside of the destination replaces the destination</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SRCOUT</td>
+      <td>66</td>
+      <td>The part of the source lying outside of the destination replaces the destination</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>SRCOVER</td>
+      <td>67</td>
+      <td>The source replaces the destination</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>THRESHOLD</td>
+      <td>68</td>
+      <td>The source is composited on the target as defined by source threshold</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>XOR</td>
+      <td>70</td>
+      <td>The part of the source that lies outside of the destination is combined with the part of the destination that lies outside of the source</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h1 id="channel-type-list">
+        
+        
+          Channel Type List <a href="#channel-type-list"></a>
+        
+        
+      </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Channel</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UNDEFINED</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>RED</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>GRAY</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>CYAN</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>GREEN</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>MAGENTA</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>BLUE</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>YELLOW</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>ALPHA</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>OPACITY</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>BLACK</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>INDEX</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <td>ALL</td>
+      <td>134217727</td>
+    </tr>
+    <tr>
+      <td>DEFAULT</td>
+      <td>134217727</td>
+    </tr>
+  </tbody>
+</table>
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
+</div><!----><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+
+  <div class="kaltura-foot-links">
+    <div class="container" style="width: 100%;">
+      <div class="row">
+        <div class="col col-xs-12 col-lg-3">
+          <img src="assets/icons/kaltura-logo.png" style="width: 120px;">
+          <div class="social-container" style="padding-top:20px;">
+            <a href="https://twitter.com/Kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/twitter.png" style="width:32px;"></a>
+            <a href="https://www.linkedin.com/company/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/linkedin.png" style="width:32px;"></a>
+            <a href="https://github.com/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/github.png" style="width:32px;"></a>
+            <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/stackoverflow.png" style="width:32px;"></a>
+          </div>
+        </div>
+        <div class="col col-xs-12 col-lg-9">
+          <div class="row">
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Media Services</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="/Home">Overview</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a free Trial</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Resources</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://knowledge.kaltura.com/">Kaltura Knowledge Center</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://github.com/kaltura">Kaltura on Github</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Contact</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Support</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Request Training</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Talk to Sales</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Community</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://forum.kaltura.org/">Developer Forum</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-technology-marketplace/">Partner Network</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.html&q;:null,&q;G.http://localhost:3333/assets/documentation/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.html&q;:{&q;body&q;:&q;  &l;title&g;On-the-fly Video Thumbnails and Image Transformations&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;On-the-fly Video Thumbnails and Image Transformations\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;script type=\&q;text/javascript\&q;&g;\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;On-the-fly Video Thumbnails and Image Transformations&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Tue Sep 28 06:22:06 2021&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Hunterpp&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Mon Sep 27 05:03:14 2021, By: Hunterpp&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Tue Sep 28 06:22:06 2021, By &l;span class=\&q;commit-author\&q;&g;Hunterpp&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Hunterpp (3 commits) (&l;a href=\&q;mailto:hunter.peress@kaltura.com\&q;&g;hunter.peress@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n\t\t&l;p&g;The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (For the static thumbnail assets management API refer to the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/thumbAsset\&q;&g;thumbAsset&l;/a&g;) There is also a &l;a href=\&q;\&q;&g;legacy Thumbnail API&l;/a&g;&l;/p&g;\n      &l;h1 id=\&q;interactive-demo\&q;&g;\n        \n        \n          Interactive Demo &l;a href=\&q;#interactive-demo\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;Head over to the &l;a href=\&q;https://kaltura-vpaas.github.io/ThumbnailStudio/demo/\&q;&g;interactive demo&l;/a&g; to try any combination of transformations for the Thumbnail API&l;/p&g;\n    \n      &l;h1 id=\&q;using-the-thumbnail-api\&q;&g;\n        \n        \n          Using the Thumbnail API &l;a href=\&q;#using-the-thumbnail-api\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;The Thumbnail API provides a simple means to dynamically transform (change size, crop, add text, apply filters, etc) image entries, and to generate images from Kaltura video entries on the fly.&l;/p&g;\n\n&l;p&g;The images are generated upon request (with caching on disk and via CDN) by calling the following URL format&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&a;lt;serviceUrl&a;gt;/api_v3/service/thumbnail_thumbnail/p/&a;lt;partner_id&a;gt;/action/transform/&a;lt;transformString&a;gt;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;The images are generated upon request (with caching on disk and via CDN) by calling the following URL format. Example: https://cdnsecakmi.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-3.2_w-1500_h-500&l;/p&g;\n    \n      &l;h1 id=\&q;transformstring\&q;&g;\n        \n        \n          &l;strong&g;transformString&l;/strong&g; &l;a href=\&q;#transformstring\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;transformString is a collection of transformSteps separated by ‘+’&l;/p&g;\n\n&l;p&g;&l;code class=\&q;highlighter-rouge\&q;&g;&a;lt;transformStep&a;gt;+&a;lt;transformStep&a;gt;&l;/code&g;&l;/p&g;\n\n&l;p&g;The order in the transformString is important&l;/p&g;\n\n&l;p&g;&l;img src=\&q;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10\&q; alt=\&q;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10\&q; /&g;&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y–140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x–800_y–150_opacity-100_compositetype-10&l;/p&g;\n\n&l;p&g;This is an example using two &l;code class=\&q;highlighter-rouge\&q;&g;transformSteps&l;/code&g;&l;/p&g;\n\n&l;p&g;The first is &l;code class=\&q;highlighter-rouge\&q;&g;id-0_60gyd613,vidsec&l;/code&g; and the second is added for a different video entry using &l;code class=\&q;highlighter-rouge\&q;&g;+&l;/code&g;&l;/p&g;\n\n&l;p&g;&l;code class=\&q;highlighter-rouge\&q;&g;id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10&l;/code&g;&l;/p&g;\n\n&l;p&g;This thumbnail was created using the &l;a href=\&q;https://kaltura-vpaas.github.io/ThumbnailStudio/demo/\&q;&g;interactive demo&l;/a&g; to easily lay out the two images and get the order of operations correct.&l;/p&g;\n    \n      &l;h1 id=\&q;transformstep\&q;&g;\n        \n        \n          &l;strong&g;transformStep&l;/strong&g; &l;a href=\&q;#transformstep\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;The transformStep format is &l;code class=\&q;highlighter-rouge\&q;&g;&a;lt;source&a;gt;,&a;lt;sourceActions&a;gt;,&a;lt;imageActions&a;gt;&l;/code&g;&l;/p&g;\n\n&l;p&g;An example:&l;/p&g;\n\n&l;p&g;&l;img src=\&q;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec_second-3,crop_height-500_width-500_gravityPoint-5\&q; style=\&q;zoom:50%;\&q; /&g;&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec_second-3,crop_height-500_width-500_gravityPoint-5&l;/p&g;\n\n&l;p&g;Here the &l;code class=\&q;highlighter-rouge\&q;&g;&a;lt;source&a;gt;&l;/code&g; is &l;code class=\&q;highlighter-rouge\&q;&g;id-0_60gyd613&l;/code&g;&l;/p&g;\n\n&l;p&g;The &l;code class=\&q;highlighter-rouge\&q;&g;&a;lt;sourceActions&a;gt;&l;/code&g; is &l;code class=\&q;highlighter-rouge\&q;&g;vidsec_second-3&l;/code&g;&l;/p&g;\n\n&l;p&g;And the &l;code class=\&q;highlighter-rouge\&q;&g;&a;lt;imageActions&a;gt;&l;/code&g; is &l;code class=\&q;highlighter-rouge\&q;&g;crop_height-500_width-500_gravityPoint-5&l;/code&g;&l;/p&g;\n    \n      &l;h1 id=\&q;sourceactions\&q;&g;\n        \n        \n          SourceActions &l;a href=\&q;#sourceactions\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;Source actions are used to transform a video source into an image&l;/p&g;\n    \n      &l;h2 id=\&q;vidsec\&q;&g;\n        \n        \n          VidSec &l;a href=\&q;#vidsec\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Picking a frame from a video by second&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; vidsec &l;strong&g;alias:&l;/strong&g; vsec&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;second&l;/td&g;\n      &l;td&g;The time to snap a frame from the video&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;s, sec&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Height&l;/td&g;\n      &l;td&g;Requested height in pixels&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;h&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Width&l;/td&g;\n      &l;td&g;Requested width in pixels&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;w&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;vidsec_s-1.1&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-1.1&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-20_w-500_h-250&l;/p&g;\n    \n      &l;h2 id=\&q;vid-slice\&q;&g;\n        \n        \n          &l;strong&g;Vid Slice&l;/strong&g; &l;a href=\&q;#vid-slice\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Picking a frame by dividing the video into slices and then pick the slice&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; vidSlice &l;strong&g;Alias:&l;/strong&g; vslice&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;numberofslices&l;/td&g;\n      &l;td&g;Number of slices to split the video&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;nos&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;sliceNumber&l;/td&g;\n      &l;td&g;Number of slice out of slices&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;sn&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Height&l;/td&g;\n      &l;td&g;Requested height in pixels&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;h&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;width&l;/td&g;\n      &l;td&g;Requested width in pixels&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;w&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;startSec&l;/td&g;\n      &l;td&g;The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition).&l;/td&g;\n      &l;td&g;Float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;ss&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;endSec&l;/td&g;\n      &l;td&g;The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video&l;/td&g;\n      &l;td&g;Float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;es&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;vslice_nos-13_sn-4&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vslice_nos-10_sn-4&l;br /&g;\nhttps://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_nos-20_sn-11_ss-1_se-11&l;/p&g;\n    \n      &l;h2 id=\&q;vidstrip\&q;&g;\n        \n        \n          &l;strong&g;VidStrip&l;/strong&g; &l;a href=\&q;#vidstrip\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Splitting the video into slices and glue them into one image&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; vidStrip &l;strong&g;Alias:&l;/strong&g; vstrip&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;numberofslices&l;/td&g;\n      &l;td&g;the number of slices to split the video&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;nos&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Height&l;/td&g;\n      &l;td&g;Requested height in pixels&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;h&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Width&l;/td&g;\n      &l;td&g;Requested width in pixels&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;w&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;startSec&l;/td&g;\n      &l;td&g;The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition).&l;/td&g;\n      &l;td&g;Float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;ss&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;endSec&l;/td&g;\n      &l;td&g;The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video&l;/td&g;\n      &l;td&g;Float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;es&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;vstrip_nos-13&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vstrip_nos-5&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vstrip_nos-10_endSec-30_w-200_h-100&l;/p&g;\n    \n      &l;h1 id=\&q;imageactions\&q;&g;\n        \n        \n          ImageActions &l;a href=\&q;#imageactions\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;Actions to manipulate the image&l;/p&g;\n    \n      &l;h2 id=\&q;crop\&q;&g;\n        \n        \n          &l;strong&g;Crop&l;/strong&g; &l;a href=\&q;#crop\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Crop the image into a smaller one&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; crop &l;strong&g;Alias:&l;/strong&g; c&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;gravityPoint&l;/td&g;\n      &l;td&g;The gravity point to where to crop the image&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No if x and y are supplied&l;/td&g;\n      &l;td&g;gp&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Height&l;/td&g;\n      &l;td&g;The required height&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;h&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Width&l;/td&g;\n      &l;td&g;The required width&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;w&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;x&l;/td&g;\n      &l;td&g;crop to start from specific x coordinate&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No if gravity point is supplied&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;y&l;/td&g;\n      &l;td&g;crop to start from specific y coordinate&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No if gravity point is supplied&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;gravityPoint can be 1-9 1- northwest, 2 - north, 3 - northeast, 4- west, 5 - center, 6 - east, 7 - southwest, 8 - south, 9 - southeast&l;/li&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;c_w-140_h-120_x-50_y-40&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,c_x-50_y-50_w-200_h-200_x-100_y-100&l;/p&g;\n\n&l;p&g;&l;a href=\&q;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,c_gp-0_w-200_h-200\&q;&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,c_gp-5_w-200_h-200&l;/a&g;&l;/p&g;\n    \n      &l;h2 id=\&q;resize\&q;&g;\n        \n        \n          &l;strong&g;resize&l;/strong&g; &l;a href=\&q;#resize\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Changing the image dimensions&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; resize &l;strong&g;Alias:&l;/strong&g; re&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;height&l;/td&g;\n      &l;td&g;The required height&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;Yes unless cf is suppliedYou can pass 0 for proportional scalingIf bf isn’t supplied&l;/td&g;\n      &l;td&g;h&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;Width&l;/td&g;\n      &l;td&g;The required width&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;Yes unless cf is suppliedYou can pass 0 for proportional scalingIf bf isn’t supplied&l;/td&g;\n      &l;td&g;w&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;p&g;&l;strong&g;Advanced parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;Blur&l;/td&g;\n      &l;td&g;The blur factor where &a;gt; 1 is blurry, &a;lt; 1 is sharp.Only relevant if we resizing to a smaller size&l;/td&g;\n      &l;td&g;Float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;b&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;filterType&l;/td&g;\n      &l;td&g;See &l;a href=\&q;#Filter List\&q;&g;Filter List&l;/a&g;&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;ft&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;bestFit&l;/td&g;\n      &l;td&g;Optional fit parameter&l;/td&g;\n      &l;td&g;Bool&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;bf&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;compositeFit&l;/td&g;\n      &l;td&g;Trying to scale the image to the previous tranformationStep image&l;/td&g;\n      &l;td&g;Bool&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;cf&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;resize_w-200_h-200&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,re_w-500_h-0&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,re_w-50_h-10_bf_b-0.9&l;/p&g;\n    \n      &l;h2 id=\&q;roundcorners\&q;&g;\n        \n        \n          &l;strong&g;roundcorners&l;/strong&g; &l;a href=\&q;#roundcorners\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Rounding the corners&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; roundcorners &l;strong&g;Alias:&l;/strong&g; rc&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;xRounding&l;/td&g;\n      &l;td&g;x rounding&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;x, xr&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;yRounding&l;/td&g;\n      &l;td&g;y rounding&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;y, yr&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;p&g;&l;strong&g;Advanced parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;strokeWidth&l;/td&g;\n      &l;td&g;stroke width&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;sw&l;/td&g;\n      &l;td&g;10&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;displace&l;/td&g;\n      &l;td&g;image displace&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;d&l;/td&g;\n      &l;td&g;5&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;sizeCorrection&l;/td&g;\n      &l;td&g;size correction&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;sc&l;/td&g;\n      &l;td&g;-6&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;backgroundColor&l;/td&g;\n      &l;td&g;color for the corners&l;/td&g;\n      &l;td&g;color&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;bg&l;/td&g;\n      &l;td&g;black&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;rc_x-100_y-100&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,rc_x-200_y-100_bg-white_sw–50_sc-10_d-20&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,rc_x-200_y-100_bg-red&l;/p&g;\n    \n      &l;h2 id=\&q;rotate\&q;&g;\n        \n        \n          &l;strong&g;Rotate&l;/strong&g; &l;a href=\&q;#rotate\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Rotating the image&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g;rotate &l;strong&g;Alias:&l;/strong&g;r&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;degrees&l;/td&g;\n      &l;td&g;degrees to turn&l;/td&g;\n      &l;td&g;int&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;d, deg&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;backgroundColor&l;/td&g;\n      &l;td&g;Color to fill empty space created by the rotationcolor string without # like “fff” or fixed names like “red”,”blue”&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;b, bg&l;/td&g;\n      &l;td&g;black&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;r_deg-90_b-fff&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-90&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-60_bg-pink&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-222_bg-fff124&l;/p&g;\n    \n      &l;h2 id=\&q;text\&q;&g;\n        \n        \n          Text &l;a href=\&q;#text\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Adding a text on the image&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; text &l;strong&g;Alias:&l;/strong&g; t, txt&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters&l;/strong&g;:&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Name&l;/th&g;\n      &l;th&g;Description&l;/th&g;\n      &l;th&g;Type&l;/th&g;\n      &l;th&g;Mandatory&l;/th&g;\n      &l;th&g;Aliases&l;/th&g;\n      &l;th&g;Default value&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;text&l;/td&g;\n      &l;td&g;The text, it must be URL encoded&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;t, txt&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;font&l;/td&g;\n      &l;td&g;See &l;a href=\&q;#Font List\&q;&g;Font List&l;/a&g;&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;f&l;/td&g;\n      &l;td&g;Courier&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;fontSize&l;/td&g;\n      &l;td&g;The font size&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;fs&l;/td&g;\n      &l;td&g;10&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;strokeWidth&l;/td&g;\n      &l;td&g;Stroke width&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;sw&l;/td&g;\n      &l;td&g;1&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;x&l;/td&g;\n      &l;td&g;Horizontal offset in pixels to the left of the text&l;/td&g;\n      &l;td&g;int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;y&l;/td&g;\n      &l;td&g;Vertical offset in pixels to the baseline of the text&l;/td&g;\n      &l;td&g;int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;10&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;angle&l;/td&g;\n      &l;td&g;The angle to write the text&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;a&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;maxHeight&l;/td&g;\n      &l;td&g;If you want to limit the textbox&l;/td&g;\n      &l;td&g;int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;mh&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;maxWidth&l;/td&g;\n      &l;td&g;If you want to limit the textbox, it will try to word warp&l;/td&g;\n      &l;td&g;int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;mw&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;strokeColor&l;/td&g;\n      &l;td&g;Stroke color&l;/td&g;\n      &l;td&g;color string or code without #&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;sc&l;/td&g;\n      &l;td&g;black&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;fillColor&l;/td&g;\n      &l;td&g;Fill color&l;/td&g;\n      &l;td&g;color string or code without #&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;fc&l;/td&g;\n      &l;td&g;black&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;See section 7 for supported font list&l;/li&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;t_text-test2_fs-40_y-80_x-35&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,t_t-Fire_fs-90_fc-red_y-100_x-200&l;/p&g;\n\n&l;p&g;&l;a href=\&q;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,txt_t-An example _fs-40_sc-green_y-50_x-200_a-90\&q;&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,txt_t-An%20example%20_fs-40_sc-green_y-50_x-200_a-90&l;/a&g;&l;/p&g;\n    \n      &l;h2 id=\&q;filter\&q;&g;\n        \n        \n          &l;strong&g;Filter&l;/strong&g; &l;a href=\&q;#filter\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Applying predefined filters on the image&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g;filter &l;strong&g;Alias:&l;/strong&g;f&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Name&l;/th&g;\n      &l;th&g;Description&l;/th&g;\n      &l;th&g;Type&l;/th&g;\n      &l;th&g;Mandatory&l;/th&g;\n      &l;th&g;Aliases&l;/th&g;\n      &l;th&g;Default value&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;filterType&l;/td&g;\n      &l;td&g;the desired filter&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;f, ft&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;p&g;Current filter type options are&l;/p&g;\n\n&l;p&g;blueshift, charcoal, contrast, edge, oil, polaroid, raise, sepia, shade, solarize, vignette, wave&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;Example&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;&l;a href=\&q;http://zuronprem2/api_v3/service/thumbnail_thumbnail/action/transform/p/212/transformString/id-0_rk73kvqj,filter_f-shade/nocache/1\&q;&g;filter_f-shade&l;/a&g;&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-10,filter_filtertype-wave&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-11.2,filter_filtertype-shade&l;/p&g;\n    \n      &l;h2 id=\&q;image-texture-text\&q;&g;\n        \n        \n          &l;strong&g;Image texture text&l;/strong&g; &l;a href=\&q;#image-texture-text\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Creating a text with thumbnail image as texture&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; imageTextureText &l;strong&g;Alias:&l;/strong&g; itt&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters&l;/strong&g;:&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Name&l;/th&g;\n      &l;th&g;Description&l;/th&g;\n      &l;th&g;Type&l;/th&g;\n      &l;th&g;Mandatory&l;/th&g;\n      &l;th&g;Aliases&l;/th&g;\n      &l;th&g;Default value&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;text&l;/td&g;\n      &l;td&g;The text, it must be URL encoded&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;Yes&l;/td&g;\n      &l;td&g;t, txt&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;font&l;/td&g;\n      &l;td&g;Name of the font case sensitive&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;f&l;/td&g;\n      &l;td&g;Courier&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;fontSize&l;/td&g;\n      &l;td&g;The font size&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;fs&l;/td&g;\n      &l;td&g;10&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;strokeWidth&l;/td&g;\n      &l;td&g;Stroke width&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;sw&l;/td&g;\n      &l;td&g;1&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;x&l;/td&g;\n      &l;td&g;Horizontal offset in pixels to the left of the text&l;/td&g;\n      &l;td&g;int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;y&l;/td&g;\n      &l;td&g;Vertical offset in pixels to the baseline of the text&l;/td&g;\n      &l;td&g;int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;10&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;angle&l;/td&g;\n      &l;td&g;The angle to write the text&l;/td&g;\n      &l;td&g;float&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;a&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;See below for supported font list&l;/li&g;\n  &l;li&g;Example&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;itt_text-test_fs-40_y-80_x-35&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;&l;a href=\&q;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-1_ss-0_es-10,itt_t-test test_fs-50_x-200_y-100_sw-5_a-45_mw-10\&q;&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-1_ss-0_es-10,itt_t-test%20test_fs-50_x-200_y-100_sw-5_a-45_mw-10&l;/a&g;&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,itt_text-candle_fs-180_y-250_x-105_sw-10&l;/p&g;\n    \n      &l;h2 id=\&q;composite\&q;&g;\n        \n        \n          &l;strong&g;Composite&l;/strong&g; &l;a href=\&q;#composite\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;&l;strong&g;Action name&l;/strong&g;: composite &l;strong&g;Alias&l;/strong&g;: comp&l;br /&g;\n&l;strong&g;Parameters&l;/strong&g;:&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Name&l;/th&g;\n      &l;th&g;Description&l;/th&g;\n      &l;th&g;Type&l;/th&g;\n      &l;th&g;Mandatory&l;/th&g;\n      &l;th&g;Aliases&l;/th&g;\n      &l;th&g;Default value&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;x&l;/td&g;\n      &l;td&g;The column offset of the composited image&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;y&l;/td&g;\n      &l;td&g;The row offset of the composited image&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;-&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;opacity&l;/td&g;\n      &l;td&g;the opacity of the added image value can be between 1-100&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;op&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;p&g;&l;strong&g;Advanced parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;compositetype&l;/td&g;\n      &l;td&g;See &l;a href=\&q;#Composite Type List\&q;&g;Composite Type List&l;/a&g;&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;ct&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;channel&l;/td&g;\n      &l;td&g;See &l;a href=\&q;#Channel Type List\&q;&g;Channel Type List&l;/a&g; provide any channel constant that is valid for your channel modeTo apply to more than one channel, combine channeltype constants using bitwise operators&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;ch&l;/td&g;\n      &l;td&g;-&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;This action can’t be part of the first transformation step&l;/li&g;\n  &l;li&g;If you have more than one transformation step this action become mandatory for the non-first steps&l;/li&g;\n  &l;li&g;Example&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;comp_op-50&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez+id-1_fgy9sh8i,vidsec_s-5,itt_text-erez_fs-180_y-250_x-95_sw-10,comp_x-10_y–30&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-5+id-1_7anel7ez,re_h-200_w-300,r_d-10_bg-none,comp_x-1130_y-230&l;/p&g;\n    \n      &l;h2 id=\&q;output\&q;&g;\n        \n        \n          &l;strong&g;Output&l;/strong&g; &l;a href=\&q;#output\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Modify the image output parameters&l;/p&g;\n\n&l;p&g;&l;strong&g;Action name:&l;/strong&g; output &l;strong&g;Alias:&l;/strong&g; o, io, output, imageoutput&l;/p&g;\n\n&l;p&g;&l;strong&g;Parameters:&l;/strong&g;&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;&l;strong&g;Name&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Description&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Type&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Mandatory&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Aliases&l;/strong&g;&l;/th&g;\n      &l;th&g;&l;strong&g;Default value&l;/strong&g;&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;format&l;/td&g;\n      &l;td&g;the image format&l;/td&g;\n      &l;td&g;string&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;f&l;/td&g;\n      &l;td&g;JPEG&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;quality&l;/td&g;\n      &l;td&g;the image compression quality&l;/td&g;\n      &l;td&g;Int&l;/td&g;\n      &l;td&g;No&l;/td&g;\n      &l;td&g;q&l;/td&g;\n      &l;td&g;75&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;ul&g;\n  &l;li&g;example:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;o_q-50_f-JPEG&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;URL full examples:&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;&l;a href=\&q;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,o_q-50_d-50\&q;&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,o_q-50&l;/a&g;&l;/p&g;\n\n&l;p&g;https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,o_f-PNG&l;/p&g;\n    \n      &l;h1 id=\&q;font-list\&q;&g;\n        \n        \n          &l;strong&g;Font List&l;/strong&g; &l;a href=\&q;#font-list\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;We currently support the following fonts:&l;/p&g;\n\n&l;p&g;AvantGarde-Book, AvantGarde-BookOblique, AvantGarde-Demi, AvantGarde-DemiOblique, Bookman-Demi, Bookman-DemiItalic, Bookman-Light, Bookman-LightItalic, Courier, Courier-Bold, Courier-BoldOblique, Courier-Oblique, fixed, Helvetica, Helvetica-Bold, Helvetica-BoldOblique, Helvetica-Narrow, Helvetica-Narrow-Bold, Helvetica-Narrow-BoldOblique, Helvetica-Narrow-Oblique, Helvetica-Oblique, NewCenturySchlbk-Bold, NewCenturySchlbk-BoldItalic, NewCenturySchlbk-Italic, NewCenturySchlbk-Roman, Palatino-Bold, Palatino-BoldItalic, Palatino-Italic, Palatino-Roman, Symbol, Times-Bold, Times-BoldItalic, Times-Italic, Times-Roman, DejaVu-Sans-Bold, DejaVu-Sans-Mono-Bold, DejaVu-Serif-Bold, symbol&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;Please notice the fonts are case sensitive&l;/li&g;\n&l;/ul&g;\n    \n      &l;h1 id=\&q;filter-list\&q;&g;\n        \n        \n          Filter List &l;a href=\&q;#filter-list\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Filter&l;/th&g;\n      &l;th&g;Value&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;UNDEFINED&l;/td&g;\n      &l;td&g;1&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;POINT&l;/td&g;\n      &l;td&g;2&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;BOX&l;/td&g;\n      &l;td&g;3&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;TRIANGLE&l;/td&g;\n      &l;td&g;4&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;HERMITE&l;/td&g;\n      &l;td&g;5&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;HANNING&l;/td&g;\n      &l;td&g;6&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;HAMMING&l;/td&g;\n      &l;td&g;7&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;BLACKMAN&l;/td&g;\n      &l;td&g;8&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;GAUSSIAN&l;/td&g;\n      &l;td&g;9&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;QUADRATIC&l;/td&g;\n      &l;td&g;10&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;CUBIC&l;/td&g;\n      &l;td&g;11&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;CATROM&l;/td&g;\n      &l;td&g;12&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;MITCHELL&l;/td&g;\n      &l;td&g;13&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;LANCZOS&l;/td&g;\n      &l;td&g;14&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;BESSEL&l;/td&g;\n      &l;td&g;15&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SINC&l;/td&g;\n      &l;td&g;16&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n    \n      &l;h1 id=\&q;composite-type-list\&q;&g;\n        \n        \n          Composite Type List &l;a href=\&q;#composite-type-list\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Filter&l;/th&g;\n      &l;th&g;Value&l;/th&g;\n      &l;th&g;Description&l;/th&g;\n      &l;th&g; &l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;DEFAULT&l;/td&g;\n      &l;td&g;54&l;/td&g;\n      &l;td&g;The default composite operator&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;UNDEFINED&l;/td&g;\n      &l;td&g;0&l;/td&g;\n      &l;td&g;Undefined composite operator&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;NO&l;/td&g;\n      &l;td&g;52&l;/td&g;\n      &l;td&g;No composite operator defined&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;ATOP&l;/td&g;\n      &l;td&g;2&l;/td&g;\n      &l;td&g;The result is the same shape as image, with composite image obscuring image where the image shapes overlap&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;BLEND&l;/td&g;\n      &l;td&g;3&l;/td&g;\n      &l;td&g;Blends the image&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;BUMPMAP&l;/td&g;\n      &l;td&g;5&l;/td&g;\n      &l;td&g;The same as COMPOSITE_MULTIPLY, except the source is converted to grayscale first.&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;CLEAR&l;/td&g;\n      &l;td&g;7&l;/td&g;\n      &l;td&g;Makes the target image transparent&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COLORBURN&l;/td&g;\n      &l;td&g;8&l;/td&g;\n      &l;td&g;Darkens the destination image to reflect the source image&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COLORDODGE&l;/td&g;\n      &l;td&g;9&l;/td&g;\n      &l;td&g;Brightens the destination image to reflect the source image&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COLORIZE&l;/td&g;\n      &l;td&g;10&l;/td&g;\n      &l;td&g;Colorizes the target image using the composite image&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYBLACK&l;/td&g;\n      &l;td&g;11&l;/td&g;\n      &l;td&g;Copies black from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYBLUE&l;/td&g;\n      &l;td&g;12&l;/td&g;\n      &l;td&g;Copies blue from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPY&l;/td&g;\n      &l;td&g;13&l;/td&g;\n      &l;td&g;Copies the source image on the target image&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYCYAN&l;/td&g;\n      &l;td&g;14&l;/td&g;\n      &l;td&g;Copies cyan from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYGREEN&l;/td&g;\n      &l;td&g;15&l;/td&g;\n      &l;td&g;Copies green from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYMAGENTA&l;/td&g;\n      &l;td&g;16&l;/td&g;\n      &l;td&g;Copies magenta from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYOPACITY&l;/td&g;\n      &l;td&g;17&l;/td&g;\n      &l;td&g;Copies opacity from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYRED&l;/td&g;\n      &l;td&g;18&l;/td&g;\n      &l;td&g;Copies red from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;COPYYELLOW&l;/td&g;\n      &l;td&g;19&l;/td&g;\n      &l;td&g;Copies yellow from the source to target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DARKEN&l;/td&g;\n      &l;td&g;20&l;/td&g;\n      &l;td&g;Darkens the target image&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DSTATOP&l;/td&g;\n      &l;td&g;28&l;/td&g;\n      &l;td&g;The part of the destination lying inside of the source is composited over the source and replaces the destination&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DST&l;/td&g;\n      &l;td&g;29&l;/td&g;\n      &l;td&g;The target is left untouched&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DSTIN&l;/td&g;\n      &l;td&g;30&l;/td&g;\n      &l;td&g;The parts inside the source replace the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DSTOUT&l;/td&g;\n      &l;td&g;31&l;/td&g;\n      &l;td&g;The parts outside the source replace the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DSTOVER&l;/td&g;\n      &l;td&g;32&l;/td&g;\n      &l;td&g;Target replaces the source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DIFFERENCE&l;/td&g;\n      &l;td&g;22&l;/td&g;\n      &l;td&g;Subtracts the darker of the two constituent colors from the lighter&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DISPLACE&l;/td&g;\n      &l;td&g;23&l;/td&g;\n      &l;td&g;Shifts target image pixels as defined by the source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DISSOLVE&l;/td&g;\n      &l;td&g;24&l;/td&g;\n      &l;td&g;Dissolves the source in to the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;EXCLUSION&l;/td&g;\n      &l;td&g;33&l;/td&g;\n      &l;td&g;Produces an effect similar to that of DIFFERENCE, but appears as lower contrast&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;HARDLIGHT&l;/td&g;\n      &l;td&g;34&l;/td&g;\n      &l;td&g;Multiplies or screens the colors, dependent on the source color value&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;HUE&l;/td&g;\n      &l;td&g;36&l;/td&g;\n      &l;td&g;Modifies the hue of the target as defined by source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;IN&l;/td&g;\n      &l;td&g;37&l;/td&g;\n      &l;td&g;Composites source into the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;LIGHTEN&l;/td&g;\n      &l;td&g;39&l;/td&g;\n      &l;td&g;Lightens the target as defined by source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;LUMINIZE&l;/td&g;\n      &l;td&g;44&l;/td&g;\n      &l;td&g;Luminizes the target as defined by source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;MODULATE&l;/td&g;\n      &l;td&g;48&l;/td&g;\n      &l;td&g;Modulates the target brightness, saturation and hue as defined by source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;MULTIPLY&l;/td&g;\n      &l;td&g;51&l;/td&g;\n      &l;td&g;Multiplies the target to the source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;OUT&l;/td&g;\n      &l;td&g;53&l;/td&g;\n      &l;td&g;Composites outer parts of the source on the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;OVER&l;/td&g;\n      &l;td&g;54&l;/td&g;\n      &l;td&g;Composites source over the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;OVERLAY&l;/td&g;\n      &l;td&g;55&l;/td&g;\n      &l;td&g;Overlays the source on the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;PLUS&l;/td&g;\n      &l;td&g;58&l;/td&g;\n      &l;td&g;Adds the source to the target&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;REPLACE&l;/td&g;\n      &l;td&g;59&l;/td&g;\n      &l;td&g;Replaces the target with the source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SATURATE&l;/td&g;\n      &l;td&g;60&l;/td&g;\n      &l;td&g;Saturates the target as defined by the source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SCREEN&l;/td&g;\n      &l;td&g;61&l;/td&g;\n      &l;td&g;The source and destination are complemented and then multiplied and then replace the destination&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SOFTLIGHT&l;/td&g;\n      &l;td&g;62&l;/td&g;\n      &l;td&g;Darkens or lightens the colors, dependent on the source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SRCATOP&l;/td&g;\n      &l;td&g;63&l;/td&g;\n      &l;td&g;The part of the source lying inside of the destination is composited onto the destination&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SRC&l;/td&g;\n      &l;td&g;64&l;/td&g;\n      &l;td&g;The source is copied to the destination&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SRCIN&l;/td&g;\n      &l;td&g;65&l;/td&g;\n      &l;td&g;The part of the source lying inside of the destination replaces the destination&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SRCOUT&l;/td&g;\n      &l;td&g;66&l;/td&g;\n      &l;td&g;The part of the source lying outside of the destination replaces the destination&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;SRCOVER&l;/td&g;\n      &l;td&g;67&l;/td&g;\n      &l;td&g;The source replaces the destination&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;THRESHOLD&l;/td&g;\n      &l;td&g;68&l;/td&g;\n      &l;td&g;The source is composited on the target as defined by source threshold&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;XOR&l;/td&g;\n      &l;td&g;70&l;/td&g;\n      &l;td&g;The part of the source that lies outside of the destination is combined with the part of the destination that lies outside of the source&l;/td&g;\n      &l;td&g; &l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n    \n      &l;h1 id=\&q;channel-type-list\&q;&g;\n        \n        \n          Channel Type List &l;a href=\&q;#channel-type-list\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th&g;Channel&l;/th&g;\n      &l;th&g;Value&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td&g;UNDEFINED&l;/td&g;\n      &l;td&g;0&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;RED&l;/td&g;\n      &l;td&g;1&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;GRAY&l;/td&g;\n      &l;td&g;2&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;CYAN&l;/td&g;\n      &l;td&g;3&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;GREEN&l;/td&g;\n      &l;td&g;4&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;MAGENTA&l;/td&g;\n      &l;td&g;5&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;BLUE&l;/td&g;\n      &l;td&g;6&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;YELLOW&l;/td&g;\n      &l;td&g;7&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;ALPHA&l;/td&g;\n      &l;td&g;8&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;OPACITY&l;/td&g;\n      &l;td&g;16&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;BLACK&l;/td&g;\n      &l;td&g;25&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;INDEX&l;/td&g;\n      &l;td&g;32&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;ALL&l;/td&g;\n      &l;td&g;134217727&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td&g;DEFAULT&l;/td&g;\n      &l;td&g;134217727&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Tue, 02 Nov 2021 15:38:37 GMT&q;],&q;etag&q;:[&q;W/\&q;bcf0-17ce14d63ad\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;48368&q;],&q;date&q;:[&q;Tue, 02 Nov 2021 15:39:09 GMT&q;],&q;connection&q;:[&q;keep-alive&q;],&q;keep-alive&q;:[&q;timeout=5&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.html&q;}}</script></body></html>

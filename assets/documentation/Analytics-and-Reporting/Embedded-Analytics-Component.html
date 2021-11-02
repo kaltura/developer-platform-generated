@@ -1,0 +1,610 @@
+  <title>Embedded Analytics Component</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Embedded Analytics Component" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Embedded Analytics Component</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Analytics-and-Reporting/Embedded-Analytics-Component.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h1 id="embedded-analytics-reports">
+        
+        
+          Embedded Analytics Reports <a href="#embedded-analytics-reports"></a>
+        
+        
+      </h1>
+    
+      <h2 id="live-demo">
+        
+        
+          Live Demo <a href="#live-demo"></a>
+        
+        
+      </h2>
+
+<p>https://kaltura-embeddable-analytics.herokuapp.com/</p>
+    
+      <h2 id="source-code">
+        
+        
+          Source Code <a href="#source-code"></a>
+        
+        
+      </h2>
+
+<p>https://github.com/kaltura-vpaas/embeddable_analytics</p>
+    
+      <h2 id="intro">
+        
+        
+          Intro <a href="#intro"></a>
+        
+        
+      </h2>
+
+<p>Kaltura has a rich and comprehensive <a href="Intro-to-Kaltura-Video-Analytics-and-Best-Practices.html">Analytics API</a> that you can use to generate your own reports and analyses. You can also implement Kaltura’s ready made Analytics javascript widget which provides some of the most frequently requested insights.</p>
+
+<p><a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/readme_assets/analytics_screen.png"><img src="https://github.com/kaltura-vpaas/embeddable_analytics/raw/main/readme_assets/analytics_screen.png" alt="analytics_screen" /></a></p>
+
+<p>For a comprehensive list of all methods and variables that are customizable with this widget, please refer to https://github.com/kaltura/analytics-front-end/blob/master/docs/loadingAnalytics.md</p>
+    
+      <h1 id="documentation">
+        
+        
+          Documentation <a href="#documentation"></a>
+        
+        
+      </h1>
+
+<p>While this example is built in node.js, 99% of the code is in html/javascript and can be easily ported to any language of your choice. Be sure to pay careful attention to the <code class="highlighter-rouge">privileges</code> field supplied to the kaltura session in <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/routes/index.js">routes/index.js</a></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> var privileges = 'appid:'+appName+'-'+appDomain+',setrole:KMC_ANALYTICS_ROLE';
+</code></pre>
+</div>
+    
+      <h2 id="minimal-example">
+        
+        
+          Minimal Example: <a href="#minimal-example"></a>
+        
+        
+      </h2>
+
+<p>| <a href="https://kaltura-embeddable-analytics.herokuapp.com/minimal.ejs">Live Demo</a> | <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/minimal.ejs">Source Code</a> |<br />
+| ———————————————————— | ———————————————————— |</p>
+
+<p>This minimal example is the quickest way to integrate the analytics widget into your application. By default, the last 30 days are displayed by calling the <code class="highlighter-rouge">updateFilters</code> API call after the <code class="highlighter-rouge">analyticsInitComplete</code> event is fired by the host:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>          case 'analyticsInitComplete':
+            sendMessage({ messageType: 'navigate', payload: { url: '/audience/engagement' } });
+            sendMessage({ messageType: 'updateFilters', payload: { queryParams: { dateBy: 'last30days' } } });
+            break;
+</code></pre>
+</div>
+    
+      <h2 id="single-content-entry-example">
+        
+        
+          Single Content Entry Example: <a href="#single-content-entry-example"></a>
+        
+        
+      </h2>
+
+<p>| <a href="https://kaltura-embeddable-analytics.herokuapp.com/singleEntry.ejs">Live Demo</a> | <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/singleEntry.ejs">Source Code</a> |<br />
+| ———————————————————— | ———————————————————— |</p>
+
+<p>The analytics widget is built to drill down to specific content entries. This example gets analytics for a single video entry:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>          case 'analyticsInitComplete':
+            sendMessage({ messageType: 'navigate', payload: { url: '/entry/&lt;%=process.env.ENTRY_ID%&gt;' } });
+</code></pre>
+</div>
+
+<p>where <code class="highlighter-rouge">process.env.ENTRY_ID</code> is an entryId you will supply in .env</p>
+
+<p>The following detail screens are available and can be supplied to the <code class="highlighter-rouge">url</code> field of <code class="highlighter-rouge">payload</code> as shown above</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Payload url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A single video entry</td>
+      <td>/entry/</td>
+    </tr>
+    <tr>
+      <td>A specific live event</td>
+      <td>/entryLive/</td>
+    </tr>
+    <tr>
+      <td>A playlist</td>
+      <td>/playlist/</td>
+    </tr>
+    <tr>
+      <td>A user</td>
+      <td>/user/</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="highlighter-rouge">navigateBack</code> event is used to specify the url the user is sent to when the widget’s back button is pressed</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>          case 'navigateBack':
+            //handle this as needed in your deployment
+            window.location="/";
+            break;
+</code></pre>
+</div>
+    
+      <h2 id="single-view-example">
+        
+        
+          Single View Example <a href="#single-view-example"></a>
+        
+        
+      </h2>
+
+<p>| <a href="https://kaltura-embeddable-analytics.herokuapp.com/singleView.ejs">Live Demo</a> | <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/singleView.ejs">Source Code</a> |<br />
+| ———————————————————— | ———————————————————— |</p>
+
+<p>It is possible to provide only a specific view from the full menu. First, the menu is hidden:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  &lt;script&gt;
+    var config = {
+  		...
+      menuConfig: {
+        showMenu: false
+      },
+    };
+</code></pre>
+</div>
+
+<p>Next when <code class="highlighter-rouge">analyticsInitComplete</code> the url of <code class="highlighter-rouge">audience/engagement</code> is supplied as the <code class="highlighter-rouge">payload</code> for the <code class="highlighter-rouge">navigate</code> message.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> case 'analyticsInitComplete':
+            sendMessage({ messageType: 'navigate', payload: { url: 'audience/engagement' } });
+</code></pre>
+</div>
+
+<p>Here is the full list of view urls that are available, these map exactly to the main menu from the first example and they can also be found if you inspect the <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/singleView.ejs#L52">menusConfig</a> object in a javascript debugger:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>								audience/engagement
+                audience/content-interactions
+                audience/technology
+                audience/geo-location
+                bandwidth/publisher
+                bandwidth/end-user
+                live
+</code></pre>
+</div>
+    
+      <h2 id="customize-the-ui">
+        
+        
+          Customize The UI <a href="#customize-the-ui"></a>
+        
+        
+      </h2>
+
+<p>| <a href="https://kaltura-embeddable-analytics.herokuapp.com/selective.ejs">Live Demo</a> | <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/selective.ejs">Source Code</a> |<br />
+| ———————————————————— | ———————————————————— |</p>
+
+<p>More control over the UI is also available over nearly any element in the widget. Simply set a value from the <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/singleView.ejs#L52">viewsConfig</a> to null and it will not be displayed. The full viewsConfig is listed <a href="https://github.com/kaltura-vpaas/embeddable_analytics#viewsConfig-Object">below</a></p>
+
+<p>The view for this example will be <code class="highlighter-rouge">/audience/engagement</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sendMessage({ messageType: 'navigate', payload: { url: '/audience/engagement' } });
+</code></pre>
+</div>
+
+<p>And if you refer to the <code class="highlighter-rouge">engagement </code>key of <code class="highlighter-rouge">audience</code> in the <code class="highlighter-rouge">viewsConfig</code> object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    "audience": {
+        "engagement": {
+            "export": {},
+            "refineFilter": {
+                "mediaType": {},
+                "entrySource": {},
+                "tags": {},
+                "owners": {},
+                "categories": {},
+                "geo": {}
+            },
+            "miniHighlights": {},
+            "miniTopVideos": {},
+            "miniPeakDay": {},
+            "topVideos": {},
+            "highlights": {},
+            "impressions": {},
+            "syndication": {}
+        },
+</code></pre>
+</div>
+
+<p>You will see a complete list of all the elements to be displayed. The goal is to only show the <code class="highlighter-rouge">syndication</code> element, which is displayed as Top Domains in the widget. All of the views except for <code class="highlighter-rouge">syndication</code> are set to null and therefore they will be hidden:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>				case 'analyticsInit':
+            var menusConfig = postMessageData.payload.menuConfig;
+            var viewsConfig = postMessageData.payload.viewsConfig;
+          
+            viewsConfig.audience.engagement.miniHighlights = null;
+            viewsConfig.audience.engagement.miniTopVideos = null;
+            viewsConfig.audience.engagement.impressions = null;
+            viewsConfig.audience.engagement.highlights = null;
+            viewsConfig.audience.engagement.topVideos = null;
+            viewsConfig.audience.engagement.miniPeakDay = null;
+            viewsConfig.audience.engagement.export = null;
+
+            sendMessage({ messageType: 'init', payload: { ...config, viewsConfig } })
+</code></pre>
+</div>
+
+<p>Using this pattern, you can customize the elements of the widget to achieve a custom view with only the elements you want.</p>
+    
+      <h2 id="everything-combined">
+        
+        
+          Everything combined <a href="#everything-combined"></a>
+        
+        
+      </h2>
+
+<p>| <a href="https://kaltura-embeddable-analytics.herokuapp.com/indexCustom.ejs">Live Demo</a> | <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/indexCustom.ejs">Source Code</a> |<br />
+| ———————————————————— | ———————————————————— |</p>
+
+<p>This example shows how to programmatically build a menu dynamically from the viewsConfig object, and may serve as inspiration for building your own menu system.</p>
+    
+      <h2 id="viewsconfig-object">
+        
+        
+          viewsConfig Object <a href="#viewsconfig-object"></a>
+        
+        
+      </h2>
+
+<p>The <a href="https://github.com/kaltura-vpaas/embeddable_analytics/blob/main/views/singleView.ejs#L52">viewsConfig</a> object contains a master list of all the elements the widget will display. It can be found by inspecting via javascript debugger and is customizable as shown in the examples above. Here is printout of the object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[
+    "audience": {
+        "engagement": {
+            "export": {},
+            "refineFilter": {
+                "mediaType": {},
+                "entrySource": {},
+                "tags": {},
+                "owners": {},
+                "categories": {},
+                "geo": {}
+            },
+            "miniHighlights": {},
+            "miniTopVideos": {},
+            "miniPeakDay": {},
+            "topVideos": {},
+            "highlights": {},
+            "impressions": {},
+            "syndication": {}
+        },
+        "contentInteractions": {
+            "export": {},
+            "refineFilter": {
+                "mediaType": {},
+                "entrySource": {},
+                "tags": {},
+                "owners": {},
+                "categories": {},
+                "geo": {}
+            },
+            "miniInteractions": {},
+            "miniTopShared": {},
+            "topPlaybackSpeed": {},
+            "topStats": {},
+            "interactions": {},
+            "moderation": {}
+        },
+        "geo": {
+            "export": {},
+            "refineFilter": {
+                "geo": {},
+                "tags": {},
+                "categories": {}
+            }
+        },
+        "technology": {
+            "export": {},
+            "devices": {},
+            "topBrowsers": {},
+            "topOs": {}
+        }
+    },
+    "bandwidth": {
+        "endUser": {
+            "export": {},
+            "refineFilter": {
+                "mediaType": {},
+                "entrySource": {},
+                "owners": {},
+                "geo": {}
+            }
+        },
+        "publisher": {
+            "export": {},
+            "refineFilter": {
+                "mediaType": {},
+                "entrySource": {},
+                "geo": {}
+            }
+        }
+    },
+    "contributors": {
+        "export": {},
+        "refineFilter": {
+            "mediaType": {},
+            "entrySource": {},
+            "tags": {},
+            "owners": {},
+            "categories": {},
+            "geo": {}
+        },
+        "miniHighlights": {},
+        "miniTopContributors": {},
+        "miniTopSources": {},
+        "highlights": {},
+        "contributors": {},
+        "sources": {}
+    },
+    "entry": {
+        "title": {},
+        "export": {},
+        "refineFilter": {
+            "geo": {},
+            "owners": {},
+            "categories": {}
+        },
+        "details": {},
+        "totals": {
+            "social": {
+                "likes": {},
+                "shares": {}
+            }
+        },
+        "entryPreview": {},
+        "userEngagement": {
+            "userFilter": {}
+        },
+        "performance": {},
+        "impressions": {},
+        "geo": {},
+        "devices": {},
+        "syndication": {}
+    },
+    "entryLive": {
+        "export": {},
+        "toggleLive": {},
+        "details": {},
+        "users": {},
+        "bandwidth": {},
+        "geo": {},
+        "status": {},
+        "player": {},
+        "streamHealth": {},
+        "devices": {},
+        "discovery": {}
+    },
+    "playlist": {
+        "title": {},
+        "export": {},
+        "refineFilter": {
+            "geo": {},
+            "owners": {},
+            "categories": {}
+        },
+        "details": {},
+        "totals": {},
+        "performance": {},
+        "videos": {}
+    },
+    "user": {
+        "export": {},
+        "refineFilter": {
+            "mediaType": {},
+            "entrySource": {},
+            "tags": {},
+            "categories": {}
+        },
+        "totals": {},
+        "geoDevices": {},
+        "lastViewedEntries": {},
+        "insights": {
+            "minutesViewed": {},
+            "plays": {},
+            "domains": {},
+            "sources": {}
+        },
+        "viewer": {
+            "viewedEntries": {},
+            "engagement": {}
+        },
+        "contributor": {
+            "mediaUpload": {},
+            "topContent": {},
+            "sources": {}
+        }
+    }
+]
+</code></pre>
+</div>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

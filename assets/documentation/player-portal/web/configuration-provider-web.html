@@ -1,0 +1,723 @@
+  <title>Provider Configuration</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Provider Configuration" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Provider Configuration</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Aug 27 13:57:39 2019</span>, By <span class="commit-author">tzubeli</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/player-portal/web/configuration-provider-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Aug 26 09:22:04 2019, By: tzubeli</td></tr-->
+				<!--tr><td>Last commit: Tue Aug 27 13:57:39 2019, By <span class="commit-author">tzubeli</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (2 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h2 id="configuration">
+        
+        
+          Configuration <a href="#configuration"></a>
+        
+        
+      </h2>
+
+<p>Configuration parameters are provided upon instantiation of the provider instance.</p>
+    
+      <h4 id="ovp">
+        
+        
+          OVP <a href="#ovp"></a>
+        
+        
+      </h4>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Configuration here</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">ovp</span><span class="p">.</span><span class="nx">Provider</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
+    
+      <h4 id="cloud-tv">
+        
+        
+          Cloud TV <a href="#cloud-tv"></a>
+        
+        
+      </h4>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Configuration here</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">playkit</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">ott</span><span class="p">.</span><span class="nx">Provider</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
+    
+      <h3 id="configuration-structure">
+        
+        
+          Configuration Structure <a href="#configuration-structure"></a>
+        
+        
+      </h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">partnerId:</span><span class="w"> </span><span class="err">number,</span><span class="w">
+  </span><span class="err">log:</span><span class="w"> </span><span class="err">ProviderLogConfigObject,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">ks:</span><span class="w"> </span><span class="err">string,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">uiConfId:</span><span class="w"> </span><span class="err">number,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">env:</span><span class="w"> </span><span class="err">ProviderEnvConfigObject,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">networkRetryParameters:</span><span class="w"> </span><span class="err">ProviderNetworkRetryParameters,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+  </span><span class="err">filterOptions:</span><span class="w"> </span><span class="err">ProviderFilterOptionsObject</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">optional</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h1>
+        
+        
+          #
+        
+        
+      </h1>
+    
+      <h3 id="configlog">
+        
+        
+          config.log <a href="#configlog"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-object">
+        
+        
+          Type: <code class="highlighter-rouge">Object</code> <a href="#type-object"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configloglevel">
+        
+        
+          config.log.level <a href="#configloglevel"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-error">
+        
+        
+          Default: <code class="highlighter-rouge">"ERROR"</code> <a href="#default-error"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-provider-log-level">
+        
+        
+          Description: Defines the provider log level. <a href="#description-defines-the-provider-log-level"></a>
+        
+        
+      </h5>
+
+<p>Possible values: <code class="highlighter-rouge">"DEBUG", "INFO", "TIME", "WARN", "ERROR", "OFF"</code></p>
+    
+      <h3 id="configloghandler">
+        
+        
+          config.log.handler <a href="#configloghandler"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-function">
+        
+        
+          Type: <code class="highlighter-rouge">function</code> <a href="#type-function"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-log-handler-function-by-default-will-write-to-console">
+        
+        
+          Description: Defines the log handler function by default will write to console. <a href="#description-defines-the-log-handler-function-by-default-will-write-to-console"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-1">
+        
+        
+          # <a href="#-1"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configpartnerid">
+        
+        
+          config.partnerId <a href="#configpartnerid"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-number">
+        
+        
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default--">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default--"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-customers-partner-id">
+        
+        
+          Description: Defines the customer’s partner ID. <a href="#description-defines-the-customers-partner-id"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-2">
+        
+        
+          # <a href="#-2"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configks">
+        
+        
+          config.ks <a href="#configks"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-1">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-">
+        
+        
+          Default: <code class="highlighter-rouge">''</code> <a href="#default-"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-customers-unique-ks">
+        
+        
+          Description: Defines the customer’s unique KS. <a href="#description-defines-the-customers-unique-ks"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-3">
+        
+        
+          # <a href="#-3"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configuiconfid">
+        
+        
+          config.uiConfId <a href="#configuiconfid"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-number-1">
+        
+        
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default---1">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default---1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-customers-ui-config-id">
+        
+        
+          Description: Defines the customer’s UI config ID. <a href="#description-defines-the-customers-ui-config-id"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-4">
+        
+        
+          # <a href="#-4"></a>
+        
+        
+      </h1>
+    
+      <h3 id="configenv">
+        
+        
+          config.env <a href="#configenv"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-providerenvconfigobject">
+        
+        
+          Type: <code class="highlighter-rouge">ProviderEnvConfigObject</code> <a href="#type-providerenvconfigobject"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">serviceUrl:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+ </span><span class="err">cdnUrl:</span><span class="w"> </span><span class="err">string,</span><span class="w">
+ </span><span class="err">useApiCaptions:</span><span class="w"> </span><span class="err">boolean</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="default">
+        
+        
+          Default: <a href="#default"></a>
+        
+        
+      </h5>
+
+<p><strong>OVP</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">serviceUrl:</span><span class="w"> </span><span class="nt">"//www.kaltura.com/api_v3"</span><span class="err">,</span><span class="w">
+ </span><span class="err">cdnUrl</span><span class="p">:</span><span class="w"> </span><span class="s2">"//cdnapisec.kaltura.com"</span><span class="p">,</span><span class="w">
+ </span><span class="err">useApiCaptions</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><strong>Cloud TV</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">serviceUrl:</span><span class="w"> </span><span class="nt">"//api-preprod.ott.kaltura.com/v4_6/api_v3"</span><span class="err">,</span><span class="w">
+ </span><span class="err">cdnUrl</span><span class="p">:</span><span class="w"> </span><span class="s2">"//api-preprod.ott.kaltura.com/v4_7"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="description-defines-the-server-environment-to-run-against">
+        
+        
+          Description: Defines the server environment to run against. <a href="#description-defines-the-server-environment-to-run-against"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configenvuseapicaptions">
+        
+        
+          config.env.useApiCaptions <a href="#configenvuseapicaptions"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-boolean">
+        
+        
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-true">
+        
+        
+          Default: true <a href="#default-true"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-show-captions-on-platforms-that-dont-support-in-band-captions-for-example-playing-using-flash-this-flag-is-for-the-ovp-provider-and-can-be-turned-off-by-setting-its-value-to-false">
+        
+        
+          Description: Show captions on platforms that don’t support in-band captions (for example: playing using Flash). This flag is for the OVP provider, and can be turned off by setting its value to <code class="highlighter-rouge">false</code>. <a href="#description-show-captions-on-platforms-that-dont-support-in-band-captions-for-example-playing-using-flash-this-flag-is-for-the-ovp-provider-and-can-be-turned-off-by-setting-its-value-to-false"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-5">
+        
+        
+          # <a href="#-5"></a>
+        
+        
+      </h1>
+    
+      <h3 id="confignetworkretryparameters">
+        
+        
+          config.networkRetryParameters <a href="#confignetworkretryparameters"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-providernetworkretryparameters">
+        
+        
+          Type: <code class="highlighter-rouge">ProviderNetworkRetryParameters</code> <a href="#type-providernetworkretryparameters"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+ </span><span class="err">async?:</span><span class="w"> </span><span class="err">boolean,</span><span class="w">
+ </span><span class="err">timeout?:</span><span class="w"> </span><span class="err">number,</span><span class="w">
+ </span><span class="err">maxAttempts?:</span><span class="w"> </span><span class="err">number</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h3 id="confignetworkretryparametersasync">
+        
+        
+          config.networkRetryParameters.async <a href="#confignetworkretryparametersasync"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-boolean-1">
+        
+        
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-true-1">
+        
+        
+          Default: <code class="highlighter-rouge">true</code> <a href="#default-true-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-whether-or-not-to-perform-the-request-operation-asynchronously">
+        
+        
+          Description: Defines whether or not to perform the request operation asynchronously. <a href="#description-defines-whether-or-not-to-perform-the-request-operation-asynchronously"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-6">
+        
+        
+          # <a href="#-6"></a>
+        
+        
+      </h1>
+    
+      <h3 id="confignetworkretryparameterstimeout">
+        
+        
+          config.networkRetryParameters.timeout <a href="#confignetworkretryparameterstimeout"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-number-2">
+        
+        
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-2"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-0---this-means-it-will-use-the-browser-default-timeout">
+        
+        
+          Default: <code class="highlighter-rouge">0</code> - This means it will use the browser default timeout. <a href="#default-0---this-means-it-will-use-the-browser-default-timeout"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-timeout-for-provider-requests-in-milliseconds">
+        
+        
+          Description: Defines the timeout for provider requests in milliseconds. <a href="#description-defines-the-timeout-for-provider-requests-in-milliseconds"></a>
+        
+        
+      </h5>
+    
+      <h1 id="-7">
+        
+        
+          # <a href="#-7"></a>
+        
+        
+      </h1>
+    
+      <h3 id="confignetworkretryparametersmaxattempts">
+        
+        
+          config.networkRetryParameters.maxAttempts <a href="#confignetworkretryparametersmaxattempts"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-number-3">
+        
+        
+          Type: <code class="highlighter-rouge">number</code> <a href="#type-number-3"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-4">
+        
+        
+          Default: <code class="highlighter-rouge">4</code> <a href="#default-4"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-number-of-attempts-the-provider-should-try-make-a-request-before-the-request-fails">
+        
+        
+          Description: Defines the number of attempts the provider should try make a request before the request fails. <a href="#description-defines-the-number-of-attempts-the-provider-should-try-make-a-request-before-the-request-fails"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configfilteroptions">
+        
+        
+          config.filterOptions <a href="#configfilteroptions"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-providerfilteroptionsobject">
+        
+        
+          Type: <code class="highlighter-rouge">ProviderFilterOptionsObject</code> <a href="#type-providerfilteroptionsobject"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">redirectFromEntryId:</span><span class="w"> </span><span class="err">boolean;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="default-1">
+        
+        
+          Default: <a href="#default-1"></a>
+        
+        
+      </h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">redirectFromEntryId:</span><span class="w"> </span><span class="err">true;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+    
+      <h5 id="description-defines-whether-after-a-livestream-ends-there-should-be-a-redirect-to-the-vod-entry-or-not">
+        
+        
+          Description: Defines whether after a livestream ends there should be a redirect to the VOD entry or not. <a href="#description-defines-whether-after-a-livestream-ends-there-should-be-a-redirect-to-the-vod-entry-or-not"></a>
+        
+        
+      </h5>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

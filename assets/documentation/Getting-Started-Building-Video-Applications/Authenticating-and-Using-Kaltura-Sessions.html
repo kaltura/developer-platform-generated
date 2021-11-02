@@ -1,0 +1,313 @@
+  <title>Authenticating and Using Kaltura Sessions</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Authenticating and Using Kaltura Sessions" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Authenticating and Using Kaltura Sessions</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Getting-Started-Building-Video-Applications/Authenticating-and-Using-Kaltura-Sessions.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h1 id="authenticating-and-using-kaltura-sessions">
+        
+        
+          Authenticating and Using Kaltura Sessions <a href="#authenticating-and-using-kaltura-sessions"></a>
+        
+        
+      </h1>
+
+<p>Because the Kaltura API is stateless aka <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>, every request requires an authentication session aka the Kaltura Session (KS), identifying the account on which the action is to be carried, the authenticated user and its role.</p>
+
+<p>With the client library, it’s easy to set using the <a href="https://developer.kaltura.com/console/service/session/action/start"><code class="highlighter-rouge">session.start</code></a> API action, like this:</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">ks = client.session.start(
+  &lt;&quot;ADMIN SECRET&quot;&gt;,
+  &lt;&quot;UNIQUE USER ID&quot;&gt;,
+  KalturaSessionType.ADMIN,
+  &lt;PARTNER ID&gt;, 
+  &lt;EXPIRY&gt;, 
+  &quot;appId:appName-appDomain&quot;) 
+client.setKs(ks)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$ks = $client-&gt;session-&gt;start(
+  &lt;&quot;ADMIN SECRET&quot;&gt;,
+  &lt;&quot;UNIQUE USER ID&quot;&gt;,
+  KalturaSessionType::ADMIN,
+  &lt;PARTNER ID&gt;,
+  &lt;EXPIRY&gt;,
+  &quot;appId:appName-appDomain&quot;);
+$client-&gt;setKS($ks);
+</code></pre>
+          </div>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">kaltura.services.session.start(
+	&lt;&quot;ADMIN SECRET&quot;&gt;,
+	&lt;&quot;UNIQUE USER ID&quot;&gt;,
+	kaltura.enums.SessionType.ADMIN,
+	&lt;PARTNER ID&gt;,
+	&lt;EXPIRY&gt;,
+	&quot;appId:appName-appDomain&quot;)
+.completion((success, ks) =&gt; {
+	client.setKs(ks);
+});
+</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">String session = client.getSessionService().start(
+	&lt;&quot;ADMIN SECRET&quot;&gt;, 
+	&lt;&quot;UNIQUE USER ID&quot;&gt;, 
+	KalturaSessionType.ADMIN, 
+	&lt;PARTNER ID&gt;, 
+	&lt;EXPIRY&gt;, 
+	&quot;appId:appName-appDomain&quot;);
+
+client.setSessionId(session);</code></pre>
+          </div>
+</div>
+
+<p><em>Specifying an <code class="highlighter-rouge">app id</code> which contains the name and domain of the app allows you to get specific analytics per application, for cases where you’re running your application on various domains.</em></p>
+
+<p>Try it interactively <a href="https://developer.kaltura.com/workflows/Generate_API_Sessions/Authentication">with this workflow</a>.</p>
+    
+      <h3 id="methods-for-generating-a-kaltura-session">
+        
+        
+          Methods for Generating a Kaltura Session <a href="#methods-for-generating-a-kaltura-session"></a>
+        
+        
+      </h3>
+
+<p>There are three methods for generating a Kaltura Session:</p>
+
+<ul>
+  <li>Calling the <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/session/session_start">session.start action</a>: This method is recommended for scripts and applications to which you alone will have access.</li>
+  <li>Using the <a href="Application-Tokens.html">apptoken service</a>: This method is recommended when providing access to scripts or applications that are managed by others; this method provides tools to manage API tokens per application provider, revoke access to specific applications, and more.</li>
+  <li>Calling the <a href="https://developer.kaltura.com/api-docs/Generate_API_Sessions/user_loginByLoginId">user.loginByLoginId action</a>: This method is recommended for managing registered users in Kaltura, and allowing users to log in using email and password. When you log in to the KMC, the KMC application calls the user.loginByLoginId action to authenticate you using your registered email and password. </li>
+</ul>
+    
+      <h2 id="important-notes-when-generating-kaltura-sessions">
+        
+        
+          Important Notes When Generating Kaltura Sessions <a href="#important-notes-when-generating-kaltura-sessions"></a>
+        
+        
+      </h2>
+
+<ol>
+  <li>Familiarize yourself with the concepts of user roles, privileges, access control and entitlements by reading the  <a href="Kaltura_API_Authentication_and_Security.html">Kaltura API Authentication and Security Guide</a>  to ensure that your application is secured.</li>
+  <li>Sharing the account API secret keys with 3rd party vendors should be avoided, as secret keys can not be regenerated or blocked for access. Kaltura API based application developers and 3rd party application vendors should build their application to leverage the appToken API to manage (create and revoke access) application tokens.</li>
+  <li>To ensure best security and analytics tracking during playback, always pass a Kaltura Session to the player embed.</li>
+  <li>To ensure tracking of end-user analytics, always pass a value to the userId field that is truly unique and represents a unique user in your system.</li>
+  <li>To ensure tracking of application level analytics make sure to pass the appid privilege (in the format of “appid:$appName-$appDomain” where $appName is a unique string to identify your application and appDomain is the domain where this app is hosted).</li>
+</ol>
+
+<blockquote>
+  <p>Note: To use the Kaltura API, you will need a Publisher Account with API access. <a href="https://vpaas.kaltura.com/register.html">Get a free Kaltura VPaaS trial</a>.</p>
+</blockquote>
+    
+      <h2 id="the-kaltura-media-access-control-model">
+        
+        
+          The Kaltura Media Access Control Model <a href="#the-kaltura-media-access-control-model"></a>
+        
+        
+      </h2>
+
+<p>An <a href="../Video-On-Demand-and-Digital-Assets-Management/Media-Access-Control.html">Access Control Profile</a> defines authorized and restricted domains where your content can or cannot be displayed, countries from which it can or cannot be viewed, white and black lists of IP addresses and authorized and unauthorized domains and devices in which your media can be embedded.</p>
+
+<p>For information on Kaltura session-based restrictions, refer to <a href="http://knowledge.kaltura.com/node/229">Kaltura’s API Authentication and Security</a>.</p>
+    
+      <h2 id="managing-end-user-content-entitlements">
+        
+        
+          Managing End-User Content Entitlements <a href="#managing-end-user-content-entitlements"></a>
+        
+        
+      </h2>
+
+<p><a href="https://developer.kaltura.com/api-docs/Secure_Control_and_Govern/Content-Categories-Management.html#Managing End-User Content Entitlements">Content Entitlements</a> is a method to allow end users access to a group of content items (entries).<br />
+Entitlements are configured on the category level by setting a special unique key to identify the applicative context in which to allow or deny access to the category’s entries.</p>
+
+<p>Applications such as <a href="http://corp.kaltura.com/Products/Video-Applications/Kaltura-Mediaspace-Video-Portal">Kaltura MediaSpace</a> implement entitlements to achieve the concept of “Authenticated Content Channels”.<br />
+Example use-cases based on content entitlements:</p>
+
+<ul>
+  <li>group collaboration based on channel membership</li>
+  <li>premium content - get access to channels/categories based on a paid subscription</li>
+</ul>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Thu Jul 9 04:50:27 2020</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Mon Sep 27 05:03:14 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/player-portal/android/getting-started-android.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Tue Mar 19 11:23:35 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Thu Jul 9 04:50:27 2020, By <span class="commit-author">Gilad Nadav</span></td></tr-->
+				<!--tr><td>Last commit: Mon Sep 27 05:03:14 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
 			
 				<!-- 
 				
@@ -123,6 +123,12 @@ rtp('get', 'campaign',true);
 				
 				<tr>
 					<td>Gilad Nadav (5 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -291,13 +297,13 @@ rtp('get', 'campaign',true);
 
     <span class="kd">val</span> <span class="py">playerInitOptions</span> <span class="p">=</span> <span class="n">PlayerInitOptions</span><span class="p">(</span><span class="n">PARTNER_ID</span><span class="p">)</span> <span class="c1">//player config/behavior
 </span>    <span class="n">playerInitOptions</span><span class="p">.</span><span class="n">setAutoPlay</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
-
+    
     <span class="kd">val</span> <span class="py">player</span> <span class="p">=</span> <span class="n">KalturaOvpPlayer</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="k">this</span><span class="n">@FullscreenActivity</span><span class="p">,</span> <span class="n">playerInitOptions</span><span class="p">)</span> <span class="o">?:</span> <span class="k">return</span>
-
+    
     <span class="n">player</span><span class="p">.</span><span class="n">setPlayerView</span><span class="p">(</span><span class="n">FrameLayout</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">WRAP_CONTENT</span><span class="p">,</span> <span class="n">FrameLayout</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">WRAP_CONTENT</span><span class="p">)</span>
-
+    
     <span class="n">fullscreen_content</span><span class="p">.</span><span class="n">addView</span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">playerView</span><span class="p">)</span>
-
+    
     <span class="kd">val</span> <span class="py">ovpMediaOptions</span> <span class="p">=</span> <span class="n">buildOvpMediaOptions</span><span class="p">()</span>
     <span class="n">player</span><span class="p">.</span><span class="n">loadMedia</span><span class="p">(</span><span class="n">ovpMediaOptions</span><span class="p">)</span> <span class="p">{</span> <span class="n">entry</span><span class="p">,</span> <span class="n">loadError</span> <span class="p">-&gt;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">loadError</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
@@ -318,7 +324,7 @@ rtp('get', 'campaign',true);
         
       </h3>
 
-<p>The provider helps the player access the Kaltura backend. The entryId is checked against the API, and there is an option to pass a Kaltura Session, which is always recommended when creating a player. If your application doesn’t already generate a Kaltura Session, read <a href="https://developer.kaltura.com/api-docs/VPaaS-API-Getting-Started/how-to-create-kaltura-session.html">this</a> to learn more.</p>
+<p>The provider helps the player access the Kaltura backend. The entryId is checked against the API, and there is an option to pass a Kaltura Session, which is always recommended when creating a player. If your application doesn’t already generate a Kaltura Session, read <a href="../../Getting-Started-Building-Video-Applications /Authenticating-and-Using-Kaltura-Sessions.html">Authenticating-and-Using-Kaltura-Sessions</a> to learn more.</p>
 
 <p>Create a function called <code class="highlighter-rouge">buildOvpMediaOptions</code>. The <code class="highlighter-rouge">apply</code> keyword in Kotlin will run the code block and pass the <em>receiver</em>, or in this case, <code class="highlighter-rouge">mediaOptions</code> as <strong><code class="highlighter-rouge">this</code></strong>.</p>
 
@@ -367,9 +373,9 @@ rtp('get', 'campaign',true);
 
     <span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_fullscreen</span><span class="p">)</span>
     <span class="n">supportActionBar</span><span class="o">?.</span><span class="n">setDisplayHomeAsUpEnabled</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
-
+    
     <span class="n">mVisible</span> <span class="p">=</span> <span class="k">true</span>
-
+    
     <span class="n">loadPlaykitPlayer</span><span class="p">()</span>
     <span class="n">addPlayPauseButton</span><span class="p">()</span>
     
@@ -440,7 +446,7 @@ rtp('get', 'campaign',true);
                     <span class="na">android:background=</span><span class="s">"@color/black_overlay"</span>
                     <span class="na">android:orientation=</span><span class="s">"horizontal"</span>
                     <span class="na">tools:ignore=</span><span class="s">"UselessParent"</span><span class="nt">&gt;</span>
-
+    
         <span class="nt">&lt;ImageButton</span>
                 <span class="na">android:layout_width=</span><span class="s">"0dp"</span>
                 <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span> <span class="na">app:srcCompat=</span><span class="s">"@drawable/exo_controls_play"</span>

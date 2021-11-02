@@ -1,0 +1,314 @@
+  <title>Working with Multi Request</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Working with Multi Request" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Working with Multi Request</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Getting-Started-Building-Video-Applications/Working-with-Multi-Request.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The Kaltura API can execute several API calls in a single HTTP request. The multi-request feature improves performance in Kaltura integrations. The feature enables a developer to stack multiple API calls and issue them in a single request. This reduces the number of round-trips from server-side or client-side developer code to Kaltura.</p>
+
+<p>The Kaltura API Clients have a built in feature to handle multi-request. Below is a link to examples of multi-request in each language:</p>
+
+<p>| <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsSwift/blob/master/Example/Tests/MultirequestTest.swift"><img src="/assets/images/clientlangs/ios.png" alt="ios" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsPHP/blob/master/TestCode/TestMain.php#L105"><img src="/assets/images/clientlangs/php.png" alt="php" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsJava/blob/master/src/test/java/com/kaltura/client/test/MultiRequestTest.java"><img src="/assets/images/clientlangs/java.png" alt="java" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsNodeJS/blob/master/example.js#L234"><img src="/assets/images/clientlangs/node.png" alt="node" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsPython/blob/master/KalturaClient/tests/test_functional.py#L222"><img src="/assets/images/clientlangs/python.png" alt="python" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsRuby/blob/master/test/media_service_test.rb#L145"><img src="/assets/images/clientlangs/ruby.png" alt="ruby" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsTypescript/blob/master/src/tests/kaltura-multi-request.spec.ts"><img src="/assets/images/clientlangs/ts.png" alt="ts" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsAJAX/blob/master/test/multi-request.test.js"><img src="/assets/images/clientlangs/ajax.png" alt="ajax" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsCsharp/blob/master/KalturaClientTester/ClientTester.cs#L446"><img src="/assets/images/clientlangs/csharp.png" alt="csharp" /></a> | <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsAngular/blob/master/projects/kaltura-ngx-client/src/tests/kaltura-multi-request.spec.ts"><img src="/assets/images/clientlangs/angular.png" alt="angular" /></a> |<br />
+| ———————————————————— | ———————————————————— | ———————————————————— | ———————————————————— | ———————————————————— | ———————————————————— | ———————————————————— | ———————————————————— | ———————————————————— | ———————————————————— |</p>
+
+<p>The multi-request feature includes the ability to have one request depend on the result of another request.</p>
+
+<p>While the Kaltura API is processing each of the API calls in a multi-request, it detects when there is a dependency in one of the call parameters. The Kaltura API parses the dependency and replaces it with the result of the relevant call.</p>
+      <h3 id="multi-request-structure">
+        
+        
+          Multi-request Structure <a href="#multi-request-structure"></a>
+        
+        
+      </h3>
+
+<p>Regardless of what language you use, the following structure will need to be passed as a string in order to specify which properties, from which API call you want to be passed.</p>
+
+<p>To create a multi-request with a dependent request, use the following structure as input in the variable whose value you want to replace with a result of a preceding request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">num:result:propertyName</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>where:</p>
+
+<ul>
+  <li><em>num</em> is the number of the request from which to collect data.</li>
+  <li><em>result</em> instructs the Kaltura API to replace this value with a result from another request.</li>
+  <li><em>propertyName</em> is the property to obtain from the object of the required result</li>
+</ul>
+
+<p>Here is an excerpt from the <a href="https://github.com/kaltura/KalturaGeneratedAPIClientsNodeJS/blob/master/example.js#L115">node.js</a> example:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">multirequest_single_callback</span><span class="p">(){</span>
+		<span class="p">...</span>
+		<span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">entry</span><span class="p">)</span>
+		<span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">deleteAction</span><span class="p">(</span><span class="s2">"{1:result:id}"</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>Two API calls are used. The first is <a href="https://developer.kaltura.com/console/service/media/action/add">media.add</a></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">entry</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Which then immediately calls <a href="https://developer.kaltura.com/console/service/media/action/delete">media.delete</a>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">deleteAction</span><span class="p">(</span><span class="s2">"{1:result:id}"</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>Take note of the second <code class="highlighter-rouge">.add</code> which is part of the kaltura client library for multirequests and is different from the first <code class="highlighter-rouge">.add</code> which is the api endpoint <code class="highlighter-rouge">media.add</code>.  The multi-request argument is <code class="highlighter-rouge"><span class="p">{</span><span class="err">1:result:id</span><span class="p">}</span></code> which passes the <code class="highlighter-rouge">id</code> from the <code class="highlighter-rouge">mediaEntry</code> created in the first API call to the second API call <code class="highlighter-rouge">delete</code> . <code class="highlighter-rouge">delete</code> only has 1 argument, <code class="highlighter-rouge">entryId</code></p>
+    
+      <h4 id="selecting-specific-response-values">
+        
+        
+          Selecting specific response values: <a href="#selecting-specific-response-values"></a>
+        
+        
+      </h4>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">listAction</span><span class="p">(</span><span class="nx">filter</span><span class="p">,</span> <span class="nx">pager</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">kaltura</span><span class="p">.</span><span class="nx">services</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"{1:result:objects:0:id}"</span><span class="p">,</span> <span class="nx">version</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The <a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a> request returns an object of type <em>KalturaMediaListResponse</em>, which contains an object named <em>objects</em></p>
+
+<p>The second request is <a href="https://developer.kaltura.com/console/service/media/action/get">media.get</a>, which uses <code class="highlighter-rouge">entryId</code> as its first argument.</p>
+
+<p>The <code class="highlighter-rouge">entryId</code> input is dynamic, and the value is obtained from the first request. Since the <a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a> response is constructed from array object within a response object, the first property to access is <code class="highlighter-rouge">KalturaMediaEntryArray</code></p>
+
+<p>Here is a partial json response from <code class="highlighter-rouge">media.list</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span> <span class="c1">//KalturaMediaListResponse</span>
+  <span class="s2">"objects"</span><span class="err">:</span> <span class="p">[</span> <span class="c1">//KalturaMediaEntryArray</span>
+    <span class="p">{</span> <span class="s1">'id'</span><span class="p">:</span><span class="s1">'this is an entryId'</span>
+</code></pre>
+</div>
+
+<p>In the <code class="highlighter-rouge">KalturaMediaEntryArray</code> you want to obtain the first element (index <em>*), so add  *:0</em> to the request value.</p>
+
+<p>Since from the first element you want only the ID that is the input for the second request, add <em>:id</em> to the request value. And the final multi-request string is:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="mi">1</span><span class="err">:</span><span class="nx">result</span><span class="err">:</span><span class="nx">objects</span><span class="err">:</span><span class="mi">0</span><span class="err">:</span><span class="nx">id</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>which is passed to the <code class="highlighter-rouge">entryId</code> argument of <code class="highlighter-rouge">media.get</code></p>
+    
+      <h3 id="multi-request-structure-protocol">
+        
+        
+          Multi-request Structure Protocol <a href="#multi-request-structure-protocol"></a>
+        
+        
+      </h3>
+
+<p>Here is a lower level explanation of the multi-request protocol:</p>
+
+<p>To perform a multi-request call:</p>
+
+<ol>
+  <li>Define the <em>GET</em> parameter of <strong>service</strong> as <strong>multirequest</strong> and define the <strong>action</strong> as <strong>null</strong> using (http://www.kaltura.com/api_v3/?service=multirequest&amp;action=null).</li>
+  <li>Prefix each API call with a number that represents its order in the multi-request call, followed by a colon. Prefix the first call with <em>1:</em>, the second with <em>2:</em>, and so on.</li>
+  <li>Use the prefix for each of an API call’s parameters (service, action, and action parameters).</li>
+</ol>
+    
+      <h4 id="example">
+        
+        
+          Example <a href="#example"></a>
+        
+        
+      </h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Request URL: api_v3/index.php?service=multirequest&amp;action=null
+	POST variables:
+		1:service=baseEntry
+		1:action=get
+		1:version=-1
+		1:entryId=0_zsadqv3e
+		2:service=flavorasset
+		2:action=getWebPlayableByEntryId
+		2:entryId=0_zsadqv3e
+		2:version=-1
+		ks={ks}
+</code></pre>
+</div>
+
+<p>###</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

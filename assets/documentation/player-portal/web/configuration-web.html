@@ -109,9 +109,9 @@ rtp('get', 'campaign',true);
 			
 			
 			<div class="lastcommittable">
-				<span>Updated: Tue Jun 9 07:47:37 2020</span>, By <span class="commit-author">Jess Portnoy</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/master/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
+				<span>Updated: Wed Jan 13 09:28:54 2021</span>, By <span class="commit-author">jbrule</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
 				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
-				<!--tr><td>Last commit: Tue Jun 9 07:47:37 2020, By <span class="commit-author">Jess Portnoy</span></td></tr-->
+				<!--tr><td>Last commit: Wed Jan 13 09:28:54 2021, By <span class="commit-author">jbrule</span></td></tr-->
 			
 				<!-- 
 				
@@ -123,6 +123,12 @@ rtp('get', 'campaign',true);
 				
 				<tr>
 					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>jbrule (1 commits) (<a href="mailto:jbrulz@gmail.com">jbrulz@gmail.com</a>)</td>
 				</tr> -->
 
 				<!-- 
@@ -157,20 +163,20 @@ rtp('get', 'campaign',true);
 
 <p>The configuration uses the following structure:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="err">targetId:</span><span class="w"> </span><span class="err">string,</span><span class="w">
-  </span><span class="err">logLevel:</span><span class="w"> </span><span class="err">string,</span><span class="w">
-  </span><span class="err">disableUserCache:</span><span class="w"> </span><span class="err">boolean,</span><span class="w">
-  </span><span class="err">playback:</span><span class="w"> </span><span class="err">PKPlaybackConfigObject,</span><span class="w">
-  </span><span class="err">sources:</span><span class="w"> </span><span class="err">PKSourcesConfigObject,</span><span class="w">
-  </span><span class="err">playlist:</span><span class="w"> </span><span class="err">KPPlaylistObject,</span><span class="w">
-  </span><span class="err">plugins:</span><span class="w"> </span><span class="err">PKPluginsConfigObject,</span><span class="w">
-  </span><span class="err">session:</span><span class="w"> </span><span class="err">PKSessionConfigObject,</span><span class="w">
-  </span><span class="err">provider:</span><span class="w"> </span><span class="err">ProviderOptionsObject,</span><span class="w">
-  </span><span class="err">ui:</span><span class="w"> </span><span class="err">UIOptionsObject,</span><span class="w">
-  </span><span class="err">cast:</span><span class="w"> </span><span class="err">CastConfigObject</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">targetId</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="nx">logLevel</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="nx">disableUserCache</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
+  <span class="nx">playback</span><span class="err">:</span> <span class="nx">PKPlaybackConfigObject</span><span class="p">,</span>
+  <span class="nx">sources</span><span class="err">:</span> <span class="nx">PKSourcesConfigObject</span><span class="p">,</span>
+  <span class="nx">playlist</span><span class="err">:</span> <span class="nx">KPPlaylistObject</span><span class="p">,</span>
+  <span class="nx">plugins</span><span class="err">:</span> <span class="nx">PKPluginsConfigObject</span><span class="p">,</span>
+  <span class="nx">session</span><span class="err">:</span> <span class="nx">PKSessionConfigObject</span><span class="p">,</span>
+  <span class="nx">provider</span><span class="err">:</span> <span class="nx">ProviderOptionsObject</span><span class="p">,</span>
+  <span class="nx">ui</span><span class="err">:</span> <span class="nx">UIOptionsObject</span><span class="p">,</span>
+  <span class="nx">cast</span><span class="err">:</span> <span class="nx">CastConfigObject</span>
+<span class="p">}</span>
+</code></pre>
 </div>
     
       <h3 id="configtargetid">
@@ -507,53 +513,53 @@ rtp('get', 'campaign',true);
 
 <p>Local Storage</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="err">muted:</span><span class="w"> </span><span class="err">true,</span><span class="w">
-	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'spa'</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">muted</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">audioLanguage</span><span class="err">:</span> <span class="s1">'spa'</span>
+<span class="p">}</span>
+</code></pre>
 </div>
 
 <p>Application</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="err">muted:</span><span class="w"> </span><span class="err">false,</span><span class="w">
-	</span><span class="err">volume:</span><span class="w"> </span><span class="err">0.7</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">muted</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span>
+<span class="p">}</span>
+</code></pre>
 </div>
 
 <p>Server</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'eng',</span><span class="w">
-  </span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'eng'</span><span class="p">,</span>
+  <span class="nx">autoplay</span><span class="err">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
 </div>
 
 <p>Default Player Configuration</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
-	</span><span class="err">textLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
-	</span><span class="err">muted:</span><span class="w"> </span><span class="err">false,</span><span class="w">
-	</span><span class="err">volume:</span><span class="w"> </span><span class="err">1,</span><span class="w">
-	</span><span class="err">autoplay:</span><span class="w"> </span><span class="err">false</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">muted</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre>
 </div>
 
 <p><strong>The resulting runtime configuration will, therefore, be as follows:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="err">audioLanguage:</span><span class="w"> </span><span class="err">'spa',</span><span class="w">
-	</span><span class="err">textLanguage:</span><span class="w"> </span><span class="err">'',</span><span class="w">
-	</span><span class="err">muted:</span><span class="w"> </span><span class="err">true,</span><span class="w">
-	</span><span class="err">volume:</span><span class="w"> </span><span class="err">0.7,</span><span class="w">
-	</span><span class="err">autoplay:</span><span class="w"> </span><span class="err">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'spa'</span><span class="p">,</span>
+	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">muted</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span><span class="p">,</span>
+	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
 </div>
 		
 </article>

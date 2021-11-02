@@ -1,0 +1,419 @@
+  <title>Categories & Entitlement Rules</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Categories & Entitlement Rules" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Categories & Entitlement Rules</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Video-On-Demand-and-Digital-Assets-Management/Categories-and-Entitlement-Rules.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>Content Entitlements is a method for governing access of end-users to groups of content items (entries) using categories.  <br />
+Entitlements are configured at the category level, by setting a unique key to identify the applicative context in which to allow access to the category’s entries.</p>
+
+<p>Applications such as <a href="http://corp.kaltura.com/Products/Video-Applications/Kaltura-Mediaspace-Video-Portal">Kaltura MediaSpace</a> implement entitlements to achieve the concept of “Authenticated Content Channels”.</p>
+
+<p>Example use-cases based on content entitlements:</p>
+
+<ul>
+  <li>Group collaboration based on channel membership</li>
+  <li>Premium content - get access to channels/categories based on a paid subscription</li>
+</ul>
+
+<p>The following diagram outlines the rules on which Kaltura bases and enforces content entitlements.  <br />
+You can configure the Kaltura system to be more restrictive or open in allowing access to your assets.</p>
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="980px" style="width:598px;height:980px;" version="1.1" viewBox="0 0 598 980" width="598px"><defs /><g><polygon fill="#FEFECE" points="308.875,11.0942,505.875,11.0942,517.875,30.3013,505.875,49.5083,308.875,49.5083,296.875,30.3013,308.875,11.0942" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="308.875" y="21.3047">entitlements</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="53" x="393.875" y="21.3047">has been</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="55" x="450.875" y="21.3047">disabled</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="140" x="308.875" y="34.1094">specifically for this entry</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="35" x="308.875" y="46.9141">by the</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="151" x="347.875" y="46.9141">widget or feed services</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="276.875" y="27.707">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="228.375" y="59.5083" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="238.375" y="80.647">Entry is allowed</text><polygon fill="#FEFECE" points="306.875,134.876,507.875,134.876,519.875,147.6807,507.875,160.4854,306.875,160.4854,294.875,147.6807,306.875,134.876" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="201" x="306.875" y="145.0864">defaultEntitlementEnforcement</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="47" x="306.875" y="157.8911">is set to</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="39" x="357.875" y="157.8911">FALSE</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="84" x="400.875" y="157.8911">on the account</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="274.875" y="145.0864">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="226.375" y="170.4854" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="236.375" y="191.624">Entry is allowed</text><polygon fill="#FEFECE" points="285.875,245.853,528.875,245.853,540.875,265.0601,528.875,284.2671,285.875,284.2671,273.875,265.0601,285.875,245.853" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="285.875" y="256.0635">ks</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="21" x="303.875" y="256.0635">has</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="121" x="328.875" y="256.0635">disableentitlement</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="64" x="453.875" y="256.0635">permission</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="16" x="285.875" y="268.8682">OR</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="243" x="285.875" y="281.6729">disableentitlementforentry == entryId</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="253.875" y="262.4658">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="205.375" y="294.2671" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="215.375" y="315.4058">Entry is allowed</text><polygon fill="#FEFECE" points="342.375,369.6348,472.375,369.6348,484.375,382.4395,472.375,395.2441,342.375,395.2441,330.375,382.4395,342.375,369.6348" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="130" x="342.375" y="379.8452">The user (ks.userId) is</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="40" x="342.375" y="392.6499">owner</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="66" x="386.375" y="392.6499">of the entry</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="310.375" y="379.8452">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="261.875" y="405.2441" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="271.875" y="426.3828">Entry is allowed</text><polygon fill="#FEFECE" points="287.375,480.6118,527.375,480.6118,539.375,493.4165,527.375,506.2212,287.375,506.2212,275.375,493.4165,287.375,480.6118" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="141" x="287.375" y="490.8223">The user (ks.userId) has</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="167" x="287.375" y="503.627">edit or publish permission</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="69" x="458.375" y="503.627">on the entry</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="255.375" y="490.8223">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="206.875" y="516.2212" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="216.875" y="537.3599">Entry is allowed</text><polygon fill="#FEFECE" points="333.375,597.9912,481.375,597.9912,493.375,610.7959,481.375,623.6006,333.375,623.6006,321.375,610.7959,333.375,597.9912" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="43" x="333.375" y="608.2017">Entry is</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="70" x="380.375" y="608.2017">associated</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="23" x="454.375" y="608.2017">with</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="71" x="333.375" y="621.0063">one or more</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="408.375" y="621.0063">categories</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="301.375" y="608.2017">yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="57" x="493.375" y="582.5923">Entry NOT</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="62" x="493.375" y="595.397">associated</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="85" x="493.375" y="608.2017">with catrgories</text><polygon fill="#FEFECE" points="184.25,633.6006,368.25,633.6006,380.25,646.4053,368.25,659.21,184.25,659.21,172.25,646.4053,184.25,633.6006" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="16" x="184.25" y="643.811">On</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="16" x="204.25" y="643.811">all</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="144" x="224.25" y="643.811">of the entry's categories:</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="0" x="188.25" y="656.6157" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="146" x="188.25" y="656.6157">privacyContext == null</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="152.25" y="643.811">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="103.75" y="669.21" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="113.75" y="690.3486">Entry is allowed</text><polygon fill="#FEFECE" points="179.75,744.5776,372.75,744.5776,384.75,763.7847,372.75,782.9917,179.75,782.9917,167.75,763.7847,179.75,744.5776" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="112" x="179.75" y="754.7881">ks.privacycontext</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="108" x="179.75" y="767.5928">equal to one of the</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="193" x="179.75" y="780.3975">entry's categories' privacyContext</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="147.75" y="761.1904">yes</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="99.25" y="792.9917" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="109.25" y="814.1304">Entry is allowed</text><polygon fill="#FEFECE" points="197.75,874.7617,354.75,874.7617,366.75,887.5664,354.75,900.3711,197.75,900.3711,185.75,887.5664,197.75,874.7617" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="106" x="197.75" y="884.9722">category.privacy</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="47" x="307.75" y="884.9722">is set to</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="103" x="197.75" y="897.7769">MEMBERS_ONLY</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="165.75" y="884.9722">yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="93" x="366.75" y="859.3628">category.privacy</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="33" x="366.75" y="872.1675">set to</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="92" x="366.75" y="884.9722">AUTHENTICATED</text><polygon fill="#FEFECE" points="90.5,910.3711,231.5,910.3711,243.5,923.1758,231.5,935.9805,90.5,935.9805,78.5,923.1758,90.5,910.3711" style="stroke: #444444; stroke-width: 1.5;" /><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="58" x="90.5" y="920.5815">ks.userId</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="21" x="152.5" y="920.5815">is a</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="51" x="90.5" y="933.3862">member</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="86" x="145.5" y="933.3862">of the category</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="20" x="58.5" y="920.5815">yes</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="243.5" y="920.5815">no</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="10" y="945.9805" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="20" y="967.1191">Entry is allowed</text><rect fill="#8B0000" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="99" x="204" y="945.9805" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="79" x="214" y="967.1191">Entry denied</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="333" y="910.3711" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="343" y="931.5098">Entry is allowed</text><rect fill="#00BFFF" height="33.9688" style="stroke: #444444; stroke-width: 1.5;" width="117" x="480" y="633.6006" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="490" y="654.7393">Entry is allowed</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="296.875" x2="286.875" y1="30.3013" y2="30.3013" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="286.875" x2="286.875" y1="30.3013" y2="59.5083" /><polygon fill="#0000FF" points="282.875,49.5083,286.875,59.5083,290.875,49.5083,286.875,53.5083" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="517.875" x2="527.875" y1="30.3013" y2="30.3013" /><polygon fill="#444444" points="523.875,54.8892,527.875,64.8892,531.875,54.8892,527.875,58.8892" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="527.875" x2="527.875" y1="30.3013" y2="98.4771" /><line style="stroke: #444444; stroke-width: 1.5;" x1="527.875" x2="407.375" y1="98.4771" y2="98.4771" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="294.875" x2="284.875" y1="147.6807" y2="147.6807" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="284.875" x2="284.875" y1="147.6807" y2="170.4854" /><polygon fill="#0000FF" points="280.875,160.4854,284.875,170.4854,288.875,160.4854,284.875,164.4854" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="519.875" x2="529.875" y1="147.6807" y2="147.6807" /><polygon fill="#444444" points="525.875,169.0674,529.875,179.0674,533.875,169.0674,529.875,173.0674" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="529.875" x2="529.875" y1="147.6807" y2="209.4541" /><line style="stroke: #444444; stroke-width: 1.5;" x1="529.875" x2="407.375" y1="209.4541" y2="209.4541" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="98.4771" y2="134.876" /><polygon fill="#8B0000" points="403.375,124.876,407.375,134.876,411.375,124.876,407.375,128.876" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="114.7817">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="273.875" x2="263.875" y1="265.0601" y2="265.0601" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="263.875" x2="263.875" y1="265.0601" y2="294.2671" /><polygon fill="#0000FF" points="259.875,284.2671,263.875,294.2671,267.875,284.2671,263.875,288.2671" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="540.875" x2="550.875" y1="265.0601" y2="265.0601" /><polygon fill="#444444" points="546.875,289.6479,550.875,299.6479,554.875,289.6479,550.875,293.6479" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="550.875" x2="550.875" y1="265.0601" y2="333.2358" /><line style="stroke: #444444; stroke-width: 1.5;" x1="550.875" x2="407.375" y1="333.2358" y2="333.2358" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="209.4541" y2="245.853" /><polygon fill="#8B0000" points="403.375,235.853,407.375,245.853,411.375,235.853,407.375,239.853" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="225.7588">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="330.375" x2="320.375" y1="382.4395" y2="382.4395" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="320.375" x2="320.375" y1="382.4395" y2="405.2441" /><polygon fill="#0000FF" points="316.375,395.2441,320.375,405.2441,324.375,395.2441,320.375,399.2441" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="484.375" x2="494.375" y1="382.4395" y2="382.4395" /><polygon fill="#444444" points="490.375,403.8262,494.375,413.8262,498.375,403.8262,494.375,407.8262" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="494.375" x2="494.375" y1="382.4395" y2="444.2129" /><line style="stroke: #444444; stroke-width: 1.5;" x1="494.375" x2="407.375" y1="444.2129" y2="444.2129" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="333.2358" y2="369.6348" /><polygon fill="#8B0000" points="403.375,359.6348,407.375,369.6348,411.375,359.6348,407.375,363.6348" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="349.5405">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="275.375" x2="265.375" y1="493.4165" y2="493.4165" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="265.375" x2="265.375" y1="493.4165" y2="516.2212" /><polygon fill="#0000FF" points="261.375,506.2212,265.375,516.2212,269.375,506.2212,265.375,510.2212" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="539.375" x2="549.375" y1="493.4165" y2="493.4165" /><polygon fill="#444444" points="545.375,514.8032,549.375,524.8032,553.375,514.8032,549.375,518.8032" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="549.375" x2="549.375" y1="493.4165" y2="555.1899" /><line style="stroke: #444444; stroke-width: 1.5;" x1="549.375" x2="407.375" y1="555.1899" y2="555.1899" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="444.2129" y2="480.6118" /><polygon fill="#8B0000" points="403.375,470.6118,407.375,480.6118,411.375,470.6118,407.375,474.6118" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="460.5176">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="172.25" x2="162.25" y1="646.4053" y2="646.4053" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="162.25" x2="162.25" y1="646.4053" y2="669.21" /><polygon fill="#0000FF" points="158.25,659.21,162.25,669.21,166.25,659.21,162.25,663.21" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="380.25" x2="390.25" y1="646.4053" y2="646.4053" /><polygon fill="#444444" points="386.25,667.792,390.25,677.792,394.25,667.792,390.25,671.792" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="390.25" x2="390.25" y1="646.4053" y2="708.1787" /><line style="stroke: #444444; stroke-width: 1.5;" x1="390.25" x2="276.25" y1="708.1787" y2="708.1787" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="167.75" x2="157.75" y1="763.7847" y2="763.7847" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="157.75" x2="157.75" y1="763.7847" y2="792.9917" /><polygon fill="#0000FF" points="153.75,782.9917,157.75,792.9917,161.75,782.9917,157.75,786.9917" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="384.75" x2="394.75" y1="763.7847" y2="763.7847" /><polygon fill="#444444" points="390.75,788.3726,394.75,798.3726,398.75,788.3726,394.75,792.3726" style="stroke: #444444; stroke-width: 1.5;" /><line style="stroke: #444444; stroke-width: 1.5;" x1="394.75" x2="394.75" y1="763.7847" y2="831.9604" /><line style="stroke: #444444; stroke-width: 1.5;" x1="394.75" x2="276.25" y1="831.9604" y2="831.9604" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="276.25" x2="276.25" y1="708.1787" y2="744.5776" /><polygon fill="#8B0000" points="272.25,734.5776,276.25,744.5776,280.25,734.5776,276.25,738.5776" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="280.25" y="724.4834">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="78.5" x2="68.5" y1="923.1758" y2="923.1758" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="68.5" x2="68.5" y1="923.1758" y2="945.9805" /><polygon fill="#0000FF" points="64.5,935.9805,68.5,945.9805,72.5,935.9805,68.5,939.9805" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="243.5" x2="253.5" y1="923.1758" y2="923.1758" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="253.5" x2="253.5" y1="923.1758" y2="945.9805" /><polygon fill="#8B0000" points="249.5,935.9805,253.5,945.9805,257.5,935.9805,253.5,939.9805" style="stroke: #8B0000; stroke-width: 1.0;" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="185.75" x2="161" y1="887.5664" y2="887.5664" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="161" x2="161" y1="887.5664" y2="910.3711" /><polygon fill="#0000FF" points="157,900.3711,161,910.3711,165,900.3711,161,904.3711" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="366.75" x2="391.5" y1="887.5664" y2="887.5664" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="391.5" x2="391.5" y1="887.5664" y2="910.3711" /><polygon fill="#0000FF" points="387.5,900.3711,391.5,910.3711,395.5,900.3711,391.5,904.3711" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="276.25" x2="276.25" y1="831.9604" y2="874.7617" /><polygon fill="#8B0000" points="272.25,864.7617,276.25,874.7617,280.25,864.7617,276.25,868.7617" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="280.25" y="848.2651">no</text><line style="stroke: #0000FF; stroke-width: 1.5;" x1="321.375" x2="276.25" y1="610.7959" y2="610.7959" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="276.25" x2="276.25" y1="610.7959" y2="633.6006" /><polygon fill="#0000FF" points="272.25,623.6006,276.25,633.6006,280.25,623.6006,276.25,627.6006" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="493.375" x2="538.5" y1="610.7959" y2="610.7959" /><line style="stroke: #0000FF; stroke-width: 1.5;" x1="538.5" x2="538.5" y1="610.7959" y2="633.6006" /><polygon fill="#0000FF" points="534.5,623.6006,538.5,633.6006,542.5,623.6006,538.5,627.6006" style="stroke: #0000FF; stroke-width: 1.0;" /><line style="stroke: #8B0000; stroke-width: 1.5;" x1="407.375" x2="407.375" y1="555.1899" y2="597.9912" /><polygon fill="#8B0000" points="403.375,587.9912,407.375,597.9912,411.375,587.9912,407.375,591.9912" style="stroke: #8B0000; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="14" x="411.375" y="571.4946">no</text></g></svg>
+      <h2 id="categories">
+        
+        
+          Categories <a href="#categories"></a>
+        
+        
+      </h2>
+
+<p>Media entries can be organized in categories. Categories are structured in a tree-like hierarchy where each category can include multiple sub-categories.  <br />
+You can add, remove and edit categories using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/category">category service</a>. You can assign a media entry to a specific category using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry">categoryEntry service</a>.   <br />
+Categories provide a logical structure for your site and assist with content management. You can assign custom metadata to categories. Then, using filters you can create robust search and discovery workflows, playlists and more.  <br />
+Categories may also be used to set content entitlements for end-users in various applications using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser">categoryUser service</a>.</p>
+    
+      <h3 id="quick-summary">
+        
+        
+          Quick Summary <a href="#quick-summary"></a>
+        
+        
+      </h3>
+
+<ul>
+  <li>A category is a metadata that groups content.</li>
+  <li>Media entries can be added into categories. Each entry can be associated with up to 32 categories (If you need more, please <a href="mailto:vpaas@kaltura.com">contact us</a>).</li>
+  <li>Categories are built in a tree-like hierarchy where each category can include multiple sub-categories.</li>
+  <li>Each category may only have a single parent category, or be a root level category (no parent).</li>
+  <li>Categories provide a logical taxonomy structure for your site or application and assist with content management.</li>
+  <li>You can use categories, along with metadata and filters to create manually or dynamically generated playlists.</li>
+  <li>Categories can be used for setting content entitlements for end-users, regulating access to content and functionality.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Backward Compatibility</strong> - The <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaBaseEntry">KalturaBaseEntry</a> exposes the two properties <code class="highlighter-rouge">categories</code> and <code class="highlighter-rouge">categoriesIds</code>. These properties can only be used when your categories are not configured with Entitlement settings. It is always best to rely on the <code class="highlighter-rouge">categoryEntry</code> service to retrieve a full list of categories per Entry. Avoid using the <code class="highlighter-rouge">categories</code> and <code class="highlighter-rouge">categoriesIds</code> properties.</p>
+</blockquote>
+    
+      <h2 id="creating-and-managing-categories">
+        
+        
+          Creating and Managing Categories <a href="#creating-and-managing-categories"></a>
+        
+        
+      </h2>
+
+<p>To add, list, delete, edit, move and manage categories, use the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/category"><code class="highlighter-rouge">category service</code></a>.</p>
+
+<ul>
+  <li>Categories are always associated with an owner user ID. This is the user who created the category (determined by the Kaltura Session used when calling <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/category/category_add"><code class="highlighter-rouge">category.add</code></a>).</li>
+  <li>To retrieve a category’s full parent’s tree path (until the root parent) use	the	<a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">KalturaCategory.fullName</a> and <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">KalturaCategory.fullIds</a> fields.</li>
+</ul>
+    
+      <h2 id="managing-entries-inside-categories">
+        
+        
+          Managing Entries Inside Categories <a href="#managing-entries-inside-categories"></a>
+        
+        
+      </h2>
+
+<p>With a category structure in place, use the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry"><code class="highlighter-rouge">categoryEntry service</code></a> to add, delete and move entries in and out of categories.</p>
+
+<p>To add an entry to a category, simply call the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_add">categoryEntry.add</a> providing a <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/">KalturaCategoryEntry</a> object. In the <code class="highlighter-rouge">KalturaCategoryEntry</code> object, set the id of the entry and the id of the category you want to associate it to.</p>
+
+<p>To remove an entry from a category, call the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_delete">categoryEntry.delete</a> action and provide the id of the entry (<code class="highlighter-rouge">entryId</code>) and the id of the category (<code class="highlighter-rouge">categoryId</code>) from which to remove the entry.</p>
+    
+      <h2 id="category-content-moderation">
+        
+        
+          Category Content Moderation <a href="#category-content-moderation"></a>
+        
+        
+      </h2>
+
+<p>By default, every entry may be added to a category, however, you may choose to moderate content.  <br />
+Setting the <code class="highlighter-rouge">moderation</code> property to 1 (true) places new entries into a virtual moderation queue. Entries in the moderation queue must be approved by a user with Manager or Moderator permission level, before they are officially associated with the category.</p>
+
+<p>The membership of users in a category is defined with the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser">categoryUser</a> service. Use the <code class="highlighter-rouge">add</code> action to associate a user with a category.</p>
+
+<p>The relationship of user permissions in a specific category is configured with the <code class="highlighter-rouge">permissionLevel</code> property when calling the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser/categoryUser_add"><code class="highlighter-rouge">categoryUser.add</code></a> action. (The options for <code class="highlighter-rouge">permissionLevel</code> are available in <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaCategoryUserPermissionLevel"><code class="highlighter-rouge">KalturaCategoryUserPermissionLevel</code></a>).</p>
+
+<p>Moderation is governed with the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_activate">categoryEntry.activate</a> and <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryEntry/categoryEntry_reject">categoryEntry.reject</a> actions, that allow moderator users to approve (<code class="highlighter-rouge">activate</code>) or reject the addition of an entry to the category.</p>
+
+<p>The <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory"><code class="highlighter-rouge">contributionPolicy</code></a> determines if users are required to have a contributor level permission to be allowed to add or even suggest entries to the category. By default, all users are allowed to contribute (suggest) entries to be added. By setting the <code class="highlighter-rouge">contributionPolicy</code> to <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaContributionPolicyType"><code class="highlighter-rouge">KalturaContributionPolicyType.MEMBERS_WITH_CONTRIBUTION_PERMISSION</code></a>, only users that are given a contributor role or above will be allowed to suggest entries.</p>
+
+<p>Use the <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory"><code class="highlighter-rouge">userJoinPolicy</code></a> and <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaUserJoinPolicyType"><code class="highlighter-rouge">KalturaUserJoinPolicyType</code></a> to set whether users:</p>
+
+<ul>
+  <li>can add themselves to the category (<code class="highlighter-rouge">AUTO_JOIN</code>)</li>
+  <li>can request to be added and wait for the moderator’s approval (<code class="highlighter-rouge">REQUEST_TO_JOIN</code>)</li>
+  <li>or if it’s a by-invitation only list and users are not allowed to ask to be added (<code class="highlighter-rouge">NOT_ALLOWED</code>).  <br />
+If the category is set to moderated membership approval (<code class="highlighter-rouge">REQUEST_TO_JOIN</code>), use the <code class="highlighter-rouge">activate</code> action to approve the moderated request to join. If a user should not be allowed join, use <code class="highlighter-rouge">deactivate</code> action to reject a user’s request to join the category.</li>
+</ul>
+    
+      <h2 id="managing-end-user-content-entitlements">
+        
+        
+          Managing End-User Content Entitlements <a href="#managing-end-user-content-entitlements"></a>
+        
+        
+      </h2>
+
+<p>Content Entitlements is a method to allow end users access to a group of content items (entries).  <br />
+Entitlements are configured on the category level by setting a special unique key to identify the applicative context in which to allow or deny access to the category’s entries.</p>
+
+<p>Applications such as <a href="http://corp.kaltura.com/Products/Video-Applications/Kaltura-Mediaspace-Video-Portal">Kaltura MediaSpace</a> implement entitlements to achieve the concept of “Authenticated Content Channels”.<br />
+Example use-cases based on content entitlements:</p>
+
+<ul>
+  <li>group collaboration based on channel membership</li>
+  <li>premium content - get access to channels/categories based on a paid subscription</li>
+</ul>
+    
+      <h3 id="the-content-privacy-options">
+        
+        
+          The Content Privacy Options <a href="#the-content-privacy-options"></a>
+        
+        
+      </h3>
+
+<p>Content Privacy defines the visibility of content associated with a category, including its related metadata.</p>
+
+<p>Content Privacy determines:</p>
+
+<ul>
+  <li>Who has access to content associated with the category</li>
+  <li>Whether the content will be available to the user in global search results (e.g. when calling <a href="https://developer.kaltura.com/api-docs/Ingest_and_Upload_Media/media/media_list"><code class="highlighter-rouge">media.list</code></a>)</li>
+</ul>
+
+<p>Content Privacy is configured in the Category’s <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">privacy</a> property. The available options are defined in <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPrivacyType"><code class="highlighter-rouge">KalturaPrivacyType</code></a>.</p>
+    
+      <h4 id="available-options-for-privacy">
+        
+        
+          Available options for <code class="highlighter-rouge">privacy</code>: <a href="#available-options-for-privacy"></a>
+        
+        
+      </h4>
+
+<ul>
+  <li><code class="highlighter-rouge">ALL</code> (No Restriction) – Content in the category is visible to everyone with access to the application it is published in. For example, setting a media gallery that is open on the web and be accessible by everyone, including anonymous viewers.</li>
+  <li><code class="highlighter-rouge">AUTHENTICATED_USERS</code> (Authentication Required) – Content in the category is visible only to authenticated end-users (calls with a valid Kaltura Session that specifies a userId. Anonymous users will not be allowed to see these entries).</li>
+  <li><code class="highlighter-rouge">MEMBERS_ONLY</code> (Private) – Content in this category is visible only to users with specific permission to access this category’s content and to the owner of the content. This option is relevant for setting “private channels” that are available only to a group of users.</li>
+</ul>
+
+<blockquote>
+  <p>Note: With any content privacy option, the owner of the content is always entitled to access and manage their content.</p>
+</blockquote>
+    
+      <h2 id="visibility-of-content-associated-with-multiple-categories">
+        
+        
+          Visibility of Content Associated with Multiple Categories <a href="#visibility-of-content-associated-with-multiple-categories"></a>
+        
+        
+      </h2>
+
+<p>For content associated with more than one category, the privacy and visibility of this content via global<br />
+search (e.g. using <code class="highlighter-rouge">media.list</code>) or a direct call to <code class="highlighter-rouge">baseEntry.get</code>, is determined based on the category with the lowest restriction level the content is associated with (within the application category tree).</p>
+
+<p>If an entry is associated with a category where privacy is set to <code class="highlighter-rouge">MEMBERS_ONLY</code>, and another category where privacy is set to <code class="highlighter-rouge">ALL</code> - the entry will be accessible to everyone (both via <code class="highlighter-rouge">get</code> or <code class="highlighter-rouge">list</code> actions) regardless of the definition set in the <code class="highlighter-rouge">MEMBERS_ONLY</code> category.</p>
+    
+      <h2 id="entitlement-enforcement-behavior">
+        
+        
+          Entitlement Enforcement Behavior <a href="#entitlement-enforcement-behavior"></a>
+        
+        
+      </h2>
+
+<p>To configure how Kaltura enforces entitlement and handles entitlement conflicts, use the <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPartner"><code class="highlighter-rouge">defaultEntitlementEnforcement</code></a> property of <code class="highlighter-rouge">KalturaPartner</code>.</p>
+
+<ul>
+  <li>When <code class="highlighter-rouge">defaultEntitlementEnforcement</code> is set to true (default): Access to content under categories where privacy and privacyContext are configured is only allowed for API calls that provide a KS (Kaltura Session) that specify the correct privacyContext and a userId that is a member of the category.</li>
+  <li>When <code class="highlighter-rouge">defaultEntitlementEnforcement</code> is set to false: Access to content under categories with entitlement is possible using any valid Kaltura Session, including anonymous player embed codes (using a Widget Session). With this option, the application itself is responsible to implement an entitlement enforcement and it is expected that entitlement rules are kept within the application.</li>
+</ul>
+
+<blockquote>
+  <p>To learn more about how entitlements are enforced, please read: <a href="/api-docs/Secure_Control_and_Govern/Content-Entitlements-Privacy-Enforcement.html">Content Entitlements and Privacy Enforcement</a>.</p>
+</blockquote>
+    
+      <h2 id="category-discoverability-in-search">
+        
+        
+          Category Discoverability in Search <a href="#category-discoverability-in-search"></a>
+        
+        
+      </h2>
+
+<p>Categories expose properties to control whether to, and who can find the categories and the entries associated with them.</p>
+
+<p><a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory">privacy</a>, defined to one of its ENUM options <a href="https://developer.kaltura.com/api-docs/General_Objects/Enums/KalturaPrivacyType"><code class="highlighter-rouge">KalturaPrivacyType</code></a> sets whether entries that are associated with the category can be seen by users:</p>
+
+<ul>
+  <li>ALL: Category will be visible to all users.</li>
+  <li>AUTHENTICATED_USERS: Category will only be visible to logged-in users (i.e. List API requests made with a USER or ADMIN KS that specify a userId that is not null).</li>
+  <li>MEMBERS_ONLY: Category will only be visible to users that are accepted members of the category. (i.e. A categoryUser object exists that connects the categoryId with the userId specified in the KS used to call the list API.)</li>
+</ul>
+    
+      <h3 id="configure-and-use-content-entitlements">
+        
+        
+          Configure and Use Content Entitlements <a href="#configure-and-use-content-entitlements"></a>
+        
+        
+      </h3>
+
+<p>To configure entitlements on a category, you will need to set a “Privacy Context” (<a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaCategory"><code class="highlighter-rouge">category.privacyContext</code></a> property) for the desired category.  <br />
+Privacy Context is a free text label (English character string; commas and spaces are not allowed) that indicates to which application the entitlement settings apply, for example, “MySuperAwesomeVideoApp”.</p>
+
+<p>To allow access to an entitled category, follow these steps:</p>
+
+<ol>
+  <li>The end user must be added as a member of the category by using the <a href="https://developer.kaltura.com/api-docs/Enrich_and_Organize_Metadata/categoryUser"><code class="highlighter-rouge">CategoryUser</code></a> service.</li>
+  <li>The privacy context should be passed in the application session (KS) whenever making API requests in the <a href="https://knowledge.kaltura.com/node/229#privacycontext"><code class="highlighter-rouge">privacycontext</code> KS privileges</a>.</li>
+</ol>
+
+<blockquote>
+  <p><code class="highlighter-rouge">privacyContexts</code> provides a means to set multiple entitlement application contexts per category with comma-separated list of unique keys.<br />
+The Privacy Context configuration for an application guarantees the following:<br />
+User’s entitlements to content in the application are determined based on the specific categories the application is integrated with. <br />
+Categories that are not directly integrated with the application can be used for any content organization and applicative classification purposes. A content item can be shared with such categories with no impact on their visibility to end-users through the application.<br />
+In the common case, a single Privacy Context should be set to an entire ‘branch’ within the category-tree, and indicate the application integrated with it. In more complex scenarios, multiple privacy contexts can be set to categories to enable access to content shared between multiple applications within the account, and under the same organizational context.</p>
+</blockquote>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

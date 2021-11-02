@@ -1,0 +1,277 @@
+  <title>Implementing Playlists</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Implementing Playlists" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Implementing Playlists</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Video-On-Demand-and-Digital-Assets-Management/Implementing-Playlists.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>Kaltura supports a rich variety of playlists for your content. Read the Kaltura <a href="https://knowledge.kaltura.com/help/creating-and-configuring-playlists">playlist guide</a> for a step-by-step overview of the concepts covered here.</p>
+
+<p>Manual playlists allow you to select a static list of items, while Rule-based playlists are dynamic and automatically updated based on what’s currently available in your media library and what rules define the playlist.</p>
+
+<p>The <a href="https://developer.kaltura.com/api-docs/service/playlist">playlist API</a> has actions to add,delete, update and retrieve playlists.</p>
+      <h2 id="playing-playlists">
+        
+        
+          Playing playlists <a href="#playing-playlists"></a>
+        
+        
+      </h2>
+
+<p>For a detailed overview of how to playback playlists refer to <a href="https://developer.kaltura.com/player/web/playlist-web">web player playlist guide</a> or the <a href="https://developer.kaltura.com/player/android/playlist-android">android playlist guide</a></p>
+    
+      <h2 id="using-api-to-create-playlists">
+        
+        
+          Using API to create playlists <a href="#using-api-to-create-playlists"></a>
+        
+        
+      </h2>
+
+<p>Start with <a href="https://developer.kaltura.com/api-docs/service/playlist/action/add">playlist.add</a></p>
+    
+      <h3 id="creating-manual-playlists">
+        
+        
+          Creating Manual Playlists <a href="#creating-manual-playlists"></a>
+        
+        
+      </h3>
+
+<p>For a manual playlist, choose STATIC_LIST as playlistType and supply a comma separated list of entryIds for playlistContent.</p>
+
+<p><img src="/Users/hunterp/Documents/GitHub/developer-platform/assets/images/playlistadd.png" alt="playlistadd" style="zoom:33%;" /></p>
+    
+      <h3 id="creating-rule-based-playlists">
+        
+        
+          Creating Rule Based Playlists <a href="#creating-rule-based-playlists"></a>
+        
+        
+      </h3>
+
+<p>For a DYNAMIC list, you will need to supply xml for your playlistContent. For example, the XML for the  “most popular videos” dynamic playlist that comes by default with all new <a href="https://kmc.kaltura.com/index.php/kmcng/content/entries/list">KMC</a> accounts is:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;playlist&gt;</span>
+   <span class="nt">&lt;total_results&gt;</span>50<span class="nt">&lt;/total_results&gt;</span>
+   <span class="nt">&lt;filters&gt;</span>
+      <span class="nt">&lt;filter&gt;</span>
+         <span class="nt">&lt;in_media_type&gt;</span>1,<span class="nt">&lt;/in_media_type&gt;</span>
+         <span class="nt">&lt;eq_partner_id&gt;</span>632<span class="nt">&lt;/eq_partner_id&gt;</span>
+         <span class="nt">&lt;order_by&gt;</span>-plays<span class="nt">&lt;/order_by&gt;</span>
+         <span class="nt">&lt;limit&gt;</span>30<span class="nt">&lt;/limit&gt;</span>
+      <span class="nt">&lt;/filter&gt;</span>
+   <span class="nt">&lt;/filters&gt;</span>
+<span class="nt">&lt;/playlist&gt;</span>
+  
+</code></pre>
+</div>
+
+<p>This was obtained from the <code class="highlighter-rouge">playlistContent</code> field returned by calling <a href="https://developer.kaltura.com/api-docs/service/playlist/action/get">playlist.get</a> using the playlist entryId obtained from the KMC or via <a href="https://developer.kaltura.com/api-docs/service/playlist/action/list">playlist.list</a></p>
+    
+      <h3 id="creating-mrss-playlists">
+        
+        
+          Creating MRSS Playlists <a href="#creating-mrss-playlists"></a>
+        
+        
+      </h3>
+
+<p>Select EXTERNAL for <code class="highlighter-rouge">playlistType</code> and supply a URL to a <a href="https://gist.github.com/hunterpp/5ce83229864065620c9145bbb8e3ce3b">valid mrss file</a></p>
+    
+      <h2 id="stitched-playlist-playback">
+        
+        
+          Stitched Playlist Playback <a href="#stitched-playlist-playback"></a>
+        
+        
+      </h2>
+
+<p>Refer to <a href="../Streaming-and-Publishing/Play-Manifests,-HLS-and-DASH-Streaming.html">Play-Manifests,-HLS-and-DASH-Streaming</a> for stitched playback of playlists.</p>
+    
+      <h2 id="playlist-analytics">
+        
+        
+          Playlist Analytics <a href="#playlist-analytics"></a>
+        
+        
+      </h2>
+
+<p>A playlist is child of <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaPlaylist">BaseEntry</a> and its <code class="highlighter-rouge">entryId</code> can be used to retrieve analytics, see  <a href="../Analytics-and-Reporting /Intro-to-Kaltura-Video-Analytics-and-Best-Practices.html">Intro-to-Kaltura-Video-Analytics-and-Best-Practices</a></p>
+
+<p>You can also refer to this <a href="https://knowledge.kaltura.com/help/playlist-analytics">guide</a> for accessing playlist analytics from the KMC.</p>
+
+<p>Finally, you can use a playlist’s <code class="highlighter-rouge">entryId</code> to call <a href="../Analytics-and-Reporting /Embedded-Analytics-Reports.md">Embedded-Analytics-Reports</a> to mimic the experience from the guide above.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

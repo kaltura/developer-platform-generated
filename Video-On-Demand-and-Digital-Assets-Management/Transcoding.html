@@ -1,0 +1,750 @@
+<!DOCTYPE html><html><head>
+    <title>Transcoding - Kaltura VPaaS API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-68472312-3');
+</script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><meta name="title" content="Transcoding - Kaltura VPaaS API Documentation"><meta name="description" content="Full documentation for the Kaltura VPaaS API"><meta name="keywords" content=""><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <label>One Time Authentication code (leave empty if OTP is not enabled for your partner[s])</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="OTP">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <button type="button" class="side-menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="assets/images/KalturaLogo.png">
+        <!--
+        <span class="brand-subtitle">Developer</span>
+        -->
+      </a>
+      <div class="form-group has-feedback has-search">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        <input type="text" class="form-control g-search-box" placeholder="Search the documentation">
+      </div>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+	        <a href="#">Contact Us</a>
+        </li>
+        <li class="navbar-link">
+          <a href="https://forum.kaltura.org">Community</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="nav-tabs-b">
+    <span class="subnav subnav-guides" data-to="/"><a>Guides &amp; Workflows</a></span>
+    <span class="subnav subnav-apis" data-to="/api-docs"><a>APIs &amp; SDKs</a></span>
+    <span class="subnav subnav-samples" data-to="/samples"><a>Samples</a></span>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="row"><div class="col-xs-12 side-menu-col col-sm-4 col-md-3"><a class="btn btn-default visible-xs show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><a class="btn btn-default show-menu-button hidden-xs" hidden=""><i class="fa fa-bars"></i></a><div class="side-menu hidden-xs"><h6 class="menu-heading"><!----><span class="ng-star-inserted">Navigation</span><!----><!----><div class="close-menu-button pull-right"><a><i class="fa fa-times"></i></a></div></h6><div class="input-group input-group-sm"><input class="form-control ng-untouched ng-pristine ng-valid" type="text" value=""><span class="input-group-btn"><!----><a class="btn btn-default ng-star-inserted"><span>&nbsp;</span><i class="fa fa-search"></i><span>&nbsp;</span></a><!----></span></div><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-0 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Home" href="/Home"><span class="ng-tns-c5-0" innerhtml="Home">Home</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Introduction to Kaltura Media Services" href="/Introduction_to_Kaltura_Media_Services"><span class="ng-tns-c5-1" innerhtml="Introduction to Kaltura Media Services">Introduction to Kaltura Media Services</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Getting Started" href="/Getting-Started-Building-Video-Applications"><span class="ng-tns-c5-2" innerhtml="Getting Started">Getting Started</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Video On Demand and Digital Assets Management" href="/Video-On-Demand-and-Digital-Assets-Management"><span class="ng-tns-c5-3" innerhtml="Video On Demand and Digital Assets Management">Video On Demand and Digital Assets Management</span></a></div><!----><div class="side-menu-children ng-tns-c5-3 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-13 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-13 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Upload and Import Video Files via API" href="/Video-On-Demand-and-Digital-Assets-Management/Upload-and-Import-Video-Files-via-API.html"><span class="ng-tns-c5-13" innerhtml="Upload and Import Video Files via API">Upload and Import Video Files via API</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-14 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Express Recorder" href="/Video-On-Demand-and-Digital-Assets-Management/express-recorder.html"><span class="ng-tns-c5-14" innerhtml="Express Recorder">Express Recorder</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-15 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Video Editor" href="/Video-On-Demand-and-Digital-Assets-Management/Video-Editor.html"><span class="ng-tns-c5-15" innerhtml="Video Editor">Video Editor</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-16 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Captions" href="/Video-On-Demand-and-Digital-Assets-Management/Embeddable-Captions-Editor.html"><span class="ng-tns-c5-16" innerhtml="Captions">Captions</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-17 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Enrichment Services" href="/Video-On-Demand-and-Digital-Assets-Management/Enrichment-Services.html"><span class="ng-tns-c5-17" innerhtml="Enrichment Services">Enrichment Services</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-18 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Personal Video Capture" href="/Video-On-Demand-and-Digital-Assets-Management/Personal-Video-Capture.html"><span class="ng-tns-c5-18" innerhtml="Personal Video Capture">Personal Video Capture</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-19 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Import Video Files via Bulk Upload" href="/Video-On-Demand-and-Digital-Assets-Management/Import-Video-Files-via-Bulk-Upload.html"><span class="ng-tns-c5-19" innerhtml="Import Video Files via Bulk Upload">Import Video Files via Bulk Upload</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-20 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Creating &amp; Managing Custom Metadata Fields" href="/Video-On-Demand-and-Digital-Assets-Management/Creating-and-Managing-Custom-Metadata-Fields.html"><span class="ng-tns-c5-20" innerhtml="Creating &amp;amp; Managing Custom Metadata Fields">Creating &amp; Managing Custom Metadata Fields</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-21 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="On-the-fly Video Thumbnails and Image Transformations" href="/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.html"><span class="ng-tns-c5-21" innerhtml="On-the-fly Video Thumbnails and Image Transformations">On-the-fly Video Thumbnails and Image Transformations</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-22 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Searching for Media Entries" href="/Video-On-Demand-and-Digital-Assets-Management/Searching-for-Media-Entries.html"><span class="ng-tns-c5-22" innerhtml="Searching for Media Entries">Searching for Media Entries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-23 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Categories &amp; Entitlement Rules" href="/Video-On-Demand-and-Digital-Assets-Management/Categories-and-Entitlement-Rules.html"><span class="ng-tns-c5-23" innerhtml="Categories &amp;amp; Entitlement Rules">Categories &amp; Entitlement Rules</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-24 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Hardening Security with Media Access Control Rules" href="/Video-On-Demand-and-Digital-Assets-Management/Media-Access-Control.html"><span class="ng-tns-c5-24" innerhtml="Hardening Security with Media Access Control Rules">Hardening Security with Media Access Control Rules</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-25 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-25 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Implementing Playlists" href="/Video-On-Demand-and-Digital-Assets-Management/Implementing-Playlists.html"><span class="ng-tns-c5-25" innerhtml="Implementing Playlists">Implementing Playlists</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-26 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Working with Documents and Data Assets" href="/Video-On-Demand-and-Digital-Assets-Management/Working-with-Documents-and-Data-Assets.html"><span class="ng-tns-c5-26" innerhtml="Working with Documents and Data Assets">Working with Documents and Data Assets</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-27 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary"></i><!----><!----><a class="title ng-tns-c5-27 active truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Transcoding" href="/Video-On-Demand-and-Digital-Assets-Management/Transcoding.html"><span class="ng-tns-c5-27" innerhtml="Transcoding">Transcoding</span></a></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-4 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-4 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Live Video Webcasting" href="/Live-Video-Webcasting"><span class="ng-tns-c5-4" innerhtml="Live Video Webcasting">Live Video Webcasting</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-5 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Real-time Video Meetings Experience" href="/Real-time-Video-Meetings-Experience"><span class="ng-tns-c5-5" innerhtml="Real-time Video Meetings Experience">Real-time Video Meetings Experience</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-6 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Streaming &amp; Publishing" href="/Streaming-and-Publishing"><span class="ng-tns-c5-6" innerhtml="Streaming &amp;amp; Publishing">Streaming &amp; Publishing</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-7 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Scheduling Recorded and Live Stream Events" href="/Scheduling-Recorded-and-Live-Stream-Events"><span class="ng-tns-c5-7" innerhtml="Scheduling Recorded and Live Stream Events">Scheduling Recorded and Live Stream Events</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-8 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="SEO, Syndication &amp; Distribution" href="/SEO-Syndication-and-Distribution"><span class="ng-tns-c5-8" innerhtml="SEO, Syndication &amp;amp; Distribution">SEO, Syndication &amp; Distribution</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-9 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Analytics &amp; Reporting" href="/Analytics-and-Reporting"><span class="ng-tns-c5-9" innerhtml="Analytics &amp;amp; Reporting">Analytics &amp; Reporting</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-10 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Client Libraries" href="/Client_Libraries"><span class="ng-tns-c5-10" innerhtml="Client Libraries">Client Libraries</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-11 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Schemas" href="/Schemas"><span class="ng-tns-c5-11" innerhtml="Schemas">Schemas</span></a></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-star-inserted"><div class="side-menu-item"><i class="fa fa-left fa-ellipsis-v text-primary" hidden=""></i><!----><!----><a class="title ng-tns-c5-12 inactive truncate ng-star-inserted" preservefragment="" preservequeryparams="" title="Contribute" href="/Contribute"><span class="ng-tns-c5-12" innerhtml="Contribute">Contribute</span></a></div><!----></side-menu-item></div></div></div><div class="col-xs-12 col-sm-8 col-md-9"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura API Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Transcoding</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>Transcoding</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Transcoding">
+    <meta property="st:published_at" content="">
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+
+
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+
+
+
+
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Transcoding</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Video-On-Demand-and-Digital-Assets-Management/Transcoding.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (1 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<ul>
+  <li>Kaltura’s cloud transcoding micro-services and tools are designed to manage encoding workflows at any scale and quality requirements - for the web, broadcast, studio, or secure internal applications with sensitive content.</li>
+  <li>Architected to handle any file size over large volumes - converting any input format of uploaded video, audio, image and even documents into a variety of flavors (transcoded output renditions).</li>
+  <li>Built to be deployed on any infrastructure - on premises or public cloud.</li>
+  <li>Kaltura’s transcoding decision layer engine supports more than 60 video and image formats as well as 140 video and audio codecs.</li>
+  <li>New devices, cameras and input sources are introduced to the market frequently - Kaltura Media Transcoding Services provide always up-to-date transcoding services that are optimized for the latest formats, codecs and standards.</li>
+</ul>
+      <h2 id="conversion-profiles-and-flavor-assets">
+        
+        
+          Conversion Profiles and Flavor Assets <a href="#conversion-profiles-and-flavor-assets"></a>
+        
+        
+      </h2>
+
+<p>To make your video accessible and play on any device, Kaltura provides robust API for media transcoding. When transcoding your video, you can control a wide range of parameters, including; output file type, bit-rate, GOP size (keyframe-frequency), frame-rate, frame dimensions, and much more. You can use Kaltura’s transcoding services to prepare transcoded videos for optimized playback, download, editing, broadcasting, archive and more.</p>
+
+<p>Flavors are versions of an uploaded source video that was transcoded by Kaltura. You can generate multiple flavors per uploaded file. There is no limit to the number of flavors you can define and use in Kaltura. Each flavor is a single output video file on its own. Flavors are represented in Kaltura by the <a href="https://developer.kaltura.com/api-docs/#/flavorAsset">flavorAsset service</a>.  <br>
+For a list of all the available parameters and options you can set for your transcoded flavors see: <a href="https://developer.kaltura.com/api-docs/#/KalturaFlavorParams">KalturaFlavorParams</a>.</p>
+
+<p>Your Kaltura account comes with a default set of flavors preconfigured to seamlessly support any device or browser your users are likely to use. You can choose to enable or disable any of them at any time. To add and configure new flavors to your account use the <a href="http://developer.kaltura.com/api-docs/#/flavorParams">flavorParams</a> service.</p>
+
+<p>The “source flavor”, is the original file that was uploaded to Kaltura. The source flavor represents the highest quality available for that specific video entry. Normally, you would store your source file in Kaltura to continue to generate new flavors from it, cut thumbnails and more. It is also possible to delete the source flavor and mark any of the transcoded flavors as the new source by calling the <a href="https://developer.kaltura.com/api-docs/#/flavorAsset.setAsSource">flavorAsset.setAsSource action</a>.</p>
+
+<p>When a video is uploaded to Kaltura, the video is associated with a <a href="https://developer.kaltura.com/api-docs/#/conversionProfile">conversionProfile</a>, also known as a Transcoding Profile. A Conversion Profile may be comprised of a single or multiple flavors. For each upload session, you can select the Conversion Profile you’d like apply with the uploaded videos. You can also set a default Conversion Profile to be executed automatically when videos are uploaded to your account.</p>
+    
+      <h2 id="add-a-new-conversion-profile">
+        
+        
+          Add a New Conversion Profile <a href="#add-a-new-conversion-profile"></a>
+        
+        
+      </h2>
+
+<p>To add a conversion profile, call the <a href="https://developer.kaltura.com/api-docs/#/conversionProfile.add">conversionProfile.add</a> API action:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'lib/KalturaClient.php'</span><span class="p">);</span> 
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConfiguration</span><span class="p">(</span><span class="nv">$partnerId</span><span class="p">);</span> 
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">serviceUrl</span> <span class="o">=</span> <span class="s1">'https://www.kaltura.com/'</span><span class="p">;</span> 
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaClient</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span> 
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setKs</span><span class="p">(</span><span class="s1">'AddYourKS'</span><span class="p">);</span> 
+<span class="nv">$conversionProfile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConversionProfile</span><span class="p">();</span> 
+<span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">status</span> <span class="o">=</span> <span class="nx">KalturaConversionProfileStatus</span><span class="o">::</span><span class="na">ENABLED</span><span class="p">;</span> 
+<span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'YourConversionProfileName'</span><span class="p">;</span> 
+<span class="nv">$conversionProfile</span><span class="o">-&gt;</span><span class="na">isDefault</span> <span class="o">=</span> <span class="nx">KalturaNullableBoolean</span><span class="o">::</span><span class="na">TRUE_VALUE</span><span class="p">;</span> 
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span> <span class="na">conversionProfile</span> <span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$conversionProfile</span><span class="p">);</span>
+</code></pre>
+</div>
+    
+      <h2 id="add-new-flavor-params">
+        
+        
+          Add New Flavor Params <a href="#add-new-flavor-params"></a>
+        
+        
+      </h2>
+
+<blockquote>
+  <p>Note: Kaltura.com SaaS users - Please contact your Kaltura Account Manager to add new flavor params to your account. Configuration of the transcoding layer requires specialized encoding expertise.</p>
+
+</blockquote>
+
+<p>To add flavor params, call the <a href="https://developer.kaltura.com/api-docs/#/flavorParams.add">flavorParams.add</a> API action:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'lib/KalturaClient.php'</span><span class="p">);</span>
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConfiguration</span><span class="p">(</span><span class="nv">$partnerId</span><span class="p">);</span>
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">serviceUrl</span> <span class="o">=</span> <span class="s1">'https://www.kaltura.com/'</span><span class="p">;</span>
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaClient</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setKs</span><span class="p">(</span><span class="s1">'AddYourKS'</span><span class="p">);</span>
+<span class="nv">$flavorParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaFlavorParams</span><span class="p">();</span>
+<span class="nv">$flavorParams</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">'YourflavorParamsName'</span><span class="p">;</span>
+<span class="nv">$flavorParams</span><span class="o">-&gt;</span><span class="na">systemName</span> <span class="o">=</span> <span class="s1">'YourflavorParamssystemName'</span><span class="p">;</span>
+<span class="nv">$flavorParams</span><span class="o">-&gt;</span><span class="na">description</span> <span class="o">=</span> <span class="s1">'YourflavorParamsDescription'</span><span class="p">;</span>
+<span class="nv">$flavorParams</span><span class="o">-&gt;</span><span class="na">tags</span> <span class="o">=</span> <span class="s1">'YourflavorParamsTag1, YourflavorParamsTag2'</span><span class="p">;</span>
+<span class="nv">$flavorParams</span><span class="o">-&gt;</span><span class="na">videoCodec</span> <span class="o">=</span> <span class="nx">KalturaVideoCodec</span><span class="o">::</span><span class="na">FLV</span><span class="p">;</span>
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">flavorParams</span><span class="o">-&gt;</span><span class="na">add</span><span class="p">(</span><span class="nv">$flavorParams</span><span class="p">);</span>
+</code></pre>
+</div>
+    
+      <h2 id="create-a-new-flavor-asset-for-an-existing-entry">
+        
+        
+          Create a New Flavor Asset for an Existing Entry <a href="#create-a-new-flavor-asset-for-an-existing-entry"></a>
+        
+        
+      </h2>
+
+<p>To create a new flavor asset for an existing entry, call the <a href="https://developer.kaltura.com/api-docs/#/flavorAsset.convert">flavorAsset.convert</a> API action.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="k">require_once</span><span class="p">(</span><span class="s1">'lib/KalturaClient.php'</span><span class="p">);</span> 
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaConfiguration</span><span class="p">(</span><span class="nv">$partnerId</span><span class="p">);</span> 
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">serviceUrl</span> <span class="o">=</span> <span class="s1">'https://www.kaltura.com/'</span><span class="p">;</span> 
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KalturaClient</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span> 
+<span class="nv">$client</span><span class="o">-&gt;</span><span class="na">setKs</span><span class="p">(</span><span class="s1">'AddYourKS'</span><span class="p">);</span> 
+<span class="nv">$entryId</span> <span class="o">=</span> <span class="s1">'1_entryIdString'</span><span class="p">;</span> 
+<span class="nv">$flavorParamsId</span> <span class="o">=</span> <span class="mi">11111</span><span class="p">;</span> 
+<span class="nv">$results</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">flavorAsset</span><span class="o">-&gt;</span><span class="na">convert</span><span class="p">(</span><span class="nv">$entryId</span><span class="p">,</span> <span class="nv">$flavorParamsId</span><span class="p">);</span> 
+</code></pre>
+</div>
+    
+      <h2 id="default-account-conversion-profiles">
+        
+        
+          Default Account Conversion Profiles <a href="#default-account-conversion-profiles"></a>
+        
+        
+      </h2>
+
+<p>There are three transcoding profiles that are automatically created for new accounts:</p>
+<ul>
+  <li>Default - The flavors included in the default transcoding profile of the account.</li>
+  <li>Source Only - Does not execute transcoding for the uploaded file.</li>
+  <li>All Flavors - Transcodes uploaded files into all of the flavors defined in the account by default.</li>
+</ul>
+    
+      <h2 id="default-account-flavors">
+        
+        
+          Default Account Flavors <a href="#default-account-flavors"></a>
+        
+        
+      </h2>
+
+<p>There are nine flavors that are defined automatically for every new account. These flavors are optimized for the delivery of video across all devices and browsers to ensure that you can reach your users on any device they use without having to manually configure the flavors yourself.</p>
+
+<p>The default flavors include:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">ID</th>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">Source</td>
+      <td style="text-align: left">The original file that was uploaded</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">301991</td>
+      <td style="text-align: left">Mobile (3GP)</td>
+      <td style="text-align: left">Support Nokia and Blackberry legacy devices</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">487041</td>
+      <td style="text-align: left">Basic/Small - WEB/MBL (H264/400)</td>
+      <td style="text-align: left">Optimized mp4 - modern devices - lowres</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">487051</td>
+      <td style="text-align: left">Basic/Small - WEB/MBL (H264/600)</td>
+      <td style="text-align: left">Optimized mp4 - modern devices - lowres</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">487061</td>
+      <td style="text-align: left">SD/Small - WEB/MBL (H264/900)</td>
+      <td style="text-align: left">Optimized mp4 - modern devices - standard</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">487071</td>
+      <td style="text-align: left">SD/Large - WEB/MBL (H264/1500)</td>
+      <td style="text-align: left">Optimized mp4 - modern devices - 720p</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">487081</td>
+      <td style="text-align: left">HD/720 - WEB (H264/2500)</td>
+      <td style="text-align: left">Optimized mp4 - modern devices - 720p</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">487091</td>
+      <td style="text-align: left">HD/1080 - WEB (H264/4000)</td>
+      <td style="text-align: left">Optimized mp4 - modern devices - 1080p</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">487111</td>
+      <td style="text-align: left">WebM</td>
+      <td style="text-align: left">For devices not supporting h264</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Read more in the article <a href="http://knowledge.kaltura.com/kaltura-media-transcoding-services-and-technology#transcoding">Kaltura Media Transcoding Services and Technology</a>.</p>
+</blockquote>
+    
+      <h2 id="how-is-transcoding-usage-measured">
+        
+        
+          How is Transcoding Usage Measured? <a href="#how-is-transcoding-usage-measured"></a>
+        
+        
+      </h2>
+
+<p>Transcoding usage is defined as the volume in MB of transcoded assets, which are the output of transcoding. Transcoding usage is measured and billed one time per transcode.</p>
+
+<p>Kaltura measures and bills only for output transcoding usage; the input file is not counted as transcoding usage.  <br>
+Failed transcoding jobs are not counted or billed.</p>
+
+<p>You can track your transcoding usage on the <a href="https://kmc.kaltura.com/index.php/kmc/kmc4#usageDashboard">Usage Dashboard</a> in the Kaltura Management Console.</p>
+    
+      <h2 id="see-also">
+        
+        
+          See Also <a href="#see-also"></a>
+        
+        
+      </h2>
+
+<p><a href="https://developer.kaltura.com/api-docs/service/flavorAsset">flavorAsset</a></p>
+
+<p><a href="https://developer.kaltura.com/api-docs/service/flavorParams">flavorParams</a></p>
+
+<p><a href="https://developer.kaltura.com/api-docs/service/flavorParamsOutput">flavorParamsOutput</a></p>
+
+<p><a href="https://developer.kaltura.com/api-docs/service/conversionProfile">conversionProfile</a></p>
+
+<p><a href="https://developer.kaltura.com/api-docs/service/conversionProfileAssetParams">conversionProfileAssetParams</a></p>
+
+<p><a href="https://developer.kaltura.com/api-docs/service/mediaInfo">mediaInfo</a></p>
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
+</div><!----><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+
+  <div class="kaltura-foot-links">
+    <div class="container" style="width: 100%;">
+      <div class="row">
+        <div class="col col-xs-12 col-lg-3">
+          <img src="assets/icons/kaltura-logo.png" style="width: 120px;">
+          <div class="social-container" style="padding-top:20px;">
+            <a href="https://twitter.com/Kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/twitter.png" style="width:32px;"></a>
+            <a href="https://www.linkedin.com/company/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/linkedin.png" style="width:32px;"></a>
+            <a href="https://github.com/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/github.png" style="width:32px;"></a>
+            <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/stackoverflow.png" style="width:32px;"></a>
+          </div>
+        </div>
+        <div class="col col-xs-12 col-lg-9">
+          <div class="row">
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Media Services</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="/Home">Overview</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a free Trial</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Resources</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://knowledge.kaltura.com/">Kaltura Knowledge Center</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://github.com/kaltura">Kaltura on Github</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Contact</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Support</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Request Training</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Talk to Sales</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Community</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://forum.kaltura.org/">Developer Forum</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-technology-marketplace/">Partner Network</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/Video-On-Demand-and-Digital-Assets-Management/Transcoding.html&q;:null,&q;G.http://localhost:3333/assets/documentation/Video-On-Demand-and-Digital-Assets-Management/Transcoding.html&q;:{&q;body&q;:&q;  &l;title&g;Transcoding&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Transcoding\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;script type=\&q;text/javascript\&q;&g;\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Transcoding&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Tue Sep 28 06:22:06 2021&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Hunterpp&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Video-On-Demand-and-Digital-Assets-Management/Transcoding.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Tue Sep 28 06:22:06 2021, By: Hunterpp&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Tue Sep 28 06:22:06 2021, By &l;span class=\&q;commit-author\&q;&g;Hunterpp&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Hunterpp (1 commits) (&l;a href=\&q;mailto:hunter.peress@kaltura.com\&q;&g;hunter.peress@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n\t\t&l;ul&g;\n  &l;li&g;Kaltura’s cloud transcoding micro-services and tools are designed to manage encoding workflows at any scale and quality requirements - for the web, broadcast, studio, or secure internal applications with sensitive content.&l;/li&g;\n  &l;li&g;Architected to handle any file size over large volumes - converting any input format of uploaded video, audio, image and even documents into a variety of flavors (transcoded output renditions).&l;/li&g;\n  &l;li&g;Built to be deployed on any infrastructure - on premises or public cloud.&l;/li&g;\n  &l;li&g;Kaltura’s transcoding decision layer engine supports more than 60 video and image formats as well as 140 video and audio codecs.&l;/li&g;\n  &l;li&g;New devices, cameras and input sources are introduced to the market frequently - Kaltura Media Transcoding Services provide always up-to-date transcoding services that are optimized for the latest formats, codecs and standards.&l;/li&g;\n&l;/ul&g;\n      &l;h2 id=\&q;conversion-profiles-and-flavor-assets\&q;&g;\n        \n        \n          Conversion Profiles and Flavor Assets &l;a href=\&q;#conversion-profiles-and-flavor-assets\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;To make your video accessible and play on any device, Kaltura provides robust API for media transcoding. When transcoding your video, you can control a wide range of parameters, including; output file type, bit-rate, GOP size (keyframe-frequency), frame-rate, frame dimensions, and much more. You can use Kaltura’s transcoding services to prepare transcoded videos for optimized playback, download, editing, broadcasting, archive and more.&l;/p&g;\n\n&l;p&g;Flavors are versions of an uploaded source video that was transcoded by Kaltura. You can generate multiple flavors per uploaded file. There is no limit to the number of flavors you can define and use in Kaltura. Each flavor is a single output video file on its own. Flavors are represented in Kaltura by the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/flavorAsset\&q;&g;flavorAsset service&l;/a&g;.  &l;br /&g;\nFor a list of all the available parameters and options you can set for your transcoded flavors see: &l;a href=\&q;https://developer.kaltura.com/api-docs/#/KalturaFlavorParams\&q;&g;KalturaFlavorParams&l;/a&g;.&l;/p&g;\n\n&l;p&g;Your Kaltura account comes with a default set of flavors preconfigured to seamlessly support any device or browser your users are likely to use. You can choose to enable or disable any of them at any time. To add and configure new flavors to your account use the &l;a href=\&q;http://developer.kaltura.com/api-docs/#/flavorParams\&q;&g;flavorParams&l;/a&g; service.&l;/p&g;\n\n&l;p&g;The “source flavor”, is the original file that was uploaded to Kaltura. The source flavor represents the highest quality available for that specific video entry. Normally, you would store your source file in Kaltura to continue to generate new flavors from it, cut thumbnails and more. It is also possible to delete the source flavor and mark any of the transcoded flavors as the new source by calling the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/flavorAsset.setAsSource\&q;&g;flavorAsset.setAsSource action&l;/a&g;.&l;/p&g;\n\n&l;p&g;When a video is uploaded to Kaltura, the video is associated with a &l;a href=\&q;https://developer.kaltura.com/api-docs/#/conversionProfile\&q;&g;conversionProfile&l;/a&g;, also known as a Transcoding Profile. A Conversion Profile may be comprised of a single or multiple flavors. For each upload session, you can select the Conversion Profile you’d like apply with the uploaded videos. You can also set a default Conversion Profile to be executed automatically when videos are uploaded to your account.&l;/p&g;\n    \n      &l;h2 id=\&q;add-a-new-conversion-profile\&q;&g;\n        \n        \n          Add a New Conversion Profile &l;a href=\&q;#add-a-new-conversion-profile\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;To add a conversion profile, call the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/conversionProfile.add\&q;&g;conversionProfile.add&l;/a&g; API action:&l;/p&g;\n\n&l;div class=\&q;language-php highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;cp\&q;&g;&a;lt;?php&l;/span&g; \n&l;span class=\&q;k\&q;&g;require_once&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;lib/KalturaClient.php&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConfiguration&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$partnerId&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;serviceUrl&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;https://www.kaltura.com/&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaClient&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;setKs&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;AddYourKS&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConversionProfile&l;/span&g;&l;span class=\&q;p\&q;&g;();&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;status&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConversionProfileStatus&l;/span&g;&l;span class=\&q;o\&q;&g;::&l;/span&g;&l;span class=\&q;na\&q;&g;ENABLED&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;name&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;YourConversionProfileName&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;isDefault&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaNullableBoolean&l;/span&g;&l;span class=\&q;o\&q;&g;::&l;/span&g;&l;span class=\&q;na\&q;&g;TRUE_VALUE&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$results&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g; &l;span class=\&q;na\&q;&g;conversionProfile&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;add&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$conversionProfile&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;add-new-flavor-params\&q;&g;\n        \n        \n          Add New Flavor Params &l;a href=\&q;#add-new-flavor-params\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: Kaltura.com SaaS users - Please contact your Kaltura Account Manager to add new flavor params to your account. Configuration of the transcoding layer requires specialized encoding expertise.&l;/p&g;\n\n&l;/blockquote&g;\n\n&l;p&g;To add flavor params, call the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/flavorParams.add\&q;&g;flavorParams.add&l;/a&g; API action:&l;/p&g;\n\n&l;div class=\&q;language-php highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;cp\&q;&g;&a;lt;?php&l;/span&g;\n&l;span class=\&q;k\&q;&g;require_once&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;lib/KalturaClient.php&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$config&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConfiguration&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$partnerId&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;serviceUrl&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;https://www.kaltura.com/&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$client&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaClient&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;setKs&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;AddYourKS&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$flavorParams&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaFlavorParams&l;/span&g;&l;span class=\&q;p\&q;&g;();&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$flavorParams&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;name&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;YourflavorParamsName&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$flavorParams&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;systemName&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;YourflavorParamssystemName&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$flavorParams&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;description&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;YourflavorParamsDescription&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$flavorParams&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;tags&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;YourflavorParamsTag1, YourflavorParamsTag2&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$flavorParams&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;videoCodec&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaVideoCodec&l;/span&g;&l;span class=\&q;o\&q;&g;::&l;/span&g;&l;span class=\&q;na\&q;&g;FLV&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g;\n&l;span class=\&q;nv\&q;&g;$results&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;flavorParams&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;add&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$flavorParams&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;create-a-new-flavor-asset-for-an-existing-entry\&q;&g;\n        \n        \n          Create a New Flavor Asset for an Existing Entry &l;a href=\&q;#create-a-new-flavor-asset-for-an-existing-entry\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;To create a new flavor asset for an existing entry, call the &l;a href=\&q;https://developer.kaltura.com/api-docs/#/flavorAsset.convert\&q;&g;flavorAsset.convert&l;/a&g; API action.&l;/p&g;\n\n&l;div class=\&q;language-php highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;cp\&q;&g;&a;lt;?php&l;/span&g; &l;span class=\&q;k\&q;&g;require_once&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;lib/KalturaClient.php&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaConfiguration&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$partnerId&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;serviceUrl&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;https://www.kaltura.com/&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;k\&q;&g;new&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaClient&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$config&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;setKs&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;s1\&q;&g;&s;AddYourKS&s;&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$entryId&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;1_entryIdString&s;&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$flavorParamsId&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;mi\&q;&g;11111&l;/span&g;&l;span class=\&q;p\&q;&g;;&l;/span&g; \n&l;span class=\&q;nv\&q;&g;$results&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nv\&q;&g;$client&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;flavorAsset&l;/span&g;&l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;&l;span class=\&q;na\&q;&g;convert&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nv\&q;&g;$entryId&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g; &l;span class=\&q;nv\&q;&g;$flavorParamsId&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g; \n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;default-account-conversion-profiles\&q;&g;\n        \n        \n          Default Account Conversion Profiles &l;a href=\&q;#default-account-conversion-profiles\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;There are three transcoding profiles that are automatically created for new accounts:&l;/p&g;\n&l;ul&g;\n  &l;li&g;Default - The flavors included in the default transcoding profile of the account.&l;/li&g;\n  &l;li&g;Source Only - Does not execute transcoding for the uploaded file.&l;/li&g;\n  &l;li&g;All Flavors - Transcodes uploaded files into all of the flavors defined in the account by default.&l;/li&g;\n&l;/ul&g;\n    \n      &l;h2 id=\&q;default-account-flavors\&q;&g;\n        \n        \n          Default Account Flavors &l;a href=\&q;#default-account-flavors\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;There are nine flavors that are defined automatically for every new account. These flavors are optimized for the delivery of video across all devices and browsers to ensure that you can reach your users on any device they use without having to manually configure the flavors yourself.&l;/p&g;\n\n&l;p&g;The default flavors include:&l;/p&g;\n\n&l;table&g;\n  &l;thead&g;\n    &l;tr&g;\n      &l;th style=\&q;text-align: left\&q;&g;ID&l;/th&g;\n      &l;th style=\&q;text-align: left\&q;&g;Name&l;/th&g;\n      &l;th style=\&q;text-align: left\&q;&g;Description&l;/th&g;\n    &l;/tr&g;\n  &l;/thead&g;\n  &l;tbody&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;0&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Source&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;The original file that was uploaded&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;301991&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Mobile (3GP)&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Support Nokia and Blackberry legacy devices&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;487041&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Basic/Small - WEB/MBL (H264/400)&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Optimized mp4 - modern devices - lowres&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;487051&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Basic/Small - WEB/MBL (H264/600)&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Optimized mp4 - modern devices - lowres&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;487061&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;SD/Small - WEB/MBL (H264/900)&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Optimized mp4 - modern devices - standard&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;487071&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;SD/Large - WEB/MBL (H264/1500)&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Optimized mp4 - modern devices - 720p&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;487081&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;HD/720 - WEB (H264/2500)&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Optimized mp4 - modern devices - 720p&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;487091&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;HD/1080 - WEB (H264/4000)&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;Optimized mp4 - modern devices - 1080p&l;/td&g;\n    &l;/tr&g;\n    &l;tr&g;\n      &l;td style=\&q;text-align: left\&q;&g;487111&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;WebM&l;/td&g;\n      &l;td style=\&q;text-align: left\&q;&g;For devices not supporting h264&l;/td&g;\n    &l;/tr&g;\n  &l;/tbody&g;\n&l;/table&g;\n\n&l;blockquote&g;\n  &l;p&g;Read more in the article &l;a href=\&q;http://knowledge.kaltura.com/kaltura-media-transcoding-services-and-technology#transcoding\&q;&g;Kaltura Media Transcoding Services and Technology&l;/a&g;.&l;/p&g;\n&l;/blockquote&g;\n    \n      &l;h2 id=\&q;how-is-transcoding-usage-measured\&q;&g;\n        \n        \n          How is Transcoding Usage Measured? &l;a href=\&q;#how-is-transcoding-usage-measured\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Transcoding usage is defined as the volume in MB of transcoded assets, which are the output of transcoding. Transcoding usage is measured and billed one time per transcode.&l;/p&g;\n\n&l;p&g;Kaltura measures and bills only for output transcoding usage; the input file is not counted as transcoding usage.  &l;br /&g;\nFailed transcoding jobs are not counted or billed.&l;/p&g;\n\n&l;p&g;You can track your transcoding usage on the &l;a href=\&q;https://kmc.kaltura.com/index.php/kmc/kmc4#usageDashboard\&q;&g;Usage Dashboard&l;/a&g; in the Kaltura Management Console.&l;/p&g;\n    \n      &l;h2 id=\&q;see-also\&q;&g;\n        \n        \n          See Also &l;a href=\&q;#see-also\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;&l;a href=\&q;https://developer.kaltura.com/api-docs/service/flavorAsset\&q;&g;flavorAsset&l;/a&g;&l;/p&g;\n\n&l;p&g;&l;a href=\&q;https://developer.kaltura.com/api-docs/service/flavorParams\&q;&g;flavorParams&l;/a&g;&l;/p&g;\n\n&l;p&g;&l;a href=\&q;https://developer.kaltura.com/api-docs/service/flavorParamsOutput\&q;&g;flavorParamsOutput&l;/a&g;&l;/p&g;\n\n&l;p&g;&l;a href=\&q;https://developer.kaltura.com/api-docs/service/conversionProfile\&q;&g;conversionProfile&l;/a&g;&l;/p&g;\n\n&l;p&g;&l;a href=\&q;https://developer.kaltura.com/api-docs/service/conversionProfileAssetParams\&q;&g;conversionProfileAssetParams&l;/a&g;&l;/p&g;\n\n&l;p&g;&l;a href=\&q;https://developer.kaltura.com/api-docs/service/mediaInfo\&q;&g;mediaInfo&l;/a&g;&l;/p&g;\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Tue, 02 Nov 2021 15:38:37 GMT&q;],&q;etag&q;:[&q;W/\&q;57d9-17ce14d63ad\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;22489&q;],&q;date&q;:[&q;Tue, 02 Nov 2021 15:39:10 GMT&q;],&q;connection&q;:[&q;keep-alive&q;],&q;keep-alive&q;:[&q;timeout=5&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/Video-On-Demand-and-Digital-Assets-Management/Transcoding.html&q;}}</script></body></html>

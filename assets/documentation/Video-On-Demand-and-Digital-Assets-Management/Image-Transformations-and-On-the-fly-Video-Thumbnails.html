@@ -1,0 +1,1822 @@
+  <title>On-the-fly Video Thumbnails and Image Transformations</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="On-the-fly Video Thumbnails and Image Transformations" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">On-the-fly Video Thumbnails and Image Transformations</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Sep 28 06:22:06 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Sep 27 05:03:14 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Tue Sep 28 06:22:06 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (3 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>The Kaltura API provides a special thumbnail service, aimed at simplifying the creation of thumbnails on-the-fly from video and image entries. (For the static thumbnail assets management API refer to the <a href="https://developer.kaltura.com/api-docs/#/thumbAsset">thumbAsset</a>) There is also a <a href="">legacy Thumbnail API</a></p>
+      <h1 id="interactive-demo">
+        
+        
+          Interactive Demo <a href="#interactive-demo"></a>
+        
+        
+      </h1>
+
+<p>Head over to the <a href="https://kaltura-vpaas.github.io/ThumbnailStudio/demo/">interactive demo</a> to try any combination of transformations for the Thumbnail API</p>
+    
+      <h1 id="using-the-thumbnail-api">
+        
+        
+          Using the Thumbnail API <a href="#using-the-thumbnail-api"></a>
+        
+        
+      </h1>
+
+<p>The Thumbnail API provides a simple means to dynamically transform (change size, crop, add text, apply filters, etc) image entries, and to generate images from Kaltura video entries on the fly.</p>
+
+<p>The images are generated upon request (with caching on disk and via CDN) by calling the following URL format</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;serviceUrl&gt;/api_v3/service/thumbnail_thumbnail/p/&lt;partner_id&gt;/action/transform/&lt;transformString&gt;
+</code></pre>
+</div>
+
+<p>The images are generated upon request (with caching on disk and via CDN) by calling the following URL format. Example: https://cdnsecakmi.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-3.2_w-1500_h-500</p>
+    
+      <h1 id="transformstring">
+        
+        
+          <strong>transformString</strong> <a href="#transformstring"></a>
+        
+        
+      </h1>
+
+<p>transformString is a collection of transformSteps separated by ‘+’</p>
+
+<p><code class="highlighter-rouge">&lt;transformStep&gt;+&lt;transformStep&gt;</code></p>
+
+<p>The order in the transformString is important</p>
+
+<p><img src="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10" alt="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10" /></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec+id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y–140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x–800_y–150_opacity-100_compositetype-10</p>
+
+<p>This is an example using two <code class="highlighter-rouge">transformSteps</code></p>
+
+<p>The first is <code class="highlighter-rouge">id-0_60gyd613,vidsec</code> and the second is added for a different video entry using <code class="highlighter-rouge">+</code></p>
+
+<p><code class="highlighter-rouge">id-0_uanuf4gk,vidsec_second-3,crop_height-700_width-1500_x-1_y--140_gravityPoint-5,resize_height-2500_width-0_blur-0_filterType-1,composite_x--800_y--150_opacity-100_compositetype-10</code></p>
+
+<p>This thumbnail was created using the <a href="https://kaltura-vpaas.github.io/ThumbnailStudio/demo/">interactive demo</a> to easily lay out the two images and get the order of operations correct.</p>
+    
+      <h1 id="transformstep">
+        
+        
+          <strong>transformStep</strong> <a href="#transformstep"></a>
+        
+        
+      </h1>
+
+<p>The transformStep format is <code class="highlighter-rouge">&lt;source&gt;,&lt;sourceActions&gt;,&lt;imageActions&gt;</code></p>
+
+<p>An example:</p>
+
+<p><img src="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec_second-3,crop_height-500_width-500_gravityPoint-5" style="zoom:50%;" /></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2421271/action/transform/transformString/id-0_60gyd613,vidsec_second-3,crop_height-500_width-500_gravityPoint-5</p>
+
+<p>Here the <code class="highlighter-rouge">&lt;source&gt;</code> is <code class="highlighter-rouge">id-0_60gyd613</code></p>
+
+<p>The <code class="highlighter-rouge">&lt;sourceActions&gt;</code> is <code class="highlighter-rouge">vidsec_second-3</code></p>
+
+<p>And the <code class="highlighter-rouge">&lt;imageActions&gt;</code> is <code class="highlighter-rouge">crop_height-500_width-500_gravityPoint-5</code></p>
+    
+      <h1 id="sourceactions">
+        
+        
+          SourceActions <a href="#sourceactions"></a>
+        
+        
+      </h1>
+
+<p>Source actions are used to transform a video source into an image</p>
+    
+      <h2 id="vidsec">
+        
+        
+          VidSec <a href="#vidsec"></a>
+        
+        
+      </h2>
+
+<p>Picking a frame from a video by second</p>
+
+<p><strong>Action name:</strong> vidsec <strong>alias:</strong> vsec</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>second</td>
+      <td>The time to snap a frame from the video</td>
+      <td>float</td>
+      <td>Yes</td>
+      <td>s, sec</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>Requested height in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>Requested width in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>vidsec_s-1.1</p>
+
+<ul>
+  <li>URL full example:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-1.1</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSec_s-20_w-500_h-250</p>
+    
+      <h2 id="vid-slice">
+        
+        
+          <strong>Vid Slice</strong> <a href="#vid-slice"></a>
+        
+        
+      </h2>
+
+<p>Picking a frame by dividing the video into slices and then pick the slice</p>
+
+<p><strong>Action name:</strong> vidSlice <strong>Alias:</strong> vslice</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>numberofslices</td>
+      <td>Number of slices to split the video</td>
+      <td>Int</td>
+      <td>Yes</td>
+      <td>nos</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>sliceNumber</td>
+      <td>Number of slice out of slices</td>
+      <td>Int</td>
+      <td>Yes</td>
+      <td>sn</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>Requested height in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>Requested width in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>startSec</td>
+      <td>The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition).</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>ss</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>endSec</td>
+      <td>The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>es</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>vslice_nos-13_sn-4</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vslice_nos-10_sn-4<br />
+https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_nos-20_sn-11_ss-1_se-11</p>
+    
+      <h2 id="vidstrip">
+        
+        
+          <strong>VidStrip</strong> <a href="#vidstrip"></a>
+        
+        
+      </h2>
+
+<p>Splitting the video into slices and glue them into one image</p>
+
+<p><strong>Action name:</strong> vidStrip <strong>Alias:</strong> vstrip</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>numberofslices</td>
+      <td>the number of slices to split the video</td>
+      <td>Int</td>
+      <td>Yes</td>
+      <td>nos</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>Requested height in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>Requested width in pixels</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>startSec</td>
+      <td>The second (or part of second) to begin extracting the slices stripe from (e.g. to avoid black frame in videos that begin with fade to black, set start_sec to the second that is after the black transition).</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>ss</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>endSec</td>
+      <td>The second (or part of second) to stop extracting slices at (e.g. to create a stripe animation that is smooth but only contains few frames, use this parameter to only extract a short segment of your video instead of extracting slices across the entire video</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>es</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>vstrip_nos-13</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vstrip_nos-5</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vstrip_nos-10_endSec-30_w-200_h-100</p>
+    
+      <h1 id="imageactions">
+        
+        
+          ImageActions <a href="#imageactions"></a>
+        
+        
+      </h1>
+
+<p>Actions to manipulate the image</p>
+    
+      <h2 id="crop">
+        
+        
+          <strong>Crop</strong> <a href="#crop"></a>
+        
+        
+      </h2>
+
+<p>Crop the image into a smaller one</p>
+
+<p><strong>Action name:</strong> crop <strong>Alias:</strong> c</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gravityPoint</td>
+      <td>The gravity point to where to crop the image</td>
+      <td>Int</td>
+      <td>No if x and y are supplied</td>
+      <td>gp</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>The required height</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>The required width</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>crop to start from specific x coordinate</td>
+      <td>Int</td>
+      <td>No if gravity point is supplied</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>crop to start from specific y coordinate</td>
+      <td>Int</td>
+      <td>No if gravity point is supplied</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>gravityPoint can be 1-9 1- northwest, 2 - north, 3 - northeast, 4- west, 5 - center, 6 - east, 7 - southwest, 8 - south, 9 - southeast</li>
+  <li>example:</li>
+</ul>
+
+<p>c_w-140_h-120_x-50_y-40</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,c_x-50_y-50_w-200_h-200_x-100_y-100</p>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,c_gp-0_w-200_h-200">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,c_gp-5_w-200_h-200</a></p>
+    
+      <h2 id="resize">
+        
+        
+          <strong>resize</strong> <a href="#resize"></a>
+        
+        
+      </h2>
+
+<p>Changing the image dimensions</p>
+
+<p><strong>Action name:</strong> resize <strong>Alias:</strong> re</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>height</td>
+      <td>The required height</td>
+      <td>Int</td>
+      <td>Yes unless cf is suppliedYou can pass 0 for proportional scalingIf bf isn’t supplied</td>
+      <td>h</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Width</td>
+      <td>The required width</td>
+      <td>Int</td>
+      <td>Yes unless cf is suppliedYou can pass 0 for proportional scalingIf bf isn’t supplied</td>
+      <td>w</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Advanced parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Blur</td>
+      <td>The blur factor where &gt; 1 is blurry, &lt; 1 is sharp.Only relevant if we resizing to a smaller size</td>
+      <td>Float</td>
+      <td>No</td>
+      <td>b</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>filterType</td>
+      <td>See <a href="#Filter List">Filter List</a></td>
+      <td>Int</td>
+      <td>No</td>
+      <td>ft</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>bestFit</td>
+      <td>Optional fit parameter</td>
+      <td>Bool</td>
+      <td>No</td>
+      <td>bf</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>compositeFit</td>
+      <td>Trying to scale the image to the previous tranformationStep image</td>
+      <td>Bool</td>
+      <td>No</td>
+      <td>cf</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>resize_w-200_h-200</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,re_w-500_h-0</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,re_w-50_h-10_bf_b-0.9</p>
+    
+      <h2 id="roundcorners">
+        
+        
+          <strong>roundcorners</strong> <a href="#roundcorners"></a>
+        
+        
+      </h2>
+
+<p>Rounding the corners</p>
+
+<p><strong>Action name:</strong> roundcorners <strong>Alias:</strong> rc</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xRounding</td>
+      <td>x rounding</td>
+      <td>float</td>
+      <td>Yes</td>
+      <td>x, xr</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>yRounding</td>
+      <td>y rounding</td>
+      <td>float</td>
+      <td>Yes</td>
+      <td>y, yr</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Advanced parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>strokeWidth</td>
+      <td>stroke width</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sw</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>displace</td>
+      <td>image displace</td>
+      <td>float</td>
+      <td>No</td>
+      <td>d</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>sizeCorrection</td>
+      <td>size correction</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sc</td>
+      <td>-6</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>color for the corners</td>
+      <td>color</td>
+      <td>No</td>
+      <td>bg</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>rc_x-100_y-100</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,rc_x-200_y-100_bg-white_sw–50_sc-10_d-20</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,rc_x-200_y-100_bg-red</p>
+    
+      <h2 id="rotate">
+        
+        
+          <strong>Rotate</strong> <a href="#rotate"></a>
+        
+        
+      </h2>
+
+<p>Rotating the image</p>
+
+<p><strong>Action name:</strong>rotate <strong>Alias:</strong>r</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>degrees</td>
+      <td>degrees to turn</td>
+      <td>int</td>
+      <td>Yes</td>
+      <td>d, deg</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>Color to fill empty space created by the rotationcolor string without # like “fff” or fixed names like “red”,”blue”</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>b, bg</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>r_deg-90_b-fff</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-90</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-60_bg-pink</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,r_d-222_bg-fff124</p>
+    
+      <h2 id="text">
+        
+        
+          Text <a href="#text"></a>
+        
+        
+      </h2>
+
+<p>Adding a text on the image</p>
+
+<p><strong>Action name:</strong> text <strong>Alias:</strong> t, txt</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>The text, it must be URL encoded</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>t, txt</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>font</td>
+      <td>See <a href="#Font List">Font List</a></td>
+      <td>string</td>
+      <td>No</td>
+      <td>f</td>
+      <td>Courier</td>
+    </tr>
+    <tr>
+      <td>fontSize</td>
+      <td>The font size</td>
+      <td>float</td>
+      <td>No</td>
+      <td>fs</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>strokeWidth</td>
+      <td>Stroke width</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sw</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>Horizontal offset in pixels to the left of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>Vertical offset in pixels to the baseline of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>angle</td>
+      <td>The angle to write the text</td>
+      <td>float</td>
+      <td>No</td>
+      <td>a</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>maxHeight</td>
+      <td>If you want to limit the textbox</td>
+      <td>int</td>
+      <td>No</td>
+      <td>mh</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>maxWidth</td>
+      <td>If you want to limit the textbox, it will try to word warp</td>
+      <td>int</td>
+      <td>No</td>
+      <td>mw</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>strokeColor</td>
+      <td>Stroke color</td>
+      <td>color string or code without #</td>
+      <td>No</td>
+      <td>sc</td>
+      <td>black</td>
+    </tr>
+    <tr>
+      <td>fillColor</td>
+      <td>Fill color</td>
+      <td>color string or code without #</td>
+      <td>No</td>
+      <td>fc</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>See section 7 for supported font list</li>
+  <li>example:</li>
+</ul>
+
+<p>t_text-test2_fs-40_y-80_x-35</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-10,t_t-Fire_fs-90_fc-red_y-100_x-200</p>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,txt_t-An example _fs-40_sc-green_y-50_x-200_a-90">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,txt_t-An%20example%20_fs-40_sc-green_y-50_x-200_a-90</a></p>
+    
+      <h2 id="filter">
+        
+        
+          <strong>Filter</strong> <a href="#filter"></a>
+        
+        
+      </h2>
+
+<p>Applying predefined filters on the image</p>
+
+<p><strong>Action name:</strong>filter <strong>Alias:</strong>f</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>filterType</td>
+      <td>the desired filter</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>f, ft</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Current filter type options are</p>
+
+<p>blueshift, charcoal, contrast, edge, oil, polaroid, raise, sepia, shade, solarize, vignette, wave</p>
+
+<ul>
+  <li>Example</li>
+</ul>
+
+<p><a href="http://zuronprem2/api_v3/service/thumbnail_thumbnail/action/transform/p/212/transformString/id-0_rk73kvqj,filter_f-shade/nocache/1">filter_f-shade</a></p>
+
+<ul>
+  <li>URL full examples</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-10,filter_filtertype-wave</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-11.2,filter_filtertype-shade</p>
+    
+      <h2 id="image-texture-text">
+        
+        
+          <strong>Image texture text</strong> <a href="#image-texture-text"></a>
+        
+        
+      </h2>
+
+<p>Creating a text with thumbnail image as texture</p>
+
+<p><strong>Action name:</strong> imageTextureText <strong>Alias:</strong> itt</p>
+
+<p><strong>Parameters</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>The text, it must be URL encoded</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>t, txt</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>font</td>
+      <td>Name of the font case sensitive</td>
+      <td>string</td>
+      <td>No</td>
+      <td>f</td>
+      <td>Courier</td>
+    </tr>
+    <tr>
+      <td>fontSize</td>
+      <td>The font size</td>
+      <td>float</td>
+      <td>No</td>
+      <td>fs</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>strokeWidth</td>
+      <td>Stroke width</td>
+      <td>float</td>
+      <td>No</td>
+      <td>sw</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>Horizontal offset in pixels to the left of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>Vertical offset in pixels to the baseline of the text</td>
+      <td>int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>angle</td>
+      <td>The angle to write the text</td>
+      <td>float</td>
+      <td>No</td>
+      <td>a</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>See below for supported font list</li>
+  <li>Example</li>
+</ul>
+
+<p>itt_text-test_fs-40_y-80_x-35</p>
+
+<ul>
+  <li>URL full examples</li>
+</ul>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-1_ss-0_es-10,itt_t-test test_fs-50_x-200_y-100_sw-5_a-45_mw-10">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-1_ss-0_es-10,itt_t-test%20test_fs-50_x-200_y-100_sw-5_a-45_mw-10</a></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_fgy9sh8i,vidsec_s-5,itt_text-candle_fs-180_y-250_x-105_sw-10</p>
+    
+      <h2 id="composite">
+        
+        
+          <strong>Composite</strong> <a href="#composite"></a>
+        
+        
+      </h2>
+
+<p><strong>Action name</strong>: composite <strong>Alias</strong>: comp<br />
+<strong>Parameters</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Mandatory</th>
+      <th>Aliases</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td>The column offset of the composited image</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>The row offset of the composited image</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>-</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>opacity</td>
+      <td>the opacity of the added image value can be between 1-100</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>op</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Advanced parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>compositetype</td>
+      <td>See <a href="#Composite Type List">Composite Type List</a></td>
+      <td>Int</td>
+      <td>No</td>
+      <td>ct</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>channel</td>
+      <td>See <a href="#Channel Type List">Channel Type List</a> provide any channel constant that is valid for your channel modeTo apply to more than one channel, combine channeltype constants using bitwise operators</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>ch</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>This action can’t be part of the first transformation step</li>
+  <li>If you have more than one transformation step this action become mandatory for the non-first steps</li>
+  <li>Example</li>
+</ul>
+
+<p>comp_op-50</p>
+
+<ul>
+  <li>URL full examples</li>
+</ul>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez+id-1_fgy9sh8i,vidsec_s-5,itt_text-erez_fs-180_y-250_x-95_sw-10,comp_x-10_y–30</p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_4539f8pa,vidsec_s-5+id-1_7anel7ez,re_h-200_w-300,r_d-10_bg-none,comp_x-1130_y-230</p>
+    
+      <h2 id="output">
+        
+        
+          <strong>Output</strong> <a href="#output"></a>
+        
+        
+      </h2>
+
+<p>Modify the image output parameters</p>
+
+<p><strong>Action name:</strong> output <strong>Alias:</strong> o, io, output, imageoutput</p>
+
+<p><strong>Parameters:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Type</strong></th>
+      <th><strong>Mandatory</strong></th>
+      <th><strong>Aliases</strong></th>
+      <th><strong>Default value</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>format</td>
+      <td>the image format</td>
+      <td>string</td>
+      <td>No</td>
+      <td>f</td>
+      <td>JPEG</td>
+    </tr>
+    <tr>
+      <td>quality</td>
+      <td>the image compression quality</td>
+      <td>Int</td>
+      <td>No</td>
+      <td>q</td>
+      <td>75</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<p>o_q-50_f-JPEG</p>
+
+<ul>
+  <li>URL full examples:</li>
+</ul>
+
+<p><a href="https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,o_q-50_d-50">https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/p/2306071/action/transform/transformString/id-1_4539f8pa,vidSlice_Nos-10_sn-3_ss-0_es-20,o_q-50</a></p>
+
+<p>https://www.kaltura.com/api_v3/service/thumbnail_thumbnail/action/transform/p/2306071/transformString/id-1_7anel7ez,o_f-PNG</p>
+    
+      <h1 id="font-list">
+        
+        
+          <strong>Font List</strong> <a href="#font-list"></a>
+        
+        
+      </h1>
+
+<p>We currently support the following fonts:</p>
+
+<p>AvantGarde-Book, AvantGarde-BookOblique, AvantGarde-Demi, AvantGarde-DemiOblique, Bookman-Demi, Bookman-DemiItalic, Bookman-Light, Bookman-LightItalic, Courier, Courier-Bold, Courier-BoldOblique, Courier-Oblique, fixed, Helvetica, Helvetica-Bold, Helvetica-BoldOblique, Helvetica-Narrow, Helvetica-Narrow-Bold, Helvetica-Narrow-BoldOblique, Helvetica-Narrow-Oblique, Helvetica-Oblique, NewCenturySchlbk-Bold, NewCenturySchlbk-BoldItalic, NewCenturySchlbk-Italic, NewCenturySchlbk-Roman, Palatino-Bold, Palatino-BoldItalic, Palatino-Italic, Palatino-Roman, Symbol, Times-Bold, Times-BoldItalic, Times-Italic, Times-Roman, DejaVu-Sans-Bold, DejaVu-Sans-Mono-Bold, DejaVu-Serif-Bold, symbol</p>
+
+<ul>
+  <li>Please notice the fonts are case sensitive</li>
+</ul>
+    
+      <h1 id="filter-list">
+        
+        
+          Filter List <a href="#filter-list"></a>
+        
+        
+      </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UNDEFINED</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>POINT</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>BOX</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>TRIANGLE</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>HERMITE</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>HANNING</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>HAMMING</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>BLACKMAN</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>GAUSSIAN</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>QUADRATIC</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>CUBIC</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>CATROM</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>MITCHELL</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>LANCZOS</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>BESSEL</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>SINC</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h1 id="composite-type-list">
+        
+        
+          Composite Type List <a href="#composite-type-list"></a>
+        
+        
+      </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filter</th>
+      <th>Value</th>
+      <th>Description</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DEFAULT</td>
+      <td>54</td>
+      <td>The default composite operator</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>UNDEFINED</td>
+      <td>0</td>
+      <td>Undefined composite operator</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>NO</td>
+      <td>52</td>
+      <td>No composite operator defined</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ATOP</td>
+      <td>2</td>
+      <td>The result is the same shape as image, with composite image obscuring image where the image shapes overlap</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>BLEND</td>
+      <td>3</td>
+      <td>Blends the image</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>BUMPMAP</td>
+      <td>5</td>
+      <td>The same as COMPOSITE_MULTIPLY, except the source is converted to grayscale first.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>CLEAR</td>
+      <td>7</td>
+      <td>Makes the target image transparent</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COLORBURN</td>
+      <td>8</td>
+      <td>Darkens the destination image to reflect the source image</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COLORDODGE</td>
+      <td>9</td>
+      <td>Brightens the destination image to reflect the source image</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COLORIZE</td>
+      <td>10</td>
+      <td>Colorizes the target image using the composite image</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYBLACK</td>
+      <td>11</td>
+      <td>Copies black from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYBLUE</td>
+      <td>12</td>
+      <td>Copies blue from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPY</td>
+      <td>13</td>
+      <td>Copies the source image on the target image</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYCYAN</td>
+      <td>14</td>
+      <td>Copies cyan from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYGREEN</td>
+      <td>15</td>
+      <td>Copies green from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYMAGENTA</td>
+      <td>16</td>
+      <td>Copies magenta from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYOPACITY</td>
+      <td>17</td>
+      <td>Copies opacity from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYRED</td>
+      <td>18</td>
+      <td>Copies red from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>COPYYELLOW</td>
+      <td>19</td>
+      <td>Copies yellow from the source to target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DARKEN</td>
+      <td>20</td>
+      <td>Darkens the target image</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DSTATOP</td>
+      <td>28</td>
+      <td>The part of the destination lying inside of the source is composited over the source and replaces the destination</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DST</td>
+      <td>29</td>
+      <td>The target is left untouched</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DSTIN</td>
+      <td>30</td>
+      <td>The parts inside the source replace the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DSTOUT</td>
+      <td>31</td>
+      <td>The parts outside the source replace the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DSTOVER</td>
+      <td>32</td>
+      <td>Target replaces the source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DIFFERENCE</td>
+      <td>22</td>
+      <td>Subtracts the darker of the two constituent colors from the lighter</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DISPLACE</td>
+      <td>23</td>
+      <td>Shifts target image pixels as defined by the source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DISSOLVE</td>
+      <td>24</td>
+      <td>Dissolves the source in to the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>EXCLUSION</td>
+      <td>33</td>
+      <td>Produces an effect similar to that of DIFFERENCE, but appears as lower contrast</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>HARDLIGHT</td>
+      <td>34</td>
+      <td>Multiplies or screens the colors, dependent on the source color value</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>HUE</td>
+      <td>36</td>
+      <td>Modifies the hue of the target as defined by source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>IN</td>
+      <td>37</td>
+      <td>Composites source into the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>LIGHTEN</td>
+      <td>39</td>
+      <td>Lightens the target as defined by source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>LUMINIZE</td>
+      <td>44</td>
+      <td>Luminizes the target as defined by source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>MODULATE</td>
+      <td>48</td>
+      <td>Modulates the target brightness, saturation and hue as defined by source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>MULTIPLY</td>
+      <td>51</td>
+      <td>Multiplies the target to the source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>OUT</td>
+      <td>53</td>
+      <td>Composites outer parts of the source on the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>OVER</td>
+      <td>54</td>
+      <td>Composites source over the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>OVERLAY</td>
+      <td>55</td>
+      <td>Overlays the source on the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>PLUS</td>
+      <td>58</td>
+      <td>Adds the source to the target</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>REPLACE</td>
+      <td>59</td>
+      <td>Replaces the target with the source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SATURATE</td>
+      <td>60</td>
+      <td>Saturates the target as defined by the source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SCREEN</td>
+      <td>61</td>
+      <td>The source and destination are complemented and then multiplied and then replace the destination</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SOFTLIGHT</td>
+      <td>62</td>
+      <td>Darkens or lightens the colors, dependent on the source</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SRCATOP</td>
+      <td>63</td>
+      <td>The part of the source lying inside of the destination is composited onto the destination</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SRC</td>
+      <td>64</td>
+      <td>The source is copied to the destination</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SRCIN</td>
+      <td>65</td>
+      <td>The part of the source lying inside of the destination replaces the destination</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SRCOUT</td>
+      <td>66</td>
+      <td>The part of the source lying outside of the destination replaces the destination</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SRCOVER</td>
+      <td>67</td>
+      <td>The source replaces the destination</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>THRESHOLD</td>
+      <td>68</td>
+      <td>The source is composited on the target as defined by source threshold</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>XOR</td>
+      <td>70</td>
+      <td>The part of the source that lies outside of the destination is combined with the part of the destination that lies outside of the source</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h1 id="channel-type-list">
+        
+        
+          Channel Type List <a href="#channel-type-list"></a>
+        
+        
+      </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Channel</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UNDEFINED</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>RED</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>GRAY</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>CYAN</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>GREEN</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>MAGENTA</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>BLUE</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>YELLOW</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>ALPHA</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>OPACITY</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>BLACK</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>INDEX</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <td>ALL</td>
+      <td>134217727</td>
+    </tr>
+    <tr>
+      <td>DEFAULT</td>
+      <td>134217727</td>
+    </tr>
+  </tbody>
+</table>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

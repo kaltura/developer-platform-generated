@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        window.jQuery = window.jquery;
+    </script>
+
+    <div class="home-container">
+        <div class="row">
+            <div class="col col-sm-8 title-container">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">The Media APIs Handbook</h5>
+                        <p class="card-text">Documentation, Guides, and Samples to get you started quickly, make serious
+                            progress, find inspiration, or all of the above.</p>
+                        <a href="/Introduction_to_Kaltura_Media_Services" class="btn btn-primary">Get Started</a>
+                        <a href="https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&utm_campaign=login&utm_medium=website"
+                            class="btn btn-outline-primary">Create an Account</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-4 diagram">
+                <img src="assets/images/interactive-video.png" alt="diagram">
+            </div>
+        </div>
+        <div class="explore-container">
+            <div class="title">
+                <span>Explore Kaltura Guides</span>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="col col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Media Management &amp; Streaming
+                                </h5>
+                                <p class="card-text">
+                                    Build a media hub to manage digital assets and stream any video anywhere
+                                </p>
+                            </div>
+                            <div class="card-footer home-card-footer">
+                                <a href="/Introduction_to_Kaltura_Media_Services">Get Started <img
+                                        src="assets/icons/ArrowRight.svg" alt="card"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Video Player
+                                </h5>
+                                <p class="card-text">
+                                    Use our video player play your videos on the web or mobile
+                                </p>
+                            </div>
+                            <div class="card-footer home-card-footer">
+                                <a href="/player">Start Playing<img src="assets/icons/ArrowRight.svg" alt="card"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Real-Time Conferencing
+                                </h5>
+                                <p class="card-text">
+                                    Integrate a virtual meeting room or classroom into any app for any need
+                                </p>
+                            </div>
+                            <div class="card-footer home-card-footer">
+                                <a
+                                    href="/Real-time-Video-Meetings-Experience/Integrating-the-Embedded-Meetings-Experience-App.html">Start
+                                    Meeting
+                                    <img alt="card" src="assets/icons/ArrowRight.svg"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Live Webcasting
+                                </h5>
+                                <p class="card-text">
+                                    A live stream for any size audience, anytime and anywhere, with one single API
+                                </p>
+                            </div>
+                            <div class="card-footer home-card-footer">
+                                <a href="/Live-Video-Webcasting/Creating-and-Managing-Live-Webcasts.html">Start
+                                    Webcasting
+                                    <img alt="card" src="assets/icons/ArrowRight.svg"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Analytics &amp; Reporting
+                                </h5>
+                                <p class="card-text">
+                                    Add measurement and reporting tools to your videos to track your viewership and
+                                    their engagement
+                                </p>
+                            </div>
+                            <div class="card-footer home-card-footer">
+                                <a
+                                    href="/Analytics-and-Reporting/Intro-to-Kaltura-Video-Analytics-and-Best-Practices.html">Gather
+                                    Data
+                                    <img alt="card" src="assets/icons/ArrowRight.svg"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Embedded Experience Components
+                                </h5>
+                                <p class="card-text">
+                                    Put on any of our ready-to-play experitence modules, including the recorder, video
+                                    composer, and more
+                                </p>
+                            </div>
+                            <div class="card-footer home-card-footer">
+                                <a href="/Introduction-to-Kaltura-Media-Services/Experience-Components.html">Plug and
+                                    Play
+                                    <img alt="card" src="assets/icons/ArrowRight.svg"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="code-container">
+            <div class="title">
+                <span>Your Work, Sorted.</span>
+            </div>
+            <div class="code-tabs">
+                <span class="active" lang="php"><a href="">PHP</a></span>
+                <span class="inactive" lang="java"><a href="">Java</a></span>
+                <span class="inactive" lang="python"><a href="">Python</a></span>
+                <span class="inactive" lang="javascript"><a href="">Node</a></span>
+                <span class="inactive" lang="csharp"><a href="">C#</a></span>
+                <span class="inactive" lang="ruby"><a href="">Ruby</a></span>
+            </div>
+            <div class="row">
+                <div class="col col-lg-8">
+                    <div class="code php">
+                        <pre>
+                        <code class="php">
+&lt;?php
+require_once('lib/KalturaClient.php');
+
+$config = new KalturaConfiguration();
+$config-&gt;setServiceUrl('https://www.kaltura.com');
+$client = new KalturaClient($config);
+
+$entry = new KalturaMediaEntry();
+$entry-&gt;name = &quot;My First Video&quot;;
+
+try {
+    $result = $client-&gt;media-&gt;add($entry);
+    var_dump($result);
+} catch (Exception $e) {
+    echo $e-&gt;getMessage();
+}
+?&gt;
+                        </code>
+                    </pre>
+                    </div>
+                    <div class="code java">
+                        <pre>
+                        <code class="java">
+package com.kaltura.code.example;
+import com.kaltura.client.enums.*;
+
+class CodeExample {
+    public static void main(String[] args) {
+        Client client = CodeExample.generateKalturaClient();
+        MediaEntry entry = new MediaEntry();
+        entry.setName(&quot;My First Video&quot;);
+
+        AddMediaBuilder requestBuilder = MediaService.add(entry)
+            .setCompletion(new OnCompletion&lt;Response&lt;MediaEntry&gt;&gt;() {
+                @Override
+                public void onComplete(Response&lt;MediaEntry&gt; result) {
+                    System.out.println(result);
+                }
+            });
+
+        APIOkRequestsExecutor.getExecutor().queue(requestBuilder.build(client));
+    }
+}
+                        </code>
+                    </pre>
+                    </div>
+                    <div class="code python">
+                        <pre>
+                        <code class="python">
+from KalturaClient import *
+from KalturaClient.Plugins.Core import *
+
+config = KalturaConfiguration()
+config.serviceUrl = &quot;https://www.kaltura.com/&quot;
+client = KalturaClient(config)
+entry = KalturaMediaEntry()
+entry.name = &quot;My First Video&quot;
+
+result = client.media.add(entry)
+print(result)
+                        </code>
+                    </pre>
+                    </div>
+                    <div class="code javascript">
+                        <pre>
+                        <code class="javascript">
+const kaltura = require('kaltura-client');
+const config = new kaltura.Configuration();
+config.serviceUrl = 'https://www.kaltura.com';
+const client = new kaltura.Client(config);
+
+let entry = new kaltura.objects.MediaEntry();
+entry.name = &quot;My First Video&quot;;
+
+kaltura.services.media.add(entry)
+    .execute(client)
+    .then(result =&gt; {
+        console.log(result);
+    });
+
+})
+.execute(client);
+                        </code>
+                    </pre>
+                    </div>
+                    <div class="code csharp">
+                        <pre>
+                        <code class="csharp">
+using Kaltura;
+namespace Kaltura {
+    class CodeExample {
+    static void Main(string[] args) {
+        Client client = CodeExample.createKalturaClient();
+        bool done = false;
+        MediaEntry entry = new MediaEntry();
+        entry.Name = &quot;My First Video&quot;;
+
+        OnCompletedHandler&lt;MediaEntry&gt; handler = new OnCompletedHandler&lt;MediaEntry&gt;(
+            (MediaEntry result, Exception e) =&gt;
+            {
+                CodeExample.PrintObject(result);
+                done = true;
+            });
+        MediaService.Add(entry)
+            .SetCompletion(handler)
+            .Execute(client);
+    }
+}
+                        </code>
+                    </pre>
+                    </div>
+                    <div class="code ruby">
+                        <pre>
+                        <code class="ruby">
+require 'kaltura'
+include Kaltura
+
+config = KalturaConfiguration.new()
+config.service_url = 'https://www.kaltura.com'
+client = KalturaClient.new(config);  
+
+entry = KalturaMediaEntry.new()
+entry.name = &quot;My First Video&quot;
+
+results = client.media_service.add(entry)
+puts results.inspect
+                        </code>
+                    </pre>
+                    </div>
+                    <img class="btn-copy" src="assets/icons/btn-cp.svg" alt="copy">
+                </div>
+                <div class="col col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Upload &amp; ingest media with ease
+                            </h5>
+                            <p class="card-text">
+                                Uploading videos to Kaltura using the API is super simple. Videos can be located on
+                                disk, or be specified as an HTML file input. Our jQuery upload widget provides a chunked
+                                upload with pause and resume functionality and optimization for file size.
+                            </p>
+                            <a href="/workflows" class="btn btn-primary">View Workflows</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="video-container">
+            <div class="title">
+                <span>You Can Make a Quick Video Player Stack</span>
+            </div>
+            <div class="video-player-wrapper">
+                <div id="dummy" class="video-margin"></div>
+
+                <style>
+                    .video-player {
+                        background-color: #000;
+                        width: 100%;
+                        max-width: 800px;
+                        height: 372px;
+                    }
+                </style>
+
+                <div id="kaltura-player-1-zxnf9ha7-42923951" class="video-player"></div>
+            </div>
+
+
+            <script
+                src="https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedPlaykitJs/uiconf_id/43473121/partner_id/2421271"></script>
+            <script>
+                window.kalturaIntroVideoLoaded = false;
+                function embedVideo() {
+                    if (window.kalturaIntroVideoLoaded) return;
+                    if (!window.lucyBotReady || !window.PathKalturaPlayer) return setTimeout(embedVideo, 100);
+                    window.kalturaIntroVideoLoaded = true;
+
+                    var kconfig = {
+                        targetId: 'kaltura-player-1-zxnf9ha7-42923951',
+                        playback: {
+                            autoplay: false,
+                            preload: "auto"
+                        },
+                        provider: {
+                            partnerId: 2421271,
+                            uiConfId: 43473121
+                        },
+                        rapt: {}
+                    };
+                    var raptPlayer = PathKalturaPlayer.setup(kconfig);
+                    raptPlayer.loadMedia({ playlistId: '1_zxnf9ha7' });
+                }
+                embedVideo();
+            </script>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            hljs.initHighlighting();
+        });
+    </script>
+</body>
+
+</html>

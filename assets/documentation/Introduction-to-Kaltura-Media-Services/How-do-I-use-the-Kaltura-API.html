@@ -1,0 +1,451 @@
+  <title>How do I use the Kaltura API?</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="How do I use the Kaltura API?" >
+    <meta property="st:published_at" content="">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+window.jQuery = window.jquery;
+</script>
+  <script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+
+  
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+<script type='text/javascript'>
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">How do I use the Kaltura API?</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Mon Sep 27 05:27:36 2021</span>, By <span class="commit-author">Hunterpp</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/Introduction-to-Kaltura-Media-Services/How-do-I-use-the-Kaltura-API.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Sep 27 03:06:08 2021, By: Hunterpp</td></tr-->
+				<!--tr><td>Last commit: Mon Sep 27 05:27:36 2021, By <span class="commit-author">Hunterpp</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Hunterpp (3 commits) (<a href="mailto:hunter.peress@kaltura.com">hunter.peress@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>This guide will enable you to quickly get started building your own media experiences and exploring the platform’s basic capabilities. The following topics are</p>
+
+<ol>
+  <li><a href="#The Kaltura API">The Kaltura API</a></li>
+  <li><a href="https://developer.kaltura.com/api-docs/Client_Libraries/">Kaltura API Client Libraries</a></li>
+  <li><a href="https://developer.kaltura.com/player/">Mobile Player SDK’s</a></li>
+  <li>Experience Components</li>
+</ol>
+      <h2 id="before-you-begin">
+        
+        
+          Before You Begin <a href="#before-you-begin"></a>
+        
+        
+      </h2>
+
+<p>You will need your Kaltura account credentials. If you don’t have them yet, start a <a href="https://vpaas.kaltura.com/register">free trial</a>.<br />
+If you’ve signed in, you can click on your account info at the top right of this page to view your credentials.<br />
+You can also find them at any time in the KMC’s (Kaltura Management Console) by clicking the <a href="https://kmc.kaltura.com/index.php/kmcng/settings/integrationSettings">Integration Settings tab</a>.</p>
+    
+      <h2 id="the-kaltura-api">
+        
+        
+          The Kaltura API <a href="#the-kaltura-api"></a>
+        
+        
+      </h2>
+
+<p>The Kaltura API structure consists of a list of services, represented by service objects. Each service object consists of different actions, represented by a method in the service object in the following format:</p>
+
+<p>For example the <a href="https://developer.kaltura.com/console/service/media">media</a> service has many different actions like:</p>
+
+<ol>
+  <li><a href="https://developer.kaltura.com/console/service/media/action/get">media.get</a></li>
+  <li><a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a></li>
+  <li><a href="https://developer.kaltura.com/console/service/media/action/add">media.add</a></li>
+</ol>
+
+<p>All of these actions read or write to a common <a href="https://developer.kaltura.com/api-docs/General_Objects/Objects/KalturaMediaEntry">KalturaMediaEntry</a> object.</p>
+
+<p>For any service’s action, click the “Learn More” button in the <a href="https://developer.kaltura.com/console">developer console</a> to see the expected return object type. Try it with <a href="https://developer.kaltura.com/console/service/media/action/get">media.get</a></p>
+
+<p><img src="/assets/images/learnmore.png" alt="learnmore" /></p>
+
+<p>The simplest way to make requests to the Kaltura REST API is by using one of the <a href="https://developer.kaltura.com/api-docs/Client_Libraries/">Kaltura API Client Libraries</a>. We don’t recommend making REST API requests directly, as your URL requests might get really long and tricky.</p>
+
+<p>Once you’ve downloaded the client library, you’ll need to import the library and instantiate a KalturaClient object with which you’ll make calls to the API. <br />
+Setup looks like this:</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">from KalturaClient import *
+
+config = KalturaConfiguration()
+client = KalturaClient(config)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">require_once(&apos;lib/KalturaClient.php&apos;);
+
+$config = new KalturaConfiguration();
+$client = new KalturaClient($config);</code></pre>
+          </div>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">const kaltura = require(&apos;kaltura-client&apos;);
+const config = new kaltura.Configuration();
+const client = new kaltura.Client(config);</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">public static Client generateKalturaClient() {
+        Configuration config = new Configuration();
+        Client client = new Client(config);
+        return client;
+    }</code></pre>
+          </div>
+</div>
+    
+      <h2 id="kaltura-session">
+        
+        
+          Kaltura Session <a href="#kaltura-session"></a>
+        
+        
+      </h2>
+
+<p>You will need a Kaltura Session before perform almost all API actions, be sure to read about it here.</p>
+    
+      <h2 id="using-the-console-to-generate-code">
+        
+        
+          Using the console to generate code <a href="#using-the-console-to-generate-code"></a>
+        
+        
+      </h2>
+
+<p>Every API call in the <a href="https://developer.kaltura.com/console">developer console</a> is able to generate code in all languages that Kaltura supports. See this example for the <a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a> API call:</p>
+
+<p><img src="/assets/images/codegen.png" alt="codegen" /></p>
+    
+      <h3 id="uploading-media">
+        
+        
+          Uploading Media <a href="#uploading-media"></a>
+        
+        
+      </h3>
+
+<p>At this point you could follow the <a href="https://developer.kaltura.com/workflows/Ingest_and_Upload_Media/Uploading_Media_Files">Uploading Media Files workflow</a> or you can continue to learn about some basic API calls.</p>
+    
+      <h2 id="finding-entries">
+        
+        
+          Finding Entries <a href="#finding-entries"></a>
+        
+        
+      </h2>
+
+<p>To retrieve your newly uploaded entry, or one of the default entries that comes with your account we’ll use <a href="https://developer.kaltura.com/console/service/media/action/list">media.list</a>. If you inspect that API in the console, and expand the filter object, you’ll see a whole bunch of options for filtering down to the entries you want.</p>
+    
+      <h3 id="finding-entries-by-name">
+        
+        
+          Finding Entries By Name <a href="#finding-entries-by-name"></a>
+        
+        
+      </h3>
+
+<p>In the case of this example, a quick way to find the new entry is by searching for part of its name - in this case, “Logo”. We need a filter object called <code class="highlighter-rouge">KalturaMediaEntryFilter</code> on which to set the values, which we then pass to the endpoint.</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">filter = KalturaMediaEntryFilter()
+filter.nameLike = &quot;Logo&quot;
+pager = KalturaFilterPager()
+
+result = client.media.list(filter, pager)
+print(result)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">$filter = new KalturaMediaEntryFilter();
+$filter-&gt;nameLike = &quot;Logo&quot;;
+$pager = new KalturaFilterPager();
+
+$result = $client-&gt;media-&gt;listAction($filter, $pager);
+</code></pre>
+          </div>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let filter = new kaltura.objects.MediaEntryFilter();
+filter.nameLike = &quot;Logo&quot;;
+let pager = new kaltura.objects.FilterPager();
+
+kaltura.services.media.listAction(filter, pager)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">MediaEntryFilter filter = new MediaEntryFilter();
+filter.setNameLike(&quot;Logo&quot;);
+FilterPager pager = new FilterPager();
+
+ListMediaBuilder requestBuilder = MediaService.list(filter, pager)
+    .setCompletion(new OnCompletion&lt;Response&lt;ListResponse&lt;MediaEntry&gt;&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;ListResponse&lt;MediaEntry&gt;&gt; result) {
+            System.out.println(result);
+        }
+    });</code></pre>
+          </div>
+</div>
+<p> </p>
+
+<p>The result will return as a list of  <code class="highlighter-rouge">KalturaMediaEntry</code> objects. Notice the Pager object. It is useful for large result sets if you want to get a specific amount of results for page.</p>
+    
+      <h3 id="finding-entries-by-date">
+        
+        
+          Finding Entries By Date <a href="#finding-entries-by-date"></a>
+        
+        
+      </h3>
+
+<p>Another way to find the entry is by date. Using epoch timestamp, this code lists all entries created in July of 2019:</p>
+
+<div class="code-examples">            <div class="the_buttons examples">
+              <ul class="code-tab">
+                <li class="code-tab"><a href="#" class="a_button" target="python">Python</a></li><li class="code-tab"><a href="#" class="a_button" target="php">Php</a></li><li class="code-tab"><a href="#" class="a_button" target="node">Node</a></li><li class="code-tab"><a href="#" class="a_button" target="java">Java</a></li>
+              </ul>
+            </div>
+          <div class="highlight example python">
+            <pre><code class="python" data-lang="python">filter = KalturaMediaEntryFilter()
+filter.createdAtGreaterThanOrEqual = 1561982373
+filter.createdAtLessThanOrEqual = 1564660773
+pager = KalturaFilterPager()
+
+result = client.media.list(filter, pager)</code></pre>
+          </div>
+          <div class="highlight example php">
+            <pre><code class="php" data-lang="php">
+$filter = new KalturaMediaEntryFilter();
+$filter-&gt;createdAtGreaterThanOrEqual = 1561982373;
+$filter-&gt;createdAtLessThanOrEqual = 1564660773;
+$pager = new KalturaFilterPager();
+
+$result = $client-&gt;media-&gt;listAction($filter, $pager);
+</code></pre>
+          </div>
+          <div class="highlight example node">
+            <pre><code class="node" data-lang="node">let filter = new kaltura.objects.MediaEntryFilter();
+filter.createdAtGreaterThanOrEqual = 1561982373;
+filter.createdAtLessThanOrEqual = 1564660773;
+let pager = new kaltura.objects.FilterPager();
+
+kaltura.services.media.listAction(filter, pager)
+.execute(client)
+.then(result =&gt; {
+    console.log(result);
+});</code></pre>
+          </div>
+          <div class="highlight example java">
+            <pre><code class="java" data-lang="java">MediaEntryFilter filter = new MediaEntryFilter();
+filter.setCreatedAtGreaterThanOrEqual(1561982373);
+filter.setCreatedAtLessThanOrEqual(1564660773);
+FilterPager pager = new FilterPager();
+
+ListMediaBuilder requestBuilder = MediaService.list(filter, pager)
+    .setCompletion(new OnCompletion&lt;Response&lt;ListResponse&lt;MediaEntry&gt;&gt;&gt;() {
+        @Override
+        public void onComplete(Response&lt;ListResponse&lt;MediaEntry&gt;&gt; result) {
+            System.out.println(result);
+        }
+    });</code></pre>
+          </div>
+</div>
+<p> </p>
+
+<blockquote>
+  <p>Note that Kaltura Sessions with limited privileges might get limited results when making a <code class="highlighter-rouge">media.list</code> API call.</p>
+</blockquote>
+
+<p>To conduct a more thorough search, for example, <strong>if you want to search within captions or metadata</strong>, use the <a href="https://developer.kaltura.com/console/service/eSearch/action/searchEntry">Kaltura Search API</a>. Read about it <a href="../Video-On-Demand-and-Digital-Assets-Management/Searching-for-Media-Entries.html">here</a></p>
+
+<p>Learn about other embed types <a href="https://developer.kaltura.com/player/web/embed-types-web/">here.</a></p>
+    
+      <h2 id="wrapping-up">
+        
+        
+          Wrapping Up <a href="#wrapping-up"></a>
+        
+        
+      </h2>
+
+<p>Including a Kaltura Session allows you to keep track of user analytics for each entry and set permissions and privileges. Notice that in this case, the KS is created on the server side of the app.</p>
+
+<p><strong>Next steps:</strong></p>
+
+<ul>
+  <li>Learn how to create and handle <a href="../Video-On-Demand-and-Digital-Assets-Management/Image-Transformations-and-On-the-fly-Video-Thumbnails.html">thumbnails</a></li>
+  <li>Analyze Engagement <a href="../Analytics-and-Reporting /Intro-to-Kaltura-Video-Analytics-and-Best-Practices.html">Analytics</a></li>
+</ul>
+
+<p>You can find more API resources in our <a href="https://developer.kaltura.com/api-docs/">docs</a>, play around in the <a href="https://developer.kaltura.com/console">console</a>, or enjoy full interactive experiences with our <a href="https://developer.kaltura.com/workflows">workflows</a>.</p>
+
+<p>And of course, feel free to reach out at vpaas@kaltura.com if you have any questions.</p>
+		
+</article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  <script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->

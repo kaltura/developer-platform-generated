@@ -30,7 +30,7 @@
   <link href="styles.bundle.css" rel="stylesheet"/></head>
 
   <body>
-    <div id="Navbar"><div id="KalturaSignInModal" class="modal fade" tabindex="-1" role="dialog">
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -77,7 +77,7 @@
   </div>
 </div>
 
-<div id="KalturaPartnerIDModal" class="modal fade" tabindex="-1" role="dialog">
+<div id="KalturaPartnerIDModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -136,36 +136,37 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <button type="button" class="side-menu-toggle">
         <i class="fa fa-bars"></i>
       </button>
       <a href="/" class="navbar-brand">
-        <img src="/homepage/assets/images/Kaltura-logo.png">
+        <img src="assets/images/KalturaLogo.png">
+        <!--
         <span class="brand-subtitle">Developer</span>
+        -->
       </a>
+      <div class="form-group has-feedback has-search">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        <input type="text" class="form-control g-search-box" placeholder="Search the documentation">
+      </div>
     </div>
     <div id="NavbarCollapse" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="navbar-link">
-          <a href="api-docs">API Docs</a>
+	        <a href="#">Contact Us</a>
         </li>
         <li class="navbar-link">
-	  <a href="https://developer.kaltura.com/player/">Player</a>
-        </li>
-        <li class="navbar-link">
-          <a href="console">Console</a>
-        </li>
-        <li class="navbar-link workflows-link">
-          <a href="workflows">Workflows</a>
-        </li>
-        <li class="navbar-link">
-          <a href="api-docs/Client_Libraries">Client Libraries</a>
-        </li>
-        <li class="navbar-link">
-          <a href="api-docs/Sample_applications">Inspiring Examples</a>
-          <!-- navbar.html-->
+          <a href="https://forum.kaltura.org">Community</a>
         </li>
       </ul>
     </div>
+  </div>
+  <div class="nav-tabs-b">
+    <span class="subnav subnav-guides" data-to="/"><a>Guides & Workflows</a></span>
+    <span class="subnav subnav-apis" data-to="/api-docs"><a>APIs & SDKs</a></span>
+    <span class="subnav subnav-samples" data-to="/samples"><a>Samples</a></span>
   </div>
 </nav>
 
@@ -238,74 +239,47 @@ if (!keepSidebar) {
     <app class="loading"></app>
 
     <div id="Footer"><div class="footer" id="KalturaFooterContainer">
-<div id="KalturaFooter" class="w-section footer-section">
-  <div class="w-container container footer-container">
-    <div class="row">
-      <div class="col col-sm-3 footer-links-columns">
-        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#vpaasLinks">VPaaS<i class="fa fa-chevron-up"></i></a></h5>
-        <div id="vpaasLinks" class="collapse">
-          <a class="footer-links" href="https://vpaas.kaltura.com">Overview</a><a class="footer-links" href="/api-docs/Overview">API</a><a data-ix="scroll-to-apply" class="footer-links" href="https://vpaas.kaltura.com/#case_study_section" id="case_study_link">Case Studies</a><a class="footer-links" href="https://vpaas.kaltura.com/register.php?utm_source=developertools&utm_campaign=login&utm_medium=website">Register for a Free Trial</a>
+
+  <div class="kaltura-foot-links">
+    <div class="container" style="width: 100%;">
+      <div class="row">
+        <div class="col col-xs-12 col-lg-3">
+          <img src="assets/icons/kaltura-logo.png" style="width: 120px;">
+          <div class="social-container" style="padding-top:20px;">
+            <a href="https://twitter.com/Kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/twitter.png" style="width:32px;"/></a>
+            <a href="https://www.linkedin.com/company/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/linkedin.png" style="width:32px;"/></a>
+            <a href="https://github.com/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/github.png" style="width:32px;"/></a>
+            <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/stackoverflow.png" style="width:32px;"/></a>
+          </div>
         </div>
-      </div>
-      <div class="col col-sm-3 footer-links-columns">
-        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#toolsLinks">Tools<i class="fa fa-chevron-up"></i></a></h5>
-        <div id="toolsLinks" class="collapse">
-          <a class="footer-links" href="/console">API Test Console</a><a class="footer-links" href="/api-docs/Client_Libraries">Client Libraries</a><a class="footer-links" href="/player">iOS &amp; Android Mobile SDKs</a><a class="footer-links" href="/workflows">Interactive Workflows</a><a class="footer-links" href="https://vpaas.kaltura.com/documentation/04_Web-Video-Player/">Player Toolkit</a><a class="footer-links" href="https://github.com/kaltura" target="_blank">Kaltura on Github</a><a class="footer-links" href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank">Kaltura on Stack Overflow</a>
-        </div>
-      </div>
-      <div class="col col-sm-3 footer-links-columns">
-        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#resourcesLinks">Resources<i class="fa fa-chevron-up"></i></a></h5>
-        <div id="resourcesLinks" class="collapse">
-          <a class="footer-links" href="/api-docs">API Documentation</a><a class="footer-links" href="https://knowledge.kaltura.com" target="_blank">Knowledge Center</a><a class="footer-links" href="https://learning.kaltura.com" target="_blank">Kaltura University</a><a class="footer-links" href="https://corp.kaltura.com/live-webinars" target="_blank">Webinars</a><a class="footer-links" href="http://videos.kaltura.com" target="_blank">Kaltura Video Tutorials</a>
-        </div>
-      </div>
-      <div class="col col-sm-3 footer-links-columns">
-        <h5 class="footer-headings"><a data-toggle="collapse" class="collapsed" data-target="#communityLinks">Community<i class="fa fa-chevron-up"></i></a></h5>
-        <div id="communityLinks" class="collapse">
-          <a class="footer-links" href="https://vpaas.kaltura.com/partners">Partner Network</a><a class="footer-links" href="https://forum.kaltura.org" target="_blank">Forums</a><a class="footer-links" href="https://corp.kaltura.com/kaltura-events" target="_blank">Meet Kaltura at Events</a><a class="footer-links" href="https://blog.kaltura.com">Blog</a>
-        </div>
-        <div class="secondary-links">
-          <h5 class="footer-headings footer-heading-margin"><a data-toggle="collapse" data-target="#openSourceLinks">Open Source<i class="fa fa-chevron-up"></i></a></h5>
-          <div id="openSourceLinks" class="collapse">
-            <a class="footer-links" href="https://www.kaltura.org/" target="_blank">opensource.kaltura.org</a>
+        <div class="col col-xs-12 col-lg-9">
+          <div class="row">
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Media Services</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="/Home">Overview</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&utm_campaign=login&utm_medium=website">Register for a free Trial</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Resources</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://knowledge.kaltura.com/">Kaltura Knowledge Center</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://github.com/kaltura">Kaltura on Github</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Contact</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Support</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Request Training</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="#">Talk to Sales</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Community</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://forum.kaltura.org/">Developer Forum</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-technology-marketplace/">Partner Network</a></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="kaltura-links">
-    <div class="container">
-      <div class="row">
-        <div class="col col-xs-12 col-sm-4">
-          <img src="/homepage/assets/images/Kaltura-Logo-white.png">
-        </div>
-        <div class="col col-xs-12 col-sm-4 footer-last-links-column">
-          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com/About-Kaltura">About</a>
-          <a class="sub-footer-links" href="/sitemap.xml" target="_blank">Sitemap</a>
-          <a class="sub-footer-links" target="_blank" href="https://corp.kaltura.com">Kaltura.com</a>
-        </div>
-        <div class="social-icon-container col col-xs-12 col-sm-4">
-          <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank"><div class="social-div fa-stack-overflow fa fa-2x"></div></a>
-          <a href="https://github.com/kaltura" target="_blank"><div class="social-div fa-github fa fa-2x"></div></a>
-          <a href="https://twitter.com/Kaltura" target="_blank"><div class="social-div fa fa-twitter fa-2x"></div></a>
-          <a href="https://www.linkedin.com/company/kaltura" target="_blank"><div class="social-div fa fa-linkedin fa-2x"></div></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="w-container container copyright-container">
-    <div class="row">
-      <div class="col col-xs-12 copyright-column">
-        <div class="footer-copyright">Copyright &#xA9; <span id="KalturaYear"></span> Kaltura Inc.</div>
-        <script>
-          document.getElementById('KalturaYear').innerHTML = (new Date()).getFullYear();
-        </script>
-        <div class="footer-copyright-description">All Rights Reserved. Designated trademarks and brands are the property of their respective owners.
-          <br>Use of this web site constitutes acceptance of the Terms of Use and Privacy Policy.</div>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 <script>
 if (window.lucybot.embed) {
