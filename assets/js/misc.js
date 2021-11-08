@@ -19,6 +19,21 @@ $(window).on('load', function () {
     window.toggleSideMenu();
   });
 
+
+
+  //make main nav buttons work on home page
+  $('.nav-tabs-b>span').on('click', function (evt) {
+    evt.preventDefault();
+    if (!$(this).hasClass('active')) {
+      $('.nav-tabs-b>span').removeClass('active');
+      $(this).addClass('active');
+    }
+    // nav
+    window.markdownNavigation($(this).attr('data-to'));
+  });
+
+
+  //code tabs for homepage
   $('.code-tabs>span').on('click', function (evt) {
     evt.preventDefault();
     const lang = $(this).attr('lang');

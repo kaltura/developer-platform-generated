@@ -354,6 +354,19 @@ puts results.inspect
         $(document).ready(function () {
             hljs.initHighlighting();
         });
+        $('.nav-tabs-b>span').on('click', function (evt) {
+            evt.preventDefault();
+            const lang = $(this).attr('lang');
+            $('div.code').hide();
+            $('div.code.' + lang).show();
+            // tabs
+            $('div.code-container > div.nav-tabs-b > span').addClass('inactive');
+            if (!$(this).hasClass('active')) {
+                $('.nav-tabs-b>span').removeClass('active');
+                $(this).addClass('active');
+            }
+            $(this).removeClass('inactive');
+        });
     </script>
 </body>
 
