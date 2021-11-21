@@ -1,0 +1,965 @@
+<!DOCTYPE html><html><head>
+    <title>Player Configuration - API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-68472312-3');
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdnapisec.kaltura.com/p/2421271/embedPlaykitJs/uiconf_id/43006971"></script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><meta name="title" content="Player Configuration - API Documentation"><meta name="description" content="undefined"><meta name="keywords" content=""><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <label>One Time Authentication code (leave empty if OTP is not enabled for your partner[s])</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="OTP">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <button type="button" class="side-menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="assets/images/KalturaLogo.png">
+        <!--
+        <span class="brand-subtitle">Developer</span>
+        -->
+      </a>
+      <div class="form-group has-feedback has-search">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        <input type="text" class="form-control g-search-box" placeholder="Search the documentation">
+      </div>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+	        <a href="https://corp.kaltura.com/company/contact/">Contact Us</a>
+        </li>
+        <li class="navbar-link">
+          <a href="https://forum.kaltura.org">Community</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+  <div class="nav-tabs-b">
+    <!--see misc.js for how tabs are activated -->
+    <span class="subnav subnav-guides" data-to="/"><a>Guides</a></span>
+    <span class="subnav subnav-playerhome" data-to="/playerhome"><a>Player</a></span>
+    <span class="subnav subnav-api" data-to="/api-docs"><a>APIs</a></span>
+    <span class="subnav subnav-client" data-to="/Client_Libraries"><a>Client Libraries</a></span>
+    <span class="subnav subnav-workflows" data-to="/workflows"><a>Workflows</a></span>
+    <span class="subnav subnav-samples" data-to="/samples"><a>Samples</a></span>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="main-page"><div class="side-menu-col"><a class="btn btn-default hidden show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><div class="side-menu py-5 hidden-xs"><h6 class="menu-heading" hidden=""><!----><span class="ng-star-inserted"> </span><!----><!----><div class="close-menu-button pull-right"><a><!----><img src="assets/icons/collapse.svg" class="ng-star-inserted"><!----></a></div><!----><div class="alt-txt ng-star-inserted"> <span>Expand All</span><span hidden="">Collapse All</span></div></h6><!----><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-0 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Kaltura Player SDK's" href="/playerhome/Kaltura_Player_SDK_s"><img class="ng-tns-c5-0" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-0" innerhtml="Kaltura Player SDK's">Kaltura Player SDK's</span></a><!----><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Web Player" href="/playerhome/player/web"><img class="ng-tns-c5-1" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-1" innerhtml="Web Player">Web Player</span></a><!----><!----><!----></div><!----><div class="side-menu-children ng-tns-c5-1 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-4 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-4 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Getting Started" href="/playerhome/getting-started-web"><img class="ng-tns-c5-4" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-4" innerhtml="Getting Started">Getting Started</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-4 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-5 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Embed Types" href="/playerhome/embed-types-web"><img class="ng-tns-c5-5" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-5" innerhtml="Player Embed Types">Player Embed Types</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-5 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-6 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Embed for Angular" href="/playerhome/angular-embed-web"><img class="ng-tns-c5-6" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-6" innerhtml="Embed for Angular">Embed for Angular</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-6 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-7 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Setup" href="/playerhome/player-setup-web"><img class="ng-tns-c5-7" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-7" innerhtml="Player Setup">Player Setup</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-7 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-8 active pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Configuration" href="/playerhome/configuration-web"><img class="ng-tns-c5-8" src="assets/icons/Reporting-a.svg" hidden=""><span class="ng-tns-c5-8" innerhtml="Player Configuration">Player Configuration</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-8 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-9 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Managing Playlists" href="/playerhome/playlist-web"><img class="ng-tns-c5-9" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-9" innerhtml="Managing Playlists">Managing Playlists</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-9 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-10 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player CSS" href="/playerhome/player-css-web"><img class="ng-tns-c5-10" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-10" innerhtml="Player CSS">Player CSS</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-10 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-11 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="User Preferences" href="/playerhome/user-preferences-web"><img class="ng-tns-c5-11" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-11" innerhtml="User Preferences">User Preferences</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-11 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-12 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Keyboard Shortcuts" href="/playerhome/keyboard-shortcuts-web"><img class="ng-tns-c5-12" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-12" innerhtml="Keyboard Shortcuts">Keyboard Shortcuts</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-12 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-13 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-13 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Events" href="/playerhome/player-events-web"><img class="ng-tns-c5-13" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-13" innerhtml="Player Events">Player Events</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-13 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-14 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-14 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Managing Tracks" href="/playerhome/managing-tracks-web"><img class="ng-tns-c5-14" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-14" innerhtml="Managing Tracks">Managing Tracks</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-14 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-15 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-15 inactive truncate pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Autoplay" href="/playerhome/autoplay-web"><img class="ng-tns-c5-15" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-15" innerhtml="Autoplay">Autoplay</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-15 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-16 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-16 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player States" href="/playerhome/player-states-web"><img class="ng-tns-c5-16" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-16" innerhtml="Player States">Player States</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-16 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-17 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-17 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player API" href="/playerhome/api-web"><img class="ng-tns-c5-17" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-17" innerhtml="Player API">Player API</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-17 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-18 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-18 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Plugins" href="/playerhome/plugins-web"><img class="ng-tns-c5-18" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-18" innerhtml="Player Plugins">Player Plugins</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-18 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-19 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-19 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Handling Player Errors" href="/playerhome/errors-web"><img class="ng-tns-c5-19" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-19" innerhtml="Handling Player Errors">Handling Player Errors</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-19 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-20 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-20 inactive truncate pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Debugging" href="/playerhome/debugging-web"><img class="ng-tns-c5-20" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-20" innerhtml="Debugging">Debugging</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-20 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-21 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-21 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Source Selection" href="/playerhome/source-selection-web"><img class="ng-tns-c5-21" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-21" innerhtml="Source Selection">Source Selection</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-21 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-22 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-22 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Coding Guidelines" href="/playerhome/coding-guidelines-web"><img class="ng-tns-c5-22" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-22" innerhtml="Coding Guidelines">Coding Guidelines</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-22 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-23 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-23 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player UI Configuration" href="/playerhome/ui/ui-configuration"><img class="ng-tns-c5-23" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-23" innerhtml="Player UI Configuration">Player UI Configuration</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-23 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-24 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-24 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player UI Events" href="/playerhome/ui/ui-events"><img class="ng-tns-c5-24" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-24" innerhtml="Player UI Events">Player UI Events</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-24 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-25 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-25 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Components" href="/playerhome/ui/components"><img class="ng-tns-c5-25" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-25" innerhtml="Player Components">Player Components</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-25 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-26 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-26 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Custom UI Presets" href="/playerhome/ui/custom-ui-presets"><img class="ng-tns-c5-26" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-26" innerhtml="Custom UI Presets">Custom UI Presets</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-26 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-27 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-27 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Translation and Language" href="/playerhome/ui/translations"><img class="ng-tns-c5-27" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-27" innerhtml="Player Translation and Language">Player Translation and Language</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-27 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-28 ng-tns-c5-1 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-28 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Captions Menu Settings" href="/playerhome/ui/captions-menu"><img class="ng-tns-c5-28" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-28" innerhtml="Captions Menu Settings">Captions Menu Settings</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-28 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item></div></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="iOS Player" href="/playerhome/player/ios"><img class="ng-tns-c5-2" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-2" innerhtml="iOS Player">iOS Player</span></a><!----><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Android Player" href="/playerhome/player/android"><img class="ng-tns-c5-3" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-3" innerhtml="Android Player">Android Player</span></a><!----><!----><!----></div><!----></side-menu-item></div></div></div><div class="main-content"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura Web Player Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Player Configuration</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>Configuration for Web Player</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Configuration for Web Player">
+    <meta property="st:published_at" content="">
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+
+
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+
+
+
+
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Configuration for Web Player</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Wed Jan 13 09:28:54 2021</span>, By <span class="commit-author">jbrule</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/player-portal/web/configuration-web.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Wed May 1 14:04:39 2019, By: Avital</td></tr-->
+				<!--tr><td>Last commit: Wed Jan 13 09:28:54 2021, By <span class="commit-author">jbrule</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Avital (8 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (2 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>jbrule (1 commits) (<a href="mailto:jbrulz@gmail.com">jbrulz@gmail.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>tzubeli (3 commits) (<a href="mailto:avital.tzubeli@kaltura.com">avital.tzubeli@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<p>Player configuration parameters are provided whenever a player instance is created.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Configuration here</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">player</span> <span class="o">=</span> <span class="nx">KalturaPlayer</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
+      <h4 id="configuration-structure">
+        
+        
+          Configuration Structure <a href="#configuration-structure"></a>
+        
+        
+      </h4>
+
+<p>The configuration uses the following structure:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">targetId</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="nx">logLevel</span><span class="err">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="nx">disableUserCache</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">,</span>
+  <span class="nx">playback</span><span class="err">:</span> <span class="nx">PKPlaybackConfigObject</span><span class="p">,</span>
+  <span class="nx">sources</span><span class="err">:</span> <span class="nx">PKSourcesConfigObject</span><span class="p">,</span>
+  <span class="nx">playlist</span><span class="err">:</span> <span class="nx">KPPlaylistObject</span><span class="p">,</span>
+  <span class="nx">plugins</span><span class="err">:</span> <span class="nx">PKPluginsConfigObject</span><span class="p">,</span>
+  <span class="nx">session</span><span class="err">:</span> <span class="nx">PKSessionConfigObject</span><span class="p">,</span>
+  <span class="nx">provider</span><span class="err">:</span> <span class="nx">ProviderOptionsObject</span><span class="p">,</span>
+  <span class="nx">ui</span><span class="err">:</span> <span class="nx">UIOptionsObject</span><span class="p">,</span>
+  <span class="nx">cast</span><span class="err">:</span> <span class="nx">CastConfigObject</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+    
+      <h3 id="configtargetid">
+        
+        
+          config.targetId <a href="#configtargetid"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default--">
+        
+        
+          Default: <code class="highlighter-rouge">-</code> <a href="#default--"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-id-of-the-dom-element-to-which-the-player-will-be-added">
+        
+        
+          Description: Defines the ID of the DOM element to which the player will be added. <a href="#description-defines-the-id-of-the-dom-element-to-which-the-player-will-be-added"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configloglevel">
+        
+        
+          config.logLevel <a href="#configloglevel"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-string-1">
+        
+        
+          Type: <code class="highlighter-rouge">string</code> <a href="#type-string-1"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-error">
+        
+        
+          Default: <code class="highlighter-rouge">"ERROR"</code> <a href="#default-error"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-player-log-level">
+        
+        
+          Description: Defines the player log level. <a href="#description-defines-the-player-log-level"></a>
+        
+        
+      </h5>
+
+<p>Possible values: <code class="highlighter-rouge">"DEBUG", "INFO", "TIME", "WARN", "ERROR", "OFF"</code></p>
+    
+      <h3 id="configdisableusercache">
+        
+        
+          config.disableUserCache <a href="#configdisableusercache"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-boolean">
+        
+        
+          Type: <code class="highlighter-rouge">boolean</code> <a href="#type-boolean"></a>
+        
+        
+      </h5>
+    
+      <h5 id="default-false">
+        
+        
+          Default: <code class="highlighter-rouge">false</code> <a href="#default-false"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-indicates-whether-to-stop-using-the-saved-user-preferences">
+        
+        
+          Description: Indicates whether to stop using the saved user preferences. <a href="#description-indicates-whether-to-stop-using-the-saved-user-preferences"></a>
+        
+        
+      </h5>
+
+<p>You can learn more about user preferences in the player <a href="https://developer.kaltura.com/player/web/user-preferences-web">here</a>.</p>
+    
+      <h3 id="configplayback">
+        
+        
+          config.playback <a href="#configplayback"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pkplaybackconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configplayback">PKPlaybackConfigObject</a> <a href="#type-pkplaybackconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-playback-configuration">
+        
+        
+          Description: Defines the playback configuration. <a href="#description-defines-the-playback-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configsources">
+        
+        
+          config.sources <a href="#configsources"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pksourcesconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configsources">PKSourcesConfigObject</a> <a href="#type-pksourcesconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-sources-configuration">
+        
+        
+          Description: Defines the sources configuration. <a href="#description-defines-the-sources-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configplaylist">
+        
+        
+          config.playlist <a href="#configplaylist"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-kpplaylistobject">
+        
+        
+          Type: <a href="https://developer.kaltura.com/player/web/api-web#kpplaylistobject">KPPlaylistObject</a> <a href="#type-kpplaylistobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-playlist-configuration">
+        
+        
+          Description: Defines the playlist configuration. <a href="#description-defines-the-playlist-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configplugins">
+        
+        
+          config.plugins <a href="#configplugins"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pkpluginsconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configplugins">PKPluginsConfigObject</a> <a href="#type-pkpluginsconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-plugins-configuration">
+        
+        
+          Description: Defines the plugins configuration. <a href="#description-defines-the-plugins-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configsession">
+        
+        
+          config.session <a href="#configsession"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-pksessionconfigobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configsession">PKSessionConfigObject</a> <a href="#type-pksessionconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-session-configuration">
+        
+        
+          Description: Defines the session configuration. <a href="#description-defines-the-session-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configprovider">
+        
+        
+          config.provider <a href="#configprovider"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-provideroptionsobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js-providers/blob/master/docs/configuration.md">ProviderOptionsObject</a> <a href="#type-provideroptionsobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-provider-configuration">
+        
+        
+          Description: Defines the provider configuration. <a href="#description-defines-the-provider-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configui">
+        
+        
+          config.ui <a href="#configui"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-uioptionsobject">
+        
+        
+          Type: <a href="https://github.com/kaltura/playkit-js-ui/blob/master/docs/configuration.md">UIOptionsObject</a> <a href="#type-uioptionsobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-user-interface-ui-configuration">
+        
+        
+          Description: Defines the user interface (UI) configuration. <a href="#description-defines-the-user-interface-ui-configuration"></a>
+        
+        
+      </h5>
+    
+      <h3 id="configcast">
+        
+        
+          config.cast <a href="#configcast"></a>
+        
+        
+      </h3>
+    
+      <h5 id="type-castconfigobject">
+        
+        
+          Type: <a href="https://developer.kaltura.com/player/web/api-web#castconfigobject">CastConfigObject</a> <a href="#type-castconfigobject"></a>
+        
+        
+      </h5>
+    
+      <h5 id="description-defines-the-cast-configuration">
+        
+        
+          Description: Defines the cast configuration. <a href="#description-defines-the-cast-configuration"></a>
+        
+        
+      </h5>
+    
+      <h2 id="configuration-priority">
+        
+        
+          Configuration Priority <a href="#configuration-priority"></a>
+        
+        
+      </h2>
+
+<p>In the player setup flow, the configuration described above (partially or in full) can be provided by a number of different sources. Each source has a priority, which determines whether the source has a greater or lesser impact on how the player is configured.</p>
+
+<p>Available sources include:</p>
+
+<ul>
+  <li><strong>Application</strong> - This is the application that embeds the player and can be used to configures the player in-line upon instantiation.</li>
+  <li><strong>Server</strong> - This is a partner configuration that is saved on the server. The partner can use this configuration when configuring the player by supplying the <code class="highlighter-rouge">uiConfId</code> value.</li>
+  <li><strong>Local Storage (Browser)</strong> - This is the user preferences configuration, which is saved in the local storage of the browser.</li>
+  <li><strong>Default Player Configuration</strong> - The default player configuration is defined internally by the player.</li>
+</ul>
+
+<p>When the player builds its runtime configuration, it will need to know how to built the configuration correctly according to the priority of each configuration, which is as follows (#1 is highest; #4 is lowest):</p>
+
+<ol>
+  <li><strong>Local Storage</strong></li>
+  <li><strong>Application</strong></li>
+  <li><strong>Server</strong></li>
+  <li><strong>Default Player Configuration</strong></li>
+</ol>
+
+<p><img src="/assets/images/configuration-strength.jpg" alt="configuration-strength"></p>
+    
+      <h4 id="example">
+        
+        
+          Example <a href="#example"></a>
+        
+        
+      </h4>
+
+<p>In this example, we’ll use the following configuration from each source to see how that source affects the configuration:</p>
+
+<p>Local Storage</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">muted</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">audioLanguage</span><span class="err">:</span> <span class="s1">'spa'</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Application</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">muted</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Server</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'eng'</span><span class="p">,</span>
+  <span class="nx">autoplay</span><span class="err">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Default Player Configuration</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">muted</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p><strong>The resulting runtime configuration will, therefore, be as follows:</strong></p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+	<span class="nl">audioLanguage</span><span class="p">:</span> <span class="s1">'spa'</span><span class="p">,</span>
+	<span class="nx">textLanguage</span><span class="err">:</span> <span class="s1">''</span><span class="p">,</span>
+	<span class="nx">muted</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">volume</span><span class="err">:</span> <span class="mf">0.7</span><span class="p">,</span>
+	<span class="nx">autoplay</span><span class="err">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
+</div><!----><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+
+  <div class="kaltura-foot-links">
+    <div class="container" style="width: 100%;">
+      <div class="row">
+        <div class="col col-xs-12 col-lg-3">
+          <img src="assets/icons/kaltura-logo.png" style="width: 120px;">
+          <div class="social-container" style="padding-top:20px;">
+            <a href="https://twitter.com/Kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/twitter.png" style="width:32px;"></a>
+            <a href="https://www.linkedin.com/company/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/linkedin.png" style="width:32px;"></a>
+            <a href="https://github.com/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/github.png" style="width:32px;"></a>
+            <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/stackoverflow.png" style="width:32px;"></a>
+          </div>
+        </div>
+        <div class="col col-xs-12 col-lg-9">
+          <div class="row">
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Media Services</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="/Home">Overview</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a free Trial</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Resources</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://knowledge.kaltura.com/">Kaltura Knowledge Center</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://github.com/kaltura">Kaltura on Github</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Contact</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/company/contact/">Support</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/company/contact/">Request Training</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/company/contact/">Talk to Sales</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Community</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://forum.kaltura.org/">Developer Forum</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-technology-marketplace/">Partner Network</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/home.html&q;:null,&q;G.http://localhost:3333/assets/documentation/home.html&q;:{&q;body&q;:&q;&l;!DOCTYPE html&g;\n&l;html&g;\n\n&l;body&g;\n    &l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n    &l;script&g;\n        window.jQuery = window.jquery;\n    &l;/script&g;\n\n    &l;div class=\&q;home-container\&q;&g;\n        &l;div class=\&q;row\&q;&g;\n            &l;div class=\&q;col col-sm-8 title-container\&q;&g;\n                &l;div class=\&q;card\&q;&g;\n                    &l;div class=\&q;card-body\&q;&g;\n                        &l;h5 class=\&q;card-title\&q;&g;The Media APIs Handbook&l;/h5&g;\n                        &l;p class=\&q;card-text\&q;&g;Documentation, Guides, and Samples to get you started quickly, make serious\n                            progress, find inspiration, or all of the above.&l;/p&g;\n                        &l;a href=\&q;/Introduction_to_Kaltura_Media_Services\&q; class=\&q;btn btn-primary\&q;&g;Get Started&l;/a&g;\n                        &l;a href=\&q;https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&a;utm_campaign=login&a;utm_medium=website\&q;\n                            class=\&q;btn btn-outline-primary\&q;&g;Create an Account&l;/a&g;\n                    &l;/div&g;\n                &l;/div&g;\n            &l;/div&g;\n            &l;div class=\&q;col col-sm-4 diagram\&q;&g;\n                &l;img src=\&q;assets/images/interactive-video.png\&q; alt=\&q;diagram\&q;&g;\n            &l;/div&g;\n        &l;/div&g;\n        &l;div class=\&q;explore-container\&q;&g;\n            &l;div class=\&q;title\&q;&g;\n                &l;span&g;Explore Kaltura Guides&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;body\&q;&g;\n                &l;div class=\&q;row\&q;&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Media Management &a;amp; Streaming\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Build a media hub to manage digital assets and stream any video anywhere\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/Introduction_to_Kaltura_Media_Services\&q;&g;Get Started &l;img\n                                        src=\&q;assets/icons/ArrowRight.svg\&q; alt=\&q;card\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Video Player\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Use our video player play your videos on the web or mobile\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/player\&q;&g;Start Playing&l;img src=\&q;assets/icons/ArrowRight.svg\&q; alt=\&q;card\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Real-Time Conferencing\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Integrate a virtual meeting room or classroom into any app for any need\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a\n                                    href=\&q;/Real-time-Video-Meetings-Experience/Integrating-the-Embedded-Meetings-Experience-App.html\&q;&g;Start\n                                    Meeting\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Live Webcasting\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    A live stream for any size audience, anytime and anywhere, with one single API\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/Live-Video-Webcasting/Creating-and-Managing-Live-Webcasts.html\&q;&g;Start\n                                    Webcasting\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Analytics &a;amp; Reporting\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Add measurement and reporting tools to your videos to track your viewership and\n                                    their engagement\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a\n                                    href=\&q;/Analytics-and-Reporting/Intro-to-Kaltura-Video-Analytics-and-Best-Practices.html\&q;&g;Gather\n                                    Data\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Embedded Experience Components\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Put on any of our ready-to-play experitence modules, including the recorder, video\n                                    composer, and more\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/Introduction-to-Kaltura-Media-Services/Experience-Components.html\&q;&g;Plug and\n                                    Play\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                &l;/div&g;\n            &l;/div&g;\n        &l;/div&g;\n        &l;div class=\&q;code-container\&q;&g;\n            &l;div class=\&q;title\&q;&g;\n                &l;span&g;Your Work, Sorted.&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;code-tabs\&q;&g;\n                &l;span class=\&q;active\&q; lang=\&q;php\&q;&g;&l;a href=\&q;\&q;&g;PHP&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;java\&q;&g;&l;a href=\&q;\&q;&g;Java&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;python\&q;&g;&l;a href=\&q;\&q;&g;Python&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;javascript\&q;&g;&l;a href=\&q;\&q;&g;Node&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;csharp\&q;&g;&l;a href=\&q;\&q;&g;C#&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;ruby\&q;&g;&l;a href=\&q;\&q;&g;Ruby&l;/a&g;&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;row\&q;&g;\n                &l;div class=\&q;col col-lg-8\&q;&g;\n                    &l;div class=\&q;code php\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;php\&q;&g;\n&a;lt;?php\nrequire_once(&s;lib/KalturaClient.php&s;);\n\n$config = new KalturaConfiguration();\n$config-&a;gt;setServiceUrl(&s;https://www.kaltura.com&s;);\n$client = new KalturaClient($config);\n\n$entry = new KalturaMediaEntry();\n$entry-&a;gt;name = &a;quot;My First Video&a;quot;;\n\ntry {\n    $result = $client-&a;gt;media-&a;gt;add($entry);\n    var_dump($result);\n} catch (Exception $e) {\n    echo $e-&a;gt;getMessage();\n}\n?&a;gt;\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code java\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;java\&q;&g;\npackage com.kaltura.code.example;\nimport com.kaltura.client.enums.*;\n\nclass CodeExample {\n    public static void main(String[] args) {\n        Client client = CodeExample.generateKalturaClient();\n        MediaEntry entry = new MediaEntry();\n        entry.setName(&a;quot;My First Video&a;quot;);\n\n        AddMediaBuilder requestBuilder = MediaService.add(entry)\n            .setCompletion(new OnCompletion&a;lt;Response&a;lt;MediaEntry&a;gt;&a;gt;() {\n                @Override\n                public void onComplete(Response&a;lt;MediaEntry&a;gt; result) {\n                    System.out.println(result);\n                }\n            });\n\n        APIOkRequestsExecutor.getExecutor().queue(requestBuilder.build(client));\n    }\n}\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code python\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;python\&q;&g;\nfrom KalturaClient import *\nfrom KalturaClient.Plugins.Core import *\n\nconfig = KalturaConfiguration()\nconfig.serviceUrl = &a;quot;https://www.kaltura.com/&a;quot;\nclient = KalturaClient(config)\nentry = KalturaMediaEntry()\nentry.name = &a;quot;My First Video&a;quot;\n\nresult = client.media.add(entry)\nprint(result)\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code javascript\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;javascript\&q;&g;\nconst kaltura = require(&s;kaltura-client&s;);\nconst config = new kaltura.Configuration();\nconfig.serviceUrl = &s;https://www.kaltura.com&s;;\nconst client = new kaltura.Client(config);\n\nlet entry = new kaltura.objects.MediaEntry();\nentry.name = &a;quot;My First Video&a;quot;;\n\nkaltura.services.media.add(entry)\n    .execute(client)\n    .then(result =&a;gt; {\n        console.log(result);\n    });\n\n})\n.execute(client);\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code csharp\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;csharp\&q;&g;\nusing Kaltura;\nnamespace Kaltura {\n    class CodeExample {\n    static void Main(string[] args) {\n        Client client = CodeExample.createKalturaClient();\n        bool done = false;\n        MediaEntry entry = new MediaEntry();\n        entry.Name = &a;quot;My First Video&a;quot;;\n\n        OnCompletedHandler&a;lt;MediaEntry&a;gt; handler = new OnCompletedHandler&a;lt;MediaEntry&a;gt;(\n            (MediaEntry result, Exception e) =&a;gt;\n            {\n                CodeExample.PrintObject(result);\n                done = true;\n            });\n        MediaService.Add(entry)\n            .SetCompletion(handler)\n            .Execute(client);\n    }\n}\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code ruby\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;ruby\&q;&g;\nrequire &s;kaltura&s;\ninclude Kaltura\n\nconfig = KalturaConfiguration.new()\nconfig.service_url = &s;https://www.kaltura.com&s;\nclient = KalturaClient.new(config);  \n\nentry = KalturaMediaEntry.new()\nentry.name = &a;quot;My First Video&a;quot;\n\nresults = client.media_service.add(entry)\nputs results.inspect\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;img class=\&q;btn-copy\&q; src=\&q;assets/icons/btn-cp.svg\&q; alt=\&q;copy\&q;&g;\n                &l;/div&g;\n                &l;div class=\&q;col col-lg-4\&q;&g;\n                    &l;div class=\&q;card\&q;&g;\n                        &l;div class=\&q;card-body\&q;&g;\n                            &l;h5 class=\&q;card-title\&q;&g;\n                                Upload &a;amp; ingest media with ease\n                            &l;/h5&g;\n                            &l;p class=\&q;card-text\&q;&g;\n                                Uploading videos to Kaltura using the API is super simple. Videos can be located on\n                                disk, or be specified as an HTML file input. Our jQuery upload widget provides a chunked\n                                upload with pause and resume functionality and optimization for file size.\n                            &l;/p&g;\n                            &l;a href=\&q;/workflows\&q; class=\&q;btn btn-primary\&q;&g;View Workflows&l;/a&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                &l;/div&g;\n            &l;/div&g;\n        &l;/div&g;\n        &l;div class=\&q;video-container\&q;&g;\n            &l;div class=\&q;title\&q;&g;\n                &l;span&g;You Can Make a Quick Video Player Stack&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;video-player-wrapper\&q;&g;\n                &l;div id=\&q;dummy\&q; class=\&q;video-margin\&q;&g;&l;/div&g;\n\n                &l;style&g;\n                    .video-player {\n                        background-color: #000;\n                        width: 100%;\n                        max-width: 800px;\n                        height: 372px;\n                    }\n                &l;/style&g;\n\n                &l;div id=\&q;kaltura-player-1-zxnf9ha7-42923951\&q; class=\&q;video-player\&q;&g;&l;/div&g;\n            &l;/div&g;\n\n\n            &l;script\n                src=\&q;https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedPlaykitJs/uiconf_id/43473121/partner_id/2421271\&q;&g;&l;/script&g;\n            &l;script&g;\n                window.kalturaIntroVideoLoaded = false;\n                function embedVideo() {\n                    if (window.kalturaIntroVideoLoaded) return;\n                    if (!window.lucyBotReady || !window.PathKalturaPlayer) return setTimeout(embedVideo, 100);\n                    window.kalturaIntroVideoLoaded = true;\n\n                    var kconfig = {\n                        targetId: &s;kaltura-player-1-zxnf9ha7-42923951&s;,\n                        playback: {\n                            autoplay: false,\n                            preload: \&q;auto\&q;\n                        },\n                        provider: {\n                            partnerId: 2421271,\n                            uiConfId: 43473121\n                        },\n                        rapt: {}\n                    };\n                    var raptPlayer = PathKalturaPlayer.setup(kconfig);\n                    raptPlayer.loadMedia({ playlistId: &s;1_zxnf9ha7&s; });\n                }\n                embedVideo();\n            &l;/script&g;\n        &l;/div&g;\n    &l;/div&g;\n    &l;script&g;\n        $(document).ready(function () {\n            hljs.initHighlighting();\n        });\n        $(&s;.nav-tabs-b&g;span&s;).on(&s;click&s;, function (evt) {\n            evt.preventDefault();\n            const lang = $(this).attr(&s;lang&s;);\n            $(&s;div.code&s;).hide();\n            $(&s;div.code.&s; + lang).show();\n            // tabs\n            $(&s;div.code-container &g; div.nav-tabs-b &g; span&s;).addClass(&s;inactive&s;);\n            if (!$(this).hasClass(&s;active&s;)) {\n                $(&s;.nav-tabs-b&g;span&s;).removeClass(&s;active&s;);\n                $(this).addClass(&s;active&s;);\n            }\n            $(this).removeClass(&s;inactive&s;);\n        });\n    &l;/script&g;\n&l;/body&g;\n\n&l;/html&g;&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Sun, 21 Nov 2021 17:30:46 GMT&q;],&q;etag&q;:[&q;W/\&q;3cad-17d438ce212\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;15533&q;],&q;date&q;:[&q;Sun, 21 Nov 2021 17:31:08 GMT&q;],&q;connection&q;:[&q;keep-alive&q;],&q;keep-alive&q;:[&q;timeout=5&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/home.html&q;}}</script><script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/player-portal/web/configuration-web.html&q;:null,&q;G.http://localhost:3333/assets/documentation/player-portal/web/configuration-web.html&q;:{&q;body&q;:&q;  &l;title&g;Configuration for Web Player&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Configuration for Web Player\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;script type=\&q;text/javascript\&q;&g;\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Configuration for Web Player&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Wed Jan 13 09:28:54 2021&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;jbrule&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/player-portal/web/configuration-web.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Wed May 1 14:04:39 2019, By: Avital&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Wed Jan 13 09:28:54 2021, By &l;span class=\&q;commit-author\&q;&g;jbrule&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Avital (8 commits) (&l;a href=\&q;mailto:avital.tzubeli@kaltura.com\&q;&g;avital.tzubeli@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Jess Portnoy (2 commits) (&l;a href=\&q;mailto:jess.portnoy@kaltura.com\&q;&g;jess.portnoy@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;jbrule (1 commits) (&l;a href=\&q;mailto:jbrulz@gmail.com\&q;&g;jbrulz@gmail.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;tzubeli (3 commits) (&l;a href=\&q;mailto:avital.tzubeli@kaltura.com\&q;&g;avital.tzubeli@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n\t\t&l;p&g;Player configuration parameters are provided whenever a player instance is created.&l;/p&g;\n\n&l;figure class=\&q;highlight\&q;&g;&l;pre&g;&l;code class=\&q;language-javascript\&q; data-lang=\&q;javascript\&q;&g;&l;span class=\&q;kd\&q;&g;var&l;/span&g; &l;span class=\&q;nx\&q;&g;config&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;p\&q;&g;{&l;/span&g;\n  &l;span class=\&q;c1\&q;&g;// Configuration here&l;/span&g;\n&l;span class=\&q;p\&q;&g;};&l;/span&g;\n&l;span class=\&q;kd\&q;&g;var&l;/span&g; &l;span class=\&q;nx\&q;&g;player&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;nx\&q;&g;KalturaPlayer&l;/span&g;&l;span class=\&q;p\&q;&g;.&l;/span&g;&l;span class=\&q;nx\&q;&g;setup&l;/span&g;&l;span class=\&q;p\&q;&g;(&l;/span&g;&l;span class=\&q;nx\&q;&g;config&l;/span&g;&l;span class=\&q;p\&q;&g;);&l;/span&g;&l;/code&g;&l;/pre&g;&l;/figure&g;\n      &l;h4 id=\&q;configuration-structure\&q;&g;\n        \n        \n          Configuration Structure &l;a href=\&q;#configuration-structure\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n\n&l;p&g;The configuration uses the following structure:&l;/p&g;\n\n&l;div class=\&q;language-js highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;\n  &l;span class=\&q;nl\&q;&g;targetId&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;string&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;logLevel&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;string&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;disableUserCache&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;kr\&q;&g;boolean&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;playback&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;PKPlaybackConfigObject&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;sources&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;PKSourcesConfigObject&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;playlist&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;KPPlaylistObject&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;plugins&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;PKPluginsConfigObject&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;session&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;PKSessionConfigObject&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;provider&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;ProviderOptionsObject&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;ui&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;UIOptionsObject&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;cast&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;nx\&q;&g;CastConfigObject&l;/span&g;\n&l;span class=\&q;p\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;configtargetid\&q;&g;\n        \n        \n          config.targetId &l;a href=\&q;#configtargetid\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-string\&q;&g;\n        \n        \n          Type: &l;code class=\&q;highlighter-rouge\&q;&g;string&l;/code&g; &l;a href=\&q;#type-string\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;default--\&q;&g;\n        \n        \n          Default: &l;code class=\&q;highlighter-rouge\&q;&g;-&l;/code&g; &l;a href=\&q;#default--\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-id-of-the-dom-element-to-which-the-player-will-be-added\&q;&g;\n        \n        \n          Description: Defines the ID of the DOM element to which the player will be added. &l;a href=\&q;#description-defines-the-id-of-the-dom-element-to-which-the-player-will-be-added\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configloglevel\&q;&g;\n        \n        \n          config.logLevel &l;a href=\&q;#configloglevel\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-string-1\&q;&g;\n        \n        \n          Type: &l;code class=\&q;highlighter-rouge\&q;&g;string&l;/code&g; &l;a href=\&q;#type-string-1\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;default-error\&q;&g;\n        \n        \n          Default: &l;code class=\&q;highlighter-rouge\&q;&g;\&q;ERROR\&q;&l;/code&g; &l;a href=\&q;#default-error\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-player-log-level\&q;&g;\n        \n        \n          Description: Defines the player log level. &l;a href=\&q;#description-defines-the-player-log-level\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;p&g;Possible values: &l;code class=\&q;highlighter-rouge\&q;&g;\&q;DEBUG\&q;, \&q;INFO\&q;, \&q;TIME\&q;, \&q;WARN\&q;, \&q;ERROR\&q;, \&q;OFF\&q;&l;/code&g;&l;/p&g;\n    \n      &l;h3 id=\&q;configdisableusercache\&q;&g;\n        \n        \n          config.disableUserCache &l;a href=\&q;#configdisableusercache\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-boolean\&q;&g;\n        \n        \n          Type: &l;code class=\&q;highlighter-rouge\&q;&g;boolean&l;/code&g; &l;a href=\&q;#type-boolean\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;default-false\&q;&g;\n        \n        \n          Default: &l;code class=\&q;highlighter-rouge\&q;&g;false&l;/code&g; &l;a href=\&q;#default-false\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-indicates-whether-to-stop-using-the-saved-user-preferences\&q;&g;\n        \n        \n          Description: Indicates whether to stop using the saved user preferences. &l;a href=\&q;#description-indicates-whether-to-stop-using-the-saved-user-preferences\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;p&g;You can learn more about user preferences in the player &l;a href=\&q;https://developer.kaltura.com/player/web/user-preferences-web\&q;&g;here&l;/a&g;.&l;/p&g;\n    \n      &l;h3 id=\&q;configplayback\&q;&g;\n        \n        \n          config.playback &l;a href=\&q;#configplayback\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-pkplaybackconfigobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configplayback\&q;&g;PKPlaybackConfigObject&l;/a&g; &l;a href=\&q;#type-pkplaybackconfigobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-playback-configuration\&q;&g;\n        \n        \n          Description: Defines the playback configuration. &l;a href=\&q;#description-defines-the-playback-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configsources\&q;&g;\n        \n        \n          config.sources &l;a href=\&q;#configsources\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-pksourcesconfigobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configsources\&q;&g;PKSourcesConfigObject&l;/a&g; &l;a href=\&q;#type-pksourcesconfigobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-sources-configuration\&q;&g;\n        \n        \n          Description: Defines the sources configuration. &l;a href=\&q;#description-defines-the-sources-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configplaylist\&q;&g;\n        \n        \n          config.playlist &l;a href=\&q;#configplaylist\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-kpplaylistobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://developer.kaltura.com/player/web/api-web#kpplaylistobject\&q;&g;KPPlaylistObject&l;/a&g; &l;a href=\&q;#type-kpplaylistobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-playlist-configuration\&q;&g;\n        \n        \n          Description: Defines the playlist configuration. &l;a href=\&q;#description-defines-the-playlist-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configplugins\&q;&g;\n        \n        \n          config.plugins &l;a href=\&q;#configplugins\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-pkpluginsconfigobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configplugins\&q;&g;PKPluginsConfigObject&l;/a&g; &l;a href=\&q;#type-pkpluginsconfigobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-plugins-configuration\&q;&g;\n        \n        \n          Description: Defines the plugins configuration. &l;a href=\&q;#description-defines-the-plugins-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configsession\&q;&g;\n        \n        \n          config.session &l;a href=\&q;#configsession\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-pksessionconfigobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://github.com/kaltura/playkit-js/blob/master/docs/configuration.md#configsession\&q;&g;PKSessionConfigObject&l;/a&g; &l;a href=\&q;#type-pksessionconfigobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-session-configuration\&q;&g;\n        \n        \n          Description: Defines the session configuration. &l;a href=\&q;#description-defines-the-session-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configprovider\&q;&g;\n        \n        \n          config.provider &l;a href=\&q;#configprovider\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-provideroptionsobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://github.com/kaltura/playkit-js-providers/blob/master/docs/configuration.md\&q;&g;ProviderOptionsObject&l;/a&g; &l;a href=\&q;#type-provideroptionsobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-provider-configuration\&q;&g;\n        \n        \n          Description: Defines the provider configuration. &l;a href=\&q;#description-defines-the-provider-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configui\&q;&g;\n        \n        \n          config.ui &l;a href=\&q;#configui\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-uioptionsobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://github.com/kaltura/playkit-js-ui/blob/master/docs/configuration.md\&q;&g;UIOptionsObject&l;/a&g; &l;a href=\&q;#type-uioptionsobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-user-interface-ui-configuration\&q;&g;\n        \n        \n          Description: Defines the user interface (UI) configuration. &l;a href=\&q;#description-defines-the-user-interface-ui-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h3 id=\&q;configcast\&q;&g;\n        \n        \n          config.cast &l;a href=\&q;#configcast\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h5 id=\&q;type-castconfigobject\&q;&g;\n        \n        \n          Type: &l;a href=\&q;https://developer.kaltura.com/player/web/api-web#castconfigobject\&q;&g;CastConfigObject&l;/a&g; &l;a href=\&q;#type-castconfigobject\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h5 id=\&q;description-defines-the-cast-configuration\&q;&g;\n        \n        \n          Description: Defines the cast configuration. &l;a href=\&q;#description-defines-the-cast-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n    \n      &l;h2 id=\&q;configuration-priority\&q;&g;\n        \n        \n          Configuration Priority &l;a href=\&q;#configuration-priority\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;In the player setup flow, the configuration described above (partially or in full) can be provided by a number of different sources. Each source has a priority, which determines whether the source has a greater or lesser impact on how the player is configured.&l;/p&g;\n\n&l;p&g;Available sources include:&l;/p&g;\n\n&l;ul&g;\n  &l;li&g;&l;strong&g;Application&l;/strong&g; - This is the application that embeds the player and can be used to configures the player in-line upon instantiation.&l;/li&g;\n  &l;li&g;&l;strong&g;Server&l;/strong&g; - This is a partner configuration that is saved on the server. The partner can use this configuration when configuring the player by supplying the &l;code class=\&q;highlighter-rouge\&q;&g;uiConfId&l;/code&g; value.&l;/li&g;\n  &l;li&g;&l;strong&g;Local Storage (Browser)&l;/strong&g; - This is the user preferences configuration, which is saved in the local storage of the browser.&l;/li&g;\n  &l;li&g;&l;strong&g;Default Player Configuration&l;/strong&g; - The default player configuration is defined internally by the player.&l;/li&g;\n&l;/ul&g;\n\n&l;p&g;When the player builds its runtime configuration, it will need to know how to built the configuration correctly according to the priority of each configuration, which is as follows (#1 is highest; #4 is lowest):&l;/p&g;\n\n&l;ol&g;\n  &l;li&g;&l;strong&g;Local Storage&l;/strong&g;&l;/li&g;\n  &l;li&g;&l;strong&g;Application&l;/strong&g;&l;/li&g;\n  &l;li&g;&l;strong&g;Server&l;/strong&g;&l;/li&g;\n  &l;li&g;&l;strong&g;Default Player Configuration&l;/strong&g;&l;/li&g;\n&l;/ol&g;\n\n&l;p&g;&l;img src=\&q;/assets/images/configuration-strength.jpg\&q; alt=\&q;configuration-strength\&q; /&g;&l;/p&g;\n    \n      &l;h4 id=\&q;example\&q;&g;\n        \n        \n          Example &l;a href=\&q;#example\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n\n&l;p&g;In this example, we’ll use the following configuration from each source to see how that source affects the configuration:&l;/p&g;\n\n&l;p&g;Local Storage&l;/p&g;\n\n&l;div class=\&q;language-js highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;\n\t&l;span class=\&q;nl\&q;&g;muted&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;audioLanguage&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;spa&s;&l;/span&g;\n&l;span class=\&q;p\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Application&l;/p&g;\n\n&l;div class=\&q;language-js highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;\n\t&l;span class=\&q;nl\&q;&g;muted&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;volume&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;mf\&q;&g;0.7&l;/span&g;\n&l;span class=\&q;p\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Server&l;/p&g;\n\n&l;div class=\&q;language-js highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;\n  &l;span class=\&q;nl\&q;&g;audioLanguage&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;eng&s;&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n  &l;span class=\&q;nx\&q;&g;autoplay&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;\n&l;span class=\&q;p\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Default Player Configuration&l;/p&g;\n\n&l;div class=\&q;language-js highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;\n\t&l;span class=\&q;nl\&q;&g;audioLanguage&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;&s;&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;textLanguage&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;&s;&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;muted&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;volume&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;mi\&q;&g;1&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;autoplay&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n&l;span class=\&q;p\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;&l;strong&g;The resulting runtime configuration will, therefore, be as follows:&l;/strong&g;&l;/p&g;\n\n&l;div class=\&q;language-js highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;p\&q;&g;{&l;/span&g;\n\t&l;span class=\&q;nl\&q;&g;audioLanguage&l;/span&g;&l;span class=\&q;p\&q;&g;:&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;spa&s;&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;textLanguage&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;s1\&q;&g;&s;&s;&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;muted&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;volume&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;mf\&q;&g;0.7&l;/span&g;&l;span class=\&q;p\&q;&g;,&l;/span&g;\n\t&l;span class=\&q;nx\&q;&g;autoplay&l;/span&g;&l;span class=\&q;err\&q;&g;:&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;\n&l;span class=\&q;p\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Sun, 21 Nov 2021 17:30:46 GMT&q;],&q;etag&q;:[&q;W/\&q;5370-17d438ce216\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;21360&q;],&q;date&q;:[&q;Sun, 21 Nov 2021 17:51:20 GMT&q;],&q;connection&q;:[&q;keep-alive&q;],&q;keep-alive&q;:[&q;timeout=5&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/player-portal/web/configuration-web.html&q;}}</script></body></html>

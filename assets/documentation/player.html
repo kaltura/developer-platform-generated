@@ -1,0 +1,48 @@
+<div class="home-container">
+    <div class="row">
+        <div class="col col-sm-8 title-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Customizable video player for all your video needs</h5>
+                    <b><i style="font-size: 1.7em;">Adaptive, Lightweight, and Seamless</i></b>
+                    <div><i>No matter which platform you're using</i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-4 diagram">
+            <img src="assets/images/interactive-video.png" alt="diagram">
+        </div>
+    </div>
+    <div class="explore-container">
+        <div class="hero-player" id="hero-player" style="aspect-ratio: 16/9; max-height: 20vw;"></div>
+        <script>var heroPlayer = KalturaPlayer.setup({
+                targetId: "hero-player",
+                provider: {
+                    partnerId: 2421271,
+                    uiConfId: 43006971
+                },
+                playback: {
+                    preload: 'auto',
+                    autoplay: true,
+                    loop: true
+                }
+            });
+            heroPlayer.loadMedia({ entryId: '1_23yaxsca' });
+            heroPlayer.play();
+        </script>
+    </div>
+
+    <div class="explore-container" style="margin-top: 15px;">
+        <div class="title">
+            <span>About Kaltura Player</span>
+        </div>
+        The Kaltura player SDK enables
+        seamless video playback across browsers and many platforms with support
+        for advanced streaming formats.
+
+        The Kaltura Player based on our open source <a href="https://github.com/kaltura/kaltura-player-js">Player</a>
+        integrates a core library, UI framework, HLS & MPEG-DASH capabilities,
+        ads and monetization, and a variety of analytics options.
+
+    </div>
+</div>

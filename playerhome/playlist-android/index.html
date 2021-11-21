@@ -1,0 +1,1228 @@
+<!DOCTYPE html><html><head>
+    <title>Playlist Configuration - API Documentation</title>
+    <base href="/">
+    <link rel="icon" href="assets/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-68472312-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-68472312-3');
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdnapisec.kaltura.com/p/2421271/embedPlaykitJs/uiconf_id/43006971"></script>
+
+
+    <script type="text/javascript">
+      window.lucybot = {};
+      function checkBooleanQueryParam(name) {
+        return !!window.location.href.substring(window.location.href.indexOf('?')).match(new RegExp('[?&]' + name + '=[^0f]'));
+      }
+      window.lucybot.openapi = {};
+      window.lucybot.prerender = checkBooleanQueryParam('prerender');
+      window.lucybot.embed = checkBooleanQueryParam('embed');
+      window.lucybot.showNavigation = checkBooleanQueryParam('showNavigation');
+    </script>
+
+  <link href="styles.bundle.css" rel="stylesheet"><meta name="title" content="Playlist Configuration - API Documentation"><meta name="description" content="undefined"><meta name="keywords" content=""><style ng-transition="lucybot-doc-app">.discussion-frame[_ngcontent-c0] {
+        border: 1px solid #333;
+        width: 100%;
+        height: 400px;
+      }
+      .docs-contents[_ngcontent-c0], search-results[_ngcontent-c0] {
+        max-width: 800px;
+      }</style><style ng-transition="lucybot-doc-app">.nav-tabs[_ngcontent-c1] {
+        margin-bottom: 15px;
+      }</style></head>
+
+  <body>
+    <div id="Navbar"><div id="KalturaSignInModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Log in to your Kaltura.com account</h3>
+      </div>
+      <form onsubmit="startKalturaLogin(); return false">
+        <div class="modal-body">
+          <div style="display:none" class="alert alert-danger">
+            There was an error signing in. Please check your account details and try again.
+          </div>
+          <p>Log into your Kaltura account using your e-mail and password</p>
+          <label>E-mail</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaEmail">
+          </div>
+          <div class="partner-id-input">
+            <label>Partner ID</label>
+            <div class="form-group">
+              <input class="form-control" type="number" name="KalturaPartnerId">
+            </div>
+          </div>
+          <label>Password</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="KalturaPassword">
+          </div>
+          <label>One Time Authentication code (leave empty if OTP is not enabled for your partner[s])</label>
+          <div class="form-group">
+            <input class="form-control" type="password" name="OTP">
+          </div>
+          <hr>
+          <p>Or use a pre-generated Kaltura Session</p>
+          <label>Kaltura Session ID (ks)</label>
+          <div class="form-group">
+            <input class="form-control" type="text" name="KalturaSession">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p class="text-left">Need an account? <a href="https://vpaas.kaltura.com/register.php?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Try Kaltura for free!</a></p>
+          <button id="KalturaSignInButton" type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaPartnerIDModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Choose a Kaltura Account</h3>
+      </div>
+      <div class="modal-body">
+        <p>Please choose a Kaltura Account ID (aka Partner ID) to use</p>
+        <div class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Account ID <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu"><li><i class="fa fa-spin fa-refresh"></i></li></ul>
+        </div>
+        <h1 class="text-center kaltura-loading"><i class="fa fa-spin fa-refresh"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaContinueSessionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Your session is about to expire</h3>
+      </div>
+      <div class="modal-body">
+        <p>Would you like to continue your session?</p>
+        <p>
+          </p><div class="btn-toolbar">
+            <a class="btn btn-primary" onclick="kalturaUser &amp;&amp; kalturaUser.ks ? setKalturaUser(kalturaUser) : jquery('#KalturaSignInModal').modal('show')" data-dismiss="modal">Continue</a>
+            <a class="btn btn-default" onclick="setKalturaUser(null)" data-dismiss="modal">Sign out</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="KalturaSecretsModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title">Account Secrets</h3>
+      </div>
+      <div class="modal-body">
+        <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+        <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav id="KalturaNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavbarCollapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <button type="button" class="side-menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img src="assets/images/KalturaLogo.png">
+        <!--
+        <span class="brand-subtitle">Developer</span>
+        -->
+      </a>
+      <div class="form-group has-feedback has-search">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        <input type="text" class="form-control g-search-box" placeholder="Search the documentation">
+      </div>
+    </div>
+    <div id="NavbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link">
+	        <a href="https://corp.kaltura.com/company/contact/">Contact Us</a>
+        </li>
+        <li class="navbar-link">
+          <a href="https://forum.kaltura.org">Community</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+  <div class="nav-tabs-b">
+    <!--see misc.js for how tabs are activated -->
+    <span class="subnav subnav-guides" data-to="/"><a>Guides</a></span>
+    <span class="subnav subnav-playerhome" data-to="/playerhome"><a>Player</a></span>
+    <span class="subnav subnav-api" data-to="/api-docs"><a>APIs</a></span>
+    <span class="subnav subnav-client" data-to="/Client_Libraries"><a>Client Libraries</a></span>
+    <span class="subnav subnav-workflows" data-to="/workflows"><a>Workflows</a></span>
+    <span class="subnav subnav-samples" data-to="/samples"><a>Samples</a></span>
+  </div>
+</nav>
+
+<div id="KalturaSidebar">
+  <div class="sidebar-content">
+    <div class="section">
+      <h4>Admin</h4>
+      <hr>
+      <div class="not-logged-in">
+        <p><i>Log in to see your account details</i></p>
+      </div>
+      <div class="logged-in" style="display:none">
+        <p><label>Partner ID:&nbsp;</label><span class="partnerId"></span></p>
+        <p id="KalturaShowSecrets">
+          <a onclick="window.jquery('#KalturaSecrets').show(); window.jquery('#KalturaShowSecrets').hide()">Show secrets</a>
+        </p>
+        <div id="KalturaSecrets" style="display:none">
+          <p><label>User Secret:&nbsp;</label><span class="kalturaUserSecret"></span></p>
+          <p><label>Admin Secret:&nbsp;</label><span class="kalturaAdminSecret"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Resources</h4>
+      <hr>
+      <p><a target="_blank" href="api-docs">API Docs</a></p>
+      <p><a target="_blank" href="console">API Console</a></p>
+    </div>
+
+    <div class="section">
+      <h4>From our blog</h4>
+      <hr>
+      <div id="KalturaBlogContent"></div>
+    </div>
+  </div>
+  <div class="sidebar-button">
+    <a class="hide-sidebar" onclick="hideKalturaSidebar()"><i class="fa fa-times"></i></a>
+    <a class="show-sidebar" style="display: none" onclick="showKalturaSidebar()">
+      <img src="assets/img/notes.svg">
+    </a>
+  </div>
+</div>
+
+<script>
+var keepNav = true;
+var keepSidebar = true;
+if (window.lucybot.embed) {
+  keepNav = false;
+  if (!window.lucybot.showNavigation) {
+    keepSidebar = false;
+  }
+}
+
+if (!keepNav) {
+  var elem = document.getElementById('KalturaNav');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-nav';
+}
+if (!keepSidebar) {
+  var elem = document.getElementById('KalturaSidebar');
+  if (elem) elem.remove();
+} else {
+  document.getElementsByTagName('body')[0].className += ' spaced-for-kaltura-sidebar';
+}
+</script>
+
+</div>
+
+    <app class="loading" ng-version="5.2.11">
+      <router-outlet></router-outlet><documentation _nghost-c0="" class="ng-star-inserted"><auth _ngcontent-c0="" _nghost-c1=""><!----></auth><div _ngcontent-c0="" class="container-fluid main-container" id="Documentation"><side-menu _ngcontent-c0="" basepage="documentation"><div class="main-page"><div class="side-menu-col"><a class="btn btn-default hidden show-menu-mobile-button" style=""><!----><span class="ng-star-inserted"><span>Navigate</span><i class="fa fa-right fa-caret-down"></i></span><!----></a><div class="side-menu py-5 hidden-xs"><h6 class="menu-heading" hidden=""><!----><span class="ng-star-inserted"> </span><!----><!----><div class="close-menu-button pull-right"><a><!----><img src="assets/icons/collapse.svg" class="ng-star-inserted"><!----></a></div><!----><div class="alt-txt ng-star-inserted"> <span>Expand All</span><span hidden="">Collapse All</span></div></h6><!----><div class="menu-items"><!----><side-menu-item class="ng-tns-c5-0 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-0 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Kaltura Player SDK's" href="/playerhome/Kaltura_Player_SDK_s"><img class="ng-tns-c5-0" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-0" innerhtml="Kaltura Player SDK's">Kaltura Player SDK's</span></a><!----><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-1 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-1 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Web Player" href="/playerhome/player/web"><img class="ng-tns-c5-1" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-1" innerhtml="Web Player">Web Player</span></a><!----><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-2 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-2 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="iOS Player" href="/playerhome/player/ios"><img class="ng-tns-c5-2" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-2" innerhtml="iOS Player">iOS Player</span></a><!----><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-3 ng-star-inserted"><div class="side-menu-item l1"><!----><!----><a class="title ng-tns-c5-3 inactive ng-star-inserted" preservefragment="" preservequeryparams="" title="Android Player" href="/playerhome/player/android"><img class="ng-tns-c5-3" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-3" innerhtml="Android Player">Android Player</span></a><!----><!----><!----></div><!----><div class="side-menu-children ng-tns-c5-3 ng-trigger ng-trigger-shrinkOut ng-star-inserted"><!----><side-menu-item class="ng-tns-c5-4 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-4 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Getting Started with the Player SDK" href="/playerhome/getting-started-android"><img class="ng-tns-c5-4" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-4" innerhtml="Getting Started with the Player SDK">Getting Started with the Player SDK</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-4 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-5 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-5 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Events" href="/playerhome/player-events-android"><img class="ng-tns-c5-5" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-5" innerhtml="Player Events">Player Events</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-5 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-6 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-6 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Settings" href="/playerhome/player-settings-android"><img class="ng-tns-c5-6" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-6" innerhtml="Player Settings">Player Settings</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-6 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-7 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-7 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Player Configuration" href="/playerhome/player-config-android"><img class="ng-tns-c5-7" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-7" innerhtml="Player Configuration">Player Configuration</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-7 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-8 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-8 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Security Provider" href="/playerhome/security-provider-android"><img class="ng-tns-c5-8" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-8" innerhtml="Security Provider">Security Provider</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-8 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-9 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-9 inactive truncate pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Download-to-go" href="/playerhome/download-to-go-android"><img class="ng-tns-c5-9" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-9" innerhtml="Download-to-go">Download-to-go</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-9 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-10 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-10 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Casting for Android" href="/playerhome/casting-android"><img class="ng-tns-c5-10" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-10" innerhtml="Casting for Android">Casting for Android</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-10 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-11 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-11 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="DRM Schemes" href="/playerhome/drm-android"><img class="ng-tns-c5-11" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-11" innerhtml="DRM Schemes">DRM Schemes</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-11 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-12 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-12 inactive pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Ad Plugins" href="/playerhome/ads-android"><img class="ng-tns-c5-12" src="assets/icons/Reporting.svg" hidden=""><span class="ng-tns-c5-12" innerhtml="Ad Plugins">Ad Plugins</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-12 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item><side-menu-item class="ng-tns-c5-13 ng-tns-c5-3 ng-star-inserted" style=""><div class="side-menu-item l2"><!----><!----><a class="title ng-tns-c5-13 active pr-50 ng-star-inserted" preservefragment="" preservequeryparams="" title="Playlist Configuration" href="/playerhome/playlist-android"><img class="ng-tns-c5-13" src="assets/icons/Reporting-a.svg" hidden=""><span class="ng-tns-c5-13" innerhtml="Playlist Configuration">Playlist Configuration</span></a><!----><span class="badge badge-pill badge-primary l3badge ng-tns-c5-13 ng-star-inserted" innerhtml="Guide">Guide</span><!----><!----></div><!----></side-menu-item></div></side-menu-item></div></div></div><div class="main-content"><h1 _ngcontent-c0="" class="breadcrumbs"><span _ngcontent-c0="">Kaltura Web Player Documentation</span><!----><span _ngcontent-c0="" class="ng-star-inserted"><i _ngcontent-c0="" class="fa fa-chevron-right"></i><span _ngcontent-c0="">Playlist Configuration</span></span><!----></h1><!----><div _ngcontent-c0=""><!----><div _ngcontent-c0="" class="docs-body"><!----><!----><div _ngcontent-c0="" class="docs-contents">  <title>Playlist for Android</title>
+
+  <meta name="description" content="VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. 
+">
+    <meta property="st:title" content="Playlist for Android">
+    <meta property="st:published_at" content="">
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+
+<script>
+window.jQuery = window.jquery;
+</script>
+
+
+  
+
+<script type="text/javascript">
+    try{Typekit.load();}catch(e){}
+  </script>
+
+
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
+
+<script type="text/javascript">
+    var switchTo5x=true;
+  </script>
+
+
+  
+
+<script type="text/javascript">var switchTo5x=true;</script>
+
+
+
+  
+
+
+<script type="text/javascript">
+    	
+	//back to top
+	if ($('#back-to-top').length) {
+    		var scrollTrigger = 100, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('#back-to-top').addClass('show');
+	            } else {
+	                $('#back-to-top').removeClass('show');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });
+	    $('#back-to-top a:first-child').on('click', function (e) {
+	        e.preventDefault();
+	        $('html,body').animate({
+	            scrollTop: 0
+	        }, 700);
+	    });
+	}
+
+</script>
+
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+<script>
+function verify_recapcha()
+{
+	var isCaptchaValidated = false;
+	var response = grecaptcha.getResponse();
+	if(response.length == 0) {
+	    isCaptchaValidated = false;
+	    alert('Please confirm that you are a Human.');
+	    return false;
+	} else {
+	    return true;
+	}
+
+}
+</script>
+
+
+<!--script type="text/javascript" src="assets/js/webflow.js"></script>
+
+
+
+
+<script type="text/javascript" src="assets/js/opentip-jquery.js"></script-->
+    <!--script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("176893769");
+  </script-->
+
+<!--link rel="stylesheet" type="text/css" href="assets/css/lity.min.css"-->
+<!--script type="text/javascript" src="assets/js/lity.min.js"></script-->
+
+  <!-- RTP tag -->
+
+
+<script type="text/javascript">
+(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+c[a].a=i;c[a].e=e;var g=h.createElement("script");g.async=true;g.type="text/javascript";
+g.src=f+'?aid='+i;var b=h.getElementsByTagName("script")[0];b.parentNode.insertBefore(g,b);
+})(window,document,"rtp","https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js","kaltura");
+rtp('send','view');
+rtp('get', 'campaign',true);
+</script>
+
+
+<!-- End of RTP tag -->
+
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+          <!--link rel="stylesheet" href="/site.css"-->
+<article>
+
+
+<div class="w-section side-nav-section">
+    <div class="w-container">
+      <!--a href="#" data-ix="show-temp-page-nav-column" class="w-button w-clearfix mobilebtn">Topics<span class="fa fa-chevron-down" style="null"></span></a-->
+      <div class="w-row body-columns">
+        <div class="docs-contents">
+          <div class="post-header">
+
+            <!-- INSERT JEKYLL CONTENT HERE -->
+
+          	<header class="post-header">
+    			<h1 class="post-title">Playlist for Android</h1>
+  			</header>
+
+			
+			
+			<div class="lastcommittable">
+				<span>Updated: Tue Apr 21 09:56:03 2020</span>, By <span class="commit-author">Gilad Nadav</span> <a class="editgithub" href="https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/player-portal/android/playlist-android.md" target="_blank">Contribute to this page</a>
+				<!--tr><td>Created on: Mon Feb 3 10:02:41 2020, By: Gilad Nadav</td></tr-->
+				<!--tr><td>Last commit: Tue Apr 21 09:56:03 2020, By <span class="commit-author">Gilad Nadav</span></td></tr-->
+			
+				<!-- 
+				
+				<tr>
+					<td>Gilad Nadav (18 commits) (<a href="mailto:gilad.nadav@kaltura.com">gilad.nadav@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!-- 
+				
+				<tr>
+					<td>Jess Portnoy (1 commits) (<a href="mailto:jess.portnoy@kaltura.com">jess.portnoy@kaltura.com</a>)</td>
+				</tr> -->
+
+				<!--  -->
+
+			</div>
+
+			
+
+		</div>
+
+            <div class="post-content">
+    		
+		<h1 id="playlist">
+        
+        
+          Playlist <a href="#playlist"></a>
+        
+        
+      </h1>
+
+<p>Kaltura Player provides several APIs that are used for loading, configuring, and manipulating playlists.</p>
+    
+      <h3 id="load-a-playlist">
+        
+        
+          Load A Playlist <a href="#load-a-playlist"></a>
+        
+        
+      </h3>
+<p>Before loading a playlist, you’ll need to set up a Kaltura Player instance:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code> <span class="n">val</span> <span class="n">playerInitOptions</span> <span class="o">=</span> <span class="n">PlayerInitOptions</span><span class="o">(</span><span class="n">PARTNER_ID</span><span class="o">)</span>
+ <span class="n">playerInitOptions</span><span class="o">.</span><span class="na">setAutoPlay</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+ <span class="n">player</span> <span class="o">=</span> <span class="n">KalturaOvpPlayer</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">this</span><span class="nd">@MainActivity</span><span class="o">,</span> <span class="n">playerInitOptions</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<p>To learn how to set up a Kaltura Player, please go over this document: <a href="https://developer.kaltura.com/player/android/getting-started-android">getting-started-android</a>.<br>
+<br>Once you have a Kaltura Player instance, you can load a playlist using one of the following methods:</p>
+    
+      <h4 id="by-playlist-id-ovp-only">
+        
+        
+          By Playlist ID (OVP Only) <a href="#by-playlist-id-ovp-only"></a>
+        
+        
+      </h4>
+
+<p>To load a playlist by ID, use OVPPlaylistIdOptions when calling <code class="highlighter-rouge">loadPlaylistById</code> method.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">val</span> <span class="n">ovpPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistIdOptions</span><span class="o">()</span>
+<span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistId</span> <span class="o">=</span> <span class="s">"0_w0hpzdni"</span>
+<span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylistById</span><span class="o">(</span><span class="n">ovpPlaylistIdOptions</span><span class="o">,</span>
+<span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+       <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"OVPPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+       <span class="o">}</span>
+<span class="o">})</span>
+</code></pre>
+</div>
+    
+      <h4 id="by-entry-list">
+        
+        
+          By Entry List <a href="#by-entry-list"></a>
+        
+        
+      </h4>
+    
+      <h5 id="ovp">
+        
+        
+          OVP <a href="#ovp"></a>
+        
+        
+      </h5>
+
+<p>To load a playlist by entryId list, use OVPMediaOptions &amp; OVPPlaylistOptions when calling loadPlaylist method.<br>
+<br>This method creates a playlist according to the given entries.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">var</span> <span class="n">ovpMediaOptions1</span> <span class="o">=</span> <span class="n">buildOvpMediaOptions</span><span class="o">()</span>
+<span class="n">var</span> <span class="n">ovpMediaOptions2</span> <span class="o">=</span> <span class="n">buildOvpMediaOptions</span><span class="o">()</span>
+<span class="n">var</span> <span class="n">ovpMediaOptions3</span> <span class="o">=</span> <span class="n">buildOvpMediaOptions</span><span class="o">()</span>
+
+<span class="n">var</span> <span class="n">mediaList</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">ovpMediaOptions1</span><span class="o">,</span> <span class="n">ovpMediaOptions2</span><span class="o">,</span> <span class="n">ovpMediaOptions3</span><span class="o">)</span>
+
+<span class="n">val</span> <span class="n">ovpPlaylistOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistOptions</span><span class="o">()</span>
+<span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOVPPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"2"</span><span class="o">)</span>
+<span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">ovpMediaOptionsList</span> <span class="o">=</span> <span class="n">mediaList</span>
+<span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylist</span><span class="o">(</span><span class="n">ovpPlaylistOptions</span><span class="o">,</span> 
+	<span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"OVPPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">})</span>
+
+<span class="kd">private</span> <span class="n">fun</span> <span class="nf">buildOvpMediaOptions</span><span class="o">():</span> <span class="n">OVPMediaOptions</span> <span class="o">{</span>
+      <span class="n">var</span> <span class="n">ovpMediaAsset</span> <span class="o">=</span> <span class="n">OVPMediaAsset</span><span class="o">()</span>
+      <span class="n">ovpMediaAsset</span><span class="o">.</span><span class="na">entryId</span> <span class="o">=</span> <span class="n">ENTRY_ID</span>
+      <span class="n">ovpMediaAsset</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span> <span class="kc">null</span>
+      <span class="n">val</span> <span class="n">ovpMediaOptions</span> <span class="o">=</span> <span class="n">OVPMediaOptions</span><span class="o">(</span><span class="n">ovpMediaAsset</span><span class="o">)</span>
+      <span class="n">ovpMediaOptions</span><span class="o">.</span><span class="na">startPosition</span> <span class="o">=</span> <span class="n">START_POSITION</span>
+      <span class="n">ovpMediaOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">();</span>
+
+     <span class="k">return</span> <span class="n">ovpMediaOptions</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h5 id="ott">
+        
+        
+          OTT <a href="#ott"></a>
+        
+        
+      </h5>
+
+<p>To load a playlist by entryId list, use <code class="highlighter-rouge">OVPMediaOptions</code> &amp; <code class="highlighter-rouge">OTTPlaylistOptions</code> when calling <code class="highlighter-rouge">loadPlaylist</code> method.<br>
+<br>This method creates a playlist according to the given entries.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">var</span> <span class="n">ottMediaOptions1</span> <span class="o">=</span> <span class="n">buildOttMediaOptions</span><span class="o">(</span><span class="s">"111111"</span><span class="o">,</span> <span class="s">"XXX_Main"</span><span class="o">)</span>
+<span class="n">val</span> <span class="n">ottMediaOptions2</span> <span class="o">=</span> <span class="n">buildOttMediaOptions</span><span class="o">(</span><span class="s">"222222"</span><span class="o">,</span> <span class="s">"YYY_Main"</span><span class="o">)</span>
+<span class="n">var</span> <span class="n">ottMediaOptions3</span> <span class="o">=</span> <span class="n">buildOttMediaOptions</span><span class="o">(</span><span class="s">"333333"</span><span class="o">,</span> <span class="s">"ZZZ_Main"</span><span class="o">)</span>
+
+<span class="n">var</span> <span class="n">mediaList</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">ottMediaOptions1</span><span class="o">,</span> <span class="n">ottMediaOptions2</span><span class="o">,</span> <span class="n">ottMediaOptions3</span><span class="o">)</span>
+
+<span class="n">val</span> <span class="n">ottPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OTTPlaylistOptions</span><span class="o">()</span>
+<span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOTTPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+<span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">ottMediaOptionsList</span> <span class="o">=</span> <span class="n">mediaList</span>
+
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylist</span><span class="o">(</span><span class="n">ottPlaylistIdOptions</span><span class="o">,</span>
+	 <span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"OTTPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+   <span class="o">}</span>
+<span class="o">})</span>
+
+<span class="kd">private</span> <span class="n">fun</span> <span class="nf">buildOttMediaOptions</span><span class="o">(</span><span class="n">assetId</span> <span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="n">format</span> <span class="o">:</span> <span class="n">String</span><span class="o">):</span> <span class="n">OTTMediaOptions</span> <span class="o">{</span>
+	<span class="n">val</span> <span class="n">ottMediaAsset</span> <span class="o">=</span> <span class="n">OTTMediaAsset</span><span class="o">()</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">assetId</span> <span class="o">=</span> <span class="n">assetId</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">assetType</span> <span class="o">=</span> <span class="n">APIDefines</span><span class="o">.</span><span class="na">KalturaAssetType</span><span class="o">.</span><span class="na">Media</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">contextType</span> <span class="o">=</span> <span class="n">APIDefines</span><span class="o">.</span><span class="na">PlaybackContextType</span><span class="o">.</span><span class="na">Playback</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">assetReferenceType</span> <span class="o">=</span> <span class="n">APIDefines</span><span class="o">.</span><span class="na">AssetReferenceType</span><span class="o">.</span><span class="na">Media</span>
+    <span class="n">ottMediaAsset</span><span class="o">.</span><span class="na">protocol</span> <span class="o">=</span> <span class="n">PhoenixMediaProvider</span><span class="o">.</span><span class="na">HttpProtocol</span><span class="o">.</span><span class="na">Https</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span> <span class="kc">null</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">referrer</span> <span class="o">=</span> <span class="s">"app://MyTestApp"</span><span class="o">;</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">formats</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">format</span><span class="o">)</span>
+    
+    <span class="n">val</span> <span class="n">ottMediaOptions</span> <span class="o">=</span> <span class="n">OTTMediaOptions</span><span class="o">(</span><span class="n">ottMediaAsset</span><span class="o">)</span>
+    <span class="n">ottMediaOptions</span><span class="o">.</span><span class="na">startPosition</span> <span class="o">=</span> <span class="n">START_POSITION</span>
+    <span class="k">return</span> <span class="n">ottMediaOptions</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h3 id="by-configuration">
+        
+        
+          By Configuration <a href="#by-configuration"></a>
+        
+        
+      </h3>
+    
+      <h4 id="basic">
+        
+        
+          Basic <a href="#basic"></a>
+        
+        
+      </h4>
+
+<p>You can load a Manual Basic playlist by configuring the playlist data and items explicitly using the <a href="./api.md#configure-3"><code class="highlighter-rouge">configure</code></a> method.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">var</span> <span class="n">basicMediaOptions0</span> <span class="o">=</span> <span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="s">"1_w9zx2eti1"</span><span class="o">,</span> <span class="n">SOURCE_URL</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">50000</span><span class="o">,</span> <span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+<span class="n">val</span> <span class="n">basicMediaOptions1</span> <span class="o">=</span> <span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="s">"0_uka1msg4"</span><span class="o">,</span> <span class="n">SOURCE_URL2</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+<span class="n">var</span> <span class="n">basicMediaOptions2</span> <span class="o">=</span> <span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="s">"1_w9zx2eti2"</span><span class="o">,</span> <span class="n">SOURCE_URL</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">())</span>
+
+<span class="n">var</span> <span class="n">basicMediaOptionsList</span> <span class="o">=</span> <span class="n">listOf</span><span class="o">(</span><span class="n">basicMediaOptions0</span><span class="o">,</span> <span class="n">basicMediaOptions1</span><span class="o">,</span> <span class="n">basicMediaOptions2</span><span class="o">)</span>
+        
+<span class="n">val</span> <span class="n">basicPlaylistIdOptions</span> <span class="o">=</span> <span class="n">BasicPlaylistOptions</span><span class="o">()</span>
+<span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestBasicPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+<span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">basicMediaOptionsList</span> <span class="o">=</span> <span class="n">basicMediaOptionsList</span>
+        
+<span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylist</span><span class="o">(</span><span class="n">basicPlaylistIdOptions</span><span class="o">,</span> 
+	<span class="n">KalturaPlayer</span><span class="o">.</span><span class="na">OnPlaylistControllerListener</span><span class="o">()</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+   <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"BasicPlaylist Loaded  entry = ${playlistController.playlist.id}"</span><span class="o">)</span>
+   <span class="o">}</span>
+<span class="o">})</span>
+
+<span class="kd">private</span> <span class="n">fun</span> <span class="nf">createBasicMediaOptions</span><span class="o">(</span><span class="nl">id:</span> <span class="n">String</span><span class="o">,</span> <span class="n">url</span> <span class="o">:</span> <span class="n">String</span><span class="o">,</span> <span class="nl">countdownOptions:</span> <span class="n">CountDownOptions</span><span class="o">):</span> <span class="n">BasicMediaOptions</span> <span class="o">{</span>
+
+  <span class="n">val</span> <span class="n">mediaEntry</span> <span class="o">=</span> <span class="n">PKMediaEntry</span><span class="o">()</span>
+  <span class="n">mediaEntry</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span>
+
+  <span class="n">mediaEntry</span><span class="o">.</span><span class="na">mediaType</span> <span class="o">=</span> <span class="n">PKMediaEntry</span><span class="o">.</span><span class="na">MediaEntryType</span><span class="o">.</span><span class="na">Vod</span>
+  <span class="n">val</span> <span class="n">mediaSources</span> <span class="o">=</span> <span class="n">createMediaSources</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">url</span><span class="o">)</span>
+  <span class="n">mediaEntry</span><span class="o">.</span><span class="na">sources</span> <span class="o">=</span> <span class="n">mediaSources</span>
+  <span class="k">return</span> <span class="nf">BasicMediaOptions</span><span class="o">(</span><span class="n">mediaEntry</span><span class="o">,</span> <span class="n">countdownOptions</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="configure-the-playlist">
+        
+        
+          Configure the Playlist <a href="#configure-the-playlist"></a>
+        
+        
+      </h2>
+    
+      <h3 id="playlist-options">
+        
+        
+          Playlist Options <a href="#playlist-options"></a>
+        
+        
+      </h3>
+    <hr>
+      <h4 id="playlist-metadata---playlistmetadata">
+        
+        
+          Playlist Metadata - <code class="highlighter-rouge">playlistMetadata</code> <a href="#playlist-metadata---playlistmetadata"></a>
+        
+        
+      </h4>
+<p>Should be used for all Playlists except the OVP by id configuration where this data is retrieved from the BE.</p>
+    
+      <h4 id="start-index---startindex">
+        
+        
+          Start Index - <code class="highlighter-rouge">startIndex</code> <a href="#start-index---startindex"></a>
+        
+        
+      </h4>
+<p>The index that the playlist playback should start from (default index = 0)</p>
+    
+      <h4 id="loop---loopenabled">
+        
+        
+          Loop - <code class="highlighter-rouge">loopEnabled</code> <a href="#loop---loopenabled"></a>
+        
+        
+      </h4>
+<p>The playlist will play the first media in the playlist once the last media in the playlist has ended (default false)</p>
+    
+      <h4 id="auto-continue--autocontinue">
+        
+        
+          Auto Continue -<code class="highlighter-rouge">autoContinue</code> <a href="#auto-continue--autocontinue"></a>
+        
+        
+      </h4>
+<p>The next media in the playlist will be played automatically once the previous media ended (default true)</p>
+    
+      <h4 id="recover-on-error---recoveronerror">
+        
+        
+          Recover On Error - <code class="highlighter-rouge">recoverOnError</code> <a href="#recover-on-error---recoveronerror"></a>
+        
+        
+      </h4>
+<p>The playlist manager is able to recover from errors once that flag is enabled, so it will continue to the next media whether the current media is incorrect or it’s URL is broken. If auto continue is enabled it will auto play without user intervention.</p>
+    
+      <h4 id="count-down-options---playlistcountdownoptions">
+        
+        
+          Count Down Options - <code class="highlighter-rouge">playlistCountDownOptions</code> <a href="#count-down-options---playlistcountdownoptions"></a>
+        
+        
+      </h4>
+<p>The logic by which count down start event will be fired (default is 10 last sec for 10 sec).<br>
+if <code class="highlighter-rouge">autoContinue</code> feature is enabled  at the end of the count down the <code class="highlighter-rouge">PlaylistController</code> will trigger auto continue feature to play next media. If auto continue == false countdown will events will not be fired.<br>
+If <code class="highlighter-rouge">loop</code> is disabled the events will not be fired for last media.</p>
+    
+      <h4 id="use-api-captions---useapicaptions">
+        
+        
+          Use API Captions - <code class="highlighter-rouge">useApiCaptions</code> <a href="#use-api-captions---useapicaptions"></a>
+        
+        
+      </h4>
+<p>used only for OVP configuration this can be configured on the playlist level or media level</p>
+
+<p><br>To change this behavior, configure the playlist options using one of the following methods:<br>
+<br>Via the API:</p>
+    
+      <h4 id="example">
+        
+        
+          Example: <a href="#example"></a>
+        
+        
+      </h4>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>
+       <span class="c1">// OVPPlaylistIdOptions</span>
+       
+       <span class="n">val</span> <span class="n">ovpPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistIdOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistId</span> <span class="o">=</span> <span class="s">"zzzzzzz"</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">useApiCaptions</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span>  <span class="kc">true</span>
+        <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+       <span class="c1">// OVPPlaylistOptions</span>
+       
+       <span class="n">val</span> <span class="n">ovpPlaylistOptions</span> <span class="o">=</span> <span class="n">OVPPlaylistOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">ks</span> <span class="o">=</span>  <span class="s">""</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOTTPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">ovpMediaOptionsList</span> <span class="o">=</span> <span class="n">ovpMediaOptionsList</span> <span class="c1">//(useApiCaptions is configured for each media separetly)</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+       <span class="c1">// OVPPlaylistOptions </span>
+       <span class="n">val</span> <span class="n">ottPlaylistIdOptions</span> <span class="o">=</span> <span class="n">OTTPlaylistOptions</span><span class="o">()</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestOTTPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">ottMediaOptionsList</span> <span class="o">=</span> <span class="n">ottMediaOptionsList</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">ottPlaylistIdOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+       <span class="c1">// BasicPlaylistOptions  </span>
+       <span class="n">val</span> <span class="n">basicPlaylistIdOptions</span> <span class="o">=</span> <span class="n">BasicPlaylistOptions</span><span class="o">()</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">startIndex</span> <span class="o">=</span>  <span class="mi">0</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistMetadata</span> <span class="o">=</span> <span class="n">PlaylistMetadata</span><span class="o">().</span><span class="na">setName</span><span class="o">(</span><span class="s">"TestBasicPlayList"</span><span class="o">).</span><span class="na">setId</span><span class="o">(</span><span class="s">"1"</span><span class="o">)</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">()</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">basicMediaOptionsList</span> <span class="o">=</span> <span class="n">basicMediaOptionsList</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">loopEnabled</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">autoContinue</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">recoverOnError</span> <span class="o">=</span> <span class="kc">false</span>
+        
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Note: The <code class="highlighter-rouge">autoContinue</code> property is relevant only for the second item onwards.<br>
+<br>To control the first entry playback, set the <code class="highlighter-rouge">autoPlay</code> property to the desired value (default = true).</p>
+</blockquote>
+    
+      <h3 id="playlist-count-countdown-options">
+        
+        
+          Playlist Count Countdown Options <a href="#playlist-count-countdown-options"></a>
+        
+        
+      </h3>
+
+<p>When the current item is about to end and the playlist is set to continue automatically  by setting <code class="highlighter-rouge">autoContinue	 = true</code>, the application will get countdown start event. Then the application can display up next or watch credits pop up.<br>
+Once countdown is over, countdown ended event will be fired.<br>
+Using the <code class="highlighter-rouge">disableCountDown</code> API, application can cancel the current countdown configuration, so it will not be executed and the <code class="highlighter-rouge">PlaylistController</code> will not trigger the <code class="highlighter-rouge">playNext</code> API.</p>
+    
+      <h5 id="example-1">
+        
+        
+          Example: <a href="#example-1"></a>
+        
+        
+      </h5>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">disableCountDown</span><span class="o">()</span>
+</code></pre>
+</div>
+
+<p>By default, the countdown is fired at the last 10 media seconds for the last 10 seconds of the media.<br>
+The <code class="highlighter-rouge">CountDownOptions</code> <code class="highlighter-rouge">timeToShow</code> and <code class="highlighter-rouge">duration</code> values are presented in milliseconds.</p>
+
+<p><br>To change this behavior, configure the <code class="highlighter-rouge">CountDownOptions</code><br>
+<br> For example, to show the countdown for 20 seconds until the end, configure:<br>
+<br>Via the API:</p>
+
+<p>OVP by id - exists only for the playlist level.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">20000</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<p>OVP/OTT by entries list - exists both on playlist level or media level.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ovpPlaylistOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">ovpMediaOptions</span><span class="o">.</span><span class="na">playlistCountDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">90000</span><span class="o">,</span> <span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</code></pre>
+</div>
+
+<p>By configuration:</p>
+
+<p>Available for playlist level or media level</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">basicPlaylistIdOptions</span><span class="o">.</span><span class="na">countDownOptions</span> <span class="o">=</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">5000</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">createBasicMediaOptions</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="s">"1_w9zx2eti1"</span><span class="o">,</span> <span class="n">SOURCE_URL</span><span class="o">,</span> <span class="n">CountDownOptions</span><span class="o">(</span><span class="mi">60000</span><span class="o">,</span> <span class="mi">10000</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+</code></pre>
+</div>
+
+<p>Note:<br>
+Once the <code class="highlighter-rouge">playlistCountDownEnd</code> event is fired, the next media entry in the playlist a will be played.</p>
+    
+      <h2 id="playlistcontroller-interface">
+        
+        
+          PlaylistController Interface <a href="#playlistcontroller-interface"></a>
+        
+        
+      </h2>
+
+<p>Once playlist is loaded the callback will return a controller object the can be used to control the playlist life cycle from the application perspective.</p>
+
+<p>Another option to get a reference to the controller, is to <br>
+call <code class="highlighter-rouge">player?.playlistController</code> with the required API from the interface after the playlist is loaded.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PlaylistController</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * getPlaylist - get current playlist data
+     *
+     * @return - PKPlaylist
+     */</span>
+    <span class="n">PKPlaylist</span> <span class="nf">getPlaylist</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * getPlaylistType - get current playlist type OVP_ID,OVP_LIST,OTT_LIST,BASIC_LIST
+     *
+     * @return - PKPlaylistType
+     */</span>
+    <span class="n">PKPlaylistType</span> <span class="nf">getPlaylistType</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * getCurrentPlaylistMedia - get current playlist media data.
+     *
+     * @return - PKPlaylistMedia
+     */</span>
+    <span class="n">PKPlaylistMedia</span> <span class="nf">getCurrentPlaylistMedia</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * getCurrentMediaIndex for current playing media.
+     *
+     * @return - int
+     */</span>
+    <span class="kt">int</span> <span class="nf">getCurrentMediaIndex</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * GetCurrentCountDownOptions for current media.
+     *
+     * @return - CountDownOptions
+     */</span>
+    <span class="n">CountDownOptions</span> <span class="nf">getCurrentCountDownOptions</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * DisableCountDown for current media.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">disableCountDown</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * Preload next item - will do the provider request for specific media to save network calls not relevant for basic player.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">preloadNext</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * PreloadItem by index - will do the provider request for specific media to save network calls not relevant for basic player.
+     *
+     * @param index - media index in playlist.
+     */</span>
+    <span class="kt">void</span> <span class="nf">preloadItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * PlayItem by index.
+     *
+     * @param index - media index in playlist.
+     */</span>
+    <span class="kt">void</span> <span class="nf">playItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * PlayItem by index and auto play configuration.
+     *
+     * @param index - media index in playlist.
+     * @param isAutoPlay - isAutoPlay.
+     */</span>
+    <span class="kt">void</span> <span class="nf">playItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">isAutoPlay</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * playNext - play the next media in the playlist.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">playNext</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * playPrev - play the previous media in the playlist.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">playPrev</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * replay - play the playlist from the first index.
+     *
+     */</span>
+    <span class="kt">void</span> <span class="nf">replay</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * isMediaLoaded - validation if media was fetched/played at least one time so the playback information is available.
+     *
+     * @param mediaId - media id in playlist.
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isMediaLoaded</span><span class="o">(</span><span class="n">String</span> <span class="n">mediaId</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * setLoop - configure the controller to play the playlist again
+     * when last playlist media is ended
+     *
+     * @param mode - enabled/disabled.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setLoop</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mode</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * isLoopEnabled - validation if playlist controller is configured to support setLoop mode.
+     *
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isLoopEnabled</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * setAutoContinue - configure the controller to play the playlist in setAutoContinue mode
+     *
+     * @param mode - enabled/disabled.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setAutoContinue</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mode</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * isAutoContinueEnabled - validation if playlist controller is configured to support setAutoContinue mode.
+     *
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isAutoContinueEnabled</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * setRecoverOnError - ignore media playback errors and continue
+     *
+     * @param mode - enabled/disabled.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setRecoverOnError</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mode</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * isRecoverOnError - validation if playlist controller should recover on error.
+     *
+     * @return - boolean
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">isRecoverOnError</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * release - should e called if we want to reuse the player for single media or for loading new play list.
+     */</span>
+    <span class="kt">void</span> <span class="nf">release</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * setPlaylistOptions - configure the controller with the initial playlist options
+     *
+     * @param playlistOptions - playlist initial configuration.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setPlaylistOptions</span><span class="o">(</span><span class="n">PlaylistOptions</span> <span class="n">playlistOptions</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * setPlaylistCountDownOptions - update the current playlist countdown configuration
+     *
+     * @param playlistCountDownOptions - playlist countdown.
+     */</span>
+    <span class="kt">void</span> <span class="nf">setPlaylistCountDownOptions</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">CountDownOptions</span> <span class="n">playlistCountDownOptions</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>##Playlist Navigation</p>
+
+<p>Using the <code class="highlighter-rouge">PlaylistController</code> API, you can get the playlist data and then switch between the items.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// switch to the next item</span>
+<span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">playNext</span><span class="o">()</span>
+
+<span class="c1">// switch to the previous item</span>
+<span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">playPrev</span><span class="o">()</span>
+
+<span class="c1">// switch to a specific item by index</span>
+<span class="n">player</span><span class="o">?.</span><span class="na">playlistController</span><span class="o">?.</span><span class="na">playItem</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</code></pre>
+</div>
+    
+      <h2 id="change-playlist">
+        
+        
+          Change Playlist <a href="#change-playlist"></a>
+        
+        
+      </h2>
+
+<p>To clean the playlist data, you’ll need to call the playlist controller <code class="highlighter-rouge">release()</code> API<br>
+<br>Here is an example for how it is possible to change the playlist using the <code class="highlighter-rouge">release</code> method when previous playlist ended.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">player</span><span class="o">?.</span><span class="na">addListener</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">PlaylistEvent</span><span class="o">.</span><span class="na">playListEnded</span><span class="o">)</span> <span class="o">{</span> <span class="n">event</span> <span class="o">-&gt;</span>
+      <span class="n">log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"PLAYLIST playListEnded"</span><span class="o">)</span>
+       <span class="n">ovpPlaylistIdOptions</span><span class="o">.</span><span class="na">playlistId</span> <span class="o">=</span> <span class="s">"0_jco198ds"</span>
+       <span class="n">player</span><span class="o">?.</span><span class="na">loadPlaylistById</span><span class="o">(</span><span class="n">ovpPlaylistIdOptions</span><span class="o">)</span> <span class="o">{</span> <span class="n">playlistController</span><span class="o">,</span> <span class="n">error</span> <span class="o">-&gt;</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">error</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Snackbar</span><span class="o">.</span><span class="na">make</span><span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">content</span><span class="o">),</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">,</span> <span class="n">Snackbar</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">()</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">playbackControlsManager</span><span class="o">?.</span><span class="na">addChangeMediaImgButtonsListener</span><span class="o">(</span><span class="n">playlistController</span><span class="o">.</span><span class="na">playlist</span><span class="o">.</span><span class="na">mediaListSize</span><span class="o">)</span>
+        <span class="o">}</span>
+     <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+    
+      <h2 id="playlist-events">
+        
+        
+          Playlist Events <a href="#playlist-events"></a>
+        
+        
+      </h2>
+
+<p>Application can add listeners to the following events<br>
+using these events application can react to UI changes for example.</p>
+
+<p>These events are defined in <code class="highlighter-rouge">PlaylistEvent</code> class.<br>
+Please check the class for the event payload.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    public enum Type {
+        PLAYLIST_LOADED,
+        PLAYLIST_STARTED,
+        PLAYLIST_ENDED,
+        PLAYLIST_COUNT_DOWN_START,
+        PLAYLIST_COUNT_DOWN_END,
+        PLAYLIST_LOOP_STATE_CHANGED,
+        PLAYLIST_SUFFLE_STATE_CHANGED,
+        PLAYLIST_AUTO_CONTINUE_STATE_CHANGED,
+        PLAYLIST_ERROR,
+        PLAYLIST_LOAD_MEDIA_ERROR
+    }    
+        player?.addListener(this, PlaylistEvent.playListLoaded) { event -&gt;
+            log.d("playListLoaded " + event.playlist.name)
+        }
+
+        player?.addListener(this, PlaylistEvent.playListStarted) { event -&gt;
+            log.d("playListStarted " + event.playlist.name)
+        }
+
+
+        player?.addListener(this, PlaylistEvent.playListEnded) { event -&gt;
+            log.d("PlaylistEnded " +  event.playlist.name)
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistCountDownStart) { event -&gt;
+            log.d("playlistCountDownStart currentPlayingIndex = " + event.currentPlayingIndex + " durationMS = " + event.playlistCountDownOptions.durationMS);
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistCountDownEnd) { event -&gt;
+            log.d("playlistCountDownEnd currentPlayingIndex = " + event.currentPlayingIndex + " durationMS = " + event.playlistCountDownOptions.durationMS);
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistLoopStateChanged) { event -&gt;
+            log.d("playlistLoopStateChanged " + event.mode);
+        }
+
+        player?.addListener(this, PlaylistEvent.playlistAutoContinueStateChanged) { event -&gt;
+            log.d("PLAYLIST playlistAutoContinueStateChanged " + event.mode)
+        }
+        
+        player?.addListener(this, PlaylistEvent.playListError) { event -&gt;
+            log.d("playListError = " + event.error.message);
+        }
+                player?.addListener(this, PlaylistEvent.playlistLoadMediaError) { event -&gt;
+            log.d("playListMediaError = " + event.error.message);
+        }
+</code></pre>
+</div>
+		
+</div></div></div></div></div></article>
+
+
+      </div>
+    </div>
+
+<!-- customer.io -->
+<!--script type="text/javascript">
+    var _cio = _cio || [];
+    (function() {
+      var a,b,c;a=function(f){return function(){_cio.push([f].
+      concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+      "sidentify","track","page"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+      var t = document.createElement('script'),
+          s = document.getElementsByTagName('script')[0];
+      t.async = true;
+      t.id    = 'cio-tracker';
+      t.setAttribute('data-site-id', 'd52b0167909beb4a2cf0');
+      t.src = 'https://assets.customer.io/assets/track.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script-->
+  <!-- marketo -->
+  
+
+<script type="text/javascript">
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('984-SDM-859');
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = 'https://munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+
+
+
+<!--script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5"></script-->
+</div><!----><!----><!----></div></div><!----></div></div></side-menu></div></documentation>
+      </app>
+
+    <div id="Footer"><div class="footer" id="KalturaFooterContainer">
+
+  <div class="kaltura-foot-links">
+    <div class="container" style="width: 100%;">
+      <div class="row">
+        <div class="col col-xs-12 col-lg-3">
+          <img src="assets/icons/kaltura-logo.png" style="width: 120px;">
+          <div class="social-container" style="padding-top:20px;">
+            <a href="https://twitter.com/Kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/twitter.png" style="width:32px;"></a>
+            <a href="https://www.linkedin.com/company/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/linkedin.png" style="width:32px;"></a>
+            <a href="https://github.com/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/github.png" style="width:32px;"></a>
+            <a href="https://stackoverflow.com/questions/tagged/kaltura" target="_blank" style="padding-right:16px;"><img src="assets/icons/stackoverflow.png" style="width:32px;"></a>
+          </div>
+        </div>
+        <div class="col col-xs-12 col-lg-9">
+          <div class="row">
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Media Services</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="/Home">Overview</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&amp;utm_campaign=login&amp;utm_medium=website">Register for a free Trial</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Resources</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://knowledge.kaltura.com/">Kaltura Knowledge Center</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://github.com/kaltura">Kaltura on Github</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Contact</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/company/contact/">Support</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/company/contact/">Request Training</a></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/company/contact/">Talk to Sales</a></div>
+            </div>
+            <div class="col col-xs-12 col-lg-3">
+              <div class="title">Community</div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://forum.kaltura.org/">Developer Forum</a><br></div>
+              <div class="link"><a style="color: white;font-size:0.9em;" href="https://corp.kaltura.com/video-technology-marketplace/">Partner Network</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+if (window.lucybot.embed) {
+  elem = document.getElementById('KalturaFooterContainer');
+  if (elem) elem.remove();
+}
+</script>
+
+</div>
+  <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
+
+<script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/home.html&q;:null,&q;G.http://localhost:3333/assets/documentation/home.html&q;:{&q;body&q;:&q;&l;!DOCTYPE html&g;\n&l;html&g;\n\n&l;body&g;\n    &l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n    &l;script&g;\n        window.jQuery = window.jquery;\n    &l;/script&g;\n\n    &l;div class=\&q;home-container\&q;&g;\n        &l;div class=\&q;row\&q;&g;\n            &l;div class=\&q;col col-sm-8 title-container\&q;&g;\n                &l;div class=\&q;card\&q;&g;\n                    &l;div class=\&q;card-body\&q;&g;\n                        &l;h5 class=\&q;card-title\&q;&g;The Media APIs Handbook&l;/h5&g;\n                        &l;p class=\&q;card-text\&q;&g;Documentation, Guides, and Samples to get you started quickly, make serious\n                            progress, find inspiration, or all of the above.&l;/p&g;\n                        &l;a href=\&q;/Introduction_to_Kaltura_Media_Services\&q; class=\&q;btn btn-primary\&q;&g;Get Started&l;/a&g;\n                        &l;a href=\&q;https://corp.kaltura.com/video-paas/registration/?utm_source=developertools&a;utm_campaign=login&a;utm_medium=website\&q;\n                            class=\&q;btn btn-outline-primary\&q;&g;Create an Account&l;/a&g;\n                    &l;/div&g;\n                &l;/div&g;\n            &l;/div&g;\n            &l;div class=\&q;col col-sm-4 diagram\&q;&g;\n                &l;img src=\&q;assets/images/interactive-video.png\&q; alt=\&q;diagram\&q;&g;\n            &l;/div&g;\n        &l;/div&g;\n        &l;div class=\&q;explore-container\&q;&g;\n            &l;div class=\&q;title\&q;&g;\n                &l;span&g;Explore Kaltura Guides&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;body\&q;&g;\n                &l;div class=\&q;row\&q;&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Media Management &a;amp; Streaming\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Build a media hub to manage digital assets and stream any video anywhere\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/Introduction_to_Kaltura_Media_Services\&q;&g;Get Started &l;img\n                                        src=\&q;assets/icons/ArrowRight.svg\&q; alt=\&q;card\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Video Player\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Use our video player play your videos on the web or mobile\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/player\&q;&g;Start Playing&l;img src=\&q;assets/icons/ArrowRight.svg\&q; alt=\&q;card\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Real-Time Conferencing\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Integrate a virtual meeting room or classroom into any app for any need\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a\n                                    href=\&q;/Real-time-Video-Meetings-Experience/Integrating-the-Embedded-Meetings-Experience-App.html\&q;&g;Start\n                                    Meeting\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Live Webcasting\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    A live stream for any size audience, anytime and anywhere, with one single API\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/Live-Video-Webcasting/Creating-and-Managing-Live-Webcasts.html\&q;&g;Start\n                                    Webcasting\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Analytics &a;amp; Reporting\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Add measurement and reporting tools to your videos to track your viewership and\n                                    their engagement\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a\n                                    href=\&q;/Analytics-and-Reporting/Intro-to-Kaltura-Video-Analytics-and-Best-Practices.html\&q;&g;Gather\n                                    Data\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                    &l;div class=\&q;col col-lg-4\&q;&g;\n                        &l;div class=\&q;card\&q;&g;\n                            &l;div class=\&q;card-body\&q;&g;\n                                &l;h5 class=\&q;card-title\&q;&g;\n                                    Embedded Experience Components\n                                &l;/h5&g;\n                                &l;p class=\&q;card-text\&q;&g;\n                                    Put on any of our ready-to-play experitence modules, including the recorder, video\n                                    composer, and more\n                                &l;/p&g;\n                            &l;/div&g;\n                            &l;div class=\&q;card-footer home-card-footer\&q;&g;\n                                &l;a href=\&q;/Introduction-to-Kaltura-Media-Services/Experience-Components.html\&q;&g;Plug and\n                                    Play\n                                    &l;img alt=\&q;card\&q; src=\&q;assets/icons/ArrowRight.svg\&q;&g;&l;/a&g;\n                            &l;/div&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                &l;/div&g;\n            &l;/div&g;\n        &l;/div&g;\n        &l;div class=\&q;code-container\&q;&g;\n            &l;div class=\&q;title\&q;&g;\n                &l;span&g;Your Work, Sorted.&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;code-tabs\&q;&g;\n                &l;span class=\&q;active\&q; lang=\&q;php\&q;&g;&l;a href=\&q;\&q;&g;PHP&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;java\&q;&g;&l;a href=\&q;\&q;&g;Java&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;python\&q;&g;&l;a href=\&q;\&q;&g;Python&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;javascript\&q;&g;&l;a href=\&q;\&q;&g;Node&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;csharp\&q;&g;&l;a href=\&q;\&q;&g;C#&l;/a&g;&l;/span&g;\n                &l;span class=\&q;inactive\&q; lang=\&q;ruby\&q;&g;&l;a href=\&q;\&q;&g;Ruby&l;/a&g;&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;row\&q;&g;\n                &l;div class=\&q;col col-lg-8\&q;&g;\n                    &l;div class=\&q;code php\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;php\&q;&g;\n&a;lt;?php\nrequire_once(&s;lib/KalturaClient.php&s;);\n\n$config = new KalturaConfiguration();\n$config-&a;gt;setServiceUrl(&s;https://www.kaltura.com&s;);\n$client = new KalturaClient($config);\n\n$entry = new KalturaMediaEntry();\n$entry-&a;gt;name = &a;quot;My First Video&a;quot;;\n\ntry {\n    $result = $client-&a;gt;media-&a;gt;add($entry);\n    var_dump($result);\n} catch (Exception $e) {\n    echo $e-&a;gt;getMessage();\n}\n?&a;gt;\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code java\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;java\&q;&g;\npackage com.kaltura.code.example;\nimport com.kaltura.client.enums.*;\n\nclass CodeExample {\n    public static void main(String[] args) {\n        Client client = CodeExample.generateKalturaClient();\n        MediaEntry entry = new MediaEntry();\n        entry.setName(&a;quot;My First Video&a;quot;);\n\n        AddMediaBuilder requestBuilder = MediaService.add(entry)\n            .setCompletion(new OnCompletion&a;lt;Response&a;lt;MediaEntry&a;gt;&a;gt;() {\n                @Override\n                public void onComplete(Response&a;lt;MediaEntry&a;gt; result) {\n                    System.out.println(result);\n                }\n            });\n\n        APIOkRequestsExecutor.getExecutor().queue(requestBuilder.build(client));\n    }\n}\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code python\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;python\&q;&g;\nfrom KalturaClient import *\nfrom KalturaClient.Plugins.Core import *\n\nconfig = KalturaConfiguration()\nconfig.serviceUrl = &a;quot;https://www.kaltura.com/&a;quot;\nclient = KalturaClient(config)\nentry = KalturaMediaEntry()\nentry.name = &a;quot;My First Video&a;quot;\n\nresult = client.media.add(entry)\nprint(result)\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code javascript\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;javascript\&q;&g;\nconst kaltura = require(&s;kaltura-client&s;);\nconst config = new kaltura.Configuration();\nconfig.serviceUrl = &s;https://www.kaltura.com&s;;\nconst client = new kaltura.Client(config);\n\nlet entry = new kaltura.objects.MediaEntry();\nentry.name = &a;quot;My First Video&a;quot;;\n\nkaltura.services.media.add(entry)\n    .execute(client)\n    .then(result =&a;gt; {\n        console.log(result);\n    });\n\n})\n.execute(client);\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code csharp\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;csharp\&q;&g;\nusing Kaltura;\nnamespace Kaltura {\n    class CodeExample {\n    static void Main(string[] args) {\n        Client client = CodeExample.createKalturaClient();\n        bool done = false;\n        MediaEntry entry = new MediaEntry();\n        entry.Name = &a;quot;My First Video&a;quot;;\n\n        OnCompletedHandler&a;lt;MediaEntry&a;gt; handler = new OnCompletedHandler&a;lt;MediaEntry&a;gt;(\n            (MediaEntry result, Exception e) =&a;gt;\n            {\n                CodeExample.PrintObject(result);\n                done = true;\n            });\n        MediaService.Add(entry)\n            .SetCompletion(handler)\n            .Execute(client);\n    }\n}\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;div class=\&q;code ruby\&q;&g;\n                        &l;pre&g;\n                        &l;code class=\&q;ruby\&q;&g;\nrequire &s;kaltura&s;\ninclude Kaltura\n\nconfig = KalturaConfiguration.new()\nconfig.service_url = &s;https://www.kaltura.com&s;\nclient = KalturaClient.new(config);  \n\nentry = KalturaMediaEntry.new()\nentry.name = &a;quot;My First Video&a;quot;\n\nresults = client.media_service.add(entry)\nputs results.inspect\n                        &l;/code&g;\n                    &l;/pre&g;\n                    &l;/div&g;\n                    &l;img class=\&q;btn-copy\&q; src=\&q;assets/icons/btn-cp.svg\&q; alt=\&q;copy\&q;&g;\n                &l;/div&g;\n                &l;div class=\&q;col col-lg-4\&q;&g;\n                    &l;div class=\&q;card\&q;&g;\n                        &l;div class=\&q;card-body\&q;&g;\n                            &l;h5 class=\&q;card-title\&q;&g;\n                                Upload &a;amp; ingest media with ease\n                            &l;/h5&g;\n                            &l;p class=\&q;card-text\&q;&g;\n                                Uploading videos to Kaltura using the API is super simple. Videos can be located on\n                                disk, or be specified as an HTML file input. Our jQuery upload widget provides a chunked\n                                upload with pause and resume functionality and optimization for file size.\n                            &l;/p&g;\n                            &l;a href=\&q;/workflows\&q; class=\&q;btn btn-primary\&q;&g;View Workflows&l;/a&g;\n                        &l;/div&g;\n                    &l;/div&g;\n                &l;/div&g;\n            &l;/div&g;\n        &l;/div&g;\n        &l;div class=\&q;video-container\&q;&g;\n            &l;div class=\&q;title\&q;&g;\n                &l;span&g;You Can Make a Quick Video Player Stack&l;/span&g;\n            &l;/div&g;\n            &l;div class=\&q;video-player-wrapper\&q;&g;\n                &l;div id=\&q;dummy\&q; class=\&q;video-margin\&q;&g;&l;/div&g;\n\n                &l;style&g;\n                    .video-player {\n                        background-color: #000;\n                        width: 100%;\n                        max-width: 800px;\n                        height: 372px;\n                    }\n                &l;/style&g;\n\n                &l;div id=\&q;kaltura-player-1-zxnf9ha7-42923951\&q; class=\&q;video-player\&q;&g;&l;/div&g;\n            &l;/div&g;\n\n\n            &l;script\n                src=\&q;https://cdnapisec.kaltura.com/p/2421271/sp/242127100/embedPlaykitJs/uiconf_id/43473121/partner_id/2421271\&q;&g;&l;/script&g;\n            &l;script&g;\n                window.kalturaIntroVideoLoaded = false;\n                function embedVideo() {\n                    if (window.kalturaIntroVideoLoaded) return;\n                    if (!window.lucyBotReady || !window.PathKalturaPlayer) return setTimeout(embedVideo, 100);\n                    window.kalturaIntroVideoLoaded = true;\n\n                    var kconfig = {\n                        targetId: &s;kaltura-player-1-zxnf9ha7-42923951&s;,\n                        playback: {\n                            autoplay: false,\n                            preload: \&q;auto\&q;\n                        },\n                        provider: {\n                            partnerId: 2421271,\n                            uiConfId: 43473121\n                        },\n                        rapt: {}\n                    };\n                    var raptPlayer = PathKalturaPlayer.setup(kconfig);\n                    raptPlayer.loadMedia({ playlistId: &s;1_zxnf9ha7&s; });\n                }\n                embedVideo();\n            &l;/script&g;\n        &l;/div&g;\n    &l;/div&g;\n    &l;script&g;\n        $(document).ready(function () {\n            hljs.initHighlighting();\n        });\n        $(&s;.nav-tabs-b&g;span&s;).on(&s;click&s;, function (evt) {\n            evt.preventDefault();\n            const lang = $(this).attr(&s;lang&s;);\n            $(&s;div.code&s;).hide();\n            $(&s;div.code.&s; + lang).show();\n            // tabs\n            $(&s;div.code-container &g; div.nav-tabs-b &g; span&s;).addClass(&s;inactive&s;);\n            if (!$(this).hasClass(&s;active&s;)) {\n                $(&s;.nav-tabs-b&g;span&s;).removeClass(&s;active&s;);\n                $(this).addClass(&s;active&s;);\n            }\n            $(this).removeClass(&s;inactive&s;);\n        });\n    &l;/script&g;\n&l;/body&g;\n\n&l;/html&g;&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Sun, 21 Nov 2021 17:30:46 GMT&q;],&q;etag&q;:[&q;W/\&q;3cad-17d438ce212\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;15533&q;],&q;date&q;:[&q;Sun, 21 Nov 2021 17:31:08 GMT&q;],&q;connection&q;:[&q;keep-alive&q;],&q;keep-alive&q;:[&q;timeout=5&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/home.html&q;}}</script><script id="lucybot-doc-app-state" type="application/json">{&q;/assets/documentation/player-portal/android/playlist-android.html&q;:null,&q;G.http://localhost:3333/assets/documentation/player-portal/android/playlist-android.html&q;:{&q;body&q;:&q;  &l;title&g;Playlist for Android&l;/title&g;\n\n  &l;meta name=\&q;description\&q; content=\&q;VPaaS allows you to build cloud video services, supplies SDKs, and works on all devices, media workflows, and applications. Pay as you go. \n\&q;&g;\n    &l;meta property=\&q;st:title\&q; content=\&q;Playlist for Android\&q; &g;\n    &l;meta property=\&q;st:published_at\&q; content=\&q;\&q;&g;\n\n&l;script type=\&q;text/javascript\&q; src=\&q;https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js\&q;&g;&l;/script&g;\n&l;script&g;\nwindow.jQuery = window.jquery;\n&l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    try{Typekit.load();}catch(e){}\n  &l;/script&g;\n  &l;link rel=\&q;apple-touch-icon\&q; href=\&q;https://daks2k3a4ib2z.cloudfront.net/img/webclip.png\&q;&g;\n  &l;link rel=\&q;stylesheet\&q; href=\&q;https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\&q;&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n    var switchTo5x=true;\n  &l;/script&g;\n  &l;script type=\&q;text/javascript\&q;&g;var switchTo5x=true;&l;/script&g;\n\n  \n&l;script type=\&q;text/javascript\&q;&g;\n    \t\n\t//back to top\n\tif ($(&s;#back-to-top&s;).length) {\n    \t\tvar scrollTrigger = 100, // px\n\t        backToTop = function () {\n\t            var scrollTop = $(window).scrollTop();\n\t            if (scrollTop &g; scrollTrigger) {\n\t                $(&s;#back-to-top&s;).addClass(&s;show&s;);\n\t            } else {\n\t                $(&s;#back-to-top&s;).removeClass(&s;show&s;);\n\t            }\n\t        };\n\t    backToTop();\n\t    $(window).on(&s;scroll&s;, function () {\n\t        backToTop();\n\t    });\n\t    $(&s;#back-to-top a:first-child&s;).on(&s;click&s;, function (e) {\n\t        e.preventDefault();\n\t        $(&s;html,body&s;).animate({\n\t            scrollTop: 0\n\t        }, 700);\n\t    });\n\t}\n\n&l;/script&g;\n\n&l;script src=&s;https://www.google.com/recaptcha/api.js&s;&g;&l;/script&g;\n&l;script&g;\nfunction verify_recapcha()\n{\n\tvar isCaptchaValidated = false;\n\tvar response = grecaptcha.getResponse();\n\tif(response.length == 0) {\n\t    isCaptchaValidated = false;\n\t    alert(&s;Please confirm that you are a Human.&s;);\n\t    return false;\n\t} else {\n\t    return true;\n\t}\n\n}\n&l;/script&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/webflow.js\&q;&g;&l;/script&g;\n&l;script type=\&q;text/javascript\&q; src=\&q;assets/js/opentip-jquery.js\&q;&g;&l;/script--&g;\n    &l;!--script type=\&q;text/javascript\&q;&g;\n      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||\&q;https:\&q;===document.location.protocol,a=document.createElement(\&q;script\&q;);a.type=\&q;text/javascript\&q;,a.async=!0,a.src=\&q;https://cdn.heapanalytics.com/js/heap-\&q;+e+\&q;.js\&q;;var n=document.getElementsByTagName(\&q;script\&q;)[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=[\&q;addEventProperties\&q;,\&q;addUserProperties\&q;,\&q;clearEventProperties\&q;,\&q;identify\&q;,\&q;removeEventProperty\&q;,\&q;setEventProperties\&q;,\&q;track\&q;,\&q;unsetEventProperty\&q;],c=0;c&l;p.length;c++)heap[p[c]]=o(p[c])};\n        heap.load(\&q;176893769\&q;);\n  &l;/script--&g;\n\n&l;!--link rel=\&q;stylesheet\&q; type=\&q;text/css\&q; href=\&q;assets/css/lity.min.css\&q;--&g;\n&l;!--script type=\&q;text/javascript\&q; src=\&q;assets/js/lity.min.js\&q;&g;&l;/script--&g;\n\n  &l;!-- RTP tag --&g;\n&l;script type=&s;text/javascript&s;&g;\n(function(c,h,a,f,i,e){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\nc[a].a=i;c[a].e=e;var g=h.createElement(\&q;script\&q;);g.async=true;g.type=\&q;text/javascript\&q;;\ng.src=f+&s;?aid=&s;+i;var b=h.getElementsByTagName(\&q;script\&q;)[0];b.parentNode.insertBefore(g,b);\n})(window,document,\&q;rtp\&q;,\&q;https://sjrtp3-cdn.marketo.com/rtp-api/v1/rtp.js\&q;,\&q;kaltura\&q;);\nrtp(&s;send&s;,&s;view&s;);\nrtp(&s;get&s;, &s;campaign&s;,true);\n&l;/script&g;\n&l;!-- End of RTP tag --&g;\n\n\n\n\n    &l;div class=\&q;page-content\&q;&g;\n      &l;div class=\&q;wrapper\&q;&g;\n          &l;!--link rel=\&q;stylesheet\&q; href=\&q;/site.css\&q;--&g;\n&l;article&g;\n\n\n&l;div class=\&q;w-section side-nav-section\&q;&g;\n    &l;div class=\&q;w-container\&q;&g;\n      &l;!--a href=\&q;#\&q; data-ix=\&q;show-temp-page-nav-column\&q; class=\&q;w-button w-clearfix mobilebtn\&q;&g;Topics&l;span class=\&q;fa fa-chevron-down\&q; style=\&q;null\&q;&g;&l;/span&g;&l;/a--&g;\n      &l;div class=\&q;w-row body-columns\&q;&g;\n        &l;div class=\&q;docs-contents\&q;&g;\n          &l;div class=\&q;post-header\&q;&g;\n\n            &l;!-- INSERT JEKYLL CONTENT HERE --&g;\n\n          \t&l;header class=\&q;post-header\&q;&g;\n    \t\t\t&l;h1 class=\&q;post-title\&q;&g;Playlist for Android&l;/h1&g;\n  \t\t\t&l;/header&g;\n\n\t\t\t\n\t\t\t\n\t\t\t&l;div class=\&q;lastcommittable\&q;&g;\n\t\t\t\t&l;span&g;Updated: Tue Apr 21 09:56:03 2020&l;/span&g;, By &l;span class=\&q;commit-author\&q;&g;Gilad Nadav&l;/span&g; &l;a class=\&q;editgithub\&q; href=\&q;https://github.com/kaltura/developer-platform-docs/tree/dev/documentation/player-portal/android/playlist-android.md\&q; target=\&q;_blank\&q;&g;Contribute to this page&l;/a&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Created on: Mon Feb 3 10:02:41 2020, By: Gilad Nadav&l;/td&g;&l;/tr--&g;\n\t\t\t\t&l;!--tr&g;&l;td&g;Last commit: Tue Apr 21 09:56:03 2020, By &l;span class=\&q;commit-author\&q;&g;Gilad Nadav&l;/span&g;&l;/td&g;&l;/tr--&g;\n\t\t\t\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Gilad Nadav (18 commits) (&l;a href=\&q;mailto:gilad.nadav@kaltura.com\&q;&g;gilad.nadav@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!-- \n\t\t\t\t\n\t\t\t\t&l;tr&g;\n\t\t\t\t\t&l;td&g;Jess Portnoy (1 commits) (&l;a href=\&q;mailto:jess.portnoy@kaltura.com\&q;&g;jess.portnoy@kaltura.com&l;/a&g;)&l;/td&g;\n\t\t\t\t&l;/tr&g; --&g;\n\n\t\t\t\t&l;!--  --&g;\n\n\t\t\t&l;/div&g;\n\n\t\t\t\n\n\t\t&l;/div&g;\n\n            &l;div class=\&q;post-content\&q;&g;\n    \t\t\n\t\t&l;h1 id=\&q;playlist\&q;&g;\n        \n        \n          Playlist &l;a href=\&q;#playlist\&q;&g;&l;/a&g;\n        \n        \n      &l;/h1&g;\n\n&l;p&g;Kaltura Player provides several APIs that are used for loading, configuring, and manipulating playlists.&l;/p&g;\n    \n      &l;h3 id=\&q;load-a-playlist\&q;&g;\n        \n        \n          Load A Playlist &l;a href=\&q;#load-a-playlist\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n&l;p&g;Before loading a playlist, you’ll need to set up a Kaltura Player instance:&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g; &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;playerInitOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlayerInitOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;PARTNER_ID&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n &l;span class=\&q;n\&q;&g;playerInitOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;setAutoPlay&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n &l;span class=\&q;n\&q;&g;player&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;KalturaOvpPlayer&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;create&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;k\&q;&g;this&l;/span&g;&l;span class=\&q;nd\&q;&g;@MainActivity&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;playerInitOptions&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;To learn how to set up a Kaltura Player, please go over this document: &l;a href=\&q;https://developer.kaltura.com/player/android/getting-started-android\&q;&g;getting-started-android&l;/a&g;.&l;br /&g;\n&l;br /&g;Once you have a Kaltura Player instance, you can load a playlist using one of the following methods:&l;/p&g;\n    \n      &l;h4 id=\&q;by-playlist-id-ovp-only\&q;&g;\n        \n        \n          By Playlist ID (OVP Only) &l;a href=\&q;#by-playlist-id-ovp-only\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n\n&l;p&g;To load a playlist by ID, use OVPPlaylistIdOptions when calling &l;code class=\&q;highlighter-rouge\&q;&g;loadPlaylistById&l;/code&g; method.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OVPPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n&l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistId&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;0_w0hpzdni\&q;&l;/span&g;\n&l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;loopEnabled&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;loadPlaylistById&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g;\n&l;span class=\&q;n\&q;&g;KalturaPlayer&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;OnPlaylistControllerListener&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g; &l;span class=\&q;n\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;\n       &l;span class=\&q;k\&q;&g;if&l;/span&g; &l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;!=&l;/span&g; &l;span class=\&q;kc\&q;&g;null&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n          &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;make&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;findViewById&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;android&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;R&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;id&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;content&l;/span&g;&l;span class=\&q;o\&q;&g;),&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;message&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;LENGTH_LONG&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;show&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n       &l;span class=\&q;o\&q;&g;}&l;/span&g; &l;span class=\&q;k\&q;&g;else&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n          &l;span class=\&q;n\&q;&g;log&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;d&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;OVPPlaylist Loaded  entry = ${playlistController.playlist.id}\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n       &l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;span class=\&q;o\&q;&g;})&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h4 id=\&q;by-entry-list\&q;&g;\n        \n        \n          By Entry List &l;a href=\&q;#by-entry-list\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n    \n      &l;h5 id=\&q;ovp\&q;&g;\n        \n        \n          OVP &l;a href=\&q;#ovp\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;p&g;To load a playlist by entryId list, use OVPMediaOptions &a;amp; OVPPlaylistOptions when calling loadPlaylist method.&l;br /&g;\n&l;br /&g;This method creates a playlist according to the given entries.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptions1&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;buildOvpMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptions2&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;buildOvpMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptions3&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;buildOvpMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;mediaList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;listOf&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ovpMediaOptions1&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptions2&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptions3&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OVPPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n&l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistMetadata&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlaylistMetadata&l;/span&g;&l;span class=\&q;o\&q;&g;().&l;/span&g;&l;span class=\&q;na\&q;&g;setName&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;TestOVPPlayList\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;setId&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;2\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ovpMediaOptionsList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;mediaList&l;/span&g;\n&l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;loadPlaylist&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; \n\t&l;span class=\&q;n\&q;&g;KalturaPlayer&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;OnPlaylistControllerListener&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g; &l;span class=\&q;n\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;\n    &l;span class=\&q;k\&q;&g;if&l;/span&g; &l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;!=&l;/span&g; &l;span class=\&q;kc\&q;&g;null&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n        &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;make&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;findViewById&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;android&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;R&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;id&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;content&l;/span&g;&l;span class=\&q;o\&q;&g;),&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;message&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;LENGTH_LONG&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;show&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n    &l;span class=\&q;o\&q;&g;}&l;/span&g; &l;span class=\&q;k\&q;&g;else&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n        &l;span class=\&q;n\&q;&g;log&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;d&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;OVPPlaylist Loaded  entry = ${playlistController.playlist.id}\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n    &l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;span class=\&q;o\&q;&g;})&l;/span&g;\n\n&l;span class=\&q;kd\&q;&g;private&l;/span&g; &l;span class=\&q;n\&q;&g;fun&l;/span&g; &l;span class=\&q;nf\&q;&g;buildOvpMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;():&l;/span&g; &l;span class=\&q;n\&q;&g;OVPMediaOptions&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n      &l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaAsset&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OVPMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n      &l;span class=\&q;n\&q;&g;ovpMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;entryId&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;ENTRY_ID&l;/span&g;\n      &l;span class=\&q;n\&q;&g;ovpMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ks&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;null&l;/span&g;\n      &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OVPMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ovpMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n      &l;span class=\&q;n\&q;&g;ovpMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;startPosition&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;START_POSITION&l;/span&g;\n      &l;span class=\&q;n\&q;&g;ovpMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n     &l;span class=\&q;k\&q;&g;return&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptions&l;/span&g;\n&l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h5 id=\&q;ott\&q;&g;\n        \n        \n          OTT &l;a href=\&q;#ott\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;p&g;To load a playlist by entryId list, use &l;code class=\&q;highlighter-rouge\&q;&g;OVPMediaOptions&l;/code&g; &a;amp; &l;code class=\&q;highlighter-rouge\&q;&g;OTTPlaylistOptions&l;/code&g; when calling &l;code class=\&q;highlighter-rouge\&q;&g;loadPlaylist&l;/code&g; method.&l;br /&g;\n&l;br /&g;This method creates a playlist according to the given entries.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptions1&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;buildOttMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;111111\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;XXX_Main\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptions2&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;buildOttMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;222222\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;YYY_Main\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptions3&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;buildOttMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;333333\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;ZZZ_Main\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;mediaList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;listOf&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ottMediaOptions1&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptions2&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptions3&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OTTPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n&l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistMetadata&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlaylistMetadata&l;/span&g;&l;span class=\&q;o\&q;&g;().&l;/span&g;&l;span class=\&q;na\&q;&g;setName&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;TestOTTPlayList\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;setId&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ottMediaOptionsList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;mediaList&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;loadPlaylist&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g;\n\t &l;span class=\&q;n\&q;&g;KalturaPlayer&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;OnPlaylistControllerListener&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g; &l;span class=\&q;n\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;\n    &l;span class=\&q;k\&q;&g;if&l;/span&g; &l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;!=&l;/span&g; &l;span class=\&q;kc\&q;&g;null&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n        &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;make&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;findViewById&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;android&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;R&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;id&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;content&l;/span&g;&l;span class=\&q;o\&q;&g;),&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;message&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;LENGTH_LONG&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;show&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n    &l;span class=\&q;o\&q;&g;}&l;/span&g; &l;span class=\&q;k\&q;&g;else&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n        &l;span class=\&q;n\&q;&g;log&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;d&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;OTTPlaylist Loaded  entry = ${playlistController.playlist.id}\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n   &l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;span class=\&q;o\&q;&g;})&l;/span&g;\n\n&l;span class=\&q;kd\&q;&g;private&l;/span&g; &l;span class=\&q;n\&q;&g;fun&l;/span&g; &l;span class=\&q;nf\&q;&g;buildOttMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;assetId&l;/span&g; &l;span class=\&q;o\&q;&g;:&l;/span&g; &l;span class=\&q;n\&q;&g;String&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;format&l;/span&g; &l;span class=\&q;o\&q;&g;:&l;/span&g; &l;span class=\&q;n\&q;&g;String&l;/span&g;&l;span class=\&q;o\&q;&g;):&l;/span&g; &l;span class=\&q;n\&q;&g;OTTMediaOptions&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n\t&l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaAsset&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OTTMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;assetId&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;assetId&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;assetType&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;APIDefines&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;KalturaAssetType&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;Media&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;contextType&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;APIDefines&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;PlaybackContextType&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;Playback&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;assetReferenceType&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;APIDefines&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;AssetReferenceType&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;Media&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;protocol&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PhoenixMediaProvider&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;HttpProtocol&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;Https&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ks&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;null&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;referrer&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;app://MyTestApp\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;;&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;formats&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;listOf&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;format&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n    \n    &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OTTMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ottMediaAsset&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n    &l;span class=\&q;n\&q;&g;ottMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;startPosition&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;START_POSITION&l;/span&g;\n    &l;span class=\&q;k\&q;&g;return&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptions&l;/span&g;\n&l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h3 id=\&q;by-configuration\&q;&g;\n        \n        \n          By Configuration &l;a href=\&q;#by-configuration\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    \n      &l;h4 id=\&q;basic\&q;&g;\n        \n        \n          Basic &l;a href=\&q;#basic\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n\n&l;p&g;You can load a Manual Basic playlist by configuring the playlist data and items explicitly using the &l;a href=\&q;./api.md#configure-3\&q;&g;&l;code class=\&q;highlighter-rouge\&q;&g;configure&l;/code&g;&l;/a&g; method.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptions0&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;createBasicMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1_w9zx2eti1\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;SOURCE_URL&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;50000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;mi\&q;&g;10000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;))&l;/span&g;\n&l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptions1&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;createBasicMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;0_uka1msg4\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;SOURCE_URL2&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;10000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;))&l;/span&g;\n&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptions2&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;createBasicMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1_w9zx2eti2\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;SOURCE_URL&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;())&l;/span&g;\n\n&l;span class=\&q;n\&q;&g;var&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptionsList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;listOf&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;basicMediaOptions0&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptions1&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptions2&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n        \n&l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;BasicPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n&l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistMetadata&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlaylistMetadata&l;/span&g;&l;span class=\&q;o\&q;&g;().&l;/span&g;&l;span class=\&q;na\&q;&g;setName&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;TestBasicPlayList\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;setId&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;basicMediaOptionsList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptionsList&l;/span&g;\n        \n&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;loadPlaylist&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; \n\t&l;span class=\&q;n\&q;&g;KalturaPlayer&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;OnPlaylistControllerListener&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g; &l;span class=\&q;n\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;\n   &l;span class=\&q;k\&q;&g;if&l;/span&g; &l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;!=&l;/span&g; &l;span class=\&q;kc\&q;&g;null&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n      &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;make&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;findViewById&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;android&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;R&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;id&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;content&l;/span&g;&l;span class=\&q;o\&q;&g;),&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;message&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;LENGTH_LONG&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;show&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n   &l;span class=\&q;o\&q;&g;}&l;/span&g; &l;span class=\&q;k\&q;&g;else&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n      &l;span class=\&q;n\&q;&g;log&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;d&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;BasicPlaylist Loaded  entry = ${playlistController.playlist.id}\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n   &l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;span class=\&q;o\&q;&g;})&l;/span&g;\n\n&l;span class=\&q;kd\&q;&g;private&l;/span&g; &l;span class=\&q;n\&q;&g;fun&l;/span&g; &l;span class=\&q;nf\&q;&g;createBasicMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;nl\&q;&g;id:&l;/span&g; &l;span class=\&q;n\&q;&g;String&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;url&l;/span&g; &l;span class=\&q;o\&q;&g;:&l;/span&g; &l;span class=\&q;n\&q;&g;String&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;nl\&q;&g;countdownOptions:&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;):&l;/span&g; &l;span class=\&q;n\&q;&g;BasicMediaOptions&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n\n  &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;mediaEntry&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PKMediaEntry&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n  &l;span class=\&q;n\&q;&g;mediaEntry&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;id&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;id&l;/span&g;\n\n  &l;span class=\&q;n\&q;&g;mediaEntry&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;mediaType&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PKMediaEntry&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;MediaEntryType&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;Vod&l;/span&g;\n  &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;mediaSources&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;createMediaSources&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;id&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;url&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n  &l;span class=\&q;n\&q;&g;mediaEntry&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;sources&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;mediaSources&l;/span&g;\n  &l;span class=\&q;k\&q;&g;return&l;/span&g; &l;span class=\&q;nf\&q;&g;BasicMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;mediaEntry&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;countdownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;configure-the-playlist\&q;&g;\n        \n        \n          Configure the Playlist &l;a href=\&q;#configure-the-playlist\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n    \n      &l;h3 id=\&q;playlist-options\&q;&g;\n        \n        \n          Playlist Options &l;a href=\&q;#playlist-options\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n    &l;hr /&g;\n      &l;h4 id=\&q;playlist-metadata---playlistmetadata\&q;&g;\n        \n        \n          Playlist Metadata - &l;code class=\&q;highlighter-rouge\&q;&g;playlistMetadata&l;/code&g; &l;a href=\&q;#playlist-metadata---playlistmetadata\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;Should be used for all Playlists except the OVP by id configuration where this data is retrieved from the BE.&l;/p&g;\n    \n      &l;h4 id=\&q;start-index---startindex\&q;&g;\n        \n        \n          Start Index - &l;code class=\&q;highlighter-rouge\&q;&g;startIndex&l;/code&g; &l;a href=\&q;#start-index---startindex\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;The index that the playlist playback should start from (default index = 0)&l;/p&g;\n    \n      &l;h4 id=\&q;loop---loopenabled\&q;&g;\n        \n        \n          Loop - &l;code class=\&q;highlighter-rouge\&q;&g;loopEnabled&l;/code&g; &l;a href=\&q;#loop---loopenabled\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;The playlist will play the first media in the playlist once the last media in the playlist has ended (default false)&l;/p&g;\n    \n      &l;h4 id=\&q;auto-continue--autocontinue\&q;&g;\n        \n        \n          Auto Continue -&l;code class=\&q;highlighter-rouge\&q;&g;autoContinue&l;/code&g; &l;a href=\&q;#auto-continue--autocontinue\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;The next media in the playlist will be played automatically once the previous media ended (default true)&l;/p&g;\n    \n      &l;h4 id=\&q;recover-on-error---recoveronerror\&q;&g;\n        \n        \n          Recover On Error - &l;code class=\&q;highlighter-rouge\&q;&g;recoverOnError&l;/code&g; &l;a href=\&q;#recover-on-error---recoveronerror\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;The playlist manager is able to recover from errors once that flag is enabled, so it will continue to the next media whether the current media is incorrect or it’s URL is broken. If auto continue is enabled it will auto play without user intervention.&l;/p&g;\n    \n      &l;h4 id=\&q;count-down-options---playlistcountdownoptions\&q;&g;\n        \n        \n          Count Down Options - &l;code class=\&q;highlighter-rouge\&q;&g;playlistCountDownOptions&l;/code&g; &l;a href=\&q;#count-down-options---playlistcountdownoptions\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;The logic by which count down start event will be fired (default is 10 last sec for 10 sec).&l;br /&g;\nif &l;code class=\&q;highlighter-rouge\&q;&g;autoContinue&l;/code&g; feature is enabled  at the end of the count down the &l;code class=\&q;highlighter-rouge\&q;&g;PlaylistController&l;/code&g; will trigger auto continue feature to play next media. If auto continue == false countdown will events will not be fired.&l;br /&g;\nIf &l;code class=\&q;highlighter-rouge\&q;&g;loop&l;/code&g; is disabled the events will not be fired for last media.&l;/p&g;\n    \n      &l;h4 id=\&q;use-api-captions---useapicaptions\&q;&g;\n        \n        \n          Use API Captions - &l;code class=\&q;highlighter-rouge\&q;&g;useApiCaptions&l;/code&g; &l;a href=\&q;#use-api-captions---useapicaptions\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n&l;p&g;used only for OVP configuration this can be configured on the playlist level or media level&l;/p&g;\n\n&l;p&g;&l;br /&g;To change this behavior, configure the playlist options using one of the following methods:&l;br /&g;\n&l;br /&g;Via the API:&l;/p&g;\n    \n      &l;h4 id=\&q;example\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example\&q;&g;&l;/a&g;\n        \n        \n      &l;/h4&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;\n       &l;span class=\&q;c1\&q;&g;// OVPPlaylistIdOptions&l;/span&g;\n       \n       &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OVPPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistId&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;zzzzzzz\&q;&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;startIndex&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;mi\&q;&g;0&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ks&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;\&q;&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;useApiCaptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;loopEnabled&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;autoContinue&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g;  &l;span class=\&q;kc\&q;&g;true&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;recoverOnError&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        \n       &l;span class=\&q;c1\&q;&g;// OVPPlaylistOptions&l;/span&g;\n       \n       &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OVPPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;startIndex&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;mi\&q;&g;0&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ks&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g;  &l;span class=\&q;s\&q;&g;\&q;\&q;&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistMetadata&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlaylistMetadata&l;/span&g;&l;span class=\&q;o\&q;&g;().&l;/span&g;&l;span class=\&q;na\&q;&g;setName&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;TestOTTPlayList\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;setId&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ovpMediaOptionsList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;ovpMediaOptionsList&l;/span&g; &l;span class=\&q;c1\&q;&g;//(useApiCaptions is configured for each media separetly)&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;loopEnabled&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;autoContinue&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;recoverOnError&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        \n       &l;span class=\&q;c1\&q;&g;// OVPPlaylistOptions &l;/span&g;\n       &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;OTTPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;startIndex&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;mi\&q;&g;0&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistMetadata&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlaylistMetadata&l;/span&g;&l;span class=\&q;o\&q;&g;().&l;/span&g;&l;span class=\&q;na\&q;&g;setName&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;TestOTTPlayList\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;setId&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;ottMediaOptionsList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;ottMediaOptionsList&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;loopEnabled&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;autoContinue&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;\n        &l;span class=\&q;n\&q;&g;ottPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;recoverOnError&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        \n       &l;span class=\&q;c1\&q;&g;// BasicPlaylistOptions  &l;/span&g;\n       &l;span class=\&q;n\&q;&g;val&l;/span&g; &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;BasicPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;startIndex&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g;  &l;span class=\&q;mi\&q;&g;0&l;/span&g;\n        &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistMetadata&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;PlaylistMetadata&l;/span&g;&l;span class=\&q;o\&q;&g;().&l;/span&g;&l;span class=\&q;na\&q;&g;setName&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;TestBasicPlayList\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;setId&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n        &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;basicMediaOptionsList&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;basicMediaOptionsList&l;/span&g;\n        &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;loopEnabled&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;autoContinue&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;\n        &l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;recoverOnError&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;kc\&q;&g;false&l;/span&g;\n        \n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;blockquote&g;\n  &l;p&g;Note: The &l;code class=\&q;highlighter-rouge\&q;&g;autoContinue&l;/code&g; property is relevant only for the second item onwards.&l;br /&g;\n&l;br /&g;To control the first entry playback, set the &l;code class=\&q;highlighter-rouge\&q;&g;autoPlay&l;/code&g; property to the desired value (default = true).&l;/p&g;\n&l;/blockquote&g;\n    \n      &l;h3 id=\&q;playlist-count-countdown-options\&q;&g;\n        \n        \n          Playlist Count Countdown Options &l;a href=\&q;#playlist-count-countdown-options\&q;&g;&l;/a&g;\n        \n        \n      &l;/h3&g;\n\n&l;p&g;When the current item is about to end and the playlist is set to continue automatically  by setting &l;code class=\&q;highlighter-rouge\&q;&g;autoContinue\t = true&l;/code&g;, the application will get countdown start event. Then the application can display up next or watch credits pop up.&l;br /&g;\nOnce countdown is over, countdown ended event will be fired.&l;br /&g;\nUsing the &l;code class=\&q;highlighter-rouge\&q;&g;disableCountDown&l;/code&g; API, application can cancel the current countdown configuration, so it will not be executed and the &l;code class=\&q;highlighter-rouge\&q;&g;PlaylistController&l;/code&g; will not trigger the &l;code class=\&q;highlighter-rouge\&q;&g;playNext&l;/code&g; API.&l;/p&g;\n    \n      &l;h5 id=\&q;example-1\&q;&g;\n        \n        \n          Example: &l;a href=\&q;#example-1\&q;&g;&l;/a&g;\n        \n        \n      &l;/h5&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;disableCountDown&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;By default, the countdown is fired at the last 10 media seconds for the last 10 seconds of the media.&l;br /&g;\nThe &l;code class=\&q;highlighter-rouge\&q;&g;CountDownOptions&l;/code&g; &l;code class=\&q;highlighter-rouge\&q;&g;timeToShow&l;/code&g; and &l;code class=\&q;highlighter-rouge\&q;&g;duration&l;/code&g; values are presented in milliseconds.&l;/p&g;\n\n&l;p&g;&l;br /&g;To change this behavior, configure the &l;code class=\&q;highlighter-rouge\&q;&g;CountDownOptions&l;/code&g;&l;br /&g;\n&l;br /&g; For example, to show the countdown for 20 seconds until the end, configure:&l;br /&g;\n&l;br /&g;Via the API:&l;/p&g;\n\n&l;p&g;OVP by id - exists only for the playlist level.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;20000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;OVP/OTT by entries list - exists both on playlist level or media level.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;ovpPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;10000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;ovpMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistCountDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;90000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;mi\&q;&g;10000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;By configuration:&l;/p&g;\n\n&l;p&g;Available for playlist level or media level&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;basicPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;countDownOptions&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;5000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;createBasicMediaOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;0&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;1_w9zx2eti1\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;SOURCE_URL&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;60000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;mi\&q;&g;10000&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kc\&q;&g;true&l;/span&g;&l;span class=\&q;o\&q;&g;))&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;Note:&l;br /&g;\nOnce the &l;code class=\&q;highlighter-rouge\&q;&g;playlistCountDownEnd&l;/code&g; event is fired, the next media entry in the playlist a will be played.&l;/p&g;\n    \n      &l;h2 id=\&q;playlistcontroller-interface\&q;&g;\n        \n        \n          PlaylistController Interface &l;a href=\&q;#playlistcontroller-interface\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Once playlist is loaded the callback will return a controller object the can be used to control the playlist life cycle from the application perspective.&l;/p&g;\n\n&l;p&g;Another option to get a reference to the controller, is to &l;br /&g;\ncall &l;code class=\&q;highlighter-rouge\&q;&g;player?.playlistController&l;/code&g; with the required API from the interface after the playlist is loaded.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;kd\&q;&g;public&l;/span&g; &l;span class=\&q;kd\&q;&g;interface&l;/span&g; &l;span class=\&q;nc\&q;&g;PlaylistController&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * getPlaylist - get current playlist data\n     *\n     * @return - PKPlaylist\n     */&l;/span&g;\n    &l;span class=\&q;n\&q;&g;PKPlaylist&l;/span&g; &l;span class=\&q;nf\&q;&g;getPlaylist&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * getPlaylistType - get current playlist type OVP_ID,OVP_LIST,OTT_LIST,BASIC_LIST\n     *\n     * @return - PKPlaylistType\n     */&l;/span&g;\n    &l;span class=\&q;n\&q;&g;PKPlaylistType&l;/span&g; &l;span class=\&q;nf\&q;&g;getPlaylistType&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * getCurrentPlaylistMedia - get current playlist media data.\n     *\n     * @return - PKPlaylistMedia\n     */&l;/span&g;\n    &l;span class=\&q;n\&q;&g;PKPlaylistMedia&l;/span&g; &l;span class=\&q;nf\&q;&g;getCurrentPlaylistMedia&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * getCurrentMediaIndex for current playing media.\n     *\n     * @return - int\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;int&l;/span&g; &l;span class=\&q;nf\&q;&g;getCurrentMediaIndex&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * GetCurrentCountDownOptions for current media.\n     *\n     * @return - CountDownOptions\n     */&l;/span&g;\n    &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g; &l;span class=\&q;nf\&q;&g;getCurrentCountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * DisableCountDown for current media.\n     *\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;disableCountDown&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * Preload next item - will do the provider request for specific media to save network calls not relevant for basic player.\n     *\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;preloadNext&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * PreloadItem by index - will do the provider request for specific media to save network calls not relevant for basic player.\n     *\n     * @param index - media index in playlist.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;preloadItem&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;kt\&q;&g;int&l;/span&g; &l;span class=\&q;n\&q;&g;index&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * PlayItem by index.\n     *\n     * @param index - media index in playlist.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;playItem&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;kt\&q;&g;int&l;/span&g; &l;span class=\&q;n\&q;&g;index&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * PlayItem by index and auto play configuration.\n     *\n     * @param index - media index in playlist.\n     * @param isAutoPlay - isAutoPlay.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;playItem&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;kt\&q;&g;int&l;/span&g; &l;span class=\&q;n\&q;&g;index&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;n\&q;&g;isAutoPlay&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * playNext - play the next media in the playlist.\n     *\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;playNext&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * playPrev - play the previous media in the playlist.\n     *\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;playPrev&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * replay - play the playlist from the first index.\n     *\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;replay&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * isMediaLoaded - validation if media was fetched/played at least one time so the playback information is available.\n     *\n     * @param mediaId - media id in playlist.\n     * @return - boolean\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;nf\&q;&g;isMediaLoaded&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;String&l;/span&g; &l;span class=\&q;n\&q;&g;mediaId&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * setLoop - configure the controller to play the playlist again\n     * when last playlist media is ended\n     *\n     * @param mode - enabled/disabled.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;setLoop&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;n\&q;&g;mode&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * isLoopEnabled - validation if playlist controller is configured to support setLoop mode.\n     *\n     * @return - boolean\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;nf\&q;&g;isLoopEnabled&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * setAutoContinue - configure the controller to play the playlist in setAutoContinue mode\n     *\n     * @param mode - enabled/disabled.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;setAutoContinue&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;n\&q;&g;mode&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * isAutoContinueEnabled - validation if playlist controller is configured to support setAutoContinue mode.\n     *\n     * @return - boolean\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;nf\&q;&g;isAutoContinueEnabled&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * setRecoverOnError - ignore media playback errors and continue\n     *\n     * @param mode - enabled/disabled.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;setRecoverOnError&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;n\&q;&g;mode&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * isRecoverOnError - validation if playlist controller should recover on error.\n     *\n     * @return - boolean\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;boolean&l;/span&g; &l;span class=\&q;nf\&q;&g;isRecoverOnError&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * release - should e called if we want to reuse the player for single media or for loading new play list.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;release&l;/span&g;&l;span class=\&q;o\&q;&g;();&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * setPlaylistOptions - configure the controller with the initial playlist options\n     *\n     * @param playlistOptions - playlist initial configuration.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;setPlaylistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;PlaylistOptions&l;/span&g; &l;span class=\&q;n\&q;&g;playlistOptions&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n\n    &l;span class=\&q;cm\&q;&g;/**\n     * setPlaylistCountDownOptions - update the current playlist countdown configuration\n     *\n     * @param playlistCountDownOptions - playlist countdown.\n     */&l;/span&g;\n    &l;span class=\&q;kt\&q;&g;void&l;/span&g; &l;span class=\&q;nf\&q;&g;setPlaylistCountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;nd\&q;&g;@Nullable&l;/span&g; &l;span class=\&q;n\&q;&g;CountDownOptions&l;/span&g; &l;span class=\&q;n\&q;&g;playlistCountDownOptions&l;/span&g;&l;span class=\&q;o\&q;&g;);&l;/span&g;\n&l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\n&l;p&g;##Playlist Navigation&l;/p&g;\n\n&l;p&g;Using the &l;code class=\&q;highlighter-rouge\&q;&g;PlaylistController&l;/code&g; API, you can get the playlist data and then switch between the items.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;c1\&q;&g;// switch to the next item&l;/span&g;\n&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;playNext&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n\n&l;span class=\&q;c1\&q;&g;// switch to the previous item&l;/span&g;\n&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;playPrev&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n\n&l;span class=\&q;c1\&q;&g;// switch to a specific item by index&l;/span&g;\n&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;playItem&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;mi\&q;&g;2&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;change-playlist\&q;&g;\n        \n        \n          Change Playlist &l;a href=\&q;#change-playlist\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;To clean the playlist data, you’ll need to call the playlist controller &l;code class=\&q;highlighter-rouge\&q;&g;release()&l;/code&g; API&l;br /&g;\n&l;br /&g;Here is an example for how it is possible to change the playlist using the &l;code class=\&q;highlighter-rouge\&q;&g;release&l;/code&g; method when previous playlist ended.&l;/p&g;\n\n&l;div class=\&q;language-java highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;&l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;addListener&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;k\&q;&g;this&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;PlaylistEvent&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playListEnded&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g; &l;span class=\&q;n\&q;&g;event&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;\n      &l;span class=\&q;n\&q;&g;log&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;d&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;s\&q;&g;\&q;PLAYLIST playListEnded\&q;&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n       &l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlistId&l;/span&g; &l;span class=\&q;o\&q;&g;=&l;/span&g; &l;span class=\&q;s\&q;&g;\&q;0_jco198ds\&q;&l;/span&g;\n       &l;span class=\&q;n\&q;&g;player&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;loadPlaylistById&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;ovpPlaylistIdOptions&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g; &l;span class=\&q;n\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;-&a;gt;&l;/span&g;\n       &l;span class=\&q;k\&q;&g;if&l;/span&g; &l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;error&l;/span&g; &l;span class=\&q;o\&q;&g;!=&l;/span&g; &l;span class=\&q;kc\&q;&g;null&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n            &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;make&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;findViewById&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;android&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;R&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;id&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;content&l;/span&g;&l;span class=\&q;o\&q;&g;),&l;/span&g; &l;span class=\&q;n\&q;&g;error&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;message&l;/span&g;&l;span class=\&q;o\&q;&g;,&l;/span&g; &l;span class=\&q;n\&q;&g;Snackbar&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;LENGTH_LONG&l;/span&g;&l;span class=\&q;o\&q;&g;).&l;/span&g;&l;span class=\&q;na\&q;&g;show&l;/span&g;&l;span class=\&q;o\&q;&g;()&l;/span&g;\n        &l;span class=\&q;o\&q;&g;}&l;/span&g; &l;span class=\&q;k\&q;&g;else&l;/span&g; &l;span class=\&q;o\&q;&g;{&l;/span&g;\n              &l;span class=\&q;n\&q;&g;playbackControlsManager&l;/span&g;&l;span class=\&q;o\&q;&g;?.&l;/span&g;&l;span class=\&q;na\&q;&g;addChangeMediaImgButtonsListener&l;/span&g;&l;span class=\&q;o\&q;&g;(&l;/span&g;&l;span class=\&q;n\&q;&g;playlistController&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;playlist&l;/span&g;&l;span class=\&q;o\&q;&g;.&l;/span&g;&l;span class=\&q;na\&q;&g;mediaListSize&l;/span&g;&l;span class=\&q;o\&q;&g;)&l;/span&g;\n        &l;span class=\&q;o\&q;&g;}&l;/span&g;\n     &l;span class=\&q;o\&q;&g;}&l;/span&g;\n  &l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;span class=\&q;o\&q;&g;}&l;/span&g;\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n    \n      &l;h2 id=\&q;playlist-events\&q;&g;\n        \n        \n          Playlist Events &l;a href=\&q;#playlist-events\&q;&g;&l;/a&g;\n        \n        \n      &l;/h2&g;\n\n&l;p&g;Application can add listeners to the following events&l;br /&g;\nusing these events application can react to UI changes for example.&l;/p&g;\n\n&l;p&g;These events are defined in &l;code class=\&q;highlighter-rouge\&q;&g;PlaylistEvent&l;/code&g; class.&l;br /&g;\nPlease check the class for the event payload.&l;/p&g;\n\n&l;div class=\&q;highlighter-rouge\&q;&g;&l;pre class=\&q;highlight\&q;&g;&l;code&g;    public enum Type {\n        PLAYLIST_LOADED,\n        PLAYLIST_STARTED,\n        PLAYLIST_ENDED,\n        PLAYLIST_COUNT_DOWN_START,\n        PLAYLIST_COUNT_DOWN_END,\n        PLAYLIST_LOOP_STATE_CHANGED,\n        PLAYLIST_SUFFLE_STATE_CHANGED,\n        PLAYLIST_AUTO_CONTINUE_STATE_CHANGED,\n        PLAYLIST_ERROR,\n        PLAYLIST_LOAD_MEDIA_ERROR\n    }    \n        player?.addListener(this, PlaylistEvent.playListLoaded) { event -&a;gt;\n            log.d(\&q;playListLoaded \&q; + event.playlist.name)\n        }\n\n        player?.addListener(this, PlaylistEvent.playListStarted) { event -&a;gt;\n            log.d(\&q;playListStarted \&q; + event.playlist.name)\n        }\n\n\n        player?.addListener(this, PlaylistEvent.playListEnded) { event -&a;gt;\n            log.d(\&q;PlaylistEnded \&q; +  event.playlist.name)\n        }\n\n        player?.addListener(this, PlaylistEvent.playlistCountDownStart) { event -&a;gt;\n            log.d(\&q;playlistCountDownStart currentPlayingIndex = \&q; + event.currentPlayingIndex + \&q; durationMS = \&q; + event.playlistCountDownOptions.durationMS);\n        }\n\n        player?.addListener(this, PlaylistEvent.playlistCountDownEnd) { event -&a;gt;\n            log.d(\&q;playlistCountDownEnd currentPlayingIndex = \&q; + event.currentPlayingIndex + \&q; durationMS = \&q; + event.playlistCountDownOptions.durationMS);\n        }\n\n        player?.addListener(this, PlaylistEvent.playlistLoopStateChanged) { event -&a;gt;\n            log.d(\&q;playlistLoopStateChanged \&q; + event.mode);\n        }\n\n        player?.addListener(this, PlaylistEvent.playlistAutoContinueStateChanged) { event -&a;gt;\n            log.d(\&q;PLAYLIST playlistAutoContinueStateChanged \&q; + event.mode)\n        }\n        \n        player?.addListener(this, PlaylistEvent.playListError) { event -&a;gt;\n            log.d(\&q;playListError = \&q; + event.error.message);\n        }\n                player?.addListener(this, PlaylistEvent.playlistLoadMediaError) { event -&a;gt;\n            log.d(\&q;playListMediaError = \&q; + event.error.message);\n        }\n&l;/code&g;&l;/pre&g;\n&l;/div&g;\n\t\t\n&l;/article&g;\n\n\n      &l;/div&g;\n    &l;/div&g;\n\n&l;!-- customer.io --&g;\n&l;!--script type=\&q;text/javascript\&q;&g;\n    var _cio = _cio || [];\n    (function() {\n      var a,b,c;a=function(f){return function(){_cio.push([f].\n      concat(Array.prototype.slice.call(arguments,0)))}};b=[\&q;load\&q;,\&q;identify\&q;,\n      \&q;sidentify\&q;,\&q;track\&q;,\&q;page\&q;];for(c=0;c&l;b.length;c++){_cio[b[c]]=a(b[c])};\n      var t = document.createElement(&s;script&s;),\n          s = document.getElementsByTagName(&s;script&s;)[0];\n      t.async = true;\n      t.id    = &s;cio-tracker&s;;\n      t.setAttribute(&s;data-site-id&s;, &s;d52b0167909beb4a2cf0&s;);\n      t.src = &s;https://assets.customer.io/assets/track.js&s;;\n      s.parentNode.insertBefore(t, s);\n    })();\n  &l;/script--&g;\n  &l;!-- marketo --&g;\n  &l;script type=\&q;text/javascript\&q;&g;\n(function() {\n  var didInit = false;\n  function initMunchkin() {\n    if(didInit === false) {\n      didInit = true;\n      Munchkin.init(&s;984-SDM-859&s;);\n    }\n  }\n  var s = document.createElement(&s;script&s;);\n  s.type = &s;text/javascript&s;;\n  s.async = true;\n  s.src = &s;https://munchkin.marketo.net/munchkin.js&s;;\n  s.onreadystatechange = function() {\n    if (this.readyState == &s;complete&s; || this.readyState == &s;loaded&s;) {\n      initMunchkin();\n    }\n  };\n  s.onload = initMunchkin;\n  document.getElementsByTagName(&s;head&s;)[0].appendChild(s);\n})();\n&l;/script&g;\n\n&l;!--script type=\&q;text/javascript\&q; src=\&q;https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5745bb1095edd5f5\&q;&g;&l;/script--&g;\n&q;,&q;headers&q;:{&q;x-powered-by&q;:[&q;Express&q;],&q;accept-ranges&q;:[&q;bytes&q;],&q;cache-control&q;:[&q;public, max-age=0&q;],&q;last-modified&q;:[&q;Sun, 21 Nov 2021 17:30:46 GMT&q;],&q;etag&q;:[&q;W/\&q;e5db-17d438ce21a\&q;&q;],&q;content-type&q;:[&q;text/html; charset=UTF-8&q;],&q;content-length&q;:[&q;58843&q;],&q;date&q;:[&q;Sun, 21 Nov 2021 17:51:24 GMT&q;],&q;connection&q;:[&q;keep-alive&q;],&q;keep-alive&q;:[&q;timeout=5&q;]},&q;status&q;:200,&q;statusText&q;:&q;OK&q;,&q;url&q;:&q;http://localhost:3333/assets/documentation/player-portal/android/playlist-android.html&q;}}</script></body></html>
