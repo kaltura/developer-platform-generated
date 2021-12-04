@@ -7,7 +7,7 @@ $(window).on('load', function () {
   $('input.g-search-box').on('input', function () {
     window.globalSearch($(this).val());
   });
-  
+
 
   //handle subnav
   let navDict = {
@@ -16,18 +16,18 @@ $(window).on('load', function () {
     "/playerhome": "playerhome",
     "/Client_Libraries": "client",
     "/workflows": "workflows",
-    "/samples": "samples" 
+    "/samples": "samples"
   }
 
-  var baseNav = true; 
-  for(var key in navDict) {
-    if(window.location.pathname.indexOf(key) === 0){
-      $('.subnav.subnav-'+navDict[key]).addClass('active');  
+  var baseNav = true;
+  for (var key in navDict) {
+    if (window.location.pathname.indexOf(key) === 0) {
+      $('.subnav.subnav-' + navDict[key]).addClass('active');
       baseNav = false;
     }
   }
 
-  if(baseNav) {
+  if (baseNav) {
     $('.subnav.subnav-guides').addClass('active');
   }
   //END subnav
@@ -65,6 +65,7 @@ $(window).on('load', function () {
 
   function copyText(text) {
     if (!navigator.clipboard) {
+      console.log('No navigator');
       return;
     }
     navigator.clipboard.writeText(text).then(function () {
@@ -80,4 +81,40 @@ $(window).on('load', function () {
     $('code.' + lang)[0].focus();
     copyText(code);
   });
+
+  //subscribe to angular router to fire off events as needed.
+  window.routesService.router.events.subscribe((val) => 
+  { 
+    //console.log(val);
+    //angular routes https://angular.io/api/router/Router#setuplocationchangelistener
+    if(val instanceof NavigationEnd) {
+      makeDocIndex();
+    }
+  });
 });
+
+
+//creates right side navigation for documentation pages
+//verify <documentation> element exists
+function makeDocIndex() {
+  if ($('documentation').length > 0) {
+    var indices = [];
+    console.log("HEADERS");
+    $('.main-content').find('h1,h2,h3,h4,h5,h6').each(function (i, e) {
+      var hIndex = parseInt(this.nodeName.substring(1)) - 1;
+      // just found a levelUp event
+      if (indices.length - 1 > hIndex) {
+        indices = indices.slice(0, hIndex + 1);
+      }
+      // just found a levelDown event
+      if (indices[hIndex] == undefined) {
+        indices[hIndex] = 0;
+      }
+      // count + 1 at current level
+      indices[hIndex]++;
+
+      // display the full position in the hierarchy
+      console.log((indices.join(".") + " " + this.innerHTML));
+    });
+  }
+}
