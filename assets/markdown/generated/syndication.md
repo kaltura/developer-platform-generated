@@ -1237,7 +1237,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2"><span>channel</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">holding item elements</xs:documentation></span><br>
@@ -1302,7 +1302,7 @@ table th {
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">title</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Title of the feed</xs:documentation></span><br>
@@ -1312,7 +1312,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">link</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Feed link URL</xs:documentation></span><br>
@@ -1322,7 +1322,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">description</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Feed description</xs:documentation></span><br>
@@ -1332,7 +1332,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>items</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Wrapper element holding multiple item elements</xs:documentation></span><br>
@@ -1395,7 +1395,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2"><span>item</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Single entry element</xs:documentation></span><br>
@@ -1453,7 +1453,7 @@ table th {
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">entryId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Auto generated 10 characters alphanumeric string</xs:documentation></span><br>
@@ -1465,7 +1465,7 @@ table th {
 					 Maximum length: 20 characters<br>
 </td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">referenceID</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Partner external reference string</xs:documentation></span><br>
@@ -1475,7 +1475,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry creation date as Unix timestamp (In seconds)</xs:documentation></span><br>
@@ -1485,7 +1485,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry last update date as Unix timestamp (In seconds)</xs:documentation></span><br>
@@ -1495,7 +1495,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">title</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry name</xs:documentation></span><br>
@@ -1507,7 +1507,7 @@ table th {
 					 Maximum length: 60 characters<br>
 </td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">link</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry link URL</xs:documentation></span><br>
@@ -1517,7 +1517,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">type</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry type</xs:documentation></span><br>
@@ -1527,7 +1527,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaEntryType">KalturaEntryType</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">licenseType</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry license type</xs:documentation></span><br>
@@ -1537,7 +1537,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaLicenseType">KalturaLicenseType</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">The ID of the user who is the owner of this entry</xs:documentation></span><br>
@@ -1547,7 +1547,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">name</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry name</xs:documentation></span><br>
@@ -1559,7 +1559,7 @@ table th {
 					 Maximum length: 60 characters<br>
 </td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">status</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry status</xs:documentation></span><br>
@@ -1569,7 +1569,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaEntryStatus">KalturaEntryStatus</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">description</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry free text description</xs:documentation></span><br>
@@ -1579,7 +1579,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">thumbnailUrl</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry thumbnail URL</xs:documentation></span><br>
@@ -1589,7 +1589,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry searchable keywords</xs:documentation></span><br>
@@ -1599,7 +1599,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>category</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry assigned categories</xs:documentation></span><br>
@@ -1609,7 +1609,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">partnerData</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Used to store various partner related data as a string</xs:documentation></span><br>
@@ -1619,7 +1619,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">partnerSortData</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Used to store various partner related data as a numeric value</xs:documentation></span><br>
@@ -1629,7 +1629,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">accessControlId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">The id of the access control profile that assigned to this entry</xs:documentation></span><br>
@@ -1639,7 +1639,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">conversionProfileId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">The ingestion profile that used to ingest this entry</xs:documentation></span><br>
@@ -1649,7 +1649,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">startDate</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry scheduling start date</xs:documentation></span><br>
@@ -1659,7 +1659,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">endDate</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry scheduling end date.<br>If not specified the entry will be available forever</xs:documentation></span><br>
@@ -1722,7 +1722,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td colspan="2" class="first extensions-title">Extensions:</td>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
@@ -1776,7 +1776,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>player</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Embeded player</xs:documentation></span><br>
@@ -1866,7 +1866,7 @@ table th {
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">mediaType</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry media type</xs:documentation></span><br>
@@ -1876,7 +1876,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaMediaType">KalturaMediaType</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">duration</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry media (video/audio) duration</xs:documentation></span><br>
@@ -1886,7 +1886,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">flavorParamsIds</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Comma seperated ids of flavor params that have ready flavor asset assign to the entry</xs:documentation></span><br>
@@ -1896,7 +1896,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">plays</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry plays count in the remote site</xs:documentation></span><br>
@@ -1906,7 +1906,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">views</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry views count in the remote site</xs:documentation></span><br>
@@ -2149,7 +2149,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies specific tags you want to set for the flavor asset</xs:documentation></span><br>
@@ -2321,7 +2321,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry searchable keywords</xs:documentation></span><br>
@@ -2460,7 +2460,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2">tag</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Free text keyword</xs:documentation></span><br>
@@ -2642,7 +2642,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2">[Any element]</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
@@ -2706,7 +2706,7 @@ table th {
 <tbody>
 <tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
@@ -2716,7 +2716,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
@@ -2726,7 +2726,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
@@ -2736,7 +2736,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
@@ -2746,7 +2746,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
@@ -2757,7 +2757,7 @@ table th {
 <td class="last"></td>
 </tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneEndTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point end time</xs:documentation></span><br>
@@ -2767,7 +2767,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneTitle</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Textual title</xs:documentation></span><br>
@@ -2779,7 +2779,7 @@ table th {
 					 Maximum length: 250 characters<br>
 </td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sourceUrl</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">The URL of the ad XML</xs:documentation></span><br>
@@ -2789,7 +2789,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">adType</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Indicates the ad type</xs:documentation></span><br>
@@ -2799,7 +2799,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaAdType">KalturaAdType</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">protocolType</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Indicates the ad protocol type</xs:documentation></span><br>
@@ -2809,7 +2809,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaAdProtocolType">KalturaAdProtocolType</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td colspan="2" class="first extensions-title">Extensions:</td>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
@@ -2880,7 +2880,7 @@ table th {
 <tbody>
 <tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
@@ -2890,7 +2890,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
@@ -2900,7 +2900,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
@@ -2910,7 +2910,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
@@ -2920,7 +2920,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
@@ -2931,7 +2931,7 @@ table th {
 <td class="last"></td>
 </tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneEndTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point end time</xs:documentation></span><br>
@@ -2941,7 +2941,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneText</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Free text description</xs:documentation></span><br>
@@ -2951,7 +2951,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">parent</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">System name of the parent annotation</xs:documentation></span><br>
@@ -2963,7 +2963,7 @@ table th {
 					 Maximum length: 120 characters<br>
 </td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">parentId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of the parent annotation</xs:documentation></span><br>
@@ -2975,7 +2975,7 @@ table th {
 					 Maximum length: 250 characters<br>
 </td>
 </tr>
-<tr class>
+<tr class="">
 <td colspan="2" class="first extensions-title">Extensions:</td>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
@@ -3087,7 +3087,7 @@ table th {
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">tags</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies specific tags you want to set for the flavor asset</xs:documentation></span><br>
@@ -3097,7 +3097,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">filename</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Attachment asset file name</xs:documentation></span><br>
@@ -3107,7 +3107,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">title</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Attachment asset title</xs:documentation></span><br>
@@ -3117,7 +3117,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">description</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Attachment asset free text description</xs:documentation></span><br>
@@ -3260,7 +3260,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2">tags</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Specifies specific tags you want to set for the flavor asset</xs:documentation></span><br>
@@ -3321,7 +3321,7 @@ table th {
 <tbody>
 <tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
@@ -3331,7 +3331,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
@@ -3341,7 +3341,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
@@ -3351,7 +3351,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
@@ -3361,7 +3361,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
@@ -3372,7 +3372,7 @@ table th {
 <td class="last"></td>
 </tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneEndTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point end time</xs:documentation></span><br>
@@ -3382,7 +3382,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">code</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Textual code</xs:documentation></span><br>
@@ -3394,7 +3394,7 @@ table th {
 					 Maximum length: 250 characters<br>
 </td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">description</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Free text description</xs:documentation></span><br>
@@ -3404,7 +3404,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td colspan="2" class="first extensions-title">Extensions:</td>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
@@ -3473,7 +3473,7 @@ table th {
 <tbody>
 <tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
@@ -3483,7 +3483,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
@@ -3493,7 +3493,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
@@ -3503,7 +3503,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
@@ -3513,7 +3513,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
@@ -3524,7 +3524,7 @@ table th {
 <td class="last"></td>
 </tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">title</td>
 <td></td>
 <td>Yes</td>
@@ -3532,7 +3532,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">description</td>
 <td></td>
 <td>Yes</td>
@@ -3540,7 +3540,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">subType</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Indicates the thumb cue point sub type 1 = Slide 2 = Chapter</xs:documentation></span><br>
@@ -3550,7 +3550,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaThumbCuePointSubType">KalturaThumbCuePointSubType</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td colspan="2" class="first extensions-title">Extensions:</td>
 <td colspan="5" class="last extensions-title"></td>
 </tr>
@@ -3695,7 +3695,7 @@ table th {
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">remoteId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Unique id in the remote site</xs:documentation></span><br>
@@ -3705,7 +3705,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sunrise</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Time that the entry will become available in the remote site</xs:documentation></span><br>
@@ -3715,7 +3715,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sunset</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Time that the entry will become unavailable in the remote site</xs:documentation></span><br>
@@ -3725,7 +3725,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">flavorAssetIds</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Ids of flavor assets to be submitted to the remote site</xs:documentation></span><br>
@@ -3735,7 +3735,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">thumbAssetIds</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Ids of thumbnail assets to be submitted to the remote site</xs:documentation></span><br>
@@ -3745,7 +3745,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">assetIds</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Ids of assets to be submitted to the remote site</xs:documentation></span><br>
@@ -3755,7 +3755,7 @@ table th {
 <td></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">errorDescription</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Submission error description</xs:documentation></span><br>
@@ -3765,7 +3765,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry distribution creation date</xs:documentation></span><br>
@@ -3775,7 +3775,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry distribution last update date</xs:documentation></span><br>
@@ -3785,7 +3785,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">submittedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry distribution submission date</xs:documentation></span><br>
@@ -3795,7 +3795,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">lastReport</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry distribution last report date</xs:documentation></span><br>
@@ -3805,7 +3805,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">dirtyStatus</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Indicates that there are future action to be submitted</xs:documentation></span><br>
@@ -3815,7 +3815,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaEntryDistributionFlag">KalturaEntryDistributionFlag</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">status</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry distribution status</xs:documentation></span><br>
@@ -3825,7 +3825,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaEntryDistributionStatus">KalturaEntryDistributionStatus</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sunStatus</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry distribution availability status</xs:documentation></span><br>
@@ -3835,7 +3835,7 @@ table th {
 <td><a href="/api-docs/General_Objects/Enums/KalturaEntryDistributionSunStatus">KalturaEntryDistributionSunStatus</a></td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">plays</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry plays count in the remote site</xs:documentation></span><br>
@@ -3845,7 +3845,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">views</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Entry views count in the remote site</xs:documentation></span><br>
@@ -3855,7 +3855,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">errorNumber</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Submission error number</xs:documentation></span><br>
@@ -3865,7 +3865,7 @@ table th {
 <td>int</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">errorType</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Submission error type</xs:documentation></span><br>
@@ -3939,7 +3939,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2"><span>scene</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point element</xs:documentation></span><br>
@@ -4043,7 +4043,7 @@ table th {
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
@@ -4053,7 +4053,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
@@ -4063,7 +4063,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
@@ -4073,7 +4073,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
@@ -4083,7 +4083,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
@@ -4214,7 +4214,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2">[Any element]</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
@@ -4278,7 +4278,7 @@ table th {
 <th>Type</th>
 <th>Restrictions</th>
 </tr></thead>
-<tbody><tr class>
+<tbody><tr class="">
 <td class="first" colspan="2"><span>optionalAnswer</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Single optional answer element</xs:documentation></span><br>
@@ -4336,7 +4336,7 @@ table th {
 <th>Restrictions</th>
 </tr></thead>
 <tbody>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">key</td>
 <td></td>
 <td>No</td>
@@ -4344,7 +4344,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">text</td>
 <td></td>
 <td>No</td>
@@ -4352,7 +4352,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">weight</td>
 <td></td>
 <td>No</td>
@@ -4360,7 +4360,7 @@ table th {
 <td>float</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">isCorrect</td>
 <td></td>
 <td>No</td>
@@ -4419,7 +4419,7 @@ table th {
 <tbody>
 <tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
@@ -4429,7 +4429,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
@@ -4439,7 +4439,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
@@ -4449,7 +4449,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
@@ -4459,7 +4459,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
@@ -4470,7 +4470,7 @@ table th {
 <td class="last"></td>
 </tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">question</td>
 <td></td>
 <td>Yes</td>
@@ -4478,7 +4478,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">hint</td>
 <td></td>
 <td>No</td>
@@ -4486,7 +4486,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">explanation</td>
 <td></td>
 <td>No</td>
@@ -4494,7 +4494,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">optionalAnswers</td>
 <td></td>
 <td>No</td>
@@ -4554,7 +4554,7 @@ table th {
 <tbody>
 <tr class="extends-title"><td colspan="7">Extended from <span>T_scene</span>
 </td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">sceneStartTime</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
@@ -4564,7 +4564,7 @@ table th {
 <td>time</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">createdAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
@@ -4574,7 +4574,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">updatedAt</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
@@ -4584,7 +4584,7 @@ table th {
 <td>dateTime</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">userId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
@@ -4594,7 +4594,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2"><span>tags</span></td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
@@ -4605,7 +4605,7 @@ table th {
 <td class="last"></td>
 </tr>
 <tr class="extends-title"><td colspan="7"></td></tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">answerKey</td>
 <td></td>
 <td>Yes</td>
@@ -4613,7 +4613,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">quizUserEntryId</td>
 <td></td>
 <td>Yes</td>
@@ -4621,7 +4621,7 @@ table th {
 <td>string</td>
 <td class="last"></td>
 </tr>
-<tr class>
+<tr class="">
 <td class="first" colspan="2">parentId</td>
 <td>
 <span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of the parent questionCuePoint</xs:documentation></span><br>
