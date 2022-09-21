@@ -33847,16 +33847,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /***/ (function(module, exports, __webpack_require__) {
 
 window.moment = __webpack_require__("./node_modules/moment/moment.js");
-window.globalSearch = function (query) {
-    if (window.searchService) {
-        window.searchService.query = query;
-        window.searchService.performSearch();
-    }
-};
-window.toggleSideMenu = function () {
-    if (window.sideMenuComponent)
-        window.sideMenuComponent.toggle();
-};
 window.markdownNavigation = function (path) {
     if (window.routesService) {
         window.routesService.navigate(window.routesService.getPathParts(path));
