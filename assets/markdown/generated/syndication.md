@@ -385,6 +385,38 @@ table th {
   </xs:complexType>
   <xs:element name="distribution" type="T_distribution" substitutionGroup="item-extension"></xs:element>
   <xs:element name="distribution-extension"></xs:element>
+  <xs:complexType name="T_scenes">
+    <xs:sequence>
+      <xs:element ref="scene" minOccurs="1" maxOccurs="unbounded"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_scene" abstract="true">
+    <xs:sequence>
+      <xs:element name="sceneStartTime" minOccurs="1" maxOccurs="1" type="xs:time"></xs:element>
+      <xs:element name="createdAt" minOccurs="1" maxOccurs="1" type="xs:dateTime"></xs:element>
+      <xs:element name="updatedAt" minOccurs="1" maxOccurs="1" type="xs:dateTime"></xs:element>
+      <xs:element name="userId" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+      <xs:element ref="tags" minOccurs="0" maxOccurs="1"></xs:element>
+    </xs:sequence>
+    <xs:attribute name="sceneId" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="250"></xs:maxLength>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="systemName" use="optional">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="120"></xs:maxLength>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="scenes" type="T_scenes" substitutionGroup="item-extension"></xs:element>
+  <xs:element name="scene" type="T_scene"></xs:element>
+  <xs:element name="scene-extension"></xs:element>
+  <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:complexType name="T_scene_questionCuePoint">
     <xs:complexContent>
       <xs:extension base="T_scene">
@@ -425,38 +457,6 @@ table th {
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="scene-answer-cue-point" type="T_scene_answerCuePoint" substitutionGroup="scene"></xs:element>
-  <xs:complexType name="T_scenes">
-    <xs:sequence>
-      <xs:element ref="scene" minOccurs="1" maxOccurs="unbounded"></xs:element>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="T_scene" abstract="true">
-    <xs:sequence>
-      <xs:element name="sceneStartTime" minOccurs="1" maxOccurs="1" type="xs:time"></xs:element>
-      <xs:element name="createdAt" minOccurs="1" maxOccurs="1" type="xs:dateTime"></xs:element>
-      <xs:element name="updatedAt" minOccurs="1" maxOccurs="1" type="xs:dateTime"></xs:element>
-      <xs:element name="userId" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
-      <xs:element ref="tags" minOccurs="0" maxOccurs="1"></xs:element>
-    </xs:sequence>
-    <xs:attribute name="sceneId" use="required">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:maxLength value="250"></xs:maxLength>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-    <xs:attribute name="systemName" use="optional">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:maxLength value="120"></xs:maxLength>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:element name="scenes" type="T_scenes" substitutionGroup="item-extension"></xs:element>
-  <xs:element name="scene" type="T_scene"></xs:element>
-  <xs:element name="scene-extension"></xs:element>
-  <xs:element name="scene-customData" type="T_customData" substitutionGroup="scene-extension"></xs:element>
   <xs:simpleType name="KalturaEntryType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="-1"></xs:enumeration>
@@ -3914,6 +3914,345 @@ table th {
 
 
 
+<span class="k-et">scenes element</span>
+
+
+
+
+
+<span class="element-description">Cue points wrapper</span>
+
+
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody><tr class="">
+<td class="first" colspan="2"><span>scene</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point element</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>Unbounded</td>
+<td></td>
+<td class="last"></td>
+</tr></tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<scenes>
+  <scene-ad-cue-point entryId="{entry id}" systemName="MY_AD_CUE_POINT_SYSTEM_NAME">...</scene-ad-cue-point>
+  <scene-annotation entryId="{entry id}" systemName="MY_ANNOTATION_PARENT_SYSTEM_NAME">...</scene-annotation>
+  <scene-annotation entryId="{entry id}">...</scene-annotation>
+  <scene-code-cue-point entryId="{entry id}">...</scene-code-cue-point>
+  <scene-thumb-cue-point entryId="{entry id}">...</scene-thumb-cue-point>
+</scenes>
+```
+
+--------
+
+
+
+
+
+<span class="k-et">scene element</span>
+
+
+
+
+
+<span class="element-description">
+				Base cue point element
+				Is abstract and cannot be used
+				Use the extended elements only
+			</span>
+
+
+
+
+
+##### Attributes
+
+
+
+<table>
+<thead><tr>
+<th>Attribute Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>sceneId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of cue point to apply update/delete action on</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>string</td>
+<td>
+					 Maximum length: 250 characters<br>
+</td>
+</tr>
+<tr>
+<td>systemName</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">System name of cue point to apply update/delete action on</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td>
+					 Maximum length: 120 characters<br>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr class="">
+<td class="first" colspan="2">sceneStartTime</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>time</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">createdAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">updatedAt</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>dateTime</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2">userId</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td>string</td>
+<td class="last"></td>
+</tr>
+<tr class="">
+<td class="first" colspan="2"><span>tags</span></td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>1</td>
+<td></td>
+<td class="last"></td>
+</tr>
+</tbody>
+</table>
+
+
+
+<span class="element-extended-title">Extended elements</span>
+
+
+
+<ol>
+<li><span>scene-ad-cue-point</span></li>
+<li><span>scene-annotation</span></li>
+<li><span>scene-code-cue-point</span></li>
+<li><span>scene-thumb-cue-point</span></li>
+<li><span>scene-question-cue-point</span></li>
+<li><span>scene-answer-cue-point</span></li>
+</ol>
+
+--------
+
+
+
+
+
+<span class="k-et">scene-customData element</span>
+
+
+
+
+
+<span class="element-description">XML for custom metadata</span>
+
+
+
+
+
+##### Attributes
+
+
+
+<table>
+<thead><tr>
+<th>Attribute Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>metadataId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Id of the custom metadata object</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataVersion</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Version of the custom metadata object</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfile</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile system name</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileId</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile id</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileName</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile name</xs:documentation></span><br>
+</td>
+<td>No</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>metadataProfileVersion</td>
+<td>
+<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile version</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>int</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+##### Sub-Elements
+
+
+
+<table>
+<thead><tr>
+<th colspan="2">Element Name</th>
+<th>Description</th>
+<th>Required</th>
+<th>Maximum Appearances</th>
+<th>Type</th>
+<th>Restrictions</th>
+</tr></thead>
+<tbody><tr class="">
+<td class="first" colspan="2">[Any element]</td>
+<td>
+<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
+</td>
+<td>Yes</td>
+<td>1</td>
+<td>any type</td>
+<td class="last"></td>
+</tr></tbody>
+</table>
+
+
+
+##### XML Example
+
+
+
+```xml
+<scene-ad-cue-point entryId="{entry id}">
+  <sceneStartTime>00:00:05</sceneStartTime>
+  <sceneTitle>my ad title</sceneTitle>
+  <sourceUrl>http://source.to.my/ad.xml</sourceUrl>
+  <adType>1</adType>
+  <protocolType>1</protocolType>
+  <scene-customData metadataProfile="MY_AD_METADATA_PROFILE_SYSTEM_NAME">
+    <metadata>
+      <adData>my ad custom data</adData>
+    </metadata>
+  </scene-customData>
+</scene-ad-cue-point>
+```
+
+--------
+
+
+
+
+
 <span class="k-et">optionalAnswers element</span>
 
 
@@ -4308,345 +4647,6 @@ table th {
     <tag>my_tag</tag>
   </tags>
 </scene-answer-cue-point>
-```
-
---------
-
-
-
-
-
-<span class="k-et">scenes element</span>
-
-
-
-
-
-<span class="element-description">Cue points wrapper</span>
-
-
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody><tr class="">
-<td class="first" colspan="2"><span>scene</span></td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point element</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>Unbounded</td>
-<td></td>
-<td class="last"></td>
-</tr></tbody>
-</table>
-
-
-
-##### XML Example
-
-
-
-```xml
-<scenes>
-  <scene-ad-cue-point entryId="{entry id}" systemName="MY_AD_CUE_POINT_SYSTEM_NAME">...</scene-ad-cue-point>
-  <scene-annotation entryId="{entry id}" systemName="MY_ANNOTATION_PARENT_SYSTEM_NAME">...</scene-annotation>
-  <scene-annotation entryId="{entry id}">...</scene-annotation>
-  <scene-code-cue-point entryId="{entry id}">...</scene-code-cue-point>
-  <scene-thumb-cue-point entryId="{entry id}">...</scene-thumb-cue-point>
-</scenes>
-```
-
---------
-
-
-
-
-
-<span class="k-et">scene element</span>
-
-
-
-
-
-<span class="element-description">
-				Base cue point element
-				Is abstract and cannot be used
-				Use the extended elements only
-			</span>
-
-
-
-
-
-##### Attributes
-
-
-
-<table>
-<thead><tr>
-<th>Attribute Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>sceneId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">ID of cue point to apply update/delete action on</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>string</td>
-<td>
-					 Maximum length: 250 characters<br>
-</td>
-</tr>
-<tr>
-<td>systemName</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">System name of cue point to apply update/delete action on</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td>
-					 Maximum length: 120 characters<br>
-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr class="">
-<td class="first" colspan="2">sceneStartTime</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point start time</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>time</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">createdAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point creation date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">updatedAt</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point last update date</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>dateTime</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2">userId</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point owner user id</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td>string</td>
-<td class="last"></td>
-</tr>
-<tr class="">
-<td class="first" colspan="2"><span>tags</span></td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Cue point searchable keywords</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>1</td>
-<td></td>
-<td class="last"></td>
-</tr>
-</tbody>
-</table>
-
-
-
-<span class="element-extended-title">Extended elements</span>
-
-
-
-<ol>
-<li><span>scene-ad-cue-point</span></li>
-<li><span>scene-annotation</span></li>
-<li><span>scene-code-cue-point</span></li>
-<li><span>scene-thumb-cue-point</span></li>
-<li><span>scene-question-cue-point</span></li>
-<li><span>scene-answer-cue-point</span></li>
-</ol>
-
---------
-
-
-
-
-
-<span class="k-et">scene-customData element</span>
-
-
-
-
-
-<span class="element-description">XML for custom metadata</span>
-
-
-
-
-
-##### Attributes
-
-
-
-<table>
-<thead><tr>
-<th>Attribute Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>metadataId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Id of the custom metadata object</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataVersion</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Version of the custom metadata object</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfile</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile system name</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileId</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile id</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileName</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile name</xs:documentation></span><br>
-</td>
-<td>No</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>metadataProfileVersion</td>
-<td>
-<span class="child-attribute-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata schema profile version</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>int</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-
-
-##### Sub-Elements
-
-
-
-<table>
-<thead><tr>
-<th colspan="2">Element Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Maximum Appearances</th>
-<th>Type</th>
-<th>Restrictions</th>
-</tr></thead>
-<tbody><tr class="">
-<td class="first" colspan="2">[Any element]</td>
-<td>
-<span class="child-element-description"><xs:documentation xmlns:xs="http://www.w3.org/2001/XMLSchema">Custom metadata XML according to schema profile</xs:documentation></span><br>
-</td>
-<td>Yes</td>
-<td>1</td>
-<td>any type</td>
-<td class="last"></td>
-</tr></tbody>
-</table>
-
-
-
-##### XML Example
-
-
-
-```xml
-<scene-ad-cue-point entryId="{entry id}">
-  <sceneStartTime>00:00:05</sceneStartTime>
-  <sceneTitle>my ad title</sceneTitle>
-  <sourceUrl>http://source.to.my/ad.xml</sourceUrl>
-  <adType>1</adType>
-  <protocolType>1</protocolType>
-  <scene-customData metadataProfile="MY_AD_METADATA_PROFILE_SYSTEM_NAME">
-    <metadata>
-      <adData>my ad custom data</adData>
-    </metadata>
-  </scene-customData>
-</scene-ad-cue-point>
 ```
 
 
