@@ -1238,6 +1238,7 @@ table th {
       <xs:enumeration value="yahooDistribution.YAHOO"></xs:enumeration>
       <xs:enumeration value="youTubeDistribution.YOUTUBE"></xs:enumeration>
       <xs:enumeration value="youtubeApiDistribution.YOUTUBE_API"></xs:enumeration>
+      <xs:enumeration value="cortexApiDistribution.CORTEX_API"></xs:enumeration>
       <xs:enumeration value="tvinciDistribution.TVINCI"></xs:enumeration>
       <xs:enumeration value="unicornDistribution.UNICORN"></xs:enumeration>
       <xs:enumeration value="facebookDistribution.FACEBOOK"></xs:enumeration>
