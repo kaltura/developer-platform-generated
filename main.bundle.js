@@ -1664,12 +1664,12 @@ var RenderType_DocumentationComponent = i0.ɵcrt({ encapsulation: 0, styles: sty
 exports.RenderType_DocumentationComponent = RenderType_DocumentationComponent;
 
 function View_DocumentationComponent_1(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "i", [["class", "fa fa-slash-forward"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""]))], null, function (_ck, _v) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "i", [["class", "fa fa-chevron-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""]))], null, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.activeItem.fullTitle || _co.activeItem.title;_ck(_v, 3, 0, currVal_0);
     });
 }
 function View_DocumentationComponent_2(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "i", [["class", "fa fa-slash-forward"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["[", "]"]))], null, function (_ck, _v) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "i", [["class", "fa fa-chevron-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["[", "]"]))], null, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.search.query;_ck(_v, 3, 0, currVal_0);
     });
 }
@@ -2209,7 +2209,7 @@ function View_GalleryComponent_3(_l) {
     });
 }
 function View_GalleryComponent_4(_l) {
-    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "i", [["class", "fa fa-slash-forward"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""]))], null, function (_ck, _v) {
+    return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (_l()(), i0.ɵeld(1, 0, null, null, 0, "i", [["class", "fa fa-chevron-right"]], null, null, null, null, null)), (_l()(), i0.ɵeld(2, 0, null, null, 1, "span", [], null, null, null, null, null)), (_l()(), i0.ɵted(3, null, ["", ""]))], null, function (_ck, _v) {
         var _co = _v.component;var currVal_0 = _co.subtitle;_ck(_v, 3, 0, currVal_0);
     });
 }
@@ -9538,26 +9538,21 @@ var findOperation = function findOperation(title, openapi) {
 var setSummaryAndTitle = function setSummaryAndTitle(item, config, openapi) {
   if (item.contents) {
     item.summary = item.summary || item.contents;
-    item.icon = 'LiveWebcasting';
   } else if (item.operations) {
     item.type = 'operations';
-    item.icon = 'VideoExperiences';
     var defaultTitle = typeof item.operations === 'string' ? item.operations : "Operations";
     item.title = item.title || defaultTitle;
   } else if (item.definitions) {
     item.type = 'definitions';
-    item.icon = 'VideoPlayer';
     item.title = item.title || "Definitions";
   } else if (item.operation && openapi) {
     item.type = 'operation';
-    item.icon = 'Media';
     item.title = item.title || item.operation;
     var op = findOperation(item.operation, openapi);
     if (!op) {
       item.hide = true;
     } else {
       item.summary = item.summary || op.summary || op.description;
-      item.icon = 'Services';
       if (op.deprecated) {
         item.deprecated = true;
       }
@@ -9570,7 +9565,6 @@ var setSummaryAndTitle = function setSummaryAndTitle(item, config, openapi) {
     } else {
       item.title = item.title || def.title || item.definition;
       item.summary = item.summary || def.description;
-      item.icon = 'expand';
     }
   } else if (item.tag && openapi) {
     item.type = 'tag';
